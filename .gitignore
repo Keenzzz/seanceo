@@ -1,5 +1,6 @@
-# Données générées par scripts/fetch_data.py — régénérables à la demande
+# Générés par les scripts (le CI les reconstruit à chaque déploiement)
 data/
+site/
 
 __pycache__/
 *.pyc
