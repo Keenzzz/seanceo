@@ -332,10 +332,10 @@ séances du jour et de la semaine.</p>{"".join(blocks)}"""
 <h2>Choisissez votre ville</h2>
 <ul class="cities">{cities_html}</ul>"""
     write("/", page(
-        f"{SITE_NAME} — Séances des cinémas indépendants en France",
-        "Les séances et horaires de plus de 140 cinémas indépendants et Art & Essai "
-        "en France, mis à jour chaque jour. Trouvez votre film, votre ville, votre salle.",
-        body, "/", h1="Quel film voir dans un cinéma indépendant ?"))
+        f"{SITE_NAME} — Séances de cinéma partout en France",
+        f"Les séances et horaires de {len(cinemas)} cinémas en France, indépendants "
+        "et grandes enseignes, mis à jour chaque jour. Trouvez votre film, votre ville, votre salle.",
+        body, "/", h1="Quel film voir au cinéma ce soir ?"))
     urls.append("/")
 
     # ----- sitemap & robots -----
