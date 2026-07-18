@@ -26,8 +26,13 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Récupérer les séances (API SCARE)
+      - name: Récupérer les séances indés (API SCARE)
         run: python scripts/fetch_data.py
+      - name: Récupérer les séances Pathé (best-effort)
+        # continue-on-error : si l'API Pathé bloque l'IP du runner ou tombe,
+        # le site se déploie quand même avec les indés seuls (fusion tolérante).
+        continue-on-error: true
+        run: python scripts/fetch_pathe.py --cinemas 0 --days 7
       - name: Générer le site
         run: python scripts/build_site.py
       - uses: actions/upload-pages-artifact@v3
