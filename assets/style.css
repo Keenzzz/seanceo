@@ -118,6 +118,21 @@ h2 { margin-top: 2em; border-bottom: 1px solid #2a2f3a; padding-bottom: .3em; }
 
 .cinema-block h2, .cinema-block h3 { border: none; margin: .6em 0 .1em; }
 
+/* Distinction indé / chaîne — l'indé porte l'accent rouge, sa signature */
+.badge {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: .68rem;
+  font-weight: 600;
+  padding: 1px 8px;
+  border-radius: 999px;
+  margin-left: 8px;
+  letter-spacing: .02em;
+}
+
+.badge-inde { background: var(--accent); color: #fff; }
+.badge-chain { background: #2a2f3a; color: var(--muted); border: 1px solid #3a4150; }
+
 /* Fiche film */
 .film-head { display: flex; gap: 20px; align-items: flex-start; }
 .film-head .poster { width: 160px; border-radius: var(--radius); flex-shrink: 0; }

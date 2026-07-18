@@ -17,6 +17,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from fetch_data import slugify  # même slugification partout
+from sources import load_merged, cinema_kind  # fusion indés + chaînes
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
@@ -104,6 +105,15 @@ def write(path: str, content: str) -> None:
 
 # --- Fragments réutilisés -------------------------------------------------
 
+def chain_badge(cinema: dict) -> str:
+    """Pastille distinguant un cinéma de chaîne d'un indépendant. Les indés
+    (signature du site) portent le point rouge ; les chaînes leur nom."""
+    chain = cinema.get("chain")
+    if chain:
+        return f' <span class="badge badge-chain">{esc(chain)}</span>'
+    return ' <span class="badge badge-inde" title="Cinéma indépendant">Indé</span>'
+
+
 def showtime_pills(shows: list[dict]) -> str:
     pills = []
     for s in sorted(shows, key=lambda x: x["start"]):
@@ -134,10 +144,7 @@ def movie_card(movie: dict, movie_urls: dict, extra: str = "") -> str:
 
 def main() -> int:
     today = date.today()
-    cinemas = load("cinemas.json")
-    movies = load("movies.json")
-    showtimes = load("showtimes.json")
-    cities = load("cities.json")
+    cinemas, movies, showtimes, cities = load_merged(DATA)
     meta = load("meta.json")
 
     # Index des séances
@@ -197,7 +204,7 @@ def main() -> int:
             )
             sections.append(f'<section><h2>{fr_date(d, today)}</h2>{films_html}</section>')
         body = f"""<p class="lead">{esc(cinema["address"])}, {esc(cinema["postcode"])} {esc(cinema["city"])} —
-cinéma indépendant. <a href="/ville/{cinema["city_slug"]}/">Tous les cinémas de {esc(cinema["city"])}</a></p>
+{esc(cinema_kind(cinema))}. <a href="/ville/{cinema["city_slug"]}/">Tous les cinémas de {esc(cinema["city"])}</a></p>
 {"".join(sections) or "<p>Aucune séance annoncée pour les deux prochaines semaines.</p>"}"""
         jsonld = {
             "@context": "https://schema.org", "@type": "MovieTheater",
@@ -212,7 +219,7 @@ cinéma indépendant. <a href="/ville/{cinema["city_slug"]}/">Tous les cinémas 
         write(path, page(
             f"{cinema['name']} ({cinema['city']}) : séances et programme — {SITE_NAME}",
             f"Programme et horaires des séances du cinéma {cinema['name']} à {cinema['city']} "
-            f"sur les 15 prochains jours. Cinéma indépendant.",
+            f"sur les 15 prochains jours. {cinema_kind(cinema).capitalize()}.",
             body, path, jsonld, h1=f"{cinema['name']} — {cinema['city']}"))
         urls.append(path)
 
@@ -235,17 +242,24 @@ cinéma indépendant. <a href="/ville/{cinema["city_slug"]}/">Tous les cinémas 
                     f'<p class="meta">prochaine séance : {fr_date(date.fromisoformat(ss[0]["start"][:10]), today)}</p>'
                 films_html.append(movie_card(movies[mk], movie_urls, label))
             blocks.append(f"""<section class="cinema-block">
-<h2><a href="{cinema_urls[cid]}">{esc(cinema["name"])}</a></h2>
+<h2><a href="{cinema_urls[cid]}">{esc(cinema["name"])}</a>{chain_badge(cinema)}</h2>
 <p class="meta">{esc(cinema["address"])} — <a href="{cinema_urls[cid]}">programme complet</a></p>
 {"".join(films_html) or "<p>Aucune séance cette semaine.</p>"}</section>""")
         n_cine = len(city["cinemas"])
-        body = f"""<p class="lead">{n_cine} cinéma{"s" if n_cine > 1 else ""} indépendant{"s" if n_cine > 1 else ""}
-à {esc(city["name"])} — séances du jour et de la semaine.</p>{"".join(blocks)}"""
+        n_chain = sum(1 for cid in city["cinemas"] if cinemas[cid].get("chain"))
+        n_inde = n_cine - n_chain
+        parts = []
+        if n_inde:
+            parts.append(f'{n_inde} cinéma{"s" if n_inde > 1 else ""} indépendant{"s" if n_inde > 1 else ""}')
+        if n_chain:
+            parts.append(f'{n_chain} cinéma{"s" if n_chain > 1 else ""} de chaîne')
+        body = f"""<p class="lead">{" et ".join(parts)} à {esc(city["name"])} —
+séances du jour et de la semaine.</p>{"".join(blocks)}"""
         write(path, page(
-            f"Cinéma à {city['name']} : séances des cinémas indépendants — {SITE_NAME}",
+            f"Cinéma à {city['name']} : séances et horaires — {SITE_NAME}",
             f"Quel film voir à {city['name']} ? Séances et horaires des {n_cine} cinéma(s) "
-            f"indépendant(s) et Art & Essai : programme du jour et de la semaine.",
-            body, path, h1=f"Cinémas indépendants à {city['name']}"))
+            f"de la ville : programme du jour et de la semaine.",
+            body, path, h1=f"Cinémas à {city['name']}"))
         urls.append(path)
 
     # ----- Pages film -----
@@ -306,7 +320,12 @@ cinéma indépendant. <a href="/ville/{cinema["city_slug"]}/">Tous les cinémas 
         f'<li><a href="/ville/{slug}/">{esc(c["name"])}</a> '
         f'<span class="meta">{len(c["cinemas"])} ciné{"s" if len(c["cinemas"]) > 1 else ""}</span></li>'
         for slug, c in cities.items())
-    body = f"""<p class="lead">{len(cinemas)} cinémas indépendants et Art &amp; Essai, {len(cities)} villes,
+    n_chain = sum(1 for c in cinemas.values() if c.get("chain"))
+    n_inde = len(cinemas) - n_chain
+    inventory = f"{n_inde} cinémas indépendants"
+    if n_chain:
+        inventory += f" et {n_chain} cinémas de chaîne"
+    body = f"""<p class="lead">{inventory}, {len(cities)} villes,
 {len(showtimes)} séances à venir. Mis à jour quotidiennement.</p>
 <h2>À l'affiche cette semaine</h2>
 <div class="grid">{films_html}</div>
