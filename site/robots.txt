@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://keenzzz.github.io/cine-indes/sitemap.xml

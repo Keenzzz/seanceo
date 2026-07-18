@@ -1,0 +1,5 @@
+# Données générées par scripts/fetch_data.py — régénérables à la demande
+data/
+
+__pycache__/
+*.pyc
