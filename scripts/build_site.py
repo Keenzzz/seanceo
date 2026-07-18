@@ -172,6 +172,11 @@ def main() -> int:
         shutil.rmtree(SITE)
     SITE.mkdir()
     shutil.copytree(ASSETS, SITE / "assets")
+    # Fichiers servis tels quels à la racine (ex. validation Search Console)
+    static_dir = ROOT / "static"
+    if static_dir.exists():
+        for f in static_dir.iterdir():
+            shutil.copy(f, SITE / f.name)
     urls: list[str] = []
 
     # ----- Pages cinéma -----
