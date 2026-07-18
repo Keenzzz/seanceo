@@ -161,6 +161,14 @@ def main() -> int:
                         "auditorium": str(s.get("auditoriumName", "")),
                     })
 
+    # Garde-fou : si la collecte n'a rien ramené (typiquement l'API a renvoyé
+    # 403 à l'IP d'un runner CI datacenter), NE PAS écraser la photo versionnée
+    # des données. Le build réutilisera le dernier snapshot valide du repo.
+    if not cinemas:
+        print("Aucune donnée Pathé récupérée (API bloquée ?) — "
+              "snapshot existant conservé, rien n'est réécrit.")
+        return 0
+
     showtimes.sort(key=lambda s: s["start"])
 
     # Index des villes (même logique que fetch_data)

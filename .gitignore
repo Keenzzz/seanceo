@@ -1,5 +1,11 @@
-# Générés par les scripts (le CI les reconstruit à chaque déploiement)
-data/
+# Données générées. Le CI régénère les indés à chaque déploiement, mais l'API
+# Pathé bloque les IP datacenter du CI : on versionne donc la photo Pathé,
+# collectée en local, pour que le build s'en serve (indés frais + Pathé figé).
+data/*
+!data/pathe_cinemas.json
+!data/pathe_movies.json
+!data/pathe_showtimes.json
+!data/pathe_cities.json
 site/
 
 __pycache__/
