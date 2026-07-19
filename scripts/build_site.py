@@ -1,4 +1,4 @@
-"""Générateur de site statique Ciné Indés.
+"""Générateur de site statique Séancéo.
 
 Lit les JSON produits par fetch_data.py et écrit le site complet dans `site/` :
 accueil, une page par ville, par cinéma et par film, sitemap.xml, robots.txt.
@@ -25,10 +25,10 @@ SITE = ROOT / "site"
 ASSETS = ROOT / "assets"
 
 # Hébergement GitHub Pages (projet) : le site vit sous un sous-chemin.
-# Le jour où un domaine dédié est branché : BASE_PATH = "" et BASE_URL = domaine.
-BASE_PATH = "/cine-indes"
+# Quand le domaine seanceo.fr sera branché : BASE_PATH = "" et BASE_URL = "https://seanceo.fr".
+BASE_PATH = "/seanceo"
 BASE_URL = f"https://keenzzz.github.io{BASE_PATH}"
-SITE_NAME = "Ciné Indés"
+SITE_NAME = "Séancéo"
 
 CITY_WINDOW_DAYS = 7     # séances affichées sur une page ville
 CINEMA_WINDOW_DAYS = 14  # séances affichées sur une page cinéma
@@ -75,7 +75,7 @@ def page(title: str, description: str, body: str, path: str,
 <body>
 <header class="site-header">
 <a class="brand" href="/">🎬 {SITE_NAME}</a>
-<p class="tagline">Les séances des cinémas indépendants, partout en France</p>
+<p class="tagline">Les séances de cinéma, partout en France</p>
 </header>
 <main>
 <h1>{esc(h1 if h1 is not None else title)}</h1>
@@ -84,7 +84,7 @@ def page(title: str, description: str, body: str, path: str,
 <footer>
 <p>Données de programmation : <a href="https://datacinesindes.fr" rel="noopener">Data Ciné Indés / SCARE</a>
 (Syndicat des Cinémas d'Art, de Répertoire et d'Essai) — Licence Ouverte 2.0.</p>
-<p>{SITE_NAME} met en avant les salles indépendantes et Art &amp; Essai.</p>
+<p>{SITE_NAME} réunit les séances des cinémas indépendants et des grandes enseignes, et met en avant les salles Art &amp; Essai.</p>
 </footer>
 </body>
 </html>"""
