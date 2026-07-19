@@ -12,6 +12,7 @@ sans accents) et en complétant chaque champ vide par l'autre source.
 """
 
 import json
+import unicodedata
 from collections import defaultdict
 from pathlib import Path
 
@@ -60,6 +61,136 @@ def _merge_movies(base: dict, extra: dict) -> None:
                       "duration_min", "poster", "trailer", "storyline"):
             if not ex.get(field) and m.get(field):
                 ex[field] = m[field]
+
+
+# « Part. 2 » et « Partie 2 » désignent la même découpe d'un film en parties
+_TOKEN_CANON = {"part": "partie", "vol": "volume"}
+# Crédits génériques des programmes de courts-métrages : pas un vrai
+# réalisateur, donc pas un critère de séparation (une source crédite
+# « Collectif », l'autre liste les réalisateurs des courts — même programme).
+_PLACEHOLDER_DIRECTORS = {"collectif", "divers"}
+
+
+def _fold_title(t: str) -> str:
+    """« LE BON, LA BRUTE ET LE TRUAND » et « Le Bon, la Brute et le Truand »
+    doivent tomber sur la même empreinte : minuscules, sans accents ni
+    ponctuation, espaces normalisés. La ponctuation (dont l'apostrophe
+    typographique « ’ ») devient une espace — la supprimer collerait les mots
+    (« J’écris » → « jecris » ≠ « j ecris »)."""
+    t = unicodedata.normalize("NFKD", t or "")
+    t = "".join(c for c in t if not unicodedata.combining(c))
+    words = "".join(c if c.isalnum() else " " for c in t.lower()).split()
+    return " ".join(_TOKEN_CANON.get(w, w) for w in words)
+
+
+def _dedup_movies(movies: dict, showtimes: list, tmdb: dict) -> None:
+    """Fusionne les fiches qui décrivent le même film sous deux clés différentes.
+
+    La clé (titre, réalisateur) laisse passer des doublons : une caisse écrit
+    « LA BATAILLE - PARTIE 2 » sans réalisateur, une autre « La Bataille
+    Partie 2 » avec — deux clés, deux cartes à l'écran pour le même film.
+    Règle : même titre normalisé + réalisateurs compatibles (un nom en commun
+    à l'orthographe près, ou l'un des deux absent) = même film. Deux films
+    homonymes de réalisateurs DIFFÉRENTS restent séparés. Les séances sont
+    rattachées à la fiche survivante (connue de TMDB de préférence)."""
+    alias: dict[str, str] = {}
+
+    def score(k: str):
+        t = tmdb.get(k) or {}
+        return (1 if t.get("found") else 0,
+                1 if movies[k].get("director") else 0,
+                _title_richness(movies[k]["title"]))
+
+    def absorb(keep: str, k: str) -> None:
+        base, extra = movies[keep], movies[k]
+        base["title"] = _cleaner_title(base["title"], extra["title"])
+        for field in ("director", "cast", "genre", "country",
+                      "duration_min", "poster", "trailer", "storyline"):
+            if not base.get(field) and extra.get(field):
+                base[field] = extra[field]
+        alias[k] = keep
+        del movies[k]
+
+    def dir_tokens(key: str) -> set:
+        toks = set(_fold_title(movies[key].get("director") or "").split())
+        # « Collectif » / « Divers » = pas d'information, comme un champ vide
+        return set() if toks <= _PLACEHOLDER_DIRECTORS else toks
+
+    # --- Passe 1 : même titre normalisé, réalisateurs compatibles ---
+    groups = defaultdict(list)
+    for key, m in movies.items():
+        folded = _fold_title(m["title"])
+        if folded:
+            groups[folded].append(key)
+    for keys in groups.values():
+        if len(keys) < 2:
+            continue
+        clusters: list[dict] = []
+        for key in keys:
+            toks = dir_tokens(key)
+            for cl in clusters:
+                if not toks or not cl["toks"] or toks & cl["toks"]:
+                    cl["keys"].append(key)
+                    cl["toks"] |= toks
+                    break
+            else:
+                clusters.append({"keys": [key], "toks": toks})
+        for cl in clusters:
+            keep = max(cl["keys"], key=score)
+            for k in cl["keys"]:
+                if k != keep:
+                    absorb(keep, k)
+
+    # --- Passe 2, par réalisateur : titre billeté avec et sans son numéro
+    # de partie (« La Bataille de Gaulle : J'écris ton nom » vs « … Partie 2 :
+    # J'écris ton nom »). Fusion si le surplus de tokens n'est que
+    # « partie »/« volume »/« chapitre » + chiffres, ET si le titre court a
+    # au moins 4 tokens (un vrai sous-titre) — jamais « Avatar » avec
+    # « Avatar 2 ». ---
+    # Tokens tolérés en surplus : la numérotation de partie, les chiffres, et
+    # les mots-outils français (« Le Bon, la Brute, le Cinglé » vs « … et le
+    # Cinglé » : même réalisateur, même film, un « et » d'écart).
+    part_extra = {"partie", "volume", "chapitre",
+                  "et", "and", "de", "du", "des", "le", "la", "les", "l", "d", "un", "une"}
+    by_dir = defaultdict(list)
+    for key, m in movies.items():
+        d = _fold_title(m.get("director") or "")
+        if d and d not in _PLACEHOLDER_DIRECTORS:
+            by_dir[d].append(key)
+    for keys in by_dir.values():
+        if len(keys) < 2:
+            continue
+        keys.sort(key=lambda k: len(_fold_title(movies[k]["title"]).split()))
+        for i, short in enumerate(keys):
+            for longk in keys[i + 1:]:
+                if short not in movies or longk not in movies:
+                    continue
+                a = set(_fold_title(movies[short]["title"]).split())
+                b = set(_fold_title(movies[longk]["title"]).split())
+                if (len(a) >= 4 and a < b
+                        and all(t in part_extra or t.isdigit() for t in b - a)):
+                    keep, drop = max(short, longk, key=score), None
+                    drop = longk if keep == short else short
+                    absorb(keep, drop)
+
+    if alias:
+        def resolve(k: str) -> str:
+            # La passe 2 peut absorber un survivant de la passe 1 : suivre
+            # la chaîne d'alias jusqu'à la fiche réellement conservée.
+            while k in alias:
+                k = alias[k]
+            return k
+        for s in showtimes:
+            s["movie"] = resolve(s["movie"])
+        # Deux fiches doublonnées listaient parfois la même séance : purge
+        seen = set()
+        unique = []
+        for s in showtimes:
+            sig = (s["cinema"], s["movie"], s["start"], s.get("version"))
+            if sig not in seen:
+                seen.add(sig)
+                unique.append(s)
+        showtimes[:] = unique
 
 
 def _merge_cities(base: dict, extra: dict) -> None:
@@ -130,9 +261,11 @@ def load_merged(data_dir: Path) -> tuple[dict, dict, list, dict]:
     if merged_any:
         showtimes.sort(key=lambda s: s["start"])
 
+    tmdb = _load(data_dir, "tmdb.json") or {}
+    # Rattrape les doublons que la clé (titre, réalisateur) laisse passer
+    _dedup_movies(movies, showtimes, tmdb)
     # Enrichissement TMDB (cache local optionnel : titres propres, notes, affiches)
-    tmdb = _load(data_dir, "tmdb.json")
-    _apply_tmdb(movies, tmdb or {})
+    _apply_tmdb(movies, tmdb)
     # Notes Letterboxd (cache local optionnel : classement des Classiques)
     _apply_letterboxd(movies, _load(data_dir, "letterboxd.json") or {})
 

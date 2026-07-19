@@ -68,11 +68,14 @@ def load(name: str):
 
 def page(title: str, description: str, body: str, path: str,
          jsonld: dict | None = None, h1: str | None = None,
-         head_extra: str = "") -> str:
+         head_extra: str = "", top_link: bool = False) -> str:
     """Enveloppe une page : head SEO complet + header/footer communs.
-    `head_extra` : balises à ajouter dans le <head> (ex. CSS Leaflet de la carte)."""
+    `head_extra` : balises à ajouter dans le <head> (ex. CSS Leaflet de la carte).
+    `top_link` : bouton flottant « retour en haut » pour les gabarits longs."""
     ld = (f'<script type="application/ld+json">{json.dumps(jsonld, ensure_ascii=False)}</script>'
           if jsonld else "")
+    top = ('\n<a class="top-link" href="#" aria-label="Retour en haut de page">↑ Haut</a>'
+           if top_link else "")
     doc = f"""<!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -94,7 +97,7 @@ def page(title: str, description: str, body: str, path: str,
 <main>
 <h1>{esc(h1 if h1 is not None else title)}</h1>
 {body}
-</main>
+</main>{top}
 <footer>
 <p>Données de programmation : <a href="https://datacinesindes.fr" rel="noopener">Data Ciné Indés / SCARE</a>
 (Syndicat des Cinémas d'Art, de Répertoire et d'Essai) — Licence Ouverte 2.0.</p>
@@ -153,9 +156,11 @@ def showtime_pills(shows: list[dict]) -> str:
 
 
 def movie_card(movie: dict, movie_urls: dict, extra: str = "",
-               show_rating: bool = True) -> str:
+               show_rating: bool = True, show_classic: bool = True) -> str:
     """`show_rating=False` masque la note TMDB — utile quand la carte affiche
-    déjà une note d'une autre échelle (classement Letterboxd /5)."""
+    déjà une note d'une autre échelle (classement Letterboxd /5).
+    `show_classic=False` masque le badge Classique — bruit pur sur une page
+    qui ne liste QUE des classiques."""
     url = movie_urls[movie["key"]]
     poster = (f'<img src="{esc(movie["poster"])}" alt="Affiche de {esc(movie["title"])}" loading="lazy">'
               if movie["poster"] else '<div class="noposter">🎞️</div>')
@@ -168,11 +173,26 @@ def movie_card(movie: dict, movie_urls: dict, extra: str = "",
     return f"""<article class="movie-card">
 <a href="{url}">{poster}</a>
 <div class="movie-info">
-<h3><a href="{url}">{esc(movie["title"])}</a>{classic_badge(movie)}</h3>
+<h3><a href="{url}">{esc(movie["title"])}</a>{classic_badge(movie) if show_classic else ""}</h3>
 <p class="meta">{esc(meta)}</p>
 {extra}
 </div>
 </article>"""
+
+
+def city_search_nav(pills_html: str, cmap: dict, n_cities: int) -> str:
+    """Sommaire de villes : pastilles des grandes villes + recherche à la
+    frappe (assets/film.js). `cmap` associe un nom de ville affiché à sa
+    cible : ancre « v-slug » sur une fiche film, URL absolue ailleurs
+    (film.js navigue quand la cible commence par « / »)."""
+    return f"""<nav class="city-jump">
+{pills_html}
+<span class="city-search"><input id="city-search" type="search" autocomplete="off"
+placeholder="Chercher votre ville ({n_cities} villes)…" aria-label="Chercher une ville">
+<ul id="city-suggest" hidden></ul></span>
+<script type="application/json" id="city-map">{json.dumps(cmap, ensure_ascii=False)}</script>
+</nav>
+<script src="/assets/film.js" defer></script>"""
 
 
 # --- Construction ---------------------------------------------------------
@@ -263,23 +283,51 @@ def main() -> int:
         path = f"/ville/{slug}/"
         horizon = (today + timedelta(days=CITY_WINDOW_DAYS)).isoformat()
         blocks = []
-        for cid in sorted(city["cinemas"], key=lambda c: cinemas[c]["name"]):
+        city_movie_keys: set[str] = set()
+        sorted_cids = sorted(city["cinemas"], key=lambda c: cinemas[c]["name"])
+        for cid in sorted_cids:
             cinema = cinemas[cid]
             shows = [s for s in by_cinema[cid] if s["start"][:10] <= horizon]
             films = defaultdict(list)
             for s in shows:
                 films[s["movie"]].append(s)
             today_iso = today.isoformat()
-            films_html = []
+            # Le visiteur type cherche une séance CE SOIR : les films du jour
+            # d'abord, ceux qui ne repassent que plus tard repliés en dessous.
+            films_today, films_later = [], []
             for mk, ss in sorted(films.items(), key=lambda kv: kv[1][0]["start"]):
+                city_movie_keys.add(mk)
                 todays = [s for s in ss if s["start"][:10] == today_iso]
-                label = showtime_pills(todays) if todays else \
-                    f'<p class="meta">prochaine séance : {fr_date(date.fromisoformat(ss[0]["start"][:10]), today)}</p>'
-                films_html.append(movie_card(movies[mk], movie_urls, label))
-            blocks.append(f"""<section class="cinema-block">
+                if todays:
+                    films_today.append(movie_card(movies[mk], movie_urls,
+                                                  showtime_pills(todays)))
+                else:
+                    films_later.append(movie_card(
+                        movies[mk], movie_urls,
+                        f'<p class="meta">prochaine séance : {fr_date(date.fromisoformat(ss[0]["start"][:10]), today)}</p>'))
+            today_html = f'<div class="films">{"".join(films_today)}</div>' if films_today else ""
+            later_html = ""
+            if films_later:
+                if films_today:
+                    later_html = (f'<details class="more-films"><summary>+ {len(films_later)} '
+                                  f'autre{"s" if len(films_later) > 1 else ""} film{"s" if len(films_later) > 1 else ""} '
+                                  f'plus tard cette semaine</summary>'
+                                  f'<div class="films">{"".join(films_later)}</div></details>')
+                else:
+                    # Rien aujourd'hui : ne pas cacher tout le programme du cinéma
+                    today_html = '<p class="meta">Pas de séance aujourd\'hui — prochaines dates :</p>'
+                    later_html = f'<div class="films">{"".join(films_later)}</div>'
+            blocks.append(f"""<section class="cinema-block" id="c-{cid}">
 <h2><a href="{cinema_urls[cid]}">{esc(cinema["name"])}</a>{chain_badge(cinema)}</h2>
 <p class="meta">{esc(cinema["address"])} — <a href="{cinema_urls[cid]}">programme complet</a></p>
-{"".join(films_html) or "<p>Aucune séance cette semaine.</p>"}</section>""")
+{(today_html + later_html) or "<p>Aucune séance cette semaine.</p>"}</section>""")
+        # Sommaire ancré : au-delà de 2 cinémas, l'accès direct évite de
+        # scroller toute la page pour atteindre SA salle (Lyon = 17 écrans).
+        toc = ""
+        if len(sorted_cids) > 2:
+            toc_links = " ".join(f'<a href="#c-{cid}">{esc(cinemas[cid]["name"])}</a>'
+                                 for cid in sorted_cids)
+            toc = f'<nav class="city-jump">{toc_links}</nav>'
         n_cine = len(city["cinemas"])
         n_chain = sum(1 for cid in city["cinemas"] if cinemas[cid].get("chain"))
         n_inde = n_cine - n_chain
@@ -288,13 +336,17 @@ def main() -> int:
             parts.append(f'{n_inde} cinéma{"s" if n_inde > 1 else ""} indépendant{"s" if n_inde > 1 else ""}')
         if n_chain:
             parts.append(f'{n_chain} cinéma{"s" if n_chain > 1 else ""} de chaîne')
+        n_classics = sum(1 for mk in city_movie_keys if is_classic(movies[mk]))
+        classics_bit = (f' 🎞️ {n_classics} classique{"s" if n_classics > 1 else ""} au badge doré — '
+                        f'<a href="/classiques/">tous les classiques à l\'affiche</a>.'
+                        if n_classics else "")
         body = f"""<p class="lead">{" et ".join(parts)} à {esc(city["name"])} —
-séances du jour et de la semaine.</p>{"".join(blocks)}"""
+séances du jour et de la semaine.{classics_bit}</p>{toc}{"".join(blocks)}"""
         write(path, page(
             f"Cinéma à {city['name']} : séances et horaires — {SITE_NAME}",
             f"Quel film voir à {city['name']} ? Séances et horaires des {n_cine} cinéma(s) "
             f"de la ville : programme du jour et de la semaine.",
-            body, path, h1=f"Cinémas à {city['name']}"))
+            body, path, h1=f"Cinémas à {city['name']}", top_link=True))
         urls.append(path)
 
     # ----- Pages film -----
@@ -314,6 +366,10 @@ séances du jour et de la semaine.</p>{"".join(blocks)}"""
             return cinemas[any_cid]["city"]
 
         city_slugs = sorted(by_city, key=lambda c: city_name(c))
+        # Villes repliées par défaut (<details>) : un film très diffusé faisait
+        # jusqu'à 96 écrans de scroll toutes villes dépliées. Peu de villes →
+        # tout ouvert, le repli n'apporterait rien.
+        few_cities = len(city_slugs) <= 3
         rows = []
         for cslug in city_slugs:
             blocks = []
@@ -331,10 +387,10 @@ séances du jour et de la semaine.</p>{"".join(blocks)}"""
 <h3><a href="{cinema_urls[cid]}">{esc(cinema["name"])}</a>{chain_badge(cinema)}</h3>
 {per_day}</section>""")
             n = len(blocks)
-            rows.append(f"""<section class="city-group" id="v-{cslug}">
-<h2><a href="/ville/{cslug}/">{esc(city_name(cslug))}</a>
-<span class="meta">{n} cinéma{"s" if n > 1 else ""}</span></h2>
-{"".join(blocks)}</section>""")
+            rows.append(f"""<details class="city-group" id="v-{cslug}"{" open" if few_cities else ""}>
+<summary>{esc(city_name(cslug))} <span class="meta">{n} cinéma{"s" if n > 1 else ""}</span></summary>
+<p class="meta"><a href="/ville/{cslug}/">Tous les cinémas de {esc(city_name(cslug))} →</a></p>
+{"".join(blocks)}</details>""")
         # Sommaire des villes : les plus grandes villes en accès direct,
         # une recherche (datalist native, sans dépendance) pour les autres —
         # 234 pastilles de villes formaient un mur illisible.
@@ -345,14 +401,7 @@ séances du jour et de la semaine.</p>{"".join(blocks)}"""
             cmap = {city_name(c): f"v-{c}" for c in city_slugs}
             # Suggestions maison (pas de <datalist> : elle déroule tout au clic ;
             # ici rien ne s'ouvre avant 2 lettres tapées — voir film.js)
-            city_jump = f"""<nav class="city-jump">
-{pills}
-<span class="city-search"><input id="city-search" type="search" autocomplete="off"
-placeholder="Chercher votre ville ({len(city_slugs)} villes)…" aria-label="Chercher une ville">
-<ul id="city-suggest" hidden></ul></span>
-<script type="application/json" id="city-map">{json.dumps(cmap, ensure_ascii=False)}</script>
-</nav>
-<script src="/assets/film.js" defer></script>"""
+            city_jump = city_search_nav(pills, cmap, len(city_slugs))
         credits = " · ".join(filter(None, [
             movie.get("year") and str(movie["year"]),
             movie.get("rating") and f"★ {movie['rating']}/10",
@@ -383,7 +432,7 @@ placeholder="Chercher votre ville ({len(city_slugs)} villes)…" aria-label="Che
              + f" ? Séances et horaires ville par ville, dans {len({s['cinema'] for s in shows})}"
                f" cinéma(s) en France." if shows else
              f"Où voir {movie['title']} ? Séances et horaires ville par ville en France."),
-            body, path, jsonld, h1=movie["title"]))
+            body, path, jsonld, h1=movie["title"], top_link=True))
         urls.append(path)
 
     # ----- Accueil -----
@@ -393,10 +442,18 @@ placeholder="Chercher votre ville ({len(city_slugs)} villes)…" aria-label="Che
         movie_card(m, movie_urls,
                    f'<p class="meta">{len({s["cinema"] for s in by_movie[m["key"]]})} cinémas</p>')
         for m in top_movies)
+    # Liste complète repliée + tri alphabétique : 257 villes en vrac formaient
+    # un mur de 57 % de la page (le « mur de pastilles » déjà refusé, en liste).
     cities_html = "".join(
         f'<li><a href="/ville/{slug}/">{esc(c["name"])}</a> '
         f'<span class="meta">{len(c["cinemas"])} ciné{"s" if len(c["cinemas"]) > 1 else ""}</span></li>'
-        for slug, c in cities.items())
+        for slug, c in sorted(cities.items(), key=lambda kv: kv[1]["name"]))
+    majors = [s for s in BIG_CITY_SLUGS if s in cities]
+    city_pills = " ".join(f'<a href="/ville/{s}/">{esc(cities[s]["name"])}</a>' for s in majors)
+    # Cibles = URLs (avec BASE_PATH : le JSON échappe au préfixage automatique
+    # de page(), qui ne touche que les attributs href/src)
+    city_cmap = {c["name"]: f"{BASE_PATH}/ville/{slug}/" for slug, c in cities.items()}
+    city_finder = city_search_nav(city_pills, city_cmap, len(cities))
     n_chain = sum(1 for c in cinemas.values() if c.get("chain"))
     n_inde = len(cinemas) - n_chain
     inventory = f"{n_inde} cinémas indépendants"
@@ -417,12 +474,16 @@ placeholder="Chercher votre ville ({len(city_slugs)} villes)…" aria-label="Che
 <div class="grid">{classics_html}</div>
 <p><a class="more" href="/classiques/">Tous les classiques à l'affiche →</a></p>"""
                         if top_classics else "")
+    # La ville d'abord : c'est l'action principale promise par le H1 (« Quel
+    # film voir ce soir ? » commence par « où »), avant les vitrines de films.
     body = f"""<p class="lead">{inventory}, {len(cities)} villes,
 {len(showtimes)} séances à venir. Mis à jour quotidiennement.</p>
-<h2>À l'affiche cette semaine</h2>
-<div class="grid">{films_html}</div>{classics_section}
 <h2>Choisissez votre ville</h2>
-<ul class="cities">{cities_html}</ul>"""
+{city_finder}
+<details class="all-cities"><summary>Toutes les villes ({len(cities)})</summary>
+<ul class="cities">{cities_html}</ul></details>
+<h2>À l'affiche cette semaine</h2>
+<div class="grid">{films_html}</div>{classics_section}"""
     write("/", page(
         f"{SITE_NAME} — Séances de cinéma partout en France",
         f"Les séances et horaires de {len(cinemas)} cinémas en France, indépendants "
@@ -445,24 +506,37 @@ placeholder="Chercher votre ville ({len(city_slugs)} villes)…" aria-label="Che
                  f"★ {m['lb_rating']}/5 Letterboxd" if m.get("lb_rating") else "",
                  f"{n} cinéma{'s' if n > 1 else ''}"]
         extra = f'<p class="meta">{" · ".join(p for p in parts if p)}</p>'
-        return movie_card(m, movie_urls, extra, show_rating=False)
+        # show_classic=False : ici tout est classique, le badge serait du bruit
+        return movie_card(m, movie_urls, extra, show_rating=False, show_classic=False)
 
-    ranked_html = "".join(classic_card(m, i) for i, m in enumerate(rated, 1))
+    # Top du classement déplié, la longue traîne repliée : 313 cartes d'un
+    # bloc = 20 écrans desktop, 60 mobile. Un humain n'en scanne pas plus.
+    TOP_RANKED = 40
+    ranked_html = "".join(classic_card(m, i) for i, m in enumerate(rated[:TOP_RANKED], 1))
+    rest = rated[TOP_RANKED:]
+    rest_html = (f'<details class="more-films"><summary>Voir la suite du classement '
+                 f'(n° {TOP_RANKED + 1} à {len(rated)})</summary><div class="grid">'
+                 + "".join(classic_card(m, i) for i, m in enumerate(rest, TOP_RANKED + 1))
+                 + "</div></details>" if rest else "")
     unrated_html = "".join(classic_card(m) for m in unrated)
-    unrated_section = (f'<section><h2>Sans note Letterboxd</h2><div class="grid">'
-                       f'{unrated_html}</div></section>' if unrated else "")
+    unrated_section = (f'<details class="more-films"><summary>Sans note Letterboxd fiable '
+                       f'({len(unrated)} film{"s" if len(unrated) > 1 else ""})</summary>'
+                       f'<div class="grid">{unrated_html}</div></details>' if unrated else "")
     n_classic_cines = len({s["cinema"] for m in classics for s in by_movie[m["key"]]})
     classics_body = f"""<p class="lead">{len(classics)} films d'au moins {CLASSIC_AGE_YEARS} ans
 sont à l'affiche en ce moment : rétrospectives, versions restaurées et séances de ciné-club
 dans {n_classic_cines} cinémas en France, classés par la note de la communauté
 <a href="https://letterboxd.com" rel="noopener">Letterboxd</a>. Le grand écran, c'est aussi fait pour ça.</p>
+{city_finder}
 <div class="grid">{ranked_html or "<p>Aucune reprise annoncée en ce moment.</p>"}</div>
+{rest_html}
 {unrated_section}"""
     write("/classiques/", page(
         f"Films classiques et rétrospectives au cinéma — {SITE_NAME}",
         f"Quel film classique revoir en salle ? {len(classics)} reprises, rétrospectives et "
         "versions restaurées à l'affiche en France, classées par note Letterboxd.",
-        classics_body, "/classiques/", h1="Classiques & rétrospectives à l'affiche"))
+        classics_body, "/classiques/", h1="Classiques & rétrospectives à l'affiche",
+        top_link=True))
     urls.append("/classiques/")
 
     # ----- Carte des cinémas -----
@@ -507,6 +581,19 @@ Cliquez un point pour accéder au programme de la salle.</p>
         encoding="utf-8")
     (SITE / "robots.txt").write_text(
         f"User-agent: *\nAllow: /\nSitemap: {BASE_URL}/sitemap.xml\n", encoding="utf-8")
+
+    # ----- 404 de marque (GitHub Pages sert /404.html) -----
+    # La 404 brute de GitHub éjectait le visiteur du site (page blanche, sans
+    # lien de retour). Hors sitemap, volontairement.
+    (SITE / "404.html").write_text(page(
+        f"Page introuvable — {SITE_NAME}",
+        "Cette page n'existe pas ou plus.",
+        """<p class="lead">Cette adresse ne mène à aucune page. Le programme change chaque jour :
+les fiches des films sortis de l'affiche disparaissent avec leurs séances.</p>
+<p><a class="more" href="/">← Retour à l'accueil</a> &nbsp;
+<a class="more" href="/carte/">🗺️ Carte des cinémas</a> &nbsp;
+<a class="more" href="/classiques/">🎞️ Classiques</a></p>""",
+        "/404.html", h1="Oups, séance introuvable"), encoding="utf-8")
 
     print(f"Site généré dans {SITE} : {len(urls)} pages "
           f"({len(cinemas)} cinémas, {len(cities)} villes, {len(movies)} films)")

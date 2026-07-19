@@ -69,6 +69,17 @@ et la mention TMDB (« ce produit utilise l'API TMDB mais n'est ni approuvé ni 
   `CHAIN_PREFIXES` de `sources.py`.
 - Dédup des films entre sources = clé `movie_key(titre, réalisateur)` (slugifiée) — `filmid` n'est PAS
   global. TMDB (et le titre le plus « riche ») nettoient les titres en CAPITALES au moment de la fusion.
+- **`_dedup_movies()` (sources.py) rattrape les doublons que la clé laisse passer** (~140 fiches) :
+  passe 1 = même titre normalisé (accents/ponctuation/casse, « Part. »→« Partie ») + réalisateurs
+  compatibles (un nom commun, ou vide/« Collectif ») ; passe 2 = même réalisateur, titre court ⊂ titre
+  long quand le surplus n'est que « partie »+chiffres+mots-outils (≥ 4 tokens : jamais « Avatar »/« Avatar 2 »).
+  Les homonymes de réalisateurs différents (Macbeth Welles vs Proske) restent séparés — ne pas « simplifier »
+  ces garde-fous.
+- **Matching TMDB validé par réalisateur** (`enrich_tmdb.py`) : la recherche TMDB trie par popularité,
+  jamais prendre `results[0]` sans vérifier les credits. `TITLE_OVERRIDES` corrige les fiches TMDB
+  au titre fr erroné. Sans candidat validé → fiche brute (mieux que des données d'un autre film).
+- **Classiques & rétrospectives** : page `/classiques/` + badge doré, détection `year ≤ N−20`
+  (`CLASSIC_AGE_YEARS` dans `build_site.py`) — dépend de l'année TMDB, donc des films enrichis.
 - Piloter l'API GitHub (pas de `gh` CLI installé) : token via `git credential fill` (compte Keenzzz).
 - Chaînes NON intégrées (plateformes de billetterie verrouillées auth/CORS/bot) : Mégarama
   (ticketingcine/IMS), MK2, Kinepolis, Cineville. Piste propre à terme = agrégateur payant.

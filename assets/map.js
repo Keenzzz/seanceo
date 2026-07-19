@@ -24,8 +24,13 @@
     showCoverageOnHover: false,
     maxClusterRadius: 50,
     iconCreateFunction: function (cluster) {
+      // La légende promet rouge = indé, bleu = chaîne : un cluster qui ne
+      // groupe QUE des chaînes passe au bleu au lieu de mentir en rouge.
+      var allChain = cluster.getAllChildMarkers().every(function (m) {
+        return m.options.isChain;
+      });
       return L.divIcon({
-        className: "cine-cluster",
+        className: "cine-cluster" + (allChain ? " cine-cluster-chain" : ""),
         html: "<span>" + cluster.getChildCount() + "</span>",
         iconSize: [34, 34],
         iconAnchor: [17, 17],
@@ -58,7 +63,7 @@
       '<span class="pop-kind">' + kind + "</span><br>" +
       esc(c.city) +
       '<br><a href="' + esc(c.url) + '">Voir le programme →</a>';
-    L.marker([c.lat, c.lon], { icon: pin(isChain) })
+    L.marker([c.lat, c.lon], { icon: pin(isChain), isChain: isChain })
       .bindPopup(popup)
       .addTo(clusters);
   });

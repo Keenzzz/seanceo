@@ -97,9 +97,11 @@ h2 { margin-top: 2em; border-bottom: 1px solid #2a2f3a; padding-bottom: .3em; }
   margin: .4em 0 0;
 }
 
+/* Chips informatives, pas des boutons : l'ancien style rouge (bordure accent)
+   promettait un clic qui n'existait pas — affordance trompeuse. */
 .showtimes li {
-  background: var(--accent-soft);
-  border: 1px solid var(--accent);
+  background: #1f242e;
+  border: 1px solid #3a4150;
   border-radius: 999px;
   padding: 2px 10px;
   font-size: .85rem;
@@ -118,6 +120,26 @@ h2 { margin-top: 2em; border-bottom: 1px solid #2a2f3a; padding-bottom: .3em; }
 }
 
 .cinema-block h2, .cinema-block h3 { border: none; margin: .6em 0 .1em; }
+.cinema-block { scroll-margin-top: 12px; }
+
+/* Page ville : cartes film en grille — la colonne unique laissait la moitié
+   droite du conteneur vide en desktop. min() : jamais plus large que le parent. */
+.cinema-block .films {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(380px, 100%), 1fr));
+  gap: 10px;
+  margin: 10px 0;
+}
+.cinema-block .films .movie-card { margin: 0; }
+
+/* Listes longues repliées (« + N autres films », suite du classement, villes) */
+.more-films > summary, .all-cities > summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--muted);
+  padding: 10px 0;
+}
+.more-films > summary:hover, .all-cities > summary:hover { color: var(--accent); }
 
 /* Distinction indé / chaîne — l'indé porte l'accent rouge, sa signature */
 .badge {
@@ -161,7 +183,7 @@ h2 { margin-top: 2em; border-bottom: 1px solid #2a2f3a; padding-bottom: .3em; }
   font-size: .9rem;
   min-width: 240px;
 }
-.city-search input:focus { outline: none; border-color: var(--accent); }
+.city-search input:focus { border-color: var(--accent); }
 /* Suggestions au fil de la frappe (2 lettres mini, voir film.js) */
 #city-suggest {
   position: absolute;
@@ -190,15 +212,25 @@ h2 { margin-top: 2em; border-bottom: 1px solid #2a2f3a; padding-bottom: .3em; }
 .city-jump a {
   display: inline-block;
   font-size: .85rem;
-  padding: 0 10px;
+  padding: 6px 12px; /* cible tactile confortable (loi de Fitts) */
   margin: 0 2px;
   border: 1px solid #3a4150;
   border-radius: 999px;
   text-decoration: none;
 }
 .city-jump a:hover { border-color: var(--accent); }
-.city-group > h2 { scroll-margin-top: 12px; }
-.city-group > h2 .meta { font-size: .8rem; font-weight: 400; }
+
+/* Groupes de villes repliables (fiche film) */
+details.city-group { scroll-margin-top: 12px; border-bottom: 1px solid #2a2f3a; }
+details.city-group > summary {
+  cursor: pointer;
+  font-size: 1.15rem;
+  font-weight: 700;
+  padding: .55em 0;
+  list-style-position: outside;
+}
+details.city-group > summary:hover { color: var(--accent); }
+details.city-group > summary .meta { font-size: .8rem; font-weight: 400; }
 
 /* Navigation header */
 .site-nav { margin-left: auto; display: flex; gap: 10px; flex-wrap: wrap; }
@@ -212,9 +244,11 @@ h2 { margin-top: 2em; border-bottom: 1px solid #2a2f3a; padding-bottom: .3em; }
 }
 .site-nav a:hover { background: var(--accent-soft); }
 
-/* Carte des cinémas */
+/* Carte des cinémas : page-outil, on lui donne le viewport entier
+   (:has ignoré par un très vieux navigateur = simple retour au conteneur 1080px) */
+main:has(#cine-map) { max-width: none; }
 #cine-map {
-  height: clamp(420px, 68vh, 720px);
+  height: max(420px, calc(100vh - 330px));
   border-radius: var(--radius);
   border: 1px solid #2a2f3a;
   background: #12151b;
@@ -259,6 +293,13 @@ h2 { margin-top: 2em; border-bottom: 1px solid #2a2f3a; padding-bottom: .3em; }
   box-shadow: 0 0 0 4px rgba(230, 57, 70, .3), 0 0 0 1px #15130f;
 }
 
+/* Cluster entièrement composé de chaînes : bleu, comme la légende le promet
+   (déclaré APRÈS .cine-cluster span pour l'emporter à spécificité égale) */
+.cine-cluster-chain span {
+  background: #4da6ff;
+  box-shadow: 0 0 0 4px rgba(77, 166, 255, .3), 0 0 0 1px #15130f;
+}
+
 /* Popups Leaflet en thème sombre */
 .leaflet-popup-content-wrapper, .leaflet-popup-tip {
   background: var(--panel);
@@ -286,11 +327,36 @@ h2 { margin-top: 2em; border-bottom: 1px solid #2a2f3a; padding-bottom: .3em; }
   gap: 6px 16px;
 }
 
-.cities li { padding: 3px 0; }
+/* Lien = toute la hauteur de la ligne : 22px de haut au doigt, c'était raté
+   une fois sur deux sur mobile (recommandation tactile : ≥ 44px) */
+.cities li { padding: 0; }
+.cities li a { display: inline-block; padding: 10px 6px 10px 0; }
 
 footer {
   border-top: 1px solid #2a2f3a;
   color: var(--muted);
   font-size: .85rem;
   padding: 18px clamp(16px, 4vw, 48px);
+}
+
+/* Retour en haut (gabarits longs : film, ville, classiques) */
+.top-link {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 60;
+  background: var(--panel);
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 600;
+  font-size: .9rem;
+  text-decoration: none;
+}
+.top-link:hover { background: var(--accent-soft); }
+
+/* Navigation clavier : anneau accent visible sur fond sombre */
+a:focus-visible, summary:focus-visible, input:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
 }

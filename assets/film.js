@@ -1,8 +1,9 @@
-/* Fiche film : recherche de ville dans le sommaire des séances.
+/* Recherche de ville (fiche film, accueil, classiques).
    Suggestions maison (pas de datalist : elle déroulerait tout au clic).
    Rien ne s'affiche avant 2 lettres ; ensuite les villes correspondantes
    apparaissent au fil de la frappe (accents ignorés, préfixes d'abord).
-   Clic ou Entrée (ou flèches puis Entrée) → saut à l'ancre de la ville. */
+   Clic ou Entrée (ou flèches puis Entrée) → la cible du #city-map :
+   ancre « v-slug » (fiche film) ou URL commençant par « / » (navigation). */
 (function () {
   "use strict";
   var input = document.getElementById("city-search");
@@ -41,7 +42,15 @@
   function go(name) {
     close();
     input.value = name;
-    location.hash = byName[name];
+    var target = byName[name];
+    if (target.charAt(0) === "/") { // cible = URL (accueil, classiques)
+      location.href = target;
+      return;
+    }
+    // cible = ancre d'une ville repliée : déplier avant de sauter
+    var el = document.getElementById(target);
+    if (el && el.tagName === "DETAILS") el.open = true;
+    location.hash = target;
     input.blur();
   }
 
@@ -92,4 +101,20 @@
     // léger délai : laisse le mousedown d'une suggestion aboutir
     setTimeout(close, 150);
   });
+})();
+
+/* Villes repliées (<details>) : tout saut d'ancre doit déplier sa cible —
+   pastille de grande ville, lien partagé avec #v-…, bouton précédent. */
+(function () {
+  function openHash() {
+    var id = location.hash.slice(1);
+    if (!id) return;
+    var el = document.getElementById(id);
+    if (el && el.tagName === "DETAILS" && !el.open) {
+      el.open = true;
+      el.scrollIntoView();
+    }
+  }
+  window.addEventListener("hashchange", openHash);
+  openHash(); // arrivée directe avec une ancre dans l'URL (script defer : DOM prêt)
 })();
