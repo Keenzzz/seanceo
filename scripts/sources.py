@@ -73,6 +73,29 @@ def _merge_cities(base: dict, extra: dict) -> None:
         dst["showtime_count"] += c["showtime_count"]
 
 
+def _apply_tmdb(movies: dict, tmdb: dict) -> None:
+    """Applique le cache TMDB : titres propres, note, affiche HD, durée, synopsis.
+    Chaque film reçoit un champ `rating` (None si non trouvé)."""
+    for key, m in movies.items():
+        t = tmdb.get(key)
+        # Note affichée seulement si assez de votes (une note sur 1-2 votes = 10/10
+        # trompeur). Seuil 30 votes pour une moyenne crédible.
+        reliable = t and t.get("found") and (t.get("votes") or 0) >= 30
+        m["rating"] = t.get("rating") if reliable else None
+        if not t or not t.get("found"):
+            continue
+        if t.get("title"):
+            m["title"] = t["title"]
+        if t.get("poster"):
+            m["poster"] = t["poster"]
+        if t.get("runtime"):
+            m["duration_min"] = t["runtime"]
+        if t.get("overview"):
+            m["storyline"] = t["overview"]
+        if t.get("genres"):
+            m["genre"] = t["genres"]
+
+
 def load_merged(data_dir: Path) -> tuple[dict, dict, list, dict]:
     """Renvoie (cinemas, movies, showtimes, cities) fusionnés et prêts à bâtir."""
     ci, mo, sh, ct = (_load(data_dir, n) for n in INDE)
@@ -93,6 +116,10 @@ def load_merged(data_dir: Path) -> tuple[dict, dict, list, dict]:
         merged_any = True
     if merged_any:
         showtimes.sort(key=lambda s: s["start"])
+
+    # Enrichissement TMDB (cache local optionnel : titres propres, notes, affiches)
+    tmdb = _load(data_dir, "tmdb.json")
+    _apply_tmdb(movies, tmdb or {})
 
     # Recalcule le tri des villes par volume de séances (l'ordre a changé)
     cities = dict(sorted(cities.items(), key=lambda kv: -kv[1]["showtime_count"]))

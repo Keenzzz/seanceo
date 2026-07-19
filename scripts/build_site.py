@@ -89,6 +89,9 @@ def page(title: str, description: str, body: str, path: str,
 <p>Données de programmation : <a href="https://datacinesindes.fr" rel="noopener">Data Ciné Indés / SCARE</a>
 (Syndicat des Cinémas d'Art, de Répertoire et d'Essai) — Licence Ouverte 2.0.</p>
 <p>{SITE_NAME} réunit les séances des cinémas indépendants et des grandes enseignes, et met en avant les salles Art &amp; Essai.</p>
+<p>Fiches films (titres, notes, affiches, synopsis) enrichies via
+<a href="https://www.themoviedb.org/" rel="noopener">TMDB</a> — ce produit utilise l'API TMDB
+mais n'est ni approuvé ni certifié par TMDB.</p>
 </footer>
 </body>
 </html>"""
@@ -131,8 +134,10 @@ def movie_card(movie: dict, movie_urls: dict, extra: str = "") -> str:
     url = movie_urls[movie["key"]]
     poster = (f'<img src="{esc(movie["poster"])}" alt="Affiche de {esc(movie["title"])}" loading="lazy">'
               if movie["poster"] else '<div class="noposter">🎞️</div>')
+    rating = f'★ {movie["rating"]}' if movie.get("rating") else ""
     meta = " · ".join(filter(None, [
-        movie["genre"], f"{movie['duration_min']} min" if movie["duration_min"] else "",
+        rating, movie["genre"],
+        f"{movie['duration_min']} min" if movie["duration_min"] else "",
     ]))
     return f"""<article class="movie-card">
 <a href="{url}">{poster}</a>
@@ -288,6 +293,7 @@ séances du jour et de la semaine.</p>{"".join(blocks)}"""
 <h3><a href="{cinema_urls[cid]}">{esc(cinema["name"])}</a> — {esc(cinema["city"])}</h3>
 {per_day}</section>""")
         credits = " · ".join(filter(None, [
+            movie.get("rating") and f"★ {movie['rating']}/10",
             movie["director"] and f"De {movie['director']}",
             movie["cast"] and f"Avec {movie['cast']}",
             movie["genre"], movie["duration_min"] and f"{movie['duration_min']} min"]))

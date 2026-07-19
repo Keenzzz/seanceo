@@ -49,6 +49,7 @@ h2 { margin-top: 2em; border-bottom: 1px solid #2a2f3a; padding-bottom: .3em; }
 
 .lead { color: var(--muted); }
 .meta { color: var(--muted); font-size: .88rem; margin: .2em 0; }
+.lead, .movie-card .meta { text-wrap: pretty; }
 
 /* Cartes film */
 .grid {

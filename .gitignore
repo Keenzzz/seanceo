@@ -18,6 +18,7 @@ data/*
 !data/grandecran_movies.json
 !data/grandecran_showtimes.json
 !data/grandecran_cities.json
+!data/tmdb.json
 site/
 
 __pycache__/
