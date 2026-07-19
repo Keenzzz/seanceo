@@ -293,23 +293,47 @@ séances du jour et de la semaine.</p>{"".join(blocks)}"""
     for key, movie in movies.items():
         path = movie_urls[key]
         shows = by_movie[key]
-        by_cine = defaultdict(list)
+        # Séances groupées par ville puis par cinéma : le lecteur cherche
+        # d'abord SA ville, pas une liste plate de toute la France.
+        by_city = defaultdict(lambda: defaultdict(list))
         for s in shows:
-            by_cine[s["cinema"]].append(s)
+            by_city[cinemas[s["cinema"]]["city_slug"]][s["cinema"]].append(s)
+
+        def city_name(cslug: str) -> str:
+            if cslug in cities:
+                return cities[cslug]["name"]
+            any_cid = next(iter(by_city[cslug]))
+            return cinemas[any_cid]["city"]
+
+        city_slugs = sorted(by_city, key=lambda c: city_name(c))
         rows = []
-        for cid, ss in sorted(by_cine.items(),
-                              key=lambda kv: (cinemas[kv[0]]["city"], cinemas[kv[0]]["name"])):
-            cinema = cinemas[cid]
-            nxt = sorted(ss, key=lambda s: s["start"])[:8]
-            days = defaultdict(list)
-            for s in nxt:
-                days[s["start"][:10]].append(s)
-            per_day = " ".join(
-                f'<span class="day">{fr_date(date.fromisoformat(d), today)}</span>{showtime_pills(v)}'
-                for d, v in sorted(days.items()))
-            rows.append(f"""<section class="cinema-block">
-<h3><a href="{cinema_urls[cid]}">{esc(cinema["name"])}</a> — {esc(cinema["city"])}</h3>
+        for cslug in city_slugs:
+            blocks = []
+            for cid, ss in sorted(by_city[cslug].items(),
+                                  key=lambda kv: cinemas[kv[0]]["name"]):
+                cinema = cinemas[cid]
+                nxt = sorted(ss, key=lambda s: s["start"])[:8]
+                days = defaultdict(list)
+                for s in nxt:
+                    days[s["start"][:10]].append(s)
+                per_day = " ".join(
+                    f'<span class="day">{fr_date(date.fromisoformat(d), today)}</span>{showtime_pills(v)}'
+                    for d, v in sorted(days.items()))
+                blocks.append(f"""<section class="cinema-block">
+<h3><a href="{cinema_urls[cid]}">{esc(cinema["name"])}</a>{chain_badge(cinema)}</h3>
 {per_day}</section>""")
+            n = len(blocks)
+            rows.append(f"""<section class="city-group" id="v-{cslug}">
+<h2><a href="/ville/{cslug}/">{esc(city_name(cslug))}</a>
+<span class="meta">{n} cinéma{"s" if n > 1 else ""}</span></h2>
+{"".join(blocks)}</section>""")
+        # Sommaire des villes : utile dès que la liste dépasse l'écran
+        city_jump = ""
+        if len(city_slugs) > 6:
+            city_jump = ('<nav class="city-jump"><strong>Choisissez votre ville :</strong> '
+                         + " ".join(f'<a href="#v-{c}">{esc(city_name(c))}</a>'
+                                    for c in city_slugs)
+                         + "</nav>")
         credits = " · ".join(filter(None, [
             movie.get("year") and str(movie["year"]),
             movie.get("rating") and f"★ {movie['rating']}/10",
@@ -324,6 +348,7 @@ séances du jour et de la semaine.</p>{"".join(blocks)}"""
 <p class="lead">{classic_badge(movie)} {esc(credits)}</p>
 <p>{esc(movie["storyline"])}</p>{trailer}</div></div>
 <h2>Où voir {esc(movie["title"])} ?</h2>
+{city_jump}
 {"".join(rows) or "<p>Aucune séance à venir.</p>"}"""
         jsonld = {"@context": "https://schema.org", "@type": "Movie", "name": movie["title"]}
         if movie.get("year"):
@@ -336,7 +361,9 @@ séances du jour et de la semaine.</p>{"".join(blocks)}"""
             f"{movie['title']} : séances près de chez vous — {SITE_NAME}",
             (f"Où voir {movie['title']}"
              + (f" de {movie['director']}" if movie["director"] else "")
-             + " ? Toutes les séances dans les cinémas indépendants en France."),
+             + f" ? Séances et horaires ville par ville, dans {len({s['cinema'] for s in shows})}"
+               f" cinéma(s) en France." if shows else
+             f"Où voir {movie['title']} ? Séances et horaires ville par ville en France."),
             body, path, jsonld, h1=movie["title"]))
         urls.append(path)
 
