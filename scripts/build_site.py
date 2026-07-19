@@ -57,8 +57,10 @@ def load(name: str):
 # --- Gabarit commun -------------------------------------------------------
 
 def page(title: str, description: str, body: str, path: str,
-         jsonld: dict | None = None, h1: str | None = None) -> str:
-    """Enveloppe une page : head SEO complet + header/footer communs."""
+         jsonld: dict | None = None, h1: str | None = None,
+         head_extra: str = "") -> str:
+    """Enveloppe une page : head SEO complet + header/footer communs.
+    `head_extra` : balises à ajouter dans le <head> (ex. CSS Leaflet de la carte)."""
     ld = (f'<script type="application/ld+json">{json.dumps(jsonld, ensure_ascii=False)}</script>'
           if jsonld else "")
     doc = f"""<!DOCTYPE html>
@@ -70,12 +72,14 @@ def page(title: str, description: str, body: str, path: str,
 <meta name="description" content="{esc(description)}">
 <link rel="canonical" href="{BASE_URL}{path}">
 <link rel="stylesheet" href="/assets/style.css">
+{head_extra}
 {ld}
 </head>
 <body>
 <header class="site-header">
 <a class="brand" href="/">🎬 {SITE_NAME}</a>
 <p class="tagline">Les séances de cinéma, partout en France</p>
+<nav class="site-nav"><a href="/carte/">🗺️ Carte des cinémas</a></nav>
 </header>
 <main>
 <h1>{esc(h1 if h1 is not None else title)}</h1>
@@ -337,6 +341,38 @@ séances du jour et de la semaine.</p>{"".join(blocks)}"""
         "et grandes enseignes, mis à jour chaque jour. Trouvez votre film, votre ville, votre salle.",
         body, "/", h1="Quel film voir au cinéma ce soir ?"))
     urls.append("/")
+
+    # ----- Carte des cinémas -----
+    # Données injectées dans la page (pas de fetch) : nom, ville, coords, chaîne, URL.
+    map_points = [
+        {"name": c["name"], "city": c["city"], "lat": c["lat"], "lon": c["lon"],
+         "chain": c.get("chain", ""), "url": f"{BASE_PATH}{cinema_urls[cid]}"}
+        for cid, c in cinemas.items() if c["lat"] and c["lon"]
+    ]
+    n_inde_map = sum(1 for p in map_points if not p["chain"])
+    leaflet_css = (
+        '<link rel="stylesheet" href="/assets/vendor/leaflet/leaflet.css">'
+        '<link rel="stylesheet" href="/assets/vendor/leaflet.markercluster/MarkerCluster.css">'
+        '<link rel="stylesheet" href="/assets/vendor/leaflet.markercluster/MarkerCluster.Default.css">'
+    )
+    map_body = f"""<p class="lead">{len(map_points)} cinémas géolocalisés en France —
+{n_inde_map} indépendants et {len(map_points) - n_inde_map} de grandes enseignes.
+Cliquez un point pour accéder au programme de la salle.</p>
+<div id="map-legend">
+<span class="legend-item"><span class="legend-dot dot-indep"></span>Cinéma indépendant</span>
+<span class="legend-item"><span class="legend-dot dot-chain"></span>Grande enseigne</span>
+</div>
+<div id="cine-map"></div>
+<script type="application/json" id="cinemas-data">{json.dumps(map_points, ensure_ascii=False)}</script>
+<script src="/assets/vendor/leaflet/leaflet.js"></script>
+<script src="/assets/vendor/leaflet.markercluster/leaflet.markercluster.js"></script>
+<script src="/assets/map.js"></script>"""
+    write("/carte/", page(
+        f"Carte des cinémas en France — {SITE_NAME}",
+        f"Carte interactive de {len(map_points)} cinémas en France, indépendants et "
+        "grandes enseignes. Trouvez une salle près de chez vous et accédez à son programme.",
+        map_body, "/carte/", h1="Carte des cinémas", head_extra=leaflet_css))
+    urls.append("/carte/")
 
     # ----- sitemap & robots -----
     lastmod = meta["generated_at"][:10]

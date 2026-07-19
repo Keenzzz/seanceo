@@ -133,6 +133,75 @@ h2 { margin-top: 2em; border-bottom: 1px solid #2a2f3a; padding-bottom: .3em; }
 .badge-inde { background: var(--accent); color: #fff; }
 .badge-chain { background: #2a2f3a; color: var(--muted); border: 1px solid #3a4150; }
 
+/* Navigation header */
+.site-nav { margin-left: auto; }
+.site-nav a {
+  text-decoration: none;
+  font-weight: 600;
+  font-size: .95rem;
+  padding: 6px 14px;
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+}
+.site-nav a:hover { background: var(--accent-soft); }
+
+/* Carte des cinémas */
+#cine-map {
+  height: clamp(420px, 68vh, 720px);
+  border-radius: var(--radius);
+  border: 1px solid #2a2f3a;
+  background: #12151b;
+  margin-top: 12px;
+}
+
+#map-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: .9rem;
+}
+.legend-item { display: inline-flex; align-items: center; gap: 7px; }
+.legend-dot { width: 14px; height: 14px; border-radius: 50%; display: inline-block; }
+.dot-indep { background: var(--accent); box-shadow: 0 0 0 2px #15130f; }
+.dot-chain { background: #4da6ff; box-shadow: 0 0 0 2px #15130f; }
+
+/* Marqueurs (divIcon) : anneau rouge = indé, point bleu = chaîne */
+.cine-pin span {
+  display: block;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px #15130f;
+}
+.cine-pin-indep span { background: var(--accent); box-shadow: 0 0 0 2px #fff3, 0 0 0 3px var(--accent); }
+.cine-pin-chain span { background: #4da6ff; }
+
+.cine-cluster span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 700;
+  font-size: 12px;
+  box-shadow: 0 0 0 4px rgba(230, 57, 70, .3), 0 0 0 1px #15130f;
+}
+
+/* Popups Leaflet en thème sombre */
+.leaflet-popup-content-wrapper, .leaflet-popup-tip {
+  background: var(--panel);
+  color: var(--text);
+}
+.leaflet-popup-content { font: 14px/1.5 system-ui, sans-serif; }
+.leaflet-popup-content .pop-kind { color: var(--muted); font-size: .85rem; }
+.leaflet-popup-content a { color: var(--accent); font-weight: 600; }
+.leaflet-container a.leaflet-popup-close-button { color: var(--muted); }
+
 /* Fiche film */
 .film-head { display: flex; gap: 20px; align-items: flex-start; }
 .film-head .poster { width: 160px; border-radius: var(--radius); flex-shrink: 0; }
