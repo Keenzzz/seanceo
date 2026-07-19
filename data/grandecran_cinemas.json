@@ -1,0 +1,156 @@
+{
+ "grandecran-p9488": {
+  "id": "grandecran-p9488",
+  "name": "Arcachon",
+  "address": "9B Avenue Gambetta",
+  "postcode": "33120",
+  "city": "Arcachon",
+  "city_slug": "arcachon",
+  "lat": 44.661942,
+  "lon": -1.168607,
+  "chain": "Grand Écran"
+ },
+ "grandecran-p7645": {
+  "id": "grandecran-p7645",
+  "name": "Bergerac",
+  "address": "2, rue des Carmes",
+  "postcode": "24100",
+  "city": "Bergerac",
+  "city_slug": "bergerac",
+  "lat": 44.8532,
+  "lon": 0.48655,
+  "chain": "Grand Écran"
+ },
+ "grandecran-g034g": {
+  "id": "grandecran-g034g",
+  "name": "Fontenay-le-Comte",
+  "address": "3 Pl. de Verdun",
+  "postcode": "85200",
+  "city": "Fontenay-le-Comte",
+  "city_slug": "fontenay-le-comte",
+  "lat": 46.46312,
+  "lon": -0.801234,
+  "chain": "Grand Écran"
+ },
+ "grandecran-w4424": {
+  "id": "grandecran-w4424",
+  "name": "La Chapelle-sur-Erdre",
+  "address": "20 Avenue des Perrières",
+  "postcode": "44240",
+  "city": "La Chapelle-sur-Erdre",
+  "city_slug": "la-chapelle-sur-erdre",
+  "lat": 47.30943,
+  "lon": -1.544382,
+  "chain": "Grand Écran"
+ },
+ "grandecran-p0764": {
+  "id": "grandecran-p0764",
+  "name": "La Teste-de-Buch",
+  "address": "6 rue Lagrua - Zone commerciale Cap Océan",
+  "postcode": "33260",
+  "city": "La Teste-de-Buch",
+  "city_slug": "la-teste-de-buch",
+  "lat": 44.637858,
+  "lon": -1.154199,
+  "chain": "Grand Écran"
+ },
+ "grandecran-w3321": {
+  "id": "grandecran-w3321",
+  "name": "Langon",
+  "address": "Lieu-dit Pied Mourteau - Zone de loisirs Family Place",
+  "postcode": "33210",
+  "city": "Langon",
+  "city_slug": "langon",
+  "lat": 44.544148664,
+  "lon": -0.264105475,
+  "chain": "Grand Écran"
+ },
+ "grandecran-p2129": {
+  "id": "grandecran-p2129",
+  "name": "Libourne",
+  "address": "56 avenue Gallieni",
+  "postcode": "33500",
+  "city": "Libourne",
+  "city_slug": "libourne",
+  "lat": 44.913218,
+  "lon": -0.237995,
+  "chain": "Grand Écran"
+ },
+ "grandecran-p0170": {
+  "id": "grandecran-p0170",
+  "name": "Limoges - Centre-ville",
+  "address": "11, place Denis-Dussoubs",
+  "postcode": "87000",
+  "city": "Limoges",
+  "city_slug": "limoges",
+  "lat": 45.832796,
+  "lon": 1.255731,
+  "chain": "Grand Écran"
+ },
+ "grandecran-p8001": {
+  "id": "grandecran-p8001",
+  "name": "Limoges - Ester",
+  "address": "260 Avenue Aristide Briand",
+  "postcode": "87000",
+  "city": "Limoges",
+  "city_slug": "limoges",
+  "lat": 45.8542464,
+  "lon": 1.2847103,
+  "chain": "Grand Écran"
+ },
+ "grandecran-p0169": {
+  "id": "grandecran-p0169",
+  "name": "Limoges - Le Lido",
+  "address": "3 Av. du Général de Gaulle",
+  "postcode": "87000",
+  "city": "Limoges",
+  "city_slug": "limoges",
+  "lat": 45.8333,
+  "lon": 1.265,
+  "chain": "Grand Écran"
+ },
+ "grandecran-w8560": {
+  "id": "grandecran-w8560",
+  "name": "Montaigu-Vendée",
+  "address": "21 Avenue Villebois Mareuil",
+  "postcode": "85600",
+  "city": "Montaigu-Vendée",
+  "city_slug": "montaigu-vendee",
+  "lat": 46.9804,
+  "lon": -1.3168,
+  "chain": "Grand Écran"
+ },
+ "grandecran-w3356": {
+  "id": "grandecran-w3356",
+  "name": "Sainte-Eulalie",
+  "address": "26 Rue Adrien Piquet - Parvis des frères Lumière",
+  "postcode": "33560",
+  "city": "Sainte-Eulalie",
+  "city_slug": "sainte-eulalie",
+  "lat": 44.9069,
+  "lon": -0.4856,
+  "chain": "Grand Écran"
+ },
+ "grandecran-g028p": {
+  "id": "grandecran-g028p",
+  "name": "Vichy",
+  "address": "35 Rue Lucas - Centre commercial &quot;Les Quatre Chemins&quot;",
+  "postcode": "03200",
+  "city": "Vichy",
+  "city_slug": "vichy",
+  "lat": 46.1263,
+  "lon": 3.4226,
+  "chain": "Grand Écran"
+ },
+ "grandecran-w4730": {
+  "id": "grandecran-w4730",
+  "name": "Villeneuve-sur-Lot",
+  "address": "9 Bd de la Marine",
+  "postcode": "47300",
+  "city": "Villeneuve-sur-Lot",
+  "city_slug": "villeneuve-sur-lot",
+  "lat": 44.409,
+  "lon": 0.704,
+  "chain": "Grand Écran"
+ }
+}

@@ -14,6 +14,10 @@ data/*
 !data/ugc_movies.json
 !data/ugc_showtimes.json
 !data/ugc_cities.json
+!data/grandecran_cinemas.json
+!data/grandecran_movies.json
+!data/grandecran_showtimes.json
+!data/grandecran_cities.json
 site/
 
 __pycache__/

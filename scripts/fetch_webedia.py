@@ -1,7 +1,9 @@
-"""Connecteur CGR (phase 2 — chaînes) pour Séancéo.
+"""Connecteur Webedia (phase 2 — chaînes) pour Séancéo.
 
-Interroge l'API interne du site cgrcinemas.fr (plateforme Webedia « boxofficeapi »,
-Gatsby) et produit des séances au MÊME schéma que fetch_data.py (indés).
+Générique pour toute chaîne sur la plateforme Webedia « boxofficeapi » (Gatsby) :
+CGR, Grand Écran… (voir SITES). Sélection via --chain. Produit des séances au
+MÊME schéma que fetch_data.py (indés). Les données de chaque chaîne vont dans
+`data/<chain>_*.json`.
 
 Pipeline (3 sources) :
   1. sitemap-0.xml → pages `/theaters/<code>-<slug>/` (liste des 73 cinémas CGR)
@@ -30,14 +32,23 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from fetch_data import slugify, movie_key
 
-SITE = "https://www.cgrcinemas.fr"
-API = f"{SITE}/api/gatsby-source-boxofficeapi"
+# Chaînes sur la plateforme Webedia « boxofficeapi » (Gatsby). Toutes exposent
+# la même API ; seuls le domaine et le chemin des pages cinéma diffèrent.
+SITES = {
+    "cgr": {
+        "name": "CGR", "base": "https://www.cgrcinemas.fr",
+        "theater_re": r"https://www\.cgrcinemas\.fr(/theaters/([a-z0-9]{4,6})-[a-z0-9-]+/)",
+    },
+    "grandecran": {
+        "name": "Grand Écran", "base": "https://www.grandecran.fr",
+        "theater_re": r"https://www\.grandecran\.fr(/nos-cinemas/([a-z0-9]{4,6})-[a-z0-9-]+/)",
+    },
+}
 DATA_DIR = Path(__file__).resolve().parent.parent / "data"
 UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
       "(KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36")
 DELAY = 0.2
 
-_THEATER_URL = re.compile(r"/theaters/([pbw][0-9]{4})-[a-z0-9-]+/", re.I)
 _LDJSON = re.compile(r'<script[^>]+application/ld\+json[^>]*>(.*?)</script>', re.S)
 
 
@@ -87,14 +98,14 @@ def theater_info(url: str) -> dict | None:
     return None
 
 
-def fetch_movies(ids: set[str]) -> dict[str, dict]:
+def fetch_movies(api: str, ids: set[str]) -> dict[str, dict]:
     """Fiches films par lots (titre, réalisateur, durée, genre, affiche)."""
     catalog = {}
     ids = list(ids)
     for i in range(0, len(ids), 40):
         chunk = ids[i:i + 40]
         q = "&".join(f"ids={mid}" for mid in chunk)
-        data = get(f"{API}/movies?basic=false&castingLimit=3&{q}")
+        data = get(f"{api}/movies?basic=false&castingLimit=3&{q}")
         for m in (data or []):
             images = m.get("images") or []
             poster = images[0]["url"] if images and isinstance(images[0], dict) else ""
@@ -112,25 +123,28 @@ def fetch_movies(ids: set[str]) -> dict[str, dict]:
 
 def main() -> int:
     ap = argparse.ArgumentParser()
+    ap.add_argument("--chain", choices=SITES, default="cgr", help="chaîne Webedia")
     ap.add_argument("--theaters", type=int, default=0, help="nb de cinémas (0 = tous)")
     ap.add_argument("--days", type=int, default=7, help="fenêtre de jours")
     args = ap.parse_args()
+    cfg = SITES[args.chain]
+    site, chain_name = cfg["base"], cfg["name"]
+    api = f"{site}/api/gatsby-source-boxofficeapi"
 
     today = date.today()
     frm = f"{today.isoformat()}T03:00:00"
     to = f"{(today + timedelta(days=args.days)).isoformat()}T03:00:00"
 
-    print("Liste des cinémas CGR (sitemap)…")
-    sitemap = get(f"{SITE}/sitemap-0.xml", as_json=False) or ""
-    # Code (P0867) → URL exacte de la page cinéma, tels qu'ils apparaissent au sitemap
+    print(f"Liste des cinémas {chain_name} (sitemap)…")
+    sitemap = get(f"{site}/sitemap-0.xml", as_json=False) or ""
+    # Code cinéma → URL exacte de sa page, telle qu'au sitemap
     theater_urls: dict[str, str] = {}
-    for m in re.finditer(r"(https://www\.cgrcinemas\.fr/theaters/([pbw][0-9]{4})-[a-z0-9-]+/)",
-                         sitemap, re.I):
-        theater_urls[m.group(2).upper()] = m.group(1)
+    for m in re.finditer(cfg["theater_re"], sitemap, re.I):
+        theater_urls[m.group(2).upper()] = m.group(0)  # URL complète
     all_codes = list(theater_urls)
     if args.theaters:
         all_codes = all_codes[:args.theaters]
-    print(f"  {len(all_codes)} cinémas CGR (fenêtre {args.days} j)")
+    print(f"  {len(all_codes)} cinémas {chain_name} (fenêtre {args.days} j)")
 
     cinemas: dict[str, dict] = {}
     showtimes: list[dict] = []
@@ -141,12 +155,12 @@ def main() -> int:
         info = theater_info(theater_urls[code])
         if not info or not info["name"]:
             continue
-        cid = f"cgr-{code.lower()}"
+        cid = f"{args.chain}-{code.lower()}"
         cinemas[cid] = {
             "id": cid, "name": info["name"], "address": info["address"],
             "postcode": info["postcode"], "city": info["city"],
             "city_slug": slugify(info["city"]), "lat": info["lat"], "lon": info["lon"],
-            "chain": "CGR",
+            "chain": chain_name,
         }
         params = urllib.parse.urlencode({
             "from": frm, "to": to, "includeAllMovies": "true",
@@ -154,7 +168,7 @@ def main() -> int:
             "theaters": json.dumps({"id": code, "timeZone": "Europe/Paris"},
                                    separators=(",", ":")),
         })
-        sched = get(f"{API}/schedule?{params}") or {}
+        sched = get(f"{api}/schedule?{params}") or {}
         by_movie = (sched.get(code) or {}).get("schedule", {})
         n = 0
         for mid, by_date in by_movie.items():
@@ -166,7 +180,7 @@ def main() -> int:
         print(f"  [{i}/{len(all_codes)}] {info['name']} : {n} séances")
 
     print(f"Fiches films ({len(movie_ids)})…")
-    catalog = fetch_movies(movie_ids)
+    catalog = fetch_movies(api, movie_ids)
 
     movies: dict[str, dict] = {}
     for cid, mid, starts, tags in raw_shows:
@@ -181,13 +195,13 @@ def main() -> int:
             "trailer": "", "storyline": "",
         })
         showtimes.append({
-            "id": f"cgr-{mid}-{cid}-{starts}", "movie": mkey, "cinema": cid,
+            "id": f"{args.chain}-{mid}-{cid}-{starts}", "movie": mkey, "cinema": cid,
             "start": starts, "end": "", "version": cgr_version(tags), "auditorium": "",
         })
     showtimes.sort(key=lambda s: s["start"])
 
     if not cinemas:
-        print("Aucune donnée CGR récupérée (API bloquée ?) — snapshot conservé.")
+        print(f"Aucune donnée {chain_name} récupérée (API bloquée ?) — snapshot conservé.")
         return 0
 
     shows_by_cinema = defaultdict(int)
@@ -201,14 +215,13 @@ def main() -> int:
         city["showtime_count"] += shows_by_cinema[c["id"]]
 
     DATA_DIR.mkdir(exist_ok=True)
-    for name, payload in {
-        "cgr_cinemas.json": cinemas, "cgr_movies.json": movies,
-        "cgr_showtimes.json": showtimes, "cgr_cities.json": cities,
+    for kind, payload in {
+        "cinemas": cinemas, "movies": movies, "showtimes": showtimes, "cities": cities,
     }.items():
-        (DATA_DIR / name).write_text(
+        (DATA_DIR / f"{args.chain}_{kind}.json").write_text(
             json.dumps(payload, ensure_ascii=False, indent=1), encoding="utf-8")
 
-    print(f"\nBilan CGR : {len(cinemas)} cinémas, {len(movies)} films, "
+    print(f"\nBilan {chain_name} : {len(cinemas)} cinémas, {len(movies)} films, "
           f"{len(showtimes)} séances, {len(cities)} villes.")
     return 0
 

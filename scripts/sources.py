@@ -20,7 +20,7 @@ KINDS = ("cinemas", "movies", "showtimes", "cities")
 INDE = tuple(f"{k}.json" for k in KINDS)
 # Chaînes (phase 2) : snapshots optionnels versionnés, collectés en local.
 # Ajouter un préfixe ici suffit à intégrer une nouvelle chaîne à la fusion.
-CHAIN_PREFIXES = ("pathe", "cgr", "ugc")
+CHAIN_PREFIXES = ("pathe", "cgr", "ugc", "grandecran", "megarama", "mk2", "kinepolis", "cineville")
 
 
 def _load(data_dir: Path, name: str):
