@@ -33,6 +33,11 @@ SITE_NAME = "Séancéo"
 CITY_WINDOW_DAYS = 7     # séances affichées sur une page ville
 CINEMA_WINDOW_DAYS = 14  # séances affichées sur une page cinéma
 
+# Un film sorti il y a au moins N ans et pourtant à l'affiche = une reprise :
+# rétrospective, version restaurée, ciné-club. Mise en avant éditoriale du site.
+CLASSIC_AGE_YEARS = 20
+TODAY = date.today()
+
 JOURS = ["lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi", "dimanche"]
 MOIS = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet",
         "août", "septembre", "octobre", "novembre", "décembre"]
@@ -79,7 +84,7 @@ def page(title: str, description: str, body: str, path: str,
 <header class="site-header">
 <a class="brand" href="/">🎬 {SITE_NAME}</a>
 <p class="tagline">Les séances de cinéma, partout en France</p>
-<nav class="site-nav"><a href="/carte/">🗺️ Carte des cinémas</a></nav>
+<nav class="site-nav"><a href="/classiques/">🎞️ Classiques</a> <a href="/carte/">🗺️ Carte des cinémas</a></nav>
 </header>
 <main>
 <h1>{esc(h1 if h1 is not None else title)}</h1>
@@ -121,6 +126,18 @@ def chain_badge(cinema: dict) -> str:
     return ' <span class="badge badge-inde" title="Cinéma indépendant">Indé</span>'
 
 
+def is_classic(movie: dict) -> bool:
+    """Vrai si le film est une reprise : année de sortie connue (via TMDB) et
+    vieille d'au moins CLASSIC_AGE_YEARS ans. Sans année fiable, on s'abstient."""
+    year = movie.get("year")
+    return bool(year) and year <= TODAY.year - CLASSIC_AGE_YEARS
+
+
+def classic_badge(movie: dict) -> str:
+    return (' <span class="badge badge-classic">Classique</span>'
+            if is_classic(movie) else "")
+
+
 def showtime_pills(shows: list[dict]) -> str:
     pills = []
     for s in sorted(shows, key=lambda x: x["start"]):
@@ -136,13 +153,14 @@ def movie_card(movie: dict, movie_urls: dict, extra: str = "") -> str:
               if movie["poster"] else '<div class="noposter">🎞️</div>')
     rating = f'★ {movie["rating"]}' if movie.get("rating") else ""
     meta = " · ".join(filter(None, [
+        str(movie["year"]) if movie.get("year") else "",
         rating, movie["genre"],
         f"{movie['duration_min']} min" if movie["duration_min"] else "",
     ]))
     return f"""<article class="movie-card">
 <a href="{url}">{poster}</a>
 <div class="movie-info">
-<h3><a href="{url}">{esc(movie["title"])}</a></h3>
+<h3><a href="{url}">{esc(movie["title"])}</a>{classic_badge(movie)}</h3>
 <p class="meta">{esc(meta)}</p>
 {extra}
 </div>
@@ -293,6 +311,7 @@ séances du jour et de la semaine.</p>{"".join(blocks)}"""
 <h3><a href="{cinema_urls[cid]}">{esc(cinema["name"])}</a> — {esc(cinema["city"])}</h3>
 {per_day}</section>""")
         credits = " · ".join(filter(None, [
+            movie.get("year") and str(movie["year"]),
             movie.get("rating") and f"★ {movie['rating']}/10",
             movie["director"] and f"De {movie['director']}",
             movie["cast"] and f"Avec {movie['cast']}",
@@ -302,11 +321,13 @@ séances du jour et de la semaine.</p>{"".join(blocks)}"""
         trailer = (f'<p><a href="{esc(movie["trailer"])}" rel="noopener">▶ Bande-annonce</a></p>'
                    if movie["trailer"] else "")
         body = f"""<div class="film-head">{poster}<div>
-<p class="lead">{esc(credits)}</p>
+<p class="lead">{classic_badge(movie)} {esc(credits)}</p>
 <p>{esc(movie["storyline"])}</p>{trailer}</div></div>
 <h2>Où voir {esc(movie["title"])} ?</h2>
 {"".join(rows) or "<p>Aucune séance à venir.</p>"}"""
         jsonld = {"@context": "https://schema.org", "@type": "Movie", "name": movie["title"]}
+        if movie.get("year"):
+            jsonld["datePublished"] = str(movie["year"])
         if movie["director"]:
             jsonld["director"] = {"@type": "Person", "name": movie["director"]}
         if movie["poster"]:
@@ -335,10 +356,23 @@ séances du jour et de la semaine.</p>{"".join(blocks)}"""
     inventory = f"{n_inde} cinémas indépendants"
     if n_chain:
         inventory += f" et {n_chain} cinémas de chaîne"
+    # Mise en avant éditoriale : les reprises de classiques à l'affiche
+    top_classics = sorted((m for m in movies.values() if is_classic(m)),
+                          key=lambda m: -len(by_movie[m["key"]]))[:8]
+    classics_html = "".join(
+        movie_card(m, movie_urls,
+                   f'<p class="meta">{len({s["cinema"] for s in by_movie[m["key"]]})} cinémas</p>')
+        for m in top_classics)
+    classics_section = (f"""
+<h2>🎞️ Classiques &amp; rétrospectives</h2>
+<p class="meta">Les films d'hier à revoir en salle : versions restaurées, ciné-clubs, rétrospectives.</p>
+<div class="grid">{classics_html}</div>
+<p><a class="more" href="/classiques/">Tous les classiques à l'affiche →</a></p>"""
+                        if top_classics else "")
     body = f"""<p class="lead">{inventory}, {len(cities)} villes,
 {len(showtimes)} séances à venir. Mis à jour quotidiennement.</p>
 <h2>À l'affiche cette semaine</h2>
-<div class="grid">{films_html}</div>
+<div class="grid">{films_html}</div>{classics_section}
 <h2>Choisissez votre ville</h2>
 <ul class="cities">{cities_html}</ul>"""
     write("/", page(
@@ -347,6 +381,34 @@ séances du jour et de la semaine.</p>{"".join(blocks)}"""
         "et grandes enseignes, mis à jour chaque jour. Trouvez votre film, votre ville, votre salle.",
         body, "/", h1="Quel film voir au cinéma ce soir ?"))
     urls.append("/")
+
+    # ----- Page Classiques & rétrospectives -----
+    classics = sorted((m for m in movies.values() if is_classic(m) and by_movie[m["key"]]),
+                      key=lambda m: m["year"])
+    by_decade: dict[int, list[dict]] = defaultdict(list)
+    for m in classics:
+        by_decade[m["year"] // 10 * 10].append(m)
+    decade_sections = []
+    for decade in sorted(by_decade, reverse=True):
+        cards = "".join(
+            movie_card(m, movie_urls,
+                       f'<p class="meta">{len({s["cinema"] for s in by_movie[m["key"]]})} '
+                       f'cinéma{"s" if len({s["cinema"] for s in by_movie[m["key"]]}) > 1 else ""}</p>')
+            for m in sorted(by_decade[decade],
+                            key=lambda m: -len(by_movie[m["key"]])))
+        decade_sections.append(
+            f'<section><h2>Années {decade}</h2><div class="grid">{cards}</div></section>')
+    n_classic_cines = len({s["cinema"] for m in classics for s in by_movie[m["key"]]})
+    classics_body = f"""<p class="lead">{len(classics)} films d'au moins {CLASSIC_AGE_YEARS} ans
+sont à l'affiche en ce moment : rétrospectives, versions restaurées et séances de ciné-club
+dans {n_classic_cines} cinémas en France. Le grand écran, c'est aussi fait pour ça.</p>
+{"".join(decade_sections) or "<p>Aucune reprise annoncée en ce moment.</p>"}"""
+    write("/classiques/", page(
+        f"Films classiques et rétrospectives au cinéma — {SITE_NAME}",
+        f"Quel film classique revoir en salle ? {len(classics)} reprises, rétrospectives et "
+        "versions restaurées à l'affiche des cinémas en France, mises à jour chaque jour.",
+        classics_body, "/classiques/", h1="Classiques & rétrospectives à l'affiche"))
+    urls.append("/classiques/")
 
     # ----- Carte des cinémas -----
     # Données injectées dans la page (pas de fetch) : nom, ville, coords, chaîne, URL.

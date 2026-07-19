@@ -133,9 +133,13 @@ h2 { margin-top: 2em; border-bottom: 1px solid #2a2f3a; padding-bottom: .3em; }
 
 .badge-inde { background: var(--accent); color: #fff; }
 .badge-chain { background: #2a2f3a; color: var(--muted); border: 1px solid #3a4150; }
+/* Reprises de classiques : badge doré, clin d'œil pellicule */
+.badge-classic { background: #33290f; color: #e8c76a; border: 1px solid #57482a; }
+
+.more { font-weight: 600; }
 
 /* Navigation header */
-.site-nav { margin-left: auto; }
+.site-nav { margin-left: auto; display: flex; gap: 10px; flex-wrap: wrap; }
 .site-nav a {
   text-decoration: none;
   font-weight: 600;

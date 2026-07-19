@@ -75,13 +75,17 @@ def _merge_cities(base: dict, extra: dict) -> None:
 
 def _apply_tmdb(movies: dict, tmdb: dict) -> None:
     """Applique le cache TMDB : titres propres, note, affiche HD, durée, synopsis.
-    Chaque film reçoit un champ `rating` (None si non trouvé)."""
+    Chaque film reçoit un champ `rating` (None si non trouvé) et un champ `year`
+    (année de sortie, None si inconnue) — `year` sert à repérer les reprises de
+    classiques (rétrospectives)."""
     for key, m in movies.items():
         t = tmdb.get(key)
         # Note affichée seulement si assez de votes (une note sur 1-2 votes = 10/10
         # trompeur). Seuil 30 votes pour une moyenne crédible.
         reliable = t and t.get("found") and (t.get("votes") or 0) >= 30
         m["rating"] = t.get("rating") if reliable else None
+        year = (t or {}).get("year") or ""
+        m["year"] = int(year) if str(year).isdigit() else None
         if not t or not t.get("found"):
             continue
         if t.get("title"):
