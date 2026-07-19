@@ -38,9 +38,10 @@ CINEMA_WINDOW_DAYS = 14  # séances affichées sur une page cinéma
 CLASSIC_AGE_YEARS = 20
 TODAY = date.today()
 
-# Fiche film : les plus grandes villes de France en accès direct dans le
+# Fiche film : les 10 plus grandes villes de France en accès direct dans le
 # sommaire des séances ; les autres passent par la recherche.
-BIG_CITY_SLUGS = ("paris", "marseille", "lyon", "toulouse", "nice")
+BIG_CITY_SLUGS = ("paris", "marseille", "lyon", "toulouse", "nice",
+                  "nantes", "montpellier", "strasbourg", "bordeaux", "lille")
 
 JOURS = ["lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi", "dimanche"]
 MOIS = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet",
@@ -151,11 +152,14 @@ def showtime_pills(shows: list[dict]) -> str:
     return f'<ul class="showtimes">{"".join(pills)}</ul>'
 
 
-def movie_card(movie: dict, movie_urls: dict, extra: str = "") -> str:
+def movie_card(movie: dict, movie_urls: dict, extra: str = "",
+               show_rating: bool = True) -> str:
+    """`show_rating=False` masque la note TMDB — utile quand la carte affiche
+    déjà une note d'une autre échelle (classement Letterboxd /5)."""
     url = movie_urls[movie["key"]]
     poster = (f'<img src="{esc(movie["poster"])}" alt="Affiche de {esc(movie["title"])}" loading="lazy">'
               if movie["poster"] else '<div class="noposter">🎞️</div>')
-    rating = f'★ {movie["rating"]}' if movie.get("rating") else ""
+    rating = f'★ {movie["rating"]}' if show_rating and movie.get("rating") else ""
     meta = " · ".join(filter(None, [
         str(movie["year"]) if movie.get("year") else "",
         rating, movie["genre"],
@@ -338,13 +342,14 @@ séances du jour et de la semaine.</p>{"".join(blocks)}"""
         if len(city_slugs) > 6:
             majors = [c for c in BIG_CITY_SLUGS if c in by_city]
             pills = " ".join(f'<a href="#v-{c}">{esc(city_name(c))}</a>' for c in majors)
-            options = "".join(f'<option value="{esc(city_name(c))}">' for c in city_slugs)
             cmap = {city_name(c): f"v-{c}" for c in city_slugs}
+            # Suggestions maison (pas de <datalist> : elle déroule tout au clic ;
+            # ici rien ne s'ouvre avant 2 lettres tapées — voir film.js)
             city_jump = f"""<nav class="city-jump">
 {pills}
-<span class="city-search"><input id="city-search" list="film-cities" type="search"
+<span class="city-search"><input id="city-search" type="search" autocomplete="off"
 placeholder="Chercher votre ville ({len(city_slugs)} villes)…" aria-label="Chercher une ville">
-<datalist id="film-cities">{options}</datalist></span>
+<ul id="city-suggest" hidden></ul></span>
 <script type="application/json" id="city-map">{json.dumps(cmap, ensure_ascii=False)}</script>
 </nav>
 <script src="/assets/film.js" defer></script>"""
@@ -397,9 +402,11 @@ placeholder="Chercher votre ville ({len(city_slugs)} villes)…" aria-label="Che
     inventory = f"{n_inde} cinémas indépendants"
     if n_chain:
         inventory += f" et {n_chain} cinémas de chaîne"
-    # Mise en avant éditoriale : les reprises de classiques à l'affiche
+    # Mise en avant éditoriale : les reprises de classiques à l'affiche,
+    # les mieux notées (Letterboxd) d'abord — cohérent avec le classement
     top_classics = sorted((m for m in movies.values() if is_classic(m)),
-                          key=lambda m: -len(by_movie[m["key"]]))[:8]
+                          key=lambda m: (-(m.get("lb_rating") or 0),
+                                         -len(by_movie[m["key"]])))[:8]
     classics_html = "".join(
         movie_card(m, movie_urls,
                    f'<p class="meta">{len({s["cinema"] for s in by_movie[m["key"]]})} cinémas</p>')
@@ -424,30 +431,37 @@ placeholder="Chercher votre ville ({len(city_slugs)} villes)…" aria-label="Che
     urls.append("/")
 
     # ----- Page Classiques & rétrospectives -----
-    classics = sorted((m for m in movies.values() if is_classic(m) and by_movie[m["key"]]),
-                      key=lambda m: m["year"])
-    by_decade: dict[int, list[dict]] = defaultdict(list)
-    for m in classics:
-        by_decade[m["year"] // 10 * 10].append(m)
-    decade_sections = []
-    for decade in sorted(by_decade, reverse=True):
-        cards = "".join(
-            movie_card(m, movie_urls,
-                       f'<p class="meta">{len({s["cinema"] for s in by_movie[m["key"]]})} '
-                       f'cinéma{"s" if len({s["cinema"] for s in by_movie[m["key"]]}) > 1 else ""}</p>')
-            for m in sorted(by_decade[decade],
-                            key=lambda m: -len(by_movie[m["key"]])))
-        decade_sections.append(
-            f'<section><h2>Années {decade}</h2><div class="grid">{cards}</div></section>')
+    # Classement unique par note Letterboxd (choix éditorial) : du chef-d'œuvre
+    # plébiscité au moins aimé ; les films sans note fiable ferment la marche.
+    classics = [m for m in movies.values() if is_classic(m) and by_movie[m["key"]]]
+    rated = sorted((m for m in classics if m.get("lb_rating")),
+                   key=lambda m: (-m["lb_rating"], -len(by_movie[m["key"]])))
+    unrated = sorted((m for m in classics if not m.get("lb_rating")),
+                     key=lambda m: -len(by_movie[m["key"]]))
+
+    def classic_card(m: dict, rank: int | None = None) -> str:
+        n = len({s["cinema"] for s in by_movie[m["key"]]})
+        parts = [f"n° {rank}" if rank else "",
+                 f"★ {m['lb_rating']}/5 Letterboxd" if m.get("lb_rating") else "",
+                 f"{n} cinéma{'s' if n > 1 else ''}"]
+        extra = f'<p class="meta">{" · ".join(p for p in parts if p)}</p>'
+        return movie_card(m, movie_urls, extra, show_rating=False)
+
+    ranked_html = "".join(classic_card(m, i) for i, m in enumerate(rated, 1))
+    unrated_html = "".join(classic_card(m) for m in unrated)
+    unrated_section = (f'<section><h2>Sans note Letterboxd</h2><div class="grid">'
+                       f'{unrated_html}</div></section>' if unrated else "")
     n_classic_cines = len({s["cinema"] for m in classics for s in by_movie[m["key"]]})
     classics_body = f"""<p class="lead">{len(classics)} films d'au moins {CLASSIC_AGE_YEARS} ans
 sont à l'affiche en ce moment : rétrospectives, versions restaurées et séances de ciné-club
-dans {n_classic_cines} cinémas en France. Le grand écran, c'est aussi fait pour ça.</p>
-{"".join(decade_sections) or "<p>Aucune reprise annoncée en ce moment.</p>"}"""
+dans {n_classic_cines} cinémas en France, classés par la note de la communauté
+<a href="https://letterboxd.com" rel="noopener">Letterboxd</a>. Le grand écran, c'est aussi fait pour ça.</p>
+<div class="grid">{ranked_html or "<p>Aucune reprise annoncée en ce moment.</p>"}</div>
+{unrated_section}"""
     write("/classiques/", page(
         f"Films classiques et rétrospectives au cinéma — {SITE_NAME}",
         f"Quel film classique revoir en salle ? {len(classics)} reprises, rétrospectives et "
-        "versions restaurées à l'affiche des cinémas en France, mises à jour chaque jour.",
+        "versions restaurées à l'affiche en France, classées par note Letterboxd.",
         classics_body, "/classiques/", h1="Classiques & rétrospectives à l'affiche"))
     urls.append("/classiques/")
 

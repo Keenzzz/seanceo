@@ -100,6 +100,15 @@ def _apply_tmdb(movies: dict, tmdb: dict) -> None:
             m["genre"] = t["genres"]
 
 
+def _apply_letterboxd(movies: dict, lb: dict) -> None:
+    """Applique le cache Letterboxd : note moyenne /5 de la communauté.
+    Champ `lb_rating` (None si absent ou trop peu de votes pour être fiable)."""
+    for key, m in movies.items():
+        e = lb.get(key)
+        ok = e and e.get("found") and (e.get("votes") or 0) >= 50
+        m["lb_rating"] = e.get("rating") if ok else None
+
+
 def load_merged(data_dir: Path) -> tuple[dict, dict, list, dict]:
     """Renvoie (cinemas, movies, showtimes, cities) fusionnés et prêts à bâtir."""
     ci, mo, sh, ct = (_load(data_dir, n) for n in INDE)
@@ -124,6 +133,8 @@ def load_merged(data_dir: Path) -> tuple[dict, dict, list, dict]:
     # Enrichissement TMDB (cache local optionnel : titres propres, notes, affiches)
     tmdb = _load(data_dir, "tmdb.json")
     _apply_tmdb(movies, tmdb or {})
+    # Notes Letterboxd (cache local optionnel : classement des Classiques)
+    _apply_letterboxd(movies, _load(data_dir, "letterboxd.json") or {})
 
     # Recalcule le tri des villes par volume de séances (l'ordre a changé)
     cities = dict(sorted(cities.items(), key=lambda kv: -kv[1]["showtime_count"]))

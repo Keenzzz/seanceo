@@ -150,6 +150,7 @@ h2 { margin-top: 2em; border-bottom: 1px solid #2a2f3a; padding-bottom: .3em; }
   padding: 10px 14px;
   margin: 10px 0 18px;
 }
+.city-search { position: relative; }
 .city-search input {
   background: #0f1218;
   color: inherit;
@@ -161,6 +162,31 @@ h2 { margin-top: 2em; border-bottom: 1px solid #2a2f3a; padding-bottom: .3em; }
   min-width: 240px;
 }
 .city-search input:focus { outline: none; border-color: var(--accent); }
+/* Suggestions au fil de la frappe (2 lettres mini, voir film.js) */
+#city-suggest {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  z-index: 50;
+  min-width: 240px;
+  margin: 0;
+  padding: 4px;
+  list-style: none;
+  background: #12151b;
+  border: 1px solid #3a4150;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .45);
+}
+#city-suggest li {
+  padding: 7px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: .9rem;
+}
+#city-suggest li:hover, #city-suggest li.active {
+  background: var(--accent-soft, #2a1418);
+  color: #fff;
+}
 .city-jump a {
   display: inline-block;
   font-size: .85rem;
