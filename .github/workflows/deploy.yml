@@ -37,6 +37,9 @@ jobs:
       - name: Récupérer les séances CGR (best-effort)
         continue-on-error: true
         run: python scripts/fetch_cgr.py --theaters 0 --days 7
+      - name: Récupérer les séances UGC (best-effort)
+        continue-on-error: true
+        run: python scripts/fetch_ugc.py --cinemas 0 --days 7
       - name: Générer le site
         run: python scripts/build_site.py
       - uses: actions/upload-pages-artifact@v3

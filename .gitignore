@@ -10,6 +10,10 @@ data/*
 !data/cgr_movies.json
 !data/cgr_showtimes.json
 !data/cgr_cities.json
+!data/ugc_cinemas.json
+!data/ugc_movies.json
+!data/ugc_showtimes.json
+!data/ugc_cities.json
 site/
 
 __pycache__/
