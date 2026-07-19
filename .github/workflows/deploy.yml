@@ -31,8 +31,12 @@ jobs:
       - name: Récupérer les séances Pathé (best-effort)
         # continue-on-error : si l'API Pathé bloque l'IP du runner ou tombe,
         # le site se déploie quand même avec les indés seuls (fusion tolérante).
+        # Le garde-fou des connecteurs conserve le dernier snapshot versionné.
         continue-on-error: true
         run: python scripts/fetch_pathe.py --cinemas 0 --days 7
+      - name: Récupérer les séances CGR (best-effort)
+        continue-on-error: true
+        run: python scripts/fetch_cgr.py --theaters 0 --days 7
       - name: Générer le site
         run: python scripts/build_site.py
       - uses: actions/upload-pages-artifact@v3

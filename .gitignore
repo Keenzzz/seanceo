@@ -6,6 +6,10 @@ data/*
 !data/pathe_movies.json
 !data/pathe_showtimes.json
 !data/pathe_cities.json
+!data/cgr_cinemas.json
+!data/cgr_movies.json
+!data/cgr_showtimes.json
+!data/cgr_cities.json
 site/
 
 __pycache__/

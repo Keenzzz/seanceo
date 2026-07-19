@@ -15,9 +15,12 @@ import json
 from collections import defaultdict
 from pathlib import Path
 
-# (fichier indés, fichier chaîne équivalent) — le second est optionnel
-INDE = ("cinemas.json", "movies.json", "showtimes.json", "cities.json")
-PATHE = ("pathe_cinemas.json", "pathe_movies.json", "pathe_showtimes.json", "pathe_cities.json")
+# Quatre fichiers par source, dans l'ordre cinemas/movies/showtimes/cities.
+KINDS = ("cinemas", "movies", "showtimes", "cities")
+INDE = tuple(f"{k}.json" for k in KINDS)
+# Chaînes (phase 2) : snapshots optionnels versionnés, collectés en local.
+# Ajouter un préfixe ici suffit à intégrer une nouvelle chaîne à la fusion.
+CHAIN_PREFIXES = ("pathe", "cgr", "ugc")
 
 
 def _load(data_dir: Path, name: str):
@@ -78,12 +81,17 @@ def load_merged(data_dir: Path) -> tuple[dict, dict, list, dict]:
             "Sources indés absentes : lance d'abord `python scripts/fetch_data.py`")
     cinemas, movies, showtimes, cities = ci, mo, sh, dict(ct)
 
-    p_ci, p_mo, p_sh, p_ct = (_load(data_dir, n) for n in PATHE)
-    if p_ci:  # source chaîne présente → on fusionne
-        cinemas.update(p_ci)              # ids disjoints (numériques vs "pathe-…")
-        _merge_movies(movies, p_mo or {})
-        showtimes.extend(p_sh or [])
-        _merge_cities(cities, p_ct or {})
+    merged_any = False
+    for prefix in CHAIN_PREFIXES:
+        c_ci, c_mo, c_sh, c_ct = (_load(data_dir, f"{prefix}_{k}.json") for k in KINDS)
+        if not c_ci:  # snapshot de cette chaîne absent → on saute
+            continue
+        cinemas.update(c_ci)             # ids disjoints (préfixés par chaîne)
+        _merge_movies(movies, c_mo or {})
+        showtimes.extend(c_sh or [])
+        _merge_cities(cities, c_ct or {})
+        merged_any = True
+    if merged_any:
         showtimes.sort(key=lambda s: s["start"])
 
     # Recalcule le tri des villes par volume de séances (l'ordre a changé)
