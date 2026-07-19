@@ -38,6 +38,10 @@ CINEMA_WINDOW_DAYS = 14  # séances affichées sur une page cinéma
 CLASSIC_AGE_YEARS = 20
 TODAY = date.today()
 
+# Fiche film : les plus grandes villes de France en accès direct dans le
+# sommaire des séances ; les autres passent par la recherche.
+BIG_CITY_SLUGS = ("paris", "marseille", "lyon", "toulouse", "nice")
+
 JOURS = ["lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi", "dimanche"]
 MOIS = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet",
         "août", "septembre", "octobre", "novembre", "décembre"]
@@ -327,13 +331,23 @@ séances du jour et de la semaine.</p>{"".join(blocks)}"""
 <h2><a href="/ville/{cslug}/">{esc(city_name(cslug))}</a>
 <span class="meta">{n} cinéma{"s" if n > 1 else ""}</span></h2>
 {"".join(blocks)}</section>""")
-        # Sommaire des villes : utile dès que la liste dépasse l'écran
+        # Sommaire des villes : les plus grandes villes en accès direct,
+        # une recherche (datalist native, sans dépendance) pour les autres —
+        # 234 pastilles de villes formaient un mur illisible.
         city_jump = ""
         if len(city_slugs) > 6:
-            city_jump = ('<nav class="city-jump"><strong>Choisissez votre ville :</strong> '
-                         + " ".join(f'<a href="#v-{c}">{esc(city_name(c))}</a>'
-                                    for c in city_slugs)
-                         + "</nav>")
+            majors = [c for c in BIG_CITY_SLUGS if c in by_city]
+            pills = " ".join(f'<a href="#v-{c}">{esc(city_name(c))}</a>' for c in majors)
+            options = "".join(f'<option value="{esc(city_name(c))}">' for c in city_slugs)
+            cmap = {city_name(c): f"v-{c}" for c in city_slugs}
+            city_jump = f"""<nav class="city-jump">
+{pills}
+<span class="city-search"><input id="city-search" list="film-cities" type="search"
+placeholder="Chercher votre ville ({len(city_slugs)} villes)…" aria-label="Chercher une ville">
+<datalist id="film-cities">{options}</datalist></span>
+<script type="application/json" id="city-map">{json.dumps(cmap, ensure_ascii=False)}</script>
+</nav>
+<script src="/assets/film.js" defer></script>"""
         credits = " · ".join(filter(None, [
             movie.get("year") and str(movie["year"]),
             movie.get("rating") and f"★ {movie['rating']}/10",

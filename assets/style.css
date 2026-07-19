@@ -140,13 +140,27 @@ h2 { margin-top: 2em; border-bottom: 1px solid #2a2f3a; padding-bottom: .3em; }
 
 /* Fiche film : sommaire des villes où le film passe */
 .city-jump {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
   background: var(--card, #171b22);
   border: 1px solid #2a2f3a;
   border-radius: var(--radius);
   padding: 10px 14px;
   margin: 10px 0 18px;
-  line-height: 2;
 }
+.city-search input {
+  background: #0f1218;
+  color: inherit;
+  border: 1px solid #3a4150;
+  border-radius: 999px;
+  padding: 6px 14px;
+  font: inherit;
+  font-size: .9rem;
+  min-width: 240px;
+}
+.city-search input:focus { outline: none; border-color: var(--accent); }
 .city-jump a {
   display: inline-block;
   font-size: .85rem;

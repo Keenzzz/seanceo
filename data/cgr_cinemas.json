@@ -35,7 +35,7 @@
  "cgr-w8101": {
   "id": "cgr-w8101",
   "name": "CGR Albi - Les Cordeliers",
-  "address": "Place de l&apos;amitié entre les peuples",
+  "address": "Place de l'amitié entre les peuples",
   "postcode": "81000",
   "city": "Albi",
   "city_slug": "albi",
@@ -123,7 +123,7 @@
  "cgr-p0925": {
   "id": "cgr-p0925",
   "name": "CGR Bourges",
-  "address": "ZAC du Prado, boulevard de l&apos;Avenir",
+  "address": "ZAC du Prado, boulevard de l'Avenir",
   "postcode": "18000",
   "city": "Bourges",
   "city_slug": "bourges",
@@ -145,7 +145,7 @@
  "cgr-p0905": {
   "id": "cgr-p0905",
   "name": "CGR Brignais",
-  "address": "1 A RUE DE L&apos;INDUSTRIE / ZI LES VALLIERES",
+  "address": "1 A RUE DE L'INDUSTRIE / ZI LES VALLIERES",
   "postcode": "69530",
   "city": "Brignais",
   "city_slug": "brignais",
@@ -354,7 +354,7 @@
  "cgr-b0059": {
   "id": "cgr-b0059",
   "name": "CGR Evry",
-  "address": "Centre Commercial Evry2 - Place de l&apos;Agora",
+  "address": "Centre Commercial Evry2 - Place de l'Agora",
   "postcode": "91000",
   "city": "Évry",
   "city_slug": "evry",
@@ -662,7 +662,7 @@
  "cgr-p0743": {
   "id": "cgr-p0743",
   "name": "CGR Saint-Saturnin",
-  "address": "Rue Jean de Vignolles (ZAC Portes de l&apos;Oceane)",
+  "address": "Rue Jean de Vignolles (ZAC Portes de l'Oceane)",
   "postcode": "72650",
   "city": "Saint-Saturnin",
   "city_slug": "saint-saturnin",
@@ -771,11 +771,11 @@
  },
  "cgr-p0664": {
   "id": "cgr-p0664",
-  "name": "CGR Villenave d&apos;Ornon",
+  "name": "CGR Villenave d'Ornon",
   "address": "Avenue du 7ème Art",
   "postcode": "33140",
-  "city": "Villenave-d&apos;Ornon",
-  "city_slug": "villenave-d-apos-ornon",
+  "city": "Villenave-d'Ornon",
+  "city_slug": "villenave-d-ornon",
   "lat": 44.788035,
   "lon": -0.530141,
   "chain": "CGR"

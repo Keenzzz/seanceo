@@ -20,6 +20,7 @@ Usage :  python scripts/fetch_cgr.py [--theaters N] [--days N]
 import argparse
 import json
 import re
+from html import unescape
 import sys
 import time
 import urllib.error
@@ -87,11 +88,13 @@ def theater_info(url: str) -> dict | None:
         if d.get("@type") == "MovieTheater":
             addr = d.get("address") or {}
             geo = d.get("geo") or {}
+            # unescape : le JSON-LD embarqué dans le HTML contient des entités
+            # (« Villenave-d&apos;Ornon ») qui saliraient noms ET slugs.
             return {
-                "name": d.get("name", "").strip(),
-                "address": addr.get("streetAddress", "").strip(),
+                "name": unescape(d.get("name", "")).strip(),
+                "address": unescape(addr.get("streetAddress", "")).strip(),
                 "postcode": str(addr.get("postalCode", "")).zfill(5),
-                "city": addr.get("addressLocality", "").strip(),
+                "city": unescape(addr.get("addressLocality", "")).strip(),
                 "lat": geo.get("latitude"),
                 "lon": geo.get("longitude"),
             }
