@@ -72,7 +72,7 @@ def _director_key(movie: dict, fold) -> str:
 
 
 def cycles(rep_shows: list, movies: dict, cinemas: dict, fold,
-           limit: int = 6) -> list:
+           limit: int | None = 6) -> list:
     """Rétrospectives en cours, agrégées au niveau national.
 
     Un cycle est repéré SALLE PAR SALLE (≥ CYCLE_MIN_FILMS films d'un même
@@ -113,8 +113,8 @@ def cycles(rep_shows: list, movies: dict, cinemas: dict, fold,
             "cities": villes,
             "n_shows": len(shows),
         })
-    out.sort(key=lambda c: (-len(c["movies"]), -c["n_shows"]))
-    return out[:limit]
+    out.sort(key=lambda c: (-len(c["movies"]), -c["n_shows"], c["director"]))
+    return out if limit is None else out[:limit]
 
 
 def heritage_venues(all_shows: list, rep_shows: list, cinemas: dict,

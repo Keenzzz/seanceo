@@ -464,7 +464,20 @@ séances du jour et de la semaine.{classics_bit}</p>{toc}{"".join(blocks)}"""
     rep_window = repertoire.window(showtimes, today)
     rep_shows = repertoire.repertoire_shows(rep_window, movies)
     rep_uniques = repertoire.unique_screenings(rep_shows, movies)
-    rep_cycles = repertoire.cycles(rep_shows, movies, cinemas, _fold_title)
+    # Tous les cycles (pas seulement ceux de l'accueil) : chacun a sa page.
+    rep_cycles = repertoire.cycles(rep_shows, movies, cinemas, _fold_title, limit=None)
+    cycle_urls: dict[str, str] = {}
+    taken_cycles: dict[str, str] = {}
+    for c in rep_cycles:
+        slug = slugify(c["director"])[:60].strip("-") or "cycle"
+        if slug in taken_cycles:
+            slug = f"{slug}-{len(taken_cycles)}"
+        taken_cycles[slug] = c["key"]
+        cycle_urls[c["key"]] = f"/retrospectives/{slug}/"
+    # Séances du répertoire indexées par salle : sert aux pages de cycle.
+    rep_by_cinema = defaultdict(list)
+    for s in rep_shows:
+        rep_by_cinema[s["cinema"]].append(s)
     rep_venues = repertoire.heritage_venues(rep_window, rep_shows, cinemas)
     rep_cities = repertoire.city_stats(rep_shows, cinemas)
     n_rep_films = len({s["movie"] for s in rep_shows})
@@ -591,10 +604,11 @@ séances du jour et de la semaine.{classics_bit}</p>{toc}{"".join(blocks)}"""
                       else esc(c["cities"][0]))
         cycles_html += f"""<article class="cycle">
 <p class="eyebrow">Rétrospective</p>
-<h3 class="cycle-nom">{esc(c["director"])}</h3>
+<h3 class="cycle-nom"><a href="{cycle_urls[c["key"]]}">{esc(c["director"])}</a></h3>
 <div class="bande">{bande}</div>
 <p class="meta"><strong>{len(c["movies"])} films</strong> · {c["n_shows"]} séances · {villes_txt}</p>
 <p class="meta">{salles_liens}</p>
+<p class="meta"><a class="more" href="{cycle_urls[c["key"]]}">Voir le cycle →</a></p>
 </article>"""
 
     salles_html = "".join(f"""<li class="salle">
@@ -653,7 +667,8 @@ les séances ci-dessous sont les mieux notées de la semaine.</p>
 {agenda_html or "<p>Aucune séance unique repérée cette semaine.</p>"}
 
 <h2>Rétrospectives en cours</h2>
-<p class="meta">Les cycles programmés en ce moment, salle par salle.</p>
+<p class="meta">Les cycles programmés en ce moment, salle par salle.
+<a class="more" href="/retrospectives/">Toutes les rétrospectives →</a></p>
 <div class="cycles">{cycles_html or "<p>Aucun cycle en cours.</p>"}</div>
 
 <h2>Salles de patrimoine</h2>
@@ -754,6 +769,92 @@ dans {n_classic_cines} cinémas en France, classés par la note de la communaut�
         classics_body, "/classiques/", h1="Classiques & rétrospectives à l'affiche",
         top_link=True))
     urls.append("/classiques/")
+
+    # ----- Pages de rétrospective (une par cycle) -----
+    # Un cycle est ancré dans une salle : on présente donc le programme salle
+    # par salle, avec les horaires. C'est ce qu'un spectateur vient chercher.
+    for c in rep_cycles:
+        path = cycle_urls[c["key"]]
+        films_du_cycle = set(c["movies"])
+        blocs = []
+        for cid in c["cinemas"]:
+            cinema = cinemas[cid]
+            par_film = defaultdict(list)
+            for s in rep_by_cinema[cid]:
+                if s["movie"] in films_du_cycle:
+                    par_film[s["movie"]].append(s)
+            if not par_film:
+                continue
+            cartes = []
+            for mk, ss in sorted(par_film.items(),
+                                 key=lambda kv: sorted(kv[1], key=lambda s: s["start"])[0]["start"]):
+                jours = defaultdict(list)
+                for s in sorted(ss, key=lambda x: x["start"])[:8]:
+                    jours[s["start"][:10]].append(s)
+                horaires = " ".join(
+                    f'<span class="day">{fr_date(date.fromisoformat(d), today)}</span>{showtime_pills(v)}'
+                    for d, v in sorted(jours.items()))
+                cartes.append(movie_card(movies[mk], movie_urls, horaires,
+                                         show_classic=False))
+            blocs.append(f"""<section class="cinema-block">
+<h2><a href="{cinema_urls[cid]}">{esc(cinema["name"])}</a>{chain_badge(cinema)}</h2>
+<p class="meta"><a href="/ville/{cinema["city_slug"]}/">{esc(cinema["city"])}</a> —
+{len(par_film)} film{"s" if len(par_film) > 1 else ""} du cycle</p>
+<div class="films">{"".join(cartes)}</div></section>""")
+
+        affiches = "".join(
+            f'<a href="{movie_urls[k]}"><img src="{esc(movies[k]["poster"])}" '
+            f'alt="Affiche de {esc(movies[k]["title"])}" loading="lazy"></a>'
+            for k in c["movies"] if movies[k]["poster"])
+        titres = ", ".join(movies[k]["title"] for k in c["movies"])
+        tronque = len(c["cities"]) > 6
+        villes_txt = ", ".join(c["cities"][:6]) + ("…" if tronque else "")
+        # Pas de point final après « … » : « Montreuil…. » est disgracieux.
+        fin = "" if tronque else "."
+        n_films, n_salles = len(c["movies"]), len(c["cinemas"])
+        body = f"""<p class="lead"><strong>{n_films} films</strong> de {esc(c["director"])}
+sont à l'affiche cette semaine, en {c["n_shows"]} séances, dans {n_salles}
+salle{"s" if n_salles > 1 else ""} — {esc(villes_txt)}{fin}</p>
+<div class="bande">{affiches}</div>
+<p class="meta">Au programme : {esc(titres)}.</p>
+{"".join(blocs)}
+<p class="meta"><a class="more" href="/retrospectives/">← Toutes les rétrospectives en cours</a></p>"""
+        jsonld = {"@context": "https://schema.org", "@type": "CollectionPage",
+                  "name": f"Rétrospective {c['director']}",
+                  "about": {"@type": "Person", "name": c["director"]}}
+        write(path, page(
+            f"Rétrospective {c['director']} : où voir ses films en salle — {SITE_NAME}",
+            f"Où voir les films de {c['director']} au cinéma ? {n_films} films à l'affiche "
+            f"cette semaine en {c['n_shows']} séances, dans {n_salles} salle(s) : {villes_txt}.",
+            body, path, jsonld, h1=f"Rétrospective {c['director']}", top_link=True))
+        urls.append(path)
+
+    # ----- Index des rétrospectives -----
+    if rep_cycles:
+        index_cartes = "".join(f"""<article class="cycle">
+<p class="eyebrow">Rétrospective</p>
+<h3 class="cycle-nom"><a href="{cycle_urls[c["key"]]}">{esc(c["director"])}</a></h3>
+<div class="bande">{"".join(
+    f'<img src="{esc(movies[k]["poster"])}" alt="Affiche de {esc(movies[k]["title"])}" loading="lazy">'
+    for k in c["movies"][:6] if movies[k]["poster"])}</div>
+<p class="meta"><strong>{len(c["movies"])} films</strong> · {c["n_shows"]} séances ·
+{len(c["cities"])} ville{"s" if len(c["cities"]) > 1 else ""}</p>
+<p class="meta">{esc(", ".join(c["cities"][:4]))}{"…" if len(c["cities"]) > 4 else ""}</p>
+</article>""" for c in rep_cycles)
+        n_cyc_films = len({k for c in rep_cycles for k in c["movies"]})
+        index_body = f"""<p class="lead">Une rétrospective, ce n'est pas un vieux film isolé :
+c'est une salle qui consacre sa programmation à une œuvre. {SITE_NAME} en repère
+<strong>{len(rep_cycles)}</strong> en ce moment en France — {n_cyc_films} films au total.
+Un cycle est détecté dès qu'une même salle programme au moins deux films d'un même cinéaste
+dans la semaine.</p>
+<div class="cycles">{index_cartes}</div>
+<p class="meta"><a class="more" href="/">← L'agenda du répertoire</a></p>"""
+        write("/retrospectives/", page(
+            f"Rétrospectives et cycles au cinéma en France — {SITE_NAME}",
+            f"Quelles rétrospectives voir en salle ? {len(rep_cycles)} cycles de cinéastes "
+            f"programmés cette semaine en France, salle par salle : {n_cyc_films} films à l'affiche.",
+            index_body, "/retrospectives/", h1="Rétrospectives en cours", top_link=True))
+        urls.append("/retrospectives/")
 
     # ----- Idées de marathon -----
     # Deux films du même genre enchaînables dans deux salles voisines, dans les

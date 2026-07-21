@@ -95,6 +95,11 @@ et la mention TMDB (« ce produit utilise l'API TMDB mais n'est ni approuvé ni 
   salle, agrégés ensuite au national. **Le seuil 2020 n'est pas arbitraire** : à 20 ans d'âge,
   84 villes sur 257 seulement étaient couvertes ; avant 2020, 154 villes le sont. Ne pas le
   remonter sans re-mesurer la couverture.
+- **Pages de rétrospective** : `/retrospectives/` (index) et `/retrospectives/<réalisateur>/` (une par
+  cycle), générées depuis `repertoire.cycles(..., limit=None)`. Le programme y est présenté
+  **salle par salle** (un cycle est ancré dans une salle), avec horaires. Ces URLs sont
+  **volatiles par nature** : un cycle qui s'achève fait disparaître sa page — c'est le même modèle
+  que les fiches film, et la 404 de marque l'explique au visiteur. Ne pas chercher à les figer.
 - **Salles de patrimoine** (`/salles-patrimoine/`) : classement par **PART** de répertoire dans la
   programmation, jamais par volume — sinon les multiplexes écrasent les salles qui ne font que ça.
   Plancher `VENUE_MIN_SHOWS` séances pour qu'un pourcentage ait un sens.
