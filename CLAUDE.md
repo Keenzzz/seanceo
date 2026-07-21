@@ -78,8 +78,38 @@ et la mention TMDB (« ce produit utilise l'API TMDB mais n'est ni approuvé ni 
 - **Matching TMDB validé par réalisateur** (`enrich_tmdb.py`) : la recherche TMDB trie par popularité,
   jamais prendre `results[0]` sans vérifier les credits. `TITLE_OVERRIDES` corrige les fiches TMDB
   au titre fr erroné. Sans candidat validé → fiche brute (mieux que des données d'un autre film).
-- **Classiques & rétrospectives** : page `/classiques/` + badge doré, détection `year ≤ N−20`
-  (`CLASSIC_AGE_YEARS` dans `build_site.py`) — dépend de l'année TMDB, donc des films enrichis.
+- **POSITIONNEMENT : le site est un agenda du RÉPERTOIRE.** L'accueil ne montre plus les sorties
+  récentes mais les films anciens qui repassent. `scripts/repertoire.py` porte toute la détection :
+  reprise = `year < REPERTOIRE_BEFORE` (2020) ; séance unique = le film ne passe qu'une fois en
+  France sur 7 jours (6 films sur 10 !) ; cycle = ≥ 2 films d'un même réalisateur dans une même
+  salle, agrégés ensuite au national. **Le seuil 2020 n'est pas arbitraire** : à 20 ans d'âge,
+  84 villes sur 257 seulement étaient couvertes ; avant 2020, 154 villes le sont. Ne pas le
+  remonter sans re-mesurer la couverture.
+- **Salles de patrimoine** (`/salles-patrimoine/`) : classement par **PART** de répertoire dans la
+  programmation, jamais par volume — sinon les multiplexes écrasent les salles qui ne font que ça.
+  Plancher `VENUE_MIN_SHOWS` séances pour qu'un pourcentage ait un sens.
+- **Une couleur = un sens** (`assets/style.css`) : ambre `--accent` = accent du site (lumière du
+  projecteur) ; rouge `--indie` = signature « cinéma indépendant » et RIEN d'autre ; vert `--lb` =
+  note Letterboxd et rien d'autre. Ne pas réintroduire le rouge comme couleur de chrome.
+- **Classiques & rétrospectives** : page `/classiques/` = LE CLASSEMENT par note Letterboxd,
+  badge doré, détection `year ≤ N−20` (`CLASSIC_AGE_YEARS`) — plus strict que le répertoire, c'est
+  volontaire (la distinction premium). Dépend de l'année TMDB, donc des films enrichis.
+- **`/a-l-affiche/`** : l'ancien accueil, devenu un onglet. Il garde l'intention à plus gros volume
+  (« quel film voir ce soir ») ; l'accueil et lui se renvoient l'un à l'autre (`.passerelle`) pour
+  qu'aucune des deux pages ne soit orpheline.
+- **Fiche film : une seule ville affichée à la fois.** Les 234 sections ville sont toutes dans le
+  HTML (indexables) mais masquées en CSS ; la recherche ou une pastille en révèle une
+  (`showCity()` dans `film.js`). Le masquage est conditionné à la classe `js` posée dans le `<head>`
+  (`JS_FLAG`) : **sans JavaScript tout doit rester visible**, sinon la page serait vide pour un
+  visiteur sans JS et pour un robot qui n'exécute pas les scripts. Ne pas remettre de `<details>`.
+- **Idées de marathon** : page `/marathon/`, module `scripts/marathon.py`. Deux films partageant un
+  genre, enchaînables le même jour dans **deux salles distinctes** distantes de moins de `MAX_KM`.
+  L'entracte doit couvrir le trajet à pied (`WALK_MIN_PER_KM`) plus `MARGIN_MIN`, sans dépasser
+  `SLACK_MAX_MIN` d'attente. Tri : reprises de classiques d'abord, puis note Letterboxd. Les idées
+  sont dédoublonnées par paire de films et diversifiées par genre. Un cinéma **sans coordonnées est
+  ignoré** (impossible de juger la proximité), un film **sans durée ou sans genre** aussi.
+- **Aucune page ne montre de séance passée** : `build_site.py` filtre `showtimes` sur `>= today`
+  dès le chargement. Indispensable car les snapshots de chaînes ont souvent un jour de retard.
 - Piloter l'API GitHub (pas de `gh` CLI installé) : token via `git credential fill` (compte Keenzzz).
 - Chaînes NON intégrées (plateformes de billetterie verrouillées auth/CORS/bot) : Mégarama
   (ticketingcine/IMS), MK2, Kinepolis, Cineville. Piste propre à terme = agrégateur payant.

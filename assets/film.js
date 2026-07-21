@@ -1,3 +1,20 @@
+/* Affichage d'UNE ville à la fois sur une fiche film.
+   Les sections ville sont toutes dans le HTML (indexables) mais masquées par
+   le CSS tant qu'aucune n'est choisie — sans ça la page atteignait 96 écrans
+   de scroll. La recherche et les pastilles révèlent la ville demandée. */
+function showCity(id) {
+  var list = document.getElementById("city-list");
+  if (!list || !list.classList.contains("filtered")) return false;
+  var target = document.getElementById(id);
+  if (!target || target.parentNode !== list) return false;
+  var shown = list.querySelectorAll(".city-group.shown");
+  for (var i = 0; i < shown.length; i++) shown[i].classList.remove("shown");
+  target.classList.add("shown");
+  var prompt = document.getElementById("city-prompt");
+  if (prompt) prompt.hidden = true;
+  return true;
+}
+
 /* Recherche de ville (fiche film, accueil, classiques).
    Suggestions maison (pas de datalist : elle déroulerait tout au clic).
    Rien ne s'affiche avant 2 lettres ; ensuite les villes correspondantes
@@ -47,10 +64,12 @@
       location.href = target;
       return;
     }
-    // cible = ancre d'une ville repliée : déplier avant de sauter
+    // cible = ancre d'une ville masquée : l'afficher, puis y sauter
+    showCity(target);
     var el = document.getElementById(target);
-    if (el && el.tagName === "DETAILS") el.open = true;
-    location.hash = target;
+    if (el) el.scrollIntoView();
+    // hash conservé pour que le lien reste partageable / navigable en arrière
+    if (location.hash.slice(1) !== target) location.hash = target;
     input.blur();
   }
 
@@ -103,16 +122,14 @@
   });
 })();
 
-/* Villes repliées (<details>) : tout saut d'ancre doit déplier sa cible —
-   pastille de grande ville, lien partagé avec #v-…, bouton précédent. */
+/* Tout saut d'ancre doit révéler sa ville : pastille d'une grande ville,
+   lien partagé contenant #v-…, bouton précédent du navigateur. */
 (function () {
   function openHash() {
     var id = location.hash.slice(1);
-    if (!id) return;
-    var el = document.getElementById(id);
-    if (el && el.tagName === "DETAILS" && !el.open) {
-      el.open = true;
-      el.scrollIntoView();
+    if (id && showCity(id)) {
+      var el = document.getElementById(id);
+      if (el) el.scrollIntoView();
     }
   }
   window.addEventListener("hashchange", openHash);

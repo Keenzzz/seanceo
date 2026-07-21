@@ -1,11 +1,22 @@
+/* Séancéo — identité « salle obscure ».
+   Le site recense le répertoire (films qui repassent) : l'ambre du projecteur
+   est l'accent, le rouge ne signifie plus QUE « cinéma indépendant » (notre
+   signature), et le vert ne sert qu'aux notes Letterboxd. Une couleur, un sens. */
 :root {
-  --bg: #101216;
-  --panel: #1a1e26;
-  --text: #e8e6e3;
-  --muted: #9aa0ab;
-  --accent: #e63946;      /* rouge « indé », hérité de Paris Ciné */
-  --accent-soft: #e6394622;
+  --bg: #0d1014;          /* noir bleuté de salle obscure */
+  --panel: #151a21;
+  --sunk: #10141a;
+  --text: #ece7de;
+  --muted: #98a0ab;
+  --rule: #262c36;
+  --accent: #d9a441;      /* ambre : lumière tungstène du projecteur */
+  --accent-soft: #d9a4411f;
+  --accent-deep: #57482a;
+  --indie: #ec5765;       /* rouge : signature « indé » UNIQUEMENT */
+  --lb: #4ee38a;          /* vert : note Letterboxd UNIQUEMENT */
   --radius: 10px;
+  --display: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --mono: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, monospace;
 }
 
 * { box-sizing: border-box; }
@@ -15,6 +26,14 @@ body {
   background: var(--bg);
   color: var(--text);
   font: 16px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Titrage en serif : familles présentes nativement sur macOS/Windows/Android,
+   donc aucune police à charger (et aucun appel réseau). */
+h1, h2, .brand, .movie-card h3, .cycle-nom, .film, .salle-nom, .compteur b {
+  font-family: var(--display);
+  font-weight: 600;
+  letter-spacing: -0.01em;
 }
 
 a { color: inherit; }
@@ -45,7 +64,7 @@ main {
 }
 
 h1 { font-size: clamp(1.4rem, 3vw, 2rem); line-height: 1.25; }
-h2 { margin-top: 2em; border-bottom: 1px solid #2a2f3a; padding-bottom: .3em; }
+h2 { margin-top: 2em; border-bottom: 1px solid var(--accent-deep); padding-bottom: .3em; }
 
 .lead { color: var(--muted); }
 .meta { color: var(--muted); font-size: .88rem; margin: .2em 0; }
@@ -119,7 +138,8 @@ h2 { margin-top: 2em; border-bottom: 1px solid #2a2f3a; padding-bottom: .3em; }
   margin: 14px 0;
 }
 
-.cinema-block h2, .cinema-block h3 { border: none; margin: .6em 0 .1em; }
+.cinema-block h2, .cinema-block h3, .cinema-block h4 { border: none; margin: .6em 0 .1em; }
+.cinema-block h4 { font-size: 1.05rem; }
 .cinema-block { scroll-margin-top: 12px; }
 
 /* Page ville : cartes film en grille — la colonne unique laissait la moitié
@@ -153,10 +173,10 @@ h2 { margin-top: 2em; border-bottom: 1px solid #2a2f3a; padding-bottom: .3em; }
   letter-spacing: .02em;
 }
 
-.badge-inde { background: var(--accent); color: #fff; }
+.badge-inde { background: var(--indie); color: #fff; }
 .badge-chain { background: #2a2f3a; color: var(--muted); border: 1px solid #3a4150; }
 /* Reprises de classiques : badge doré, clin d'œil pellicule */
-.badge-classic { background: #33290f; color: #e8c76a; border: 1px solid #57482a; }
+.badge-classic { background: #33290f; color: var(--accent); border: 1px solid var(--accent-deep); }
 
 .more { font-weight: 600; }
 
@@ -220,17 +240,55 @@ h2 { margin-top: 2em; border-bottom: 1px solid #2a2f3a; padding-bottom: .3em; }
 }
 .city-jump a:hover { border-color: var(--accent); }
 
-/* Groupes de villes repliables (fiche film) */
-details.city-group { scroll-margin-top: 12px; border-bottom: 1px solid #2a2f3a; }
-details.city-group > summary {
-  cursor: pointer;
+/* Fiche film : une seule ville affichée à la fois.
+   Les sections restent dans le HTML (indexables) ; le masquage n'est actif
+   qu'avec JavaScript (classe `js` posée dans le <head>) — sinon la recherche
+   ne pourrait rien révéler et la page serait vide. */
+html.js .city-list.filtered > .city-group { display: none; }
+html.js .city-list.filtered > .city-group.shown { display: block; }
+
+.city-group { scroll-margin-top: 12px; }
+.city-group > h3 {
+  border: none;
   font-size: 1.15rem;
-  font-weight: 700;
-  padding: .55em 0;
-  list-style-position: outside;
+  margin: .2em 0 .1em;
 }
-details.city-group > summary:hover { color: var(--accent); }
-details.city-group > summary .meta { font-size: .8rem; font-weight: 400; }
+.city-group > h3 .meta { font-size: .8rem; font-weight: 400; }
+
+.city-prompt {
+  color: var(--muted);
+  background: var(--panel);
+  border-radius: var(--radius);
+  padding: 14px 18px;
+  text-wrap: pretty;
+}
+
+/* Idées de marathon : deux films enchaînés dans deux salles voisines */
+.marathon {
+  background: var(--panel);
+  border-radius: var(--radius);
+  padding: 4px 18px 16px;
+  margin: 16px 0;
+}
+.marathon > h3 {
+  border: none;
+  font-size: 1.05rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  margin: .9em 0 .2em;
+}
+/* Deux films côte à côte, empilés dès que la colonne devient étroite */
+.marathon-films { grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr)); }
+.marathon-films .movie-card { margin: 0; }
+.marathon-transfer {
+  color: var(--muted);
+  font-size: .9rem;
+  border-top: 1px solid #2a2f3a;
+  padding-top: 10px;
+  margin: 12px 0 0;
+  text-wrap: pretty;
+}
 
 /* Navigation header */
 .site-nav { margin-left: auto; display: flex; gap: 10px; flex-wrap: wrap; }
@@ -265,7 +323,7 @@ main:has(#cine-map) { max-width: none; }
 }
 .legend-item { display: inline-flex; align-items: center; gap: 7px; }
 .legend-dot { width: 14px; height: 14px; border-radius: 50%; display: inline-block; }
-.dot-indep { background: var(--accent); box-shadow: 0 0 0 2px #15130f; }
+.dot-indep { background: var(--indie); box-shadow: 0 0 0 2px #15130f; }
 .dot-chain { background: #4da6ff; box-shadow: 0 0 0 2px #15130f; }
 
 /* Marqueurs (divIcon) : anneau rouge = indé, point bleu = chaîne */
@@ -276,7 +334,7 @@ main:has(#cine-map) { max-width: none; }
   border-radius: 50%;
   box-shadow: 0 0 0 1px #15130f;
 }
-.cine-pin-indep span { background: var(--accent); box-shadow: 0 0 0 2px #fff3, 0 0 0 3px var(--accent); }
+.cine-pin-indep span { background: var(--indie); box-shadow: 0 0 0 2px #fff3, 0 0 0 3px var(--indie); }
 .cine-pin-chain span { background: #4da6ff; }
 
 .cine-cluster span {
@@ -287,10 +345,11 @@ main:has(#cine-map) { max-width: none; }
   height: 34px;
   border-radius: 50%;
   background: var(--accent);
-  color: #fff;
+  /* Texte SOMBRE sur l'ambre : du blanc tomberait à 1,6:1, illisible. */
+  color: #1a1400;
   font-weight: 700;
   font-size: 12px;
-  box-shadow: 0 0 0 4px rgba(230, 57, 70, .3), 0 0 0 1px #15130f;
+  box-shadow: 0 0 0 4px rgba(217, 164, 65, .3), 0 0 0 1px #15130f;
 }
 
 /* Cluster entièrement composé de chaînes : bleu, comme la légende le promet
@@ -359,4 +418,273 @@ footer {
 a:focus-visible, summary:focus-visible, input:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
+}
+
+/* ==========================================================================
+   ACCUEIL « AGENDA DU RÉPERTOIRE »
+   Le répertoire est un agenda d'événements, pas un catalogue : 6 films sur 10
+   ne passent qu'UNE fois en France. D'où l'heure en tête de ligne, comme sur
+   un programme de cinémathèque, et le marqueur « séance unique ».
+   ========================================================================== */
+
+/* Compteurs d'inventaire */
+.compteurs {
+  display: flex;
+  flex-wrap: wrap;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  background: var(--panel);
+  overflow: hidden;
+  margin: 18px 0;
+}
+.compteur {
+  flex: 1 1 130px;
+  padding: 13px 18px;
+  border-right: 1px solid var(--rule);
+}
+.compteur:last-child { border-right: 0; }
+.compteur b {
+  display: block;
+  font-size: 1.65rem;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
+.compteur span { font-size: .78rem; color: var(--muted); }
+.compteur-fort b { color: var(--accent); }
+
+/* Légende des notes : le vert n'a de sens que si on dit d'où il vient */
+.legende {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  flex-wrap: wrap;
+  margin: 12px 0 4px;
+  font-size: .82rem;
+  color: var(--muted);
+}
+.legende .puce {
+  font-family: var(--mono);
+  font-weight: 700;
+  color: var(--lb);
+  border: 1px solid var(--lb);
+  border-radius: 5px;
+  padding: 1px 7px;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Agenda */
+.jour { margin-top: 20px; }
+.jour-titre {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  font-size: .76rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: var(--accent);
+  border: none;
+  margin: 0 0 2px;
+}
+.jour-date { color: var(--muted); font-weight: 500; letter-spacing: .04em; }
+.seances { list-style: none; margin: 0; padding: 0; }
+.seance {
+  display: grid;
+  align-items: center;
+  gap: 4px 16px;
+  grid-template-columns: 62px 46px 1fr auto;
+  padding: 13px 4px;
+  border-top: 1px solid var(--rule);
+}
+.seance:hover { background: var(--accent-soft); }
+.heure {
+  font-family: var(--mono);
+  font-size: 1.02rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+.vignette img, .vignette .noposter {
+  width: 46px;
+  height: 69px;
+  border-radius: 3px;
+  font-size: 1rem;
+}
+.film { font-size: 1.08rem; margin: 0; line-height: 1.25; border: none; }
+.film a { text-decoration: none; }
+.annee { color: var(--muted); font-weight: 400; font-size: .92rem; }
+.seance .meta { margin: 2px 0 0; font-size: .82rem; }
+.seance .lieu strong { color: var(--text); font-weight: 600; }
+.flags { display: flex; flex-direction: column; align-items: flex-end; gap: 5px; }
+
+/* Note Letterboxd : le vert de la communauté, nulle part ailleurs */
+.note-lb {
+  font-family: var(--mono);
+  font-size: .95rem;
+  font-weight: 700;
+  color: var(--lb);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.note-lb .sur { color: var(--muted); font-weight: 400; font-size: .78rem; }
+
+.unique {
+  font-size: .66rem;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: var(--accent);
+  color: #1a1400;
+  white-space: nowrap;
+}
+
+/* Cartes de cycle (rétrospectives) */
+.cycles {
+  display: grid;
+  gap: 16px;
+  margin-top: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(min(290px, 100%), 1fr));
+}
+.cycle {
+  background: var(--panel);
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 14px 18px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.eyebrow {
+  font-size: .66rem;
+  font-weight: 700;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0;
+}
+.cycle-nom { font-size: 1.35rem; margin: 0; border: none; }
+.cycle-nom a { text-decoration: none; }
+/* Bandeau d'affiches : carrousel tactile en pur CSS, aucun JavaScript */
+.bande {
+  display: flex;
+  gap: 7px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+}
+.bande img {
+  flex: 0 0 74px;
+  width: 74px;
+  height: 111px;
+  object-fit: cover;
+  border-radius: 3px;
+  scroll-snap-align: start;
+}
+.cycle .meta { flex: 1; }
+
+/* Salles de patrimoine : un classement en PART, pas en volume */
+.salles { list-style: none; margin: 16px 0 0; padding: 0; }
+.salle {
+  display: grid;
+  align-items: center;
+  gap: 6px 16px;
+  grid-template-columns: 30px 1fr 240px;
+  padding: 13px 4px;
+  border-top: 1px solid var(--rule);
+}
+.salle:hover { background: var(--accent-soft); }
+.rang {
+  font-family: var(--mono);
+  font-size: .95rem;
+  font-weight: 600;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+.salle-nom { font-size: 1.05rem; margin: 0; border: none; }
+.salle-nom a { text-decoration: none; }
+.jauge-piste {
+  height: 7px;
+  border-radius: 20px;
+  background: var(--sunk);
+  border: 1px solid var(--rule);
+  overflow: hidden;
+}
+.jauge-part { height: 100%; background: var(--accent); }
+.jauge-txt { margin: 5px 0 0; font-size: .78rem; color: var(--muted); }
+.jauge-txt strong { color: var(--text); font-variant-numeric: tabular-nums; }
+
+/* Villes : pastille avec son compteur, jamais un mur brut */
+.villes { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+.ville {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 10px 14px;
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  background: var(--panel);
+  text-decoration: none;
+  font-size: .9rem;
+}
+.ville:hover { border-color: var(--accent); color: var(--accent); }
+.ville-n {
+  font-family: var(--mono);
+  font-size: .78rem;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+.ville:hover .ville-n { color: var(--accent); }
+.racc-n { color: var(--muted); font-size: .82rem; font-variant-numeric: tabular-nums; }
+
+/* Passerelle vers « À l'affiche » : la page ne doit pas être orpheline */
+.passerelle {
+  margin: 34px 0 0;
+  padding: 20px 22px;
+  border-radius: var(--radius);
+  background: var(--panel);
+  border: 1px solid var(--rule);
+  display: flex;
+  gap: 14px 22px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.passerelle p { margin: 0; flex: 1 1 300px; }
+.passerelle .titre { font-family: var(--display); font-size: 1.12rem; font-weight: 600; }
+.bouton {
+  font-size: .9rem;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 12px 18px;
+  border-radius: 9px;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  white-space: nowrap;
+}
+.bouton:hover { background: var(--accent); color: #1a1400; }
+
+@media (max-width: 760px) {
+  /* Agenda : l'heure passe en bandeau, la fiche dessous */
+  .seance {
+    grid-template-columns: 46px 1fr;
+    gap: 3px 13px;
+    grid-template-areas: "heure heure" "vign corps" ". flags";
+  }
+  .heure { grid-area: heure; color: var(--accent); }
+  .vignette { grid-area: vign; }
+  .seance .corps { grid-area: corps; }
+  .flags {
+    grid-area: flags;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    margin-top: 4px;
+  }
+  .salle { grid-template-columns: 26px 1fr; }
+  .jauge { grid-column: 2; }
+  /* Cibles tactiles : 44px recommandés (WCAG 2.5.5), 31px auparavant */
+  .site-nav a, .city-jump a { padding: 11px 14px; }
 }
