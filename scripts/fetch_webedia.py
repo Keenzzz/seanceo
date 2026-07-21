@@ -31,7 +31,7 @@ from datetime import date, datetime, timedelta
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from fetch_data import slugify, movie_key
+from fetch_data import slugify, movie_key, booking_url
 
 # Chaînes sur la plateforme Webedia « boxofficeapi » (Gatsby). Toutes exposent
 # la même API ; seuls le domaine et le chemin des pages cinéma diffèrent.
@@ -73,6 +73,24 @@ def cgr_version(tags: list[str]) -> str:
     if "Original" in joined:
         return "VOST" if "Subtitl" in joined else "VO"
     return "VF"
+
+
+def webedia_booking(seance: dict) -> str:
+    """Lien de réservation d'une séance Webedia, ou "".
+
+    L'API propose DEUX fournisseurs par séance : « default », qui pointe le
+    domaine d'achat de la chaîne (achat.cgrcinemas.fr), et « relay », un
+    redirecteur tiers (relay.mvtx.us). On prend systématiquement `default` :
+    envoyer nos visiteurs à travers un traceur intermédiaire n'apporte rien
+    et les expose inutilement. Sans `default`, on préfère ne pas lier."""
+    for entree in (seance.get("data") or {}).get("ticketing") or []:
+        if entree.get("provider") != "default":
+            continue
+        for url in entree.get("urls") or []:
+            valide = booking_url(url)
+            if valide:
+                return valide
+    return ""
 
 
 def theater_info(url: str) -> dict | None:
@@ -152,7 +170,7 @@ def main() -> int:
     cinemas: dict[str, dict] = {}
     showtimes: list[dict] = []
     movie_ids: set[str] = set()
-    raw_shows: list[tuple] = []  # (code, movieId, startsAt, tags)
+    raw_shows: list[tuple] = []  # (cid, movieId, startsAt, tags, booking)
 
     for i, code in enumerate(all_codes, 1):
         info = theater_info(theater_urls[code])
@@ -165,20 +183,26 @@ def main() -> int:
             "city_slug": slugify(info["city"]), "lat": info["lat"], "lon": info["lon"],
             "chain": chain_name,
         }
+        # Le code cinéma se lit en minuscules dans l'URL de la page
+        # (« /theaters/w8010-… ») mais l'API l'exige en MAJUSCULES : en
+        # minuscules elle répond HTTP 500 avec un corps « null », sans le
+        # moindre message. C'est ce qui a cassé la collecte silencieusement.
+        api_code = code.upper()
         params = urllib.parse.urlencode({
             "from": frm, "to": to, "includeAllMovies": "true",
             # JSON compact (sans espaces) : l'API renvoie 500 sinon
-            "theaters": json.dumps({"id": code, "timeZone": "Europe/Paris"},
+            "theaters": json.dumps({"id": api_code, "timeZone": "Europe/Paris"},
                                    separators=(",", ":")),
         })
         sched = get(f"{api}/schedule?{params}") or {}
-        by_movie = (sched.get(code) or {}).get("schedule", {})
+        by_movie = (sched.get(api_code) or {}).get("schedule", {})
         n = 0
         for mid, by_date in by_movie.items():
             movie_ids.add(str(mid))
             for slots in by_date.values():
                 for s in slots:
-                    raw_shows.append((cid, str(mid), s["startsAt"], s.get("tags", [])))
+                    raw_shows.append((cid, str(mid), s["startsAt"],
+                                      s.get("tags", []), webedia_booking(s)))
                     n += 1
         print(f"  [{i}/{len(all_codes)}] {info['name']} : {n} séances")
 
@@ -186,7 +210,7 @@ def main() -> int:
     catalog = fetch_movies(api, movie_ids)
 
     movies: dict[str, dict] = {}
-    for cid, mid, starts, tags in raw_shows:
+    for cid, mid, starts, tags, booking in raw_shows:
         film = catalog.get(mid)
         if not film or not film["title"]:
             continue
@@ -200,6 +224,7 @@ def main() -> int:
         showtimes.append({
             "id": f"{args.chain}-{mid}-{cid}-{starts}", "movie": mkey, "cinema": cid,
             "start": starts, "end": "", "version": cgr_version(tags), "auditorium": "",
+            "booking": booking,
         })
     showtimes.sort(key=lambda s: s["start"])
 

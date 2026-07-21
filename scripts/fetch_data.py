@@ -30,6 +30,10 @@ FIELDS = [
     "filmid", "filmtitle", "filmdirector", "filmcast", "filmgenre",
     "filmcountry", "filmduration", "filmversion", "filmposter",
     "filmtrailer", "filmstoryline",
+    # Lien de réservation de LA séance, sur la billetterie du cinéma.
+    # Renseigné pour ~83 % des séances (42 salles sur 50 dans un sondage) :
+    # les salles sans billetterie en ligne le laissent vide.
+    "showurl",
 ]
 
 
@@ -93,6 +97,17 @@ def normalize_city(raw: str) -> str:
     # Harmonise « La-Roche-Sur-Yon » vs « La Roche-sur-Yon » : on garde la
     # graphie telle quelle mais on génère un slug commun pour le regroupement.
     return city
+
+
+def booking_url(raw: str) -> str:
+    """Filtre un lien de billetterie venu d'une source externe, ou "".
+
+    Ces URLs finissent dans un attribut `href` du site. `html.escape()` empêche
+    de sortir de l'attribut, mais PAS d'y glisser un schéma exécutable
+    (`javascript:…`, `data:…`) : la seule protection est de n'accepter que
+    http(s). Toutes les sources passent par ici, aucune exception."""
+    url = (raw or "").strip()
+    return url if url[:7].lower() == "http://" or url[:8].lower() == "https://" else ""
 
 
 def slugify(text: str) -> str:
@@ -178,6 +193,7 @@ def build(rows: list[dict], today: date) -> dict[str, object]:
             "end": clean(row.get("showend")),
             "version": VERSION_MAP.get(clean(row.get("filmversion")), ""),
             "auditorium": clean(row.get("auditoriumnumber")),
+            "booking": booking_url(clean(row.get("showurl"))),
         })
 
     showtimes.sort(key=lambda s: s["start"])

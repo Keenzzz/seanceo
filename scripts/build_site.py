@@ -184,11 +184,26 @@ def classic_badge(movie: dict) -> str:
 
 
 def showtime_pills(shows: list[dict]) -> str:
+    """Horaires d'un film dans une salle. Une séance dont la source donne un
+    lien de billetterie devient cliquable et mène directement à la réservation ;
+    les autres restent des chips informatives. Les deux styles se distinguent
+    (`.reservable`) : promettre un clic qui n'existe pas est le défaut qu'on
+    avait justement corrigé en neutralisant ces pastilles."""
     pills = []
     for s in sorted(shows, key=lambda x: x["start"]):
         t = s["start"][11:16].replace(":", "h")
         v = f' <span class="v">{esc(s["version"])}</span>' if s["version"] else ""
-        pills.append(f'<li>{t}{v}</li>')
+        # .get() : les snapshots de chaînes collectés avant l'ajout du champ
+        # n'ont pas de clé « booking » — ils doivent rester affichables.
+        url = s.get("booking")
+        if url:
+            pills.append(
+                f'<li class="reservable"><a href="{esc(url)}" target="_blank"'
+                f' rel="noopener noreferrer"'
+                f' title="Réserver la séance de {t} sur la billetterie du cinéma'
+                f' (nouvel onglet)">{t}{v}</a></li>')
+        else:
+            pills.append(f'<li>{t}{v}</li>')
     return f'<ul class="showtimes">{"".join(pills)}</ul>'
 
 
@@ -672,8 +687,15 @@ séances du jour et de la semaine.{classics_bit}</p>{toc}{"".join(blocks)}"""
             f'{m["duration_min"]} min' if m["duration_min"] else "", s["version"]]))
         note = (f'<span class="note-lb" title="Note moyenne Letterboxd">{m["lb_rating"]}'
                 f'<span class="sur">/5</span></span>' if m.get("lb_rating") else "")
+        # L'heure est le point d'entrée naturel vers la réservation : c'est la
+        # séance précise que le visiteur vise dans un agenda.
+        heure = s["start"][11:16].replace(":", "h")
+        if s.get("booking"):
+            heure = (f'<a href="{esc(s["booking"])}" target="_blank"'
+                     f' rel="noopener noreferrer"'
+                     f' title="Réserver cette séance (nouvel onglet)">{heure}</a>')
         return f"""<li class="seance">
-<time class="heure" datetime="{s["start"][:16]}">{s["start"][11:16].replace(":", "h")}</time>
+<time class="heure{' reservable' if s.get("booking") else ''}" datetime="{s["start"][:16]}">{heure}</time>
 <div class="vignette"><a href="{movie_urls[s["movie"]]}">{img}</a></div>
 <div class="corps">
 <h3 class="film"><a href="{movie_urls[s["movie"]]}">{esc(m["title"])}</a>
@@ -979,6 +1001,12 @@ dans la semaine.</p>
         def leg(show: dict) -> str:
             cinema = cinemas[show["cinema"]]
             hour = show["start"][11:16].replace(":", "h")
+            # Une idée de marathon désigne DEUX séances précises : si elles
+            # sont réservables, c'est ici que le visiteur veut cliquer.
+            if show.get("booking"):
+                hour = (f'<a href="{esc(show["booking"])}" target="_blank"'
+                        f' rel="noopener noreferrer"'
+                        f' title="Réserver cette séance (nouvel onglet)">{hour}</a>')
             version = f' <span class="v">{esc(show["version"])}</span>' if show["version"] else ""
             extra = (f'<p class="meta"><strong>{hour}</strong>{version} — '
                      f'<a href="{cinema_urls[show["cinema"]]}">{esc(cinema["name"])}</a>'

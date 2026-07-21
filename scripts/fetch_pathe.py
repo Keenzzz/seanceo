@@ -29,7 +29,7 @@ from datetime import date, timedelta
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from fetch_data import slugify, movie_key, VERSION_MAP
+from fetch_data import slugify, movie_key, VERSION_MAP, booking_url
 
 API = "https://www.pathe.fr/api"
 DATA_DIR = Path(__file__).resolve().parent.parent / "data"
@@ -159,6 +159,9 @@ def main() -> int:
                         "end": str(s.get("endTime", "")).replace(" ", "T"),
                         "version": PATHE_VERSION.get(s.get("version", ""), ""),
                         "auditorium": str(s.get("auditoriumName", "")),
+                        # `refCmd` = lien de réservation de CETTE séance
+                        # (« https://s.pathe.fr/fr/V3308S131770/booking »)
+                        "booking": booking_url(s.get("refCmd", "")),
                     })
 
     # Garde-fou : si la collecte n'a rien ramené (typiquement l'API a renvoyé

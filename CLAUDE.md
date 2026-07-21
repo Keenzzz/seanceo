@@ -159,6 +159,40 @@ et la mention TMDB (« ce produit utilise l'API TMDB mais n'est ni approuvé ni 
   contrat que les villes des fiches film — **sans JavaScript, tout doit rester visible**, d'où
   `.movie-card[hidden] { display: none }` posé par le script seul et `html:not(.js) .film-tools
   { display: none }` (une barre d'outils morte serait pire que pas de barre).
+- **Liens de billetterie** (champ `booking` sur chaque séance) : un horaire dont la source donne
+  un lien de réservation devient cliquable et mène **directement à la réservation de CETTE
+  séance**, dans un nouvel onglet (`target="_blank" rel="noopener noreferrer"`, flèche ↗ pour
+  annoncer la sortie du site). Rendu par `showtime_pills()`, `seance_row()` (agenda) et les
+  jambes d'un marathon. Les pastilles réservables se distinguent des autres (`.reservable`) :
+  toutes les rendre cliquables reproduirait l'affordance trompeuse qu'on avait corrigée.
+  - **`booking_url()` (fetch_data.py) filtre le schéma — n'accepter que http(s).** Ces URLs
+    viennent de sources externes et finissent dans un `href` : `html.escape()` empêche de sortir
+    de l'attribut mais PAS d'y glisser un `javascript:`. **Toute nouvelle source doit passer par
+    cette fonction**, sans exception.
+  - Couverture : **indés 83 %** (champ `showurl` de l'open data SCARE, 42 salles sur 50 —
+    les salles sans billetterie en ligne le laissent vide) ; **UGC 100 %** (`urlReservation` +
+    `seance_id`, on repart du chemin donné par l'API plutôt que de l'écrire en dur) ;
+    **Pathé** (`refCmd`, lien direct par séance) ; **CGR et Grand Écran 100 %**
+    (`data.ticketing[]`, voir `webedia_booking()`). Garder le `.get("booking")` partout :
+    une séance sans lien doit rester affichable.
+  - **Webedia expose DEUX fournisseurs par séance** : `default` = le domaine d'achat de la
+    chaîne (`achat.cgrcinemas.fr`), `relay` = un redirecteur tiers (`relay.mvtx.us`).
+    `webedia_booking()` ne prend **que `default`** — faire transiter nos visiteurs par un
+    traceur intermédiaire n'apporte rien. Sans `default`, on préfère ne pas lier.
+- **⚠️ PIÈGE WEBEDIA : le `theaterId` doit être en MAJUSCULES.** Le code se lit en minuscules
+  dans l'URL de la page (« /theaters/w8010-… ») mais l'API `schedule` exige « W8010 » ; en
+  minuscules elle répond **HTTP 500 avec un corps `null`**, sans le moindre message. C'est ce
+  qui avait cassé la collecte CGR/Grand Écran **silencieusement** : le connecteur est
+  best-effort, l'échec passait pour un blocage d'IP et le garde-fou conservait un snapshot
+  périmé. Diagnostic (2026-07-21) : `/movies` répondait 200 alors que `/schedule` renvoyait 500
+  même **sans paramètre** — c'est en observant les appels réseau du site CGR qu'on a vu son
+  propre frontend utiliser `W8010`. Après correctif : CGR 11 646 → **23 740 séances**,
+  Grand Écran ~1 260 → **2 594**.
+  - Corollaire à retenir : **un connecteur best-effort qui échoue ressemble à un connecteur
+    bloqué**. Si un snapshot cesse de bouger, vérifier le corps de l'erreur avant de conclure
+    au blocage d'IP.
+  - `grand-ecran-arcachon-la-teste` n'est plus collecté (14 → 13 salles) : sa page n'expose
+    plus de JSON-LD `MovieTheater`. Changement côté source, pas un bug du connecteur.
 - **Aucune page ne montre de séance passée** : `build_site.py` filtre `showtimes` sur `>= today`
   dès le chargement. Indispensable car les snapshots de chaînes ont souvent un jour de retard.
 - Piloter l'API GitHub (pas de `gh` CLI installé) : token via `git credential fill` (compte Keenzzz).

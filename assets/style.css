@@ -129,6 +129,34 @@ h2 { margin-top: 2em; border-bottom: 1px solid var(--accent-deep); padding-botto
 
 .showtimes .v { color: var(--muted); font-size: .78rem; }
 
+/* Séance réservable : celle-là mène vraiment quelque part (la billetterie du
+   cinéma, dans un nouvel onglet), donc elle a le droit d'en avoir l'air —
+   c'est l'inverse du défaut corrigé plus haut, où TOUTES les pastilles
+   promettaient un clic inexistant. La flèche annonce la sortie du site. */
+.showtimes li.reservable {
+  border-color: var(--accent-deep);
+  padding: 0;
+}
+.showtimes li.reservable a {
+  display: block;
+  padding: 2px 10px;
+  text-decoration: none;
+}
+.showtimes li.reservable a::after {
+  content: " ↗";
+  color: var(--accent);
+  font-size: .78rem;
+}
+.showtimes li.reservable:hover {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+/* Agenda de l'accueil : même contrat sur l'heure de la séance */
+.heure.reservable a { text-decoration: none; }
+.heure.reservable a::after { content: " ↗"; font-size: .7em; }
+.heure.reservable a:hover { text-decoration: underline; }
+
 .day { font-weight: 600; font-size: .9rem; display: block; margin-top: .6em; }
 
 .cinema-block {

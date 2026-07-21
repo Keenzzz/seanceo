@@ -43,17 +43,6 @@
   "lon": -1.544382,
   "chain": "Grand Écran"
  },
- "grandecran-p0764": {
-  "id": "grandecran-p0764",
-  "name": "La Teste-de-Buch",
-  "address": "6 rue Lagrua - Zone commerciale Cap Océan",
-  "postcode": "33260",
-  "city": "La Teste-de-Buch",
-  "city_slug": "la-teste-de-buch",
-  "lat": 44.637858,
-  "lon": -1.154199,
-  "chain": "Grand Écran"
- },
  "grandecran-w3321": {
   "id": "grandecran-w3321",
   "name": "Langon",
@@ -134,7 +123,7 @@
  "grandecran-g028p": {
   "id": "grandecran-g028p",
   "name": "Vichy",
-  "address": "35 Rue Lucas - Centre commercial &quot;Les Quatre Chemins&quot;",
+  "address": "35 Rue Lucas - Centre commercial \"Les Quatre Chemins\"",
   "postcode": "03200",
   "city": "Vichy",
   "city_slug": "vichy",

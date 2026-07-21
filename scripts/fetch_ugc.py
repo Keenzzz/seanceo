@@ -25,7 +25,13 @@ from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from fetch_data import slugify, movie_key
+from fetch_data import slugify, movie_key, booking_url
+
+# Billetterie UGC : l'API donne `urlReservation` en chemin RELATIF, tronqué
+# juste après « ?id= » — l'identifiant de séance est à concaténer. Vérifié :
+# https://www.ugc.fr/reservationSeances.html?id=<seance_id> répond 200 et
+# affiche bien la séance demandée.
+UGC_SITE = "https://www.ugc.fr/"
 
 API = "https://backend.ugc.fr/api"
 DATA_DIR = Path(__file__).resolve().parent.parent / "data"
@@ -53,6 +59,17 @@ def parse_duree(s: str) -> int | None:
     """« 2h52 » → 172 minutes."""
     m = _DUREE.search(s or "")
     return int(m.group(1)) * 60 + int(m.group(2)) if m else None
+
+
+def ugc_booking(seance: dict) -> str:
+    """Lien de réservation d'une séance UGC, ou "" si elle n'est pas réservable.
+    On repart de `urlReservation` fourni par l'API plutôt que d'écrire le
+    chemin en dur : si UGC déplace sa page de réservation, on suit."""
+    rel = (seance.get("urlReservation") or "").lstrip("/")
+    sid = seance.get("seance_id")
+    if not rel or not sid or not seance.get("reservable"):
+        return ""
+    return booking_url(f"{UGC_SITE}{rel}{sid}")
 
 
 def epoch_to_iso(ms: int, tz: str) -> str:
@@ -127,6 +144,7 @@ def main() -> int:
                             "start": start, "end": "",
                             "version": VERSION_MAP.get(s.get("version", ""), s.get("version", "")),
                             "auditorium": (s.get("nom_salle") or "").replace("Salle ", ""),
+                            "booking": ugc_booking(s),
                         })
                         n += 1
         print(f"  [{i}/{len(raw)}] {c.get('libelle')} : {n} séances")
