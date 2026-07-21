@@ -69,6 +69,16 @@ et la mention TMDB (« ce produit utilise l'API TMDB mais n'est ni approuvé ni 
   `CHAIN_PREFIXES` de `sources.py`.
 - Dédup des films entre sources = clé `movie_key(titre, réalisateur)` (slugifiée) — `filmid` n'est PAS
   global. TMDB (et le titre le plus « riche ») nettoient les titres en CAPITALES au moment de la fusion.
+- **Noms de réalisateurs normalisés** (`_canonical_directors()` dans `sources.py`, appelé AVANT
+  `_dedup_movies`) : chaque source a sa graphie (« David Lynch » vs « LYNCH David »). Deux notions
+  distinctes, ne pas les confondre : `_fold_person()` = clé de COMPARAISON (casse, accents,
+  ponctuation **et ordre des mots** neutralisés — contrairement à `_fold_title()` où l'ordre compte) ;
+  `_tidy_person()` = graphie AFFICHÉE (« ANNAUD Jean-Jacques » → « Jean-Jacques Annaud », « Daniel
+  ROHER » → « Daniel Roher », listes séparées par virgules traitées nom par nom). Sans cette passe,
+  repertoire.py voyait deux réalisateurs et **coupait les cycles en deux** (Tati perdait « Mon oncle »,
+  Lynch « Eraserhead »). Résultat : 125 → 2 fiches au nom en capitales, 933 → 931 films (doublons
+  rattrapés). Les 2 restantes (« Abrams J.J. ») suivent un motif « nom puis initiales » qu'on ne
+  devine volontairement pas — trop peu de cas pour justifier une heuristique de plus.
 - **`_dedup_movies()` (sources.py) rattrape les doublons que la clé laisse passer** (~140 fiches) :
   passe 1 = même titre normalisé (accents/ponctuation/casse, « Part. »→« Partie ») + réalisateurs
   compatibles (un nom commun, ou vide/« Collectif ») ; passe 2 = même réalisateur, titre court ⊂ titre

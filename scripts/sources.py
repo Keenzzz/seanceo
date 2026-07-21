@@ -12,8 +12,9 @@ sans accents) et en complétant chaque champ vide par l'autre source.
 """
 
 import json
+import re
 import unicodedata
-from collections import defaultdict
+from collections import Counter, defaultdict
 from pathlib import Path
 
 # Quatre fichiers par source, dans l'ordre cinemas/movies/showtimes/cities.
@@ -81,6 +82,121 @@ def _fold_title(t: str) -> str:
     t = "".join(c for c in t if not unicodedata.combining(c))
     words = "".join(c if c.isalnum() else " " for c in t.lower()).split()
     return " ".join(_TOKEN_CANON.get(w, w) for w in words)
+
+
+def _fold_person(name: str) -> str:
+    """Empreinte d'un nom de PERSONNE : casse, accents, ponctuation **et ordre
+    des mots** neutralisés. « TATI Jacques » et « Jacques Tati » tombent sur la
+    même clé. On trie les mots — contrairement à `_fold_title()`, où l'ordre
+    porte du sens (« Les Dents de la mer » n'est pas « La mer des dents »)."""
+    return " ".join(sorted(_fold_title(name).split()))
+
+
+def _capitalize(word: str) -> str:
+    """Met une capitale à chaque suite de lettres : « JEAN-JACQUES » →
+    « Jean-Jacques », « B.POJAR » → « B.Pojar »."""
+    return re.sub(r"[^\W\d_]+", lambda m: m.group(0).capitalize(), word)
+
+
+def _is_shouty(token: str) -> bool:
+    """Mot entièrement en capitales (au moins deux lettres, pour ne pas
+    confondre avec une initiale comme « A. »)."""
+    return sum(c.isalpha() for c in token) >= 2 and token.isupper()
+
+
+def _tidy_person(name: str) -> str:
+    """Remet un nom dans la graphie d'usage.
+
+    Trois motifs observés dans les données, traités séparément :
+
+    - « ANNAUD Jean-Jacques » → « Jean-Jacques Annaud ». Patronyme en capitales
+      EN TÊTE : on rétablit la casse et on réordonne. Exigé net (capitales au
+      début, plus aucune ensuite), sinon on ne touche à rien.
+    - « Daniel ROHER » → « Daniel Roher ». Patronyme en capitales À LA FIN :
+      l'ordre est déjà le bon, on ne fait que la casse.
+    - « ERIC ROHMER » → « Eric Rohmer ». Tout en capitales : impossible de
+      deviner lequel est le patronyme, on se contente de la casse.
+
+    Les listes de réalisateurs (programmes de courts-métrages) sont séparées
+    par des virgules et traitées nom par nom.
+    """
+    name = (name or "").strip()
+    if "," in name:
+        parts = [_tidy_person(p) for p in name.split(",")]
+        return ", ".join(p for p in parts if p)
+    tokens = name.split()
+    if not tokens:
+        return name
+    if all(_is_shouty(t) for t in tokens):
+        return " ".join(_capitalize(t) for t in tokens)
+
+    head = []
+    for t in tokens:
+        if not _is_shouty(t):
+            break
+        head.append(t)
+    tail = tokens[len(head):]
+    if head and not any(_is_shouty(t) for t in tail):
+        return " ".join(tail + [" ".join(_capitalize(t) for t in head)])
+
+    # Capitales en fin de nom : même traitement, sans réordonner.
+    queue = []
+    for t in reversed(tokens):
+        if not _is_shouty(t):
+            break
+        queue.append(t)
+    if queue and len(queue) < len(tokens):
+        garde = tokens[:len(tokens) - len(queue)]
+        return " ".join(garde + [_capitalize(t) for t in reversed(queue)])
+    return name
+
+
+def _name_score(name: str, frequency: int) -> tuple:
+    """Départage plusieurs graphies d'un même nom. Dans l'ordre : le moins de
+    mots hurlés, puis la présence d'accents (« Almodóvar » bat « Almodovar »),
+    puis la graphie la plus répandue dans les données, puis l'ordre
+    alphabétique pour que le build soit reproductible."""
+    shouty = sum(1 for t in name.split() if _is_shouty(t))
+    accents = any(ord(c) > 127 for c in name)
+    return (-shouty, accents, frequency, name)
+
+
+def _canonical_directors(movies: dict) -> int:
+    """Uniformise les noms de réalisateurs entre sources.
+
+    Les caisses des indés, Pathé, CGR et UGC n'écrivent pas les noms de la même
+    façon : « David Lynch » ici, « LYNCH David » là. Sans cette passe, le
+    moteur de rétrospectives (repertoire.py) voit DEUX réalisateurs et coupe le
+    cycle en deux — Tati perdait « Mon oncle », Lynch perdait « Eraserhead ».
+
+    Renvoie le nombre de fiches corrigées.
+    """
+    variantes = defaultdict(Counter)
+    for m in movies.values():
+        d = (m.get("director") or "").strip()
+        if d:
+            variantes[_fold_person(d)][d] += 1
+
+    canonique = {}
+    for cle, compte in variantes.items():
+        # On juge la graphie APRÈS remise en forme : « ANNAUD Jean-Jacques »
+        # concourt sous « Jean-Jacques Annaud ».
+        propositions = Counter()
+        for graphie, n in compte.items():
+            propositions[_tidy_person(graphie)] += n
+        canonique[cle] = max(propositions,
+                             key=lambda g: _name_score(g, propositions[g]))
+
+    corrigees = 0
+    for m in movies.values():
+        d = (m.get("director") or "").strip()
+        if not d:
+            continue
+        retenu = canonique[_fold_person(d)]
+        if retenu != m["director"]:
+            m["director"] = retenu
+            corrigees += 1
+    return corrigees
 
 
 def _dedup_movies(movies: dict, showtimes: list, tmdb: dict) -> None:
@@ -262,6 +378,9 @@ def load_merged(data_dir: Path) -> tuple[dict, dict, list, dict]:
         showtimes.sort(key=lambda s: s["start"])
 
     tmdb = _load(data_dir, "tmdb.json") or {}
+    # Uniformise les noms de réalisateurs AVANT le dédoublonnage et les cycles :
+    # « TATI Jacques » et « Jacques Tati » doivent être le même homme partout.
+    _canonical_directors(movies)
     # Rattrape les doublons que la clé (titre, réalisateur) laisse passer
     _dedup_movies(movies, showtimes, tmdb)
     # Enrichissement TMDB (cache local optionnel : titres propres, notes, affiches)
