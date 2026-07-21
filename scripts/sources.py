@@ -289,6 +289,28 @@ def _dedup_movies(movies: dict, showtimes: list, tmdb: dict) -> None:
                     drop = longk if keep == short else short
                     absorb(keep, drop)
 
+    # --- Passe 3 : même identifiant TMDB = littéralement le même film. ---
+    # C'est le signal le plus sûr des trois, et il rattrape ce que le titre ne
+    # peut pas voir : une caisse écrit « Les Vacances de Mr Hulot », une autre
+    # « … de monsieur Hulot ». Les deux titres ne se replient PAS pareil, donc
+    # la passe 1 les laisse passer ; c'est ensuite _apply_tmdb() qui leur donne
+    # le même titre propre, et le doublon n'apparaissait qu'à l'écran.
+    # On ne fait confiance qu'aux fiches validées par réalisateur (`found`) :
+    # une recherche TMDB non validée peut pointer le mauvais film, et fusionner
+    # sur cette base collerait deux œuvres différentes.
+    by_tmdb = defaultdict(list)
+    for key in movies:
+        t = tmdb.get(key) or {}
+        if t.get("found") and t.get("tmdb_id"):
+            by_tmdb[t["tmdb_id"]].append(key)
+    for keys in by_tmdb.values():
+        if len(keys) < 2:
+            continue
+        keep = max(keys, key=score)
+        for k in keys:
+            if k != keep:
+                absorb(keep, k)
+
     if alias:
         def resolve(k: str) -> str:
             # La passe 2 peut absorber un survivant de la passe 1 : suivre

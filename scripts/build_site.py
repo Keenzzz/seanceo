@@ -50,6 +50,34 @@ BIG_CITY_SLUGS = ("paris", "marseille", "lyon", "toulouse", "nice",
 # sans JavaScript la recherche serait inopérante, tout doit rester affiché.
 JS_FLAG = '<script>document.documentElement.classList.add("js")</script>'
 
+# Index de recherche : un fichier à part, chargé à la première frappe et pas
+# à chaque page. 931 films injectés dans chaque page pèseraient ~90 ko inutiles.
+SEARCH_INDEX = "/recherche.json"
+
+# Combien de cartes une liste triable affiche avant « Afficher plus » (tri.js).
+PAGE_SIZE = 40
+
+# Articles ignorés pour le tri alphabétique : « Le Bon, la Brute… » se range
+# à B, pas à L — c'est l'usage des catalogues de cinéma et de bibliothèque.
+# Comparés à la sortie de _fold_title(), où l'apostrophe est déjà une espace
+# (« L'Odyssée » → « l odyssee ») : d'où le « l » seul dans la liste.
+LEADING_ARTICLES = ("le", "la", "les", "l", "un", "une", "des", "the", "a", "an")
+
+# Renseignés par main() avant tout appel à movie_card() : servent aux
+# attributs data-* sur lesquels tri.js trie et filtre côté client.
+MOVIE_VERSIONS: dict[str, set[str]] = {}
+MOVIE_VENUES: dict[str, int] = {}
+
+# Recherche de film, présente dans le header de toutes les pages.
+# `data-index` porte le chemin complet (BASE_PATH inclus) : page() ne préfixe
+# que les attributs href/src, un data-* lui échapperait.
+FILM_SEARCH = f"""<div class="film-search">
+<input id="film-search" type="search" autocomplete="off" data-index="{BASE_PATH}{SEARCH_INDEX}"
+placeholder="Chercher un film ou un réalisateur…" aria-label="Chercher un film ou un réalisateur">
+<ul id="film-suggest" hidden></ul>
+</div>
+<script src="/assets/search.js" defer></script>"""
+
 JOURS = ["lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi", "dimanche"]
 MOIS = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet",
         "août", "septembre", "octobre", "novembre", "décembre"]
@@ -92,6 +120,7 @@ def page(title: str, description: str, body: str, path: str,
 <meta name="description" content="{esc(description)}">
 <link rel="canonical" href="{BASE_URL}{path}">
 <link rel="stylesheet" href="/assets/style.css">
+{JS_FLAG}
 {head_extra}
 {ld}
 </head>
@@ -99,6 +128,7 @@ def page(title: str, description: str, body: str, path: str,
 <header class="site-header">
 <a class="brand" href="/">🎬 {SITE_NAME}</a>
 <p class="tagline">Le répertoire en salle, partout en France</p>
+{FILM_SEARCH}
 <nav class="site-nav"><a href="/a-l-affiche/">🎬 À l'affiche</a> <a href="/salles-patrimoine/">🏛️ Salles de patrimoine</a> <a href="/classiques/">🏆 Le classement</a> <a href="/marathon/">🍿 Marathons</a> <a href="/carte/">🗺️ Carte</a></nav>
 </header>
 <main>
@@ -162,6 +192,29 @@ def showtime_pills(shows: list[dict]) -> str:
     return f'<ul class="showtimes">{"".join(pills)}</ul>'
 
 
+def sort_title(title: str) -> str:
+    """Clé de tri alphabétique d'un titre : sans accents ni ponctuation, et
+    sans l'article initial (« Le Bon, la Brute… » se range à B). Calculée ici
+    plutôt qu'en JavaScript pour que le tri soit identique partout."""
+    folded = _fold_title(title)
+    head, _, rest = folded.partition(" ")
+    return rest if rest and head in LEADING_ARTICLES else folded
+
+
+def card_attrs(movie: dict) -> str:
+    """Attributs data-* lus par tri.js pour trier et filtrer sans recharger.
+    Toujours posés : une carte sait se classer quelle que soit la page qui
+    l'affiche. Les valeurs absentes valent 0 (elles finissent en queue de tri).
+    `data-v` liste les versions du film (« vf vo ») pour le filtre VF/VO."""
+    key = movie["key"]
+    versions = " ".join(sorted(MOVIE_VERSIONS.get(key, ())))
+    return (f' data-title="{esc(sort_title(movie["title"]))}"'
+            f' data-lb="{movie.get("lb_rating") or 0}"'
+            f' data-year="{movie.get("year") or 0}"'
+            f' data-venues="{MOVIE_VENUES.get(key, 0)}"'
+            f' data-v="{esc(versions)}"')
+
+
 def movie_card(movie: dict, movie_urls: dict, extra: str = "",
                show_rating: bool = True, show_classic: bool = True) -> str:
     """`show_rating=False` masque la note TMDB — utile quand la carte affiche
@@ -177,7 +230,7 @@ def movie_card(movie: dict, movie_urls: dict, extra: str = "",
         rating, movie["genre"],
         f"{movie['duration_min']} min" if movie["duration_min"] else "",
     ]))
-    return f"""<article class="movie-card">
+    return f"""<article class="movie-card"{card_attrs(movie)}>
 <a href="{url}">{poster}</a>
 <div class="movie-info">
 <h3><a href="{url}">{esc(movie["title"])}</a>{classic_badge(movie) if show_classic else ""}</h3>
@@ -202,6 +255,38 @@ placeholder="Chercher votre ville ({n_cities} villes)…" aria-label="Chercher u
 <script src="/assets/film.js" defer></script>"""
 
 
+# Tris proposés au-dessus d'une liste de films : valeur lue par tri.js,
+# libellé affiché. L'ordre du menu est celui de ce dict, le tri par défaut
+# de la page étant remonté en tête par film_tools().
+SORTS = {
+    "lb": "Note Letterboxd",
+    "title": "Titre (A → Z)",
+    "year": "Année (récent d'abord)",
+    "venues": "Nombre de cinémas",
+}
+
+
+def film_tools(list_id: str, default: str, total: int) -> str:
+    """Barre de tri et de filtre au-dessus d'une liste de films (tri.js).
+    Elle ne sert à rien sans JavaScript : le CSS la masque alors, et la liste
+    reste affichée en entier dans l'ordre calculé au build.
+    `default` : tri appliqué à l'arrivée, celui que la page assume
+    éditorialement (le classement Letterboxd sur /classiques/…)."""
+    order = [default] + [k for k in SORTS if k != default]
+    options = "".join(f'<option value="{k}">{SORTS[k]}</option>' for k in order)
+    # « Toutes » est actif à l'arrivée : aucun film n'est masqué par défaut.
+    versions = "".join(
+        f'<button type="button" data-v="{v}" aria-pressed="{pressed}">{lbl}</button>'
+        for v, lbl, pressed in (("", "Toutes", "true"), ("vo", "VO / VOST", "false"),
+                                ("vf", "VF", "false")))
+    return f"""<div class="film-tools" data-list="{list_id}" data-page="{PAGE_SIZE}">
+<label class="tri-tri">Trier par <select id="tri-sort">{options}</select></label>
+<span class="tri-versions" role="group" aria-label="Filtrer par version">{versions}</span>
+<p class="tri-compte" id="tri-compte" role="status">{total} films</p>
+</div>
+<script src="/assets/tri.js" defer></script>"""
+
+
 # --- Construction ---------------------------------------------------------
 
 def main() -> int:
@@ -221,6 +306,23 @@ def main() -> int:
     for s in showtimes:
         by_cinema[s["cinema"]].append(s)
         by_movie[s["movie"]].append(s)
+
+    # Versions et nombre de salles par film : lus par card_attrs() pour poser
+    # les attributs data-* que tri.js exploite. VOST compte comme de la VO —
+    # le spectateur qui filtre « VO » veut la langue d'origine, sous-titrée ou
+    # non ; les séances sans version connue (ou muettes) ne comptent ni l'un
+    # ni l'autre plutôt que d'être rangées à tort.
+    MOVIE_VERSIONS.clear()
+    MOVIE_VENUES.clear()
+    for key, shows in by_movie.items():
+        tags = set()
+        for s in shows:
+            if s["version"] == "VF":
+                tags.add("vf")
+            elif s["version"] in ("VO", "VOST"):
+                tags.add("vo")
+        MOVIE_VERSIONS[key] = tags
+        MOVIE_VENUES[key] = len({s["cinema"] for s in shows})
 
     # URLs uniques : collision de slug -> suffixe ville / réalisateur
     cinema_urls: dict[str, str] = {}
@@ -456,9 +558,20 @@ séances du jour et de la semaine.{classics_bit}</p>{toc}{"".join(blocks)}"""
              + f" ? Séances et horaires ville par ville, dans {len({s['cinema'] for s in shows})}"
                f" cinéma(s) en France." if shows else
              f"Où voir {movie['title']} ? Séances et horaires ville par ville en France."),
-            body, path, jsonld, h1=movie["title"], top_link=True,
-            head_extra=JS_FLAG))
+            body, path, jsonld, h1=movie["title"], top_link=True))
         urls.append(path)
+
+    # ----- Index de recherche (titre + réalisateur) -----
+    # Fichier à part, chargé par search.js à la première frappe : l'injecter
+    # dans chaque page coûterait ~90 ko à chaque visite pour une fonction que
+    # la plupart des visiteurs n'utiliseront pas. Tableaux plutôt qu'objets
+    # (pas de noms de clés répétés 931 fois) : [titre, réalisateur, url, année].
+    index = sorted(
+        ([m["title"], m["director"], f"{BASE_PATH}{movie_urls[k]}", m.get("year") or 0]
+         for k, m in movies.items()),
+        key=lambda row: sort_title(row[0]))
+    (SITE / "recherche.json").write_text(
+        json.dumps(index, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
 
     # ----- Répertoire : le moteur éditorial du site -----
     rep_window = repertoire.window(showtimes, today)
@@ -484,12 +597,18 @@ séances du jour et de la semaine.{classics_bit}</p>{toc}{"".join(blocks)}"""
     n_rep_uniques = repertoire.count_unique(rep_shows)
 
     # ----- Accueil -----
-    top_movies = sorted(movies.values(),
-                        key=lambda m: -len(by_movie[m["key"]]))[:12]
+    # Catalogue complet de « À l'affiche », le plus diffusé d'abord : c'est le
+    # classement qui répond à « qu'est-ce qui passe partout cette semaine ».
+    # Le visiteur qui cherche autre chose le retrie (titre, année, note) ou le
+    # filtre par version sans quitter la page — tri.js n'en montre que
+    # PAGE_SIZE à la fois pour ne pas dérouler 931 cartes d'un coup.
+    catalogue = sorted((m for m in movies.values() if by_movie[m["key"]]),
+                       key=lambda m: (-MOVIE_VENUES[m["key"]], sort_title(m["title"])))
     films_html = "".join(
         movie_card(m, movie_urls,
-                   f'<p class="meta">{len({s["cinema"] for s in by_movie[m["key"]]})} cinémas</p>')
-        for m in top_movies)
+                   f'<p class="meta">{MOVIE_VENUES[m["key"]]} '
+                   f'cinéma{"s" if MOVIE_VENUES[m["key"]] > 1 else ""}</p>')
+        for m in catalogue)
     # Liste complète repliée + tri alphabétique : 257 villes en vrac formaient
     # un mur de 57 % de la page (le « mur de pastilles » déjà refusé, en liste).
     cities_html = "".join(
@@ -507,22 +626,6 @@ séances du jour et de la semaine.{classics_bit}</p>{toc}{"".join(blocks)}"""
     inventory = f"{n_inde} cinémas indépendants"
     if n_chain:
         inventory += f" et {n_chain} cinémas de chaîne"
-    # Mise en avant éditoriale : les reprises de classiques à l'affiche,
-    # les mieux notées (Letterboxd) d'abord — cohérent avec le classement
-    top_classics = sorted((m for m in movies.values() if is_classic(m)),
-                          key=lambda m: (-(m.get("lb_rating") or 0),
-                                         -len(by_movie[m["key"]])))[:8]
-    classics_html = "".join(
-        movie_card(m, movie_urls,
-                   f'<p class="meta">{len({s["cinema"] for s in by_movie[m["key"]]})} cinémas</p>')
-        for m in top_classics)
-    classics_section = (f"""
-<h2>🎞️ Classiques &amp; rétrospectives</h2>
-<p class="meta">Les films d'hier à revoir en salle : versions restaurées, ciné-clubs, rétrospectives.</p>
-<div class="grid">{classics_html}</div>
-<p><a class="more" href="/classiques/">Tous les classiques à l'affiche →</a></p>"""
-                        if top_classics else "")
-
     # ----- Page « À l'affiche » (l'ancien accueil, devenu un onglet) -----
     # Elle garde l'intention à plus gros volume (« quel film voir ce soir »)
     # pendant que l'accueil se recentre sur le répertoire.
@@ -532,8 +635,9 @@ séances du jour et de la semaine.{classics_bit}</p>{toc}{"".join(blocks)}"""
 {city_finder}
 <details class="all-cities"><summary>Toutes les villes ({len(cities)})</summary>
 <ul class="cities">{cities_html}</ul></details>
-<h2>Les films les plus diffusés cette semaine</h2>
-<div class="grid">{films_html}</div>
+<h2>Tous les films à l'affiche</h2>
+{film_tools("film-list", "venues", len(catalogue))}
+<div class="grid" id="film-list">{films_html}</div>
 <div class="passerelle">
 <p><span class="titre">{n_rep_films} classiques sont aussi à l'affiche</span>
 <span class="meta">Rétrospectives, copies restaurées et ciné-clubs, partout en France.</span></p>
@@ -732,36 +836,31 @@ multiplexe qui en propose davantage en valeur absolue. Seules les salles annonç
                      key=lambda m: -len(by_movie[m["key"]]))
 
     def classic_card(m: dict, rank: int | None = None) -> str:
-        n = len({s["cinema"] for s in by_movie[m["key"]]})
-        parts = [f"n° {rank}" if rank else "",
-                 f"★ {m['lb_rating']}/5 Letterboxd" if m.get("lb_rating") else "",
+        n = MOVIE_VENUES.get(m["key"], 0)
+        # Le rang est isolé dans son propre <span> : dès que le visiteur trie
+        # autrement (titre, année…), tri.js le masque — un « n° 3 » affiché
+        # en quatrième position serait un mensonge.
+        rang = f'<span class="rang-lb">n° {rank}</span> · ' if rank else ""
+        parts = [f"★ {m['lb_rating']}/5 Letterboxd" if m.get("lb_rating") else "",
                  f"{n} cinéma{'s' if n > 1 else ''}"]
-        extra = f'<p class="meta">{" · ".join(p for p in parts if p)}</p>'
+        extra = f'<p class="meta">{rang}{" · ".join(p for p in parts if p)}</p>'
         # show_classic=False : ici tout est classique, le badge serait du bruit
         return movie_card(m, movie_urls, extra, show_rating=False, show_classic=False)
 
-    # Top du classement déplié, la longue traîne repliée : 313 cartes d'un
-    # bloc = 20 écrans desktop, 60 mobile. Un humain n'en scanne pas plus.
-    TOP_RANKED = 40
-    ranked_html = "".join(classic_card(m, i) for i, m in enumerate(rated[:TOP_RANKED], 1))
-    rest = rated[TOP_RANKED:]
-    rest_html = (f'<details class="more-films"><summary>Voir la suite du classement '
-                 f'(n° {TOP_RANKED + 1} à {len(rated)})</summary><div class="grid">'
-                 + "".join(classic_card(m, i) for i, m in enumerate(rest, TOP_RANKED + 1))
-                 + "</div></details>" if rest else "")
-    unrated_html = "".join(classic_card(m) for m in unrated)
-    unrated_section = (f'<details class="more-films"><summary>Sans note Letterboxd fiable '
-                       f'({len(unrated)} film{"s" if len(unrated) > 1 else ""})</summary>'
-                       f'<div class="grid">{unrated_html}</div></details>' if unrated else "")
+    # Une seule liste, triable et filtrable : les films notés dans l'ordre du
+    # classement, puis ceux qu'on ne sait pas noter. tri.js n'en affiche que
+    # PAGE_SIZE à la fois (313 cartes d'un bloc = 20 écrans desktop, 60 mobile)
+    # et ajoute un « Afficher plus » ; sans JavaScript, tout reste visible.
+    classics_html = ("".join(classic_card(m, i) for i, m in enumerate(rated, 1))
+                     + "".join(classic_card(m) for m in unrated))
     n_classic_cines = len({s["cinema"] for m in classics for s in by_movie[m["key"]]})
     classics_body = f"""<p class="lead">{len(classics)} films d'au moins {CLASSIC_AGE_YEARS} ans
 sont à l'affiche en ce moment : rétrospectives, versions restaurées et séances de ciné-club
 dans {n_classic_cines} cinémas en France, classés par la note de la communauté
 <a href="https://letterboxd.com" rel="noopener">Letterboxd</a>. Le grand écran, c'est aussi fait pour ça.</p>
 {city_finder}
-<div class="grid">{ranked_html or "<p>Aucune reprise annoncée en ce moment.</p>"}</div>
-{rest_html}
-{unrated_section}"""
+{film_tools("film-list", "lb", len(classics))}
+<div class="grid" id="film-list">{classics_html or "<p>Aucune reprise annoncée en ce moment.</p>"}</div>"""
     write("/classiques/", page(
         f"Films classiques et rétrospectives au cinéma — {SITE_NAME}",
         f"Quel film classique revoir en salle ? {len(classics)} reprises, rétrospectives et "

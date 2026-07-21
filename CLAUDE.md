@@ -84,7 +84,12 @@ et la mention TMDB (« ce produit utilise l'API TMDB mais n'est ni approuvé ni 
   compatibles (un nom commun, ou vide/« Collectif ») ; passe 2 = même réalisateur, titre court ⊂ titre
   long quand le surplus n'est que « partie »+chiffres+mots-outils (≥ 4 tokens : jamais « Avatar »/« Avatar 2 »).
   Les homonymes de réalisateurs différents (Macbeth Welles vs Proske) restent séparés — ne pas « simplifier »
-  ces garde-fous.
+  ces garde-fous. **Passe 3 = même `tmdb_id`** : le signal le plus sûr des trois. Elle existe
+  parce que `_dedup_movies()` tourne **avant** `_apply_tmdb()` : une caisse écrit « Les Vacances
+  de Mr Hulot », une autre « … de monsieur Hulot », les deux titres ne se replient pas pareil
+  (passe 1 aveugle), puis TMDB leur donne le même titre propre et le doublon n'apparaissait
+  qu'à l'écran. On ne fusionne que sur les fiches `found` (validées par réalisateur) : un match
+  TMDB non validé peut désigner un autre film. Gain : 11 doublons, 931 → 918 films.
 - **Matching TMDB validé par réalisateur** (`enrich_tmdb.py`) : la recherche TMDB trie par popularité,
   jamais prendre `results[0]` sans vérifier les credits. `TITLE_OVERRIDES` corrige les fiches TMDB
   au titre fr erroné. Sans candidat validé → fiche brute (mieux que des données d'un autre film).
@@ -123,6 +128,30 @@ et la mention TMDB (« ce produit utilise l'API TMDB mais n'est ni approuvé ni 
   `SLACK_MAX_MIN` d'attente. Tri : reprises de classiques d'abord, puis note Letterboxd. Les idées
   sont dédoublonnées par paire de films et diversifiées par genre. Un cinéma **sans coordonnées est
   ignoré** (impossible de juger la proximité), un film **sans durée ou sans genre** aussi.
+- **Recherche de film** (`assets/search.js`, champ dans le header de toutes les pages) : cherche
+  par titre **ou par réalisateur**. L'index des ~918 films est un fichier à part,
+  `site/recherche.json` (~77 ko, lignes `[titre, réalisateur, url, année]`), **téléchargé à la
+  première interaction seulement** — l'injecter dans chaque page coûterait ce poids à tous les
+  visiteurs pour une fonction optionnelle. Le chemin de l'index est passé en `data-index`, avec
+  `BASE_PATH` écrit à la main : `page()` ne préfixe que les attributs `href`/`src`.
+  **Classement des résultats en 4 paquets** (titre qui commence par la requête, titre au début
+  d'un mot, réalisateur, titre au milieu d'un mot). Le dernier paquet n'est pas cosmétique :
+  sans lui, « tati » remontait « Il était une fois la **stati**on balnéaire… » et
+  « L'invi**tati**on » AVANT les films de Jacques Tati.
+- **Tri et filtre des listes de films** (`assets/tri.js`, barre `film_tools()`) : sur
+  `/classiques/` (défaut = note Letterboxd) et `/a-l-affiche/` (défaut = nombre de cinémas).
+  Tri par note, titre, année ou diffusion ; filtre de version **VO/VOST ou VF**. Les critères
+  voyagent en `data-*` sur chaque carte (`card_attrs()`), donc une carte sait se classer quelle
+  que soit la page. Deux points à ne pas casser : le tri JavaScript est **stable**, donc re-trier
+  la liste sur son critère par défaut redonne exactement l'ordre calculé au build ; et le rang
+  « n° 3 » du classement est masqué (`.hors-classement`) dès qu'on trie autrement, sinon il
+  mentirait. **VOST compte comme de la VO** (le spectateur qui filtre « VO » veut la langue
+  d'origine, sous-titrée ou non).
+- **Pagination côté client** : `tri.js` n'affiche que `PAGE_SIZE` (40) cartes à la fois avec un
+  bouton « Afficher plus ». Le HTML contient **toutes** les cartes (indexables) ; c'est le même
+  contrat que les villes des fiches film — **sans JavaScript, tout doit rester visible**, d'où
+  `.movie-card[hidden] { display: none }` posé par le script seul et `html:not(.js) .film-tools
+  { display: none }` (une barre d'outils morte serait pire que pas de barre).
 - **Aucune page ne montre de séance passée** : `build_site.py` filtre `showtimes` sur `>= today`
   dès le chargement. Indispensable car les snapshots de chaînes ont souvent un jour de retard.
 - Piloter l'API GitHub (pas de `gh` CLI installé) : token via `git credential fill` (compte Keenzzz).

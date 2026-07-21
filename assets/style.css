@@ -290,6 +290,127 @@ html.js .city-list.filtered > .city-group.shown { display: block; }
   text-wrap: pretty;
 }
 
+/* Recherche de film dans le header (titre ou réalisateur, voir search.js).
+   Sans JavaScript elle ne peut rien chercher : on la retire plutôt que
+   d'offrir un champ mort. */
+html:not(.js) .film-search { display: none; }
+.film-search {
+  position: relative;
+  flex: 1 1 260px;
+  max-width: 380px;
+}
+.film-search input {
+  width: 100%;
+  background: #0f1218;
+  color: inherit;
+  border: 1px solid #3a4150;
+  border-radius: 999px;
+  padding: 7px 16px;
+  font: inherit;
+  font-size: .9rem;
+}
+.film-search input:focus { border-color: var(--accent); }
+#film-suggest {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  z-index: 60;
+  margin: 0;
+  padding: 4px;
+  list-style: none;
+  background: #12151b;
+  border: 1px solid #3a4150;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .45);
+}
+#film-suggest li {
+  display: flex;
+  flex-direction: column;
+  padding: 7px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: .9rem;
+  line-height: 1.3;
+}
+#film-suggest li:hover, #film-suggest li.active {
+  background: var(--accent-soft);
+  color: #fff;
+}
+#film-suggest .suggest-meta { color: var(--muted); font-size: .8rem; }
+#film-suggest .suggest-vide { cursor: default; color: var(--muted); }
+
+/* Barre de tri / filtre au-dessus d'une liste de films (voir tri.js).
+   Inutile sans JavaScript — la liste est alors servie entière, déjà triée. */
+html:not(.js) .film-tools { display: none; }
+.film-tools {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px 18px;
+  background: var(--card, #171b22);
+  border: 1px solid #2a2f3a;
+  border-radius: var(--radius);
+  padding: 10px 14px;
+  margin: 14px 0 18px;
+  font-size: .9rem;
+}
+.tri-tri { color: var(--muted); }
+.film-tools select {
+  background: #0f1218;
+  color: var(--text);
+  border: 1px solid #3a4150;
+  border-radius: 999px;
+  padding: 6px 12px;
+  font: inherit;
+  font-size: .9rem;
+}
+.film-tools select:focus { border-color: var(--accent); }
+
+/* Filtre de version : segments exclusifs, l'actif porte l'accent */
+.tri-versions { display: flex; gap: 6px; }
+.tri-versions button {
+  background: none;
+  color: var(--muted);
+  border: 1px solid #3a4150;
+  border-radius: 999px;
+  padding: 6px 14px;      /* cible tactile confortable */
+  font: inherit;
+  font-size: .85rem;
+  cursor: pointer;
+}
+.tri-versions button:hover { border-color: var(--accent); color: var(--text); }
+.tri-versions button[aria-pressed="true"] {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+  color: var(--text);
+  font-weight: 600;
+}
+
+.tri-compte { margin: 0 0 0 auto; color: var(--muted); font-size: .85rem; }
+
+/* Cartes masquées par le filtre ou la pagination : `hidden` seul ne suffit
+   pas, `.movie-card { display: flex }` le prendrait de vitesse. */
+.movie-card[hidden] { display: none; }
+
+/* Rang du classement Letterboxd : sans objet dès qu'on trie autrement */
+.film-list.hors-classement .rang-lb, .grid.hors-classement .rang-lb { display: none; }
+
+.tri-plus {
+  display: block;
+  width: 100%;
+  margin: 18px 0 0;
+  padding: 12px;
+  background: none;
+  color: var(--text);
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+.tri-plus:hover { background: var(--accent-soft); }
+
 /* Navigation header */
 .site-nav { margin-left: auto; display: flex; gap: 10px; flex-wrap: wrap; }
 .site-nav a {
@@ -687,4 +808,13 @@ a:focus-visible, summary:focus-visible, input:focus-visible {
   .jauge { grid-column: 2; }
   /* Cibles tactiles : 44px recommandés (WCAG 2.5.5), 31px auparavant */
   .site-nav a, .city-jump a { padding: 11px 14px; }
+  /* Le champ de recherche prend une ligne à lui seul sur un petit écran ;
+     on la reprend sur la tagline, qui est décorative et redit ce que le H1
+     de chaque page annonce déjà. Entête : 334 px → 285 px. */
+  .tagline { display: none; }
+  .film-search { max-width: none; }
+  /* Le compteur de films colle à droite sur desktop (margin-left:auto) ;
+     une fois la barre repliée sur plusieurs lignes, il repasse à gauche
+     avec le reste plutôt que de flotter seul. */
+  .tri-compte { margin-left: 0; }
 }
