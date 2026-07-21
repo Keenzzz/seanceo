@@ -13,11 +13,14 @@
   var tools = document.querySelector(".film-tools");
   if (!tools) return;
   var list = document.getElementById(tools.dataset.list);
-  var select = document.getElementById("tri-sort");
   var compte = document.getElementById("tri-compte");
-  if (!list || !select || !compte) return;
+  if (!list || !compte) return;
 
+  var tris = tools.querySelectorAll(".tri-tri button");
   var boutons = tools.querySelectorAll(".tri-versions button");
+  // Tri courant : le bouton marqué actif au build porte le tri par défaut
+  // de la page, dans son sens naturel (meilleures notes d'abord, titres A→Z).
+  var triActif = tools.querySelector('.tri-tri button[aria-pressed="true"]') || tris[0];
   // Ordre de départ = celui calculé au build, qui est déjà le tri par défaut
   // de la page. Le tri JavaScript étant stable, re-trier cette liste sur ce
   // même critère redonne exactement l'ordre servi par le serveur.
@@ -34,12 +37,13 @@
 
   function nb(carte, champ) { return parseFloat(carte.dataset[champ]) || 0; }
 
-  // Les tris numériques sont décroissants (la meilleure note, l'année la plus
-  // récente et la plus large diffusion en tête) ; le titre, lui, va de A à Z.
+  /* Comparateurs écrits en ORDRE CROISSANT ; `appliquer()` inverse le signe
+     pour le sens décroissant. Un seul comparateur par critère, donc aucun
+     risque que les deux sens divergent. */
   var TRIS = {
-    lb: function (a, b) { return nb(b, "lb") - nb(a, "lb"); },
-    year: function (a, b) { return nb(b, "year") - nb(a, "year"); },
-    venues: function (a, b) { return nb(b, "venues") - nb(a, "venues"); },
+    lb: function (a, b) { return nb(a, "lb") - nb(b, "lb"); },
+    year: function (a, b) { return nb(a, "year") - nb(b, "year"); },
+    venues: function (a, b) { return nb(a, "venues") - nb(b, "venues"); },
     title: function (a, b) {
       return a.dataset.title.localeCompare(b.dataset.title, "fr");
     }
@@ -49,8 +53,23 @@
     return !version || carte.dataset.v.split(" ").indexOf(version) >= 0;
   }
 
+  /* Une fiche sans valeur pour le critère courant (film sans note Letterboxd,
+     année inconnue) part TOUJOURS en queue, dans les deux sens. Sans ça, un
+     tri « note croissante » ouvrait sur les 49 films sans note plutôt que sur
+     les moins bien notés — ce n'est pas ce qu'on demande en cliquant. */
+  function renseigne(carte, critere) {
+    return critere === "title" ? true : nb(carte, critere) > 0;
+  }
+
   function appliquer() {
-    var ordre = initial.slice().sort(TRIS[select.value] || TRIS.lb);
+    var critere = triActif.dataset.sort;
+    var sens = triActif.dataset.dir === "asc" ? 1 : -1;
+    var compare = TRIS[critere] || TRIS.lb;
+    var ordre = initial.slice().sort(function (a, b) {
+      var ra = renseigne(a, critere), rb = renseigne(b, critere);
+      if (ra !== rb) return ra ? -1 : 1;
+      return sens * compare(a, b);
+    });
     var trouves = 0;
     var frag = document.createDocumentFragment();
     ordre.forEach(function (carte) {
@@ -66,7 +85,9 @@
 
     // Le numéro du classement Letterboxd ne veut plus rien dire dès qu'on
     // trie autrement : un « n° 3 » en septième position serait un mensonge.
-    list.classList.toggle("hors-classement", select.value !== "lb");
+    // Le sens, lui, n'y change rien : trié à l'envers, la liste déroule
+    // simplement les rangs du dernier au premier.
+    list.classList.toggle("hors-classement", critere !== "lb");
 
     var reste = trouves - Math.min(trouves, affichees);
     compte.textContent = trouves === 0
@@ -77,9 +98,32 @@
     plus.textContent = "Afficher " + Math.min(reste, PAGE) + " films de plus";
   }
 
-  select.addEventListener("change", function () {
-    affichees = PAGE; // nouveau tri = on repart du haut de la liste
-    appliquer();
+  /* Un seul bouton actif, portant la marque de son sens ; les autres restent
+     nus, sinon la barre ressemblerait à quatre tris simultanés. */
+  function marquerTris() {
+    [].forEach.call(tris, function (b) {
+      var actif = b === triActif;
+      b.setAttribute("aria-pressed", actif ? "true" : "false");
+      b.querySelector(".tri-sens").textContent =
+        actif ? b.dataset[b.dataset.dir] : "";
+      // Le libellé seul ne dit pas ce que fera le clic : on l'annonce.
+      b.title = actif ? "Cliquer pour inverser l'ordre"
+                      : "Trier par " + b.querySelector(".tri-nom").textContent.toLowerCase();
+    });
+  }
+
+  [].forEach.call(tris, function (b) {
+    b.addEventListener("click", function () {
+      if (b === triActif) {
+        // Re-clic sur le tri déjà actif = on inverse le sens
+        b.dataset.dir = b.dataset.dir === "asc" ? "desc" : "asc";
+      } else {
+        triActif = b; // premier clic : le critère prend son sens naturel
+      }
+      affichees = PAGE; // nouveau tri = on repart du haut de la liste
+      marquerTris();
+      appliquer();
+    });
   });
 
   [].forEach.call(boutons, function (b) {
@@ -99,5 +143,6 @@
     plus.focus(); // le bouton s'est déplacé sous les nouvelles cartes
   });
 
+  marquerTris();
   appliquer();
 })();

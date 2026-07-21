@@ -255,14 +255,17 @@ placeholder="Chercher votre ville ({n_cities} villes)…" aria-label="Chercher u
 <script src="/assets/film.js" defer></script>"""
 
 
-# Tris proposés au-dessus d'une liste de films : valeur lue par tri.js,
-# libellé affiché. L'ordre du menu est celui de ce dict, le tri par défaut
-# de la page étant remonté en tête par film_tools().
+# Tris proposés au-dessus d'une liste de films. Chaque entrée donne le libellé
+# du bouton, le sens appliqué au premier clic, et la marque affichée dans
+# chaque sens — un second clic sur le tri actif l'inverse (tri.js).
+# Le sens de départ est celui qu'on attend spontanément : les meilleures notes
+# d'abord, mais les titres de A à Z. Les flèches sont explicites sur le titre
+# (« A → Z ») là où un ↑ ne dirait pas grand-chose.
 SORTS = {
-    "lb": "Note Letterboxd",
-    "title": "Titre (A → Z)",
-    "year": "Année (récent d'abord)",
-    "venues": "Nombre de cinémas",
+    "lb": ("Note Letterboxd", "desc", "↑", "↓"),
+    "title": ("Titre", "asc", "A → Z", "Z → A"),
+    "year": ("Année", "desc", "↑", "↓"),
+    "venues": ("Cinémas", "desc", "↑", "↓"),
 }
 
 
@@ -273,14 +276,21 @@ def film_tools(list_id: str, default: str, total: int) -> str:
     `default` : tri appliqué à l'arrivée, celui que la page assume
     éditorialement (le classement Letterboxd sur /classiques/…)."""
     order = [default] + [k for k in SORTS if k != default]
-    options = "".join(f'<option value="{k}">{SORTS[k]}</option>' for k in order)
+    options = "".join(
+        f'<button type="button" data-sort="{k}" data-dir="{SORTS[k][1]}"'
+        f' data-asc="{esc(SORTS[k][2])}" data-desc="{esc(SORTS[k][3])}"'
+        f' aria-pressed="{"true" if k == default else "false"}">'
+        f'<span class="tri-nom">{esc(SORTS[k][0])}</span>'
+        f'<span class="tri-sens"></span></button>'
+        for k in order)
     # « Toutes » est actif à l'arrivée : aucun film n'est masqué par défaut.
     versions = "".join(
         f'<button type="button" data-v="{v}" aria-pressed="{pressed}">{lbl}</button>'
         for v, lbl, pressed in (("", "Toutes", "true"), ("vo", "VO / VOST", "false"),
                                 ("vf", "VF", "false")))
     return f"""<div class="film-tools" data-list="{list_id}" data-page="{PAGE_SIZE}">
-<label class="tri-tri">Trier par <select id="tri-sort">{options}</select></label>
+<span class="tri-tri" role="group" aria-label="Trier les films">
+<span class="tri-label">Trier par</span>{options}</span>
 <span class="tri-versions" role="group" aria-label="Filtrer par version">{versions}</span>
 <p class="tri-compte" id="tri-compte" role="status">{total} films</p>
 </div>

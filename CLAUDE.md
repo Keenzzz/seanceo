@@ -142,11 +142,18 @@ et la mention TMDB (« ce produit utilise l'API TMDB mais n'est ni approuvé ni 
   `/classiques/` (défaut = note Letterboxd) et `/a-l-affiche/` (défaut = nombre de cinémas).
   Tri par note, titre, année ou diffusion ; filtre de version **VO/VOST ou VF**. Les critères
   voyagent en `data-*` sur chaque carte (`card_attrs()`), donc une carte sait se classer quelle
-  que soit la page. Deux points à ne pas casser : le tri JavaScript est **stable**, donc re-trier
-  la liste sur son critère par défaut redonne exactement l'ordre calculé au build ; et le rang
-  « n° 3 » du classement est masqué (`.hors-classement`) dès qu'on trie autrement, sinon il
-  mentirait. **VOST compte comme de la VO** (le spectateur qui filtre « VO » veut la langue
-  d'origine, sous-titrée ou non).
+  que soit la page. Trois points à ne pas casser : le tri JavaScript est **stable**, donc
+  re-trier la liste sur son critère par défaut redonne exactement l'ordre calculé au build ; le
+  rang « n° 3 » du classement est masqué (`.hors-classement`) dès qu'on trie sur un AUTRE
+  critère, sinon il mentirait (le sens, lui, n'y change rien : à l'envers la liste déroule
+  simplement les rangs du dernier au premier) ; et **VOST compte comme de la VO** (le spectateur
+  qui filtre « VO » veut la langue d'origine, sous-titrée ou non).
+- **Sens de tri réversible** : les tris sont des BOUTONS, pas un `<select>` — un second clic sur
+  le tri actif inverse le sens (`data-dir`, marque « ↓ »/« A → Z » dans `.tri-sens`). Les
+  comparateurs de `TRIS` sont tous écrits en ordre **croissant**, `appliquer()` inverse le signe :
+  un seul comparateur par critère, donc les deux sens ne peuvent pas diverger. **Une fiche sans
+  valeur pour le critère courant part toujours en queue, dans les deux sens** (`renseigne()`) —
+  sinon « note croissante » ouvrait sur les 49 films SANS note au lieu des moins bien notés.
 - **Pagination côté client** : `tri.js` n'affiche que `PAGE_SIZE` (40) cartes à la fois avec un
   bouton « Afficher plus ». Le HTML contient **toutes** les cartes (indexables) ; c'est le même
   contrat que les villes des fiches film — **sans JavaScript, tout doit rester visible**, d'où

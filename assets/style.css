@@ -355,21 +355,13 @@ html:not(.js) .film-tools { display: none; }
   margin: 14px 0 18px;
   font-size: .9rem;
 }
-.tri-tri { color: var(--muted); }
-.film-tools select {
-  background: #0f1218;
-  color: var(--text);
-  border: 1px solid #3a4150;
-  border-radius: 999px;
-  padding: 6px 12px;
-  font: inherit;
-  font-size: .9rem;
-}
-.film-tools select:focus { border-color: var(--accent); }
+.tri-tri { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; }
+.tri-label { color: var(--muted); }
 
-/* Filtre de version : segments exclusifs, l'actif porte l'accent */
-.tri-versions { display: flex; gap: 6px; }
-.tri-versions button {
+/* Boutons de tri et de filtre : même grammaire visuelle, l'actif porte
+   l'accent. Un second clic sur le tri actif inverse le sens (voir tri.js) ;
+   la marque « ↓ » ou « A → Z » dit lequel est appliqué. */
+.tri-tri button, .tri-versions button {
   background: none;
   color: var(--muted);
   border: 1px solid #3a4150;
@@ -379,13 +371,27 @@ html:not(.js) .film-tools { display: none; }
   font-size: .85rem;
   cursor: pointer;
 }
-.tri-versions button:hover { border-color: var(--accent); color: var(--text); }
-.tri-versions button[aria-pressed="true"] {
+.tri-tri button:hover, .tri-versions button:hover {
+  border-color: var(--accent);
+  color: var(--text);
+}
+.tri-tri button[aria-pressed="true"], .tri-versions button[aria-pressed="true"] {
   background: var(--accent-soft);
   border-color: var(--accent);
   color: var(--text);
   font-weight: 600;
 }
+/* Marque du sens de tri : réservée en largeur pour que le bouton ne saute
+   pas quand on l'active, et tabulaire pour que « A → Z » et « Z → A »
+   occupent exactement la même place. */
+.tri-sens {
+  display: inline-block;
+  min-width: 1em;
+  margin-left: 6px;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+.tri-versions { display: flex; gap: 6px; }
 
 .tri-compte { margin: 0 0 0 auto; color: var(--muted); font-size: .85rem; }
 
