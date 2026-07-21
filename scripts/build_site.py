@@ -32,6 +32,13 @@ BASE_PATH = "/seanceo"
 BASE_URL = f"https://keenzzz.github.io{BASE_PATH}"
 SITE_NAME = "Séancéo"
 
+# Site frère dédié à Paris (« Paris Ciné Aujourd'hui ») : plus complet que
+# Séancéo pour la capitale au quotidien — il liste TOUT ce qui passe à Paris,
+# pas seulement le répertoire. On y renvoie depuis les pages parisiennes
+# uniquement (ville de Paris + fiches des cinémas parisiens) : ailleurs en
+# France l'encadré n'aurait aucun sens.
+PARIS_CINE_URL = "https://paris-cine-pages.pages.dev/"
+
 CITY_WINDOW_DAYS = 7     # séances affichées sur une page ville
 CINEMA_WINDOW_DAYS = 14  # séances affichées sur une page cinéma
 
@@ -136,7 +143,7 @@ def page(title: str, description: str, body: str, path: str,
 <a class="brand" href="/">🎬 {SITE_NAME}</a>
 <p class="tagline">Le répertoire en salle, partout en France</p>
 {FILM_SEARCH}
-<nav class="site-nav"><a href="/a-l-affiche/">🎬 À l'affiche</a> <a href="/salles-patrimoine/">🏛️ Salles de patrimoine</a> <a href="/classiques/">🏆 Le classement</a> <a href="/marathon/">🍿 Marathons</a> <a href="/carte/">🗺️ Carte</a></nav>
+<nav class="site-nav"><a href="/a-l-affiche/">🎬 À l'affiche</a> <a href="/salles-patrimoine/">🏛️ Salles de patrimoine</a> <a href="/marathon/">🍿 Marathons</a> <a href="/carte/">🗺️ Carte</a></nav>
 </header>
 <main>
 <a class="retour" id="retour" href="#" hidden>← Retour</a>
@@ -236,6 +243,20 @@ def card_attrs(movie: dict) -> str:
             f' data-year="{movie.get("year") or 0}"'
             f' data-venues="{MOVIE_VENUES.get(key, 0)}"'
             f' data-v="{esc(versions)}"')
+
+
+def paris_cine_bridge() -> str:
+    """Passerelle vers le site frère « Paris Ciné Aujourd'hui ».
+    Lien EXTERNE : nouvel onglet (garde Séancéo ouvert) + rel de sécurité, et
+    flèche ↗ pour annoncer la sortie du site, comme les liens de billetterie.
+    Placée en bas des pages parisiennes : le visiteur a d'abord vu ce que
+    Séancéo propose, on lui signale ensuite l'outil plus complet pour Paris."""
+    return f"""<div class="passerelle">
+<p><span class="titre">Vous êtes à Paris ?</span>
+<span class="meta">Paris Ciné Aujourd'hui recense tous les films à l'affiche dans la capitale,
+jour par jour, avec la carte des salles et les notes.</span></p>
+<a class="bouton" href="{PARIS_CINE_URL}" target="_blank" rel="noopener noreferrer">Ouvrir Paris Ciné ↗</a>
+</div>"""
 
 
 def note_lb(movie: dict) -> str:
@@ -491,9 +512,11 @@ def main() -> int:
                                      key=lambda kv: kv[1][0]["start"])
             )
             sections.append(f'<section><h2>{fr_date(d, today)}</h2>{films_html}</section>')
+        # Passerelle vers le site frère, sur les fiches des cinémas parisiens.
+        bridge = paris_cine_bridge() if cinema["city_slug"] == "paris" else ""
         body = f"""<p class="lead">{esc(cinema["address"])}, {esc(cinema["postcode"])} {esc(cinema["city"])}.
 {esc(cinema_kind(cinema)).capitalize()}. <a href="/ville/{cinema["city_slug"]}/">Voir tous les cinémas de {esc(cinema["city"])}</a>.</p>
-{"".join(sections) or "<p>Aucune séance annoncée pour les deux prochaines semaines.</p>"}"""
+{"".join(sections) or "<p>Aucune séance annoncée pour les deux prochaines semaines.</p>"}{bridge}"""
         jsonld = {
             "@context": "https://schema.org", "@type": "MovieTheater",
             "name": cinema["name"],
@@ -573,8 +596,10 @@ def main() -> int:
                         f'{CLASSIC_AGE_YEARS} ans : '
                         f'<a href="/classiques/">voir le classement</a>.'
                         if n_classics else "")
+        # Passerelle vers le site frère, sur la seule page ville de Paris.
+        bridge = paris_cine_bridge() if slug == "paris" else ""
         body = f"""<p class="lead">{" et ".join(parts)} à {esc(city["name"])}.
-Les séances d'aujourd'hui d'abord, puis celles des jours suivants.{classics_bit}</p>{toc}{"".join(blocks)}"""
+Les séances d'aujourd'hui d'abord, puis celles des jours suivants.{classics_bit}</p>{toc}{"".join(blocks)}{bridge}"""
         write(path, page(
             f"Cinéma à {city['name']} : séances et horaires — {SITE_NAME}",
             f"Quel film voir à {city['name']} ? Séances et horaires des {n_cine} cinéma(s) "

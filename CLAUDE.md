@@ -231,6 +231,19 @@ et la mention TMDB (« ce produit utilise l'API TMDB mais n'est ni approuvé ni 
   fait « AI generated »), et pas de tournures d'IA : « ce n'est pas X, c'est Y », les chutes
   d'effet (« le grand écran, c'est aussi fait pour ça »), les triades décoratives. Écrire plat
   et factuel. `nombre()` met une espace insécable aux milliers : « 84 640 », pas « 84640 ».
+- **Passerelle vers le site frère « Paris Ciné Aujourd'hui »** (`paris_cine_bridge()`,
+  `PARIS_CINE_URL`) : encadré en bas des **pages parisiennes uniquement** (la page ville de Paris
+  et les fiches des cinémas dont `city_slug == "paris"`, soit 31 salles). Paris Ciné est plus
+  complet que Séancéo pour la capitale au quotidien (il liste toutes les sorties, pas seulement
+  le répertoire) ; on cible par CONTENU parisien, pas par géolocalisation (site statique).
+  Lien externe → nouvel onglet + `rel="noopener noreferrer"` + flèche ↗. **Ne pas l'étendre aux
+  pages nationales** (accueil, /a-l-affiche/) : un visiteur non parisien y verrait un renvoi
+  vers un site 100 % parisien. L'URL cible est le déploiement Cloudflare (`*.pages.dev`), pas le
+  miroir GitHub Pages.
+- **L'onglet « 🏆 Le classement » a été retiré du header** (demande utilisateur, 2026-07-22) mais
+  **la page `/classiques/` existe toujours** — elle porte le classement COMPLET triable/filtrable
+  que l'accueil n'a pas. Elle reste reliée par les « voir le classement » des pages ville et par
+  la page marathon (≈ 100 liens internes), donc ni orpheline ni désindexée. Ne pas la supprimer.
 - **Aucune page ne montre de séance passée** : `build_site.py` filtre `showtimes` sur `>= today`
   dès le chargement. Indispensable car les snapshots de chaînes ont souvent un jour de retard.
 - Piloter l'API GitHub (pas de `gh` CLI installé) : token via `git credential fill` (compte Keenzzz).
