@@ -95,6 +95,13 @@ def esc(text: str) -> str:
     return html.escape(str(text), quote=True)
 
 
+def nombre(n: int) -> str:
+    """Sépare les milliers par une espace insécable, comme l'usage français.
+    « 84640 » ne se lit pas ; « 84 640 » se lit d'un coup d'œil. L'espace est
+    insécable pour qu'un retour à la ligne ne coupe jamais un nombre en deux."""
+    return f"{n:,}".replace(",", " ")
+
+
 def load(name: str):
     return json.loads((DATA / name).read_text(encoding="utf-8"))
 
@@ -132,15 +139,16 @@ def page(title: str, description: str, body: str, path: str,
 <nav class="site-nav"><a href="/a-l-affiche/">🎬 À l'affiche</a> <a href="/salles-patrimoine/">🏛️ Salles de patrimoine</a> <a href="/classiques/">🏆 Le classement</a> <a href="/marathon/">🍿 Marathons</a> <a href="/carte/">🗺️ Carte</a></nav>
 </header>
 <main>
+<a class="retour" id="retour" href="#" hidden>← Retour</a>
 <h1>{esc(h1 if h1 is not None else title)}</h1>
 {body}
 </main>{top}
 <footer>
 <p>Données de programmation : <a href="https://datacinesindes.fr" rel="noopener">Data Ciné Indés / SCARE</a>
-(Syndicat des Cinémas d'Art, de Répertoire et d'Essai) — Licence Ouverte 2.0.</p>
+(Syndicat des Cinémas d'Art, de Répertoire et d'Essai), sous Licence Ouverte 2.0.</p>
 <p>{SITE_NAME} réunit les séances des cinémas indépendants et des grandes enseignes, et met en avant les salles Art &amp; Essai.</p>
 <p>Fiches films (titres, notes, affiches, synopsis) enrichies via
-<a href="https://www.themoviedb.org/" rel="noopener">TMDB</a> — ce produit utilise l'API TMDB
+<a href="https://www.themoviedb.org/" rel="noopener">TMDB</a>. Ce produit utilise l'API TMDB
 mais n'est ni approuvé ni certifié par TMDB.</p>
 </footer>
 </body>
@@ -230,29 +238,114 @@ def card_attrs(movie: dict) -> str:
             f' data-v="{esc(versions)}"')
 
 
+def note_lb(movie: dict) -> str:
+    """Note Letterboxd d'un film, en vert — la couleur qui lui est réservée.
+
+    UNE SEULE ÉCHELLE SUR TOUT LE SITE : /5, celle de Letterboxd. Les notes
+    TMDB (/10) ont été retirées de l'affichage — deux échelles côte à côte
+    faisaient lire « 7.9 » et « 4.4 » comme si la première était meilleure.
+    TMDB reste utilisé pour tout le reste (titres, affiches, année, durée)."""
+    note = movie.get("lb_rating")
+    if not note:
+        return ""
+    return (f'<span class="note-lb" title="Note moyenne Letterboxd">{note}'
+            f'<span class="sur">/5</span></span>')
+
+
 def movie_card(movie: dict, movie_urls: dict, extra: str = "",
                show_rating: bool = True, show_classic: bool = True) -> str:
-    """`show_rating=False` masque la note TMDB — utile quand la carte affiche
-    déjà une note d'une autre échelle (classement Letterboxd /5).
+    """`show_rating=False` masque la note — utile quand la carte l'affiche
+    déjà ailleurs (le classement de /classiques/ la met dans son propre rang).
     `show_classic=False` masque le badge Classique — bruit pur sur une page
     qui ne liste QUE des classiques."""
     url = movie_urls[movie["key"]]
     poster = (f'<img src="{esc(movie["poster"])}" alt="Affiche de {esc(movie["title"])}" loading="lazy">'
               if movie["poster"] else '<div class="noposter">🎞️</div>')
-    rating = f'★ {movie["rating"]}' if show_rating and movie.get("rating") else ""
     meta = " · ".join(filter(None, [
         str(movie["year"]) if movie.get("year") else "",
-        rating, movie["genre"],
+        movie["genre"],
         f"{movie['duration_min']} min" if movie["duration_min"] else "",
     ]))
+    # La note est du HTML (elle porte sa couleur), le reste du texte échappé.
+    ligne = " · ".join(filter(None, [note_lb(movie) if show_rating else "",
+                                     esc(meta)]))
     return f"""<article class="movie-card"{card_attrs(movie)}>
 <a href="{url}">{poster}</a>
 <div class="movie-info">
 <h3><a href="{url}">{esc(movie["title"])}</a>{classic_badge(movie) if show_classic else ""}</h3>
-<p class="meta">{esc(meta)}</p>
+<p class="meta">{ligne}</p>
 {extra}
 </div>
 </article>"""
+
+
+def screening_event(show: dict, movie: dict, cinema: dict) -> dict:
+    """Une séance décrite en schema.org ScreeningEvent (résultats enrichis).
+
+    C'est le type que Google attend pour des horaires de cinéma : il porte la
+    DATE et le LIEU, ce qu'un simple CollectionPage ne disait pas. `startDate`
+    est en heure locale sans fuseau — c'est la forme que livrent nos sources,
+    et annoncer un fuseau qu'on n'a pas vérifié serait pire que de l'omettre.
+    Le lien de billetterie devient une Offer quand on en a un."""
+    event = {
+        "@type": "ScreeningEvent",
+        "name": f"{movie['title']} — {cinema['name']}",
+        "startDate": show["start"],
+        "eventStatus": "https://schema.org/EventScheduled",
+        "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+        "workPresented": {
+            "@type": "Movie",
+            "name": movie["title"],
+            **({"image": movie["poster"]} if movie["poster"] else {}),
+            **({"director": {"@type": "Person", "name": movie["director"]}}
+               if movie["director"] else {}),
+        },
+        "location": {
+            "@type": "MovieTheater",
+            "name": cinema["name"],
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": cinema["address"],
+                "postalCode": cinema["postcode"],
+                "addressLocality": cinema["city"],
+                "addressCountry": "FR",
+            },
+        },
+    }
+    # VF = doublé en français ; VOST = version originale sous-titrée français.
+    # « VO » (sans sous-titres) ne dit rien de la langue parlée, qu'on ne
+    # connaît pas de façon fiable : on préfère ne rien déclarer.
+    if show.get("version") == "VF":
+        event["inLanguage"] = "fr"
+    elif show.get("version") == "VOST":
+        event["subtitleLanguage"] = "fr"
+    if show.get("booking"):
+        event["offers"] = {
+            "@type": "Offer",
+            "url": show["booking"],
+            "availability": "https://schema.org/InStock",
+        }
+    return event
+
+
+def poster_strip(keys: list[str], movies: dict, movie_urls: dict,
+                 limit: int | None = None) -> str:
+    """Bande d'affiches d'un cycle. Le titre apparaît au survol et au focus
+    clavier : une affiche seule ne dit pas de quel film il s'agit, et c'est
+    précisément le fonds de répertoire — des films qu'on ne reconnaît pas
+    forcément à leur jaquette — que ces bandes présentent.
+    Le titre reste dans le HTML (donc lisible par un lecteur d'écran et
+    indexable) ; seule son opacité change."""
+    items = []
+    for k in (keys[:limit] if limit else keys):
+        m = movies[k]
+        if not m["poster"]:
+            continue
+        items.append(
+            f'<a class="affiche" href="{movie_urls[k]}">'
+            f'<img src="{esc(m["poster"])}" alt="Affiche de {esc(m["title"])}" loading="lazy">'
+            f'<span class="affiche-nom">{esc(m["title"])}</span></a>')
+    return f'<div class="bande">{"".join(items)}</div>'
 
 
 def city_search_nav(pills_html: str, cmap: dict, n_cities: int) -> str:
@@ -398,8 +491,8 @@ def main() -> int:
                                      key=lambda kv: kv[1][0]["start"])
             )
             sections.append(f'<section><h2>{fr_date(d, today)}</h2>{films_html}</section>')
-        body = f"""<p class="lead">{esc(cinema["address"])}, {esc(cinema["postcode"])} {esc(cinema["city"])} —
-{esc(cinema_kind(cinema))}. <a href="/ville/{cinema["city_slug"]}/">Tous les cinémas de {esc(cinema["city"])}</a></p>
+        body = f"""<p class="lead">{esc(cinema["address"])}, {esc(cinema["postcode"])} {esc(cinema["city"])}.
+{esc(cinema_kind(cinema)).capitalize()}. <a href="/ville/{cinema["city_slug"]}/">Voir tous les cinémas de {esc(cinema["city"])}</a>.</p>
 {"".join(sections) or "<p>Aucune séance annoncée pour les deux prochaines semaines.</p>"}"""
         jsonld = {
             "@context": "https://schema.org", "@type": "MovieTheater",
@@ -454,11 +547,11 @@ def main() -> int:
                                   f'<div class="films">{"".join(films_later)}</div></details>')
                 else:
                     # Rien aujourd'hui : ne pas cacher tout le programme du cinéma
-                    today_html = '<p class="meta">Pas de séance aujourd\'hui — prochaines dates :</p>'
+                    today_html = '<p class="meta">Pas de séance aujourd\'hui. Prochaines dates :</p>'
                     later_html = f'<div class="films">{"".join(films_later)}</div>'
             blocks.append(f"""<section class="cinema-block" id="c-{cid}">
 <h2><a href="{cinema_urls[cid]}">{esc(cinema["name"])}</a>{chain_badge(cinema)}</h2>
-<p class="meta">{esc(cinema["address"])} — <a href="{cinema_urls[cid]}">programme complet</a></p>
+<p class="meta">{esc(cinema["address"])}. <a href="{cinema_urls[cid]}">Programme complet</a></p>
 {(today_html + later_html) or "<p>Aucune séance cette semaine.</p>"}</section>""")
         # Sommaire ancré : au-delà de 2 cinémas, l'accès direct évite de
         # scroller toute la page pour atteindre SA salle (Lyon = 17 écrans).
@@ -476,11 +569,12 @@ def main() -> int:
         if n_chain:
             parts.append(f'{n_chain} cinéma{"s" if n_chain > 1 else ""} de chaîne')
         n_classics = sum(1 for mk in city_movie_keys if is_classic(movies[mk]))
-        classics_bit = (f' 🎞️ {n_classics} classique{"s" if n_classics > 1 else ""} au badge doré — '
-                        f'<a href="/classiques/">tous les classiques à l\'affiche</a>.'
+        classics_bit = (f' Dont {n_classics} film{"s" if n_classics > 1 else ""} de plus de '
+                        f'{CLASSIC_AGE_YEARS} ans : '
+                        f'<a href="/classiques/">voir le classement</a>.'
                         if n_classics else "")
-        body = f"""<p class="lead">{" et ".join(parts)} à {esc(city["name"])} —
-séances du jour et de la semaine.{classics_bit}</p>{toc}{"".join(blocks)}"""
+        body = f"""<p class="lead">{" et ".join(parts)} à {esc(city["name"])}.
+Les séances d'aujourd'hui d'abord, puis celles des jours suivants.{classics_bit}</p>{toc}{"".join(blocks)}"""
         write(path, page(
             f"Cinéma à {city['name']} : séances et horaires — {SITE_NAME}",
             f"Quel film voir à {city['name']} ? Séances et horaires des {n_cine} cinéma(s) "
@@ -545,10 +639,9 @@ séances du jour et de la semaine.{classics_bit}</p>{toc}{"".join(blocks)}"""
             n_cine_total = len({s["cinema"] for s in shows})
             prompt = (f'<p class="city-prompt" id="city-prompt">À l\'affiche dans '
                       f'{n_cine_total} cinéma{"s" if n_cine_total > 1 else ""} de '
-                      f'{len(city_slugs)} villes — choisissez la vôtre pour voir les horaires.</p>')
+                      f'{len(city_slugs)} villes. Choisissez la vôtre pour voir les horaires.</p>')
         credits = " · ".join(filter(None, [
             movie.get("year") and str(movie["year"]),
-            movie.get("rating") and f"★ {movie['rating']}/10",
             movie["director"] and f"De {movie['director']}",
             movie["cast"] and f"Avec {movie['cast']}",
             movie["genre"], movie["duration_min"] and f"{movie['duration_min']} min"]))
@@ -563,7 +656,7 @@ séances du jour et de la semaine.{classics_bit}</p>{toc}{"".join(blocks)}"""
         city_list = (f'<div class="city-list{" filtered" if filtered else ""}" id="city-list">'
                      f'{"".join(rows)}</div>' if rows else "<p>Aucune séance à venir.</p>")
         body = f"""<div class="film-head">{poster}<div>
-<p class="lead">{classic_badge(movie)} {esc(credits)}</p>
+<p class="lead">{classic_badge(movie)} {note_lb(movie)} {esc(credits)}</p>
 <p>{esc(movie["storyline"])}</p>{trailer}</div></div>
 <h2>Où voir {esc(movie["title"])} ?</h2>
 {city_jump}
@@ -654,8 +747,8 @@ séances du jour et de la semaine.{classics_bit}</p>{toc}{"".join(blocks)}"""
     # ----- Page « À l'affiche » (l'ancien accueil, devenu un onglet) -----
     # Elle garde l'intention à plus gros volume (« quel film voir ce soir »)
     # pendant que l'accueil se recentre sur le répertoire.
-    affiche_body = f"""<p class="lead">{inventory}, {len(cities)} villes,
-{len(showtimes)} séances à venir. Mis à jour quotidiennement.</p>
+    affiche_body = f"""<p class="lead">{inventory} répartis dans {len(cities)} villes, et
+{nombre(len(showtimes))} séances annoncées. La liste est refaite chaque nuit.</p>
 <h2>Choisissez votre ville</h2>
 {city_finder}
 <details class="all-cities"><summary>Toutes les villes ({len(cities)})</summary>
@@ -726,10 +819,7 @@ séances du jour et de la semaine.{classics_bit}</p>{toc}{"".join(blocks)}"""
 
     cycles_html = ""
     for c in rep_cycles[:4]:
-        bande = "".join(
-            f'<a href="{movie_urls[k]}"><img src="{esc(movies[k]["poster"])}" '
-            f'alt="Affiche de {esc(movies[k]["title"])}" loading="lazy"></a>'
-            for k in c["movies"][:6] if movies[k]["poster"])
+        bande = poster_strip(c["movies"], movies, movie_urls, limit=6)
         salles_liens = ", ".join(
             f'<a href="{cinema_urls[cid]}">{esc(cinemas[cid]["name"])}</a>'
             for cid in c["cinemas"][:3])
@@ -741,7 +831,7 @@ séances du jour et de la semaine.{classics_bit}</p>{toc}{"".join(blocks)}"""
         cycles_html += f"""<article class="cycle">
 <p class="eyebrow">Rétrospective</p>
 <h3 class="cycle-nom"><a href="{cycle_urls[c["key"]]}">{esc(c["director"])}</a></h3>
-<div class="bande">{bande}</div>
+{bande}
 <p class="meta"><strong>{len(c["movies"])} films</strong> · {c["n_shows"]} séances · {villes_txt}</p>
 <p class="meta">{salles_liens}</p>
 <p class="meta"><a class="more" href="{cycle_urls[c["key"]]}">Voir le cycle →</a></p>
@@ -779,13 +869,13 @@ séances du jour et de la semaine.{classics_bit}</p>{toc}{"".join(blocks)}"""
 
     n_rep_cines = len({s["cinema"] for s in rep_shows})
     n_rep_villes = len(rep_cities)
-    body = f"""<p class="lead">{SITE_NAME} recense les reprises, rétrospectives et copies
-restaurées à l'affiche dans toute la France. <strong>{n_rep_uniques} de ces séances ne
-repasseront pas cette semaine alors n'attendez pas.</strong></p>
+    body = f"""<p class="lead">Les films anciens qui repassent en salle cette semaine, partout
+en France : reprises, copies restaurées, séances de ciné-club.
+<strong>{n_rep_uniques} de ces séances n'ont pas de deuxième date.</strong></p>
 
 <div class="compteurs">
 <div class="compteur"><b>{n_rep_films}</b><span>films de répertoire</span></div>
-<div class="compteur"><b>{len(rep_shows)}</b><span>séances cette semaine</span></div>
+<div class="compteur"><b>{nombre(len(rep_shows))}</b><span>séances cette semaine</span></div>
 <div class="compteur"><b>{n_rep_cines}</b><span>cinémas</span></div>
 <div class="compteur"><b>{n_rep_villes}</b><span>villes</span></div>
 <div class="compteur compteur-fort"><b>{n_rep_uniques}</b><span>séances uniques</span></div>
@@ -798,8 +888,9 @@ repasseront pas cette semaine alors n'attendez pas.</strong></p>
 <h2>À ne pas rater</h2>
 <p class="meta">Des séances qui ne repassent nulle part ailleurs en France cette semaine.</p>
 <p class="legende"><span class="puce">4.4<span class="sur">/5</span></span>
-Note moyenne de la communauté <a href="https://letterboxd.com" rel="noopener">Letterboxd</a> —
-les séances ci-dessous sont les mieux notées de la semaine.</p>
+Note moyenne donnée par les spectateurs de
+<a href="https://letterboxd.com" rel="noopener">Letterboxd</a>. Les séances ci-dessous sont les
+mieux notées de la semaine.</p>
 {agenda_html or "<p>Aucune séance unique repérée cette semaine.</p>"}
 
 <h2>Rétrospectives en cours</h2>
@@ -843,12 +934,11 @@ indépendants et grandes enseignes.</span></p>
 <div class="jauge-piste"><div class="jauge-part" style="width:{v["share"]}%"></div></div>
 <p class="jauge-txt"><strong>{v["share"]} %</strong> de répertoire · {v["n_rep"]} séances sur {v["n_total"]}</p>
 </div></li>""" for i, v in enumerate(rep_venues, 1))
-    venues_body = f"""<p class="lead">Certaines salles consacrent l'essentiel de leur
-programmation aux films du passé : ce sont les cinémathèques de fait, souvent des cinémas
-indépendants — mais pas seulement. Ce classement mesure la <strong>part</strong> de répertoire
-dans la programmation de la semaine, pas le volume : une salle qui ne fait que ça devance un
-multiplexe qui en propose davantage en valeur absolue. Seules les salles annonçant au moins
-{repertoire.VENUE_MIN_SHOWS} séances sur la semaine sont classées.</p>
+    venues_body = f"""<p class="lead">Certaines salles passent surtout des films du passé, et
+ce ne sont pas toujours celles qu'on croit. Le classement les range par la <strong>part</strong>
+de répertoire dans leur programmation de la semaine, et non par le nombre de séances : compter
+en volume mettrait les multiplexes en tête, puisqu'ils programment plus de tout. Il faut au
+moins {repertoire.VENUE_MIN_SHOWS} séances dans la semaine pour y figurer.</p>
 <ul class="salles">{salles_full}</ul>
 <p class="meta"><a class="more" href="/carte/">Retrouver ces salles sur la carte →</a></p>"""
     write("/salles-patrimoine/", page(
@@ -873,11 +963,11 @@ multiplexe qui en propose davantage en valeur absolue. Seules les salles annonç
         # autrement (titre, année…), tri.js le masque — un « n° 3 » affiché
         # en quatrième position serait un mensonge.
         rang = f'<span class="rang-lb">n° {rank}</span> · ' if rank else ""
-        parts = [f"★ {m['lb_rating']}/5 Letterboxd" if m.get("lb_rating") else "",
-                 f"{n} cinéma{'s' if n > 1 else ''}"]
-        extra = f'<p class="meta">{rang}{" · ".join(p for p in parts if p)}</p>'
-        # show_classic=False : ici tout est classique, le badge serait du bruit
-        return movie_card(m, movie_urls, extra, show_rating=False, show_classic=False)
+        extra = f'<p class="meta">{rang}{n} cinéma{"s" if n > 1 else ""}</p>'
+        # show_classic=False : ici tout est classique, le badge serait du bruit.
+        # La note vient de movie_card() comme partout ailleurs — la répéter ici
+        # la faisait apparaître deux fois sur la même carte.
+        return movie_card(m, movie_urls, extra, show_classic=False)
 
     # Une seule liste, triable et filtrable : les films notés dans l'ordre du
     # classement, puis ceux qu'on ne sait pas noter. tri.js n'en affiche que
@@ -886,10 +976,10 @@ multiplexe qui en propose davantage en valeur absolue. Seules les salles annonç
     classics_html = ("".join(classic_card(m, i) for i, m in enumerate(rated, 1))
                      + "".join(classic_card(m) for m in unrated))
     n_classic_cines = len({s["cinema"] for m in classics for s in by_movie[m["key"]]})
-    classics_body = f"""<p class="lead">{len(classics)} films d'au moins {CLASSIC_AGE_YEARS} ans
-sont à l'affiche en ce moment : rétrospectives, versions restaurées et séances de ciné-club
-dans {n_classic_cines} cinémas en France, classés par la note de la communauté
-<a href="https://letterboxd.com" rel="noopener">Letterboxd</a>. Le grand écran, c'est aussi fait pour ça.</p>
+    classics_body = f"""<p class="lead">{len(classics)} films de plus de {CLASSIC_AGE_YEARS} ans
+repassent en ce moment dans {n_classic_cines} cinémas en France. Ils sont classés par la note
+que leur donnent les spectateurs de
+<a href="https://letterboxd.com" rel="noopener">Letterboxd</a>.</p>
 {city_finder}
 {film_tools("film-list", "lb", len(classics))}
 <div class="grid" id="film-list">{classics_html or "<p>Aucune reprise annoncée en ce moment.</p>"}</div>"""
@@ -908,6 +998,7 @@ dans {n_classic_cines} cinémas en France, classés par la note de la communaut�
         path = cycle_urls[c["key"]]
         films_du_cycle = set(c["movies"])
         blocs = []
+        evenements = []  # ScreeningEvent : une séance = un événement daté
         for cid in c["cinemas"]:
             cinema = cinemas[cid]
             par_film = defaultdict(list)
@@ -916,6 +1007,9 @@ dans {n_classic_cines} cinémas en France, classés par la note de la communaut�
                     par_film[s["movie"]].append(s)
             if not par_film:
                 continue
+            for mk, ss in par_film.items():
+                for s in ss:
+                    evenements.append(screening_event(s, movies[mk], cinema))
             cartes = []
             for mk, ss in sorted(par_film.items(),
                                  key=lambda kv: sorted(kv[1], key=lambda s: s["start"])[0]["start"]):
@@ -929,14 +1023,11 @@ dans {n_classic_cines} cinémas en France, classés par la note de la communaut�
                                          show_classic=False))
             blocs.append(f"""<section class="cinema-block">
 <h2><a href="{cinema_urls[cid]}">{esc(cinema["name"])}</a>{chain_badge(cinema)}</h2>
-<p class="meta"><a href="/ville/{cinema["city_slug"]}/">{esc(cinema["city"])}</a> —
+<p class="meta"><a href="/ville/{cinema["city_slug"]}/">{esc(cinema["city"])}</a>,
 {len(par_film)} film{"s" if len(par_film) > 1 else ""} du cycle</p>
 <div class="films">{"".join(cartes)}</div></section>""")
 
-        affiches = "".join(
-            f'<a href="{movie_urls[k]}"><img src="{esc(movies[k]["poster"])}" '
-            f'alt="Affiche de {esc(movies[k]["title"])}" loading="lazy"></a>'
-            for k in c["movies"] if movies[k]["poster"])
+        affiches = poster_strip(c["movies"], movies, movie_urls)
         titres = ", ".join(movies[k]["title"] for k in c["movies"])
         tronque = len(c["cities"]) > 6
         villes_txt = ", ".join(c["cities"][:6]) + ("…" if tronque else "")
@@ -944,15 +1035,23 @@ dans {n_classic_cines} cinémas en France, classés par la note de la communaut�
         fin = "" if tronque else "."
         n_films, n_salles = len(c["movies"]), len(c["cinemas"])
         body = f"""<p class="lead"><strong>{n_films} films</strong> de {esc(c["director"])}
-sont à l'affiche cette semaine, en {c["n_shows"]} séances, dans {n_salles}
-salle{"s" if n_salles > 1 else ""} — {esc(villes_txt)}{fin}</p>
-<div class="bande">{affiches}</div>
+passent cette semaine dans {n_salles} salle{"s" if n_salles > 1 else ""}
+({esc(villes_txt)}){fin} Soit {c["n_shows"]} séances en tout.</p>
+{affiches}
 <p class="meta">Au programme : {esc(titres)}.</p>
 {"".join(blocs)}
 <p class="meta"><a class="more" href="/retrospectives/">← Toutes les rétrospectives en cours</a></p>"""
-        jsonld = {"@context": "https://schema.org", "@type": "CollectionPage",
-                  "name": f"Rétrospective {c['director']}",
-                  "about": {"@type": "Person", "name": c["director"]}}
+        # @graph : la page de collection ET chacune de ses séances. Le
+        # ScreeningEvent est le type que Google attend pour les horaires de
+        # cinéma — le CollectionPage seul ne décrivait aucune date, donc rien
+        # d'exploitable en résultat enrichi.
+        jsonld = {"@context": "https://schema.org", "@graph": [
+            {"@type": "CollectionPage",
+             "name": f"Rétrospective {c['director']}",
+             "url": f"{BASE_URL}{path}",
+             "about": {"@type": "Person", "name": c["director"]}},
+            *evenements,
+        ]}
         write(path, page(
             f"Rétrospective {c['director']} : où voir ses films en salle — {SITE_NAME}",
             f"Où voir les films de {c['director']} au cinéma ? {n_films} films à l'affiche "
@@ -965,19 +1064,15 @@ salle{"s" if n_salles > 1 else ""} — {esc(villes_txt)}{fin}</p>
         index_cartes = "".join(f"""<article class="cycle">
 <p class="eyebrow">Rétrospective</p>
 <h3 class="cycle-nom"><a href="{cycle_urls[c["key"]]}">{esc(c["director"])}</a></h3>
-<div class="bande">{"".join(
-    f'<img src="{esc(movies[k]["poster"])}" alt="Affiche de {esc(movies[k]["title"])}" loading="lazy">'
-    for k in c["movies"][:6] if movies[k]["poster"])}</div>
+{poster_strip(c["movies"], movies, movie_urls, limit=6)}
 <p class="meta"><strong>{len(c["movies"])} films</strong> · {c["n_shows"]} séances ·
 {len(c["cities"])} ville{"s" if len(c["cities"]) > 1 else ""}</p>
 <p class="meta">{esc(", ".join(c["cities"][:4]))}{"…" if len(c["cities"]) > 4 else ""}</p>
 </article>""" for c in rep_cycles)
         n_cyc_films = len({k for c in rep_cycles for k in c["movies"]})
-        index_body = f"""<p class="lead">Une rétrospective, ce n'est pas un vieux film isolé :
-c'est une salle qui consacre sa programmation à une œuvre. {SITE_NAME} en repère
-<strong>{len(rep_cycles)}</strong> en ce moment en France — {n_cyc_films} films au total.
-Un cycle est détecté dès qu'une même salle programme au moins deux films d'un même cinéaste
-dans la semaine.</p>
+        index_body = f"""<p class="lead"><strong>{len(rep_cycles)} cinéastes</strong> font l'objet
+d'un cycle en ce moment, soit {n_cyc_films} films au total. On compte un cycle dès qu'une même
+salle passe au moins deux films du même réalisateur dans la semaine.</p>
 <div class="cycles">{index_cartes}</div>
 <p class="meta"><a class="more" href="/">← L'agenda du répertoire</a></p>"""
         write("/retrospectives/", page(
@@ -1008,7 +1103,7 @@ dans la semaine.</p>
                         f' rel="noopener noreferrer"'
                         f' title="Réserver cette séance (nouvel onglet)">{hour}</a>')
             version = f' <span class="v">{esc(show["version"])}</span>' if show["version"] else ""
-            extra = (f'<p class="meta"><strong>{hour}</strong>{version} — '
+            extra = (f'<p class="meta"><strong>{hour}</strong>{version} · '
                      f'<a href="{cinema_urls[show["cinema"]]}">{esc(cinema["name"])}</a>'
                      f'{chain_badge(cinema)}</p>')
             return movie_card(movies[show["movie"]], movie_urls, extra)
@@ -1020,7 +1115,7 @@ dans la semaine.</p>
 <h3>{esc(day)} · marathon {esc(genre)}</h3>
 <div class="grid marathon-films">{leg(first)}{leg(second)}</div>
 <p class="marathon-transfer">🚶 {km_txt} km entre les deux salles, soit ~{idea["walk_min"]} min
-à pied — vous avez {idea["gap_min"]} min d'entracte à la fin du premier film.</p>
+à pied. Il vous reste {idea["gap_min"]} min d'entracte à la fin du premier film.</p>
 </article>"""
 
     if marathon_cities:
@@ -1033,12 +1128,11 @@ dans la semaine.</p>
             + "".join(marathon_card(i) for i in ideas_by_city[s]) + "</section>"
             for s in marathon_cities)
         n_ideas = sum(len(v) for v in ideas_by_city.values())
-        marathon_body = f"""<p class="lead">Une séance, c'est bien. Deux à la suite, c'est une
-soirée. Pour les {len(marathon_cities)} plus grandes villes de France, {SITE_NAME} compose des
-doubles programmes du même genre dans <strong>deux salles voisines</strong> : le temps de trajet
-à pied est calculé, l'entracte vérifié. Les reprises de
-<a href="/classiques/">classiques</a> sont privilégiées — l'occasion de découvrir une seconde
-salle en chemin.</p>
+        marathon_body = f"""<p class="lead">Deux films du même genre le même jour, dans
+<strong>deux salles assez proches</strong> pour faire le trajet à pied entre les deux. Le temps
+de marche et la durée de l'entracte sont calculés à partir des horaires réels. Les reprises de
+<a href="/classiques/">classiques</a> passent en premier. Valable pour les
+{len(marathon_cities)} plus grandes villes de France.</p>
 <nav class="city-jump">{jump}</nav>
 {sections}"""
         write("/marathon/", page(
@@ -1061,9 +1155,9 @@ salle en chemin.</p>
         '<link rel="stylesheet" href="/assets/vendor/leaflet.markercluster/MarkerCluster.css">'
         '<link rel="stylesheet" href="/assets/vendor/leaflet.markercluster/MarkerCluster.Default.css">'
     )
-    map_body = f"""<p class="lead">{len(map_points)} cinémas géolocalisés en France —
+    map_body = f"""<p class="lead">{len(map_points)} cinémas situés sur la carte, dont
 {n_inde_map} indépendants et {len(map_points) - n_inde_map} de grandes enseignes.
-Cliquez un point pour accéder au programme de la salle.</p>
+Cliquez un point pour ouvrir le programme de la salle.</p>
 <div id="map-legend">
 <span class="legend-item"><span class="legend-dot dot-indep"></span>Cinéma indépendant</span>
 <span class="legend-item"><span class="legend-dot dot-chain"></span>Grande enseigne</span>
@@ -1097,8 +1191,8 @@ Cliquez un point pour accéder au programme de la salle.</p>
     (SITE / "404.html").write_text(page(
         f"Page introuvable — {SITE_NAME}",
         "Cette page n'existe pas ou plus.",
-        """<p class="lead">Cette adresse ne mène à aucune page. Le programme change chaque jour :
-les fiches des films sortis de l'affiche disparaissent avec leurs séances.</p>
+        """<p class="lead">Cette adresse ne mène à aucune page. Le programme change tous les
+jours, et la fiche d'un film disparaît quand il quitte l'affiche.</p>
 <p><a class="more" href="/">← Le répertoire</a> &nbsp;
 <a class="more" href="/a-l-affiche/">🎬 À l'affiche</a> &nbsp;
 <a class="more" href="/salles-patrimoine/">🏛️ Salles de patrimoine</a> &nbsp;

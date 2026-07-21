@@ -71,6 +71,14 @@ _TOKEN_CANON = {"part": "partie", "vol": "volume"}
 # « Collectif », l'autre liste les réalisateurs des courts — même programme).
 _PLACEHOLDER_DIRECTORS = {"collectif", "divers"}
 
+# Mentions creuses rencontrées dans le champ `cast` : elles occupent la place
+# d'une vraie distribution sans rien apprendre, on les retire. Clés déjà
+# repliées par _fold_person() (donc en minuscules et à mots TRIÉS).
+_PLACEHOLDER_PEOPLE = {
+    "acteurs inconnus", "acteur inconnu", "distribution inconnue",
+    "inconnu", "inconnue", "inconnus", "inconnues", "collectif", "divers",
+}
+
 
 def _fold_title(t: str) -> str:
     """« LE BON, LA BRUTE ET LE TRUAND » et « Le Bon, la Brute et le Truand »
@@ -161,42 +169,92 @@ def _name_score(name: str, frequency: int) -> tuple:
     return (-shouty, accents, frequency, name)
 
 
-def _canonical_directors(movies: dict) -> int:
-    """Uniformise les noms de réalisateurs entre sources.
+def _elire(variantes: dict) -> dict[str, str]:
+    """Pour chaque clé de repli, élit la graphie de référence.
+    On juge la graphie APRÈS remise en forme : « ANNAUD Jean-Jacques »
+    concourt sous « Jean-Jacques Annaud »."""
+    registre = {}
+    for cle, compte in variantes.items():
+        propositions = Counter()
+        for graphie, n in compte.items():
+            propositions[_tidy_person(graphie)] += n
+        registre[cle] = max(propositions,
+                            key=lambda g: _name_score(g, propositions[g]))
+    return registre
+
+
+def _people_registry(movies: dict) -> tuple[dict, dict]:
+    """Deux registres, volontairement distincts — ne pas les fusionner.
+
+    - `entiers` : indexé sur la CHAÎNE ENTIÈRE du champ `director`. C'est le
+      comportement historique et il faut le préserver : `_fold_person()` trie
+      les mots, donc « Stanton, McKenna » et « McKenna, Stanton » tombent sur
+      la même clé et reçoivent la même graphie. Découper sur les virgules
+      perdrait cette unification et recouperait les cycles de rétrospective.
+    - `unitaires` : indexé nom par nom, pour le casting. Alimenté AUSSI par les
+      noms de réalisateurs : une même personne réalise et joue (« Jacques
+      Tati »), les deux côtés doivent s'écrire pareil.
+    """
+    entiers, unitaires = defaultdict(Counter), defaultdict(Counter)
+
+    def recense_noms(champ: str) -> None:
+        for nom in (champ or "").split(","):
+            nom = nom.strip()
+            if nom:
+                unitaires[_fold_person(nom)][nom] += 1
+
+    for m in movies.values():
+        d = (m.get("director") or "").strip()
+        if d:
+            entiers[_fold_person(d)][d] += 1
+        recense_noms(d)
+        recense_noms(m.get("cast"))
+
+    return _elire(entiers), _elire(unitaires)
+
+
+def _canonical_people(movies: dict) -> tuple[int, int]:
+    """Uniformise les noms de personnes (réalisateurs et casting) entre sources.
 
     Les caisses des indés, Pathé, CGR et UGC n'écrivent pas les noms de la même
     façon : « David Lynch » ici, « LYNCH David » là. Sans cette passe, le
     moteur de rétrospectives (repertoire.py) voit DEUX réalisateurs et coupe le
     cycle en deux — Tati perdait « Mon oncle », Lynch perdait « Eraserhead ».
 
-    Renvoie le nombre de fiches corrigées.
+    Le casting suit la même règle, nom par nom. L'enjeu y est cosmétique (pas
+    de cycle à couper) mais réel : « Marina FOIS » et « Marina Foïs » sur deux
+    fiches voisines font négligé. Les mentions creuses (« acteurs inconnus »)
+    sont retirées plutôt qu'affichées.
+
+    Renvoie (fiches réalisateur corrigées, fiches casting corrigées).
     """
-    variantes = defaultdict(Counter)
+    entiers, unitaires = _people_registry(movies)
+
+    reals = castings = 0
     for m in movies.values():
         d = (m.get("director") or "").strip()
         if d:
-            variantes[_fold_person(d)][d] += 1
+            retenu = entiers[_fold_person(d)]
+            if retenu != m["director"]:
+                m["director"] = retenu
+                reals += 1
 
-    canonique = {}
-    for cle, compte in variantes.items():
-        # On juge la graphie APRÈS remise en forme : « ANNAUD Jean-Jacques »
-        # concourt sous « Jean-Jacques Annaud ».
-        propositions = Counter()
-        for graphie, n in compte.items():
-            propositions[_tidy_person(graphie)] += n
-        canonique[cle] = max(propositions,
-                             key=lambda g: _name_score(g, propositions[g]))
-
-    corrigees = 0
-    for m in movies.values():
-        d = (m.get("director") or "").strip()
-        if not d:
+        brut = (m.get("cast") or "").strip()
+        if not brut:
             continue
-        retenu = canonique[_fold_person(d)]
-        if retenu != m["director"]:
-            m["director"] = retenu
-            corrigees += 1
-    return corrigees
+        noms = []
+        for nom in brut.split(","):
+            nom = nom.strip()
+            if not nom or _fold_person(nom) in _PLACEHOLDER_PEOPLE:
+                continue
+            retenu = unitaires[_fold_person(nom)]
+            if retenu not in noms:  # une source liste parfois deux fois le même
+                noms.append(retenu)
+        propre = ", ".join(noms)
+        if propre != m["cast"]:
+            m["cast"] = propre
+            castings += 1
+    return reals, castings
 
 
 def _dedup_movies(movies: dict, showtimes: list, tmdb: dict) -> None:
@@ -402,7 +460,7 @@ def load_merged(data_dir: Path) -> tuple[dict, dict, list, dict]:
     tmdb = _load(data_dir, "tmdb.json") or {}
     # Uniformise les noms de réalisateurs AVANT le dédoublonnage et les cycles :
     # « TATI Jacques » et « Jacques Tati » doivent être le même homme partout.
-    _canonical_directors(movies)
+    _canonical_people(movies)
     # Rattrape les doublons que la clé (titre, réalisateur) laisse passer
     _dedup_movies(movies, showtimes, tmdb)
     # Enrichissement TMDB (cache local optionnel : titres propres, notes, affiches)

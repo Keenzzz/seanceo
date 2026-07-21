@@ -193,6 +193,44 @@ et la mention TMDB (« ce produit utilise l'API TMDB mais n'est ni approuvé ni 
     au blocage d'IP.
   - `grand-ecran-arcachon-la-teste` n'est plus collecté (14 → 13 salles) : sa page n'expose
     plus de JSON-LD `MovieTheater`. Changement côté source, pas un bug du connecteur.
+- **⚠️ HEURES : l'API du SCARE mélange les fuseaux.** Deux tiers des séances indés arrivent en UTC
+  (« …T08:00:00Z »), le reste avec un décalage explicite. Or tout le site lit l'heure en découpant
+  la chaîne (`start[11:16]`) : les séances en UTC s'affichaient **deux heures trop tôt** l'été.
+  `heure_locale()` (fetch_data.py) ramène tout à l'heure locale française **sans suffixe de
+  fuseau**, la forme que produisent déjà les connecteurs de chaînes. Diagnostic par la
+  distribution horaire : les séances en UTC ne montraient que 17 séances à 20 h sur 8 000, alors
+  que 20 h est le créneau le plus chargé ; recalées, les deux distributions se superposent.
+  `decalage_paris()` code la règle européenne à la main **exprès** : `zoneinfo` n'a pas de base
+  de fuseaux sur la machine Windows de développement alors que le CI (Ubuntu) en a une — le même
+  code donnerait deux résultats. Ne pas « simplifier » en important zoneinfo.
+- **UNE SEULE ÉCHELLE DE NOTE : Letterboxd, sur 5.** `note_lb()` est le seul endroit qui affiche
+  une note. Les notes TMDB (/10) ont été retirées de l'affichage — deux échelles côte à côte
+  faisaient lire « 7.9 » comme meilleur que « 4.4 ». TMDB reste utilisé pour tout le reste
+  (titre, affiche, année, durée, genres). Couverture : 700 films sur 973 ; les autres n'ont pas
+  de note fiable sur Letterboxd (moins de 50 votes) et n'affichent rien.
+- **Casting normalisé comme les réalisateurs** (`_canonical_people()`). **Deux registres, à ne pas
+  fusionner** : `entiers` indexe la CHAÎNE ENTIÈRE du champ `director` (comportement historique —
+  `_fold_person()` trie les mots, donc « Stanton, McKenna » et « McKenna, Stanton » reçoivent la
+  même graphie ; découper sur les virgules recouperait les cycles), `unitaires` indexe nom par
+  nom pour le casting et est alimenté aussi par les réalisateurs (une même personne réalise et
+  joue). Les mentions creuses (`_PLACEHOLDER_PEOPLE` : « acteurs inconnus »…) sont retirées.
+- **`ScreeningEvent` sur les pages de rétrospective** (`screening_event()`) : JSON-LD en `@graph`
+  = la CollectionPage plus une séance par événement daté, avec `location` (MovieTheater) et
+  `offers` (le lien de billetterie). C'est le type que Google attend pour des horaires de cinéma ;
+  la CollectionPage seule ne portait aucune date. `startDate` est en heure locale sans fuseau,
+  cohérent avec le stockage.
+- **Bouton « ← Retour »** (`search.js`) : affiché **uniquement si le référent est du même site**.
+  Un visiteur venu de Google n'a pas de « page où il était » chez nous ; lui proposer Retour le
+  ferait quitter le site.
+- **⚠️ PIÈGE CSS RÉCURRENT : `display:` l'emporte sur l'attribut `hidden`.** Tout élément que le
+  JavaScript masque via `.hidden = true` ET qui porte une règle `display:` doit avoir sa règle
+  `[hidden] { display: none }`. Déjà rencontré trois fois : `.movie-card` (flex), `.retour`
+  (inline-block), `.tri-plus` (block). Sans elle, le masquage est silencieusement sans effet —
+  et pour `.retour` ça annulait la protection ci-dessus.
+- **Ton des textes d'intro** : pas de tiret cadratin dans la prose (l'utilisateur trouve que ça
+  fait « AI generated »), et pas de tournures d'IA : « ce n'est pas X, c'est Y », les chutes
+  d'effet (« le grand écran, c'est aussi fait pour ça »), les triades décoratives. Écrire plat
+  et factuel. `nombre()` met une espace insécable aux milliers : « 84 640 », pas « 84640 ».
 - **Aucune page ne montre de séance passée** : `build_site.py` filtre `showtimes` sur `>= today`
   dès le chargement. Indispensable car les snapshots de chaînes ont souvent un jour de retard.
 - Piloter l'API GitHub (pas de `gh` CLI installé) : token via `git credential fill` (compte Keenzzz).

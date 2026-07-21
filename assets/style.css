@@ -444,6 +444,9 @@ html:not(.js) .film-tools { display: none; }
   cursor: pointer;
 }
 .tri-plus:hover { background: var(--accent-soft); }
+/* Même piège que `.retour` : `display: block` battrait l'attribut `hidden`,
+   et le bouton resterait affiché alors qu'il ne reste rien à afficher. */
+.tri-plus[hidden] { display: none; }
 
 /* Navigation header */
 .site-nav { margin-left: auto; display: flex; gap: 10px; flex-wrap: wrap; }
@@ -554,6 +557,26 @@ footer {
 }
 
 /* Retour en haut (gabarits longs : film, ville, classiques) */
+/* Bouton « ← Retour », posé au-dessus du H1. Masqué par défaut : search.js ne
+   le révèle que si la page précédente est interne au site (sinon il ferait
+   sortir le visiteur au lieu de le ramener). */
+.retour {
+  display: inline-block;
+  margin: 0 0 10px;
+  padding: 7px 14px;
+  border: 1px solid #3a4150;
+  border-radius: 999px;
+  color: var(--muted);
+  font-size: .85rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+.retour:hover { border-color: var(--accent); color: var(--text); }
+/* `display: inline-block` l'emporterait sur l'attribut `hidden` : sans cette
+   règle le bouton s'affiche même quand search.js a décidé de le masquer, et
+   un visiteur arrivé de Google se ferait éjecter du site en cliquant. */
+.retour[hidden] { display: none; }
+
 .top-link {
   position: fixed;
   right: 18px;
@@ -730,13 +753,43 @@ a:focus-visible, summary:focus-visible, input:focus-visible {
   scroll-snap-type: x mandatory;
   scrollbar-width: thin;
 }
-.bande img {
+/* Une affiche de la bande : le titre s'affiche par-dessus au survol.
+   Le fonds de répertoire est fait de films qu'on ne reconnaît pas toujours
+   à leur jaquette — l'affiche seule ne suffit pas à savoir ce qu'on regarde. */
+.affiche {
+  position: relative;
+  display: block;
   flex: 0 0 74px;
+  scroll-snap-align: start;
+}
+.bande img {
   width: 74px;
   height: 111px;
   object-fit: cover;
   border-radius: 3px;
-  scroll-snap-align: start;
+  display: block;
+}
+.affiche-nom {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 16px 4px 4px;
+  background: linear-gradient(transparent, rgba(0, 0, 0, .93) 45%);
+  color: #fff;
+  font-size: .66rem;
+  line-height: 1.15;
+  border-radius: 0 0 3px 3px;
+  opacity: 0;
+  transition: opacity .15s ease;
+  pointer-events: none; /* ne vole pas le clic destiné à l'affiche */
+}
+.affiche:hover .affiche-nom,
+.affiche:focus-visible .affiche-nom { opacity: 1; }
+/* Sans survol possible (mobile, tablette), le titre reste affiché : le
+   masquer y rendrait la bande définitivement muette. */
+@media (hover: none) {
+  .affiche-nom { opacity: 1; }
 }
 .cycle .meta { flex: 1; }
 

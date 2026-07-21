@@ -1,3 +1,37 @@
+/* Comportements présents sur TOUTES les pages : le bouton « Retour » et la
+   recherche de film du header. Regroupés dans un seul fichier pour n'ajouter
+   qu'une requête au chargement de chaque page. */
+
+/* Bouton « ← Retour ».
+
+   Affiché UNIQUEMENT si la page précédente appartient au site. Un visiteur
+   qui arrive d'une recherche Google n'a pas de « page où il était » chez
+   nous : lui proposer « Retour » le renverrait sur Google, c'est-à-dire le
+   ferait quitter le site — l'inverse de ce qu'un bouton retour promet.
+   Le clic passe par history.back(), qui restitue la position de défilement ;
+   l'attribut href pointe la même cible pour que « ouvrir dans un onglet »
+   et le clic du milieu fonctionnent normalement. */
+(function () {
+  "use strict";
+  var lien = document.getElementById("retour");
+  if (!lien || !document.referrer) return;
+  var interne = false;
+  try {
+    interne = new URL(document.referrer).origin === location.origin;
+  } catch (e) {
+    interne = false;
+  }
+  // Même URL = rechargement, pas une navigation : rien à quoi revenir.
+  if (!interne || document.referrer === location.href) return;
+  lien.href = document.referrer;
+  lien.hidden = false;
+  lien.addEventListener("click", function (e) {
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+    e.preventDefault();
+    history.back();
+  });
+})();
+
 /* Recherche d'un film par son titre OU par son réalisateur, dans le header de
    toutes les pages.
 

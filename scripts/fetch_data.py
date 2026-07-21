@@ -15,7 +15,7 @@ import unicodedata
 import urllib.parse
 import urllib.request
 from collections import defaultdict
-from datetime import date, datetime
+from datetime import date, datetime, time, timedelta, timezone
 from pathlib import Path
 
 API_BASE = "https://datacinesindes.fr/data-fair/api/v1/datasets/programmation-cinemas/lines"
@@ -99,6 +99,58 @@ def normalize_city(raw: str) -> str:
     return city
 
 
+def _dernier_dimanche(annee: int, mois: int) -> date:
+    """Dernier dimanche du mois (mars et octobre ont 31 jours)."""
+    d = date(annee, mois, 31)
+    return d - timedelta(days=(d.weekday() - 6) % 7)
+
+
+def decalage_paris(instant_utc: datetime) -> timedelta:
+    """Décalage horaire de la France métropolitaine à cet instant.
+
+    Règle européenne en vigueur depuis 1996 : heure d'été (UTC+2) du dernier
+    dimanche de mars 01:00 UTC au dernier dimanche d'octobre 01:00 UTC, heure
+    d'hiver (UTC+1) le reste de l'année.
+
+    On l'écrit à la main plutôt que d'utiliser `zoneinfo` : la machine de
+    développement (Windows) n'embarque pas de base de fuseaux et le projet
+    n'a aucune dépendance, alors que le CI (Ubuntu) en a une. Le même code
+    donnerait deux résultats — inacceptable pour un build reproductible.
+    """
+    annee = instant_utc.year
+    debut = datetime.combine(_dernier_dimanche(annee, 3), time(1), tzinfo=timezone.utc)
+    fin = datetime.combine(_dernier_dimanche(annee, 10), time(1), tzinfo=timezone.utc)
+    return timedelta(hours=2) if debut <= instant_utc < fin else timedelta(hours=1)
+
+
+def heure_locale(raw: str) -> str:
+    """Ramène un horodatage à l'heure locale française, SANS suffixe de fuseau.
+
+    Indispensable : l'API du SCARE mélange les formes. Les deux tiers des
+    séances arrivent en UTC (« …T08:00:00Z »), le reste avec un décalage
+    explicite (« …+02:00 »). Or tout le site lit l'heure en découpant la
+    chaîne (`start[11:16]`) — une séance en UTC s'affichait donc DEUX HEURES
+    TROP TÔT l'été. Vérifié sur la distribution des horaires : les séances en
+    UTC ne montraient presque rien à 20 h (17 sur 8 000) alors que c'est le
+    créneau le plus chargé des séances correctement datées ; recalées, les
+    deux distributions se superposent.
+
+    Une chaîne déjà sans fuseau (connecteurs Pathé/CGR/UGC/Grand Écran) est
+    rendue telle quelle : elle est déjà en heure locale.
+    """
+    s = (raw or "").strip()
+    if not s:
+        return ""
+    try:
+        dt = datetime.fromisoformat(s.replace("Z", "+00:00"))
+    except ValueError:
+        return s  # forme inattendue : ne rien casser, laisser passer
+    if dt.tzinfo is None:
+        return s
+    utc = dt.astimezone(timezone.utc)
+    return (utc + decalage_paris(utc)).replace(tzinfo=None).isoformat(timespec="seconds")
+
+
 def booking_url(raw: str) -> str:
     """Filtre un lien de billetterie venu d'une source externe, ou "".
 
@@ -149,7 +201,7 @@ def build(rows: list[dict], today: date) -> dict[str, object]:
 
     for row in rows:
         title = clean(row.get("filmtitle"))
-        start = clean(row.get("showstart"))
+        start = heure_locale(clean(row.get("showstart")))
         cine_id = str(row.get("cineid") or "")
         if not (title and start and cine_id):
             skipped += 1
@@ -190,7 +242,7 @@ def build(rows: list[dict], today: date) -> dict[str, object]:
             "movie": mkey,
             "cinema": cine_id,
             "start": start,
-            "end": clean(row.get("showend")),
+            "end": heure_locale(clean(row.get("showend"))),
             "version": VERSION_MAP.get(clean(row.get("filmversion")), ""),
             "auditorium": clean(row.get("auditoriumnumber")),
             "booking": booking_url(clean(row.get("showurl"))),
