@@ -596,10 +596,12 @@ def main() -> int:
                         f'{CLASSIC_AGE_YEARS} ans : '
                         f'<a href="/classiques/">voir le classement</a>.'
                         if n_classics else "")
-        # Passerelle vers le site frère, sur la seule page ville de Paris.
+        # Passerelle vers le site frère, EN HAUT de la seule page ville de
+        # Paris (page d'aiguillage : l'encadré doit sauter aux yeux, pas
+        # dormir sous la liste des 31 cinémas).
         bridge = paris_cine_bridge() if slug == "paris" else ""
         body = f"""<p class="lead">{" et ".join(parts)} à {esc(city["name"])}.
-Les séances d'aujourd'hui d'abord, puis celles des jours suivants.{classics_bit}</p>{toc}{"".join(blocks)}{bridge}"""
+Les séances d'aujourd'hui d'abord, puis celles des jours suivants.{classics_bit}</p>{bridge}{toc}{"".join(blocks)}"""
         write(path, page(
             f"Cinéma à {city['name']} : séances et horaires — {SITE_NAME}",
             f"Quel film voir à {city['name']} ? Séances et horaires des {n_cine} cinéma(s) "
