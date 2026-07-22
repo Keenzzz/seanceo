@@ -144,7 +144,7 @@ def page(title: str, description: str, body: str, path: str,
 <a class="brand" href="/">🎬 {SITE_NAME}</a>
 <p class="tagline">Le répertoire en salle, partout en France</p>
 {FILM_SEARCH}
-<nav class="site-nav"><a class="nav-wl" href="/ma-watchlist/">💚 Ma watchlist</a> <a href="/a-l-affiche/">🎬 À l'affiche</a> <a href="/salles-patrimoine/">🏛️ Salles de patrimoine</a> <a href="/marathon/">🍿 Marathons</a> <a href="/carte/">🗺️ Carte</a></nav>
+<nav class="site-nav"><a class="nav-wl" href="/ma-watchlist/">Ma watchlist letterboxd</a> <a href="/a-l-affiche/">🎬 À l'affiche</a> <a href="/retrospectives/">🎞️ Rétrospectives</a> <a href="/marathon/">🍿 Marathons</a> <a href="/carte/">🗺️ Carte</a></nav>
 </header>
 <main>
 <a class="retour" id="retour" href="#" hidden>← Retour</a>
@@ -269,8 +269,9 @@ def paris_cine_bridge() -> str:
     Séancéo propose, on lui signale ensuite l'outil plus complet pour Paris."""
     return f"""<div class="passerelle">
 <p><span class="titre">Vous êtes à Paris ?</span>
-<span class="meta">Paris Ciné Aujourd'hui recense tous les films à l'affiche dans la capitale,
-jour par jour, avec la carte des salles et les notes.</span></p>
+<span class="meta">Pour la capitale, Paris Ciné Aujourd'hui recense tout plus efficacement.
+C'est un hub dédié à Paris : films à l'affiche, rétrospectives, séances de plein air de cet été,
+carte des cinémas et idées de marathon. Uniquement pour Paris.</span></p>
 <a class="bouton" href="{PARIS_CINE_URL}" target="_blank" rel="noopener noreferrer">Ouvrir Paris Ciné ↗</a>
 </div>"""
 
@@ -800,13 +801,17 @@ Les séances d'aujourd'hui d'abord, puis celles des jours suivants.{classics_bit
     n_rep_uniques = repertoire.count_unique(rep_shows)
 
     # ----- Accueil -----
-    # Catalogue complet de « À l'affiche », le plus diffusé d'abord : c'est le
-    # classement qui répond à « qu'est-ce qui passe partout cette semaine ».
-    # Le visiteur qui cherche autre chose le retrie (titre, année, note) ou le
-    # filtre par version sans quitter la page — tri.js n'en montre que
-    # PAGE_SIZE à la fois pour ne pas dérouler 931 cartes d'un coup.
+    # Catalogue complet de « À l'affiche », classé par note Letterboxd d'abord :
+    # le visiteur arrive sur les films les mieux notés parmi ce qui passe cette
+    # semaine (à note égale, le plus diffusé passe devant, et les films sans note
+    # fiable ferment la marche). Il peut retrier (titre, année, cinémas) ou
+    # filtrer par version sans quitter la page — tri.js n'en montre que
+    # PAGE_SIZE à la fois pour ne pas dérouler 931 cartes d'un coup. L'ordre du
+    # HTML doit refléter le tri par défaut, pour les robots et les visiteurs
+    # sans JavaScript (tri.js re-trie sur ce même critère, de façon stable).
     catalogue = sorted((m for m in movies.values() if by_movie[m["key"]]),
-                       key=lambda m: (-MOVIE_VENUES[m["key"]], sort_title(m["title"])))
+                       key=lambda m: (-(m.get("lb_rating") or 0),
+                                      -MOVIE_VENUES[m["key"]], sort_title(m["title"])))
     films_html = "".join(
         movie_card(m, movie_urls,
                    f'<p class="meta">{MOVIE_VENUES[m["key"]]} '
@@ -839,7 +844,7 @@ Les séances d'aujourd'hui d'abord, puis celles des jours suivants.{classics_bit
 <details class="all-cities"><summary>Toutes les villes ({len(cities)})</summary>
 <ul class="cities">{cities_html}</ul></details>
 <h2>Tous les films à l'affiche</h2>
-{film_tools("film-list", "venues", len(catalogue))}
+{film_tools("film-list", "lb", len(catalogue))}
 <div class="grid" id="film-list">{films_html}</div>
 <div class="passerelle">
 <p><span class="titre">{n_rep_films} classiques sont aussi à l'affiche</span>
@@ -902,8 +907,40 @@ Les séances d'aujourd'hui d'abord, puis celles des jours suivants.{classics_bit
                         f'<span>{libelle}</span>{precision}'
                         f'</h3><ul class="seances">{rows}</ul></section>')
 
+    # Rétrospectives mises en avant sur l'accueil : au moins 6, les plus
+    # fournies d'abord (rep_cycles est déjà trié par nb de films puis séances).
+    # On plafonne les cycles EXCLUSIVEMENT parisiens pour ne pas afficher « que
+    # Paris » : la Cinémathèque et les salles du Quartier latin saturent sinon
+    # le haut du classement. Un cycle qui tourne dans plusieurs villes (Paris
+    # incluse) n'est pas concerné, c'est justement de la diversité.
+    HOME_CYCLES, PARIS_CAP = 6, 3
+
+    def _paris_only(c: dict) -> bool:
+        return all(v == "Paris" for v in c["cities"])
+
+    home_cycles: list[dict] = []
+    n_paris = 0
+    for c in rep_cycles:
+        if len(home_cycles) >= HOME_CYCLES:
+            break
+        if _paris_only(c):
+            if n_paris >= PARIS_CAP:
+                continue
+            n_paris += 1
+        home_cycles.append(c)
+    # Trop peu de cycles hors Paris pour atteindre 6 ? On complète avec les
+    # parisiens écartés — mieux vaut 6 cartes remplies que des trous, sans
+    # jamais dépasser ce que rep_cycles contient réellement.
+    if len(home_cycles) < HOME_CYCLES:
+        deja = {c["key"] for c in home_cycles}
+        for c in rep_cycles:
+            if len(home_cycles) >= HOME_CYCLES:
+                break
+            if c["key"] not in deja:
+                home_cycles.append(c)
+
     cycles_html = ""
-    for c in rep_cycles[:4]:
+    for c in home_cycles:
         bande = poster_strip(c["movies"], movies, movie_urls, limit=6)
         salles_liens = ", ".join(
             f'<a href="{cinema_urls[cid]}">{esc(cinemas[cid]["name"])}</a>'
@@ -949,8 +986,45 @@ Les séances d'aujourd'hui d'abord, puis celles des jours suivants.{classics_bit
         for slug, st in top_rep_cities[:6])
     # Accueil : pas de pastilles de grandes villes. Elles listeraient Lyon ou
     # Nice, pauvres en reprises, alors que la ligne « villes les plus fournies »
-    # ci-dessous donne les bonnes (Tours, Le Mans…). Ici, la recherche seule.
-    home_finder = city_search_nav("", city_cmap, len(cities))
+    # ci-dessous donne les bonnes (Tours, Le Mans…). Ici, la recherche seule,
+    # complétée par un bouton « Autour de moi ».
+    #
+    # Coordonnées représentatives par ville = moyenne des coords de ses cinémas.
+    # proximite.js s'en sert pour classer les villes par distance après une
+    # géolocalisation (faite DANS le navigateur, rien n'est envoyé). `r` = nb de
+    # films de répertoire de la ville cette semaine, pour mettre en avant celles
+    # qui en programment — c'est le cœur du site.
+    villes_geo = []
+    for slug, c in sorted(cities.items(), key=lambda kv: kv[1]["name"]):
+        pts = [(cinemas[cid]["lat"], cinemas[cid]["lon"]) for cid in c["cinemas"]
+               if cinemas[cid]["lat"] and cinemas[cid]["lon"]]
+        if not pts:
+            continue
+        villes_geo.append({
+            "n": c["name"],
+            "u": f"{BASE_PATH}/ville/{slug}/",
+            "lat": round(sum(p[0] for p in pts) / len(pts), 4),
+            "lon": round(sum(p[1] for p in pts) / len(pts), 4),
+            "r": rep_cities.get(slug, {}).get("films", 0),
+        })
+    # Barre de recherche de ville + bouton « Autour de moi » côte à côte. On
+    # reprend le gabarit de city_search_nav (recherche pilotée par film.js) et
+    # on y ajoute le bouton, le statut, le conteneur de résultats et les
+    # données de géolocalisation. Sans JavaScript, le bouton est masqué par le
+    # CSS (une géolocalisation morte n'aurait aucun sens) ; la recherche, elle,
+    # reste utilisable via ses suggestions.
+    home_finder = f"""<nav class="city-jump home-finder">
+<button type="button" id="proximite-btn" class="proximite-btn">📍 Autour de moi</button>
+<span class="city-search"><input id="city-search" type="search" autocomplete="off"
+placeholder="Chercher votre ville ({len(cities)} villes)…" aria-label="Chercher une ville">
+<ul id="city-suggest" hidden></ul></span>
+<script type="application/json" id="city-map">{json.dumps(city_cmap, ensure_ascii=False)}</script>
+</nav>
+<p id="proximite-status" class="map-status" role="status" hidden></p>
+<div id="proximite" hidden></div>
+<script type="application/json" id="villes-geo">{json.dumps(villes_geo, ensure_ascii=False)}</script>
+<script src="/assets/film.js" defer></script>
+<script src="/assets/proximite.js" defer></script>"""
 
     n_rep_cines = len({s["cinema"] for s in rep_shows})
     n_rep_villes = len(rep_cities)
@@ -991,7 +1065,9 @@ mieux notées de la semaine.</p>
 <div class="cycles">{cycles_html or "<p>Aucun cycle en cours.</p>"}</div>
 
 <h2>Salles de patrimoine</h2>
-<p class="meta">Les cinémas dont la programmation fait la plus grande place au répertoire.
+<p class="meta">Les cinémas qui consacrent la plus grande part de leurs séances de la semaine
+au répertoire, ces films ressortis en salle plutôt qu'aux nouveautés. Un pourcentage, pas un
+volume : une petite salle qui ne programme que des reprises devance un multiplexe.
 <a class="more" href="/salles-patrimoine/">Le classement complet →</a></p>
 <ul class="salles">{salles_html}</ul>
 
@@ -1026,11 +1102,14 @@ indépendants et grandes enseignes.</span></p>
 <div class="jauge-piste"><div class="jauge-part" style="width:{v["share"]}%"></div></div>
 <p class="jauge-txt"><strong>{v["share"]} %</strong> de répertoire · {v["n_rep"]} séances sur {v["n_total"]}</p>
 </div></li>""" for i, v in enumerate(rep_venues, 1))
-    venues_body = f"""<p class="lead">Certaines salles passent surtout des films du passé, et
-ce ne sont pas toujours celles qu'on croit. Le classement les range par la <strong>part</strong>
-de répertoire dans leur programmation de la semaine, et non par le nombre de séances : compter
-en volume mettrait les multiplexes en tête, puisqu'ils programment plus de tout. Il faut au
-moins {repertoire.VENUE_MIN_SHOWS} séances dans la semaine pour y figurer.</p>
+    venues_body = f"""<p class="lead">Une salle de patrimoine, ici, désigne un cinéma dont une
+grande part de la programmation est du répertoire : des films ressortis en salle (versions
+restaurées, reprises, séances de ciné-club), par opposition aux sorties récentes. Le classement
+mesure la <strong>part</strong> de ces séances de répertoire dans le total des séances de la
+salle sur la semaine. C'est donc un pourcentage, pas un décompte de rétrospectives ni le nombre
+de films à l'affiche : compter en volume mettrait les multiplexes en tête, puisqu'ils
+programment plus de tout. Il faut au moins {repertoire.VENUE_MIN_SHOWS} séances dans la semaine
+pour y figurer.</p>
 <ul class="salles">{salles_full}</ul>
 <p class="meta"><a class="more" href="/carte/">Retrouver ces salles sur la carte →</a></p>"""
     write("/salles-patrimoine/", page(
@@ -1365,7 +1444,7 @@ ouvrez son programme.</p>
 jours, et la fiche d'un film disparaît quand il quitte l'affiche.</p>
 <p><a class="more" href="/">← Le répertoire</a> &nbsp;
 <a class="more" href="/a-l-affiche/">🎬 À l'affiche</a> &nbsp;
-<a class="more" href="/salles-patrimoine/">🏛️ Salles de patrimoine</a> &nbsp;
+<a class="more" href="/retrospectives/">🎞️ Rétrospectives</a> &nbsp;
 <a class="more" href="/carte/">🗺️ Carte</a></p>""",
         "/404.html", h1="Oups, séance introuvable"), encoding="utf-8")
 

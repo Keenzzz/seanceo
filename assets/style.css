@@ -268,6 +268,54 @@ h2 { margin-top: 2em; border-bottom: 1px solid var(--accent-deep); padding-botto
 }
 .city-jump a:hover { border-color: var(--accent); }
 
+/* Accueil : bouton « Autour de moi » posé dans la barre de recherche de ville,
+   et liste des villes les plus proches après géolocalisation (proximite.js). */
+.proximite-btn {
+  cursor: pointer;
+  font: inherit;
+  font-size: .85rem;
+  font-weight: 600;
+  color: var(--accent);
+  background: transparent;
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  padding: 6px 14px;
+  white-space: nowrap;
+}
+.proximite-btn:hover { background: var(--accent); color: #1a1400; }
+.proximite-btn:disabled { opacity: .6; cursor: progress; }
+/* Sans JavaScript, une géolocalisation morte n'aurait aucun sens : on masque
+   le bouton (la recherche de ville, elle, reste utilisable). */
+html:not(.js) .proximite-btn { display: none; }
+
+#proximite { margin: 6px 0 0; }
+.proximite-titre { color: var(--muted); font-size: .9rem; margin: 0 0 10px; }
+.proximite-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 8px;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+}
+.proximite-ville {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  background: var(--panel);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  padding: 10px 14px;
+  text-decoration: none;
+}
+.proximite-ville:hover { border-color: var(--accent); }
+/* Une ville qui programme du répertoire porte l'accent ambre : c'est ce que
+   le visiteur est venu chercher. */
+.proximite-ville.has-rep { border-left: 3px solid var(--accent); }
+.proximite-nom { font-family: var(--display); font-weight: 600; }
+.proximite-meta { color: var(--muted); font-size: .82rem; }
+.proximite-ville.has-rep .proximite-meta { color: var(--accent); }
+
 /* Fiche film : une seule ville affichée à la fois.
    Les sections restent dans le HTML (indexables) ; le masquage n'est actif
    qu'avec JavaScript (classe `js` posée dans le <head>) — sinon la recherche
@@ -604,7 +652,9 @@ main:has(#cine-map) { max-width: none; }
   height: max(420px, calc(100vh - 330px));
   border-radius: var(--radius);
   border: 1px solid #2a2f3a;
-  background: #12151b;
+  /* Fond clair (Positron) : gris pâle proche des tuiles, pour ne pas
+     laisser un aplat sombre clignoter pendant leur chargement. */
+  background: #ebebe6;
   margin-top: 12px;
 }
 

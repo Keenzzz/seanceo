@@ -19,7 +19,11 @@
   var map = L.map(el, { scrollWheelZoom: true, zoomControl: true })
     .setView([46.6, 2.4], 6); // centre de la France métropolitaine
 
-  L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png", {
+  // Fond CartoDB Positron (light_all) : clair et sobre, labels de villes qui
+  // apparaissent progressivement au zoom (grosses villes dézoomé, plus petites
+  // en zoomant). Remplace l'ancien dark_nolabels qui n'affichait aucun nom :
+  // impossible de se repérer. Mêmes serveurs de tuiles, aucune dépendance de plus.
+  L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
     attribution:
       '© OpenStreetMap contributors © <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: "abcd",
