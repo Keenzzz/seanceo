@@ -275,6 +275,16 @@ et la mention TMDB (« ce produit utilise l'API TMDB mais n'est ni approuvé ni 
   `#rep-only` (« salles de répertoire seulement ») : masque les salles à `rep == 0` sur la carte
   ET dans le panneau (fonction `garde()`). Les salles avec répertoire portent la bordure ambre
   (`.near-item.has-rep`) — c'est ce que le visiteur cherche.
+- **Marathons : deux formats + mode culte** (`scripts/marathon.py`). `_pairs_for_day()` génère
+  les paires « voisin » (deux salles < `MAX_KM`, trajet à pied dans l'entracte) ET « même salle »
+  (`kind`, deux films de suite au même cinéma, entracte `PAUSE_MIN`..`PAUSE_MAX`, aucun trajet).
+  `is_cult` = les DEUX films sont des reprises de classiques notées ≥ `CULT_LB_MIN` (3,7/5).
+  `build_ideas()` renvoie désormais un **tuple** `(idées par ville, sélection culte nationale)` —
+  la section « 🏛️ Marathons cultes » en tête de `/marathon/` agrège les meilleures paires cultes
+  de toutes les villes (dédup par paire de films). Les cultes passent en tête du tri partout
+  (`_select`). Rendu : `marathon_card(idea, show_city=)` choisit le texte selon `kind`
+  (🍿 même salle / 🚶 voisin), badge `.badge-cult`, bordure `.marathon-cult`. Un même marathon
+  culte peut apparaître dans la section nationale ET dans sa ville — assumé (une + rubrique).
 - **Aucune page ne montre de séance passée** : `build_site.py` filtre `showtimes` sur `>= today`
   dès le chargement. Indispensable car les snapshots de chaînes ont souvent un jour de retard.
 - Piloter l'API GitHub (pas de `gh` CLI installé) : token via `git credential fill` (compte Keenzzz).

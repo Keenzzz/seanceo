@@ -1178,11 +1178,11 @@ salle passe au moins deux films du même réalisateur dans la semaine.</p>
     # Deux films du même genre enchaînables dans deux salles voisines, dans les
     # dix plus grandes villes. Angle éditorial : les reprises d'abord, et une
     # bonne raison de pousser la porte d'une seconde salle (souvent un indé).
-    ideas_by_city = build_ideas(BIG_CITY_SLUGS, cinemas, movies, showtimes,
-                                is_classic, today)
+    ideas_by_city, cult_ideas = build_ideas(BIG_CITY_SLUGS, cinemas, movies, showtimes,
+                                             is_classic, today)
     marathon_cities = [s for s in BIG_CITY_SLUGS if s in ideas_by_city]
 
-    def marathon_card(idea: dict) -> str:
+    def marathon_card(idea: dict, show_city: bool = False) -> str:
         first, second = idea["first"], idea["second"]
 
         def leg(show: dict) -> str:
@@ -1202,17 +1202,41 @@ salle passe au moins deux films du même réalisateur dans la semaine.</p>
 
         genre = min(idea["genres"]).capitalize()
         day = fr_date(date.fromisoformat(idea["day"]), today)
-        km_txt = f'{idea["distance_km"]:.1f}'.replace(".", ",")
-        return f"""<article class="marathon">
-<h3>{esc(day)} · marathon {esc(genre)}</h3>
+        # Sur la section culte nationale, on rappelle la ville (les cartes par
+        # ville sont déjà sous un titre de ville, inutile de la répéter).
+        lieu = ""
+        if show_city and idea.get("city"):
+            nom = cities[idea["city"]]["name"] if idea["city"] in cities else idea["city"]
+            lieu = f' · {esc(nom)}'
+        cult = ' <span class="badge badge-cult">🏛️ Culte</span>' if idea["is_cult"] else ""
+        if idea["kind"] == "meme_salle":
+            cine = cinemas[first["cinema"]]
+            transfer = (f'🍿 Les deux films dans la même salle, '
+                        f'<a href="{cinema_urls[first["cinema"]]}">{esc(cine["name"])}</a> : '
+                        f'{idea["gap_min"]} min d\'entracte, sans bouger.')
+        else:
+            km_txt = f'{idea["distance_km"]:.1f}'.replace(".", ",")
+            transfer = (f'🚶 {km_txt} km entre les deux salles, soit ~{idea["walk_min"]} min '
+                        f'à pied. Il vous reste {idea["gap_min"]} min d\'entracte '
+                        f'à la fin du premier film.')
+        cls = " marathon-cult" if idea["is_cult"] else ""
+        return f"""<article class="marathon{cls}">
+<h3>{esc(day)}{lieu} · marathon {esc(genre)}{cult}</h3>
 <div class="grid marathon-films">{leg(first)}{leg(second)}</div>
-<p class="marathon-transfer">🚶 {km_txt} km entre les deux salles, soit ~{idea["walk_min"]} min
-à pied. Il vous reste {idea["gap_min"]} min d'entracte à la fin du premier film.</p>
+<p class="marathon-transfer">{transfer}</p>
 </article>"""
 
     if marathon_cities:
-        jump = " ".join(f'<a href="#m-{s}">{esc(cities[s]["name"])}</a>'
-                        for s in marathon_cities)
+        cult_section = ""
+        if cult_ideas:
+            cult_section = f"""<section class="marathon-cults" id="m-cultes">
+<h2>🏛️ Marathons cultes</h2>
+<p class="meta">Deux classiques très bien notés sur Letterboxd à enchaîner le même jour,
+dans la même salle ou à deux pas. Le meilleur du répertoire, d'affilée.</p>
+{"".join(marathon_card(i, show_city=True) for i in cult_ideas)}
+</section>"""
+        jump = ('<a href="#m-cultes">🏛️ Cultes</a> ' if cult_ideas else "") + " ".join(
+            f'<a href="#m-{s}">{esc(cities[s]["name"])}</a>' for s in marathon_cities)
         sections = "".join(
             f'<section id="m-{s}"><h2>{esc(cities[s]["name"])}</h2>'
             f'<p class="meta"><a href="/ville/{s}/">Toutes les séances à '
@@ -1220,17 +1244,18 @@ salle passe au moins deux films du même réalisateur dans la semaine.</p>
             + "".join(marathon_card(i) for i in ideas_by_city[s]) + "</section>"
             for s in marathon_cities)
         n_ideas = sum(len(v) for v in ideas_by_city.values())
-        marathon_body = f"""<p class="lead">Deux films du même genre le même jour, dans
-<strong>deux salles assez proches</strong> pour faire le trajet à pied entre les deux. Le temps
-de marche et la durée de l'entracte sont calculés à partir des horaires réels. Les reprises de
-<a href="/classiques/">classiques</a> passent en premier. Valable pour les
-{len(marathon_cities)} plus grandes villes de France.</p>
+        marathon_body = f"""<p class="lead">Deux films du même genre à enchaîner le même jour :
+soit dans <strong>deux salles voisines</strong> (le trajet à pied tient dans l'entracte), soit
+<strong>à la suite dans la même salle</strong>, sans bouger. Horaires et entracte calculés sur
+les séances réelles. Les <a href="/classiques/">marathons de films cultes</a> passent en tête.
+Pour les {len(marathon_cities)} plus grandes villes de France.</p>
 <nav class="city-jump">{jump}</nav>
+{cult_section}
 {sections}"""
         write("/marathon/", page(
             f"Idées de marathon cinéma : deux films à la suite — {SITE_NAME}",
             f"{n_ideas} idées de marathon dans les grandes villes de France : deux films du même "
-            "genre enchaînés dans deux cinémas voisins, trajet à pied et entracte calculés.",
+            "genre à la suite, dans la même salle ou deux salles voisines. Marathons cultes mis en avant.",
             marathon_body, "/marathon/", h1="Idées de marathon", top_link=True))
         urls.append("/marathon/")
 

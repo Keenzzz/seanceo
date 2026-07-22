@@ -318,6 +318,19 @@ html.js .city-list.filtered > .city-group.shown { display: block; }
   text-wrap: pretty;
 }
 
+/* Marathon culte : deux classiques enchaînés, l'accent ambre le distingue */
+.marathon-cult { border: 1px solid var(--accent-deep); }
+.badge-cult {
+  background: #33290f;
+  color: var(--accent);
+  border: 1px solid var(--accent-deep);
+  text-transform: none;
+  letter-spacing: 0;
+}
+/* La section « Marathons cultes » en tête de page, légèrement mise en valeur */
+.marathon-cults { margin-top: 8px; }
+.marathon-cults > h2 { color: var(--accent); }
+
 /* Recherche de film dans le header (titre ou réalisateur, voir search.js).
    Sans JavaScript elle ne peut rien chercher : on la retire plutôt que
    d'offrir un champ mort. */
