@@ -265,6 +265,16 @@ et la mention TMDB (« ce produit utilise l'API TMDB mais n'est ni approuvé ni 
   - **Ne PAS dire « cette semaine »** : l'index inclut toutes les séances à venir (certaines à
     plusieurs semaines). Wording « à l'affiche », date exacte sur chaque carte, tri par
     imminence (prochaine séance croissante).
+- **« Autour de moi » sur la carte** (`assets/map.js`, page `/carte/`) : bouton `#geoloc-btn` →
+  `navigator.geolocation` (position lue dans le navigateur, **rien n'est envoyé**), marqueur
+  « vous êtes ici » (`.cine-moi`), carte recentrée, et panneau `#map-nearby` listant les 12
+  salles les plus proches (distance Haversine, tri croissant) avec leur nombre de séances de
+  répertoire. Répond au use case principal « le répertoire près de chez moi ». Nécessite HTTPS
+  (prod OK ; localhost aussi). Les points carte portent désormais `rep` = nb de séances de
+  répertoire de la salle cette semaine (injecté au build depuis `rep_by_cinema`). Filtre
+  `#rep-only` (« salles de répertoire seulement ») : masque les salles à `rep == 0` sur la carte
+  ET dans le panneau (fonction `garde()`). Les salles avec répertoire portent la bordure ambre
+  (`.near-item.has-rep`) — c'est ce que le visiteur cherche.
 - **Aucune page ne montre de séance passée** : `build_site.py` filtre `showtimes` sur `>= today`
   dès le chargement. Indispensable car les snapshots de chaînes ont souvent un jour de retard.
 - Piloter l'API GitHub (pas de `gh` CLI installé) : token via `git credential fill` (compte Keenzzz).

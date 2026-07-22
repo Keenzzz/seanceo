@@ -516,6 +516,77 @@ html:not(.js) .film-tools { display: none; }
 /* Carte des cinémas : page-outil, on lui donne le viewport entier
    (:has ignoré par un très vieux navigateur = simple retour au conteneur 1080px) */
 main:has(#cine-map) { max-width: none; }
+
+/* Barre d'outils de la carte : « Autour de moi » + filtre répertoire */
+.map-tools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 20px;
+  margin: 14px 0 6px;
+}
+#geoloc-btn { cursor: pointer; }
+#geoloc-btn:disabled { opacity: .6; cursor: progress; }
+.map-filter {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+  font-size: .9rem;
+  cursor: pointer;
+}
+.map-filter input { width: 16px; height: 16px; accent-color: var(--accent); }
+.map-status {
+  margin: 0 0 4px;
+  color: var(--accent);
+  font-size: .9rem;
+  text-wrap: pretty;
+}
+
+/* Marqueur « vous êtes ici » : point ambre avec halo, distinct des cinémas */
+.cine-moi span {
+  display: block;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 2px solid #1a1400;
+  box-shadow: 0 0 0 4px var(--accent-soft), 0 0 12px var(--accent);
+}
+.leaflet-popup-content .pop-rep { color: var(--accent); font-size: .85rem; }
+
+/* Panneau « cinémas les plus proches » sous la carte */
+#map-nearby { margin: 20px 0 0; }
+#map-nearby h2 { margin-top: 0; }
+.near-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+.near-item {
+  display: flex;
+  gap: 14px;
+  align-items: baseline;
+  background: var(--panel);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  padding: 12px 14px;
+  cursor: pointer;
+}
+.near-item:hover { border-color: var(--accent); }
+/* Une salle qui programme du répertoire porte l'accent ambre : c'est ce que
+   le visiteur est venu chercher. */
+.near-item.has-rep { border-left: 3px solid var(--accent); }
+.near-dist {
+  font-family: var(--mono);
+  font-variant-numeric: tabular-nums;
+  color: var(--accent);
+  font-weight: 700;
+  white-space: nowrap;
+  font-size: .9rem;
+}
+.near-nom { font-family: var(--display); font-weight: 600; text-decoration: none; }
+.near-nom:hover { color: var(--accent); }
+.near-meta { color: var(--muted); font-size: .82rem; margin: .15em 0 0; }
+.near-rep { color: var(--accent); font-size: .82rem; margin: .3em 0 0; }
+
 #cine-map {
   height: max(420px, calc(100vh - 330px));
   border-radius: var(--radius);

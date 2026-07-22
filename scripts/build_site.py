@@ -1277,34 +1277,45 @@ ouvrez les réglages, onglet <strong>Data</strong> (ou « Import &amp; Export »
     urls.append("/ma-watchlist/")
 
     # ----- Carte des cinémas -----
-    # Données injectées dans la page (pas de fetch) : nom, ville, coords, chaîne, URL.
+    # Données injectées dans la page (pas de fetch) : nom, ville, coords, chaîne,
+    # URL, et `rep` = nb de séances de répertoire cette semaine (le « Autour de
+    # moi » et le filtre s'en servent pour mettre en avant les salles qui en
+    # programment — c'est le cœur du site).
     map_points = [
         {"name": c["name"], "city": c["city"], "lat": c["lat"], "lon": c["lon"],
-         "chain": c.get("chain", ""), "url": f"{BASE_PATH}{cinema_urls[cid]}"}
+         "chain": c.get("chain", ""), "url": f"{BASE_PATH}{cinema_urls[cid]}",
+         "rep": len(rep_by_cinema.get(cid, []))}
         for cid, c in cinemas.items() if c["lat"] and c["lon"]
     ]
     n_inde_map = sum(1 for p in map_points if not p["chain"])
+    n_rep_map = sum(1 for p in map_points if p["rep"])
     leaflet_css = (
         '<link rel="stylesheet" href="/assets/vendor/leaflet/leaflet.css">'
         '<link rel="stylesheet" href="/assets/vendor/leaflet.markercluster/MarkerCluster.css">'
         '<link rel="stylesheet" href="/assets/vendor/leaflet.markercluster/MarkerCluster.Default.css">'
     )
     map_body = f"""<p class="lead">{len(map_points)} cinémas situés sur la carte, dont
-{n_inde_map} indépendants et {len(map_points) - n_inde_map} de grandes enseignes.
-Cliquez un point pour ouvrir le programme de la salle.</p>
+{n_rep_map} programment du répertoire cette semaine. Trouvez une salle près de chez vous et
+ouvrez son programme.</p>
+<div class="map-tools">
+<button type="button" id="geoloc-btn" class="bouton">📍 Autour de moi</button>
+<label class="map-filter"><input type="checkbox" id="rep-only"> Salles de répertoire seulement</label>
+</div>
+<p id="geoloc-status" class="map-status" role="status" hidden></p>
 <div id="map-legend">
 <span class="legend-item"><span class="legend-dot dot-indep"></span>Cinéma indépendant</span>
 <span class="legend-item"><span class="legend-dot dot-chain"></span>Grande enseigne</span>
 </div>
 <div id="cine-map"></div>
+<div id="map-nearby" hidden></div>
 <script type="application/json" id="cinemas-data">{json.dumps(map_points, ensure_ascii=False)}</script>
 <script src="/assets/vendor/leaflet/leaflet.js"></script>
 <script src="/assets/vendor/leaflet.markercluster/leaflet.markercluster.js"></script>
 <script src="/assets/map.js"></script>"""
     write("/carte/", page(
         f"Carte des cinémas en France — {SITE_NAME}",
-        f"Carte interactive de {len(map_points)} cinémas en France, indépendants et "
-        "grandes enseignes. Trouvez une salle près de chez vous et accédez à son programme.",
+        f"Carte interactive de {len(map_points)} cinémas en France. « Autour de moi » vous montre "
+        "les salles les plus proches et lesquelles programment du répertoire cette semaine.",
         map_body, "/carte/", h1="Carte des cinémas", head_extra=leaflet_css))
     urls.append("/carte/")
 
