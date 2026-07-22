@@ -674,8 +674,17 @@ Les séances d'aujourd'hui d'abord, puis celles des jours suivants.{classics_bit
             movie["genre"], movie["duration_min"] and f"{movie['duration_min']} min"]))
         poster = (f'<img class="poster" src="{esc(movie["poster"])}" alt="Affiche de {esc(movie["title"])}">'
                   if movie["poster"] else "")
-        trailer = (f'<p><a href="{esc(movie["trailer"])}" rel="noopener">▶ Bande-annonce</a></p>'
-                   if movie["trailer"] else "")
+        # Ligne d'actions sous le synopsis : bande-annonce + fiche Letterboxd.
+        # Le lien Letterboxd porte le vert réservé à Letterboxd sur le site,
+        # et ouvre dans un nouvel onglet (on quitte Séancéo pour leur fiche).
+        actions = []
+        if movie["trailer"]:
+            actions.append(f'<a href="{esc(movie["trailer"])}" target="_blank" '
+                           f'rel="noopener noreferrer">▶ Bande-annonce</a>')
+        if movie.get("lb_url"):
+            actions.append(f'<a class="lien-lb" href="{esc(movie["lb_url"])}" target="_blank" '
+                           f'rel="noopener noreferrer">Voir sur Letterboxd ↗</a>')
+        trailer = f'<p class="film-actions">{"".join(actions)}</p>' if actions else ""
         # `filtered` : les sections ville sont masquées en CSS tant que le
         # visiteur n'en a pas choisi une. Le masquage est conditionné à la
         # classe `js` posée dans le <head> — sans JavaScript, la recherche ne

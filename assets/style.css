@@ -535,6 +535,18 @@ main:has(#cine-map) { max-width: none; }
   .film-head .poster { width: 120px; }
 }
 
+/* Actions sous le synopsis d'un film : bande-annonce, fiche Letterboxd */
+.film-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 20px;
+  margin-top: 14px;
+}
+.film-actions a { font-weight: 600; text-decoration: none; }
+.film-actions a:hover { text-decoration: underline; }
+/* Vert Letterboxd : la couleur que le site réserve à cette source */
+.film-actions .lien-lb { color: var(--lb); }
+
 /* Liste des villes */
 .cities {
   list-style: none;

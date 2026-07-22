@@ -428,12 +428,17 @@ def _apply_tmdb(movies: dict, tmdb: dict) -> None:
 
 
 def _apply_letterboxd(movies: dict, lb: dict) -> None:
-    """Applique le cache Letterboxd : note moyenne /5 de la communauté.
-    Champ `lb_rating` (None si absent ou trop peu de votes pour être fiable)."""
+    """Applique le cache Letterboxd : note moyenne /5 de la communauté et lien
+    vers la fiche. `lb_rating` (None si absent ou trop peu de votes) sert au
+    classement ; `lb_url` sert au lien « Voir sur Letterboxd » et surtout au
+    croisement avec la watchlist exportée (le slug y est la clé de matching
+    exact). On ne garde que les URLs letterboxd.com, elles finissent en href."""
     for key, m in movies.items():
         e = lb.get(key)
         ok = e and e.get("found") and (e.get("votes") or 0) >= 50
         m["lb_rating"] = e.get("rating") if ok else None
+        url = (e or {}).get("url") or ""
+        m["lb_url"] = url if url.startswith("https://letterboxd.com/film/") else ""
 
 
 def load_merged(data_dir: Path) -> tuple[dict, dict, list, dict]:
