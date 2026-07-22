@@ -244,6 +244,27 @@ et la mention TMDB (« ce produit utilise l'API TMDB mais n'est ni approuvé ni 
   **la page `/classiques/` existe toujours** — elle porte le classement COMPLET triable/filtrable
   que l'accueil n'a pas. Elle reste reliée par les « voir le classement » des pages ville et par
   la page marathon (≈ 100 liens internes), donc ni orpheline ni désindexée. Ne pas la supprimer.
+- **INTERACTIONS LETTERBOXD.** `sources.py` propage `lb_url` (filtré aux URLs
+  `letterboxd.com/film/…`) en plus de `lb_rating`. Deux usages :
+  - **Lien « Voir sur Letterboxd »** sur chaque fiche film notée (700 films), à côté de la
+    bande-annonce, en vert (`.lien-lb`, `var(--lb)`), nouvel onglet.
+  - **Import de watchlist** (`/ma-watchlist/`, `assets/watchlist.js`) — fonction phare, mise en
+    avant (1er onglet du header `.nav-wl` + encart `.wl-cta` sur l'accueil). Le visiteur dépose
+    l'export de sa watchlist Letterboxd (le `watchlist.csv` d'un export de compte) ; **tout se
+    passe dans le navigateur, rien n'est envoyé** (FileReader, aucun upload). Croisement avec
+    `site/watchlist-index.json` généré au build.
+  - **Clé de matching = empreinte du slug Letterboxd** (`lb_slug_key()` en Python, répliqué à
+    l'identique dans `watchlist.js` : NFKD → retirer non-ASCII → garder `[a-z0-9]` collés). Le
+    CSV donne un lien court `boxd.it` INUTILISABLE (résolution CORS impossible côté client) et
+    des titres en anglais international, MAIS son champ « Name » et notre slug Letterboxd
+    dérivent du même titre principal → même empreinte. Ainsi « Shoplifters » (CSV) matche notre
+    « Une Affaire de famille » : **matching exact et multilingue sans dépendre du titre
+    français**. Validé sur une vraie watchlist : rappel 100 %, 0 faux positif. L'index est
+    indexé sous l'empreinte complète ET sa base sans l'année finale (Letterboxd désambiguïse par
+    « -2016 ») ; le client tente `empreinte+année` puis `empreinte`.
+  - **Ne PAS dire « cette semaine »** : l'index inclut toutes les séances à venir (certaines à
+    plusieurs semaines). Wording « à l'affiche », date exacte sur chaque carte, tri par
+    imminence (prochaine séance croissante).
 - **Aucune page ne montre de séance passée** : `build_site.py` filtre `showtimes` sur `>= today`
   dès le chargement. Indispensable car les snapshots de chaînes ont souvent un jour de retard.
 - Piloter l'API GitHub (pas de `gh` CLI installé) : token via `git credential fill` (compte Keenzzz).

@@ -9,6 +9,7 @@ Aucune dépendance externe (stdlib uniquement).
 
 import html
 import json
+import re
 import shutil
 import sys
 from collections import defaultdict
@@ -143,7 +144,7 @@ def page(title: str, description: str, body: str, path: str,
 <a class="brand" href="/">🎬 {SITE_NAME}</a>
 <p class="tagline">Le répertoire en salle, partout en France</p>
 {FILM_SEARCH}
-<nav class="site-nav"><a href="/a-l-affiche/">🎬 À l'affiche</a> <a href="/salles-patrimoine/">🏛️ Salles de patrimoine</a> <a href="/marathon/">🍿 Marathons</a> <a href="/carte/">🗺️ Carte</a></nav>
+<nav class="site-nav"><a class="nav-wl" href="/ma-watchlist/">💚 Ma watchlist</a> <a href="/a-l-affiche/">🎬 À l'affiche</a> <a href="/salles-patrimoine/">🏛️ Salles de patrimoine</a> <a href="/marathon/">🍿 Marathons</a> <a href="/carte/">🗺️ Carte</a></nav>
 </header>
 <main>
 <a class="retour" id="retour" href="#" hidden>← Retour</a>
@@ -220,6 +221,21 @@ def showtime_pills(shows: list[dict]) -> str:
         else:
             pills.append(f'<li>{t}{v}</li>')
     return f'<ul class="showtimes">{"".join(pills)}</ul>'
+
+
+def lb_slug_key(slug_or_title: str) -> str:
+    """Empreinte comparable d'un slug/titre Letterboxd : minuscules, sans
+    accents, caractères non alphanumériques SUPPRIMÉS (collés).
+
+    C'est la clé de croisement avec la watchlist. Le slug Letterboxd et le
+    « Name » du CSV d'export viennent tous deux du même titre principal
+    Letterboxd (souvent l'anglais international) : « Shoplifters » et son slug
+    « shoplifters » retombent donc sur la même empreinte, alors même que NOTRE
+    titre est « Une Affaire de famille ». Le matching traverse ainsi les langues.
+    watchlist.js applique EXACTEMENT la même normalisation côté client."""
+    import unicodedata as _u
+    s = _u.normalize("NFKD", slug_or_title or "").encode("ascii", "ignore").decode("ascii")
+    return "".join(c for c in s.lower() if c.isalnum())
 
 
 def sort_title(title: str) -> str:
@@ -727,6 +743,39 @@ Les séances d'aujourd'hui d'abord, puis celles des jours suivants.{classics_bit
     (SITE / "recherche.json").write_text(
         json.dumps(index, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
 
+    # ----- Index de la watchlist (croisement Letterboxd) -----
+    # Chargé par watchlist.js quand le visiteur dépose son export Letterboxd.
+    # Clé = empreinte du slug Letterboxd (lb_slug_key) ; le CSV donne le titre
+    # principal Letterboxd, qui produit la même empreinte → matching exact et
+    # multilingue, sans jamais rien envoyer (tout se passe dans le navigateur).
+    # On n'indexe que les films À L'AFFICHE (au moins une séance) : la watchlist
+    # sert à savoir « lesquels de mes films passent », pas à parcourir un catalogue.
+    wl_index: dict[str, dict] = {}
+    for key, m in movies.items():
+        shows = by_movie.get(key)
+        if not shows or not m.get("lb_url"):
+            continue
+        slug = m["lb_url"].rstrip("/").split("/film/")[-1]
+        empreinte = lb_slug_key(slug)
+        prochaine = min(s["start"][:10] for s in shows)
+        entry = {
+            "t": m["title"],
+            "u": f"{BASE_PATH}{movie_urls[key]}",
+            "p": m["poster"] or "",
+            "r": m.get("lb_rating") or 0,
+            "y": m.get("year") or 0,
+            "n": len({s["cinema"] for s in shows}),
+            "d": prochaine,
+        }
+        # Indexé sous l'empreinte complète ET sous sa base sans l'année finale
+        # (Letterboxd désambiguïse par « -2016 ») : le client tente les deux.
+        wl_index.setdefault(empreinte, entry)
+        base = re.sub(r"(19|20)\d\d$", "", empreinte)
+        if base != empreinte:
+            wl_index.setdefault(base, entry)
+    (SITE / "watchlist-index.json").write_text(
+        json.dumps(wl_index, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+
     # ----- Répertoire : le moteur éditorial du site -----
     rep_window = repertoire.window(showtimes, today)
     rep_shows = repertoire.repertoire_shows(rep_window, movies)
@@ -920,6 +969,13 @@ en France : reprises, copies restaurées, séances de ciné-club.
 <h2>Choisissez votre ville</h2>
 {home_finder}
 <p class="meta">Les villes les plus fournies : {raccourcis}.</p>
+
+<div class="passerelle wl-cta">
+<p><span class="titre">Vous êtes sur Letterboxd ?</span>
+<span class="meta">Déposez votre watchlist : Séancéo vous dit lesquels de vos films à voir sont
+à l'affiche, et où près de chez vous. Tout se passe dans votre navigateur.</span></p>
+<a class="bouton bouton-lb" href="/ma-watchlist/">Voir ma watchlist →</a>
+</div>
 
 <h2>À ne pas rater</h2>
 <p class="meta">Des séances qui ne repassent nulle part ailleurs en France cette semaine.</p>
@@ -1177,6 +1233,48 @@ de marche et la durée de l'entracte sont calculés à partir des horaires réel
             "genre enchaînés dans deux cinémas voisins, trajet à pied et entracte calculés.",
             marathon_body, "/marathon/", h1="Idées de marathon", top_link=True))
         urls.append("/marathon/")
+
+    # ----- Ma watchlist Letterboxd (croisement local) -----
+    # Le visiteur dépose l'export de sa watchlist Letterboxd ; watchlist.js le
+    # lit DANS LE NAVIGATEUR (rien n'est envoyé), croise chaque film avec
+    # l'index par empreinte de slug, et affiche ceux qui passent cette semaine.
+    n_wl = len({v["t"] for v in wl_index.values()})
+    watchlist_body = f"""<p class="lead">Vous avez une liste de films à voir sur
+<a href="https://letterboxd.com" target="_blank" rel="noopener noreferrer">Letterboxd</a> ?
+Déposez son export ici : Séancéo vous dit <strong>lesquels sont à l'affiche,
+et dans quels cinémas près de chez vous</strong>. On croise votre liste avec {n_wl} films
+actuellement programmés en France.</p>
+
+<div class="wl-drop" id="wl-drop" data-index="{BASE_PATH}/watchlist-index.json">
+<input type="file" id="wl-file" accept=".csv,text/csv" hidden>
+<p class="wl-drop-main"><button type="button" id="wl-pick" class="bouton">Choisir mon fichier watchlist.csv</button></p>
+<p class="wl-drop-alt">ou glissez-le dans ce cadre</p>
+</div>
+
+<p class="wl-privacy">🔒 Votre fichier ne quitte pas votre navigateur. Aucune donnée n'est
+envoyée à Séancéo ni à personne : le croisement se fait entièrement sur votre appareil.</p>
+
+<div id="wl-results" aria-live="polite"></div>
+
+<details class="wl-how">
+<summary>Où trouver le fichier de ma watchlist ?</summary>
+<ol>
+<li>Sur <a href="https://letterboxd.com/settings/data/" target="_blank" rel="noopener noreferrer">letterboxd.com</a>,
+ouvrez les réglages, onglet <strong>Data</strong> (ou « Import &amp; Export »).</li>
+<li>Cliquez sur <strong>Export your data</strong>. Un fichier <code>.zip</code> se télécharge.</li>
+<li>Décompressez-le et déposez le fichier <code>watchlist.csv</code> ci-dessus.</li>
+</ol>
+<p class="meta">Le même croisement marche avec les autres listes de l'export
+(<code>watched.csv</code>, <code>ratings.csv</code>…) si vous voulez retrouver un film déjà vu.</p>
+</details>
+<script src="/assets/watchlist.js" defer></script>"""
+    write("/ma-watchlist/", page(
+        f"Ma watchlist Letterboxd au cinéma — {SITE_NAME}",
+        "Déposez l'export de votre watchlist Letterboxd : Séancéo vous montre lesquels de vos "
+        "films à voir sont à l'affiche, et dans quels cinémas près de chez vous.",
+        watchlist_body, "/ma-watchlist/", h1="Votre watchlist au cinéma",
+        top_link=True))
+    urls.append("/ma-watchlist/")
 
     # ----- Carte des cinémas -----
     # Données injectées dans la page (pas de fetch) : nom, ville, coords, chaîne, URL.

@@ -448,6 +448,59 @@ html:not(.js) .film-tools { display: none; }
    et le bouton resterait affiché alors qu'il ne reste rien à afficher. */
 .tri-plus[hidden] { display: none; }
 
+/* ── Ma watchlist Letterboxd ─────────────────────────────────────────── */
+.wl-drop {
+  border: 2px dashed #3a4150;
+  border-radius: var(--radius);
+  background: var(--panel);
+  padding: 30px 20px;
+  text-align: center;
+  margin: 18px 0;
+  transition: border-color .15s, background .15s;
+}
+.wl-drop.wl-over { border-color: var(--lb); background: #12211a; }
+.wl-drop-main { margin: 0 0 8px; }
+.wl-drop-alt { margin: 0; color: var(--muted); font-size: .9rem; }
+/* Le bouton de dépôt emprunte l'accent vert de Letterboxd, pas l'ambre :
+   c'est l'action « Letterboxd » de la page. */
+#wl-pick { border-color: var(--lb); color: var(--lb); }
+#wl-pick:hover { background: var(--lb); color: #06130c; }
+
+.wl-privacy {
+  color: var(--muted);
+  font-size: .9rem;
+  background: #12211a;
+  border: 1px solid #24402f;
+  border-radius: var(--radius);
+  padding: 12px 16px;
+  text-wrap: pretty;
+}
+.wl-summary { font-size: 1.05rem; margin: 22px 0 14px; text-wrap: pretty; }
+.wl-erreur {
+  color: var(--indie);
+  background: #241417;
+  border: 1px solid #4a2630;
+  border-radius: var(--radius);
+  padding: 12px 16px;
+}
+.wl-how { margin-top: 24px; }
+.wl-how > summary { cursor: pointer; font-weight: 600; color: var(--muted); padding: 8px 0; }
+.wl-how > summary:hover { color: var(--accent); }
+.wl-how code {
+  font-family: var(--mono);
+  font-size: .85em;
+  background: #0f1218;
+  padding: 1px 5px;
+  border-radius: 4px;
+}
+
+/* Accent Letterboxd (vert) pour l'appel watchlist sur l'accueil et son onglet */
+.bouton-lb { border-color: var(--lb); color: var(--lb); }
+.bouton-lb:hover { background: var(--lb); color: #06130c; }
+.wl-cta { border-color: #24402f; }
+.nav-wl { border-color: var(--lb) !important; }
+.nav-wl:hover { background: #12211a !important; }
+
 /* Navigation header */
 .site-nav { margin-left: auto; display: flex; gap: 10px; flex-wrap: wrap; }
 .site-nav a {
