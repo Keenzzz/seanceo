@@ -1,0 +1,16 @@
+# Configuration du Worker Cloudflare « watchlist par pseudo ».
+# Déploiement :  cd worker && npx wrangler deploy
+# Dev local   :  cd worker && npx wrangler dev   (écoute sur http://localhost:8787)
+
+name = "seanceo-watchlist"
+main = "src/index.js"
+compatibility_date = "2026-07-01"
+
+# Pas de secret, pas de base de données, pas de dépendance : le Worker lit des
+# pages publiques et met en cache via l'API Cache de Cloudflare (caches.default),
+# qui ne demande aucune config. On garde la même philosophie que le reste du
+# projet : zéro dépendance superflue.
+
+# Après le premier `wrangler deploy`, l'URL est de la forme
+#   https://seanceo-watchlist.<ton-sous-domaine>.workers.dev
+# C'est cette URL que le site appellera (à renseigner côté front, cf. README).

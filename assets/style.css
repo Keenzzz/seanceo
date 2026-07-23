@@ -560,6 +560,124 @@ html:not(.js) .film-tools { display: none; }
 .bouton-lb:hover { background: var(--lb); color: #06130c; }
 .wl-cta { border-color: #24402f; }
 .nav-wl { border-color: var(--lb) !important; }
+
+/* ---- Connexion Letterboxd par pseudo (page /ma-watchlist/) ---- */
+.lb-connect { margin: 18px 0 6px; }
+.lb-connect label { display: block; font-weight: 600; margin-bottom: 8px; }
+.lb-field { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.lb-input {
+  flex: 1 1 220px;
+  min-width: 0;
+  background: var(--sunk);
+  color: var(--text);
+  border: 1px solid var(--rule);
+  border-radius: 9px;
+  padding: 12px 14px;
+  font-size: 1rem;
+}
+.lb-input:focus { outline: none; border-color: var(--lb); }
+.lb-field .bouton { flex: 0 0 auto; cursor: pointer; }
+.lb-connect-note {
+  color: var(--muted);
+  font-size: .9rem;
+  background: #12211a;
+  border: 1px solid #24402f;
+  border-radius: var(--radius);
+  padding: 12px 16px;
+  text-wrap: pretty;
+}
+.lb-connected { color: var(--muted); font-size: .92rem; margin: 14px 0 0; }
+.lb-connected span { color: var(--lb); font-weight: 600; }
+.lb-secondary {
+  background: none;
+  border: none;
+  color: var(--muted);
+  text-decoration: underline;
+  cursor: pointer;
+  font: inherit;
+  padding: 0;
+}
+.lb-secondary:hover { color: var(--accent); }
+
+/* Favoris à revoir : section mise en avant (accent Letterboxd + étoile). On
+   reste dans la palette « vert = Letterboxd », pas de nouvelle couleur. */
+.lb-favs {
+  margin: 20px 0 26px;
+  padding: 16px 18px 6px;
+  background: #12211a;
+  border: 1px solid #24402f;
+  border-left: 3px solid var(--lb);
+  border-radius: var(--radius);
+}
+.lb-favs h3 { margin: 0 0 4px; border: none; padding: 0; font-size: 1.15rem; }
+.lb-favs-sub { margin: 0 0 12px; color: var(--muted); font-size: .92rem; text-wrap: pretty; }
+.lb-favs .grid { margin-bottom: 6px; }
+
+/* Message watchlist vide ou privée. */
+.lb-empty {
+  color: var(--muted);
+  background: var(--panel);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  text-wrap: pretty;
+}
+.lb-empty b { color: var(--text); }
+
+/* Le CSV devient le repli « watchlist privée / sans compte » : replié par défaut. */
+.wl-alt { margin-top: 26px; border-top: 1px solid var(--rule); padding-top: 10px; }
+.wl-alt > summary { cursor: pointer; font-weight: 600; color: var(--muted); padding: 8px 0; }
+.wl-alt > summary:hover { color: var(--accent); }
+.wl-drop-help, .wl-steps { color: var(--muted); font-size: .92rem; }
+.wl-steps code, .wl-drop-help code {
+  font-family: var(--mono); font-size: .85em;
+  background: var(--sunk); padding: 1px 5px; border-radius: 4px;
+}
+
+/* ---- Portail d'accueil (injecté en JS, absent du HTML source) ---- */
+.lb-portal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(6, 8, 11, .78);
+  backdrop-filter: blur(3px);
+  animation: lb-fade .18s ease-out;
+}
+@keyframes lb-fade { from { opacity: 0; } to { opacity: 1; } }
+.lb-portal-card {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  background: var(--panel);
+  border: 1px solid var(--rule);
+  border-top: 3px solid var(--lb);
+  border-radius: var(--radius);
+  padding: 26px 24px 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, .5);
+}
+.lb-portal-card h2 { margin: 0 0 10px; border: none; padding: 0; font-size: 1.35rem; }
+.lb-portal-card > p { margin: 0 0 16px; color: var(--muted); text-wrap: pretty; }
+.lb-portal-card .lb-field { margin-bottom: 4px; }
+.lb-close {
+  position: absolute;
+  top: 8px; right: 10px;
+  background: none; border: none;
+  color: var(--muted); font-size: 1.6rem; line-height: 1;
+  cursor: pointer; padding: 4px 8px;
+}
+.lb-close:hover { color: var(--text); }
+.lb-portal-alt {
+  display: flex; flex-wrap: wrap; gap: 6px 16px;
+  margin: 14px 0 0; font-size: .9rem;
+}
+.lb-portal-note { color: var(--muted); font-size: .82rem; margin: 14px 0 0; }
+.lb-msg { margin: 12px 0 0; font-size: .92rem; }
+.lb-error { color: var(--indie); }
+.lb-ok-count { color: var(--text); font-size: 1.05rem; margin: 0 0 16px; }
 .nav-wl:hover { background: #12211a !important; }
 
 /* Navigation header */

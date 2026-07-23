@@ -136,6 +136,7 @@ def page(title: str, description: str, body: str, path: str,
 <link rel="canonical" href="{BASE_URL}{path}">
 <link rel="stylesheet" href="/assets/style.css">
 {JS_FLAG}
+<script id="lb-core" src="/assets/letterboxd.js" data-index="{BASE_PATH}/watchlist-index.json" defer></script>
 {head_extra}
 {ld}
 </head>
@@ -1343,39 +1344,48 @@ Pour les {len(marathon_cities)} plus grandes villes de France.</p>
     # lit DANS LE NAVIGATEUR (rien n'est envoyé), croise chaque film avec
     # l'index par empreinte de slug, et affiche ceux qui passent cette semaine.
     n_wl = len({v["t"] for v in wl_index.values()})
-    watchlist_body = f"""<p class="lead">Vous avez une liste de films à voir sur
+    watchlist_body = f"""<p class="lead">Tu as une liste de films à voir sur
 <a href="https://letterboxd.com" target="_blank" rel="noopener noreferrer">Letterboxd</a> ?
-Déposez son export ici : Séancéo vous dit <strong>lesquels sont à l'affiche,
-et dans quels cinémas près de chez vous</strong>. On croise votre liste avec {n_wl} films
-actuellement programmés en France.</p>
+Donne ton <strong>pseudo</strong> : Séancéo te dit <strong>lesquels de tes films à voir
+sont à l'affiche, et dans quels cinémas près de chez toi</strong>. On croise ta watchlist
+avec {n_wl} films actuellement programmés en France.</p>
 
+<form class="lb-connect" id="lb-form">
+<label for="lb-user">Ton pseudo Letterboxd</label>
+<div class="lb-field">
+<input class="lb-input" id="lb-user" type="text" autocomplete="off" autocapitalize="none"
+spellcheck="false" placeholder="pseudo Letterboxd" aria-label="Ton pseudo Letterboxd">
+<button class="bouton bouton-lb" type="submit">Synchroniser</button>
+</div>
+</form>
+<p class="lb-connect-note">On lit seulement ta watchlist <strong>publique</strong>. Rien
+n'est stocké côté serveur : la liste ne sert qu'à l'afficher sur ton appareil.</p>
+
+<div id="lb-status" aria-live="polite"></div>
+<div id="wl-results" aria-live="polite"></div>
+
+<details class="wl-alt">
+<summary>Watchlist privée, ou tu préfères un fichier ? Importer l'export</summary>
+<p class="wl-drop-help">Dépose le <code>watchlist.csv</code> de ton export Letterboxd :
+tout se passe dans le navigateur, rien n'est envoyé.</p>
 <div class="wl-drop" id="wl-drop" data-index="{BASE_PATH}/watchlist-index.json">
 <input type="file" id="wl-file" accept=".csv,text/csv" hidden>
 <p class="wl-drop-main"><button type="button" id="wl-pick" class="bouton">Choisir mon fichier watchlist.csv</button></p>
 <p class="wl-drop-alt">ou glissez-le dans ce cadre</p>
 </div>
-
-<p class="wl-privacy">🔒 Votre fichier ne quitte pas votre navigateur. Aucune donnée n'est
-envoyée à Séancéo ni à personne : le croisement se fait entièrement sur votre appareil.</p>
-
-<div id="wl-results" aria-live="polite"></div>
-
-<details class="wl-how">
-<summary>Où trouver le fichier de ma watchlist ?</summary>
-<ol>
+<ol class="wl-steps">
 <li>Sur <a href="https://letterboxd.com/settings/data/" target="_blank" rel="noopener noreferrer">letterboxd.com</a>,
-ouvrez les réglages, onglet <strong>Data</strong> (ou « Import &amp; Export »).</li>
-<li>Cliquez sur <strong>Export your data</strong>. Un fichier <code>.zip</code> se télécharge.</li>
-<li>Décompressez-le et déposez le fichier <code>watchlist.csv</code> ci-dessus.</li>
+ouvre les réglages, onglet <strong>Data</strong> (ou « Import &amp; Export »).</li>
+<li>Clique sur <strong>Export your data</strong>. Un fichier <code>.zip</code> se télécharge.</li>
+<li>Décompresse-le et dépose le fichier <code>watchlist.csv</code> ci-dessus.</li>
 </ol>
-<p class="meta">Le même croisement marche avec les autres listes de l'export
-(<code>watched.csv</code>, <code>ratings.csv</code>…) si vous voulez retrouver un film déjà vu.</p>
 </details>
-<script src="/assets/watchlist.js" defer></script>"""
+<script src="/assets/watchlist.js" defer></script>
+<script src="/assets/lb-watchlist.js" defer></script>"""
     write("/ma-watchlist/", page(
         f"Ma watchlist Letterboxd au cinéma — {SITE_NAME}",
-        "Déposez l'export de votre watchlist Letterboxd : Séancéo vous montre lesquels de vos "
-        "films à voir sont à l'affiche, et dans quels cinémas près de chez vous.",
+        "Donne ton pseudo Letterboxd : Séancéo te montre lesquels de tes films à voir "
+        "sont à l'affiche, et dans quels cinémas près de chez toi.",
         watchlist_body, "/ma-watchlist/", h1="Votre watchlist au cinéma",
         top_link=True))
     urls.append("/ma-watchlist/")

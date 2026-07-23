@@ -1,0 +1,4 @@
+# Artefacts wrangler / build local — jamais versionnés.
+dist/
+.wrangler/
+node_modules/
