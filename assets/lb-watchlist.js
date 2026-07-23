@@ -17,7 +17,70 @@
   var results = document.getElementById("wl-results");
   var drop = document.getElementById("wl-drop"); // porte data-index (réutilisé)
   var fallback = document.querySelector(".wl-alt"); // le <details> import CSV
+  var calBox = document.getElementById("lb-calendar");
   if (!form || !input || !results || !drop || !window.LB) return;
+
+  // Bloc « Ajouter à Google Agenda » : construit l'URL du calendrier .ics servi
+  // par le Worker (/calendar/<pseudo>.ics), avec option « près de moi » (géoloc,
+  // rien n'est envoyé au site — juste ajouté en paramètre de l'URL du Worker).
+  function calendarBlock(user) {
+    if (!calBox) return;
+    calBox.hidden = false;
+    calBox.innerHTML =
+      '<h3>📆 Ne rate plus une reprise</h3>' +
+      '<p class="lb-cal-sub">Ajoute tes reprises à ton agenda : chaque nouvelle séance ' +
+      "d'un film de ta watchlist (ou de tes favoris) apparaît toute seule, avec un rappel.</p>" +
+      '<p class="lb-cal-actions">' +
+        '<a class="bouton bouton-lb" id="lb-cal-gcal" target="_blank" rel="noopener noreferrer">Ajouter à Google Agenda</a>' +
+        '<button type="button" class="lb-secondary" id="lb-cal-near">📍 seulement près de moi</button>' +
+      '</p>' +
+      '<p class="lb-cal-scope" id="lb-cal-scope"></p>' +
+      '<p class="lb-cal-other">Autre agenda (Apple, Outlook…) : ' +
+        '<input class="lb-input lb-cal-url" id="lb-cal-url" readonly aria-label="Lien du calendrier"> ' +
+        '<button type="button" class="lb-secondary" id="lb-cal-copy">Copier</button></p>';
+
+    var near = null;
+    var gcal = calBox.querySelector("#lb-cal-gcal");
+    var urlField = calBox.querySelector("#lb-cal-url");
+    var scope = calBox.querySelector("#lb-cal-scope");
+    var nearBtn = calBox.querySelector("#lb-cal-near");
+
+    function icsUrl() {
+      var u = LB.WORKER_URL + "/calendar/" + encodeURIComponent(user) + ".ics";
+      if (near) u += "?near=" + near.lat.toFixed(4) + "," + near.lon.toFixed(4) + "&km=30";
+      return u;
+    }
+    function refresh() {
+      var webcal = icsUrl().replace(/^https?:/, "webcal:");
+      gcal.href = "https://calendar.google.com/calendar/render?cid=" + encodeURIComponent(webcal);
+      urlField.value = webcal;
+      scope.textContent = near
+        ? "Calendrier limité à environ 30 km autour de toi."
+        : "Calendrier national (toutes les reprises de ta watchlist en France).";
+    }
+    refresh();
+
+    nearBtn.addEventListener("click", function () {
+      if (near) { near = null; nearBtn.textContent = "📍 seulement près de moi"; refresh(); return; }
+      if (!navigator.geolocation) { scope.textContent = "Géolocalisation indisponible sur ce navigateur."; return; }
+      nearBtn.textContent = "…localisation";
+      navigator.geolocation.getCurrentPosition(
+        function (pos) {
+          near = { lat: pos.coords.latitude, lon: pos.coords.longitude };
+          nearBtn.textContent = "🌍 revenir au national";
+          refresh();
+        },
+        function () { nearBtn.textContent = "📍 seulement près de moi";
+          scope.textContent = "Localisation refusée : calendrier national conservé."; });
+    });
+
+    calBox.querySelector("#lb-cal-copy").addEventListener("click", function () {
+      urlField.select();
+      if (navigator.clipboard) navigator.clipboard.writeText(urlField.value);
+      else document.execCommand("copy");
+      this.textContent = "Copié ✓";
+    });
+  }
 
   var indexUrl = drop.dataset.index;
 
@@ -64,7 +127,9 @@
     forget.type = "button"; forget.className = "lb-secondary"; forget.textContent = "Changer de pseudo";
     resync.addEventListener("click", function () { run(user); });
     forget.addEventListener("click", function () {
-      LB.clear(); results.textContent = ""; status.textContent = ""; input.value = ""; input.focus();
+      LB.clear(); results.textContent = ""; status.textContent = ""; input.value = "";
+      if (calBox) { calBox.hidden = true; calBox.textContent = ""; }
+      input.focus();
     });
     wrap.appendChild(who);
     wrap.appendChild(document.createTextNode(" · "));
@@ -92,6 +157,7 @@
                    empty: !!data.empty, private: !!data.private, total: data.total || 0, at: Date.now() });
         connectedBar(data.user);
         show(dataFrom(LB.load()));
+        calendarBlock(data.user);
       })
       .catch(function (err) { showError(err && err.error); })
       .then(function () { btn.disabled = false; });
@@ -110,5 +176,6 @@
     input.value = state.user;
     connectedBar(state.user);
     show(dataFrom(state));
+    calendarBlock(state.user);
   }
 })();

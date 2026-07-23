@@ -38,6 +38,9 @@ const ORIGINS_OK = [
 const ORIGIN_LOCAL = /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/;
 
 const LB = "https://letterboxd.com";
+// Index des séances de répertoire, servi par le site (détail par film). Sert au
+// calendrier .ics. TODO(domaine) : passer sur https://seanceo.fr/... le jour venu.
+const AGENDA_INDEX = "https://keenzzz.github.io/seanceo/agenda-index.json";
 const PER_PAGE = 28;      // Letterboxd sert 28 affiches par page de watchlist
 const MAX_PAGES = 40;     // garde-fou : au-delà (~1120 films) on tronque
 const CONCURRENCY = 4;    // pages récupérées de front (poli mais pas lent)
@@ -75,6 +78,27 @@ export default {
         json({ ok: true, service: "seanceo-watchlist", usage: "/watchlist/<pseudo>" }),
         origin,
       );
+    }
+
+    // Route : /calendar/<pseudo>.ics — abonnement Google Agenda / calendrier.
+    // Google récupère cette URL côté serveur (pas de navigateur), toutes les
+    // quelques heures ; on renvoie donc TOUJOURS un calendrier valide (même vide).
+    const cal = url.pathname.match(/^\/calendar\/([^/]+?)\.ics$/);
+    if (cal) {
+      const cu = decodeURIComponent(cal[1]).trim().toLowerCase();
+      if (!USERNAME_RE.test(cu)) {
+        return withCors(json({ error: "invalid_username" }, 400), origin);
+      }
+      const near = parseNear(url.searchParams.get("near"));
+      const km = Number(url.searchParams.get("km")) || 0;
+      const ics = await buildCalendar(cu, near, km);
+      const res = new Response(ics, {
+        headers: {
+          "Content-Type": "text/calendar; charset=utf-8",
+          "Cache-Control": `max-age=${CACHE_TTL}`,
+        },
+      });
+      return withCors(res, origin);
     }
 
     // Route : /watchlist/<pseudo>
@@ -326,6 +350,129 @@ function decodeEntities(s) {
     .replace(/&#0*39;|&apos;|&#x0*27;/gi, "'")
     .replace(/&#(\d+);/g, (_, d) => String.fromCodePoint(parseInt(d, 10)))
     .replace(/&#x([0-9a-f]+);/gi, (_, h) => String.fromCodePoint(parseInt(h, 16)));
+}
+
+// —— Calendrier .ics ——————————————————————————————————————————————————————
+
+// Empreinte IDENTIQUE à lb_slug_key() (Python) et à empreinte() (front) :
+// NFKD → non-ASCII retiré → [a-z0-9]. Clé de croisement watchlist ↔ agenda.
+function empreinte(s) {
+  return (s || "").normalize("NFKD")
+    .replace(/[^\x00-\x7F]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]/g, "");
+}
+
+async function fetchAgendaIndex() {
+  const r = await fetch(AGENDA_INDEX, { cf: { cacheTtl: 3600, cacheEverything: true } });
+  return r.ok ? r.json() : {};
+}
+
+// `near` = { lat, lon } optionnel ; `km` = rayon. Construit le VCALENDAR des
+// séances de répertoire des films de la watchlist + favoris du membre.
+async function buildCalendar(user, near, km) {
+  const data = await buildWatchlist(user); // réutilise le cache watchlist (12 h)
+  const wanted = data.ok ? [...(data.films || []), ...(data.favorites || [])] : [];
+  const index = wanted.length ? await fetchAgendaIndex() : {};
+
+  const events = [];
+  const seen = new Set();
+  const seenFilm = new Set();
+  for (const f of wanted) {
+    const e = empreinte(f.slug);
+    if (seenFilm.has(e)) continue;
+    seenFilm.add(e);
+    const entry = index[e] || index[e.replace(/(19|20)\d\d$/, "")];
+    if (!entry) continue;
+    for (const s of entry.s) {
+      // s = [start "YYYY-MM-DDTHH:MM", cinéma, ville, lat, lon, billetterie]
+      if (near && km && !withinKm(near, s[3], s[4], km)) continue;
+      const uid = `${e}-${s[0]}-${slugCin(s[1])}@seanceo`;
+      if (seen.has(uid)) continue;
+      seen.add(uid);
+      events.push(vevent(entry, s, uid));
+    }
+  }
+  return icsDoc(user, events);
+}
+
+function parseNear(v) {
+  if (!v) return null;
+  const [lat, lon] = v.split(",").map(Number);
+  if (Number.isFinite(lat) && Number.isFinite(lon)) return { lat, lon };
+  return null;
+}
+
+function withinKm(near, lat, lon, km) {
+  if (lat == null || lon == null) return false; // sans coords, on ne peut pas filtrer
+  const R = 6371, toRad = (d) => (d * Math.PI) / 180;
+  const dLat = toRad(lat - near.lat), dLon = toRad(lon - near.lon);
+  const a = Math.sin(dLat / 2) ** 2 +
+    Math.cos(toRad(near.lat)) * Math.cos(toRad(lat)) * Math.sin(dLon / 2) ** 2;
+  return 2 * R * Math.asin(Math.sqrt(a)) <= km;
+}
+
+// Un VEVENT par séance. Heure « flottante » (sans fuseau) + X-WR-TIMEZONE au
+// niveau du calendrier : Google l'interprète en Europe/Paris. Durée par défaut 2 h.
+function vevent(entry, s, uid) {
+  const [start, cinema, city, , , booking] = s;
+  const dtStart = start.replace(/[-:]/g, "") + "00";        // 2026-08-27T20:30 → 20260827T203000
+  const dtEnd = plus2h(start);
+  const loc = city ? `${cinema}, ${city}` : cinema;
+  const desc = (booking ? `Réserver : ${booking}\\n` : "") +
+    `Fiche : https://keenzzz.github.io${entry.u}`;
+  return [
+    "BEGIN:VEVENT",
+    `UID:${uid}`,
+    `DTSTAMP:${nowStamp()}`,
+    `DTSTART:${dtStart}`,
+    `DTEND:${dtEnd}`,
+    `SUMMARY:${icsEsc("🎬 " + entry.t)}`,
+    `LOCATION:${icsEsc(loc)}`,
+    `DESCRIPTION:${icsEsc(desc)}`,
+    `URL:${booking || "https://keenzzz.github.io" + entry.u}`,
+    "END:VEVENT",
+  ].join("\r\n");
+}
+
+function icsDoc(user, events) {
+  const head = [
+    "BEGIN:VCALENDAR",
+    "VERSION:2.0",
+    "PRODID:-//Seanceo//Repertoire//FR",
+    "CALSCALE:GREGORIAN",
+    "METHOD:PUBLISH",
+    `X-WR-CALNAME:${icsEsc("Séancéo — " + user)}`,
+    "X-WR-TIMEZONE:Europe/Paris",
+    "REFRESH-INTERVAL;VALUE=DURATION:PT12H",
+    "X-PUBLISHED-TTL:PT12H",
+  ];
+  return head.concat(events, ["END:VCALENDAR", ""]).join("\r\n");
+}
+
+function icsEsc(s) {
+  return String(s)
+    .replace(/\\/g, "\\\\")
+    .replace(/;/g, "\\;")
+    .replace(/,/g, "\\,")
+    .replace(/\r?\n/g, "\\n");
+}
+
+function slugCin(name) {
+  return empreinte(name).slice(0, 24);
+}
+
+function plus2h(start) {
+  const [d, t] = start.split("T");
+  const [Y, Mo, D] = d.split("-").map(Number);
+  const [H, Mi] = t.split(":").map(Number);
+  const dt = new Date(Date.UTC(Y, Mo - 1, D, H + 2, Mi)); // arithmétique en UTC = reste « flottant »
+  const p = (n) => String(n).padStart(2, "0");
+  return `${dt.getUTCFullYear()}${p(dt.getUTCMonth() + 1)}${p(dt.getUTCDate())}T${p(dt.getUTCHours())}${p(dt.getUTCMinutes())}00`;
+}
+
+function nowStamp() {
+  return new Date().toISOString().replace(/[-:]/g, "").replace(/\.\d+Z$/, "Z");
 }
 
 // —— Réponses & CORS ——————————————————————————————————————————————————————

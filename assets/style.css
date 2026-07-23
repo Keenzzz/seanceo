@@ -624,6 +624,23 @@ html:not(.js) .film-tools { display: none; }
 }
 .lb-empty b { color: var(--text); }
 
+/* Bloc « Ajouter à Google Agenda » (calendrier .ics servi par le Worker). */
+#lb-calendar {
+  margin: 26px 0;
+  padding: 18px 18px 8px;
+  background: var(--panel);
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--lb);
+  border-radius: var(--radius);
+}
+#lb-calendar h3 { margin: 0 0 4px; border: none; padding: 0; font-size: 1.15rem; }
+.lb-cal-sub { margin: 0 0 14px; color: var(--muted); text-wrap: pretty; }
+.lb-cal-actions { display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: center; margin: 0 0 8px; }
+.lb-cal-actions .bouton { cursor: pointer; }
+.lb-cal-scope { margin: 0 0 12px; color: var(--muted); font-size: .85rem; }
+.lb-cal-other { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; color: var(--muted); font-size: .9rem; margin: 0 0 8px; }
+.lb-cal-url { flex: 1 1 240px; min-width: 0; font-size: .82rem; font-family: var(--mono); }
+
 /* Le CSV devient le repli « watchlist privée / sans compte » : replié par défaut. */
 .wl-alt { margin-top: 26px; border-top: 1px solid var(--rule); padding-top: 10px; }
 .wl-alt > summary { cursor: pointer; font-weight: 600; color: var(--muted); padding: 8px 0; }

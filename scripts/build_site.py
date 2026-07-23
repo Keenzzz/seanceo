@@ -778,6 +778,52 @@ Les séances d'aujourd'hui d'abord, puis celles des jours suivants.{classics_bit
     (SITE / "watchlist-index.json").write_text(
         json.dumps(wl_index, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
 
+    # ----- Index agenda (détail des séances, pour le calendrier .ics) -----
+    # Même clé d'empreinte que la watchlist, mais la valeur porte le DÉTAIL de
+    # chaque séance à venir (heure, cinéma, ville, coords, billetterie). Le
+    # Worker `/calendar/<pseudo>.ics` croise la watchlist du membre avec ce
+    # fichier et émet un événement de calendrier par séance. Séance compacte =
+    # [start "YYYY-MM-DDTHH:MM", cinéma, ville, lat, lon, billetterie].
+    #
+    # Scope VOLONTAIREMENT restreint au RÉPERTOIRE (film sorti avant
+    # REPERTOIRE_BEFORE) sur un horizon de 5 semaines : le calendrier sert à ne
+    # pas rater une reprise rare, pas à recevoir 3 000 rappels pour un
+    # blockbuster à 263 salles. Ça garde aussi le fichier assez léger pour être
+    # parsé dans un Worker.
+    AG_HORIZON = (today + timedelta(days=35)).isoformat()
+    ag_index: dict[str, dict] = {}
+    for key, m in movies.items():
+        shows = by_movie.get(key)
+        year = m.get("year")
+        if not shows or not m.get("lb_url") or not year or year >= repertoire.REPERTOIRE_BEFORE:
+            continue
+        slug = m["lb_url"].rstrip("/").split("/film/")[-1]
+        empreinte = lb_slug_key(slug)
+        seances = []
+        for s in sorted(shows, key=lambda s: s["start"]):
+            if s["start"][:10] > AG_HORIZON:
+                continue
+            cin = cinemas[s["cinema"]]
+            lat = cin.get("lat")
+            lon = cin.get("lon")
+            seances.append([
+                s["start"][:16],
+                cin["name"],
+                cin.get("city") or "",
+                round(lat, 4) if lat is not None else None,
+                round(lon, 4) if lon is not None else None,
+                s.get("booking") or "",
+            ])
+        if not seances:
+            continue
+        entry = {"t": m["title"], "u": f"{BASE_PATH}{movie_urls[key]}", "s": seances}
+        ag_index.setdefault(empreinte, entry)
+        base = re.sub(r"(19|20)\d\d$", "", empreinte)
+        if base != empreinte:
+            ag_index.setdefault(base, entry)
+    (SITE / "agenda-index.json").write_text(
+        json.dumps(ag_index, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+
     # ----- Répertoire : le moteur éditorial du site -----
     rep_window = repertoire.window(showtimes, today)
     rep_shows = repertoire.repertoire_shows(rep_window, movies)
@@ -1363,6 +1409,7 @@ n'est stocké côté serveur : la liste ne sert qu'à l'afficher sur ton apparei
 
 <div id="lb-status" aria-live="polite"></div>
 <div id="wl-results" aria-live="polite"></div>
+<div id="lb-calendar" hidden></div>
 
 <details class="wl-alt">
 <summary>Watchlist privée, ou tu préfères un fichier ? Importer l'export</summary>
