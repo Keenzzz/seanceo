@@ -1,0 +1,60 @@
+# Rafraîchissement des snapshots de chaînes (Pathé / CGR / Grand Écran).
+#
+# Ces trois sources répondent 403 aux IP de datacenter : impossible de les
+# collecter sur un runner GitHub hébergé (contrairement aux indés et à UGC, que
+# deploy.yml récupère chaque jour). On passe donc par un runner SELF-HOSTED,
+# installé sur la machine de l'utilisateur, qui sort par une IP résidentielle.
+#
+# ⚠️ SÉCURITÉ (le dépôt est PUBLIC) : ce workflow ne se déclenche QUE sur cron et
+# sur bouton manuel — JAMAIS sur `pull_request` ni sur un push de fork. C'est ce
+# qui empêche le code d'une PR étrangère de s'exécuter sur la machine perso.
+# Ne jamais ajouter de déclencheur `pull_request` ici.
+#
+# Le job ne fait que collecter + committer les snapshots sains sur `main`
+# (garde-fou anti-régression dans scripts/refresh_chains.py). Le rebuild du site
+# est laissé au cron quotidien de deploy.yml (03:30 UTC), qui repart des
+# snapshots committés — inutile de le redéclencher ici.
+
+name: Rafraîchir snapshots chaînes (self-hosted)
+
+on:
+  schedule:
+    # Tous les 2 jours à 04:00 UTC (~06:00 Paris l'été). La fenêtre de collecte
+    # est de 7 jours, donc tous les 2 jours suffit largement.
+    - cron: "0 4 */2 * *"
+  workflow_dispatch: {}   # bouton « Run workflow » dans l'onglet Actions
+
+# Le minimum pour que le push du script fonctionne avec le GITHUB_TOKEN.
+permissions:
+  contents: write
+
+# Une seule collecte à la fois (si un run traîne, on ne les empile pas).
+concurrency:
+  group: refresh-chains
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: [self-hosted, windows]
+    timeout-minutes: 180   # Pathé peut prendre ~2 h
+    steps:
+      - name: Récupérer le dépôt
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      # Le runner tourne en service (compte NETWORK SERVICE) : le Python
+      # « pour cet utilisateur » de la machine n'est PAS dans son PATH. On lui
+      # fournit donc son propre Python (le pipeline est stdlib pur, toute 3.x va).
+      - name: Python pour le runner
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Identité git du bot
+        run: |
+          git config user.name "seanceo-refresh-bot"
+          git config user.email "actions@users.noreply.github.com"
+
+      - name: Collecter, contrôler et pousser
+        run: python scripts/refresh_chains.py
