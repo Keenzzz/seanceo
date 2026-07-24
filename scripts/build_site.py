@@ -954,13 +954,13 @@ Les séances d'aujourd'hui d'abord, puis celles des jours suivants.{classics_bit
                         f'<span>{libelle}</span>{precision}'
                         f'</h3><ul class="seances">{rows}</ul></section>')
 
-    # Rétrospectives mises en avant sur l'accueil : au moins 6, les plus
+    # Rétrospectives mises en avant sur l'accueil : jusqu'à 9, les plus
     # fournies d'abord (rep_cycles est déjà trié par nb de films puis séances).
     # On plafonne les cycles EXCLUSIVEMENT parisiens pour ne pas afficher « que
     # Paris » : la Cinémathèque et les salles du Quartier latin saturent sinon
     # le haut du classement. Un cycle qui tourne dans plusieurs villes (Paris
     # incluse) n'est pas concerné, c'est justement de la diversité.
-    HOME_CYCLES, PARIS_CAP = 6, 3
+    HOME_CYCLES, PARIS_CAP = 9, 3
 
     def _paris_only(c: dict) -> bool:
         return all(v == "Paris" for v in c["cities"])
@@ -975,8 +975,8 @@ Les séances d'aujourd'hui d'abord, puis celles des jours suivants.{classics_bit
                 continue
             n_paris += 1
         home_cycles.append(c)
-    # Trop peu de cycles hors Paris pour atteindre 6 ? On complète avec les
-    # parisiens écartés — mieux vaut 6 cartes remplies que des trous, sans
+    # Trop peu de cycles hors Paris pour atteindre 9 ? On complète avec les
+    # parisiens écartés — mieux vaut des cartes remplies que des trous, sans
     # jamais dépasser ce que rep_cycles contient réellement.
     if len(home_cycles) < HOME_CYCLES:
         deja = {c["key"] for c in home_cycles}
