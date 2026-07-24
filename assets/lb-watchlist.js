@@ -5,8 +5,8 @@
      - ce script : le visiteur tape son pseudo (ou revient déjà synchronisé) ;
      - watchlist.js : le fallback « dépose ton fichier CSV » (watchlist privée).
 
-   ⚠️ Tant que le Worker n'est pas déployé, LB tourne en MOCK (voir letterboxd.js) :
-   pseudos magiques de test → notfound, oops, private, vide. */
+   Le Worker est déployé (LB en réel). Pour tester sans réseau, repasser LB en
+   MOCK dans letterboxd.js : pseudos magiques → notfound, oops, private, vide. */
 
 (function () {
   "use strict";

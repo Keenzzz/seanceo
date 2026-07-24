@@ -192,13 +192,13 @@ async function buildWatchlist(user) {
   let films = parseFilms(first.html);
 
   // Watchlist vide OU privée : dans les deux cas la page ne liste aucun film.
-  // On tente de distinguer les deux via un marqueur texte pour que l'UI dise
+  // On tranche par des signaux STRUCTURELS (voir isPrivate) pour que l'UI dise
   // « rends-la publique » plutôt que « elle est vide ». Les favoris, eux,
   // restent souvent lisibles même watchlist privée : on les renvoie quand même.
   if (films.length === 0) {
     return {
       ok: true, user, count: 0, total: 0,
-      empty: true, private: isPrivate(first.html),
+      empty: true, private: isPrivate(first.html, total),
       favorites, films: [],
     };
   }
@@ -333,11 +333,29 @@ function parseFavorites(html) {
   return parseFilms(html.slice(i, i + 7000)).slice(0, 4);
 }
 
-// Détection best-effort d'une watchlist privée (à affiner avec un vrai compte
-// privé). Sans marqueur, on considère la liste simplement vide.
+// Détection best-effort d'une watchlist privée, par signaux STRUCTURELS tirés du
+// HTML réel de Letterboxd, dans l'ordre de fiabilité. La watchlist privée est
+// une option payante (Pro/Patron), donc rare : le cas privé lui-même n'a pas pu
+// être capturé lors de l'audit (2026-07-24), ces signaux restent à VALIDER sur
+// un vrai compte privé — mais ils ne peuvent pas produire de faux positif sur
+// une page publique (vérifié sur dave = publique pleine, davidehrlich = publique
+// vide) :
+//   1. `data-num-entries` > 0 alors qu'on ne parse AUCUN film : Letterboxd
+//      annonce des films mais nous les cache = liste masquée. Signal le plus sûr
+//      et indépendant de la langue. `num-entries="0"` = vraie liste vide (public).
+//   2. Jeton de visibilité du chemin ESI différent de « public ». Le HTML public
+//      porte toujours .../esi/watchlist/<id>/default/public:<n>/... ; une autre
+//      valeur (ou un futur « friends »/« you ») signalerait une visibilité restreinte.
+//   3. Repli : marqueur texte explicite. Volontairement étroit — « only visible
+//      to you » est un libellé du widget de réglages présent sur TOUTES les pages,
+//      on ne le matche donc surtout pas ici.
 const PRIVATE_RE = /hidden (?:their|this member's) watchlist|watchlist is private|hidden from the public/i;
-function isPrivate(html) {
-  return PRIVATE_RE.test(html);
+const ESI_POLICY_RE = /\/esi\/watchlist\/\d+\/default\/([a-z]+):/i;
+function isPrivate(html, total) {
+  if (total && total > 0) return true;                         // (1) compte annoncé, films masqués
+  const pol = html.match(ESI_POLICY_RE);
+  if (pol && pol[1].toLowerCase() !== "public") return true;   // (2) visibilité restreinte
+  return PRIVATE_RE.test(html);                                // (3) repli texte étroit
 }
 
 // Décodeur d'entités minimal (les titres passent par là : &amp;, &#39;, accents…).

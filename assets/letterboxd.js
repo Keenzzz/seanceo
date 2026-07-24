@@ -5,11 +5,11 @@
    (via le Worker `worker/`) et on la croise avec l'index des séances. Plus
    besoin d'exporter un fichier CSV.
 
-   ⚠️ MODE MOCK pour l'instant : le Worker n'est pas encore déployé, donc
-   `sync()` renvoie une fausse watchlist. SEUL LE RÉSEAU est simulé — le
-   croisement, le stockage et l'affichage ci-dessous sont le vrai code, celui
-   qui tournera en prod. Pour passer en réel : déployer le Worker (voir
-   worker/README.md), coller son URL dans WORKER_URL, et mettre MOCK = false.
+   Le Worker est DÉPLOYÉ et `MOCK = false` : `sync()` interroge la vraie
+   watchlist (voir WORKER_URL ci-dessous). Le mode MOCK reste dans le code
+   (mettre `MOCK = true`) pour développer le croisement/l'affichage sans
+   dépendre du réseau — SEUL le réseau y est simulé, tout le reste est le
+   vrai code de prod.
 
    Ce fichier est chargé sur TOUTES les pages (via `page()` dans build_site.py) :
    il expose `window.LB` (utilisé par lb-watchlist.js sur /ma-watchlist/) et
