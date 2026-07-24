@@ -366,6 +366,16 @@ html.js .city-list.filtered > .city-group.shown { display: block; }
   text-wrap: pretty;
 }
 
+/* « Aujourd'hui » dans le titre d'un marathon : pilule ambre pour ressortir
+   dans le h3 gris (l'ambre est la couleur d'accent du site). */
+.marathon-today {
+  color: var(--accent);
+  font-weight: 700;
+  background: var(--accent-soft);
+  padding: 1px 9px;
+  border-radius: 999px;
+}
+
 /* Marathon culte : deux classiques enchaînés, l'accent ambre le distingue */
 .marathon-cult { border: 1px solid var(--accent-deep); }
 .badge-cult {

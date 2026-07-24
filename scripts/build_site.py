@@ -1328,6 +1328,10 @@ salle passe au moins deux films du même réalisateur dans la semaine.</p>
 
         genre = min(idea["genres"]).capitalize()
         day = fr_date(date.fromisoformat(idea["day"]), today)
+        # Un marathon qui a lieu aujourd'hui : on fait ressortir « Aujourd'hui »
+        # en ambre (couleur d'accent du site) pour l'œil qui scanne la liste.
+        day_html = (f'<span class="marathon-today">{esc(day)}</span>'
+                    if idea["day"] == today_iso else esc(day))
         # Sur la section culte nationale, on rappelle la ville (les cartes par
         # ville sont déjà sous un titre de ville, inutile de la répéter).
         lieu = ""
@@ -1347,7 +1351,7 @@ salle passe au moins deux films du même réalisateur dans la semaine.</p>
                         f'à la fin du premier film.')
         cls = " marathon-cult" if idea["is_cult"] else ""
         return f"""<article class="marathon{cls}">
-<h3>{esc(day)}{lieu} · marathon {esc(genre)}{cult}</h3>
+<h3>{day_html}{lieu} · marathon {esc(genre)}{cult}</h3>
 <div class="grid marathon-films">{leg(first)}{leg(second)}</div>
 <p class="marathon-transfer">{transfer}</p>
 </article>"""
@@ -1359,7 +1363,7 @@ salle passe au moins deux films du même réalisateur dans la semaine.</p>
 <h2>🏛️ Marathons cultes</h2>
 <p class="meta">Deux classiques très bien notés sur Letterboxd à enchaîner le même jour,
 dans la même salle ou à deux pas. Le meilleur du répertoire, d'affilée.</p>
-{"".join(marathon_card(i, show_city=True) for i in cult_ideas)}
+{"".join(marathon_card(i, show_city=True) for i in sorted(cult_ideas, key=lambda i: i["day"]))}
 </section>"""
         jump = ('<a href="#m-cultes">🏛️ Cultes</a> ' if cult_ideas else "") + " ".join(
             f'<a href="#m-{s}">{esc(cities[s]["name"])}</a>' for s in marathon_cities)
@@ -1367,7 +1371,8 @@ dans la même salle ou à deux pas. Le meilleur du répertoire, d'affilée.</p>
             f'<section id="m-{s}"><h2>{esc(cities[s]["name"])}</h2>'
             f'<p class="meta"><a href="/ville/{s}/">Toutes les séances à '
             f'{esc(cities[s]["name"])} →</a></p>'
-            + "".join(marathon_card(i) for i in ideas_by_city[s]) + "</section>"
+            + "".join(marathon_card(i) for i in sorted(ideas_by_city[s], key=lambda i: i["day"]))
+            + "</section>"
             for s in marathon_cities)
         n_ideas = sum(len(v) for v in ideas_by_city.values())
         marathon_body = f"""<p class="lead">Deux films du même genre à enchaîner le même jour :
