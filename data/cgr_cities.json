@@ -5,7 +5,7 @@
   "cinemas": [
    "cgr-w8010"
   ],
-  "showtime_count": 272
+  "showtime_count": 216
  },
  "agen": {
   "slug": "agen",
@@ -13,7 +13,7 @@
   "cinemas": [
    "cgr-p0867"
   ],
-  "showtime_count": 312
+  "showtime_count": 253
  },
  "albi": {
   "slug": "albi",
@@ -22,7 +22,7 @@
    "cgr-p8100",
    "cgr-w8101"
   ],
-  "showtime_count": 347
+  "showtime_count": 275
  },
  "angouleme": {
   "slug": "angouleme",
@@ -30,7 +30,7 @@
   "cinemas": [
    "cgr-p0619"
   ],
-  "showtime_count": 383
+  "showtime_count": 314
  },
  "auxerre": {
   "slug": "auxerre",
@@ -38,7 +38,7 @@
   "cinemas": [
    "cgr-p0331"
   ],
-  "showtime_count": 278
+  "showtime_count": 225
  },
  "bayonne": {
   "slug": "bayonne",
@@ -46,7 +46,7 @@
   "cinemas": [
    "cgr-p0252"
   ],
-  "showtime_count": 251
+  "showtime_count": 201
  },
  "beaune": {
   "slug": "beaune",
@@ -54,7 +54,7 @@
   "cinemas": [
    "cgr-p0199"
   ],
-  "showtime_count": 183
+  "showtime_count": 145
  },
  "beauvais": {
   "slug": "beauvais",
@@ -62,7 +62,7 @@
   "cinemas": [
    "cgr-p1133"
   ],
-  "showtime_count": 428
+  "showtime_count": 357
  },
  "blagnac": {
   "slug": "blagnac",
@@ -70,7 +70,7 @@
   "cinemas": [
    "cgr-p0692"
   ],
-  "showtime_count": 522
+  "showtime_count": 434
  },
  "bordeaux": {
   "slug": "bordeaux",
@@ -78,7 +78,7 @@
   "cinemas": [
    "cgr-w3300"
   ],
-  "showtime_count": 390
+  "showtime_count": 327
  },
  "bourges": {
   "slug": "bourges",
@@ -86,7 +86,7 @@
   "cinemas": [
    "cgr-p0925"
   ],
-  "showtime_count": 416
+  "showtime_count": 346
  },
  "brest": {
   "slug": "brest",
@@ -94,7 +94,7 @@
   "cinemas": [
    "cgr-p0151"
   ],
-  "showtime_count": 254
+  "showtime_count": 214
  },
  "brignais": {
   "slug": "brignais",
@@ -102,7 +102,7 @@
   "cinemas": [
    "cgr-p0905"
   ],
-  "showtime_count": 527
+  "showtime_count": 436
  },
  "brive-la-gaillarde": {
   "slug": "brive-la-gaillarde",
@@ -110,7 +110,7 @@
   "cinemas": [
    "cgr-p1038"
   ],
-  "showtime_count": 295
+  "showtime_count": 238
  },
  "bruay-la-buissiere": {
   "slug": "bruay-la-buissiere",
@@ -118,7 +118,7 @@
   "cinemas": [
    "cgr-p0993"
   ],
-  "showtime_count": 408
+  "showtime_count": 338
  },
  "buxerolles": {
   "slug": "buxerolles",
@@ -126,7 +126,7 @@
   "cinemas": [
    "cgr-p0736"
   ],
-  "showtime_count": 401
+  "showtime_count": 333
  },
  "cagnes-sur-mer": {
   "slug": "cagnes-sur-mer",
@@ -134,7 +134,7 @@
   "cinemas": [
    "cgr-w0681"
   ],
-  "showtime_count": 333
+  "showtime_count": 280
  },
  "carcassonne": {
   "slug": "carcassonne",
@@ -143,7 +143,7 @@
    "cgr-p0395",
    "cgr-p5505"
   ],
-  "showtime_count": 408
+  "showtime_count": 336
  },
  "castres": {
   "slug": "castres",
@@ -151,7 +151,7 @@
   "cinemas": [
    "cgr-w0216"
   ],
-  "showtime_count": 330
+  "showtime_count": 275
  },
  "cherbourg-octeville": {
   "slug": "cherbourg-octeville",
@@ -160,7 +160,7 @@
    "cgr-p5823",
    "cgr-p0221"
   ],
-  "showtime_count": 522
+  "showtime_count": 428
  },
  "cholet": {
   "slug": "cholet",
@@ -168,7 +168,7 @@
   "cinemas": [
    "cgr-w4930"
   ],
-  "showtime_count": 351
+  "showtime_count": 293
  },
  "chalons-en-champagne": {
   "slug": "chalons-en-champagne",
@@ -176,7 +176,7 @@
   "cinemas": [
    "cgr-p8517"
   ],
-  "showtime_count": 295
+  "showtime_count": 235
  },
  "chateauroux": {
   "slug": "chateauroux",
@@ -184,7 +184,7 @@
   "cinemas": [
    "cgr-p7963"
   ],
-  "showtime_count": 214
+  "showtime_count": 172
  },
  "clermont-ferrand": {
   "slug": "clermont-ferrand",
@@ -194,7 +194,7 @@
    "cgr-p0146",
    "cgr-p6310"
   ],
-  "showtime_count": 733
+  "showtime_count": 601
  },
  "colmar": {
   "slug": "colmar",
@@ -202,7 +202,7 @@
   "cinemas": [
    "cgr-p3829"
   ],
-  "showtime_count": 406
+  "showtime_count": 334
  },
  "draguignan": {
   "slug": "draguignan",
@@ -210,7 +210,7 @@
   "cinemas": [
    "cgr-w8330"
   ],
-  "showtime_count": 240
+  "showtime_count": 193
  },
  "epinay-sur-seine": {
   "slug": "epinay-sur-seine",
@@ -218,7 +218,7 @@
   "cinemas": [
    "cgr-b0261"
   ],
-  "showtime_count": 409
+  "showtime_count": 337
  },
  "evry": {
   "slug": "evry",
@@ -226,7 +226,7 @@
   "cinemas": [
    "cgr-b0059"
   ],
-  "showtime_count": 338
+  "showtime_count": 275
  },
  "fontaine-le-comte": {
   "slug": "fontaine-le-comte",
@@ -234,7 +234,7 @@
   "cinemas": [
    "cgr-w8624"
   ],
-  "showtime_count": 273
+  "showtime_count": 219
  },
  "freyming-merlebach": {
   "slug": "freyming-merlebach",
@@ -242,7 +242,7 @@
   "cinemas": [
    "cgr-p5044"
   ],
-  "showtime_count": 369
+  "showtime_count": 294
  },
  "la-ciotat": {
   "slug": "la-ciotat",
@@ -250,7 +250,7 @@
   "cinemas": [
    "cgr-w1361"
   ],
-  "showtime_count": 271
+  "showtime_count": 225
  },
  "la-meziere": {
   "slug": "la-meziere",
@@ -258,7 +258,7 @@
   "cinemas": [
    "cgr-p4093"
   ],
-  "showtime_count": 406
+  "showtime_count": 346
  },
  "la-rochelle": {
   "slug": "la-rochelle",
@@ -267,7 +267,7 @@
    "cgr-p0194",
    "cgr-p0134"
   ],
-  "showtime_count": 603
+  "showtime_count": 488
  },
  "lanester": {
   "slug": "lanester",
@@ -275,7 +275,7 @@
   "cinemas": [
    "cgr-p9556"
   ],
-  "showtime_count": 420
+  "showtime_count": 351
  },
  "le-mans": {
   "slug": "le-mans",
@@ -283,7 +283,7 @@
   "cinemas": [
    "cgr-p0160"
   ],
-  "showtime_count": 160
+  "showtime_count": 132
  },
  "lescar": {
   "slug": "lescar",
@@ -291,7 +291,7 @@
   "cinemas": [
    "cgr-w6423"
   ],
-  "showtime_count": 308
+  "showtime_count": 248
  },
  "manosque": {
   "slug": "manosque",
@@ -299,7 +299,7 @@
   "cinemas": [
    "cgr-w4100"
   ],
-  "showtime_count": 284
+  "showtime_count": 228
  },
  "mantes-la-jolie": {
   "slug": "mantes-la-jolie",
@@ -307,7 +307,7 @@
   "cinemas": [
    "cgr-b0121"
   ],
-  "showtime_count": 313
+  "showtime_count": 263
  },
  "montauban": {
   "slug": "montauban",
@@ -316,7 +316,7 @@
    "cgr-p4956",
    "cgr-p0508"
   ],
-  "showtime_count": 446
+  "showtime_count": 366
  },
  "lattes": {
   "slug": "lattes",
@@ -324,7 +324,7 @@
   "cinemas": [
    "cgr-p0703"
   ],
-  "showtime_count": 412
+  "showtime_count": 346
  },
  "moulins": {
   "slug": "moulins",
@@ -332,7 +332,7 @@
   "cinemas": [
    "cgr-w0310"
   ],
-  "showtime_count": 323
+  "showtime_count": 262
  },
  "nanterre": {
   "slug": "nanterre",
@@ -340,7 +340,7 @@
   "cinemas": [
    "cgr-w9202"
   ],
-  "showtime_count": 348
+  "showtime_count": 279
  },
  "narbonne": {
   "slug": "narbonne",
@@ -348,7 +348,7 @@
   "cinemas": [
    "cgr-p1093"
   ],
-  "showtime_count": 303
+  "showtime_count": 247
  },
  "niort": {
   "slug": "niort",
@@ -356,7 +356,7 @@
   "cinemas": [
    "cgr-p5869"
   ],
-  "showtime_count": 400
+  "showtime_count": 330
  },
  "nimes": {
   "slug": "nimes",
@@ -364,7 +364,7 @@
   "cinemas": [
    "cgr-p3000"
   ],
-  "showtime_count": 320
+  "showtime_count": 253
  },
  "paris": {
   "slug": "paris",
@@ -372,7 +372,7 @@
   "cinemas": [
    "cgr-w7519"
   ],
-  "showtime_count": 218
+  "showtime_count": 182
  },
  "pau": {
   "slug": "pau",
@@ -381,7 +381,7 @@
    "cgr-p0198",
    "cgr-p0629"
   ],
-  "showtime_count": 590
+  "showtime_count": 481
  },
  "poitiers": {
   "slug": "poitiers",
@@ -389,7 +389,7 @@
   "cinemas": [
    "cgr-p0096"
   ],
-  "showtime_count": 114
+  "showtime_count": 95
  },
  "perigueux": {
   "slug": "perigueux",
@@ -397,7 +397,7 @@
   "cinemas": [
    "cgr-p0485"
   ],
-  "showtime_count": 338
+  "showtime_count": 291
  },
  "rivesaltes": {
   "slug": "rivesaltes",
@@ -405,7 +405,7 @@
   "cinemas": [
    "cgr-p0761"
   ],
-  "showtime_count": 404
+  "showtime_count": 340
  },
  "rodez": {
   "slug": "rodez",
@@ -413,7 +413,7 @@
   "cinemas": [
    "cgr-w1200"
   ],
-  "showtime_count": 355
+  "showtime_count": 282
  },
  "saint-quentin": {
   "slug": "saint-quentin",
@@ -421,7 +421,7 @@
   "cinemas": [
    "cgr-p0798"
   ],
-  "showtime_count": 389
+  "showtime_count": 320
  },
  "saint-saturnin": {
   "slug": "saint-saturnin",
@@ -429,7 +429,7 @@
   "cinemas": [
    "cgr-p0743"
   ],
-  "showtime_count": 411
+  "showtime_count": 343
  },
  "sarcelles": {
   "slug": "sarcelles",
@@ -437,7 +437,7 @@
   "cinemas": [
    "cgr-p9520"
   ],
-  "showtime_count": 342
+  "showtime_count": 279
  },
  "soissons": {
   "slug": "soissons",
@@ -445,7 +445,7 @@
   "cinemas": [
    "cgr-p1016"
   ],
-  "showtime_count": 123
+  "showtime_count": 102
  },
  "tarbes": {
   "slug": "tarbes",
@@ -453,7 +453,7 @@
   "cinemas": [
    "cgr-w6500"
   ],
-  "showtime_count": 364
+  "showtime_count": 299
  },
  "tarnos": {
   "slug": "tarnos",
@@ -461,7 +461,7 @@
   "cinemas": [
    "cgr-p0995"
   ],
-  "showtime_count": 396
+  "showtime_count": 324
  },
  "torcy": {
   "slug": "torcy",
@@ -469,7 +469,7 @@
   "cinemas": [
    "cgr-b9114"
   ],
-  "showtime_count": 562
+  "showtime_count": 466
  },
  "tours": {
   "slug": "tours",
@@ -478,7 +478,7 @@
    "cgr-p0704",
    "cgr-p5756"
   ],
-  "showtime_count": 773
+  "showtime_count": 644
  },
  "troyes": {
   "slug": "troyes",
@@ -486,7 +486,7 @@
   "cinemas": [
    "cgr-p0983"
   ],
-  "showtime_count": 470
+  "showtime_count": 386
  },
  "villefranche-sur-saone": {
   "slug": "villefranche-sur-saone",
@@ -494,7 +494,7 @@
   "cinemas": [
    "cgr-p6940"
   ],
-  "showtime_count": 337
+  "showtime_count": 278
  },
  "villenave-d-ornon": {
   "slug": "villenave-d-ornon",
@@ -502,7 +502,7 @@
   "cinemas": [
    "cgr-p0664"
   ],
-  "showtime_count": 517
+  "showtime_count": 428
  },
  "villeneuve-les-beziers": {
   "slug": "villeneuve-les-beziers",
@@ -510,7 +510,7 @@
   "cinemas": [
    "cgr-p8418"
   ],
-  "showtime_count": 431
+  "showtime_count": 356
  },
  "vitrolles": {
   "slug": "vitrolles",
@@ -518,6 +518,6 @@
   "cinemas": [
    "cgr-w1312"
   ],
-  "showtime_count": 401
+  "showtime_count": 337
  }
 }
