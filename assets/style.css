@@ -592,9 +592,14 @@ html:not(.js) .film-tools { display: none; }
 }
 
 /* Accent Letterboxd (vert) pour l'appel watchlist sur l'accueil et son onglet */
-.bouton-lb { border-color: var(--lb); color: var(--lb); }
-.bouton-lb:hover { background: var(--lb); color: #06130c; }
+/* Vert Letterboxd sur les boutons LB. Sélecteur à DEUX classes exprès :
+   `.bouton` (base ambre) est défini plus bas dans la feuille ; à specificité
+   égale il gagnerait par ordre de cascade et repeindrait le bouton en ambre.
+   `.bouton.bouton-lb` (0,2,0) passe devant `.bouton` (0,1,0) quel que soit l'ordre. */
+.bouton.bouton-lb { border-color: var(--lb); color: var(--lb); }
+.bouton.bouton-lb:hover { background: var(--lb); color: #06130c; border-color: var(--lb); }
 .wl-cta { border-color: #24402f; }
+.wl-cta[hidden] { display: none; }  /* .passerelle est en display:flex : garde anti-piège */
 .nav-wl { border-color: var(--lb) !important; }
 
 /* ---- Connexion Letterboxd par pseudo (page /ma-watchlist/) ---- */

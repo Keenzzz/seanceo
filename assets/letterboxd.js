@@ -377,6 +377,16 @@
 
   // —— API publique + auto-run du portail ————————————————————————————————————
 
+  // Masque l'encart « entrer mon pseudo » de l'accueil (.wl-cta) une fois le
+  // visiteur connecté : le bloc « ✨ Pour toi » a pris le relais, réinviter à
+  // saisir son pseudo n'aurait plus de sens.
+  function hideConnectCta() {
+    var els = document.querySelectorAll(".wl-cta");
+    for (var i = 0; i < els.length; i++) els[i].hidden = true;
+  }
+  // Après une synchro réussie (portail), masquer sans rechargement.
+  document.addEventListener("seanceo:lb-connected", hideConnectCta);
+
   window.LB = {
     sync: sync, load: load, save: save, patch: patch, clear: clear,
     loadIndex: loadIndex, cross: cross, render: render,
@@ -394,6 +404,8 @@
       openers[i].addEventListener("click", function () { showPortal(indexUrl); });
     }
     var state = load();
+    // Déjà connecté : on retire l'invitation « entrer mon pseudo » de l'accueil.
+    if (state && state.user) hideConnectCta();
     // Déjà connecté (`user`) ou déjà fermé (`seen`) → on ne rouvre pas tout seul.
     if (state && (state.user || state.seen)) return;
     // Sur la page dédiée, le portail ferait doublon avec le champ de la page.
