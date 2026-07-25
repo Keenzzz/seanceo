@@ -341,7 +341,7 @@
     }
     function success(data, n, f) {
       var pcard = overlay.querySelector(".lb-portal-card");
-      var label = (n || f) ? "Voir où les voir →" : "Ouvrir ma watchlist →";
+      var label = (n || f) ? "Voir les séances →" : "Ouvrir ma watchlist →";
       pcard.innerHTML =
         '<button type="button" class="lb-close" aria-label="Fermer">×</button>' +
         '<h2></h2>' +

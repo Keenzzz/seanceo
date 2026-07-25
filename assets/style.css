@@ -770,8 +770,12 @@ html:not(.js) .wl-tabs { display: none; }
 
 /* Encart d'entrée sur l'accueil + bouton sur les pages de rétrospective. */
 .cine-cta { border-color: var(--accent-deep); }
-.cine-extend { margin: 4px 0 20px; }
-.cine-extend .bouton { cursor: pointer; }
+/* Le bouton d'extension vers la cinémathèque : `.bouton` est un <a> inline, et
+   un inline à padding vertical déborde sur ses voisins sans les pousser (il
+   « mangeait » la ligne « Au programme »). inline-block respecte le padding, et
+   on autorise le retour à la ligne pour les noms longs. */
+.cine-extend { margin: 16px 0 22px; }
+.cine-extend .bouton { display: inline-block; white-space: normal; cursor: pointer; }
 
 /* Recommandations « Pour toi » sur l'accueil : bloc encadré (accent Letterboxd
    comme les autres modules Letterboxd), une sous-section par réalisateur. */

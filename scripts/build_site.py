@@ -1514,7 +1514,7 @@ passent cette semaine dans {n_salles} salle{"s" if n_salles > 1 else ""}
 ({esc(villes_txt)}){fin} Soit {c["n_shows"]} séances en tout.</p>
 {affiches}
 <p class="meta">Au programme : {esc(titres)}.</p>
-<p class="cine-extend"><a class="bouton" href="/cinematheque/?d={quote(c["director"])}">🎞️ Compose ta rétrospective {esc(c["director"])} dans toute la France →</a></p>
+<p class="cine-extend"><a class="bouton" href="/cinematheque/?d={quote(c["director"])}">🎞️ Compose ta rétrospective {esc(c["director"])} →</a></p>
 {"".join(blocs)}
 <p class="meta"><a class="more" href="/retrospectives/">← Toutes les rétrospectives en cours</a></p>"""
         # @graph : la page de collection ET chacune de ses séances. Le
