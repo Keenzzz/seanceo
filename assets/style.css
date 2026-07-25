@@ -205,6 +205,11 @@ h2 { margin-top: 2em; border-bottom: 1px solid var(--accent-deep); padding-botto
 .badge-chain { background: #2a2f3a; color: var(--muted); border: 1px solid #3a4150; }
 /* Reprises de classiques : badge doré, clin d'œil pellicule */
 .badge-classic { background: #33290f; color: var(--accent); border: 1px solid var(--accent-deep); }
+/* Anniversaire rond : même famille dorée que Classique, une nuance plus chaude
+   (reste dans la palette ambre du site, aucune couleur nouvelle). */
+.badge-anniv { background: #3a2a12; color: var(--accent); border: 1px solid var(--accent-deep); }
+/* Ligne anniversaire sur la fiche film : discrète, ton ambré. */
+.anniv-note { color: var(--accent); font-size: .92rem; margin: .4em 0 0; }
 
 .more { font-weight: 600; }
 
@@ -491,6 +496,23 @@ html:not(.js) .film-tools { display: none; }
   font-variant-numeric: tabular-nums;
 }
 .tri-versions { display: flex; gap: 6px; }
+
+/* Menus de filtre (décennie / genre / pays) : posés au build seulement quand la
+   liste contient de vraies valeurs. Menus natifs = accessibles et compacts. */
+.tri-filtres { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 10px; }
+.tri-filtre { display: inline-flex; align-items: center; gap: 6px; }
+.tri-filtre-nom { color: var(--muted); font-size: .85rem; }
+.tri-filtres select {
+  background: var(--sunk);
+  color: var(--text);
+  border: 1px solid #3a4150;
+  border-radius: 999px;
+  padding: 6px 10px;
+  font: inherit;
+  font-size: .85rem;
+  cursor: pointer;
+}
+.tri-filtres select:focus { outline: none; border-color: var(--accent); }
 
 .tri-compte { margin: 0 0 0 auto; color: var(--muted); font-size: .85rem; }
 

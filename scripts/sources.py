@@ -425,6 +425,14 @@ def _apply_tmdb(movies: dict, tmdb: dict) -> None:
             m["storyline"] = t["overview"]
         if t.get("genres"):
             m["genre"] = t["genres"]
+        # Pays d'origine PROPRE (nom FR), dans une clé DISTINCTE de `country` :
+        # les sources (SCARE/chaînes) remplissent déjà `country` avec des codes
+        # ISO bruts et concaténés (« fr », « befr »…), inexploitables pour un
+        # filtre lisible. `country_tmdb` n'est posé que par TMDB → le filtre pays
+        # reste gaté (invisible) tant que le cache TMDB ne porte pas le champ, et
+        # s'active proprement au prochain refresh (enrich_tmdb.py).
+        if t.get("country"):
+            m["country_tmdb"] = t["country"]
 
 
 def _apply_letterboxd(movies: dict, lb: dict) -> None:

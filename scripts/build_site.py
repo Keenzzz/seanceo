@@ -200,6 +200,40 @@ def classic_badge(movie: dict) -> str:
             if is_classic(movie) else "")
 
 
+# Un film « fête ses N ans » quand son âge tombe sur un cap rond : multiple de
+# 10 (au moins 20 ans, sinon ce n'est pas un anniversaire de patrimoine) ou un
+# quart de siècle marquant (25, 75). Calé sur l'année TMDB, comme is_classic.
+ANNIV_MIN_AGE = 20
+
+
+def anniversaire_age(movie: dict) -> int | None:
+    """Âge du film cette année s'il tombe sur un cap rond, sinon None."""
+    year = movie.get("year")
+    if not year:
+        return None
+    age = TODAY.year - year
+    if age >= ANNIV_MIN_AGE and (age % 10 == 0 or age in (25, 75)):
+        return age
+    return None
+
+
+def anniversaire_texte(age: int) -> str:
+    """Formulation FR d'un anniversaire ; le centenaire a droit à sa tournure."""
+    return "fête son siècle" if age == 100 else f"fête ses {age} ans"
+
+
+def anniversaire_badge(movie: dict) -> str:
+    """Pastille « 🎂 N ans » posée à côté du badge Classique. Le titre complet
+    (année de sortie → anniversaire) est dans l'attribut `title`, la pastille
+    reste courte pour ne pas encombrer la carte."""
+    age = anniversaire_age(movie)
+    if not age:
+        return ""
+    libelle = "100 ans" if age == 100 else f"{age} ans"
+    return (f' <span class="badge badge-anniv" title="Sorti en {movie["year"]},'
+            f' {anniversaire_texte(age)} en {TODAY.year}">🎂 {libelle}</span>')
+
+
 def showtime_pills(shows: list[dict]) -> str:
     """Horaires d'un film dans une salle. Une séance dont la source donne un
     lien de billetterie devient cliquable et mène directement à la réservation ;
@@ -248,18 +282,36 @@ def sort_title(title: str) -> str:
     return rest if rest and head in LEADING_ARTICLES else folded
 
 
+def genre_parts(movie: dict) -> list[str]:
+    """Genres INDIVIDUELS d'un film, dans leur graphie d'origine.
+    Le champ `genre` est une liste jointe (« Comédie, Drame ») ; le filtre par
+    genre travaille sur chaque genre séparément, pas sur la combinaison."""
+    return [p.strip() for p in (movie.get("genre") or "").split(",") if p.strip()]
+
+
+def genre_slug(name: str) -> str:
+    """Slug d'un genre pour l'attribut data-* et la valeur d'option (« Science-
+    Fiction » -> « sciencefiction »). Même normalisation que les clés LB."""
+    return lb_slug_key(name)
+
+
 def card_attrs(movie: dict) -> str:
     """Attributs data-* lus par tri.js pour trier et filtrer sans recharger.
     Toujours posés : une carte sait se classer quelle que soit la page qui
     l'affiche. Les valeurs absentes valent 0 (elles finissent en queue de tri).
-    `data-v` liste les versions du film (« vf vo ») pour le filtre VF/VO."""
+    `data-v` liste les versions du film (« vf vo ») pour le filtre VF/VO ;
+    `data-genres` liste les genres slugifiés ; `data-country` (vide tant que le
+    cache TMDB ne porte pas le pays) sert au filtre pays une fois enrichi."""
     key = movie["key"]
     versions = " ".join(sorted(MOVIE_VERSIONS.get(key, ())))
+    genres = " ".join(genre_slug(g) for g in genre_parts(movie))
     return (f' data-title="{esc(sort_title(movie["title"]))}"'
             f' data-lb="{movie.get("lb_rating") or 0}"'
             f' data-year="{movie.get("year") or 0}"'
             f' data-venues="{MOVIE_VENUES.get(key, 0)}"'
-            f' data-v="{esc(versions)}"')
+            f' data-v="{esc(versions)}"'
+            f' data-genres="{esc(genres)}"'
+            f' data-country="{esc(genre_slug(movie.get("country_tmdb") or ""))}"')
 
 
 def paris_cine_bridge() -> str:
@@ -311,7 +363,7 @@ def movie_card(movie: dict, movie_urls: dict, extra: str = "",
     return f"""<article class="movie-card"{card_attrs(movie)}>
 <a href="{url}">{poster}</a>
 <div class="movie-info">
-<h3><a href="{url}">{esc(movie["title"])}</a>{classic_badge(movie) if show_classic else ""}</h3>
+<h3><a href="{url}">{esc(movie["title"])}</a>{classic_badge(movie) if show_classic else ""}{anniversaire_badge(movie)}</h3>
 <p class="meta">{ligne}</p>
 {extra}
 </div>
@@ -416,12 +468,23 @@ SORTS = {
 }
 
 
-def film_tools(list_id: str, default: str, total: int) -> str:
+def _select(cls: str, label: str, all_label: str, options: list[tuple[str, str]]) -> str:
+    """Un menu déroulant de filtre (décennie, genre, pays). La 1re option
+    (valeur vide) ne filtre rien. `options` = liste (valeur, libellé) déjà triée."""
+    opts = f'<option value="">{esc(all_label)}</option>' + "".join(
+        f'<option value="{esc(v)}">{esc(t)}</option>' for v, t in options)
+    return (f'<label class="tri-filtre"><span class="tri-filtre-nom">{esc(label)}</span>'
+            f'<select class="{cls}">{opts}</select></label>')
+
+
+def film_tools(list_id: str, default: str, movies_list: list[dict]) -> str:
     """Barre de tri et de filtre au-dessus d'une liste de films (tri.js).
     Elle ne sert à rien sans JavaScript : le CSS la masque alors, et la liste
     reste affichée en entier dans l'ordre calculé au build.
     `default` : tri appliqué à l'arrivée, celui que la page assume
-    éditorialement (le classement Letterboxd sur /classiques/…)."""
+    éditorialement (le classement Letterboxd sur /classiques/…).
+    Les menus décennie/genre/pays sont construits à partir des VRAIS films de la
+    liste : on ne propose que des valeurs qui existent (pas de filtre vide)."""
     order = [default] + [k for k in SORTS if k != default]
     options = "".join(
         f'<button type="button" data-sort="{k}" data-dir="{SORTS[k][1]}"'
@@ -435,11 +498,42 @@ def film_tools(list_id: str, default: str, total: int) -> str:
         f'<button type="button" data-v="{v}" aria-pressed="{pressed}">{lbl}</button>'
         for v, lbl, pressed in (("", "Toutes", "true"), ("vo", "VO / VOST", "false"),
                                 ("vf", "VF", "false")))
+
+    # Décennies présentes, de la plus récente à la plus ancienne.
+    decades = sorted({(int(m["year"]) // 10) * 10 for m in movies_list if m.get("year")},
+                     reverse=True)
+    dec_sel = _select("tri-decennie", "Décennie", "Toutes",
+                      [(str(d), f"Années {d}") for d in decades]) if decades else ""
+
+    # Genres présents (graphie d'origine gardée pour l'affichage), triés A→Z.
+    genre_labels: dict[str, str] = {}
+    for m in movies_list:
+        for g in genre_parts(m):
+            genre_labels.setdefault(genre_slug(g), g)
+    genres_opts = sorted(((s, lbl) for s, lbl in genre_labels.items()),
+                         key=lambda t: t[1].lower())
+    genre_sel = _select("tri-genre", "Genre", "Tous", genres_opts) if genres_opts else ""
+
+    # Pays : GATÉ. Tant que le cache TMDB ne porte pas le pays, aucun film n'en
+    # a → le menu ne s'affiche pas du tout (il s'activera au prochain refresh).
+    country_labels: dict[str, str] = {}
+    for m in movies_list:
+        c = (m.get("country_tmdb") or "").strip()
+        if c:
+            country_labels.setdefault(genre_slug(c), c)
+    country_opts = sorted(country_labels.items(), key=lambda t: t[1].lower())
+    country_sel = _select("tri-pays", "Pays", "Tous", country_opts) if country_opts else ""
+
+    filtres = dec_sel + genre_sel + country_sel
+    filtres_html = (f'<span class="tri-filtres" role="group" aria-label="Filtrer les films">'
+                    f'{filtres}</span>' if filtres else "")
+
     return f"""<div class="film-tools" data-list="{list_id}" data-page="{PAGE_SIZE}">
 <span class="tri-tri" role="group" aria-label="Trier les films">
 <span class="tri-label">Trier par</span>{options}</span>
 <span class="tri-versions" role="group" aria-label="Filtrer par version">{versions}</span>
-<p class="tri-compte" id="tri-compte" role="status">{total} films</p>
+{filtres_html}
+<p class="tri-compte" id="tri-compte" role="status">{len(movies_list)} films</p>
 </div>
 <script src="/assets/tri.js" defer></script>"""
 
@@ -709,9 +803,14 @@ Les séances d'aujourd'hui d'abord, puis celles des jours suivants.{classics_bit
         # marcherait pas et tout doit rester visible (et lisible par un robot).
         city_list = (f'<div class="city-list{" filtered" if filtered else ""}" id="city-list">'
                      f'{"".join(rows)}</div>' if rows else "<p>Aucune séance à venir.</p>")
+        # Ligne anniversaire sous le synopsis : mise en avant éditoriale d'un
+        # film qui fête un cap rond cette année (calculé depuis l'année TMDB).
+        age_anniv = anniversaire_age(movie)
+        anniv_note = (f'<p class="anniv-note">🎂 Ce film {anniversaire_texte(age_anniv)} '
+                      f'en {TODAY.year}.</p>' if age_anniv else "")
         body = f"""<div class="film-head">{poster}<div>
-<p class="lead">{classic_badge(movie)} {note_lb(movie)} {esc(credits)}</p>
-<p>{esc(movie["storyline"])}</p>{trailer}</div></div>
+<p class="lead">{classic_badge(movie)}{anniversaire_badge(movie)} {note_lb(movie)} {esc(credits)}</p>
+<p>{esc(movie["storyline"])}</p>{anniv_note}{trailer}</div></div>
 <h2>Où voir {esc(movie["title"])} ?</h2>
 {city_jump}
 {prompt}
@@ -891,7 +990,7 @@ Les séances d'aujourd'hui d'abord, puis celles des jours suivants.{classics_bit
 <details class="all-cities"><summary>Toutes les villes ({len(cities)})</summary>
 <ul class="cities">{cities_html}</ul></details>
 <h2>Tous les films à l'affiche</h2>
-{film_tools("film-list", "lb", len(catalogue))}
+{film_tools("film-list", "lb", catalogue)}
 <div class="grid" id="film-list">{films_html}</div>
 <div class="passerelle">
 <p><span class="titre">{n_rep_films} classiques sont aussi à l'affiche</span>
@@ -1073,6 +1172,29 @@ placeholder="Chercher votre ville ({len(cities)} villes)…" aria-label="Cherche
 <script src="/assets/film.js" defer></script>
 <script src="/assets/proximite.js" defer></script>"""
 
+    # Anniversaires de l'année : films de patrimoine qui fêtent un cap rond ET
+    # repassent en salle (ils ont des séances à venir). Filon éditorial mis en
+    # avant sur l'accueil. Le cap le plus ancien d'abord (le plus marquant),
+    # puis les mieux notés.
+    anniv_films = sorted(
+        ((age, m) for k, m in movies.items()
+         if by_movie.get(k) and (age := anniversaire_age(m))),
+        key=lambda t: (-t[0], -(t[1].get("lb_rating") or 0)))
+    HOME_ANNIV = 12
+    anniv_cards = "".join(movie_card(m, movie_urls, show_classic=False)
+                          for _, m in anniv_films[:HOME_ANNIV])
+    reste_anniv = len(anniv_films) - HOME_ANNIV
+    anniv_more = (f'<p class="meta">Et {reste_anniv} autre'
+                  f'{"s" if reste_anniv > 1 else ""} film'
+                  f'{"s" if reste_anniv > 1 else ""} fêtent un cap cette année. '
+                  f'<a class="more" href="/classiques/">Parcourir les classiques →</a></p>'
+                  if reste_anniv > 0 else "")
+    anniv_section = (f"""<h2>🎂 Les anniversaires de {TODAY.year}</h2>
+<p class="meta">{len(anniv_films)} films de patrimoine fêtent un anniversaire rond cette année
+(un demi-siècle, un centenaire…) et repassent en salle. L'occasion de les revoir sur grand écran.</p>
+<div class="grid">{anniv_cards}</div>
+{anniv_more}""" if anniv_films else "")
+
     n_rep_cines = len({s["cinema"] for s in rep_shows})
     n_rep_villes = len(rep_cities)
     body = f"""<p class="lead">Les films anciens qui repassent en salle cette semaine, partout
@@ -1106,6 +1228,7 @@ Note moyenne donnée par les spectateurs de
 mieux notées de la semaine.</p>
 {agenda_html or "<p>Aucune séance unique repérée cette semaine.</p>"}
 
+{anniv_section}
 <h2>Rétrospectives en cours</h2>
 <p class="meta">Les cycles programmés en ce moment, salle par salle.
 <a class="more" href="/retrospectives/">Toutes les rétrospectives →</a></p>
@@ -1199,7 +1322,7 @@ repassent en ce moment dans {n_classic_cines} cinémas en France. Ils sont class
 que leur donnent les spectateurs de
 <a href="https://letterboxd.com" rel="noopener">Letterboxd</a>.</p>
 {city_finder}
-{film_tools("film-list", "lb", len(classics))}
+{film_tools("film-list", "lb", classics)}
 <div class="grid" id="film-list">{classics_html or "<p>Aucune reprise annoncée en ce moment.</p>"}</div>"""
     write("/classiques/", page(
         f"Films classiques et rétrospectives au cinéma — {SITE_NAME}",

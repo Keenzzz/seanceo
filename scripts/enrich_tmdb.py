@@ -88,6 +88,32 @@ def _director_ok(movie_id: int, src_director: str) -> bool:
     return any(_same_person(sd, td) for sd in src_dirs for td in tmdb_dirs)
 
 
+# ISO 3166-1 -> nom FR, pour les principaux pays de cinéma. Les autres pays
+# retombent sur le nom TMDB (anglais), rare et corrigeable au coup par coup.
+# TMDB ne localise pas `production_countries`, d'où cette table.
+COUNTRY_FR = {
+    "US": "États-Unis", "FR": "France", "GB": "Royaume-Uni", "IT": "Italie",
+    "DE": "Allemagne", "JP": "Japon", "KR": "Corée du Sud", "ES": "Espagne",
+    "SE": "Suède", "DK": "Danemark", "RU": "Russie", "SU": "URSS", "CN": "Chine",
+    "HK": "Hong Kong", "TW": "Taïwan", "IN": "Inde", "CA": "Canada",
+    "BE": "Belgique", "NL": "Pays-Bas", "CH": "Suisse", "AT": "Autriche",
+    "PL": "Pologne", "CZ": "Tchéquie", "HU": "Hongrie", "PT": "Portugal",
+    "GR": "Grèce", "IR": "Iran", "BR": "Brésil", "AR": "Argentine",
+    "MX": "Mexique", "AU": "Australie", "NO": "Norvège", "FI": "Finlande",
+    "IE": "Irlande", "TR": "Turquie",
+}
+
+
+def _country_fr(det: dict) -> str:
+    """Pays d'origine (1er pays de production) en français, pour le filtre pays.
+    TMDB rend les noms en anglais : on mappe l'ISO, avec repli sur le nom brut."""
+    pcs = det.get("production_countries") or []
+    if not pcs:
+        return ""
+    iso = pcs[0].get("iso_3166_1") or ""
+    return COUNTRY_FR.get(iso) or pcs[0].get("name") or ""
+
+
 def enrich_one(title: str, director: str = "") -> dict:
     """Cherche un film sur TMDB et renvoie ses données propres, ou {found: False}.
 
@@ -118,6 +144,7 @@ def enrich_one(title: str, director: str = "") -> dict:
         "overview": (det.get("overview") or m.get("overview") or "").strip(),
         "runtime": det.get("runtime") or None,
         "genres": ", ".join(g["name"] for g in (det.get("genres") or [])[:2]),
+        "country": _country_fr(det),
         "year": (m.get("release_date") or "")[:4],
     }
 

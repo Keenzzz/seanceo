@@ -3,7 +3,10 @@
    Les cartes portent toutes leurs critères en attributs data-* posés au build
    (card_attrs() dans build_site.py) : data-title (titre sans accent ni article
    initial), data-lb (note Letterboxd), data-year, data-venues (nombre de
-   salles) et data-v (« vf », « vo », ou les deux).
+   salles), data-v (« vf », « vo », ou les deux), data-genres (genres slugifiés
+   séparés par des espaces) et data-country (pays slugifié, vide tant que le
+   cache TMDB ne le porte pas). Les menus décennie/genre/pays viennent de
+   film_tools() ; la décennie est dérivée de data-year, pas d'un attribut à part.
 
    La liste est aussi paginée ici : le HTML contient toutes les cartes — pour
    les robots et pour les visiteurs sans JavaScript — mais on n'en montre que
@@ -18,6 +21,9 @@
 
   var tris = tools.querySelectorAll(".tri-tri button");
   var boutons = tools.querySelectorAll(".tri-versions button");
+  var selDecennie = tools.querySelector(".tri-decennie");
+  var selGenre = tools.querySelector(".tri-genre");
+  var selPays = tools.querySelector(".tri-pays");
   // Tri courant : le bouton marqué actif au build porte le tri par défaut
   // de la page, dans son sens naturel (meilleures notes d'abord, titres A→Z).
   var triActif = tools.querySelector('.tri-tri button[aria-pressed="true"]') || tris[0];
@@ -28,6 +34,9 @@
   var PAGE = parseInt(tools.dataset.page, 10) || 40;
   var affichees = PAGE;
   var version = "";
+  var decennie = "";  // ex. « 1970 » (borne basse de la décennie)
+  var genre = "";     // slug de genre, ex. « drame »
+  var pays = "";      // slug de pays, ex. « france »
 
   var plus = document.createElement("button");
   plus.type = "button";
@@ -49,8 +58,21 @@
     }
   };
 
+  /* Les filtres se cumulent : une carte doit passer TOUS ceux qui sont posés.
+     La décennie est calculée depuis l'année (borne basse = année arrondie à la
+     dizaine inférieure) ; genre et pays testent l'appartenance à une liste. */
+  function aGenre(carte) {
+    return (carte.dataset.genres || "").split(" ").indexOf(genre) >= 0;
+  }
   function correspond(carte) {
-    return !version || carte.dataset.v.split(" ").indexOf(version) >= 0;
+    if (version && carte.dataset.v.split(" ").indexOf(version) < 0) return false;
+    if (decennie) {
+      var y = nb(carte, "year");
+      if (!y || String(Math.floor(y / 10) * 10) !== decennie) return false;
+    }
+    if (genre && !aGenre(carte)) return false;
+    if (pays && carte.dataset.country !== pays) return false;
+    return true;
   }
 
   /* Une fiche sans valeur pour le critère courant (film sans note Letterboxd,
@@ -91,7 +113,7 @@
 
     var reste = trouves - Math.min(trouves, affichees);
     compte.textContent = trouves === 0
-      ? "Aucun film dans cette version"
+      ? "Aucun film ne correspond à ces filtres"
       : trouves + (trouves > 1 ? " films" : " film")
         + (reste ? " · " + Math.min(trouves, affichees) + " affichés" : "");
     plus.hidden = reste === 0;
@@ -136,6 +158,20 @@
       appliquer();
     });
   });
+
+  // Menus déroulants (décennie / genre / pays) : chaque changement re-filtre et
+  // repart du haut de la liste. Certains menus peuvent être absents de la page.
+  function brancherSelect(sel, poser) {
+    if (!sel) return;
+    sel.addEventListener("change", function () {
+      poser(sel.value);
+      affichees = PAGE;
+      appliquer();
+    });
+  }
+  brancherSelect(selDecennie, function (v) { decennie = v; });
+  brancherSelect(selGenre, function (v) { genre = v; });
+  brancherSelect(selPays, function (v) { pays = v; });
 
   plus.addEventListener("click", function () {
     affichees += PAGE;
