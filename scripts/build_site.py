@@ -145,7 +145,7 @@ def page(title: str, description: str, body: str, path: str,
 <a class="brand" href="/">🎬 {SITE_NAME}</a>
 <p class="tagline">Le répertoire en salle, partout en France</p>
 {FILM_SEARCH}
-<nav class="site-nav"><a class="nav-wl" href="/ma-watchlist/">Ma watchlist letterboxd</a> <a class="nav-wl" href="/pour-moi/">✨ Pour moi</a> <a href="/a-l-affiche/">🎬 À l'affiche</a> <a href="/retrospectives/">🎞️ Rétrospectives</a> <a href="/marathon/">🍿 Marathons</a> <a href="/carte/">🗺️ Carte</a></nav>
+<nav class="site-nav"><a class="nav-wl" href="/ma-watchlist/">Ma watchlist letterboxd</a> <a href="/a-l-affiche/">🎬 À l'affiche</a> <a href="/retrospectives/">🎞️ Rétrospectives</a> <a href="/marathon/">🍿 Marathons</a> <a href="/carte/">🗺️ Carte</a></nav>
 </header>
 <main>
 <a class="retour" id="retour" href="#" hidden>← Retour</a>
@@ -295,15 +295,19 @@ def genre_slug(name: str) -> str:
     return lb_slug_key(name)
 
 
-def card_attrs(movie: dict) -> str:
+def card_attrs(movie: dict, versions: set | None = None) -> str:
     """Attributs data-* lus par tri.js pour trier et filtrer sans recharger.
     Toujours posés : une carte sait se classer quelle que soit la page qui
     l'affiche. Les valeurs absentes valent 0 (elles finissent en queue de tri).
     `data-v` liste les versions du film (« vf vo ») pour le filtre VF/VO ;
     `data-genres` liste les genres slugifiés ; `data-country` (vide tant que le
-    cache TMDB ne porte pas le pays) sert au filtre pays une fois enrichi."""
+    cache TMDB ne porte pas le pays) sert au filtre pays une fois enrichi.
+    `versions` : ensemble de versions à poser sur `data-v` À LA PLACE des
+    versions nationales — la page ville s'en sert pour que le filtre langue
+    reflète les séances DE CETTE VILLE, pas de la France entière."""
     key = movie["key"]
-    versions = " ".join(sorted(MOVIE_VERSIONS.get(key, ())))
+    vers = versions if versions is not None else MOVIE_VERSIONS.get(key, ())
+    versions = " ".join(sorted(vers))
     genres = " ".join(genre_slug(g) for g in genre_parts(movie))
     return (f' data-title="{esc(sort_title(movie["title"]))}"'
             f' data-lb="{movie.get("lb_rating") or 0}"'
@@ -344,11 +348,14 @@ def note_lb(movie: dict) -> str:
 
 
 def movie_card(movie: dict, movie_urls: dict, extra: str = "",
-               show_rating: bool = True, show_classic: bool = True) -> str:
+               show_rating: bool = True, show_classic: bool = True,
+               versions: set | None = None) -> str:
     """`show_rating=False` masque la note — utile quand la carte l'affiche
     déjà ailleurs (le classement de /classiques/ la met dans son propre rang).
     `show_classic=False` masque le badge Classique — bruit pur sur une page
-    qui ne liste QUE des classiques."""
+    qui ne liste QUE des classiques.
+    `versions` : versions locales à poser sur `data-v` (voir card_attrs) —
+    utilisé par la page ville pour un filtre langue propre à la ville."""
     url = movie_urls[movie["key"]]
     poster = (f'<img src="{esc(movie["poster"])}" alt="Affiche de {esc(movie["title"])}" loading="lazy">'
               if movie["poster"] else '<div class="noposter">🎞️</div>')
@@ -360,7 +367,7 @@ def movie_card(movie: dict, movie_urls: dict, extra: str = "",
     # La note est du HTML (elle porte sa couleur), le reste du texte échappé.
     ligne = " · ".join(filter(None, [note_lb(movie) if show_rating else "",
                                      esc(meta)]))
-    return f"""<article class="movie-card"{card_attrs(movie)}>
+    return f"""<article class="movie-card"{card_attrs(movie, versions)}>
 <a href="{url}">{poster}</a>
 <div class="movie-info">
 <h3><a href="{url}">{esc(movie["title"])}</a>{classic_badge(movie) if show_classic else ""}{anniversaire_badge(movie)}</h3>
@@ -467,6 +474,10 @@ SORTS = {
     "venues": ("Cinémas", "desc", "↑", "↓"),
 }
 
+# Nombre max de genres proposés dans le filtre (les plus représentés) : au-delà,
+# le menu déroulant devient un mur de genres à un ou deux films.
+GENRE_FILTER_MAX = 10
+
 
 def _select(cls: str, label: str, all_label: str, options: list[tuple[str, str]]) -> str:
     """Un menu déroulant de filtre (décennie, genre, pays). La 1re option
@@ -505,12 +516,19 @@ def film_tools(list_id: str, default: str, movies_list: list[dict]) -> str:
     dec_sel = _select("tri-decennie", "Décennie", "Toutes",
                       [(str(d), f"Années {d}") for d in decades]) if decades else ""
 
-    # Genres présents (graphie d'origine gardée pour l'affichage), triés A→Z.
+    # Genres : on n'en propose que les PLUS PERTINENTS (les plus représentés
+    # dans la liste), plafonnés à GENRE_FILTER_MAX, sinon le menu déroule une
+    # vingtaine d'entrées dont beaucoup n'ont qu'un ou deux films. Comptage sur
+    # les genres individuels, sélection par fréquence, réaffichage alphabétique.
     genre_labels: dict[str, str] = {}
+    genre_count: dict[str, int] = {}
     for m in movies_list:
         for g in genre_parts(m):
-            genre_labels.setdefault(genre_slug(g), g)
-    genres_opts = sorted(((s, lbl) for s, lbl in genre_labels.items()),
+            s = genre_slug(g)
+            genre_labels.setdefault(s, g)
+            genre_count[s] = genre_count.get(s, 0) + 1
+    top_genres = sorted(genre_count, key=lambda s: -genre_count[s])[:GENRE_FILTER_MAX]
+    genres_opts = sorted(((s, genre_labels[s]) for s in top_genres),
                          key=lambda t: t[1].lower())
     genre_sel = _select("tri-genre", "Genre", "Tous", genres_opts) if genres_opts else ""
 
@@ -536,6 +554,27 @@ def film_tools(list_id: str, default: str, movies_list: list[dict]) -> str:
 <p class="tri-compte" id="tri-compte" role="status">{len(movies_list)} films</p>
 </div>
 <script src="/assets/tri.js" defer></script>"""
+
+
+def ville_tools() -> str:
+    """Barre de la page ville : trier les films par note Letterboxd et filtrer
+    par langue (VO/VOST ou VF). `ville.js` l'applique SUR PLACE, cinéma par
+    cinéma (la page reste groupée par salle). Sans JavaScript, le CSS la masque
+    et le programme reste affiché en entier, dans l'ordre du jour."""
+    langues = "".join(
+        f'<button type="button" data-v="{v}" aria-pressed="{p}">{lbl}</button>'
+        for v, lbl, p in (("", "Toutes", "true"), ("vo", "VO / VOST", "false"),
+                          ("vf", "VF", "false")))
+    return f"""<div class="film-tools ville-tools" role="group" aria-label="Trier et filtrer les films">
+<span class="tri-tri" role="group" aria-label="Trier les films">
+<span class="tri-label">Trier par</span>
+<button type="button" class="ville-sort" data-sort="imminence" aria-pressed="true"><span class="tri-nom">Prochaine séance</span></button>
+<button type="button" class="ville-sort" data-sort="lb" aria-pressed="false"><span class="tri-nom">Note Letterboxd</span></button>
+</span>
+<span class="tri-versions" role="group" aria-label="Filtrer par langue">{langues}</span>
+<p class="tri-compte ville-compte" role="status"></p>
+</div>
+<script src="/assets/ville.js" defer></script>"""
 
 
 # --- Construction ---------------------------------------------------------
@@ -653,6 +692,17 @@ def main() -> int:
         blocks = []
         city_movie_keys: set[str] = set()
         sorted_cids = sorted(city["cinemas"], key=lambda c: cinemas[c]["name"])
+        # Versions disponibles DANS CETTE VILLE par film : le filtre langue de la
+        # page ville doit refléter les séances locales, pas la moyenne nationale
+        # (un film en VF ici peut être en VO ailleurs).
+        city_versions: dict[str, set] = defaultdict(set)
+        for cid in sorted_cids:
+            for s in by_cinema[cid]:
+                if s["start"][:10] <= horizon:
+                    if s["version"] == "VF":
+                        city_versions[s["movie"]].add("vf")
+                    elif s["version"] in ("VO", "VOST"):
+                        city_versions[s["movie"]].add("vo")
         for cid in sorted_cids:
             cinema = cinemas[cid]
             shows = [s for s in by_cinema[cid] if s["start"][:10] <= horizon]
@@ -667,11 +717,13 @@ def main() -> int:
                 todays = [s for s in ss if s["start"][:10] == today_iso]
                 if todays:
                     films_today.append(movie_card(movies[mk], movie_urls,
-                                                  showtime_pills(todays)))
+                                                  showtime_pills(todays),
+                                                  versions=city_versions[mk]))
                 else:
                     films_later.append(movie_card(
                         movies[mk], movie_urls,
-                        f'<p class="meta">prochaine séance : {fr_date(date.fromisoformat(ss[0]["start"][:10]), today)}</p>'))
+                        f'<p class="meta">prochaine séance : {fr_date(date.fromisoformat(ss[0]["start"][:10]), today)}</p>',
+                        versions=city_versions[mk]))
             today_html = f'<div class="films">{"".join(films_today)}</div>' if films_today else ""
             later_html = ""
             if films_later:
@@ -712,8 +764,11 @@ def main() -> int:
         # Paris (page d'aiguillage : l'encadré doit sauter aux yeux, pas
         # dormir sous la liste des 31 cinémas).
         bridge = paris_cine_bridge() if slug == "paris" else ""
+        # Barre tri/langue seulement s'il y a assez de films pour que trier ou
+        # filtrer ait un sens (sinon elle encombre pour rien).
+        tools = ville_tools() if len(city_movie_keys) >= 5 else ""
         body = f"""<p class="lead">{" et ".join(parts)} à {esc(city["name"])}.
-Les séances d'aujourd'hui d'abord, puis celles des jours suivants.{classics_bit}</p>{bridge}{toc}{"".join(blocks)}"""
+Les séances d'aujourd'hui d'abord, puis celles des jours suivants.{classics_bit}</p>{bridge}{toc}{tools}{"".join(blocks)}"""
         write(path, page(
             f"Cinéma à {city['name']} : séances et horaires — {SITE_NAME}",
             f"Quel film voir à {city['name']} ? Séances et horaires des {n_cine} cinéma(s) "
@@ -1252,10 +1307,18 @@ en France : reprises, copies restaurées, séances de ciné-club.
 
 <div class="passerelle wl-cta">
 <p><span class="titre">Vous êtes sur Letterboxd ?</span>
-<span class="meta">Déposez votre watchlist : Séancéo vous dit lesquels de vos films à voir sont
-à l'affiche, et où près de chez vous. Tout se passe dans votre navigateur.</span></p>
-<a class="bouton bouton-lb" href="/ma-watchlist/">Voir ma watchlist →</a>
+<span class="meta">Entrez votre pseudo : Séancéo vous dit lesquels de vos films à voir sont à
+l'affiche <strong>et vous recommande des reprises selon vos réalisateurs préférés</strong>.
+Tout se passe dans votre navigateur.</span></p>
+<button type="button" class="bouton bouton-lb" data-lb-open>Entrer mon pseudo</button>
+<a class="bouton" href="/ma-watchlist/">Ma watchlist en détail →</a>
 </div>
+
+<!-- Recommandations par réalisateur, injectées par lb-reco.js quand le visiteur
+     s'est connecté (portail Letterboxd). Absent du HTML pour un visiteur non
+     connecté et pour les robots : purement personnel. -->
+<div id="reco-home" data-agenda="{BASE_PATH}/agenda-index.json" data-wl="{BASE_PATH}/watchlist-index.json" data-directors="{BASE_PATH}/film-directors.json" hidden></div>
+<script src="/assets/lb-reco.js" defer></script>
 
 <h2>À ne pas rater</h2>
 <p class="meta">Des séances qui ne repassent nulle part ailleurs en France cette semaine.</p>
@@ -1630,41 +1693,6 @@ stocké côté serveur, et ta géolocalisation (pour trier par proximité) reste
         watchlist_body, "/ma-watchlist/", h1="Votre watchlist au cinéma",
         top_link=True))
     urls.append("/ma-watchlist/")
-
-    # ----- Page « Pour moi » : recommandations par affinité de réalisateur -----
-    # Le visiteur donne son pseudo ; le Worker /taste/<pseudo> déduit ses
-    # réalisateurs favoris de ses films les mieux notés, et lb-reco.js croise ces
-    # réalisateurs avec le répertoire à l'affiche (agenda-index porte le champ
-    # réalisateur). Tout se construit en JS après la saisie : la page servie est
-    # légère et indexable (aucune donnée personnelle dans le HTML).
-    reco_body = f"""<p class="lead">Donne ton <strong>pseudo</strong> Letterboxd : à partir de
-tes films les mieux notés, Séancéo repère tes <strong>réalisateurs préférés</strong> et te montre
-lesquels de leurs films <strong>repassent en salle</strong> près de chez toi. Une façon de
-prolonger tes coups de cœur sur grand écran.</p>
-
-<form class="lb-connect" id="reco-form" data-agenda="{BASE_PATH}/agenda-index.json" data-wl="{BASE_PATH}/watchlist-index.json" data-directors="{BASE_PATH}/film-directors.json">
-<label for="reco-user">Ton pseudo Letterboxd</label>
-<div class="lb-field">
-<input class="lb-input" id="reco-user" type="text" autocomplete="off" autocapitalize="none"
-spellcheck="false" placeholder="pseudo Letterboxd" aria-label="Ton pseudo Letterboxd">
-<button class="bouton bouton-lb" type="submit">Voir mes recommandations</button>
-</div>
-</form>
-<p class="lb-connect-note">On lit seulement tes films notés <strong>publics</strong>. Rien n'est
-stocké côté serveur : l'analyse ne sert qu'à afficher tes recommandations sur ton appareil.</p>
-
-<div id="reco-status" aria-live="polite"></div>
-<div id="reco-results" aria-live="polite"></div>
-
-<p class="meta reco-footnote">Tu cherches plutôt tes films à voir qui passent, ou l'import d'une
-liste ? <a href="/ma-watchlist/">Ma watchlist Letterboxd →</a></p>
-<script src="/assets/lb-reco.js" defer></script>"""
-    write("/pour-moi/", page(
-        f"Tes réalisateurs préférés au cinéma — {SITE_NAME}",
-        "Donne ton pseudo Letterboxd : Séancéo déduit tes réalisateurs préférés de tes "
-        "films les mieux notés et te montre lesquels de leurs films repassent en salle.",
-        reco_body, "/pour-moi/", h1="Le répertoire fait pour vous", top_link=True))
-    urls.append("/pour-moi/")
 
     # ----- Carte des cinémas -----
     # Données injectées dans la page (pas de fetch) : nom, ville, coords, chaîne,

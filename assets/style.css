@@ -519,6 +519,10 @@ html:not(.js) .film-tools { display: none; }
 /* Cartes masquées par le filtre ou la pagination : `hidden` seul ne suffit
    pas, `.movie-card { display: flex }` le prendrait de vitesse. */
 .movie-card[hidden] { display: none; }
+/* Page ville : un cinéma (ou son repli « plus tard ») vidé par le filtre langue
+   est masqué — mêmes gardes contre le piège `display:` vs `hidden`. */
+.cinema-block[hidden] { display: none; }
+.more-films[hidden] { display: none; }
 
 /* Rang du classement Letterboxd : sans objet dès qu'on trie autrement */
 .film-list.hors-classement .rang-lb, .grid.hors-classement .rang-lb { display: none; }
@@ -720,11 +724,20 @@ html:not(.js) .wl-tabs { display: none; }
 .seance-book { color: var(--accent); font-weight: 600; white-space: nowrap; }
 .seance-book:hover { text-decoration: underline; }
 
-/* Recommandations /pour-moi/ : une section par réalisateur favori. */
-.reco-dir { margin: 26px 0; }
-.reco-dir h2 { margin-bottom: 2px; }
+/* Recommandations « Pour toi » sur l'accueil : bloc encadré (accent Letterboxd
+   comme les autres modules Letterboxd), une sous-section par réalisateur. */
+#reco-home {
+  margin: 26px 0;
+  padding: 18px 18px 8px;
+  background: #12211a;
+  border: 1px solid #24402f;
+  border-left: 3px solid var(--lb);
+  border-radius: var(--radius);
+}
+.reco-home-titre { margin: 0 0 2px; border: none; padding: 0; }
+.reco-dir { margin: 22px 0; }
+.reco-dir h3 { margin-bottom: 2px; }
 .reco-sub { color: var(--muted); font-size: .92rem; margin: 0 0 14px; text-wrap: pretty; }
-.reco-footnote { margin-top: 30px; }
 
 /* ---- Portail d'accueil (injecté en JS, absent du HTML source) ---- */
 .lb-portal {

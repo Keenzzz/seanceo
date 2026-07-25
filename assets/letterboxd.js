@@ -271,9 +271,10 @@
     overlay.innerHTML =
       '<div class="lb-portal-card">' +
         '<button type="button" class="lb-close" aria-label="Fermer">×</button>' +
-        '<h2 id="lb-portal-h">🎬 Ta watchlist Letterboxd, en salle</h2>' +
+        '<h2 id="lb-portal-h">🎬 Letterboxd + Séancéo</h2>' +
         '<p>Entre ton pseudo Letterboxd : on te montre lesquels de tes films à voir ' +
-          'repassent au cinéma, et où.</p>' +
+          'repassent au cinéma, et on te recommande des reprises selon tes ' +
+          '<strong>réalisateurs préférés</strong>.</p>' +
         '<form class="lb-field" id="lb-portal-form">' +
           '<input class="lb-input" id="lb-portal-user" type="text" autocomplete="off" ' +
             'autocapitalize="none" spellcheck="false" placeholder="pseudo Letterboxd" ' +
@@ -316,6 +317,9 @@
           patch({ user: data.user, films: data.films || [], favorites: data.favorites || [],
                   empty: !!data.empty, private: !!data.private,
                   total: data.total || 0, at: Date.now() });
+          // Signale la connexion : l'accueil (lb-reco.js) affiche alors les
+          // recommandations par réalisateur sans rechargement.
+          document.dispatchEvent(new CustomEvent("seanceo:lb-connected", { detail: data }));
           // On compte tout de suite ce qui est à l'affiche pour la récompense.
           return loadIndex(indexUrl).then(function (index) {
             var favHits = cross(data.favorites || [], index);
@@ -376,15 +380,21 @@
   window.LB = {
     sync: sync, load: load, save: save, patch: patch, clear: clear,
     loadIndex: loadIndex, cross: cross, render: render,
-    empreinte: empreinte, errText: errText,
+    empreinte: empreinte, errText: errText, showPortal: showPortal,
     WORKER_URL: WORKER_URL, MOCK: MOCK
   };
 
   document.addEventListener("DOMContentLoaded", function () {
     var script = document.getElementById("lb-core");
     var indexUrl = script && script.dataset.index ? script.dataset.index : "/watchlist-index.json";
+    // Boutons « entrer mon pseudo » (encart wl-cta de l'accueil) : ils rouvrent
+    // le portail, y compris pour un visiteur déjà connecté (changer de pseudo).
+    var openers = document.querySelectorAll("[data-lb-open]");
+    for (var i = 0; i < openers.length; i++) {
+      openers[i].addEventListener("click", function () { showPortal(indexUrl); });
+    }
     var state = load();
-    // Déjà connecté (`user`) ou déjà fermé (`seen`) → on ne rouvre pas.
+    // Déjà connecté (`user`) ou déjà fermé (`seen`) → on ne rouvre pas tout seul.
     if (state && (state.user || state.seen)) return;
     // Sur la page dédiée, le portail ferait doublon avec le champ de la page.
     if (/\/ma-watchlist\//.test(location.pathname)) return;

@@ -1,37 +1,35 @@
-/* Séancéo — page /pour-moi/ : recommandations par affinité de réalisateur
-   ======================================================================
+/* Séancéo — recommandations « Pour toi » sur l'ACCUEIL
+   ====================================================
 
-   On lit la watchlist du visiteur + ses 4 films favoris (route Worker
-   /watchlist/<pseudo>, via LB.sync — les SEULES pages Letterboxd lisibles
-   depuis une IP datacenter ; les pages « films notés » y sont bloquées en 403).
-   Pour chacun de ces films, on retrouve le RÉALISATEUR dans NOTRE catalogue
-   (film-directors.json) — aucun fetch de fiche film. On agrège : le réalisateur
-   qui revient le plus (les favoris comptant plus lourd) est un réalisateur de
-   prédilection. On recommande alors son répertoire À L'AFFICHE (agenda-index,
-   qui porte le réalisateur), en excluant les films déjà listés par le visiteur.
+   Intégrées à l'accueil (pas de page ni d'onglet dédiés) : dès que le visiteur
+   a saisi son pseudo (portail Letterboxd de letterboxd.js), on affiche un bloc
+   « ✨ Pour toi » avec le répertoire à l'affiche signé par ses réalisateurs de
+   prédilection.
 
-   Limite assumée : seuls les films du visiteur PRÉSENTS dans notre catalogue
-   donnent un signal (on ne connaît pas le réalisateur des autres). Les 4 favoris,
-   souvent des classiques, ont un bon taux de recouvrement.
+   On déduit ces réalisateurs de sa watchlist + ses 4 favoris (les seules pages
+   Letterboxd lisibles depuis le Worker ; les pages « films notés » y sont
+   bloquées en 403). Le réalisateur de chacun de ces films est retrouvé dans
+   NOTRE catalogue (film-directors.json) — aucun fetch de fiche film. On
+   recommande alors leur répertoire à l'affiche (agenda-index, qui porte le
+   réalisateur), en excluant les films déjà listés (pure découverte).
 
-   S'appuie sur window.LB (assets/letterboxd.js) : LB.sync (watchlist+favoris),
-   LB.empreinte, LB.errText, LB.load. */
+   Déclenché de deux façons : au chargement si le visiteur est déjà connecté
+   (localStorage), et sur l'événement `seanceo:lb-connected` émis par le portail.
+   S'appuie sur window.LB (empreinte, load). */
 
 (function () {
   "use strict";
 
-  var form = document.getElementById("reco-form");
-  if (!form || !window.LB) return;
-  var input = document.getElementById("reco-user");
-  var statusEl = document.getElementById("reco-status");
-  var results = document.getElementById("reco-results");
-  var agendaUrl = form.dataset.agenda;
-  var wlUrl = form.dataset.wl;
-  var dirUrl = form.dataset.directors;
+  var home = document.getElementById("reco-home");
+  if (!home || !window.LB) return;
+  var agendaUrl = home.dataset.agenda;
+  var wlUrl = home.dataset.wl;
+  var dirUrl = home.dataset.directors;
 
   var FAV_WEIGHT = 3;   // un favori pèse autant que 3 films de watchlist
   var MIN_SCORE = 3;    // seuil pour retenir un réalisateur (1 favori, ou 3 watchlist)
-  var MAX_SECTIONS = 8; // au-delà, la page devient un mur
+  var MAX_SECTIONS = 6; // sur l'accueil, on reste compact
+  var MAX_PER_DIR = 8;  // films montrés par réalisateur
 
   var _agenda = null, _wl = null, _dir = null;
   function loadIndexes() {
@@ -43,9 +41,6 @@
     ]).then(function (a) { _agenda = a[0]; _wl = a[1]; _dir = a[2]; });
   }
 
-  // Réalisateur(s) d'un film du visiteur, retrouvé dans notre catalogue par
-  // empreinte de slug (repli titre + année, puis titre). Renvoie la chaîne brute
-  // (« Joel Coen, Ethan Coen » possible), découpée ensuite par réalisateur.
   function lookupDir(f) {
     var kSlug = LB.empreinte(f.slug), kName = LB.empreinte(f.name);
     return _dir[kSlug] || _dir[kName + (f.year || "")] || _dir[kName] || null;
@@ -55,8 +50,6 @@
       .filter(function (x) { return x; });
   }
 
-  // Empreintes de tous les films déjà listés par le visiteur : on ne lui
-  // recommande pas un film qu'il a déjà (watchlist ou favori).
   function seenSet(data) {
     var seen = {};
     function mark(f) {
@@ -69,9 +62,6 @@
     return seen;
   }
 
-  // Réalisateurs de prédilection : score = somme des poids des films du visiteur
-  // signés par ce réalisateur (favoris pondérés). On garde aussi jusqu'à 3 noms
-  // de films « déclencheurs » pour l'expliquer.
   function tasteDirectors(data) {
     var score = {};
     function add(f, weight) {
@@ -92,9 +82,6 @@
       .sort(function (a, b) { return b.score - a.score || a.name.localeCompare(b.name); });
   }
 
-  // Index réalisateur -> films de répertoire À L'AFFICHE, depuis agenda-index
-  // (dédoublonné par URL de fiche ; la note/l'affiche viennent de watchlist-index
-  // sous la même clé). Chaque film porte sa clé d'empreinte pour l'exclusion.
   function screeningByDir() {
     var byDir = {}, seenU = {};
     Object.keys(_agenda).forEach(function (k) {
@@ -102,8 +89,7 @@
       if (seenU[e.u]) return;
       seenU[e.u] = 1;
       var meta = _wl[k] || {};
-      var film = { key: k, t: e.t, u: e.u, s: e.s,
-                   p: meta.p || "", r: meta.r || 0 };
+      var film = { key: k, t: e.t, u: e.u, s: e.s, p: meta.p || "", r: meta.r || 0 };
       (e.dk || []).forEach(function (dk) {
         (byDir[dk] = byDir[dk] || []).push(film);
       });
@@ -149,7 +135,7 @@
 
     var info = document.createElement("div");
     info.className = "movie-info";
-    var h = document.createElement("h3");
+    var h = document.createElement("h4");
     var ha = document.createElement("a");
     ha.href = film.u; ha.textContent = film.t;
     h.appendChild(ha);
@@ -191,7 +177,7 @@
   function section(dir, films) {
     var sec = document.createElement("section");
     sec.className = "reco-dir";
-    var h = document.createElement("h2");
+    var h = document.createElement("h3");
     h.textContent = "Parce que tu aimes " + dir.name;
     sec.appendChild(h);
     if (dir.films.length) {
@@ -202,13 +188,15 @@
     }
     var grid = document.createElement("div");
     grid.className = "grid";
-    films.forEach(function (f) { grid.appendChild(card(f)); });
+    films.slice(0, MAX_PER_DIR).forEach(function (f) { grid.appendChild(card(f)); });
     sec.appendChild(grid);
     return sec;
   }
 
-  function render(data) {
-    results.textContent = "";
+  // Construit le bloc « Pour toi » dans #reco-home. Si rien à recommander, on
+  // laisse le bloc masqué : inutile d'encombrer l'accueil d'un message négatif.
+  function renderInto(data) {
+    if (!data || !data.user) { home.hidden = true; return; }
     var dirs = tasteDirectors(data);
     var byDir = screeningByDir();
     var seen = seenSet(data);
@@ -224,60 +212,37 @@
       matched.push({ dir: dir, films: films });
     });
 
-    var summary = document.createElement("p");
-    summary.className = "wl-summary";
-    if (!matched.length) {
-      // Deux causes possibles : pas d'affinité détectable (peu de recouvrement
-      // avec notre catalogue), ou aucun de ces réalisateurs à l'affiche.
-      summary.textContent = dirs.length
-        ? "Tes réalisateurs de prédilection n'ont pas de reprise à l'affiche pour l'instant. "
-          + "La programmation change souvent, reviens y jeter un œil."
-        : "On n'a pas pu déduire tes réalisateurs préférés : trop peu de tes films figurent "
-          + "dans notre catalogue de reprises. Réessaie avec une watchlist plus fournie.";
-      results.appendChild(summary);
-      return;
-    }
-    summary.innerHTML = "D'après ta watchlist et tes favoris, voici le répertoire à l'affiche "
-      + "signé par <strong>" + matched.length + "</strong> réalisateur"
-      + (matched.length > 1 ? "s" : "") + " que tu aimes.";
-    results.appendChild(summary);
+    if (!matched.length) { home.hidden = true; return; }
+
+    home.textContent = "";
+    var h = document.createElement("h2");
+    h.className = "reco-home-titre";
+    h.textContent = "✨ Pour toi, " + data.user; // textContent = aucune injection
+    home.appendChild(h);
+    var sub = document.createElement("p");
+    sub.className = "meta";
+    sub.textContent = "D'après ta watchlist et tes favoris Letterboxd : le répertoire à "
+      + "l'affiche signé par tes réalisateurs préférés.";
+    home.appendChild(sub);
     matched.slice(0, MAX_SECTIONS).forEach(function (mo) {
-      results.appendChild(section(mo.dir, mo.films));
+      home.appendChild(section(mo.dir, mo.films));
     });
+    home.hidden = false;
   }
 
-  function setStatus(text, kind) {
-    statusEl.innerHTML = '<p class="' + (kind === "err" ? "wl-erreur" : "wl-summary") + '"></p>';
-    statusEl.querySelector("p").textContent = text;
+  function renderFrom(data) {
+    loadIndexes().then(function () { renderInto(data); }).catch(function () {});
   }
 
-  function run(user) {
-    results.textContent = "";
-    setStatus("Lecture de ta watchlist et de tes favoris…", "");
-    var btn = form.querySelector("button");
-    btn.disabled = true;
-    Promise.all([LB.sync(user), loadIndexes()])
-      .then(function (arr) {
-        var data = arr[0];
-        var n = (data.films || []).length + (data.favorites || []).length;
-        if (!n) {
-          setStatus("On n'a trouvé ni watchlist publique ni favoris pour ce pseudo. "
-            + "Rends ton profil public, ou ajoute des films, puis réessaie.", "err");
-          return;
-        }
-        setStatus("Analyse de " + n + " films (watchlist + favoris).", "");
-        render(data);
-      })
-      .catch(function (err) { setStatus(LB.errText(err && err.error), "err"); })
-      .then(function () { btn.disabled = false; });
-  }
-
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
-    var user = (input.value || "").trim();
-    if (user) run(user);
+  // Connexion via le portail : rendu immédiat, sans rechargement.
+  document.addEventListener("seanceo:lb-connected", function (e) {
+    renderFrom(e.detail || (LB.load && LB.load()));
   });
 
+  // Visiteur déjà connecté (visite précédente) : rendu au chargement.
   var state = LB.load && LB.load();
-  if (state && state.user) input.value = state.user;
+  if (state && state.user && ((state.films && state.films.length) ||
+      (state.favorites && state.favorites.length))) {
+    renderFrom(state);
+  }
 })();
