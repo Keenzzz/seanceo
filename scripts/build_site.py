@@ -15,6 +15,7 @@ import sys
 from collections import defaultdict
 from datetime import date, datetime, timedelta
 from pathlib import Path
+from urllib.parse import quote
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from fetch_data import slugify  # même slugification partout
@@ -145,7 +146,7 @@ def page(title: str, description: str, body: str, path: str,
 <a class="brand" href="/">🎬 {SITE_NAME}</a>
 <p class="tagline">Le répertoire en salle, partout en France</p>
 {FILM_SEARCH}
-<nav class="site-nav"><a class="nav-wl" href="/ma-watchlist/">Ma watchlist letterboxd</a> <a href="/a-l-affiche/">🎬 À l'affiche</a> <a href="/retrospectives/">🎞️ Rétrospectives</a> <a href="/marathon/">🍿 Marathons</a> <a href="/carte/">🗺️ Carte</a></nav>
+<nav class="site-nav"><a class="nav-wl" href="/ma-watchlist/">Ma watchlist letterboxd</a> <a href="/cinematheque/">🎞️ Ma cinémathèque</a> <a href="/a-l-affiche/">🎬 À l'affiche</a> <a href="/retrospectives/">🎞️ Rétrospectives</a> <a href="/marathon/">🍿 Marathons</a> <a href="/carte/">🗺️ Carte</a></nav>
 </header>
 <main>
 <a class="retour" id="retour" href="#" hidden>← Retour</a>
@@ -983,6 +984,31 @@ Les séances d'aujourd'hui d'abord, puis celles des jours suivants.{classics_bit
     (SITE / "agenda-index.json").write_text(
         json.dumps(ag_index, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
 
+    # ----- Réalisateurs éligibles à « Ta cinémathèque » (page /cinematheque/) -----
+    # Vivier du sélecteur : les réalisateurs qui ont AU MOINS 2 films de
+    # répertoire à l'affiche (sinon il n'y a pas de rétrospective à composer).
+    # Dérivé de agenda-index pour garantir la cohérence : chaque réalisateur
+    # listé a bien des entrées dans l'index que cinematheque.js va lire. `dk` et
+    # `dn` sont alignés (mêmes réalisateurs, dans le même ordre) par construction.
+    cine_seen_u: set[str] = set()
+    cine_dir_films: dict[str, set] = defaultdict(set)
+    cine_dir_name: dict[str, str] = {}
+    for entry in ag_index.values():
+        if entry["u"] in cine_seen_u:
+            continue
+        cine_seen_u.add(entry["u"])
+        names = [d.strip() for d in (entry.get("dn") or "").split(",") if d.strip()]
+        for i, k in enumerate(entry.get("dk", [])):
+            if i < len(names):
+                cine_dir_name[k] = names[i]
+                cine_dir_films[k].add(entry["u"])
+    cine_dirs = sorted(
+        ({"name": cine_dir_name[k], "key": k, "n": len(us)}
+         for k, us in cine_dir_films.items() if len(us) >= 2),
+        key=lambda x: (-x["n"], x["name"].lower()))
+    (SITE / "cinematheque-directors.json").write_text(
+        json.dumps(cine_dirs, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+
     # ----- Index film -> réalisateur (pour la reco /pour-moi/) -----
     # La reco déduit les réalisateurs préférés du visiteur à partir de sa
     # watchlist + ses 4 favoris (lisibles depuis le Worker), en identifiant le
@@ -1329,6 +1355,14 @@ mieux notées de la semaine.</p>
 {agenda_html or "<p>Aucune séance unique repérée cette semaine.</p>"}
 
 {anniv_section}
+<div class="passerelle cine-cta">
+<p><span class="titre">🎞️ Compose ta cinémathèque</span>
+<span class="meta">Choisis un réalisateur : Séancéo réunit toutes ses séances de répertoire de France
+en une rétrospective à toi, à mettre dans ton agenda. Ne subis plus la séance unique à 400 km,
+programme-la.</span></p>
+<a class="bouton" href="/cinematheque/">Composer ma cinémathèque →</a>
+</div>
+
 <h2>Rétrospectives en cours</h2>
 <p class="meta">Les cycles programmés en ce moment, salle par salle.
 <a class="more" href="/retrospectives/">Toutes les rétrospectives →</a></p>
@@ -1480,6 +1514,7 @@ passent cette semaine dans {n_salles} salle{"s" if n_salles > 1 else ""}
 ({esc(villes_txt)}){fin} Soit {c["n_shows"]} séances en tout.</p>
 {affiches}
 <p class="meta">Au programme : {esc(titres)}.</p>
+<p class="cine-extend"><a class="bouton" href="/cinematheque/?d={quote(c["director"])}">🎞️ Compose ta rétrospective {esc(c["director"])} dans toute la France →</a></p>
 {"".join(blocs)}
 <p class="meta"><a class="more" href="/retrospectives/">← Toutes les rétrospectives en cours</a></p>"""
         # @graph : la page de collection ET chacune de ses séances. Le
@@ -1693,6 +1728,44 @@ stocké côté serveur, et ta géolocalisation (pour trier par proximité) reste
         watchlist_body, "/ma-watchlist/", h1="Votre watchlist au cinéma",
         top_link=True))
     urls.append("/ma-watchlist/")
+
+    # ----- Page « Ta cinémathèque » : rétrospective personnelle -----
+    # Le visiteur choisit un réalisateur ; cinematheque.js rassemble TOUTES ses
+    # séances de répertoire à venir en France (depuis agenda-index) en un
+    # parcours chronologique, avec insight (films/villes, week-end groupable) et
+    # export .ics généré côté client. La page servie est légère et indexable ;
+    # le parcours se construit en JS après le choix.
+    cine_dl = "".join(f'<option value="{esc(d["name"])}">' for d in cine_dirs)
+    cine_chips = "".join(
+        f'<button type="button" class="cine-chip" data-dir="{esc(d["name"])}">'
+        f'{esc(d["name"])} <span>{d["n"]}</span></button>'
+        for d in cine_dirs[:6])
+    cine_body = f"""<p class="lead">6 films de répertoire sur 10 ne passent qu'une seule fois en
+France sur une semaine. Au lieu de subir cet éparpillement, compose-le : choisis un réalisateur,
+Séancéo réunit <strong>toutes ses séances du pays</strong> en une rétrospective à toi, à mettre
+dans ton agenda.</p>
+
+<form class="lb-connect" id="cine-form" data-agenda="{BASE_PATH}/agenda-index.json" data-wl="{BASE_PATH}/watchlist-index.json" data-directors="{BASE_PATH}/cinematheque-directors.json">
+<label for="cine-search">Choisis un réalisateur ({len(cine_dirs)} ont au moins deux films à l'affiche)</label>
+<div class="lb-field">
+<input class="lb-input" id="cine-search" list="cine-dl" type="text" autocomplete="off"
+spellcheck="false" placeholder="ex. Akira Kurosawa" aria-label="Choisis un réalisateur">
+<button class="bouton" type="submit">Assembler</button>
+</div>
+<datalist id="cine-dl">{cine_dl}</datalist>
+</form>
+<p class="cine-chips-label">Les plus programmés en ce moment</p>
+<div class="cine-chips">{cine_chips}</div>
+
+<div id="cine-status" aria-live="polite"></div>
+<div id="cine-result" aria-live="polite"></div>
+<script src="/assets/cinematheque.js" defer></script>"""
+    write("/cinematheque/", page(
+        f"Ta cinémathèque : compose ta rétrospective — {SITE_NAME}",
+        "Choisis un réalisateur : Séancéo réunit toutes ses séances de répertoire à l'affiche "
+        "en France en une rétrospective personnelle, à ajouter à ton agenda.",
+        cine_body, "/cinematheque/", h1="Ta cinémathèque", top_link=True))
+    urls.append("/cinematheque/")
 
     # ----- Carte des cinémas -----
     # Données injectées dans la page (pas de fetch) : nom, ville, coords, chaîne,
