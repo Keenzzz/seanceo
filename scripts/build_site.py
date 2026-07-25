@@ -145,7 +145,7 @@ def page(title: str, description: str, body: str, path: str,
 <a class="brand" href="/">🎬 {SITE_NAME}</a>
 <p class="tagline">Le répertoire en salle, partout en France</p>
 {FILM_SEARCH}
-<nav class="site-nav"><a class="nav-wl" href="/ma-watchlist/">Ma watchlist letterboxd</a> <a href="/a-l-affiche/">🎬 À l'affiche</a> <a href="/retrospectives/">🎞️ Rétrospectives</a> <a href="/marathon/">🍿 Marathons</a> <a href="/carte/">🗺️ Carte</a></nav>
+<nav class="site-nav"><a class="nav-wl" href="/ma-watchlist/">Ma watchlist letterboxd</a> <a class="nav-wl" href="/pour-moi/">✨ Pour moi</a> <a href="/a-l-affiche/">🎬 À l'affiche</a> <a href="/retrospectives/">🎞️ Rétrospectives</a> <a href="/marathon/">🍿 Marathons</a> <a href="/carte/">🗺️ Carte</a></nav>
 </header>
 <main>
 <a class="retour" id="retour" href="#" hidden>← Retour</a>
@@ -915,13 +915,50 @@ Les séances d'aujourd'hui d'abord, puis celles des jours suivants.{classics_bit
             ])
         if not seances:
             continue
-        entry = {"t": m["title"], "u": f"{BASE_PATH}{movie_urls[key]}", "s": seances}
+        # Réalisateur(s) : `dk` = empreintes (une par réalisateur) pour le
+        # matching côté /pour-moi/ (reco par affinité de réalisateur), `dn` = nom
+        # affiché. Champ ignoré par le calendrier .ics et l'import de listes.
+        directors = [d.strip() for d in (m.get("director") or "").split(",") if d.strip()]
+        entry = {"t": m["title"], "u": f"{BASE_PATH}{movie_urls[key]}", "s": seances,
+                 "dk": [lb_slug_key(d) for d in directors], "dn": m.get("director") or ""}
         ag_index.setdefault(empreinte, entry)
         base = re.sub(r"(19|20)\d\d$", "", empreinte)
         if base != empreinte:
             ag_index.setdefault(base, entry)
     (SITE / "agenda-index.json").write_text(
         json.dumps(ag_index, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+
+    # ----- Index film -> réalisateur (pour la reco /pour-moi/) -----
+    # La reco déduit les réalisateurs préférés du visiteur à partir de sa
+    # watchlist + ses 4 favoris (lisibles depuis le Worker), en identifiant le
+    # réalisateur de CHACUN de ces films VIA NOTRE catalogue — aucun fetch de
+    # page film (celles-ci sont bloquées aux IP datacenter). Indexé par empreinte
+    # de slug Letterboxd (+ replis titre), comme watchlist-index, pour matcher
+    # les films renvoyés par le Worker. Couvre TOUT le catalogue (pas seulement
+    # les films à l'affiche) : un film aimé mais non programmé compte quand même
+    # pour l'affinité. Valeur = nom du réalisateur affiché.
+    dir_index: dict[str, str] = {}
+    for key, m in movies.items():
+        director = m.get("director")
+        if not director:
+            continue
+        keys = []
+        if m.get("lb_url"):
+            slug = m["lb_url"].rstrip("/").split("/film/")[-1]
+            emp = lb_slug_key(slug)
+            keys.append(emp)
+            base = re.sub(r"(19|20)\d\d$", "", emp)
+            if base != emp:
+                keys.append(base)
+        # Replis par titre (le Worker renvoie aussi le nom du film).
+        title_emp = lb_slug_key(m["title"])
+        if m.get("year"):
+            keys.append(title_emp + str(m["year"]))
+        keys.append(title_emp)
+        for k in keys:
+            dir_index.setdefault(k, director)
+    (SITE / "film-directors.json").write_text(
+        json.dumps(dir_index, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
 
     # ----- Répertoire : le moteur éditorial du site -----
     rep_window = repertoire.window(showtimes, today)
@@ -1593,6 +1630,41 @@ stocké côté serveur, et ta géolocalisation (pour trier par proximité) reste
         watchlist_body, "/ma-watchlist/", h1="Votre watchlist au cinéma",
         top_link=True))
     urls.append("/ma-watchlist/")
+
+    # ----- Page « Pour moi » : recommandations par affinité de réalisateur -----
+    # Le visiteur donne son pseudo ; le Worker /taste/<pseudo> déduit ses
+    # réalisateurs favoris de ses films les mieux notés, et lb-reco.js croise ces
+    # réalisateurs avec le répertoire à l'affiche (agenda-index porte le champ
+    # réalisateur). Tout se construit en JS après la saisie : la page servie est
+    # légère et indexable (aucune donnée personnelle dans le HTML).
+    reco_body = f"""<p class="lead">Donne ton <strong>pseudo</strong> Letterboxd : à partir de
+tes films les mieux notés, Séancéo repère tes <strong>réalisateurs préférés</strong> et te montre
+lesquels de leurs films <strong>repassent en salle</strong> près de chez toi. Une façon de
+prolonger tes coups de cœur sur grand écran.</p>
+
+<form class="lb-connect" id="reco-form" data-agenda="{BASE_PATH}/agenda-index.json" data-wl="{BASE_PATH}/watchlist-index.json" data-directors="{BASE_PATH}/film-directors.json">
+<label for="reco-user">Ton pseudo Letterboxd</label>
+<div class="lb-field">
+<input class="lb-input" id="reco-user" type="text" autocomplete="off" autocapitalize="none"
+spellcheck="false" placeholder="pseudo Letterboxd" aria-label="Ton pseudo Letterboxd">
+<button class="bouton bouton-lb" type="submit">Voir mes recommandations</button>
+</div>
+</form>
+<p class="lb-connect-note">On lit seulement tes films notés <strong>publics</strong>. Rien n'est
+stocké côté serveur : l'analyse ne sert qu'à afficher tes recommandations sur ton appareil.</p>
+
+<div id="reco-status" aria-live="polite"></div>
+<div id="reco-results" aria-live="polite"></div>
+
+<p class="meta reco-footnote">Tu cherches plutôt tes films à voir qui passent, ou l'import d'une
+liste ? <a href="/ma-watchlist/">Ma watchlist Letterboxd →</a></p>
+<script src="/assets/lb-reco.js" defer></script>"""
+    write("/pour-moi/", page(
+        f"Tes réalisateurs préférés au cinéma — {SITE_NAME}",
+        "Donne ton pseudo Letterboxd : Séancéo déduit tes réalisateurs préférés de tes "
+        "films les mieux notés et te montre lesquels de leurs films repassent en salle.",
+        reco_body, "/pour-moi/", h1="Le répertoire fait pour vous", top_link=True))
+    urls.append("/pour-moi/")
 
     # ----- Carte des cinémas -----
     # Données injectées dans la page (pas de fetch) : nom, ville, coords, chaîne,

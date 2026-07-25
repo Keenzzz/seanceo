@@ -720,6 +720,12 @@ html:not(.js) .wl-tabs { display: none; }
 .seance-book { color: var(--accent); font-weight: 600; white-space: nowrap; }
 .seance-book:hover { text-decoration: underline; }
 
+/* Recommandations /pour-moi/ : une section par réalisateur favori. */
+.reco-dir { margin: 26px 0; }
+.reco-dir h2 { margin-bottom: 2px; }
+.reco-sub { color: var(--muted); font-size: .92rem; margin: 0 0 14px; text-wrap: pretty; }
+.reco-footnote { margin-top: 30px; }
+
 /* ---- Portail d'accueil (injecté en JS, absent du HTML source) ---- */
 .lb-portal {
   position: fixed;
