@@ -1395,7 +1395,13 @@ Pour les {len(marathon_cities)} plus grandes villes de France.</p>
     # lit DANS LE NAVIGATEUR (rien n'est envoyé), croise chaque film avec
     # l'index par empreinte de slug, et affiche ceux qui passent cette semaine.
     n_wl = len({v["t"] for v in wl_index.values()})
-    watchlist_body = f"""<p class="lead">Tu as une liste de films à voir sur
+    watchlist_body = f"""<div class="wl-tabs" role="tablist" aria-label="Mode de connexion">
+<button type="button" class="wl-tab is-active" role="tab" aria-selected="true" data-panel="wl-pane-pseudo">Par pseudo</button>
+<button type="button" class="wl-tab" role="tab" aria-selected="false" data-panel="wl-pane-liste">Depuis une liste</button>
+</div>
+
+<section id="wl-pane-pseudo" class="wl-pane">
+<p class="lead">Tu as une liste de films à voir sur
 <a href="https://letterboxd.com" target="_blank" rel="noopener noreferrer">Letterboxd</a> ?
 Donne ton <strong>pseudo</strong> : Séancéo te dit <strong>lesquels de tes films à voir
 sont à l'affiche, et dans quels cinémas près de chez toi</strong>. On croise ta watchlist
@@ -1432,8 +1438,31 @@ ouvre les réglages, onglet <strong>Data</strong> (ou « Import &amp; Export »)
 <li>Décompresse-le et dépose le fichier <code>watchlist.csv</code> ci-dessus.</li>
 </ol>
 </details>
+</section>
+
+<section id="wl-pane-liste" class="wl-pane" hidden>
+<p class="lead">Une <strong>liste</strong> Letterboxd publique (« 1001 films à voir », Palme d'or,
+tes classiques…) ? Colle son URL : Séancéo te montre <strong>lesquels de ces films de
+patrimoine repassent en salle</strong>, ville par ville, avec la séance et la réservation.</p>
+
+<form class="lb-connect" id="list-form" data-agenda="{BASE_PATH}/agenda-index.json" data-wl="{BASE_PATH}/watchlist-index.json">
+<label for="list-url">URL de la liste Letterboxd</label>
+<div class="lb-field">
+<input class="lb-input" id="list-url" type="url" autocomplete="off" autocapitalize="none"
+spellcheck="false" placeholder="https://letterboxd.com/pseudo/list/ma-liste/" aria-label="URL de la liste Letterboxd">
+<button class="bouton bouton-lb" type="submit">Chercher les séances</button>
+</div>
+</form>
+<p class="lb-connect-note">On lit seulement une liste <strong>publique</strong>. Rien n'est
+stocké côté serveur, et ta géolocalisation (pour trier par proximité) reste sur ton appareil.</p>
+
+<div id="list-status" aria-live="polite"></div>
+<div id="list-controls" class="list-controls" hidden></div>
+<div id="list-results" aria-live="polite"></div>
+</section>
 <script src="/assets/watchlist.js" defer></script>
-<script src="/assets/lb-watchlist.js" defer></script>"""
+<script src="/assets/lb-watchlist.js" defer></script>
+<script src="/assets/lb-listes.js" defer></script>"""
     write("/ma-watchlist/", page(
         f"Ma watchlist Letterboxd au cinéma — {SITE_NAME}",
         "Donne ton pseudo Letterboxd : Séancéo te montre lesquels de tes films à voir "

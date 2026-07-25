@@ -56,6 +56,10 @@ const UA =
 // Pseudos Letterboxd : lettres, chiffres, tirets et underscores. On borne la
 // longueur pour ne pas accepter n'importe quelle chaîne dans une URL.
 const USERNAME_RE = /^[a-zA-Z0-9_-]{1,40}$/;
+// Slugs de liste Letterboxd : lettres, chiffres et tirets. Plus longs qu'un
+// pseudo (les titres de liste sont slugifiés en entier).
+const LIST_SLUG_RE = /^[a-zA-Z0-9][a-zA-Z0-9-]{0,140}$/;
+const MAX_LIST_PAGES = 40; // listes : ~100 films/page, plafond ~4000
 
 // —— Point d'entrée ————————————————————————————————————————————————————————
 
@@ -99,6 +103,34 @@ export default {
         },
       });
       return withCors(res, origin);
+    }
+
+    // Route : /list/<pseudo>/<slug> — une liste Letterboxd publique.
+    // Même structure HTML (posters LazyPoster) que la watchlist ; on réutilise
+    // donc tout le parsing. Différence : pas de `data-num-entries`, on pagine
+    // jusqu'à tomber sur une page vide.
+    const lm = url.pathname.match(/^\/list\/([^/]+)\/([^/]+)\/?$/);
+    if (lm) {
+      const luser = decodeURIComponent(lm[1]).trim();
+      const lslug = decodeURIComponent(lm[2]).trim();
+      if (!USERNAME_RE.test(luser) || !LIST_SLUG_RE.test(lslug)) {
+        return withCors(json({ error: "invalid_list" }, 400), origin);
+      }
+      const fresh = url.searchParams.get("fresh") === "1";
+      try {
+        const { body, cacheStatus, status } = await getList(
+          luser.toLowerCase(), lslug.toLowerCase(), fresh, ctx,
+        );
+        const res = new Response(body, {
+          status,
+          headers: { "Content-Type": "application/json; charset=utf-8" },
+        });
+        res.headers.set("X-Seanceo-Cache", cacheStatus);
+        return withCors(res, origin);
+      } catch (err) {
+        console.log("list error", luser, lslug, String(err));
+        return withCors(json({ error: "upstream_error" }, 502), origin);
+      }
     }
 
     // Route : /watchlist/<pseudo>
@@ -209,7 +241,7 @@ async function buildWatchlist(user) {
   const truncated = total ? Math.ceil(total / PER_PAGE) > MAX_PAGES : false;
 
   // Pages 2..wanted, par lots de CONCURRENCY.
-  const rest = await fetchPagesConcurrent(user, 2, wanted, total == null);
+  const rest = await fetchPagesConcurrent(watchlistBase(user), 2, wanted, total == null);
   films = films.concat(rest);
 
   return {
@@ -224,17 +256,84 @@ async function buildWatchlist(user) {
   };
 }
 
+// —— Listes Letterboxd —————————————————————————————————————————————————————
+
+// Même cache 12 h que la watchlist, clé propre par (pseudo, slug de liste).
+async function getList(user, slug, fresh, ctx) {
+  const cache = caches.default;
+  const cacheKey = new Request(`https://seanceo-cache/list/${user}/${slug}`);
+
+  if (!fresh) {
+    const hit = await cache.match(cacheKey);
+    if (hit) return { body: await hit.text(), cacheStatus: "HIT", status: 200 };
+  }
+
+  const data = await buildList(user, slug);
+  const body = JSON.stringify(data);
+  if (data.ok) {
+    const toStore = new Response(body, {
+      headers: {
+        "Content-Type": "application/json; charset=utf-8",
+        "Cache-Control": `max-age=${CACHE_TTL}`,
+      },
+    });
+    ctx.waitUntil(cache.put(cacheKey, toStore));
+  }
+  return { body, cacheStatus: fresh ? "BYPASS" : "MISS", status: statusFor(data) };
+}
+
+async function buildList(user, slug) {
+  const base = `${LB}/${user}/list/${slug}/`;
+  const first = await fetchPageAt(base, 1);
+  if (first.status === 404) {
+    return { ok: false, error: "not_found", user, slug };
+  }
+  if (first.status !== 200 || first.html == null) {
+    return { ok: false, error: "upstream_error", user, slug, status: first.status };
+  }
+
+  const name = parseListName(first.html);
+  let films = parseFilms(first.html);
+
+  // Liste vide OU privée : la page ne liste aucun film. Les listes n'annoncent
+  // pas de compteur `data-num-entries`, on ne peut donc pas distinguer les deux
+  // aussi finement que pour la watchlist ; on renvoie un `empty` neutre.
+  if (films.length === 0) {
+    return { ok: true, user, slug, name, count: 0, empty: true, films: [] };
+  }
+
+  // Pas de total annoncé : on pagine en s'arrêtant à la première page vide.
+  const rest = await fetchPagesConcurrent(base, 2, MAX_LIST_PAGES, true);
+  films = films.concat(rest);
+  const truncated = films.length >= MAX_LIST_PAGES * 100;
+
+  return {
+    ok: true, user, slug, name,
+    count: films.length, truncated,
+    generatedAt: new Date().toISOString(),
+    films,
+  };
+}
+
+// Nom lisible de la liste, depuis la balise Open Graph du <head>.
+const OG_TITLE_RE = /<meta property="og:title" content="([^"]*)"/;
+function parseListName(html) {
+  const m = html.match(OG_TITLE_RE);
+  return m ? decodeEntities(m[1]) : "";
+}
+
 // Récupère les pages [from..to] avec une concurrence bornée. Si `stopOnEmpty`
 // (cas où on ne connaît pas le total), on arrête le lot dès qu'une page ne
 // renvoie aucun film — inutile d'insister au-delà de la fin de la liste.
-async function fetchPagesConcurrent(user, from, to, stopOnEmpty) {
+// `base` = URL du listing SANS le suffixe de page (watchlist ou liste).
+async function fetchPagesConcurrent(base, from, to, stopOnEmpty) {
   const out = [];
   let page = from;
   let done = false;
   while (page <= to && !done) {
     const batch = [];
     for (let i = 0; i < CONCURRENCY && page <= to; i++, page++) {
-      batch.push(fetchPage(user, page));
+      batch.push(fetchPageAt(base, page));
     }
     const results = await Promise.all(batch);
     for (const r of results) {
@@ -247,11 +346,18 @@ async function fetchPagesConcurrent(user, from, to, stopOnEmpty) {
   return out;
 }
 
+// Page 1 = l'URL de base telle quelle ; pages suivantes = « …/page/N/ ».
+// Vaut pour les deux listings Letterboxd (watchlist et liste).
+function fetchPageAt(base, page) {
+  return fetchHtml(page === 1 ? base : `${base}page/${page}/`);
+}
+
+function watchlistBase(user) {
+  return `${LB}/${user}/watchlist/`;
+}
+
 function fetchPage(user, page) {
-  const path = page === 1
-    ? `${LB}/${user}/watchlist/`
-    : `${LB}/${user}/watchlist/page/${page}/`;
-  return fetchHtml(path);
+  return fetchPageAt(watchlistBase(user), page);
 }
 
 // Page de profil : sert à récupérer les 4 films préférés.

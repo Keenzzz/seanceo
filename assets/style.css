@@ -661,6 +661,43 @@ html:not(.js) .film-tools { display: none; }
   background: var(--sunk); padding: 1px 5px; border-radius: 4px;
 }
 
+/* ---- Onglets « pseudo / liste » (page /ma-watchlist/) ----
+   Chrome de navigation : accent AMBRE (le vert reste réservé aux notes
+   Letterboxd). Sans JavaScript, la barre disparaît et les deux panneaux
+   s'empilent, tout reste lisible. */
+.wl-tabs { display: flex; gap: 6px; border-bottom: 1px solid var(--rule); margin: 4px 0 6px; }
+html:not(.js) .wl-tabs { display: none; }
+.wl-tab {
+  background: none; border: none; border-bottom: 2px solid transparent;
+  color: var(--muted); font: inherit; font-weight: 600; cursor: pointer;
+  padding: 10px 14px; margin-bottom: -1px;
+}
+.wl-tab:hover { color: var(--text); }
+.wl-tab.is-active { color: var(--accent); border-bottom-color: var(--accent); }
+.wl-pane[hidden] { display: none; }
+
+/* Barre de filtre (menu des villes + « autour de moi »). display:flex, donc la
+   règle [hidden] est indispensable (sinon le masquage serait sans effet). */
+.list-controls {
+  display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: center;
+  margin: 18px 0 6px; padding: 12px 16px;
+  background: var(--panel); border: 1px solid var(--rule); border-radius: var(--radius);
+}
+.list-controls[hidden] { display: none; }
+.list-city-label { font-weight: 600; color: var(--muted); }
+.list-city {
+  background: var(--sunk); color: var(--text);
+  border: 1px solid var(--rule); border-radius: 8px;
+  padding: 8px 10px; font: inherit; max-width: 220px;
+}
+.list-city:focus { outline: none; border-color: var(--accent); }
+.list-geo { margin-left: auto; }
+
+/* Ligne de séance sous chaque carte de la liste : lieu + billetterie. */
+.seance-line { color: var(--muted); font-size: .85rem; margin: .2em 0 0; text-wrap: pretty; }
+.seance-book { color: var(--accent); font-weight: 600; white-space: nowrap; }
+.seance-book:hover { text-decoration: underline; }
+
 /* ---- Portail d'accueil (injecté en JS, absent du HTML source) ---- */
 .lb-portal {
   position: fixed;
