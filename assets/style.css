@@ -627,6 +627,31 @@ html:not(.js) .film-tools { display: none; }
   padding: 12px 16px;
   text-wrap: pretty;
 }
+/* Rappel « pseudo de l'URL, pas nom affiché » sous les deux champs de saisie
+   (page /ma-watchlist/ et portail d'accueil). Discret mais juste sous le champ :
+   c'est là qu'on se trompe, pas dans un encart plus bas. */
+.lb-hint {
+  color: var(--muted);
+  font-size: .85rem;
+  margin: 8px 0 14px;
+  text-wrap: pretty;
+}
+.lb-hint code {
+  background: #12211a;
+  border: 1px solid #24402f;
+  border-radius: 5px;
+  padding: 1px 5px;
+  font-size: .95em;
+}
+.lb-hint code b, .lb-empty code .lb-eg { color: var(--lb); font-weight: 700; }
+.lb-empty code {
+  background: #12211a;
+  border: 1px solid #24402f;
+  border-radius: 5px;
+  padding: 1px 5px;
+  font-size: .95em;
+}
+
 .lb-connected { color: var(--muted); font-size: .92rem; margin: 14px 0 0; }
 .lb-connected span { color: var(--lb); font-weight: 600; }
 .lb-secondary {
@@ -653,6 +678,35 @@ html:not(.js) .film-tools { display: none; }
 .lb-favs h3 { margin: 0 0 4px; border: none; padding: 0; font-size: 1.15rem; }
 .lb-favs-sub { margin: 0 0 12px; color: var(--muted); font-size: .92rem; text-wrap: pretty; }
 .lb-favs .grid { margin-bottom: 6px; }
+
+/* Cadrage géographique de la watchlist : « À Nancy » d'abord, « Ailleurs en
+   France » ensuite. La hiérarchie visuelle porte tout le sens de la page —
+   la section de la ville du visiteur est la seule mise en avant (bordure
+   ambre = accent du site), le reste est explicitement secondaire. */
+.lb-city-bar { color: var(--muted); font-size: .92rem; margin: 14px 0 4px; }
+.lb-city-on { color: var(--accent); font-weight: 600; }
+.lb-city-edit { margin: 14px 0 4px; }
+.lb-city-edit label { display: block; font-size: .9rem; margin-bottom: 6px; }
+.lb-city-edit .lb-field { display: flex; gap: 8px; max-width: 420px; }
+.lb-city-actions { display: inline-block; margin-top: 8px; font-size: .9rem; }
+.lb-city-msg { display: block; color: var(--muted); font-size: .85rem; margin-top: 6px; }
+
+.lb-sec-sub { margin: 0 0 12px; color: var(--muted); font-size: .92rem; text-wrap: pretty; }
+.lb-ici {
+  margin: 20px 0 26px;
+  padding: 16px 18px 6px;
+  background: var(--panel);
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius);
+}
+.lb-ici h3 { margin: 0 0 4px; border: none; padding: 0; font-size: 1.15rem; }
+.lb-ici .grid { margin-bottom: 6px; }
+/* Ville du visiteur sans rien à l'affiche : on garde le cadre (c'est bien la
+   réponse à sa question) mais sans l'accent, qui promettrait des séances. */
+.lb-ici-vide { border-left-color: var(--rule); }
+.lb-ailleurs { margin: 26px 0 0; }
+.lb-ailleurs h3 { font-size: 1.05rem; color: var(--muted); }
 
 /* Message watchlist vide ou privée. */
 .lb-empty {

@@ -907,22 +907,72 @@ Les séances d'aujourd'hui d'abord, puis celles des jours suivants.{classics_bit
     # multilingue, sans jamais rien envoyer (tout se passe dans le navigateur).
     # On n'indexe que les films À L'AFFICHE (au moins une séance) : la watchlist
     # sert à savoir « lesquels de mes films passent », pas à parcourir un catalogue.
-    wl_index: dict[str, dict] = {}
+    #
+    # Chaque film porte `k` = la liste de SES salles, `[index de salle, date de
+    # la prochaine séance dans cette salle]`, triée par date. C'est ce qui permet
+    # au visiteur de cadrer sa watchlist sur SA ville : sans elle, on ne savait
+    # dire que « ce film repasse quelque part en France », ce qui est inutile
+    # quand on habite Nancy et que la séance est à Dunkerque.
+    #
+    # Salles et villes sont sorties dans DEUX TABLES PARTAGÉES en tête de
+    # fichier (`_s`, `_v`) et référencées par leur index. Répéter « Cinéma
+    # Le Champo » et « Paris » dans les 5 349 paires (film, salle) triplerait le
+    # poids du fichier pour rien. Les clés `_s`/`_v` ne peuvent pas entrer en
+    # collision avec un film : une empreinte est faite de `[a-z0-9]` uniquement,
+    # elle ne contient jamais de tiret bas.
+    #
+    # `_v` porte les coordonnées de chaque ville (celles de sa première salle) :
+    # c'est ce qui permet, quand aucun film ne passe dans la ville du visiteur,
+    # de lui désigner la ville la plus proche où il y en a un.
+    villes: list[list] = []
+    ville_idx: dict[str, int] = {}
+    salles: list[list] = []
+    salle_idx: dict[str, int] = {}
+
+    def ref_salle(cinema_id: str) -> int:
+        """Index de la salle dans `_s`, en créant sa ville dans `_v` au besoin."""
+        if cinema_id in salle_idx:
+            return salle_idx[cinema_id]
+        c = cinemas[cinema_id]
+        ville = c.get("city") or ""
+        if ville not in ville_idx:
+            ville_idx[ville] = len(villes)
+            lat, lon = c.get("lat"), c.get("lon")
+            villes.append([
+                ville,
+                round(lat, 4) if lat is not None else None,
+                round(lon, 4) if lon is not None else None,
+            ])
+        salle_idx[cinema_id] = len(salles)
+        salles.append([c["name"], ville_idx[ville]])
+        return salle_idx[cinema_id]
+
+    wl_index: dict[str, dict] = {"_v": villes, "_s": salles}
     for key, m in movies.items():
         shows = by_movie.get(key)
         if not shows or not m.get("lb_url"):
             continue
         slug = m["lb_url"].rstrip("/").split("/film/")[-1]
         empreinte = lb_slug_key(slug)
-        prochaine = min(s["start"][:10] for s in shows)
+        # Prochaine séance par salle (une salle peut en programmer plusieurs).
+        par_salle: dict[int, str] = {}
+        for s in shows:
+            i = ref_salle(s["cinema"])
+            jour = s["start"][:10]
+            if i not in par_salle or jour < par_salle[i]:
+                par_salle[i] = jour
+        # Trié par date : `k[0]` est donc la prochaine séance du film, toutes
+        # salles confondues. `n`, `d`, `c` et `v` s'en déduisent, on ne les
+        # stocke plus — ils étaient redondants avec cette liste.
+        k = sorted(([i, j] for i, j in par_salle.items()), key=lambda p: (p[1], p[0]))
         entry = {
             "t": m["title"],
             "u": f"{BASE_PATH}{movie_urls[key]}",
             "p": m["poster"] or "",
             "r": m.get("lb_rating") or 0,
             "y": m.get("year") or 0,
-            "n": len({s["cinema"] for s in shows}),
-            "d": prochaine,
+            "d": k[0][1],
+            "k": k,
         }
         # Indexé sous l'empreinte complète ET sous sa base sans l'année finale
         # (Letterboxd désambiguïse par « -2016 ») : le client tente les deux.
@@ -1652,7 +1702,8 @@ Pour les {len(marathon_cities)} plus grandes villes de France.</p>
     # Le visiteur dépose l'export de sa watchlist Letterboxd ; watchlist.js le
     # lit DANS LE NAVIGATEUR (rien n'est envoyé), croise chaque film avec
     # l'index par empreinte de slug, et affiche ceux qui passent cette semaine.
-    n_wl = len({v["t"] for v in wl_index.values()})
+    # `_v`/`_s` sont les tables partagées de l'index, pas des films : on les saute.
+    n_wl = len({v["t"] for k, v in wl_index.items() if not k.startswith("_")})
     watchlist_body = f"""<div class="wl-tabs" role="tablist" aria-label="Mode de connexion">
 <button type="button" class="wl-tab is-active" role="tab" aria-selected="true" data-panel="wl-pane-pseudo">Par pseudo</button>
 <button type="button" class="wl-tab" role="tab" aria-selected="false" data-panel="wl-pane-liste">Depuis une liste</button>
@@ -1673,10 +1724,15 @@ spellcheck="false" placeholder="pseudo Letterboxd" aria-label="Ton pseudo Letter
 <button class="bouton bouton-lb" type="submit">Synchroniser</button>
 </div>
 </form>
+<p class="lb-hint">C'est l'identifiant de l'<strong>URL</strong> du profil, pas le nom affiché :
+pour <code>letterboxd.com/<b>cinephile_92</b>/</code>, tape <code>cinephile_92</code>. Les deux
+diffèrent souvent (à l'écran « Marie Dupont », dans l'URL <code>mariedupont__</code>). En cas de
+doute, ouvre le profil sur Letterboxd et recopie ce qui suit le slash.</p>
 <p class="lb-connect-note">On lit seulement ta watchlist <strong>publique</strong>. Rien
 n'est stocké côté serveur : la liste ne sert qu'à l'afficher sur ton appareil.</p>
 
 <div id="lb-status" aria-live="polite"></div>
+<div id="lb-city" hidden></div>
 <div id="wl-results" aria-live="polite"></div>
 <div id="lb-calendar" hidden></div>
 
@@ -1684,7 +1740,7 @@ n'est stocké côté serveur : la liste ne sert qu'à l'afficher sur ton apparei
 <summary>Watchlist privée, ou tu préfères un fichier ? Importer l'export</summary>
 <p class="wl-drop-help">Dépose le <code>watchlist.csv</code> de ton export Letterboxd :
 tout se passe dans le navigateur, rien n'est envoyé.</p>
-<div class="wl-drop" id="wl-drop" data-index="{BASE_PATH}/watchlist-index.json">
+<div class="wl-drop" id="wl-drop" data-index="{BASE_PATH}/watchlist-index.json" data-agenda="{BASE_PATH}/agenda-index.json">
 <input type="file" id="wl-file" accept=".csv,text/csv" hidden>
 <p class="wl-drop-main"><button type="button" id="wl-pick" class="bouton">Choisir mon fichier watchlist.csv</button></p>
 <p class="wl-drop-alt">ou glissez-le dans ce cadre</p>

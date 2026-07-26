@@ -265,6 +265,52 @@ et la mention TMDB (« ce produit utilise l'API TMDB mais n'est ni approuvé ni 
   - **Ne PAS dire « cette semaine »** : l'index inclut toutes les séances à venir (certaines à
     plusieurs semaines). Wording « à l'affiche », date exacte sur chaque carte, tri par
     imminence (prochaine séance croissante).
+  - **Une carte de watchlist doit toujours dire OÙ.** Elle se construit sur DEUX index et une
+    seule fonction, `LB.card(f, ag, pick)` (`assets/letterboxd.js`). Socle =
+    `watchlist-index.json` ; bonus = `agenda-index.json` quand le film y est (heure exacte +
+    bouton Réserver), mais il ne couvre que le **répertoire sur 5 semaines** (289 entrées),
+    d'où le socle. **Jointure par `u`** (URL de fiche), jamais par empreinte : l'empreinte est
+    dédoublée entre forme complète et forme sans année dans les deux fichiers.
+    `LB.loadAgenda()` avale ses propres erreurs et renvoie `null` — l'agenda est un bonus, il
+    ne doit jamais casser l'affichage. Dans `agenda-index`, prendre la séance qui correspond à
+    la salle ET au jour retenus (`agSeance()`), **pas `ag.s[0]`** : cadré sur Nancy, `s[0]`
+    donnerait l'heure d'une séance parisienne.
+  - **`watchlist-index.json` est NORMALISÉ (tables partagées).** En tête : `_v` =
+    `[nom de ville, lat, lon]`, `_s` = `[nom de salle, index de ville]`. Chaque film porte
+    `k` = `[[index de salle, date de sa prochaine séance dans cette salle]]`, **trié par date**,
+    donc `k[0]` est la prochaine séance du film. `n`, `c` et `v` ont été supprimés : ils s'en
+    déduisent (`n` = `k.length`). Les clés `_v`/`_s` ne peuvent pas entrer en collision avec un
+    film — une empreinte est faite de `[a-z0-9]` uniquement, jamais de tiret bas — mais **tout
+    parcours de l'index doit sauter les clés commençant par `_`** (déjà oublié une fois dans le
+    compteur `n_wl`). Sans normalisation, répéter « Cinéma Le Champo » et « Paris » dans les
+    5 349 paires (film, salle) triplerait le fichier. Poids : 281 ko brut mais **56 ko gzippé**,
+    et il n'est chargé qu'à la demande. `lb-reco.js`, `lb-listes.js` et `cinematheque.js` ne
+    lisent que `p` et `r` de cet index : les faire dépendre de `k` les casserait inutilement.
+  - **CADRAGE PAR VILLE (le cœur de la page).** « 32 films à l'affiche » sans ville veut dire
+    « quelque part en France » et n'est pas actionnable. Le portail demande donc la ville en
+    **étape 2**, APRÈS la synchro du pseudo — demander deux choses avant le moindre résultat
+    fait abandonner ; là le visiteur a déjà la preuve que ça marche. La ville est stockée par
+    son **NOM** (`LB.setCity`), pas par son index dans `_v` : un index numérique ne survivrait
+    pas à une reconstruction du fichier. `LB.city()` ne fonctionne qu'**après `loadIndex()`**
+    (c'est `_v` qui résout le nom en coordonnées). Saisie libre + `<datalist>` des 258 villes
+    programmées ; `villeParNom()` neutralise casse et accents (« NANCY », « nancy » → Nancy).
+  - **Ville sans séance → on désigne la plus proche, on ne renvoie pas au national.**
+    `villeProcheAvecFilm()` cherche, parmi les films de la watchlist, la ville la plus proche
+    (Haversine, même formule que `map.js`) qui en programme un — « Rien à Albi, le plus proche
+    est Toulouse à ~68 km ». **Ces films doivent être retirés de la section « Ailleurs en
+    France »**, sinon ils s'affichent deux fois. Les FAVORIS, eux, ne sont jamais filtrés par
+    ville : ils sont au maximum 4, et « un de tes films préférés repasse, à 60 km » reste une
+    information qu'on veut donner.
+  - **⚠️ PIÈGE UTILISATEUR N°1 : nom affiché ≠ identifiant d'URL sur Letterboxd.** « Alex Her »
+    à l'écran peut avoir `alexher__` dans son URL, et `alexher` est alors un AUTRE compte, réel
+    mais vide. Le visiteur lisait « ta watchlist est vide » sans comprendre (constaté en vrai,
+    2026-07-26 : `alexher` → 0 film, `alexher__` → 380). Ce n'est pas rattrapable côté code (les
+    deux pseudos existent, tous deux valides). D'où le rappel `.lb-hint` sous les DEUX champs de
+    saisie (portail `USER_HINT` + `/ma-watchlist/` dans build_site.py) et la relance dans le
+    message « watchlist vide » — c'est là que la question se pose. Ne pas les retirer.
+  - **Nommer la source dans les compteurs** : « 32 des 380 films de ta watchlist Letterboxd sont
+    à l'affiche », pas « de tes 380 films à voir ». La page affiche aussi les favoris du profil
+    juste au-dessus : sans le mot « watchlist », on ne sait pas ce qui a été compté.
 - **« Autour de moi » sur la carte** (`assets/map.js`, page `/carte/`) : bouton `#geoloc-btn` →
   `navigator.geolocation` (position lue dans le navigateur, **rien n'est envoyé**), marqueur
   « vous êtes ici » (`.cine-moi`), carte recentrée, et panneau `#map-nearby` listant les 12

@@ -18,6 +18,7 @@
   var drop = document.getElementById("wl-drop"); // porte data-index (réutilisé)
   var fallback = document.querySelector(".wl-alt"); // le <details> import CSV
   var calBox = document.getElementById("lb-calendar");
+  var cityBox = document.getElementById("lb-city"); // barre « cadré sur <ville> »
   if (!form || !input || !results || !drop || !window.LB) return;
 
   // Bloc « Ajouter à Google Agenda » : construit l'URL du calendrier .ics servi
@@ -83,6 +84,7 @@
   }
 
   var indexUrl = drop.dataset.index;
+  var agendaUrl = drop.dataset.agenda; // facultatif : enrichit les cartes
 
   // Reconstitue l'objet « réponse » à partir de l'état stocké, pour que LB.render
   // affiche pareil au retour du visiteur qu'après une synchro fraîche.
@@ -103,14 +105,128 @@
     if (fallback) fallback.open = true;
   }
 
+  // L'agenda est chargé EN PARALLÈLE de l'index et son échec est absorbé par
+  // LB.loadAgenda (il renvoie null) : sans lui les cartes retombent sur la
+  // salle et la ville portées par watchlist-index, jamais sur rien.
   function show(data) {
-    LB.loadIndex(indexUrl)
-      .then(function (index) {
-        var r = LB.render(results, data, index);
+    Promise.all([LB.loadIndex(indexUrl), LB.loadAgenda(agendaUrl)])
+      .then(function (both) {
+        // LB.city() doit être appelé APRÈS loadIndex : c'est la table `_v` de
+        // l'index qui résout le nom stocké en coordonnées.
+        cityBar(data);
+        var r = LB.render(results, data, both[0], both[1], LB.city());
         if (r.empty) openFallback();
       })
       .catch(function () {
         results.innerHTML = '<p class="wl-erreur">Chargement de l\'index impossible. Réessaie.</p>';
+      });
+  }
+
+  // Barre de cadrage géographique, au-dessus des résultats. Deux états : une
+  // ville active (qu'on peut changer ou retirer) ou aucune (invitation à en
+  // choisir une). Le visiteur arrive presque toujours avec une ville déjà
+  // choisie au portail ; cette barre existe pour la corriger sans tout refaire.
+  function cityBar(data) {
+    if (!cityBox) return;
+    var v = LB.city();
+    cityBox.hidden = false;
+    cityBox.textContent = "";
+
+    var ligne = document.createElement("p");
+    ligne.className = "lb-city-bar";
+    if (v) {
+      var quoi = document.createElement("span");
+      quoi.className = "lb-city-on";
+      quoi.textContent = "📍 " + v.nom;
+      ligne.appendChild(document.createTextNode("Résultats cadrés sur "));
+      ligne.appendChild(quoi);
+      ligne.appendChild(document.createTextNode(" · "));
+      ligne.appendChild(lien("Changer de ville", function () { editeur(data, v.nom); }));
+      ligne.appendChild(document.createTextNode(" · "));
+      ligne.appendChild(lien("Toute la France", function () {
+        LB.setCity(""); redessine(data);
+      }));
+    } else {
+      ligne.appendChild(document.createTextNode("Résultats pour toute la France. "));
+      ligne.appendChild(lien("Choisir ma ville", function () { editeur(data, ""); }));
+    }
+    cityBox.appendChild(ligne);
+  }
+
+  function lien(texte, onClick) {
+    var b = document.createElement("button");
+    b.type = "button";
+    b.className = "lb-secondary";
+    b.textContent = texte;
+    b.addEventListener("click", onClick);
+    return b;
+  }
+
+  // Champ de saisie de la ville, adossé au <datalist> des villes programmées
+  // (mêmes règles que le portail : saisie libre, résolution tolérante aux
+  // accents, géolocalisation traitée dans le navigateur seulement).
+  function editeur(data, valeur) {
+    cityBox.textContent = "";
+    var form = document.createElement("form");
+    form.className = "lb-city-edit";
+    var noms = LB.villes();
+    var opts = "";
+    for (var i = 0; i < noms.length; i++) {
+      opts += '<option value="' + noms[i].replace(/"/g, "&quot;") + '">';
+    }
+    form.innerHTML =
+      '<label for="wl-city">Ta ville</label>' +
+      '<span class="lb-field">' +
+        '<input class="lb-input" id="wl-city" type="text" list="wl-city-list" autocomplete="off" ' +
+          'spellcheck="false" placeholder="ta ville" aria-label="Ta ville">' +
+        '<button class="bouton bouton-lb" type="submit">Cadrer</button>' +
+      '</span>' +
+      '<datalist id="wl-city-list">' + opts + '</datalist>' +
+      '<span class="lb-city-actions"></span>' +
+      '<span class="lb-city-msg" role="status"></span>';
+    cityBox.appendChild(form);
+
+    var input = form.querySelector("#wl-city");
+    input.value = valeur || "";
+    var msg = form.querySelector(".lb-city-msg");
+    var actions = form.querySelector(".lb-city-actions");
+
+    actions.appendChild(lien("📍 me localiser", function () {
+      if (!navigator.geolocation) { msg.textContent = "Géolocalisation indisponible."; return; }
+      msg.textContent = "…localisation";
+      navigator.geolocation.getCurrentPosition(
+        function (pos) {
+          var p = LB.villeLaPlusProche(pos.coords.latitude, pos.coords.longitude);
+          if (!p) { msg.textContent = "Ville introuvable."; return; }
+          input.value = p.nom;
+          msg.textContent = "Ville la plus proche : " + p.nom + " (~" + Math.round(p.km) + " km).";
+        },
+        function () { msg.textContent = "Localisation refusée. Tape ta ville."; });
+    }));
+    actions.appendChild(document.createTextNode(" · "));
+    actions.appendChild(lien("Annuler", function () { cityBar(data); }));
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var nom = input.value.trim();
+      if (!nom) { LB.setCity(""); redessine(data); return; }
+      var v = LB.villeParNom(nom);
+      if (!v) {
+        msg.textContent = "On ne programme rien à « " + nom + " » pour l'instant.";
+        return;
+      }
+      LB.setCity(v.nom);
+      redessine(data);
+    });
+    input.focus();
+  }
+
+  // Re-rendu complet après un changement de ville (index déjà en cache).
+  function redessine(data) {
+    Promise.all([LB.loadIndex(indexUrl), LB.loadAgenda(agendaUrl)])
+      .then(function (both) {
+        cityBar(data);
+        LB.render(results, data, both[0], both[1], LB.city());
       });
   }
 
@@ -129,6 +245,7 @@
     forget.addEventListener("click", function () {
       LB.clear(); results.textContent = ""; status.textContent = ""; input.value = "";
       if (calBox) { calBox.hidden = true; calBox.textContent = ""; }
+      if (cityBox) { cityBox.hidden = true; cityBox.textContent = ""; }
       input.focus();
     });
     wrap.appendChild(who);
