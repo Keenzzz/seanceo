@@ -232,6 +232,15 @@
     var noms = villes();
     var plies = noms.map(empreinte);
 
+    // Placeholder posé ICI plutôt que dans les deux gabarits HTML : une seule
+    // formulation pour le portail et pour /ma-watchlist/. Même modèle que les
+    // champs de ville de l'accueil et de /classiques/ (« Chercher votre
+    // ville… »), au tutoiement près, qui est la règle de la section Letterboxd.
+    // Pas de compte de villes entre parenthèses, contrairement à ces deux
+    // pages : l'index de la watchlist n'en couvre pas tout à fait autant
+    // (256 contre 257), et deux nombres différents à l'écran font douter.
+    input.placeholder = "Chercher ta ville…";
+
     // Le menu est positionné par rapport à un conteneur inséré autour du champ :
     // les formulaires hôtes sont en display:flex, un <ul> posé à côté du champ
     // deviendrait un élément de la ligne au lieu de flotter par-dessus.
@@ -778,8 +787,9 @@
         '<p>Dans quelle <strong>ville</strong> cherches-tu ? On te montrera d\'abord ' +
           'ce qui passe près de chez toi, plutôt que partout en France.</p>' +
         '<form class="lb-field" id="lb-city-form">' +
+          // Placeholder posé par autoVille (il connaît le nombre de villes).
           '<input class="lb-input" id="lb-city-input" type="text" autocomplete="off" ' +
-            'spellcheck="false" placeholder="tape ta ville" aria-label="Ta ville">' +
+            'spellcheck="false" aria-label="Ta ville">' +
           '<button class="bouton bouton-lb" type="submit">Continuer</button>' +
         '</form>' +
         '<p class="lb-msg" id="lb-city-msg" hidden></p>' +

@@ -179,8 +179,9 @@
     form.innerHTML =
       '<label for="wl-city">📍 Dans quelle ville cherches-tu ?</label>' +
       '<span class="lb-field">' +
+        // Placeholder posé par LB.autoVille (il connaît le nombre de villes).
         '<input class="lb-input" id="wl-city" type="text" autocomplete="off" ' +
-          'spellcheck="false" placeholder="tape ta ville" aria-label="Ta ville">' +
+          'spellcheck="false" aria-label="Ta ville">' +
         '<button class="bouton bouton-lb" type="submit">Cadrer</button>' +
       '</span>' +
       '<span class="lb-city-actions"></span>' +
