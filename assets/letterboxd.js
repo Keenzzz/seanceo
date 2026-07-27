@@ -548,13 +548,24 @@
     favHits.forEach(function (f) { favUrls[f.u] = 1; });
     // Un film à la fois dans les favoris ET la watchlist ne s'affiche qu'en favori.
     var listHits = cross(data.films || [], index).filter(function (f) { return !favUrls[f.u]; });
+    // Les favoris qui passent dans la ville du visiteur : calculés tôt, parce
+    // que le verdict sur sa ville en dépend (dire « rien à Paris » alors qu'un
+    // favori y repasse serait faux).
+    var favIci = (favHits.length && cityKey) ? parVille(favHits, cityKey).ici : [];
 
-    if (favHits.length) {
+    // ⚠️ ORDRE DE LA PAGE : le verdict sur SA ville passe AVANT les favoris.
+    // Les favoris ne sont jamais filtrés par ville (voir plus bas) ; placés en
+    // tête, ils annonçaient une séance à Nantes à quelqu'un qui venait de
+    // demander Paris, et ce n'est qu'en dessous qu'il apprenait qu'il n'y avait
+    // rien chez lui. On répond d'abord à la question posée (« et chez moi ? »),
+    // les séances lointaines viennent après. D'où cette section construite ici
+    // mais insérée par `ajouteFavoris()` au bon moment dans chaque branche.
+    function ajouteFavoris() {
+      if (!favHits.length) return;
       // Les favoris ne sont JAMAIS filtrés par ville : ils sont rares (4 films
       // au maximum) et « un de tes films préférés repasse, à 60 km » reste une
       // information qu'on veut donner. Ils sont seulement cadrés quand c'est
       // possible, pour montrer la séance la plus pertinente.
-      var favIci = parVille(favHits, cityKey).ici;
       var sec = document.createElement("section");
       sec.className = "lb-favs";
       var h = document.createElement("h3");
@@ -579,6 +590,7 @@
 
     if (data.empty) {
       container.appendChild(emptyNote(data));
+      ajouteFavoris();
       return compte;
     }
 
@@ -592,16 +604,19 @@
         + "Letterboxd n'est à l'affiche pour l'instant. La programmation change "
         + "souvent, reviens y jeter un œil.";
       container.appendChild(titre);
+      ajouteFavoris();
       return compte;
     }
 
-    // —— Sans ville : la vue nationale d'avant, inchangée.
+    // —— Sans ville : la vue nationale. Rien à dire sur « chez moi » puisqu'on
+    // ne sait pas où c'est, mais le compte de la watchlist reste en tête.
     if (!city) {
       titre.innerHTML = "<strong>" + listHits.length + "</strong> des "
         + (data.total || listHits.length) + " films de ta watchlist Letterboxd "
         + (listHits.length > 1 ? "sont" : "est")
         + " à l'affiche. Ouvre une fiche pour voir toutes les séances près de chez toi.";
       container.appendChild(titre);
+      ajouteFavoris();
       container.appendChild(grid(listHits, ag, ""));
       return compte;
     }
@@ -626,8 +641,21 @@
       var vide = document.createElement("section");
       vide.className = "lb-ici lb-ici-vide";
       var hv = document.createElement("h3");
-      hv.textContent = "Rien à " + city.nom + " pour l'instant";
+      // Un favori peut passer dans sa ville alors que sa watchlist n'y a rien :
+      // un « Rien à Paris » sec serait alors démenti par la section des favoris
+      // juste en dessous. On précise donc de quelle liste on parle.
+      hv.textContent = favIci.length
+        ? "Rien de ta watchlist à " + city.nom + " pour l'instant"
+        : "Rien à " + city.nom + " pour l'instant";
       vide.appendChild(hv);
+      if (favIci.length) {
+        var pf = document.createElement("p");
+        pf.className = "lb-sec-sub";
+        pf.textContent = "En revanche, " + (favIci.length > 1
+          ? favIci.length + " de tes films préférés y repassent"
+          : "un de tes films préférés y repasse") + ", juste en dessous.";
+        vide.appendChild(pf);
+      }
       if (proche) {
         var pv = document.createElement("p");
         pv.className = "lb-sec-sub";
@@ -649,6 +677,10 @@
       }
       container.appendChild(vide);
     }
+
+    // Les favoris seulement MAINTENANT : le visiteur sait déjà ce qu'il en est
+    // dans sa ville, une séance à 400 km ne peut plus passer pour une réponse.
+    ajouteFavoris();
 
     if (split.ailleurs.length) {
       container.appendChild(section("lb-ailleurs", "Ailleurs en France",

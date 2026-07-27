@@ -324,6 +324,18 @@ et la mention TMDB (« ce produit utilise l'API TMDB mais n'est ni approuvé ni 
     France »**, sinon ils s'affichent deux fois. Les FAVORIS, eux, ne sont jamais filtrés par
     ville : ils sont au maximum 4, et « un de tes films préférés repasse, à 60 km » reste une
     information qu'on veut donner.
+  - **⚠️ ORDRE DE LA PAGE : le verdict sur SA ville passe AVANT les favoris.** `render()`
+    construit la section des favoris tôt mais ne l'insère que par `ajouteFavoris()`, appelé
+    dans chaque branche APRÈS le compte de la watchlist et la section de la ville. Les favoris
+    n'étant pas filtrés par ville, les laisser en tête revenait à annoncer une séance à Nantes
+    à quelqu'un qui venait de demander Paris, et à ne lui apprendre qu'en dessous qu'il n'y
+    avait rien chez lui (signalé par l'utilisateur le 2026-07-27, compte `Kenzz92`). On répond
+    d'abord à la question posée, les séances lointaines viennent après. **Ne pas remonter la
+    section `.lb-favs`.**
+    - Corollaire à ne pas casser : un favori peut passer dans la ville alors que la watchlist
+      n'y a rien. Le titre devient alors « Rien **de ta watchlist** à Paris » plus une ligne qui
+      renvoie aux favoris juste en dessous, sinon le « Rien à Paris » sec est démenti par la
+      section suivante.
   - **⚠️ PIÈGE UTILISATEUR N°1 : nom affiché ≠ identifiant d'URL sur Letterboxd.** « Alex Her »
     à l'écran peut avoir `alexher__` dans son URL, et `alexher` est alors un AUTRE compte, réel
     mais vide. Le visiteur lisait « ta watchlist est vide » sans comprendre (constaté en vrai,
