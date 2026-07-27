@@ -122,34 +122,38 @@
       });
   }
 
-  // Barre de cadrage géographique, au-dessus des résultats. Deux états : une
-  // ville active (qu'on peut changer ou retirer) ou aucune (invitation à en
-  // choisir une). Le visiteur arrive presque toujours avec une ville déjà
-  // choisie au portail ; cette barre existe pour la corriger sans tout refaire.
+  // Barre de cadrage géographique, au-dessus des résultats. Deux états :
+  //  - une ville active → ligne compacte, avec un bouton visible pour en
+  //    changer (elle est juste, on ne veut pas encombrer les résultats) ;
+  //  - aucune ville → le CHAMP DE SAISIE directement, pas un lien qui ouvre un
+  //    champ. Une liste nationale n'est pas actionnable, demander sa ville est
+  //    l'action principale de cet écran : elle doit être faisable sans clic
+  //    préalable.
   function cityBar(data) {
     if (!cityBox) return;
     var v = LB.city();
     cityBox.hidden = false;
     cityBox.textContent = "";
+    if (!v) { editeur(data, ""); return; }
 
     var ligne = document.createElement("p");
     ligne.className = "lb-city-bar";
-    if (v) {
-      var quoi = document.createElement("span");
-      quoi.className = "lb-city-on";
-      quoi.textContent = "📍 " + v.nom;
-      ligne.appendChild(document.createTextNode("Résultats cadrés sur "));
-      ligne.appendChild(quoi);
-      ligne.appendChild(document.createTextNode(" · "));
-      ligne.appendChild(lien("Changer de ville", function () { editeur(data, v.nom); }));
-      ligne.appendChild(document.createTextNode(" · "));
-      ligne.appendChild(lien("Toute la France", function () {
-        LB.setCity(""); redessine(data);
-      }));
-    } else {
-      ligne.appendChild(document.createTextNode("Résultats pour toute la France. "));
-      ligne.appendChild(lien("Choisir ma ville", function () { editeur(data, ""); }));
-    }
+    var quoi = document.createElement("span");
+    quoi.className = "lb-city-on";
+    quoi.textContent = "📍 " + v.nom;
+    ligne.appendChild(document.createTextNode("Résultats cadrés sur "));
+    ligne.appendChild(quoi);
+    ligne.appendChild(document.createTextNode(" "));
+    var chg = document.createElement("button");
+    chg.type = "button";
+    chg.className = "lb-city-chg";
+    chg.textContent = "Changer de ville";
+    chg.addEventListener("click", function () { editeur(data, v.nom); });
+    ligne.appendChild(chg);
+    ligne.appendChild(document.createTextNode(" · "));
+    ligne.appendChild(lien("Toute la France", function () {
+      LB.setCity(""); redessine(data);
+    }));
     cityBox.appendChild(ligne);
   }
 
@@ -162,26 +166,23 @@
     return b;
   }
 
-  // Champ de saisie de la ville, adossé au <datalist> des villes programmées
-  // (mêmes règles que le portail : saisie libre, résolution tolérante aux
-  // accents, géolocalisation traitée dans le navigateur seulement).
+  // Champ de saisie de la ville. Suggestions maison (`LB.autoVille`) et non un
+  // <datalist> : celui-ci déroulait les 257 villes programmées dès le clic dans
+  // le champ, ce qui invite à chercher dans une liste alors que la bonne action
+  // est de taper. Ici rien ne s'affiche avant deux lettres, puis seules les
+  // villes correspondantes remontent. Résolution tolérante aux accents,
+  // géolocalisation traitée dans le navigateur seulement.
   function editeur(data, valeur) {
     cityBox.textContent = "";
     var form = document.createElement("form");
     form.className = "lb-city-edit";
-    var noms = LB.villes();
-    var opts = "";
-    for (var i = 0; i < noms.length; i++) {
-      opts += '<option value="' + noms[i].replace(/"/g, "&quot;") + '">';
-    }
     form.innerHTML =
-      '<label for="wl-city">Ta ville</label>' +
+      '<label for="wl-city">📍 Dans quelle ville cherches-tu ?</label>' +
       '<span class="lb-field">' +
-        '<input class="lb-input" id="wl-city" type="text" list="wl-city-list" autocomplete="off" ' +
-          'spellcheck="false" placeholder="ta ville" aria-label="Ta ville">' +
+        '<input class="lb-input" id="wl-city" type="text" autocomplete="off" ' +
+          'spellcheck="false" placeholder="tape ta ville" aria-label="Ta ville">' +
         '<button class="bouton bouton-lb" type="submit">Cadrer</button>' +
       '</span>' +
-      '<datalist id="wl-city-list">' + opts + '</datalist>' +
       '<span class="lb-city-actions"></span>' +
       '<span class="lb-city-msg" role="status"></span>';
     cityBox.appendChild(form);
@@ -203,12 +204,15 @@
         },
         function () { msg.textContent = "Localisation refusée. Tape ta ville."; });
     }));
-    actions.appendChild(document.createTextNode(" · "));
-    actions.appendChild(lien("Annuler", function () { cityBar(data); }));
+    // « Annuler » n'a de sens que pour REVENIR à une ville déjà cadrée. Sans
+    // ville, le champ n'est pas une parenthèse qu'on referme : c'est l'état
+    // normal de l'écran, et les résultats nationaux sont déjà dessous.
+    if (valeur) {
+      actions.appendChild(document.createTextNode(" · "));
+      actions.appendChild(lien("Annuler", function () { cityBar(data); }));
+    }
 
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-      var nom = input.value.trim();
+    function cadrer(nom) {
       if (!nom) { LB.setCity(""); redessine(data); return; }
       var v = LB.villeParNom(nom);
       if (!v) {
@@ -217,8 +221,18 @@
       }
       LB.setCity(v.nom);
       redessine(data);
+    }
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      cadrer(input.value.trim());
     });
-    input.focus();
+    // Cliquer une suggestion cadre tout de suite : la ville ne fait plus de doute.
+    LB.autoVille(input, cadrer);
+    // Focus seulement quand le visiteur a DEMANDÉ à changer de ville. Le champ
+    // s'affiche aussi tout seul au premier affichage : y voler le focus ferait
+    // sauter la page vers lui et ouvrirait le clavier sur mobile.
+    if (valeur) input.focus();
   }
 
   // Re-rendu complet après un changement de ville (index déjà en cache).

@@ -265,35 +265,58 @@ et la mention TMDB (« ce produit utilise l'API TMDB mais n'est ni approuvé ni 
   - **Ne PAS dire « cette semaine »** : l'index inclut toutes les séances à venir (certaines à
     plusieurs semaines). Wording « à l'affiche », date exacte sur chaque carte, tri par
     imminence (prochaine séance croissante).
-  - **Une carte de watchlist doit toujours dire OÙ.** Elle se construit sur DEUX index et une
-    seule fonction, `LB.card(f, ag, pick)` (`assets/letterboxd.js`). Socle =
-    `watchlist-index.json` ; bonus = `agenda-index.json` quand le film y est (heure exacte +
-    bouton Réserver), mais il ne couvre que le **répertoire sur 5 semaines** (289 entrées),
-    d'où le socle. **Jointure par `u`** (URL de fiche), jamais par empreinte : l'empreinte est
-    dédoublée entre forme complète et forme sans année dans les deux fichiers.
-    `LB.loadAgenda()` avale ses propres erreurs et renvoie `null` — l'agenda est un bonus, il
-    ne doit jamais casser l'affichage. Dans `agenda-index`, prendre la séance qui correspond à
-    la salle ET au jour retenus (`agSeance()`), **pas `ag.s[0]`** : cadré sur Nancy, `s[0]`
-    donnerait l'heure d'une séance parisienne.
+  - **Une carte de watchlist doit toujours dire OÙ, QUAND et COMMENT RÉSERVER.** Elle se
+    construit dans une seule fonction, `LB.card(f, ag, pick)` (`assets/letterboxd.js`), à
+    partir de `watchlist-index.json` seul : depuis 2026-07-27 celui-ci porte l'heure ET le lien
+    de billetterie de chaque prochaine séance (voir `k` ci-dessous), donc **tous** les films en
+    profitent. `agenda-index.json` n'est plus qu'un **repli** pour un index périmé resté en
+    cache navigateur (`agSeance()`, jointure par `u` = URL de fiche, jamais par empreinte —
+    l'empreinte est dédoublée entre forme complète et forme sans année). `LB.loadAgenda()`
+    avale ses propres erreurs et renvoie `null` : il ne doit jamais casser l'affichage.
+    - **Pourquoi ce déplacement** : agenda-index ne couvre que le **répertoire sur 5 semaines**
+      (289 entrées). Un film récent de la watchlist (constaté sur *Kneecap* au Cinéma Pax du
+      Pouliguen) n'avait donc ni heure ni bouton « Réserver », alors que la fiche du cinéma,
+      elle, en proposait un : incohérence visible pour le visiteur. Ne pas re-restreindre.
+    - Reste sans bouton ce que la SOURCE ne donne pas (`booking` vide) : quelques salles indés
+      sans billetterie en ligne publiée (Le Cinématographe à Nantes, Les 3 Robespierre,
+      L'Entrepôt…). Aucune page du site n'a de lien pour ces séances — ce n'est pas un bug.
   - **`watchlist-index.json` est NORMALISÉ (tables partagées).** En tête : `_v` =
-    `[nom de ville, lat, lon]`, `_s` = `[nom de salle, index de ville]`. Chaque film porte
-    `k` = `[[index de salle, date de sa prochaine séance dans cette salle]]`, **trié par date**,
-    donc `k[0]` est la prochaine séance du film. `n`, `c` et `v` ont été supprimés : ils s'en
-    déduisent (`n` = `k.length`). Les clés `_v`/`_s` ne peuvent pas entrer en collision avec un
-    film — une empreinte est faite de `[a-z0-9]` uniquement, jamais de tiret bas — mais **tout
-    parcours de l'index doit sauter les clés commençant par `_`** (déjà oublié une fois dans le
-    compteur `n_wl`). Sans normalisation, répéter « Cinéma Le Champo » et « Paris » dans les
-    5 349 paires (film, salle) triplerait le fichier. Poids : 281 ko brut mais **56 ko gzippé**,
-    et il n'est chargé qu'à la demande. `lb-reco.js`, `lb-listes.js` et `cinematheque.js` ne
-    lisent que `p` et `r` de cet index : les faire dépendre de `k` les casserait inutilement.
+    `[nom de ville, lat, lon]`, `_s` = `[nom de salle, index de ville, préfixe de billetterie]`.
+    Chaque film porte `k` = `[[index de salle, jour, heure, suffixe de billetterie]]` pour sa
+    prochaine séance dans chaque salle, **trié par date**, donc `k[0]` est la prochaine séance
+    du film. `n`, `c` et `v` ont été supprimés : ils s'en déduisent (`n` = `k.length`). Les
+    clés `_v`/`_s` ne peuvent pas entrer en collision avec un film — une empreinte est faite de
+    `[a-z0-9]` uniquement, jamais de tiret bas — mais **tout parcours de l'index doit sauter les
+    clés commençant par `_`** (déjà oublié une fois dans le compteur `n_wl`).
+    - **Les liens de billetterie sont factorisés par salle** : une salle a toujours le même
+      domaine d'achat, seul l'identifiant de séance change. Le préfixe commun vit dans `_s[i][2]`,
+      la séance ne garde que son suffixe, et le client recompose (`billetterie()`). Sans ça le
+      fichier passait de 281 à 661 ko bruts ; avec, il fait **404 ko bruts / 85 ko gzippés**.
+    - ⚠️ **Le préfixe est volontairement raccourci d'un caractère** (`_prefixe_billetterie`) pour
+      qu'un suffixe stocké ne soit JAMAIS vide. C'est ce qui permet à `""` de vouloir dire « pas
+      de billetterie » sans ambiguïté. Sans ce détail, une salle n'ayant qu'une seule séance
+      réservable voyait son URL entièrement absorbée par le préfixe et perdait son bouton.
+    - `lb-reco.js`, `lb-listes.js` et `cinematheque.js` ne lisent que `p` et `r` de cet index :
+      les faire dépendre de `k` les casserait inutilement.
   - **CADRAGE PAR VILLE (le cœur de la page).** « 32 films à l'affiche » sans ville veut dire
     « quelque part en France » et n'est pas actionnable. Le portail demande donc la ville en
     **étape 2**, APRÈS la synchro du pseudo — demander deux choses avant le moindre résultat
     fait abandonner ; là le visiteur a déjà la preuve que ça marche. La ville est stockée par
     son **NOM** (`LB.setCity`), pas par son index dans `_v` : un index numérique ne survivrait
     pas à une reconstruction du fichier. `LB.city()` ne fonctionne qu'**après `loadIndex()`**
-    (c'est `_v` qui résout le nom en coordonnées). Saisie libre + `<datalist>` des 258 villes
-    programmées ; `villeParNom()` neutralise casse et accents (« NANCY », « nancy » → Nancy).
+    (c'est `_v` qui résout le nom en coordonnées) ; `villeParNom()` neutralise casse et accents
+    (« NANCY », « nancy » → Nancy).
+    - **Le champ de ville s'affiche d'emblée**, il n'y a plus de lien « Choisir ma ville » à
+      cliquer d'abord (`/ma-watchlist/`, encadré `.lb-city-edit` avec l'accent ambre). C'est
+      l'action principale de l'écran : la cacher derrière un clic la faisait manquer. Une fois
+      la ville cadrée, la barre redevient compacte avec un bouton « Changer de ville ».
+    - **Suggestions maison, jamais de `<datalist>`** (`LB.autoVille`, partagé par le portail et
+      la page) : un datalist déroule les 257 villes dès le clic dans le champ, ce qui invite à
+      PARCOURIR une liste alors que la bonne action est de TAPER. Rien ne s'affiche avant
+      **2 lettres**, puis seules les villes correspondantes remontent, celles qui COMMENCENT par
+      la saisie d'abord. Le repli passe par `empreinte`, la même fonction que `villeParNom` :
+      ce qui est proposé est donc exactement ce qui sera résolu. Cliquer une suggestion vaut
+      validation (pas de second clic sur « Continuer »). Même modèle que `film.js`.
   - **Ville sans séance → on désigne la plus proche, on ne renvoie pas au national.**
     `villeProcheAvecFilm()` cherche, parmi les films de la watchlist, la ville la plus proche
     (Haversine, même formule que `map.js`) qui en programme un — « Rien à Albi, le plus proche

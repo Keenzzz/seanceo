@@ -175,6 +175,16 @@
     return { nom: s[0], ville: v[0], lat: v[1], lon: v[2] };
   }
 
+  // Lien de billetterie d'une séance : le préfixe commun de la salle (`_s[i][2]`)
+  // plus le suffixe stocké sur la séance. Le build garantit qu'un suffixe n'est
+  // jamais vide quand une billetterie existe, donc `""` veut bien dire « pas de
+  // réservation en ligne pour cette séance ».
+  function billetterie(salleIdx, suffixe) {
+    if (!suffixe) return "";
+    var s = _salles[salleIdx];
+    return ((s && s[2]) || "") + suffixe;
+  }
+
   // Toutes les villes programmées, triées pour l'autocomplétion du formulaire.
   function villes() {
     return _villes.map(function (v) { return v[0]; })
@@ -207,6 +217,93 @@
     return null;
   }
 
+  // —— Autocomplétion de ville (maison, comme film.js) ——————————————————————————
+  // Pas de <datalist> : au premier clic elle déroule les 257 villes programmées,
+  // c'est-à-dire une liste à PARCOURIR alors que la bonne action est de TAPER
+  // deux lettres. Ici rien n'apparaît tant que le visiteur n'a pas tapé
+  // MIN_VILLE caractères ; ensuite seules les villes qui correspondent
+  // remontent, celles qui COMMENCENT par la saisie d'abord.
+  // Le repli des noms passe par `empreinte`, la même fonction que
+  // `villeParNom` : ce qui est proposé est donc exactement ce qui sera résolu
+  // (« saint e » trouve « Saint-Étienne », accents et tirets neutralisés).
+  var MIN_VILLE = 2, MAX_VILLE = 8;
+
+  function autoVille(input, onPick) {
+    var noms = villes();
+    var plies = noms.map(empreinte);
+
+    // Le menu est positionné par rapport à un conteneur inséré autour du champ :
+    // les formulaires hôtes sont en display:flex, un <ul> posé à côté du champ
+    // deviendrait un élément de la ligne au lieu de flotter par-dessus.
+    var wrap = document.createElement("span");
+    wrap.className = "lb-suggest-wrap";
+    input.parentNode.insertBefore(wrap, input);
+    wrap.appendChild(input);
+    var liste = document.createElement("ul");
+    liste.className = "lb-suggest";
+    liste.setAttribute("role", "listbox");
+    liste.hidden = true;
+    wrap.appendChild(liste);
+    var actif = -1; // suggestion surlignée au clavier
+
+    function fermer() { liste.hidden = true; liste.textContent = ""; actif = -1; }
+
+    function retenir(nom) {
+      input.value = nom;
+      fermer();
+      if (onPick) onPick(nom);
+    }
+
+    function proposer() {
+      var q = empreinte(input.value);
+      fermer();
+      if (q.length < MIN_VILLE) return;
+      var debut = [], dedans = [];
+      for (var i = 0; i < noms.length; i++) {
+        var pos = plies[i].indexOf(q);
+        if (pos === 0) debut.push(noms[i]);
+        else if (pos > 0) dedans.push(noms[i]);
+      }
+      var trouves = debut.concat(dedans).slice(0, MAX_VILLE);
+      if (!trouves.length) return;
+      trouves.forEach(function (nom) {
+        var li = document.createElement("li");
+        li.setAttribute("role", "option");
+        li.textContent = nom; // textContent : jamais d'injection
+        // mousedown, pas click : il part AVANT le blur du champ, qui referme.
+        li.addEventListener("mousedown", function (e) { e.preventDefault(); retenir(nom); });
+        liste.appendChild(li);
+      });
+      liste.hidden = false;
+    }
+
+    function surligner(items) {
+      for (var i = 0; i < items.length; i++) items[i].classList.toggle("active", i === actif);
+    }
+
+    input.setAttribute("autocomplete", "off");
+    input.removeAttribute("list"); // plus de <datalist>, même si le HTML en portait un
+    input.addEventListener("input", proposer);
+    input.addEventListener("keydown", function (e) {
+      var items = liste.querySelectorAll("li");
+      if (e.key === "ArrowDown" && items.length) {
+        e.preventDefault(); actif = (actif + 1) % items.length; surligner(items);
+      } else if (e.key === "ArrowUp" && items.length) {
+        e.preventDefault(); actif = (actif - 1 + items.length) % items.length; surligner(items);
+      } else if (e.key === "Enter") {
+        // Une suggestion surlignée l'emporte ; sinon on laisse le formulaire
+        // valider ce qui est tapé (une ville se résout très bien sans passer
+        // par la liste).
+        if (items.length && actif >= 0) { e.preventDefault(); retenir(items[actif].textContent); }
+        else fermer();
+      } else if (e.key === "Escape") {
+        fermer();
+      }
+    });
+    // Léger délai : laisse le mousedown d'une suggestion aboutir avant la fermeture.
+    input.addEventListener("blur", function () { setTimeout(fermer, 150); });
+  }
+
   // Distance Haversine en km — même formule que map.js, lb-listes.js et le Worker.
   function distKm(lat1, lon1, lat2, lon2) {
     if (lat1 == null || lat2 == null) return Infinity;
@@ -220,8 +317,11 @@
   // La séance à MONTRER pour un film, selon la ville de cadrage. `k` étant trié
   // par date, la première salle qui correspond est aussi la plus tôt. `cityKey`
   // vide = pas de cadrage, on prend la prochaine séance où qu'elle soit.
-  // Renvoie { salle, date, n } (n = nombre de salles retenues), ou null quand le
-  // film ne passe pas du tout dans la ville demandée.
+  // Renvoie { salle, date, heure, booking, n } (n = nombre de salles retenues),
+  // ou null quand le film ne passe pas du tout dans la ville demandée.
+  // `heure`/`booking` viennent des positions 2 et 3 des entrées de `k` ; un
+  // index d'une version antérieure (resté en cache) n'en a pas, d'où les
+  // valeurs par défaut vides plutôt qu'un accès direct.
   function pickSalle(f, cityKey) {
     var ks = f.k || [], choisi = null, n = 0;
     for (var i = 0; i < ks.length; i++) {
@@ -229,7 +329,10 @@
       if (!inf) continue;
       if (cityKey && empreinte(inf.ville) !== cityKey) continue;
       n++;
-      if (!choisi) choisi = { salle: inf, date: ks[i][1] };
+      if (!choisi) {
+        choisi = { salle: inf, date: ks[i][1], heure: ks[i][2] || "",
+                   booking: billetterie(ks[i][0], ks[i][3]) };
+      }
     }
     if (!choisi) return null;
     choisi.n = n;
@@ -287,11 +390,6 @@
     return jours[d.getDay()] + " " + d.getDate() + " " + mois[d.getMonth()];
   }
 
-  // Carte film. `ag` = entrée d'agenda-index pour ce film (facultative) : quand
-  // elle existe on connaît l'HEURE exacte et le lien de billetterie ; sinon on
-  // retombe sur `c`/`v` de watchlist-index, qui donnent au moins la salle et la
-  // ville de la prochaine séance. Dans les deux cas la carte dit OÙ aller —
-  // « 1 cinéma » tout seul n'aidait personne.
   // Dans agenda-index, la séance qui correspond EXACTEMENT à la salle et au jour
   // retenus — c'est elle qui porte l'heure et le lien de billetterie. Prendre
   // `ag.s[0]` à la place donnerait l'heure d'une séance à l'autre bout du pays
@@ -304,16 +402,24 @@
     return null;
   }
 
-  // Carte film. `pick` = { salle, date, n } choisi par pickSalle (donc déjà
-  // cadré sur la ville du visiteur s'il en a donné une) ; `ag` = entrée
-  // d'agenda-index, facultative, qui ajoute l'heure exacte et la billetterie
-  // quand le film est du répertoire. Dans tous les cas la carte dit OÙ aller.
+  // Carte film. `pick` = { salle, date, heure, booking, n } choisi par pickSalle
+  // (donc déjà cadré sur la ville du visiteur s'il en a donné une) ; `ag` =
+  // entrée d'agenda-index, facultative.
+  //
+  // L'heure et la billetterie sont désormais portées par watchlist-index
+  // lui-même (`k`), donc disponibles pour TOUS les films. agenda-index ne sert
+  // plus que de repli, le temps qu'un index plus ancien resté en cache soit
+  // remplacé : il ne couvre que le répertoire, et c'est exactement ce qui
+  // faisait qu'un film récent (Kneecap) n'avait pas de bouton « Réserver »
+  // alors que la fiche de son cinéma en proposait un.
   function card(f, ag, pick) {
     if (!pick) pick = pickSalle(f, "");
     var cine = pick && pick.salle.nom;
     var ville = pick && pick.salle.ville;
     var jour = pick ? pick.date : f.d;
-    var s = pick ? agSeance(ag, cine, jour) : null;
+    var repli = pick && !pick.heure ? agSeance(ag, cine, jour) : null;
+    var heure = (pick && pick.heure) || (repli ? repli[0].slice(11, 16) : "");
+    var lien = (pick && pick.booking) || (repli ? repli[5] : "");
 
     var art = document.createElement("article");
     art.className = "movie-card";
@@ -321,7 +427,7 @@
       ? '<a href="' + f.u + '"><img src="' + f.p + '" alt="" loading="lazy"></a>'
       : '<a href="' + f.u + '"><span class="noposter">🎞️</span></a>';
     var note = f.r ? '<span class="note-lb">' + f.r + '<span class="sur">/5</span></span> · ' : "";
-    var quand = "prochaine séance " + frDate(jour) + (s ? " à " + s[0].slice(11, 16) : "");
+    var quand = "prochaine séance " + frDate(jour) + (heure ? " à " + heure : "");
     // innerHTML ne reçoit que des valeurs de NOTRE index (jamais le pseudo saisi).
     art.innerHTML =
       poster +
@@ -339,11 +445,11 @@
       if (autres > 0) lieu += " + " + autres + (autres > 1 ? " autres cinémas" : " autre cinéma");
       line.appendChild(document.createTextNode("📍 " + lieu)); // textContent : noms de salles
       // Billetterie : nouvel onglet, et seulement si l'URL est bien en http(s).
-      if (s && s[5] && /^https?:\/\//i.test(s[5])) {
+      if (lien && /^https?:\/\//i.test(lien)) {
         line.appendChild(document.createTextNode(" · "));
         var book = document.createElement("a");
         book.className = "seance-book";
-        book.href = s[5];
+        book.href = lien;
         book.target = "_blank";
         book.rel = "noopener noreferrer";
         book.textContent = "Réserver ↗";
@@ -656,21 +762,15 @@
       msg.textContent = text;
       msg.className = "lb-msg" + (kind === "err" ? " lb-error" : "");
     }
-    // Étape 2 du portail : la ville. Le champ est libre mais adossé à un
-    // <datalist> des villes réellement programmées, donc la saisie converge vers
-    // un nom qu'on connaît ; `villeParNom` neutralise casse et accents. Le
-    // bouton de géolocalisation ne fait que convertir la position en nom de
-    // ville, dans le navigateur — rien n'est envoyé au site.
+    // Étape 2 du portail : la ville. Le champ est libre, avec des suggestions
+    // qui n'apparaissent qu'au fil de la frappe (`autoVille`) ; `villeParNom`
+    // neutralise casse et accents à la validation. Le bouton de géolocalisation
+    // ne fait que convertir la position en nom de ville, dans le navigateur —
+    // rien n'est envoyé au site.
     function askCity(data, listHits, favHits) {
       var n = listHits.length, f = favHits.length;
       if (!n && !f) { success(data, listHits, favHits, null); return; } // rien à cadrer
       var pcard = overlay.querySelector(".lb-portal-card");
-      var noms = villes();
-      var opts = noms.map(function (v) {
-        var o = document.createElement("option");
-        o.value = v;
-        return o.outerHTML;
-      }).join("");
       pcard.innerHTML =
         '<button type="button" class="lb-close" aria-label="Fermer">×</button>' +
         '<h2></h2>' +
@@ -678,11 +778,10 @@
         '<p>Dans quelle <strong>ville</strong> cherches-tu ? On te montrera d\'abord ' +
           'ce qui passe près de chez toi, plutôt que partout en France.</p>' +
         '<form class="lb-field" id="lb-city-form">' +
-          '<input class="lb-input" id="lb-city-input" type="text" list="lb-city-list" ' +
-            'autocomplete="off" spellcheck="false" placeholder="ta ville" aria-label="Ta ville">' +
+          '<input class="lb-input" id="lb-city-input" type="text" autocomplete="off" ' +
+            'spellcheck="false" placeholder="tape ta ville" aria-label="Ta ville">' +
           '<button class="bouton bouton-lb" type="submit">Continuer</button>' +
         '</form>' +
-        '<datalist id="lb-city-list">' + opts + '</datalist>' +
         '<p class="lb-msg" id="lb-city-msg" hidden></p>' +
         '<p class="lb-portal-alt">' +
           '<button type="button" class="lb-secondary" id="lb-city-geo">📍 me localiser</button>' +
@@ -719,6 +818,9 @@
         var v = cin.value.trim();
         if (v) choisir(v);
       });
+      // Cliquer une suggestion vaut validation : la ville est certaine, faire
+      // cliquer « Continuer » derrière n'ajoute qu'un geste.
+      autoVille(cin, choisir);
       pcard.querySelector("#lb-city-skip").addEventListener("click", function () {
         setCity("");
         success(data, listHits, favHits, null);
@@ -818,7 +920,7 @@
     loadIndex: loadIndex, loadAgenda: loadAgenda, cross: cross, render: render,
     card: card, empreinte: empreinte, errText: errText, showPortal: showPortal,
     city: city, setCity: setCity, villes: villes, villeParNom: villeParNom,
-    villeLaPlusProche: villeLaPlusProche, pickSalle: pickSalle,
+    villeLaPlusProche: villeLaPlusProche, pickSalle: pickSalle, autoVille: autoVille,
     USER_HINT: USER_HINT, WORKER_URL: WORKER_URL, MOCK: MOCK
   };
 

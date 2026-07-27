@@ -685,11 +685,63 @@ html:not(.js) .film-tools { display: none; }
    ambre = accent du site), le reste est explicitement secondaire. */
 .lb-city-bar { color: var(--muted); font-size: .92rem; margin: 14px 0 4px; }
 .lb-city-on { color: var(--accent); font-weight: 600; }
-.lb-city-edit { margin: 14px 0 4px; }
-.lb-city-edit label { display: block; font-size: .9rem; margin-bottom: 6px; }
+/* Changer de ville est une vraie action, pas une note de bas de page : bouton
+   visible plutôt que lien souligné, même quand une ville est déjà cadrée. */
+.lb-city-chg {
+  background: none;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  color: var(--text);
+  cursor: pointer;
+  font: inherit;
+  font-size: .85rem;
+  padding: 3px 12px;
+  margin: 0 2px;
+}
+.lb-city-chg:hover { border-color: var(--accent); color: var(--accent); }
+/* Demander sa ville est l'action principale de l'écran : le champ est affiché
+   d'emblée (plus de « Choisir ma ville » à cliquer d'abord) et encadré comme
+   la section de ville des résultats, avec le même accent ambre. */
+.lb-city-edit {
+  margin: 16px 0 6px;
+  padding: 14px 16px;
+  background: var(--panel);
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius);
+}
+.lb-city-edit label { display: block; font-weight: 600; margin-bottom: 8px; }
 .lb-city-edit .lb-field { display: flex; gap: 8px; max-width: 420px; }
 .lb-city-actions { display: inline-block; margin-top: 8px; font-size: .9rem; }
 .lb-city-msg { display: block; color: var(--muted); font-size: .85rem; margin-top: 6px; }
+
+/* Suggestions de ville au fil de la frappe (2 lettres mini, voir autoVille).
+   Le conteneur remplace le champ dans la ligne flex : il en reprend donc la
+   souplesse, sinon le champ perdrait sa largeur. */
+.lb-suggest-wrap { position: relative; flex: 1 1 220px; min-width: 0; display: block; }
+.lb-suggest-wrap .lb-input { width: 100%; flex: none; }
+.lb-suggest {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  z-index: 60;
+  margin: 0;
+  padding: 4px;
+  list-style: none;
+  background: var(--panel);
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .45);
+}
+.lb-suggest[hidden] { display: none; }  /* display: l'emporterait sur `hidden` */
+.lb-suggest li {
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: .95rem;
+}
+.lb-suggest li:hover, .lb-suggest li.active { background: var(--sunk); color: var(--accent); }
 
 .lb-sec-sub { margin: 0 0 12px; color: var(--muted); font-size: .92rem; text-wrap: pretty; }
 .lb-ici {

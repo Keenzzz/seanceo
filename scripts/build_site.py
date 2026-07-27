@@ -924,6 +924,11 @@ Les séances d'aujourd'hui d'abord, puis celles des jours suivants.{classics_bit
     # `_v` porte les coordonnées de chaque ville (celles de sa première salle) :
     # c'est ce qui permet, quand aucun film ne passe dans la ville du visiteur,
     # de lui désigner la ville la plus proche où il y en a un.
+    #
+    # `_s` porte en 3e position le PRÉFIXE COMMUN des liens de billetterie de la
+    # salle (voir `_prefixe_billetterie` plus bas) : une salle utilise toujours
+    # le même domaine d'achat, répéter « https://lepouliguencinemapax.cine.
+    # boutique/media/ » sur chacune de ses séances pesait 250 ko pour rien.
     villes: list[list] = []
     ville_idx: dict[str, int] = {}
     salles: list[list] = []
@@ -944,27 +949,64 @@ Les séances d'aujourd'hui d'abord, puis celles des jours suivants.{classics_bit
                 round(lon, 4) if lon is not None else None,
             ])
         salle_idx[cinema_id] = len(salles)
-        salles.append([c["name"], ville_idx[ville]])
+        salles.append([c["name"], ville_idx[ville], ""])
         return salle_idx[cinema_id]
 
+    def _prefixe_billetterie(urls: list[str]) -> str:
+        """Plus long préfixe commun à tous les liens d'une salle, TOUJOURS plus
+        court que le plus court d'entre eux.
+
+        Ce raccourcissement d'un caractère n'est pas cosmétique : il garantit
+        qu'un suffixe stocké n'est jamais vide, et donc que côté client `""`
+        veut toujours dire « pas de billetterie », jamais « le préfixe tout
+        seul ». Sans lui, une salle qui n'a qu'une séance réservable verrait son
+        unique URL entièrement absorbée par le préfixe, et son bouton
+        « Réserver » disparaîtrait.
+        """
+        court, long = min(urls), max(urls)  # ordre lexicographique : les extrêmes suffisent
+        i = 0
+        while i < len(court) and i < len(long) and court[i] == long[i]:
+            i += 1
+        return court[: min(i, len(court) - 1)]
+
     wl_index: dict[str, dict] = {"_v": villes, "_s": salles}
+    liens_salle: dict[int, list[str]] = {}
     for key, m in movies.items():
         shows = by_movie.get(key)
         if not shows or not m.get("lb_url"):
             continue
         slug = m["lb_url"].rstrip("/").split("/film/")[-1]
         empreinte = lb_slug_key(slug)
-        # Prochaine séance par salle (une salle peut en programmer plusieurs).
-        par_salle: dict[int, str] = {}
+        # Prochaine séance par salle (une salle peut en programmer plusieurs) :
+        # on garde la séance ELLE-MÊME, pas seulement son jour, pour porter son
+        # heure et son lien de billetterie jusqu'à la carte.
+        par_salle: dict[int, dict] = {}
         for s in shows:
             i = ref_salle(s["cinema"])
-            jour = s["start"][:10]
-            if i not in par_salle or jour < par_salle[i]:
-                par_salle[i] = jour
+            if i not in par_salle or s["start"] < par_salle[i]["start"]:
+                par_salle[i] = s
         # Trié par date : `k[0]` est donc la prochaine séance du film, toutes
         # salles confondues. `n`, `d`, `c` et `v` s'en déduisent, on ne les
         # stocke plus — ils étaient redondants avec cette liste.
-        k = sorted(([i, j] for i, j in par_salle.items()), key=lambda p: (p[1], p[0]))
+        #
+        # Chaque entrée = [salle, jour, heure, billetterie]. L'heure et le lien
+        # étaient auparavant lus dans agenda-index, qui ne couvre QUE le
+        # répertoire : une reprise avait son bouton « Réserver », un film récent
+        # de la watchlist n'en avait pas, alors que la fiche du cinéma, elle, le
+        # proposait. Les porter ici les rend disponibles pour TOUS les films.
+        # `""` quand la source ne donne pas de billetterie — le champ reste
+        # présent pour que la forme des entrées ne varie pas. Le lien est écrit
+        # ENTIER ici puis raccourci de son préfixe de salle en fin de boucle.
+        k = sorted(
+            (
+                [i, s["start"][:10], s["start"][11:16], s.get("booking") or ""]
+                for i, s in par_salle.items()
+            ),
+            key=lambda p: (p[1], p[2], p[0]),
+        )
+        for p in k:
+            if p[3]:
+                liens_salle.setdefault(p[0], []).append(p[3])
         entry = {
             "t": m["title"],
             "u": f"{BASE_PATH}{movie_urls[key]}",
@@ -980,6 +1022,23 @@ Les séances d'aujourd'hui d'abord, puis celles des jours suivants.{classics_bit
         base = re.sub(r"(19|20)\d\d$", "", empreinte)
         if base != empreinte:
             wl_index.setdefault(base, entry)
+
+    # Factorisation des liens de billetterie : le préfixe commun part dans `_s`,
+    # chaque séance ne garde que ce qui la distingue (l'identifiant de séance).
+    # Une passe séparée, car le préfixe d'une salle n'est connu qu'une fois tous
+    # ses films parcourus. Les entrées étant partagées entre l'empreinte
+    # complète et sa base (même objet), on dédoublonne par identité — sinon on
+    # raccourcirait deux fois les mêmes liens.
+    for i, liens in liens_salle.items():
+        salles[i][2] = _prefixe_billetterie(liens)
+    vues: set[int] = set()
+    for cle, entry in wl_index.items():
+        if cle.startswith("_") or id(entry) in vues:
+            continue
+        vues.add(id(entry))
+        for p in entry["k"]:
+            if p[3]:
+                p[3] = p[3][len(salles[p[0]][2]):]
     (SITE / "watchlist-index.json").write_text(
         json.dumps(wl_index, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
 
