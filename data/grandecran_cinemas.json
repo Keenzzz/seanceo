@@ -10,17 +10,6 @@
   "lon": -1.168607,
   "chain": "Grand Écran"
  },
- "grandecran-p7645": {
-  "id": "grandecran-p7645",
-  "name": "Bergerac",
-  "address": "2, rue des Carmes",
-  "postcode": "24100",
-  "city": "Bergerac",
-  "city_slug": "bergerac",
-  "lat": 44.8532,
-  "lon": 0.48655,
-  "chain": "Grand Écran"
- },
  "grandecran-g034g": {
   "id": "grandecran-g034g",
   "name": "Fontenay-le-Comte",
