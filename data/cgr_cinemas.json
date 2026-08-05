@@ -153,17 +153,6 @@
   "lon": 4.774632454,
   "chain": "CGR"
  },
- "cgr-p1038": {
-  "id": "cgr-p1038",
-  "name": "CGR Brive la Gaillarde",
-  "address": "4 Avenue Jacques et Bernadette Chirac",
-  "postcode": "19100",
-  "city": "Brive-la-Gaillarde",
-  "city_slug": "brive-la-gaillarde",
-  "lat": 45.1654646,
-  "lon": 1.542633,
-  "chain": "CGR"
- },
  "cgr-p0993": {
   "id": "cgr-p0993",
   "name": "CGR Bruay la Buissière",
