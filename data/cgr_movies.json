@@ -491,15 +491,15 @@
   "trailer": "",
   "storyline": ""
  },
- "le-fabuleux-destin-d-amelie-poulain|jean-pierre-jeunet": {
-  "key": "le-fabuleux-destin-d-amelie-poulain|jean-pierre-jeunet",
-  "title": "Le Fabuleux destin d'Amélie Poulain",
-  "director": "Jean-Pierre Jeunet",
+ "l-armee-des-12-singes|terry-gilliam": {
+  "key": "l-armee-des-12-singes|terry-gilliam",
+  "title": "L'Armée des 12 singes",
+  "director": "Terry Gilliam",
   "cast": "",
-  "genre": "Comédie",
+  "genre": "Drame",
   "country": "",
-  "duration_min": 122,
-  "poster": "https://all.web.img.acsta.net/pictures/21/10/27/16/23/3147426.jpg",
+  "duration_min": 130,
+  "poster": "https://all.web.img.acsta.net/medias/nmedia/18/87/76/78/19964803.jpg",
   "trailer": "",
   "storyline": ""
  },
@@ -635,18 +635,6 @@
   "trailer": "",
   "storyline": ""
  },
- "stand-by-me|rob-reiner": {
-  "key": "stand-by-me|rob-reiner",
-  "title": "Stand by Me",
-  "director": "Rob Reiner",
-  "cast": "",
-  "genre": "Aventure",
-  "country": "",
-  "duration_min": 89,
-  "poster": "https://all.web.img.acsta.net/pictures/15/10/28/13/31/462748.jpg",
-  "trailer": "",
-  "storyline": ""
- },
  "lawrence-d-arabie|david-lean": {
   "key": "lawrence-d-arabie|david-lean",
   "title": "Lawrence d'Arabie",
@@ -704,30 +692,6 @@
   "country": "",
   "duration_min": 70,
   "poster": "https://all.web.img.acsta.net/medias/nmedia/18/92/95/32/20266025.jpg",
-  "trailer": "",
-  "storyline": ""
- },
- "l-inconnu-du-nord-express|alfred-hitchcock": {
-  "key": "l-inconnu-du-nord-express|alfred-hitchcock",
-  "title": "L'Inconnu du Nord-Express",
-  "director": "Alfred Hitchcock",
-  "cast": "",
-  "genre": "Policier",
-  "country": "",
-  "duration_min": 100,
-  "poster": "https://all.web.img.acsta.net/medias/nmedia/18/87/84/29/19971944.jpg",
-  "trailer": "",
-  "storyline": ""
- },
- "arrietty-le-petit-monde-des-chapardeurs|hiromasa-yonebayashi": {
-  "key": "arrietty-le-petit-monde-des-chapardeurs|hiromasa-yonebayashi",
-  "title": "Arrietty le petit monde des chapardeurs",
-  "director": "Hiromasa Yonebayashi",
-  "cast": "",
-  "genre": "Animation",
-  "country": "",
-  "duration_min": 94,
-  "poster": "https://all.web.img.acsta.net/medias/nmedia/18/89/18/78/20031088.jpg",
   "trailer": "",
   "storyline": ""
  },
@@ -1091,6 +1055,18 @@
   "trailer": "",
   "storyline": ""
  },
+ "le-fabuleux-destin-d-amelie-poulain|jean-pierre-jeunet": {
+  "key": "le-fabuleux-destin-d-amelie-poulain|jean-pierre-jeunet",
+  "title": "Le Fabuleux destin d'Amélie Poulain",
+  "director": "Jean-Pierre Jeunet",
+  "cast": "",
+  "genre": "Comédie",
+  "country": "",
+  "duration_min": 122,
+  "poster": "https://all.web.img.acsta.net/pictures/21/10/27/16/23/3147426.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
  "le-gendarme-de-saint-tropez|jean-girault": {
   "key": "le-gendarme-de-saint-tropez|jean-girault",
   "title": "Le Gendarme de Saint-Tropez",
@@ -1103,27 +1079,15 @@
   "trailer": "",
   "storyline": ""
  },
- "cowboy-bebop|shin-ichiro-watanabe": {
-  "key": "cowboy-bebop|shin-ichiro-watanabe",
-  "title": "Cowboy Bebop",
-  "director": "Shin'ichirô Watanabe",
+ "la-la-land|damien-chazelle": {
+  "key": "la-la-land|damien-chazelle",
+  "title": "La La Land",
+  "director": "Damien Chazelle",
   "cast": "",
-  "genre": "Animation",
+  "genre": "Comédie musicale",
   "country": "",
-  "duration_min": 111,
-  "poster": "https://all.web.img.acsta.net/medias/nmedia/18/87/79/88/19967850.jpg",
-  "trailer": "",
-  "storyline": ""
- },
- "la-derniere-seance|pan-nalin": {
-  "key": "la-derniere-seance|pan-nalin",
-  "title": "La Dernière séance",
-  "director": "Pan Nalin",
-  "cast": "",
-  "genre": "Drame",
-  "country": "",
-  "duration_min": 112,
-  "poster": "https://all.web.img.acsta.net/pictures/22/03/21/12/06/5466260.jpg",
+  "duration_min": 128,
+  "poster": "https://all.web.img.acsta.net/pictures/16/08/24/15/06/075819.jpg",
   "trailer": "",
   "storyline": ""
  },
@@ -1160,6 +1124,18 @@
   "country": "",
   "duration_min": null,
   "poster": "",
+  "trailer": "",
+  "storyline": ""
+ },
+ "cowboy-bebop|shin-ichiro-watanabe": {
+  "key": "cowboy-bebop|shin-ichiro-watanabe",
+  "title": "Cowboy Bebop",
+  "director": "Shin'ichirô Watanabe",
+  "cast": "",
+  "genre": "Animation",
+  "country": "",
+  "duration_min": 111,
+  "poster": "https://all.web.img.acsta.net/medias/nmedia/18/87/79/88/19967850.jpg",
   "trailer": "",
   "storyline": ""
  },
@@ -1220,6 +1196,18 @@
   "country": "",
   "duration_min": 108,
   "poster": "https://all.web.img.acsta.net/img/0e/45/0e45d689504b90a741830580166f6ff9.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "marty-supreme|josh-safdie": {
+  "key": "marty-supreme|josh-safdie",
+  "title": "Marty Supreme",
+  "director": "Josh Safdie",
+  "cast": "",
+  "genre": "Drame",
+  "country": "",
+  "duration_min": 150,
+  "poster": "https://all.web.img.acsta.net/img/04/e1/04e1efb1f485ab6aa99c0c9ddf05ae28.jpg",
   "trailer": "",
   "storyline": ""
  },
