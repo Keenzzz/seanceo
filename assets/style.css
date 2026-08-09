@@ -830,6 +830,23 @@ html:not(.js) .wl-tabs { display: none; }
 .list-city:focus { outline: none; border-color: var(--accent); }
 .list-geo { margin-left: auto; }
 
+/* Séance unique : le film ne passe qu'une fois dans toute la France sur la
+   fenêtre (6 films de répertoire sur 10). En AMBRE, comme tout ce qui demande
+   l'attention sur ce site — surtout pas en rouge, réservé à la signature indé,
+   ni en vert, réservé aux notes Letterboxd. La pastille reprend le dessin de
+   `.marathon-today`, qui joue déjà ce rôle d'urgence datée ailleurs. */
+.wl-unique {
+  display: inline-block;
+  margin: .35em 0 0;
+  padding: 1px 9px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  border: 1px solid var(--accent-deep);
+  color: var(--accent);
+  font-size: .78rem;
+  font-weight: 700;
+}
+
 /* Ligne de séance sous chaque carte de la liste : lieu + billetterie. */
 .seance-line { color: var(--muted); font-size: .85rem; margin: .2em 0 0; text-wrap: pretty; }
 .seance-book { color: var(--accent); font-weight: 600; white-space: nowrap; }

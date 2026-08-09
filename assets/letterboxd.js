@@ -437,12 +437,18 @@
       : '<a href="' + f.u + '"><span class="noposter">🎞️</span></a>';
     var note = f.r ? '<span class="note-lb">' + f.r + '<span class="sur">/5</span></span> · ' : "";
     var quand = "prochaine séance " + frDate(jour) + (heure ? " à " + heure : "");
+    // Séance unique (champ `x`, posé au build) : le film ne repasse nulle part
+    // ailleurs en France sur la fenêtre. Dit platement, sans point
+    // d'exclamation ni compte à rebours : le fait se suffit, et c'est
+    // justement parce qu'on ne crie jamais que ça se remarque quand on le dit.
+    var unique = f.x ? '<p class="wl-unique">Séance unique en France</p>' : "";
     // innerHTML ne reçoit que des valeurs de NOTRE index (jamais le pseudo saisi).
     art.innerHTML =
       poster +
       '<div class="movie-info">' +
       '<h3><a href="' + f.u + '"></a></h3>' +
       '<p class="meta">' + note + quand + '</p>' +
+      unique +
       "</div>";
     art.querySelector("h3 a").textContent = f.t; // titre en textContent, ceinture+bretelles
 

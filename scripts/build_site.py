@@ -1016,6 +1016,18 @@ Les séances d'aujourd'hui d'abord, puis celles des jours suivants.{classics_bit
             "d": k[0][1],
             "k": k,
         }
+        # Séance unique : le film ne passe QU'UNE fois dans toute la France sur
+        # la fenêtre — même définition que `repertoire.count_unique()`, mais
+        # appliquée ici à tout le catalogue et pas au seul répertoire. C'est
+        # l'information la plus actionnable qu'on puisse donner à quelqu'un qui
+        # a le film dans sa watchlist : elle transforme « il passe » en « c'est
+        # maintenant ou jamais ». Se compte sur `shows` (toutes les séances du
+        # film) et surtout PAS sur `k`, qui n'en garde qu'une par salle : un
+        # film joué cinq fois dans la même salle a bien `len(k) == 1` sans être
+        # une séance unique. Champ absent quand le film repasse : inutile de
+        # peser sur l'index pour dire « non ».
+        if len(shows) == 1:
+            entry["x"] = 1
         # Indexé sous l'empreinte complète ET sous sa base sans l'année finale
         # (Letterboxd désambiguïse par « -2016 ») : le client tente les deux.
         wl_index.setdefault(empreinte, entry)
