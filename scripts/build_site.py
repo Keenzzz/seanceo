@@ -87,6 +87,12 @@ placeholder="Chercher un film ou un réalisateur…" aria-label="Chercher un fil
 </div>
 <script src="/assets/search.js" defer></script>"""
 
+# Alertes « préviens-moi quand ce film repasse ». Chargé par head_extra sur les
+# seules pages qui s'en servent (fiche film, /mes-alertes/) plutôt que dans
+# page() : inutile de le faire télécharger sur les 1 500 autres pages.
+# Il lit l'URL du Worker dans window.LB (lb-core), on ne la répète pas ici.
+ALERTES_JS = '<script src="/assets/alertes.js" defer></script>'
+
 JOURS = ["lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi", "dimanche"]
 MOIS = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet",
         "août", "septembre", "octobre", "novembre", "décembre"]
@@ -853,6 +859,21 @@ Les séances d'aujourd'hui d'abord, puis celles des jours suivants.{classics_bit
             actions.append(f'<a class="lien-lb" href="{esc(movie["lb_url"])}" target="_blank" '
                            f'rel="noopener noreferrer">Voir sur Letterboxd ↗</a>')
         trailer = f'<p class="film-actions">{"".join(actions)}</p>' if actions else ""
+        # Bloc « préviens-moi quand il repasse » : conteneur vide, rempli par
+        # assets/alertes.js. Conditionné à `lb_url` parce que l'empreinte du
+        # slug Letterboxd EST la clé de watchlist-index.json : sans elle, le
+        # balayage nocturne du Worker ne saurait pas quel film surveiller.
+        # Rien ne s'affiche sans JavaScript, et c'est voulu — une alerte est
+        # une fonction dynamique, un bouton mort serait pire que pas de bouton.
+        alerte_bloc = ""
+        if movie.get("lb_url"):
+            emp = lb_slug_key(movie["lb_url"].rstrip("/").split("/film/")[-1])
+            # `data-url` porte BASE_PATH à la main : page() ne préfixe que les
+            # attributs href et src, jamais les data-*.
+            alerte_bloc = (
+                f'<div class="film-alerte" id="film-alerte" data-film="{esc(emp)}" '
+                f'data-titre="{esc(movie["title"])}" '
+                f'data-url="{esc(BASE_PATH + path)}"></div>{ALERTES_JS}')
         # `filtered` : les sections ville sont masquées en CSS tant que le
         # visiteur n'en a pas choisi une. Le masquage est conditionné à la
         # classe `js` posée dans le <head> — sans JavaScript, la recherche ne
@@ -866,7 +887,7 @@ Les séances d'aujourd'hui d'abord, puis celles des jours suivants.{classics_bit
                       f'en {TODAY.year}.</p>' if age_anniv else "")
         body = f"""<div class="film-head">{poster}<div>
 <p class="lead">{classic_badge(movie)}{anniversaire_badge(movie)} {note_lb(movie)} {esc(credits)}</p>
-<p>{esc(movie["storyline"])}</p>{anniv_note}{trailer}</div></div>
+<p>{esc(movie["storyline"])}</p>{anniv_note}{trailer}{alerte_bloc}</div></div>
 <h2>Où voir {esc(movie["title"])} ?</h2>
 {city_jump}
 {prompt}
@@ -1893,6 +1914,26 @@ spellcheck="false" placeholder="ex. Akira Kurosawa" aria-label="Choisis un réal
         "en France en une rétrospective personnelle, à ajouter à ton agenda.",
         cine_body, "/cinematheque/", h1="Ta cinémathèque", top_link=True))
     urls.append("/cinematheque/")
+
+    # ----- Mes alertes -----
+    # Page de gestion : ce que le visiteur suit, et de quoi le retirer. Elle
+    # n'est pas dans le menu (elle ne concerne que ceux qui ont déjà marqué un
+    # film) mais reste atteignable depuis la fiche film et /ma-watchlist/.
+    alertes_body = f"""<p class="lead">Sur la fiche d'un film, le bouton
+« Préviens-moi quand il repasse » te prévient dès qu'une séance est programmée dans ta ville.
+Les reprises ne s'annoncent pas : 6 films de répertoire sur 10 ne passent qu'une seule fois
+en France sur une semaine.</p>
+<div id="mes-alertes" aria-live="polite"></div>
+<p class="meta">Rien n'est envoyé à personne : ton navigateur reçoit la notification
+directement, et tu peux retirer une alerte à tout moment.</p>
+{ALERTES_JS}"""
+    write("/mes-alertes/", page(
+        f"Mes alertes — {SITE_NAME}",
+        "Les films que tu suis : Séancéo te prévient quand ils repassent dans ta ville.",
+        alertes_body, "/mes-alertes/", h1="Mes alertes"))
+    # Volontairement ABSENTE du sitemap : son contenu n'existe que dans le
+    # navigateur de celui qui a marqué des films, il n'y a rien à indexer.
+    # On y arrive par le lien posé sous la confirmation d'une alerte.
 
     # ----- Carte des cinémas -----
     # Données injectées dans la page (pas de fetch) : nom, ville, coords, chaîne,

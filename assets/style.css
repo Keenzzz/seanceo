@@ -1503,3 +1503,63 @@ a:focus-visible, summary:focus-visible, input:focus-visible {
      avec le reste plutôt que de flotter seul. */
   .tri-compte { margin-left: 0; }
 }
+
+/* —— Alertes « préviens-moi quand ce film repasse » ————————————————————————
+   Fonction du site, donc ambre (--accent). Surtout pas le vert, réservé aux
+   notes Letterboxd, ni le rouge, réservé à la signature « indé ». Les
+   messages d'erreur reprennent --indie comme le fait déjà .lb-error. */
+.film-alerte { margin: 14px 0 0; }
+.film-alerte .bouton { font-size: .92rem; }
+
+.alerte-note {
+  margin: 10px 0 0;
+  font-size: .92rem;
+  color: var(--muted);
+  text-wrap: pretty;
+}
+.alerte-ok {
+  color: var(--text);
+  border-left: 3px solid var(--accent);
+  padding-left: 12px;
+}
+.alerte-ko { color: var(--indie); }
+
+/* Champ de ville demandé au moment du marquage. Même allure que les autres
+   saisies de ville du site (portail, /ma-watchlist/). */
+.alerte-ville { display: flex; gap: 8px; margin: 10px 0 0; flex-wrap: wrap; }
+.alerte-ville input {
+  flex: 1 1 200px;
+  min-width: 0;
+  padding: 10px 12px;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  background: var(--bg2);
+  color: var(--text);
+  font: inherit;
+}
+.alerte-ville input:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+
+/* Bouton qui a l'apparence d'un lien (« retirer », « ne plus me prévenir ») :
+   c'est bien une action, pas une navigation, donc un <button> — mais il ne
+   doit pas rivaliser visuellement avec l'action principale. */
+.lien-bouton {
+  background: none;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  color: var(--accent);
+  text-decoration: underline;
+  cursor: pointer;
+}
+.lien-bouton:disabled { opacity: .5; cursor: default; }
+
+.alerte-liste { list-style: none; padding: 0; margin: 16px 0 0; }
+.alerte-liste li {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+  flex-wrap: wrap;
+}
+.alerte-liste a { font-weight: 600; }
