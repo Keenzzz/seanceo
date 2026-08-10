@@ -142,6 +142,12 @@ def page(title: str, description: str, body: str, path: str,
 <meta name="description" content="{esc(description)}">
 <link rel="canonical" href="{BASE_URL}{path}">
 <link rel="stylesheet" href="/assets/style.css">
+<link rel="icon" href="/favicon.png" type="image/png">
+<meta name="theme-color" content="#0d1014">
+<link rel="manifest" href="/manifest.webmanifest">
+<!-- iOS ne lit pas le manifeste pour l'icône d'écran d'accueil : il lui faut
+     apple-touch-icon. Sans elle, l'iPhone met une capture de la page. -->
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 {JS_FLAG}
 <script id="lb-core" src="/assets/letterboxd.js" data-index="{BASE_PATH}/watchlist-index.json" defer></script>
 {head_extra}
@@ -1988,6 +1994,38 @@ ouvrez son programme.</p>
         encoding="utf-8")
     (SITE / "robots.txt").write_text(
         f"User-agent: *\nAllow: /\nSitemap: {BASE_URL}/sitemap.xml\n", encoding="utf-8")
+
+    # ----- Manifeste (installation sur l'écran d'accueil) -----
+    # GÉNÉRÉ, pas posé dans static/ : `start_url` et `scope` contiennent
+    # BASE_PATH, qui deviendra "" le jour de seanceo.fr. Un fichier figé
+    # pointerait alors vers /seanceo/ sur le nouveau domaine.
+    #
+    # Il sert d'abord aux ALERTES : sur iPhone, le push n'existe que si le site
+    # a été ajouté à l'écran d'accueil, ce qui exige un manifeste et des icônes.
+    # `display: standalone` fait ouvrir le site sans la barre d'adresse, comme
+    # une application. Les icônes sont générées par scripts/make_icons.py.
+    (SITE / "manifest.webmanifest").write_text(json.dumps({
+        "name": f"{SITE_NAME}, le répertoire en salle",
+        "short_name": SITE_NAME,
+        "description": "Les reprises, classiques et rétrospectives à l'affiche "
+                       "partout en France.",
+        "start_url": f"{BASE_PATH}/",
+        "scope": f"{BASE_PATH}/",
+        "display": "standalone",
+        "lang": "fr",
+        "background_color": "#0d1014",
+        "theme_color": "#0d1014",
+        "icons": [
+            {"src": f"{BASE_PATH}/icon-192.png", "sizes": "192x192", "type": "image/png"},
+            {"src": f"{BASE_PATH}/icon-512.png", "sizes": "512x512", "type": "image/png"},
+            # « maskable » : Android rogne l'icône selon la forme du lanceur
+            # (cercle, goutte…). Cette variante a le motif plus au centre et le
+            # fond à bord perdu, sinon le clap serait amputé sur certains
+            # téléphones.
+            {"src": f"{BASE_PATH}/icon-maskable-512.png", "sizes": "512x512",
+             "type": "image/png", "purpose": "maskable"},
+        ],
+    }, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
 
     # ----- 404 de marque (GitHub Pages sert /404.html) -----
     # La 404 brute de GitHub éjectait le visiteur du site (page blanche, sans

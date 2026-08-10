@@ -1523,6 +1523,14 @@ a:focus-visible, summary:focus-visible, input:focus-visible {
   padding-left: 12px;
 }
 .alerte-ko { color: var(--indie); }
+/* Marche à suivre iPhone : c'est la seule voie vers les notifications sur
+   iOS, elle mérite d'être vue plutôt que lue en petit gris. */
+.alerte-ios {
+  color: var(--text);
+  border-left: 3px solid var(--accent);
+  padding-left: 12px;
+  line-height: 1.5;
+}
 
 /* Champ de ville demandé au moment du marquage. Même allure que les autres
    saisies de ville du site (portail, /ma-watchlist/). */

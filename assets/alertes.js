@@ -134,9 +134,15 @@
     // plutôt que d'afficher un bouton qui ne marchera pas.
     if (!supporte()) {
       if (estIOS() && !estInstalle()) {
-        bloc.innerHTML = '<p class="alerte-note">🔔 Pour être prévenu quand ce ' +
-          "film repasse, ajoute Séancéo à ton écran d'accueil (bouton Partager, " +
-          "puis « Sur l'écran d'accueil »), et reviens sur cette page.</p>";
+        // Ce n'est pas une limite de Séancéo : Safari n'expose le push qu'aux
+        // sites posés sur l'écran d'accueil. Autant expliquer le geste exact
+        // plutôt que d'afficher « non disponible » à quelqu'un qui est à deux
+        // touches de l'avoir.
+        bloc.innerHTML = '<p class="alerte-note alerte-ios">🔔 <strong>Être prévenu ' +
+          "quand ce film repasse</strong><br>Sur iPhone, les notifications " +
+          "demandent d'ajouter Séancéo à ton écran d'accueil : touche " +
+          "<strong>Partager</strong> en bas de Safari, puis <strong>« Sur l'écran " +
+          "d'accueil »</strong>. Rouvre ensuite cette page depuis l'icône.</p>";
       }
       return;
     }
