@@ -6,11 +6,36 @@ name = "seanceo-watchlist"
 main = "src/index.js"
 compatibility_date = "2026-07-01"
 
-# Pas de secret, pas de base de données, pas de dépendance : le Worker lit des
-# pages publiques et met en cache via l'API Cache de Cloudflare (caches.default),
-# qui ne demande aucune config. On garde la même philosophie que le reste du
-# projet : zéro dépendance superflue.
+# Toujours zéro dépendance npm : la lecture de Letterboxd passe par l'API Cache
+# de Cloudflare (caches.default) et le Web Push est signé à la main avec Web
+# Crypto. En revanche le Worker n'est plus sans état depuis les alertes.
 
 # Après le premier `wrangler deploy`, l'URL est de la forme
 #   https://seanceo-watchlist.<ton-sous-domaine>.workers.dev
 # C'est cette URL que le site appellera (à renseigner côté front, cf. README).
+
+# --- Alertes « préviens-moi quand ce film repasse » ---------------------------
+
+# Les marqueurs des visiteurs. Créée avec `npx wrangler d1 create seanceo-alertes`,
+# schéma dans schema.sql. Région WEUR : la base vit en Europe.
+[[d1_databases]]
+binding = "DB"
+database_name = "seanceo-alertes"
+database_id = "9d9ab8cf-8d7b-40df-a29c-a928bbaf3132"
+
+# Balayage quotidien à 05:00 UTC, soit ~1 h 30 APRÈS le build du site
+# (deploy.yml tourne à 03:30 UTC) : on veut lire un watchlist-index.json déjà
+# reconstruit, sinon on annoncerait la programmation de la veille.
+[triggers]
+crons = ["0 5 * * *"]
+
+[vars]
+# Clé publique VAPID. Elle n'a rien de secret : le navigateur la reçoit pour
+# vérifier que les notifications viennent bien de nous. La privée est un
+# secret du Worker (`npx wrangler secret put VAPID_PRIVATE_JWK`).
+VAPID_PUBLIC = "BBdxT1kgttqzFix3_a3jmCWDw8UrB6HjXLKkcxuJjZaXnG7HgoakW4hxfJsmv2ceUW4PEbgKsKmUKjMA_cnl24k"
+# Exigé par la spec VAPID : un contact joignable en cas d'abus.
+VAPID_SUBJECT = "mailto:kenz.heribi@gmail.com"
+# Index lu par le balayage quotidien : il porte, pour chaque film à l'affiche,
+# ses prochaines séances par salle (et `_s`/`_v` donnent la ville).
+WATCHLIST_INDEX = "https://keenzzz.github.io/seanceo/watchlist-index.json"

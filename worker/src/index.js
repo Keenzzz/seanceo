@@ -72,6 +72,29 @@ export default {
     if (request.method === "OPTIONS") {
       return corsPreflight(origin);
     }
+    // Route : /alerte/... — « préviens-moi quand ce film repasse à Nancy ».
+    // Tout est en POST sauf la clé publique, et ce n'est pas seulement parce
+    // que ça écrit : l'identifiant du visiteur EST son endpoint de push, une
+    // URL qu'on ne veut pas voir traîner dans un journal d'accès, un Referer
+    // ou un historique de navigation.
+    if (url.pathname === "/alerte/cle") {
+      if (request.method !== "GET") {
+        return withCors(json({ error: "method_not_allowed" }, 405), origin);
+      }
+      return withCors(json({ cle: env.VAPID_PUBLIC || "" }), origin);
+    }
+    if (url.pathname.startsWith("/alerte/")) {
+      if (request.method !== "POST") {
+        return withCors(json({ error: "method_not_allowed" }, 405), origin);
+      }
+      try {
+        return withCors(await routeAlertes(url.pathname, request, env), origin);
+      } catch (err) {
+        console.log("alerte error", url.pathname, String(err));
+        return withCors(json({ error: "erreur_interne" }, 500), origin);
+      }
+    }
+
     if (request.method !== "GET") {
       return withCors(json({ error: "method_not_allowed" }, 405), origin);
     }
@@ -161,6 +184,17 @@ export default {
       console.log("watchlist error", user, String(err));
       return withCors(json({ error: "upstream_error" }, 502), origin);
     }
+  },
+
+  // Balayage quotidien des alertes (Cron Trigger, cf. wrangler.toml).
+  // Il tourne après le build du site : on relit l'index des séances et on
+  // réveille les visiteurs dont un film marqué a gagné une date.
+  async scheduled(event, env, ctx) {
+    ctx.waitUntil(
+      balayage(env)
+        .then((bilan) => console.log("balayage", JSON.stringify(bilan)))
+        .catch((err) => console.log("balayage KO", String(err))),
+    );
   },
 };
 
@@ -627,10 +661,335 @@ function withCors(res, origin) {
 function corsPreflight(origin) {
   const ok = allowOrigin(origin);
   const headers = {
-    "Access-Control-Allow-Methods": "GET, OPTIONS",
+    // POST et Content-Type sont là pour les routes /alerte/ (corps JSON).
+    "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+    "Access-Control-Allow-Headers": "Content-Type",
     "Access-Control-Max-Age": "86400",
     "Vary": "Origin",
   };
   if (ok) headers["Access-Control-Allow-Origin"] = ok;
   return new Response(null, { status: 204, headers });
+}
+
+// —— Alertes « préviens-moi quand ce film repasse » ———————————————————————————
+//
+// Le visiteur marque un film ET une ville. Chaque nuit, après le build du
+// site, on relit l'index des séances : si le film a gagné une date dans cette
+// ville, on le réveille.
+//
+// Les notifications sont envoyées SANS CONTENU. Le réveil ne transporte rien ;
+// le service worker vient ensuite chercher de quoi afficher sur /alerte/attente.
+// Deux bénéfices : le service de push d'Apple ou de Google ne voit jamais ce
+// que le visiteur suit, et on n'a pas à implémenter le chiffrement aes128gcm
+// de la charge utile — il ne reste qu'un jeton VAPID à signer, ce que Web
+// Crypto fait nativement. Le Worker garde ainsi ses zéro dépendance npm.
+
+// ⚠️ Seuls les vrais services de push sont acceptés comme destination.
+// Sans cette liste, n'importe qui pourrait enregistrer une alerte pointant
+// vers l'URL de son choix et se servir du balayage nocturne comme d'un
+// émetteur de requêtes anonyme (le Worker deviendrait un relais d'abus).
+const PUSH_HOSTS = [
+  /^fcm\.googleapis\.com$/,                    // Chrome, Edge, Android
+  /^[a-z0-9-]+\.push\.apple\.com$/,            // Safari, iOS
+  /^updates\.push\.services\.mozilla\.com$/,   // Firefox
+  /^[a-z0-9-]+\.notify\.windows\.com$/,        // Windows
+];
+
+const MAX_ALERTES = 60;   // par visiteur : au-delà c'est un script, pas un cinéphile
+const MAX_TXT = 200;      // longueur max de ce qu'on accepte du client
+const MAX_BALAYAGE = 2000; // alertes traitées par nuit (garde-fou de temps CPU)
+
+function texte(v, max = MAX_TXT) {
+  return String(v == null ? "" : v)
+    .replace(/[\x00-\x1f\x7f]/g, "")  // pas de caractères de contrôle
+    .trim()
+    .slice(0, max);
+}
+
+function endpointValide(u) {
+  let p;
+  try {
+    p = new URL(u);
+  } catch {
+    return false;
+  }
+  return p.protocol === "https:" && PUSH_HOSTS.some((re) => re.test(p.hostname));
+}
+
+function maintenant() {
+  return new Date().toISOString();
+}
+
+async function routeAlertes(chemin, request, env) {
+  const corps = await request.json().catch(() => null);
+  if (!corps || typeof corps !== "object") {
+    return json({ error: "corps_invalide" }, 400);
+  }
+  const cible = texte(corps.endpoint, 500);
+  if (!endpointValide(cible)) return json({ error: "endpoint_invalide" }, 400);
+
+  switch (chemin) {
+    case "/alerte/ajouter":  return alerteAjouter(env, cible, corps);
+    case "/alerte/retirer":  return alerteRetirer(env, cible, corps);
+    case "/alerte/liste":    return alerteListe(env, cible);
+    case "/alerte/attente":  return alerteAttente(env, cible);
+    default:                 return json({ error: "not_found" }, 404);
+  }
+}
+
+async function alerteAjouter(env, cible, corps) {
+  const film = texte(corps.film, 80);
+  const ville = texte(corps.ville, 80);
+  if (!film || !ville) return json({ error: "champs_manquants" }, 400);
+
+  const compte = await env.DB
+    .prepare("SELECT COUNT(*) AS n FROM alertes WHERE cible = ?")
+    .bind(cible).first();
+  if (compte && compte.n >= MAX_ALERTES) {
+    return json({ error: "trop_d_alertes", max: MAX_ALERTES }, 429);
+  }
+
+  // Point de départ : ce que le film joue DÉJÀ dans cette ville. Sans ce
+  // repère, le balayage de la nuit même annoncerait comme une nouveauté la
+  // séance que le visiteur avait sous les yeux en cliquant.
+  let deja = [];
+  let villeAff = ville;
+  try {
+    const index = await chargeIndexSeances(env);
+    villeAff = villeCanonique(index, ville);
+    deja = seancesDansVille(index, film, villeAff);
+  } catch (err) {
+    // Index injoignable : on enregistre quand même l'alerte, avec la graphie
+    // du visiteur. `ville_clef` garantit qu'elle ne fera pas doublon.
+    console.log("index indisponible à l'ajout", String(err));
+  }
+  const depart = deja.length ? deja[deja.length - 1] : "";
+
+  // Le titre et l'URL sont facultatifs. À l'INSERT on se rabat sur la clé du
+  // film faute de mieux ; à la mise à jour on ne remplace que si le client a
+  // vraiment envoyé quelque chose — sinon un re-marquage sans titre écraserait
+  // « Le Voyage de Chihiro » par « spiritedaway ». D'où deux jeux de valeurs :
+  // `excluded` ne sait pas distinguer « absent » de « replié sur la clé ».
+  const titreBrut = texte(corps.titre);
+  const urlBrut = texte(corps.url, 300);
+
+  await env.DB.prepare(
+    `INSERT INTO alertes (canal, cible, p256dh, auth, film, titre, url, ville,
+                          ville_clef, derniere_seance, cree_le)
+     VALUES ('push', ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+     ON CONFLICT (cible, film, ville_clef)
+       DO UPDATE SET titre = COALESCE(NULLIF(?, ''), alertes.titre),
+                     url   = COALESCE(NULLIF(?, ''), alertes.url),
+                     ville = excluded.ville`,
+  ).bind(
+    cible,
+    texte(corps.p256dh, 200),
+    texte(corps.auth, 100),
+    film,
+    titreBrut || film,
+    urlBrut,
+    villeAff,
+    empreinte(ville),
+    depart,
+    maintenant(),
+    titreBrut,
+    urlBrut,
+  ).run();
+
+  // On renvoie la ville TELLE QU'ELLE EST STOCKÉE (graphie du site), pas celle
+  // tapée : le front affiche cette réponse, elle doit dire « Nice », pas « nIcE ».
+  // `deja` lui permet d'annoncer « il passe déjà 2 fois chez toi » plutôt que
+  // de laisser croire que le film ne joue nulle part.
+  return json({ ok: true, film, ville: villeAff, deja: deja.length });
+}
+
+async function alerteRetirer(env, cible, corps) {
+  const film = texte(corps.film, 80);
+  const ville = texte(corps.ville, 80);
+  if (!film) return json({ error: "champs_manquants" }, 400);
+  // Sans ville, on retire le film pour toutes les villes de ce visiteur.
+  const res = ville
+    ? await env.DB.prepare(
+        "DELETE FROM alertes WHERE cible = ? AND film = ? AND ville_clef = ?",
+      ).bind(cible, film, empreinte(ville)).run()
+    : await env.DB.prepare(
+        "DELETE FROM alertes WHERE cible = ? AND film = ?",
+      ).bind(cible, film).run();
+  return json({ ok: true, retirees: res.meta ? res.meta.changes : 0 });
+}
+
+async function alerteListe(env, cible) {
+  const { results } = await env.DB.prepare(
+    `SELECT film, titre, url, ville, cree_le, notifie_le
+       FROM alertes WHERE cible = ? ORDER BY cree_le DESC`,
+  ).bind(cible).all();
+  return json({ ok: true, alertes: results || [] });
+}
+
+// Appelé par le service worker quand il est réveillé : il vient chercher ce
+// qu'il doit afficher, puisque le réveil lui-même ne transporte rien.
+async function alerteAttente(env, cible) {
+  const { results } = await env.DB.prepare(
+    `SELECT id, titre, ville, quand, url
+       FROM notifs WHERE cible = ? AND lu = 0 ORDER BY id`,
+  ).bind(cible).all();
+  const liste = results || [];
+  if (liste.length) {
+    await env.DB.prepare(
+      `UPDATE notifs SET lu = 1
+        WHERE cible = ? AND id <= ?`,
+    ).bind(cible, liste[liste.length - 1].id).run();
+  }
+  return json({ ok: true, notifs: liste });
+}
+
+// —— Balayage nocturne ————————————————————————————————————————————————————————
+
+// L'index des séances du site : pour chaque film à l'affiche, sa prochaine
+// séance dans chaque salle. `_s` donne salle → ville, `_v` donne la ville.
+async function chargeIndexSeances(env) {
+  const r = await fetch(env.WATCHLIST_INDEX, {
+    cf: { cacheTtl: 3600, cacheEverything: true },
+  });
+  if (!r.ok) throw new Error(`index ${r.status}`);
+  return r.json();
+}
+
+// Graphie officielle d'une ville, celle que le site affiche. Le visiteur peut
+// avoir tapé « NICE » ou « nice » ; on retrouve « Nice » dans `_v`, sinon on
+// garde ce qu'il a écrit (la ville peut ne rien programmer aujourd'hui).
+function villeCanonique(index, ville) {
+  const cle = empreinte(ville);
+  const trouvee = (index._v || []).find((v) => empreinte(v[0]) === cle);
+  return trouvee ? trouvee[0] : ville;
+}
+
+// Séances d'un film dans une ville, triées, au format « 2026-08-12T14:15 ».
+// La comparaison de ville passe par `empreinte` (la même fonction que partout
+// ailleurs) : « Saint-Ouen-l'Aumône » et « saint ouen l aumone » se valent.
+function seancesDansVille(index, film, ville) {
+  const f = index[film];
+  if (!f || !Array.isArray(f.k)) return [];
+  const cherchee = empreinte(ville);
+  const out = [];
+  for (const k of f.k) {
+    const salle = index._s && index._s[k[0]];
+    if (!salle) continue;
+    const v = index._v && index._v[salle[1]];
+    if (!v || empreinte(v[0]) !== cherchee) continue;
+    out.push(`${k[1]}T${k[2]}`);
+  }
+  return out.sort();
+}
+
+async function balayage(env) {
+  const { results } = await env.DB.prepare(
+    `SELECT id, cible, film, titre, url, ville, derniere_seance
+       FROM alertes WHERE canal = 'push' LIMIT ${MAX_BALAYAGE}`,
+  ).all();
+  const alertes = results || [];
+  if (!alertes.length) return { alertes: 0, notifiees: 0, mortes: 0 };
+
+  const index = await chargeIndexSeances(env);
+  let notifiees = 0;
+  let mortes = 0;
+
+  for (const a of alertes) {
+    const seances = seancesDansVille(index, a.film, a.ville);
+    if (!seances.length) continue;
+    // « Repasse » = une séance POSTÉRIEURE à la dernière qu'on connaissait.
+    const nouvelle = seances.find((s) => s > (a.derniere_seance || ""));
+    if (!nouvelle) continue;
+
+    // On dépose d'abord de quoi afficher, on réveille ensuite : si le push
+    // échoue, l'information n'est pas perdue pour autant (le service worker
+    // la trouvera au prochain réveil, et /alerte/liste la voit aussi).
+    await env.DB.prepare(
+      `INSERT INTO notifs (cible, titre, ville, quand, url, cree_le)
+       VALUES (?, ?, ?, ?, ?, ?)`,
+    ).bind(a.cible, a.titre, a.ville, nouvelle, a.url, maintenant()).run();
+
+    await env.DB.prepare(
+      "UPDATE alertes SET derniere_seance = ?, notifie_le = ? WHERE id = ?",
+    ).bind(seances[seances.length - 1], maintenant(), a.id).run();
+
+    const etat = await envoiePush(env, a.cible);
+    if (etat === "morte") {
+      // Le navigateur a désinstallé l'abonnement (désinscription, app
+      // supprimée) : plus personne au bout du fil, on nettoie tout.
+      await env.DB.prepare("DELETE FROM alertes WHERE cible = ?").bind(a.cible).run();
+      await env.DB.prepare("DELETE FROM notifs WHERE cible = ?").bind(a.cible).run();
+      mortes++;
+    } else {
+      notifiees++;
+    }
+  }
+  return { alertes: alertes.length, notifiees, mortes };
+}
+
+// —— Web Push (VAPID, sans charge utile) ——————————————————————————————————————
+
+async function envoiePush(env, endpoint) {
+  let jeton;
+  try {
+    jeton = await jetonVapid(env, new URL(endpoint).origin);
+  } catch (err) {
+    console.log("VAPID KO", String(err));
+    return "erreur";
+  }
+  const r = await fetch(endpoint, {
+    method: "POST",
+    headers: {
+      // TTL est exigé par la spec : combien de temps le service de push
+      // garde le réveil si l'appareil est éteint. 24 h ici — au-delà,
+      // annoncer une séance devient inutile.
+      "TTL": "86400",
+      "Urgency": "normal",
+      "Authorization": `vapid t=${jeton}, k=${env.VAPID_PUBLIC}`,
+    },
+  });
+  // 404/410 = abonnement révoqué côté navigateur, définitif.
+  if (r.status === 404 || r.status === 410) return "morte";
+  if (!r.ok) {
+    console.log("push refusé", r.status, await r.text().catch(() => ""));
+    return "erreur";
+  }
+  return "ok";
+}
+
+// Jeton VAPID : un JWT ES256 qui prouve au service de push que l'envoi vient
+// bien de nous (il est vérifié contre la clé publique que le navigateur a
+// reçue à l'abonnement).
+async function jetonVapid(env, aud) {
+  const cle = await crypto.subtle.importKey(
+    "jwk",
+    JSON.parse(env.VAPID_PRIVATE_JWK),
+    { name: "ECDSA", namedCurve: "P-256" },
+    false,
+    ["sign"],
+  );
+  const entete = b64urlTexte(JSON.stringify({ typ: "JWT", alg: "ES256" }));
+  const charge = b64urlTexte(JSON.stringify({
+    aud,
+    exp: Math.floor(Date.now() / 1000) + 12 * 3600,  // la spec plafonne à 24 h
+    sub: env.VAPID_SUBJECT,
+  }));
+  const signature = await crypto.subtle.sign(
+    { name: "ECDSA", hash: "SHA-256" },
+    cle,
+    new TextEncoder().encode(`${entete}.${charge}`),
+  );
+  // Web Crypto rend la signature ECDSA en r||s brut, exactement la forme
+  // qu'attend ES256 — aucun ré-encodage DER à faire.
+  return `${entete}.${charge}.${b64urlOctets(new Uint8Array(signature))}`;
+}
+
+function b64urlOctets(octets) {
+  let s = "";
+  for (const o of octets) s += String.fromCharCode(o);
+  return btoa(s).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+}
+
+function b64urlTexte(s) {
+  return b64urlOctets(new TextEncoder().encode(s));
 }

@@ -3,3 +3,8 @@ dist/
 .wrangler/
 node_modules/
 *.ics
+
+# Secrets de dev (clé privée VAPID notamment). En production ils vivent dans
+# les secrets du Worker (`npx wrangler secret put …`), jamais dans le dépôt.
+.dev.vars
+*.jwk.json
