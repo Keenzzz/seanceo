@@ -95,22 +95,21 @@ ALERTES_JS = '<script src="/assets/alertes.js" defer></script>'
 
 # --- Navigation ------------------------------------------------------------
 # L'ordre EST une priorité : sur mobile la barre défile horizontalement, et les
-# deux premières places sont les seules vues sans faire un geste. On y met donc
-# le CONTENU du site (l'affiche, les rétrospectives) et non les outils perso
-# (watchlist, cinémathèque), qui demandent un compte Letterboxd et n'intéressent
-# qu'un visiteur déjà conquis.
+# deux premières places sont les seules vues sans faire le moindre geste.
+# La watchlist y reste donc en tête — c'est la fonction phare du site, celle
+# qu'on veut voir sans avoir à faire défiler la barre.
+# Libellé raccourci : « Ma watchlist letterboxd » faisait 192 px à lui seul et
+# provoquait une ligne orpheline sur mobile. L'anneau vert (.nav-wl) dit déjà
+# Letterboxd, le mot était redondant.
 # Un emoji par entrée, et surtout UN SEUL SENS PAR EMOJI — même discipline que
 # les couleurs : 🎞️ servait à la fois à la cinémathèque et aux rétrospectives,
 # il ne distinguait donc rien. La cinémathèque prend 🏛️.
 NAV_ITEMS = [
+    ("/ma-watchlist/",   "Watchlist",          "nav-wl"),
     ("/a-l-affiche/",    "🎬 À l'affiche",     ""),
     ("/retrospectives/", "🎞️ Rétrospectives",  ""),
     ("/marathon/",       "🍿 Marathons",       ""),
     ("/carte/",          "🗺️ Carte",           ""),
-    # Libellé raccourci : « Ma watchlist letterboxd » faisait 192 px à lui seul
-    # et provoquait une ligne orpheline sur mobile. L'anneau vert (.nav-wl) dit
-    # déjà Letterboxd, le mot était redondant.
-    ("/ma-watchlist/",   "Watchlist",          "nav-wl"),
     ("/cinematheque/",   "🏛️ Ma cinémathèque", ""),
 ]
 

@@ -1491,36 +1491,31 @@ a:focus-visible, summary:focus-visible, input:focus-visible {
 }
 .bouton:hover { background: var(--accent); color: #1a1400; }
 
-@media (max-width: 760px) {
-  /* Agenda : l'heure passe en bandeau, la fiche dessous */
-  .seance {
-    grid-template-columns: 46px 1fr;
-    gap: 3px 13px;
-    grid-template-areas: "heure heure" "vign corps" ". flags";
-  }
-  .heure { grid-area: heure; color: var(--accent); }
-  .vignette { grid-area: vign; }
-  .seance .corps { grid-area: corps; }
-  .flags {
-    grid-area: flags;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 10px;
-    margin-top: 4px;
-  }
-  .salle { grid-template-columns: 26px 1fr; }
-  .jauge { grid-column: 2; }
+/* ==========================================================================
+   NAV : UNE SEULE LIGNE QUI DÉFILE — jusqu'à 901 px
+   ==========================================================================
+   Le seuil n'est pas choisi au jugé, il est MESURÉ. La barre a besoin de
+   815 px pour tenir sur une ligne ; en balayant les largeurs une par une, la
+   bascule tombe entre 900 px (2 lignes) et 902 px (1 ligne). D'où 901.
+
+   Sous ce seuil, flex-wrap:wrap repliait les 6 pastilles :
+     - à 390 px (téléphone)  : 4 LIGNES, 219 px de nav, le H1 repoussé à y=364,
+                               soit la moitié de l'écran avant le moindre contenu ;
+     - de 761 à 901 px (tablette) : 2 lignes, header 156 px.
+   Après : une ligne unique qu'on fait défiler au doigt, dans les deux cas.
+
+   Pourquoi ne pas monter le seuil plus haut « avec de la marge » : au-dessus
+   de 901 px la nav est collée à DROITE (margin-left:auto). Comme on remet
+   margin-left:0 ici, étendre le bloc déplacerait les pastilles à gauche sur
+   des écrans où rien n'était cassé. Le seuil colle donc au défaut réel. */
+@media (max-width: 901px) {
   /* Cibles tactiles : 44px recommandés (WCAG 2.5.5), 31px auparavant.
-     Mesuré à 390px de large : 47 px de haut. On n'y touche pas. */
+     Mesuré à 390px de large : 47 px de haut. Cette règle monte jusqu'à 901 px
+     avec la barre défilante : à 900 px on est bien plus probablement sur un
+     iPad en portrait (820 px) que sur un laptop, et des cibles confortables
+     n'ont jamais gêné personne à la souris. */
   .site-nav a, .city-jump a { padding: 11px 14px; }
 
-  /* ---- Nav mobile : une seule ligne qui défile -------------------------
-     Avant : flex-wrap:wrap repliait les 6 pastilles sur 4 LIGNES = 219 px de
-     haut, bord droit en escalier (208/327/305/108 px), et le H1 repoussé à
-     y=364 — la moitié de l'écran d'un iPhone consommée avant le contenu.
-     Après : une ligne unique de 47 px qu'on fait défiler au doigt.
-     Header mesuré : 325 px → ~156 px. */
   .site-nav {
     /* 1. La règle de base est flex-wrap:wrap — on l'annule, sinon les
           pastilles continueraient de passer à la ligne. */
@@ -1551,11 +1546,18 @@ a:focus-visible, summary:focus-visible, input:focus-visible {
     /* 9. Empêche le swipe horizontal de déclencher le geste « page
           précédente » du navigateur quand on arrive au bout de la barre. */
     overscroll-behavior-x: contain;
-    /* 10. Dégradé de 24px à droite : la dernière pastille visible s'estompe au
-           lieu d'être tranchée net. Ignoré par les navigateurs sans
-           mask-image, sans aucune conséquence. */
-    -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 24px), transparent);
-            mask-image: linear-gradient(to right, #000 calc(100% - 24px), transparent);
+    /* 10. Dégradés de bord, PILOTÉS PAR nav.js (voir --fade-l/--fade-r).
+           Ils valent 0 par défaut, donc le masque est un no-op : c'est ce qui
+           évite d'estomper une pastille sur les largeurs où la barre tient
+           tout juste et n'a rien à faire défiler (le cas des ~900 px). Le
+           script les monte à 24px du côté où il reste vraiment du contenu :
+           à droite au départ, à gauche dès qu'on a fait défiler. */
+    --fade-l: 0px;
+    --fade-r: 0px;
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 var(--fade-l),
+                        #000 calc(100% - var(--fade-r)), transparent);
+            mask-image: linear-gradient(to right, transparent, #000 var(--fade-l),
+                        #000 calc(100% - var(--fade-r)), transparent);
   }
   .site-nav::-webkit-scrollbar { display: none; }
   .site-nav a {
@@ -1566,6 +1568,28 @@ a:focus-visible, summary:focus-visible, input:focus-visible {
     /* Et sans ça, « À l'affiche » se casserait sur deux lignes. */
     white-space: nowrap;
   }
+}
+
+@media (max-width: 760px) {
+  /* Agenda : l'heure passe en bandeau, la fiche dessous */
+  .seance {
+    grid-template-columns: 46px 1fr;
+    gap: 3px 13px;
+    grid-template-areas: "heure heure" "vign corps" ". flags";
+  }
+  .heure { grid-area: heure; color: var(--accent); }
+  .vignette { grid-area: vign; }
+  .seance .corps { grid-area: corps; }
+  .flags {
+    grid-area: flags;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    margin-top: 4px;
+  }
+  .salle { grid-template-columns: 26px 1fr; }
+  .jauge { grid-column: 2; }
   /* Le champ de recherche prend une ligne à lui seul sur un petit écran ;
      on la reprend sur la tagline, qui est décorative et redit ce que le H1
      de chaque page annonce déjà. Entête : 334 px → 285 px. */
