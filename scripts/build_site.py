@@ -93,6 +93,49 @@ placeholder="Chercher un film ou un réalisateur…" aria-label="Chercher un fil
 # Il lit l'URL du Worker dans window.LB (lb-core), on ne la répète pas ici.
 ALERTES_JS = '<script src="/assets/alertes.js" defer></script>'
 
+# --- Navigation ------------------------------------------------------------
+# L'ordre EST une priorité : sur mobile la barre défile horizontalement, et les
+# deux premières places sont les seules vues sans faire un geste. On y met donc
+# le CONTENU du site (l'affiche, les rétrospectives) et non les outils perso
+# (watchlist, cinémathèque), qui demandent un compte Letterboxd et n'intéressent
+# qu'un visiteur déjà conquis.
+# Un emoji par entrée, et surtout UN SEUL SENS PAR EMOJI — même discipline que
+# les couleurs : 🎞️ servait à la fois à la cinémathèque et aux rétrospectives,
+# il ne distinguait donc rien. La cinémathèque prend 🏛️.
+NAV_ITEMS = [
+    ("/a-l-affiche/",    "🎬 À l'affiche",     ""),
+    ("/retrospectives/", "🎞️ Rétrospectives",  ""),
+    ("/marathon/",       "🍿 Marathons",       ""),
+    ("/carte/",          "🗺️ Carte",           ""),
+    # Libellé raccourci : « Ma watchlist letterboxd » faisait 192 px à lui seul
+    # et provoquait une ligne orpheline sur mobile. L'anneau vert (.nav-wl) dit
+    # déjà Letterboxd, le mot était redondant.
+    ("/ma-watchlist/",   "Watchlist",          "nav-wl"),
+    ("/cinematheque/",   "🏛️ Ma cinémathèque", ""),
+]
+
+
+def site_nav(current: str) -> str:
+    """Barre de navigation du header.
+
+    `current` est le chemin de la page en cours de génération : on s'en sert
+    pour poser `aria-current="page"` sur l'entrée active. C'est l'attribut
+    standard qui dit « vous êtes ici » — double bénéfice, les lecteurs d'écran
+    l'annoncent ET on peut le styler via `a[aria-current="page"]`, donc pas
+    besoin d'une classe `.active` en plus.
+
+    ⚠️ BASE_PATH : on écrit bien `href="/…` (slash en premier), c'est ce motif
+    exact que page() préfixe ensuite. `aria-current` est placé APRÈS le href
+    pour ne pas s'intercaler dans ce remplacement.
+    """
+    liens = []
+    for href, label, cls in NAV_ITEMS:
+        c = f' class="{cls}"' if cls else ""
+        cur = ' aria-current="page"' if current == href else ""
+        liens.append(f'<a{c} href="{href}"{cur}>{label}</a>')
+    return f'<nav class="site-nav" aria-label="Sections du site">{"".join(liens)}</nav>'
+
+
 JOURS = ["lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi", "dimanche"]
 MOIS = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet",
         "août", "septembre", "octobre", "novembre", "décembre"]
@@ -149,6 +192,7 @@ def page(title: str, description: str, body: str, path: str,
      apple-touch-icon. Sans elle, l'iPhone met une capture de la page. -->
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 {JS_FLAG}
+<script src="/assets/nav.js" defer></script>
 <script id="lb-core" src="/assets/letterboxd.js" data-index="{BASE_PATH}/watchlist-index.json" defer></script>
 {head_extra}
 {ld}
@@ -158,7 +202,7 @@ def page(title: str, description: str, body: str, path: str,
 <a class="brand" href="/">🎬 {SITE_NAME}</a>
 <p class="tagline">Le répertoire en salle, partout en France</p>
 {FILM_SEARCH}
-<nav class="site-nav"><a class="nav-wl" href="/ma-watchlist/">Ma watchlist letterboxd</a> <a href="/cinematheque/">🎞️ Ma cinémathèque</a> <a href="/a-l-affiche/">🎬 À l'affiche</a> <a href="/retrospectives/">🎞️ Rétrospectives</a> <a href="/marathon/">🍿 Marathons</a> <a href="/carte/">🗺️ Carte</a></nav>
+{site_nav(path)}
 </header>
 <main>
 <a class="retour" id="retour" href="#" hidden>← Retour</a>

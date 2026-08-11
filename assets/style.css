@@ -44,7 +44,10 @@ a:hover { color: var(--accent); }
   flex-wrap: wrap;
   align-items: baseline;
   gap: 4px 16px;
-  padding: 14px clamp(16px, 4vw, 48px);
+  /* --pad sert DEUX fois : ici comme padding, et en marge négative sur la nav
+     mobile pour que la barre défilante aille jusqu'aux bords de l'écran. */
+  --pad: clamp(16px, 4vw, 48px);
+  padding: 14px var(--pad);
   border-bottom: 2px solid var(--accent);
   background: var(--panel);
 }
@@ -973,6 +976,23 @@ html:not(.js) .wl-tabs { display: none; }
 }
 .site-nav a:hover { background: var(--accent-soft); }
 
+/* « Vous êtes ici ». On reprend exactement le motif de .bouton:hover (fond
+   ambre + texte #1a1400) : même signe, même sens, comme pour les couleurs.
+   Contraste #1a1400 sur #d9a441 ≈ 9:1, très au-dessus des 4,5:1 du WCAG AA. */
+.site-nav a[aria-current="page"] {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #1a1400;
+}
+/* Cas particulier de la watchlist : son anneau est vert (--lb) via un
+   !important. Un fond ambre dans un anneau vert serait incohérent, on lui donne
+   son propre actif — exactement comme .bouton.bouton-lb:hover le fait déjà.
+   Spécificité 0,3,0, donc ça passe devant la règle générique 0,2,0. */
+.site-nav a.nav-wl[aria-current="page"] {
+  background: var(--lb);
+  color: #06130c;
+}
+
 /* Carte des cinémas : page-outil, on lui donne le viewport entier
    (:has ignoré par un très vieux navigateur = simple retour au conteneur 1080px) */
 main:has(#cine-map) { max-width: none; }
@@ -1491,8 +1511,61 @@ a:focus-visible, summary:focus-visible, input:focus-visible {
   }
   .salle { grid-template-columns: 26px 1fr; }
   .jauge { grid-column: 2; }
-  /* Cibles tactiles : 44px recommandés (WCAG 2.5.5), 31px auparavant */
+  /* Cibles tactiles : 44px recommandés (WCAG 2.5.5), 31px auparavant.
+     Mesuré à 390px de large : 47 px de haut. On n'y touche pas. */
   .site-nav a, .city-jump a { padding: 11px 14px; }
+
+  /* ---- Nav mobile : une seule ligne qui défile -------------------------
+     Avant : flex-wrap:wrap repliait les 6 pastilles sur 4 LIGNES = 219 px de
+     haut, bord droit en escalier (208/327/305/108 px), et le H1 repoussé à
+     y=364 — la moitié de l'écran d'un iPhone consommée avant le contenu.
+     Après : une ligne unique de 47 px qu'on fait défiler au doigt.
+     Header mesuré : 325 px → ~156 px. */
+  .site-nav {
+    /* 1. La règle de base est flex-wrap:wrap — on l'annule, sinon les
+          pastilles continueraient de passer à la ligne. */
+    flex-wrap: nowrap;
+    /* 2. Crée le conteneur de défilement horizontal. */
+    overflow-x: auto;
+    /* 3. margin-left:auto ne sert qu'à coller la nav à droite sur desktop ;
+          ici on veut au contraire qu'elle occupe toute la ligne. */
+    margin-left: 0;
+    /* 4. flex-basis:100% force la nav sur SA propre ligne du header
+          (le header est lui-même en flex-wrap). */
+    flex: 1 0 100%;
+    /* 5. Bord à bord de l'écran : on annule le padding du header par une
+          marge négative, puis on le remet en padding INTERNE. La première
+          pastille reste alignée sur le texte, mais la zone qui défile va
+          jusqu'au bord — c'est ce qui rend évident qu'il y a « la suite ». */
+    margin-inline: calc(-1 * var(--pad));
+    padding-inline: var(--pad);
+    /* 6. 2px de respiration verticale pour que l'anneau de focus clavier
+          (outline-offset:2px) ne soit pas rogné par l'overflow. */
+    padding-block: 2px;
+    /* 7. Le clavier (Tab) fait défiler la barre : on lui dit de ne pas coller
+          l'élément focalisé pile contre le bord. */
+    scroll-padding-inline: var(--pad);
+    /* 8. Masque la barre de défilement (Firefox + WebKit). Sur mobile elle
+          n'apparaît de toute façon qu'à l'usage. */
+    scrollbar-width: none;
+    /* 9. Empêche le swipe horizontal de déclencher le geste « page
+          précédente » du navigateur quand on arrive au bout de la barre. */
+    overscroll-behavior-x: contain;
+    /* 10. Dégradé de 24px à droite : la dernière pastille visible s'estompe au
+           lieu d'être tranchée net. Ignoré par les navigateurs sans
+           mask-image, sans aucune conséquence. */
+    -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 24px), transparent);
+            mask-image: linear-gradient(to right, #000 calc(100% - 24px), transparent);
+  }
+  .site-nav::-webkit-scrollbar { display: none; }
+  .site-nav a {
+    /* LA règle indispensable : par défaut flex-shrink vaut 1, donc les
+       pastilles se COMPRESSERAIENT pour tenir au lieu de déborder — et il n'y
+       aurait alors rien à faire défiler. 0 0 auto = « garde ta taille ». */
+    flex: 0 0 auto;
+    /* Et sans ça, « À l'affiche » se casserait sur deux lignes. */
+    white-space: nowrap;
+  }
   /* Le champ de recherche prend une ligne à lui seul sur un petit écran ;
      on la reprend sur la tagline, qui est décorative et redit ce que le H1
      de chaque page annonce déjà. Entête : 334 px → 285 px. */
