@@ -433,6 +433,17 @@ def _apply_tmdb(movies: dict, tmdb: dict) -> None:
         # s'active proprement au prochain refresh (enrich_tmdb.py).
         if t.get("country"):
             m["country_tmdb"] = t["country"]
+        # Version anglaise (site bilingue). Ces champs sont posés TELS QUELS,
+        # sans jamais écraser leur équivalent français : c'est `localize_movies()`
+        # (i18n.py) qui choisit lequel afficher selon la langue du build, et qui
+        # retombe sur le français quand l'anglais manque. Le cache ne les porte
+        # que lorsqu'ils diffèrent du français (voir enrich_tmdb.py), donc un
+        # champ absent ici veut dire « identique », pas « manquant ».
+        for src, dst in (("title_en", "title_en"), ("overview_en", "storyline_en"),
+                         ("genres_en", "genre_en"), ("country_en", "country_en"),
+                         ("poster_en", "poster_en")):
+            if t.get(src):
+                m[dst] = t[src]
 
 
 def _apply_letterboxd(movies: dict, lb: dict) -> None:

@@ -28,17 +28,22 @@
     if (!calBox) return;
     calBox.hidden = false;
     calBox.innerHTML =
-      '<h3>📆 Ne rate plus une reprise</h3>' +
-      '<p class="lb-cal-sub">Ajoute tes reprises à ton agenda : chaque nouvelle séance ' +
-      "d'un film de ta watchlist (ou de tes favoris) apparaît toute seule, avec un rappel.</p>" +
+      "<h3>" + T("📆 Ne rate plus une reprise") + "</h3>" +
+      '<p class="lb-cal-sub">' + T("Ajoute tes reprises à ton agenda : chaque nouvelle "
+        + "séance d'un film de ta watchlist (ou de tes favoris) apparaît toute seule, "
+        + "avec un rappel.") + "</p>" +
       '<p class="lb-cal-actions">' +
-        '<a class="bouton bouton-lb" id="lb-cal-gcal" target="_blank" rel="noopener noreferrer">Ajouter à Google Agenda</a>' +
-        '<button type="button" class="lb-secondary" id="lb-cal-near">📍 seulement près de moi</button>' +
-      '</p>' +
+        '<a class="bouton bouton-lb" id="lb-cal-gcal" target="_blank" rel="noopener noreferrer">'
+          + T("Ajouter à Google Agenda") + "</a>" +
+        '<button type="button" class="lb-secondary" id="lb-cal-near">'
+          + T("📍 seulement près de moi") + "</button>" +
+      "</p>" +
       '<p class="lb-cal-scope" id="lb-cal-scope"></p>' +
-      '<p class="lb-cal-other">Autre agenda (Apple, Outlook…) : ' +
-        '<input class="lb-input lb-cal-url" id="lb-cal-url" readonly aria-label="Lien du calendrier"> ' +
-        '<button type="button" class="lb-secondary" id="lb-cal-copy">Copier</button></p>';
+      '<p class="lb-cal-other">' + T("Autre agenda (Apple, Outlook…) :") + " " +
+        '<input class="lb-input lb-cal-url" id="lb-cal-url" readonly aria-label="'
+          + T("Lien du calendrier") + '"> ' +
+        '<button type="button" class="lb-secondary" id="lb-cal-copy">'
+          + T("Copier") + "</button></p>";
 
     var near = null;
     var gcal = calBox.querySelector("#lb-cal-gcal");
@@ -56,30 +61,38 @@
       gcal.href = "https://calendar.google.com/calendar/render?cid=" + encodeURIComponent(webcal);
       urlField.value = webcal;
       scope.textContent = near
-        ? "Calendrier limité à environ 30 km autour de toi."
-        : "Calendrier national (toutes les reprises de ta watchlist en France).";
+        ? T("Calendrier limité à environ 30 km autour de toi.")
+        : T("Calendrier national (toutes les reprises de ta watchlist en France).");
     }
     refresh();
 
     nearBtn.addEventListener("click", function () {
-      if (near) { near = null; nearBtn.textContent = "📍 seulement près de moi"; refresh(); return; }
-      if (!navigator.geolocation) { scope.textContent = "Géolocalisation indisponible sur ce navigateur."; return; }
-      nearBtn.textContent = "…localisation";
+      if (near) {
+        near = null; nearBtn.textContent = T("📍 seulement près de moi");
+        refresh(); return;
+      }
+      if (!navigator.geolocation) {
+        scope.textContent = T("Géolocalisation indisponible sur ce navigateur.");
+        return;
+      }
+      nearBtn.textContent = T("…localisation");
       navigator.geolocation.getCurrentPosition(
         function (pos) {
           near = { lat: pos.coords.latitude, lon: pos.coords.longitude };
-          nearBtn.textContent = "🌍 revenir au national";
+          nearBtn.textContent = T("🌍 revenir au national");
           refresh();
         },
-        function () { nearBtn.textContent = "📍 seulement près de moi";
-          scope.textContent = "Localisation refusée : calendrier national conservé."; });
+        function () {
+          nearBtn.textContent = T("📍 seulement près de moi");
+          scope.textContent = T("Localisation refusée : calendrier national conservé.");
+        });
     });
 
     calBox.querySelector("#lb-cal-copy").addEventListener("click", function () {
       urlField.select();
       if (navigator.clipboard) navigator.clipboard.writeText(urlField.value);
       else document.execCommand("copy");
-      this.textContent = "Copié ✓";
+      this.textContent = T("Copié ✓");
     });
   }
 
@@ -118,7 +131,9 @@
         if (r.empty) openFallback();
       })
       .catch(function () {
-        results.innerHTML = '<p class="wl-erreur">Chargement de l\'index impossible. Réessaie.</p>';
+        results.innerHTML = '<p class="wl-erreur"></p>';
+        results.querySelector(".wl-erreur").textContent =
+          T("Chargement de l'index impossible. Réessaie.");
       });
   }
 
@@ -141,17 +156,17 @@
     var quoi = document.createElement("span");
     quoi.className = "lb-city-on";
     quoi.textContent = "📍 " + v.nom;
-    ligne.appendChild(document.createTextNode("Résultats cadrés sur "));
+    ligne.appendChild(document.createTextNode(T("Résultats cadrés sur") + " "));
     ligne.appendChild(quoi);
     ligne.appendChild(document.createTextNode(" "));
     var chg = document.createElement("button");
     chg.type = "button";
     chg.className = "lb-city-chg";
-    chg.textContent = "Changer de ville";
+    chg.textContent = T("Changer de ville");
     chg.addEventListener("click", function () { editeur(data, v.nom); });
     ligne.appendChild(chg);
     ligne.appendChild(document.createTextNode(" · "));
-    ligne.appendChild(lien("Toute la France", function () {
+    ligne.appendChild(lien(T("Toute la France"), function () {
       LB.setCity(""); redessine(data);
     }));
     cityBox.appendChild(ligne);
@@ -177,12 +192,12 @@
     var form = document.createElement("form");
     form.className = "lb-city-edit";
     form.innerHTML =
-      '<label for="wl-city">📍 Dans quelle ville cherches-tu ?</label>' +
+      '<label for="wl-city">' + T("📍 Dans quelle ville cherches-tu ?") + "</label>" +
       '<span class="lb-field">' +
         // Placeholder posé par LB.autoVille (il connaît le nombre de villes).
         '<input class="lb-input" id="wl-city" type="text" autocomplete="off" ' +
-          'spellcheck="false" aria-label="Ta ville">' +
-        '<button class="bouton bouton-lb" type="submit">Cadrer</button>' +
+          'spellcheck="false" aria-label="' + T("Ta ville") + '">' +
+        '<button class="bouton bouton-lb" type="submit">' + T("Cadrer") + "</button>" +
       '</span>' +
       '<span class="lb-city-actions"></span>' +
       '<span class="lb-city-msg" role="status"></span>';
@@ -193,31 +208,35 @@
     var msg = form.querySelector(".lb-city-msg");
     var actions = form.querySelector(".lb-city-actions");
 
-    actions.appendChild(lien("📍 me localiser", function () {
-      if (!navigator.geolocation) { msg.textContent = "Géolocalisation indisponible."; return; }
-      msg.textContent = "…localisation";
+    actions.appendChild(lien(T("📍 me localiser"), function () {
+      if (!navigator.geolocation) {
+        msg.textContent = T("Géolocalisation indisponible."); return;
+      }
+      msg.textContent = T("…localisation");
       navigator.geolocation.getCurrentPosition(
         function (pos) {
           var p = LB.villeLaPlusProche(pos.coords.latitude, pos.coords.longitude);
-          if (!p) { msg.textContent = "Ville introuvable."; return; }
+          if (!p) { msg.textContent = T("Ville introuvable."); return; }
           input.value = p.nom;
-          msg.textContent = "Ville la plus proche : " + p.nom + " (~" + Math.round(p.km) + " km).";
+          msg.textContent = TF("Ville la plus proche : {ville} (~{km} km).",
+                               { ville: p.nom, km: Math.round(p.km) });
         },
-        function () { msg.textContent = "Localisation refusée. Tape ta ville."; });
+        function () { msg.textContent = T("Localisation refusée. Tape ta ville."); });
     }));
     // « Annuler » n'a de sens que pour REVENIR à une ville déjà cadrée. Sans
     // ville, le champ n'est pas une parenthèse qu'on referme : c'est l'état
     // normal de l'écran, et les résultats nationaux sont déjà dessous.
     if (valeur) {
       actions.appendChild(document.createTextNode(" · "));
-      actions.appendChild(lien("Annuler", function () { cityBar(data); }));
+      actions.appendChild(lien(T("Annuler"), function () { cityBar(data); }));
     }
 
     function cadrer(nom) {
       if (!nom) { LB.setCity(""); redessine(data); return; }
       var v = LB.villeParNom(nom);
       if (!v) {
-        msg.textContent = "On ne programme rien à « " + nom + " » pour l'instant.";
+        msg.textContent = TF("On ne programme rien à « {ville} » pour l'instant.",
+                             { ville: nom });
         return;
       }
       LB.setCity(v.nom);
@@ -251,11 +270,14 @@
     var wrap = document.createElement("p");
     wrap.className = "lb-connected";
     var who = document.createElement("span");
-    who.textContent = "Connecté : " + user; // textContent = pas d'injection
+    // textContent = pas d'injection possible, quel que soit le pseudo
+    who.textContent = TF("Connecté : {pseudo}", { pseudo: user });
     var resync = document.createElement("button");
-    resync.type = "button"; resync.className = "lb-secondary"; resync.textContent = "Resynchroniser";
+    resync.type = "button"; resync.className = "lb-secondary";
+    resync.textContent = T("Resynchroniser");
     var forget = document.createElement("button");
-    forget.type = "button"; forget.className = "lb-secondary"; forget.textContent = "Changer de pseudo";
+    forget.type = "button"; forget.className = "lb-secondary";
+    forget.textContent = T("Changer de pseudo");
     resync.addEventListener("click", function () { run(user); });
     forget.addEventListener("click", function () {
       LB.clear(); results.textContent = ""; status.textContent = ""; input.value = "";
@@ -280,7 +302,8 @@
   // Lance une synchronisation (réseau mock/Worker) puis affiche.
   function run(user) {
     status.innerHTML = '<p class="wl-summary"></p>';
-    status.querySelector(".wl-summary").textContent = "Lecture de la watchlist de " + user + "…";
+    status.querySelector(".wl-summary").textContent =
+      TF("Lecture de la watchlist de {pseudo}…", { pseudo: user });
     var btn = form.querySelector("button");
     btn.disabled = true;
     LB.sync(user)

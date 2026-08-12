@@ -67,7 +67,7 @@
 
   function croiser(texte) {
     var lignes = parseCSV(texte);
-    if (!lignes.length) { erreur("Ce fichier est vide."); return; }
+    if (!lignes.length) { erreur(T("Ce fichier est vide.")); return; }
     // Repérer les colonnes par leur en-tête (Letterboxd les nomme en anglais).
     var head = lignes[0].map(function (h) { return h.trim().toLowerCase(); });
     var iName = head.indexOf("name"), iYear = head.indexOf("year");
@@ -96,7 +96,7 @@
     var lire = function () {
       var fr = new FileReader();
       fr.onload = function () { croiser(String(fr.result)); };
-      fr.onerror = function () { erreur("Impossible de lire ce fichier."); };
+      fr.onerror = function () { erreur(T("Impossible de lire ce fichier.")); };
       fr.readAsText(file);
     };
     if (index) { lire(); return; }

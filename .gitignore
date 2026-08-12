@@ -24,3 +24,6 @@ site/
 __pycache__/
 *.pyc
 !data/letterboxd.json
+
+# Rapport de fin de build : chaînes sans traduction anglaise (regénéré à chaque build)
+i18n-manquantes.txt

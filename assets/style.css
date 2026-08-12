@@ -993,6 +993,39 @@ html:not(.js) .wl-tabs { display: none; }
   color: #06130c;
 }
 
+/* Sélecteur de langue FR | EN.
+   Volontairement DISCRET : ce n'est pas une section du site, c'est un réglage.
+   Il ne porte donc ni l'ambre de l'accent ni la pastille des entrées de nav —
+   sinon il se lirait comme une septième destination, alors que les six autres
+   comptent davantage. Un cadre sobre, et l'ambre réservé à la langue active.
+   Il vient APRÈS la nav dans le HTML et se place au bout de la ligne. */
+.lang-switch {
+  display: flex;
+  gap: 2px;
+  align-self: center;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  padding: 2px;
+  overflow: hidden;
+}
+.lang-switch a {
+  text-decoration: none;
+  font-size: .8rem;
+  font-weight: 700;
+  letter-spacing: .03em;
+  padding: 3px 9px;
+  border-radius: 999px;
+  color: var(--muted);
+}
+.lang-switch a:hover { background: var(--accent-soft); color: var(--text); }
+/* Langue affichée : même motif « vous êtes ici » que la nav (fond ambre,
+   texte très sombre), pour qu'un seul et même signe veuille dire une seule
+   et même chose partout dans le header. */
+.lang-switch a[aria-current="true"] {
+  background: var(--accent);
+  color: #1a1400;
+}
+
 /* Carte des cinémas : page-outil, on lui donne le viewport entier
    (:has ignoré par un très vieux navigateur = simple retour au conteneur 1080px) */
 main:has(#cine-map) { max-width: none; }

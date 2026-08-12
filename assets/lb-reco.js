@@ -97,16 +97,37 @@
     return byDir;
   }
 
+  // Site bilingue : `EN` décide du format des dates et des heures. On lit la
+  // langue sur <html lang>, posée au build — surtout PAS les réglages de
+  // l'appareil via toLocaleDateString(), qui donnerait une date française sur
+  // la page anglaise d'un visiteur au téléphone réglé en français.
+  var EN = document.documentElement.lang === "en";
+
   function frDate(iso) {
-    var jours = ["dim.", "lun.", "mar.", "mer.", "jeu.", "ven.", "sam."];
-    var mois = ["janv.", "févr.", "mars", "avril", "mai", "juin", "juil.",
-                "août", "sept.", "oct.", "nov.", "déc."];
+    var jours = EN
+      ? ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+      : ["dim.", "lun.", "mar.", "mer.", "jeu.", "ven.", "sam."];
+    var mois = EN
+      ? ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+         "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+      : ["janv.", "févr.", "mars", "avril", "mai", "juin", "juil.",
+         "août", "sept.", "oct.", "nov.", "déc."];
     var d = new Date(iso + "T00:00:00");
     var auj = new Date(); auj.setHours(0, 0, 0, 0);
     var delta = Math.round((d - auj) / 86400000);
-    if (delta <= 0) return "aujourd'hui";
-    if (delta === 1) return "demain";
+    if (delta <= 0) return T("aujourd'hui");
+    if (delta === 1) return T("demain");
     return jours[d.getDay()] + " " + d.getDate() + " " + mois[d.getMonth()];
+  }
+
+  // Heure d'une séance à partir d'un « …THH:MM ». Le format 24 h reste tel
+  // quel en français ; en anglais il devient « 8:30 pm », faute de quoi
+  // l'information la plus utile de la carte se lit de travers.
+  function hhmm(iso) {
+    var hh = iso.slice(11, 13), mm = iso.slice(14, 16);
+    if (!EN) return hh + ":" + mm;
+    var h = parseInt(hh, 10);
+    return (h % 12 || 12) + ":" + mm + (h < 12 ? " am" : " pm");
   }
 
   function card(film) {
@@ -152,21 +173,25 @@
       meta.appendChild(note);
       meta.appendChild(document.createTextNode(" · "));
     }
-    meta.appendChild(document.createTextNode(
-      "prochaine séance " + frDate(s[0].slice(0, 10)) + " à " + s[0].slice(11, 16)));
+    meta.appendChild(document.createTextNode(TF(
+      "prochaine séance {jour} à {heure}",
+      { jour: frDate(s[0].slice(0, 10)), heure: hhmm(s[0]) })));
     info.appendChild(meta);
 
     var line = document.createElement("p");
     line.className = "seance-line";
     var lieu = s[2] ? s[1] + ", " + s[2] : s[1];
-    if (nV > 1) lieu += " · et " + (nV - 1) + " autre" + (nV > 2 ? "s" : "") + " ville" + (nV > 2 ? "s" : "");
+    if (nV > 1) {
+      lieu += " · " + TF("et {n} autre{s} ville{s2}",
+                         { n: nV - 1, s: PL(nV - 1), s2: PL(nV - 1) });
+    }
     line.appendChild(document.createTextNode("📍 " + lieu));
     if (s[5] && /^https?:\/\//i.test(s[5])) {
       line.appendChild(document.createTextNode(" · "));
       var book = document.createElement("a");
       book.className = "seance-book";
       book.href = s[5]; book.target = "_blank"; book.rel = "noopener noreferrer";
-      book.textContent = "Réserver ↗";
+      book.textContent = T("Réserver ↗");
       line.appendChild(book);
     }
     info.appendChild(line);
@@ -178,12 +203,13 @@
     var sec = document.createElement("section");
     sec.className = "reco-dir";
     var h = document.createElement("h3");
-    h.textContent = "Parce que tu aimes " + dir.name;
+    h.textContent = TF("Parce que tu aimes {realisateur}", { realisateur: dir.name });
     sec.appendChild(h);
     if (dir.films.length) {
       var sub = document.createElement("p");
       sub.className = "reco-sub";
-      sub.textContent = "Repéré via " + dir.films.join(", ") + " dans tes listes.";
+      sub.textContent = TF("Repéré via {films} dans tes listes.",
+                           { films: dir.films.join(", ") });
       sec.appendChild(sub);
     }
     var grid = document.createElement("div");
@@ -217,12 +243,13 @@
     home.textContent = "";
     var h = document.createElement("h2");
     h.className = "reco-home-titre";
-    h.textContent = "✨ Pour toi, " + data.user; // textContent = aucune injection
+    // textContent = aucune injection possible, quel que soit le pseudo
+    h.textContent = TF("✨ Pour toi, {pseudo}", { pseudo: data.user });
     home.appendChild(h);
     var sub = document.createElement("p");
     sub.className = "meta";
-    sub.textContent = "D'après ta watchlist et tes favoris Letterboxd : le répertoire à "
-      + "l'affiche signé par tes réalisateurs préférés.";
+    sub.textContent = T("D'après ta watchlist et tes favoris Letterboxd : le répertoire "
+                      + "à l'affiche signé par tes réalisateurs préférés.");
     home.appendChild(sub);
     matched.slice(0, MAX_SECTIONS).forEach(function (mo) {
       home.appendChild(section(mo.dir, mo.films));

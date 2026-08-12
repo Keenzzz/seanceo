@@ -35,14 +35,20 @@
     return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
   }
 
+  // Le séparateur décimal change de langue : « 3,4 km » en français,
+  // « 3.4 km » en anglais. Une virgule décimale se lit comme un séparateur de
+  // milliers pour un anglophone, donc « 3,4 » y devient franchement trompeur.
   function fmtKm(d) {
     if (d < 1) return Math.round(d * 1000) + " m";
-    if (d < 10) return d.toFixed(1).replace(".", ",") + " km";
+    if (d < 10) {
+      var x = d.toFixed(1);
+      return (document.documentElement.lang === "fr" ? x.replace(".", ",") : x) + " km";
+    }
     return Math.round(d) + " km";
   }
 
   function repTxt(n) {
-    return n + (n > 1 ? " films de répertoire" : " film de répertoire");
+    return TF("{n} film{s} de répertoire", { n: n, s: PL(n) });
   }
 
   function lister(moi) {
@@ -54,7 +60,7 @@
     out.textContent = "";
     var titre = document.createElement("p");
     titre.className = "proximite-titre";
-    titre.textContent = "Les villes les plus proches de vous :";
+    titre.textContent = T("Les villes les plus proches de vous :");
     out.appendChild(titre);
 
     var ul = document.createElement("ul");
@@ -84,11 +90,11 @@
 
   btn.addEventListener("click", function () {
     if (!navigator.geolocation) {
-      statut("Votre navigateur ne permet pas la géolocalisation.");
+      statut(T("Votre navigateur ne permet pas la géolocalisation."));
       return;
     }
     btn.disabled = true;
-    statut("Recherche de votre position…");
+    statut(T("Recherche de votre position…"));
     navigator.geolocation.getCurrentPosition(
       function (p) {
         btn.disabled = false;
@@ -98,8 +104,9 @@
       function (e) {
         btn.disabled = false;
         statut(e && e.code === 1
-          ? "Accès à la position refusé. Autorisez la géolocalisation pour voir les villes autour de vous."
-          : "Position indisponible pour l'instant. Réessayez dans un moment.");
+          ? T("Accès à la position refusé. Autorisez la géolocalisation pour voir "
+            + "les villes autour de vous.")
+          : T("Position indisponible pour l'instant. Réessayez dans un moment."));
       },
       { enableHighAccuracy: true, timeout: 10000, maximumAge: 60000 });
   });

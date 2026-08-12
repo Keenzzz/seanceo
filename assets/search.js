@@ -146,7 +146,8 @@
     if (!found.length) {
       var vide = document.createElement("li");
       vide.className = "suggest-vide";
-      vide.textContent = "Aucun film à l'affiche pour « " + input.value.trim() + " »";
+      vide.textContent = TF("Aucun film à l'affiche pour « {requete} »",
+                            { requete: input.value.trim() });
       list.appendChild(vide);
     } else {
       found.forEach(function (i) { list.appendChild(suggestion(i)); });

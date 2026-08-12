@@ -65,7 +65,7 @@
   }
 
   function repLabel(n) {
-    return n + (n > 1 ? " séances de répertoire" : " séance de répertoire") + " cette semaine";
+    return TF("{n} séance{s} de répertoire cette semaine", { n: n, s: PL(n) });
   }
 
   // Un marqueur par cinéma géolocalisé, gardé en mémoire pour filtrer et trier.
@@ -73,7 +73,7 @@
   cinemas.forEach(function (c) {
     if (c.lat == null || c.lon == null) return;
     var isChain = !!c.chain;
-    var kind = isChain ? esc(c.chain) : "Cinéma indépendant";
+    var kind = isChain ? esc(c.chain) : T("Cinéma indépendant");
     var rep = c.rep
       ? '<br><span class="pop-rep">🎞️ ' + repLabel(c.rep) + "</span>"
       : "";
@@ -81,7 +81,7 @@
       '<strong>' + esc(c.name) + "</strong><br>" +
       '<span class="pop-kind">' + kind + "</span><br>" +
       esc(c.city) + rep +
-      '<br><a href="' + esc(c.url) + '">Voir le programme →</a>';
+      '<br><a href="' + esc(c.url) + '">' + esc(T("Voir le programme →")) + "</a>";
     var m = L.marker([c.lat, c.lon], { icon: pin(isChain), isChain: isChain })
       .bindPopup(popup);
     entrees.push({ c: c, m: m });
@@ -121,7 +121,12 @@
 
   function fmtKm(d) {
     if (d < 1) return Math.round(d * 1000) + " m";
-    if (d < 10) return d.toFixed(1).replace(".", ",") + " km";
+    // Séparateur décimal selon la langue : « 3,4 km » / « 3.4 km ». Une
+    // virgule décimale se lit comme un séparateur de milliers en anglais.
+    if (d < 10) {
+      var x = d.toFixed(1);
+      return (document.documentElement.lang === "fr" ? x.replace(".", ",") : x) + " km";
+    }
     return Math.round(d) + " km";
   }
 
@@ -138,7 +143,8 @@
     titre.textContent = o.c.name;      // textContent : jamais d'injection
     var meta = document.createElement("p");
     meta.className = "near-meta";
-    meta.textContent = o.c.city + (o.c.chain ? " · " + o.c.chain : " · indépendant");
+    meta.textContent = o.c.city
+      + (o.c.chain ? " · " + o.c.chain : " · " + T("indépendant"));
     corps.appendChild(titre);
     corps.appendChild(meta);
     if (o.c.rep) {
@@ -168,13 +174,14 @@
     nearbyEl.textContent = "";
     var h = document.createElement("h2");
     h.textContent = repOnly && repOnly.checked
-      ? "Salles de répertoire les plus proches"
-      : "Cinémas les plus proches";
+      ? T("Salles de répertoire les plus proches")
+      : T("Cinémas les plus proches");
     nearbyEl.appendChild(h);
     if (!proches.length) {
       var p = document.createElement("p");
       p.className = "meta";
-      p.textContent = "Aucune salle ne correspond. Décochez le filtre pour voir tous les cinémas.";
+      p.textContent = T("Aucune salle ne correspond. Décochez le filtre pour voir "
+                      + "tous les cinémas.");
       nearbyEl.appendChild(p);
     } else {
       var ul = document.createElement("ul");
@@ -192,7 +199,7 @@
       icon: L.divIcon({ className: "cine-moi", html: "<span></span>",
                         iconSize: [22, 22], iconAnchor: [11, 11] }),
       zIndexOffset: 1000, keyboard: false,
-    }).addTo(map).bindPopup("Vous êtes ici");
+    }).addTo(map).bindPopup(esc(T("Vous êtes ici")));
     map.setView([moi.lat, moi.lon], 11);
     statut("");
     if (btn) btn.disabled = false;
@@ -202,8 +209,9 @@
   function onErr(e) {
     if (btn) btn.disabled = false;
     statut(e && e.code === 1
-      ? "Accès à la position refusé. Autorisez la géolocalisation pour voir les salles autour de vous."
-      : "Position indisponible pour l'instant. Réessayez dans un moment.");
+      ? T("Accès à la position refusé. Autorisez la géolocalisation pour voir "
+        + "les salles autour de vous.")
+      : T("Position indisponible pour l'instant. Réessayez dans un moment."));
   }
 
   if (btn) {

@@ -23,6 +23,15 @@
 // assets/letterboxd.js le jour où le Worker déménage.
 var WORKER = "https://seanceo-watchlist.keenzzz.workers.dev";
 
+// Langue du visiteur, transmise par alertes.js dans l'URL d'enregistrement
+// (`/sw.js?lang=en`). Un service worker n'a accès ni au DOM ni à window : sans
+// ce paramètre, il n'aurait aucun moyen de savoir dans quelle langue le site a
+// été consulté, et notifierait en français un visiteur anglophone.
+var EN = false;
+try {
+  EN = new URL(self.location.href).searchParams.get("lang") === "en";
+} catch (e) { /* navigateur sans URL() : on reste en français */ }
+
 self.addEventListener("install", function () {
   // Pas de pré-cache : on veut juste que la nouvelle version prenne la main
   // sans attendre la fermeture de tous les onglets.
@@ -58,12 +67,17 @@ function afficher() {
         // à jour en arrière-plan »), ce qui est pire que notre repli. Cas
         // atteint si le réseau lâche entre le réveil et la lecture.
         return self.registration.showNotification("Séancéo", {
-          body: "Un film que tu suis repasse près de chez toi.",
+          body: EN
+            ? "A film you follow is playing near you."
+            : "Un film que tu suis repasse près de chez toi.",
           tag: "seanceo-repli",
         });
       }
       return Promise.all(notifs.map(function (n) {
-        return self.registration.showNotification(n.titre + " repasse à " + n.ville, {
+        var titre = EN
+          ? n.titre + " is back in " + n.ville
+          : n.titre + " repasse à " + n.ville;
+        return self.registration.showNotification(titre, {
           body: quand(n.quand),
           // `tag` distinct par film/ville : deux alertes différentes doivent
           // rester deux notifications, pas s'écraser l'une l'autre.
@@ -81,13 +95,21 @@ function afficher() {
 var JOURS = ["dimanche", "lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi"];
 var MOIS = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet",
             "août", "septembre", "octobre", "novembre", "décembre"];
+var DAYS_EN = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday",
+               "Friday", "Saturday"];
+var MONTHS_EN = ["January", "February", "March", "April", "May", "June", "July",
+                 "August", "September", "October", "November", "December"];
 
 function quand(s) {
   var m = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}:\d{2})$/.exec(s || "");
-  if (!m) return "Une séance t'attend.";
+  if (!m) return EN ? "A screening is waiting for you." : "Une séance t'attend.";
   var d = new Date(Number(m[1]), Number(m[2]) - 1, Number(m[3]));
-  return JOURS[d.getDay()] + " " + Number(m[3]) + " " + MOIS[Number(m[2]) - 1] +
-         " à " + m[4];
+  var jour = Number(m[3]), mois = Number(m[2]) - 1;
+  if (!EN) return JOURS[d.getDay()] + " " + jour + " " + MOIS[mois] + " à " + m[4];
+  // Heure en 12 h côté anglais, comme partout ailleurs sur le site.
+  var h = Number(m[4].slice(0, 2));
+  var heure = (h % 12 || 12) + ":" + m[4].slice(3) + (h < 12 ? " am" : " pm");
+  return DAYS_EN[d.getDay()] + " " + jour + " " + MONTHS_EN[mois] + " at " + heure;
 }
 
 self.addEventListener("notificationclick", function (event) {

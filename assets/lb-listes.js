@@ -156,16 +156,37 @@
     return { s: best, dist: near ? bestVal : Infinity };
   }
 
+  // Site bilingue : `EN` décide du format des dates et des heures. On lit la
+  // langue sur <html lang>, posée au build — surtout PAS les réglages de
+  // l'appareil via toLocaleDateString(), qui donnerait une date française sur
+  // la page anglaise d'un visiteur au téléphone réglé en français.
+  var EN = document.documentElement.lang === "en";
+
   function frDate(iso) {
-    var jours = ["dim.", "lun.", "mar.", "mer.", "jeu.", "ven.", "sam."];
-    var mois = ["janv.", "févr.", "mars", "avril", "mai", "juin", "juil.",
-                "août", "sept.", "oct.", "nov.", "déc."];
+    var jours = EN
+      ? ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+      : ["dim.", "lun.", "mar.", "mer.", "jeu.", "ven.", "sam."];
+    var mois = EN
+      ? ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+         "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+      : ["janv.", "févr.", "mars", "avril", "mai", "juin", "juil.",
+         "août", "sept.", "oct.", "nov.", "déc."];
     var d = new Date(iso + "T00:00:00");
     var auj = new Date(); auj.setHours(0, 0, 0, 0);
     var delta = Math.round((d - auj) / 86400000);
-    if (delta <= 0) return "aujourd'hui";
-    if (delta === 1) return "demain";
+    if (delta <= 0) return T("aujourd'hui");
+    if (delta === 1) return T("demain");
     return jours[d.getDay()] + " " + d.getDate() + " " + mois[d.getMonth()];
+  }
+
+  // Heure d'une séance à partir d'un « …THH:MM ». Le format 24 h reste tel
+  // quel en français ; en anglais il devient « 8:30 pm », faute de quoi
+  // l'information la plus utile de la carte se lit de travers.
+  function hhmm(iso) {
+    var hh = iso.slice(11, 13), mm = iso.slice(14, 16);
+    if (!EN) return hh + ":" + mm;
+    var h = parseInt(hh, 10);
+    return (h % 12 || 12) + ":" + mm + (h < 12 ? " am" : " pm");
   }
 
   // Carte film : affiche + titre + une séance (date, ville, cinéma, heure,
@@ -211,14 +232,17 @@
       meta.appendChild(note);
       meta.appendChild(document.createTextNode(" · "));
     }
-    var when = "prochaine séance " + frDate(s[0].slice(0, 10)) + " à " + s[0].slice(11, 16);
+    var when = TF("prochaine séance {jour} à {heure}",
+                  { jour: frDate(s[0].slice(0, 10)), heure: hhmm(s[0]) });
     meta.appendChild(document.createTextNode(when));
     info.appendChild(meta);
 
     var line = document.createElement("p");
     line.className = "seance-line";
     var lieu = s[2] ? s[1] + ", " + s[2] : s[1];
-    if (near && isFinite(pick.dist)) lieu += " · à ~" + Math.round(pick.dist) + " km";
+    if (near && isFinite(pick.dist)) {
+      lieu += " · " + TF("à ~{km} km", { km: Math.round(pick.dist) });
+    }
     line.appendChild(document.createTextNode("📍 " + lieu));
     // Lien de billetterie : nouvel onglet, uniquement si http(s).
     if (s[5] && /^https?:\/\//i.test(s[5])) {
@@ -228,7 +252,7 @@
       book.href = s[5];
       book.target = "_blank";
       book.rel = "noopener noreferrer";
-      book.textContent = "Réserver ↗";
+      book.textContent = T("Réserver ↗");
       line.appendChild(book);
     }
     info.appendChild(line);
@@ -261,10 +285,14 @@
       results.appendChild(summary);
       return;
     }
-    summary.innerHTML = "<strong>" + shown.length + "</strong> film"
-      + (shown.length > 1 ? "s" : "") + " de cette liste "
-      + (shown.length > 1 ? "repassent" : "repasse") + " en salle"
-      + (currentCity ? " dans cette ville" : near ? ", du plus proche au plus loin" : "") + ".";
+    var cadre = currentCity
+      ? T(" dans cette ville")
+      : near ? T(", du plus proche au plus loin") : "";
+    summary.innerHTML = TF(
+      "<strong>{n}</strong> film{s} de cette liste {verbe} en salle{cadre}.",
+      { n: shown.length, s: PL(shown.length),
+        verbe: shown.length > 1 ? T("repassent") : T("repasse"),
+        cadre: cadre });
     results.appendChild(summary);
 
     var grid = document.createElement("div");
@@ -293,12 +321,13 @@
     var label = document.createElement("label");
     label.className = "list-city-label";
     label.setAttribute("for", "list-city");
-    label.textContent = "Ville";
+    label.textContent = T("Ville");
     var select = document.createElement("select");
     select.id = "list-city";
     select.className = "list-city";
     var optAll = document.createElement("option");
-    optAll.value = ""; optAll.textContent = "Toutes les villes (" + cities.length + ")";
+    optAll.value = "";
+    optAll.textContent = TF("Toutes les villes ({n})", { n: cities.length });
     select.appendChild(optAll);
     cities.forEach(function (key) {
       var o = document.createElement("option");
@@ -313,23 +342,23 @@
     var geo = document.createElement("button");
     geo.type = "button";
     geo.className = "lb-secondary list-geo";
-    geo.textContent = "📍 autour de moi";
+    geo.textContent = T("📍 autour de moi");
     geo.addEventListener("click", function () {
       if (near) {
-        near = null; geo.textContent = "📍 autour de moi";
+        near = null; geo.textContent = T("📍 autour de moi");
         renderResults(); return;
       }
       if (!navigator.geolocation) {
-        geo.textContent = "Géolocalisation indisponible"; return;
+        geo.textContent = T("Géolocalisation indisponible"); return;
       }
-      geo.textContent = "…localisation";
+      geo.textContent = T("…localisation");
       navigator.geolocation.getCurrentPosition(
         function (pos) {
           near = { lat: pos.coords.latitude, lon: pos.coords.longitude };
-          geo.textContent = "🌍 revenir au national";
+          geo.textContent = T("🌍 revenir au national");
           renderResults();
         },
-        function () { geo.textContent = "📍 autour de moi"; }
+        function () { geo.textContent = T("📍 autour de moi"); }
       );
     });
 
@@ -353,29 +382,34 @@
 
   function search(raw) {
     if (/boxd\.it\//i.test(raw)) {
-      setStatus("Colle l'URL complète de la liste (letterboxd.com/…/list/…), pas le lien court boxd.it.", "err");
+      setStatus(T("Colle l'URL complète de la liste (letterboxd.com/…/list/…), "
+                + "pas le lien court boxd.it."), "err");
       return;
     }
     var m = raw.match(LIST_RE);
     if (!m) {
-      setStatus("Ce lien n'a pas l'air d'être une liste Letterboxd. Exemple : letterboxd.com/pseudo/list/ma-liste/", "err");
+      setStatus(T("Ce lien n'a pas l'air d'être une liste Letterboxd. "
+                + "Exemple : letterboxd.com/pseudo/list/ma-liste/"), "err");
       return;
     }
     var user = m[1].toLowerCase(), slug = m[2].toLowerCase();
     clearAll();
-    setStatus("Lecture de la liste…", "");
+    setStatus(T("Lecture de la liste…"), "");
     var btn = form.querySelector("button");
     btn.disabled = true;
 
     Promise.all([fetchList(user, slug), loadIndexes()])
       .then(function (arr) {
         var data = arr[0];
-        listName = data.name || "Cette liste";
+        listName = data.name || T("Cette liste");
         matched = crossList(data.films);
         // Réinitialise le filtre pour une nouvelle liste.
         near = null; currentCity = "";
-        setStatus(listName + " — " + (data.count || (data.films || []).length)
-          + " films dans la liste, " + matched.length + " repassent en salle.", "");
+        setStatus(TF("{liste} — {total} films dans la liste, "
+                   + "{trouves} repassent en salle.",
+                     { liste: listName,
+                       total: data.count || (data.films || []).length,
+                       trouves: matched.length }), "");
         if (matched.length) {
           buildControls();
         } else {

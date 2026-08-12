@@ -104,7 +104,13 @@
   // marqué un autre film — un seul abonnement par navigateur, plusieurs
   // alertes dessus.
   function abonnement() {
-    return navigator.serviceWorker.register(BASE + "/sw.js", { scope: BASE + "/" })
+    // La langue voyage dans l'URL du script : c'est le SEUL canal simple pour
+    // la faire connaître au service worker, qui vit hors de la page et n'a
+    // accès ni à <html lang> ni à window. Il la relit dans self.location.
+    // Le `scope` reste inchangé, donc la portée d'installation ne bouge pas.
+    var lang = document.documentElement.lang || "fr";
+    return navigator.serviceWorker.register(BASE + "/sw.js?lang=" + lang,
+                                            { scope: BASE + "/" })
       .then(function () { return navigator.serviceWorker.ready; })
       .then(function (reg) {
         return reg.pushManager.getSubscription().then(function (sub) {
@@ -138,11 +144,12 @@
         // sites posés sur l'écran d'accueil. Autant expliquer le geste exact
         // plutôt que d'afficher « non disponible » à quelqu'un qui est à deux
         // touches de l'avoir.
-        bloc.innerHTML = '<p class="alerte-note alerte-ios">🔔 <strong>Être prévenu ' +
-          "quand ce film repasse</strong><br>Sur iPhone, les notifications " +
-          "demandent d'ajouter Séancéo à ton écran d'accueil : touche " +
-          "<strong>Partager</strong> en bas de Safari, puis <strong>« Sur l'écran " +
-          "d'accueil »</strong>. Rouvre ensuite cette page depuis l'icône.</p>";
+        bloc.innerHTML = '<p class="alerte-note alerte-ios">🔔 '
+          + T("<strong>Être prévenu quand ce film repasse</strong><br>Sur iPhone, les "
+            + "notifications demandent d'ajouter Séancéo à ton écran d'accueil : touche "
+            + "<strong>Partager</strong> en bas de Safari, puis <strong>« Sur l'écran "
+            + "d'accueil »</strong>. Rouvre ensuite cette page depuis l'icône.")
+          + "</p>";
       }
       return;
     }
@@ -161,8 +168,8 @@
     b.type = "button";
     b.className = "bouton alerte-btn";
     b.textContent = ville
-      ? "🔔 Préviens-moi quand il repasse à " + ville
-      : "🔔 Préviens-moi quand il repasse";
+      ? TF("🔔 Préviens-moi quand il repasse à {ville}", { ville: ville })
+      : T("🔔 Préviens-moi quand il repasse");
     b.addEventListener("click", function () {
       if (villeConnue()) return activer(bloc, film, titre, url, villeConnue(), b);
       // Pas encore de ville : on la demande sur place. Le cadrage par ville
@@ -187,7 +194,8 @@
   }
 
   function demandeVille(bloc, suite) {
-    bloc.innerHTML = '<p class="alerte-note">Dans quelle ville veux-tu être prévenu ?</p>';
+    bloc.innerHTML = '<p class="alerte-note">'
+      + T("Dans quelle ville veux-tu être prévenu ?") + "</p>";
     var form = document.createElement("form");
     form.className = "alerte-ville";
     var champ = document.createElement("input");
@@ -196,7 +204,7 @@
     var ok = document.createElement("button");
     ok.type = "submit";
     ok.className = "bouton";
-    ok.textContent = "Valider";
+    ok.textContent = T("Valider");
     form.appendChild(champ);
     form.appendChild(ok);
     bloc.appendChild(form);
@@ -221,9 +229,9 @@
     if (window.LB && window.LB.loadIndex && window.LB.autoVille && indexUrl) {
       window.LB.loadIndex(indexUrl).then(function () {
         window.LB.autoVille(champ, function (nom) { valide(nom); });
-      }).catch(function () { champ.placeholder = "Ta ville…"; });
+      }).catch(function () { champ.placeholder = T("Ta ville…"); });
     } else {
-      champ.placeholder = "Ta ville…";
+      champ.placeholder = T("Ta ville…");
     }
     champ.focus();
   }
@@ -259,8 +267,9 @@
       .catch(function (err) {
         bloc.innerHTML = '<p class="alerte-note alerte-ko">' +
           (err === "refus"
-            ? "Tu as refusé les notifications. Réactive-les dans les réglages du navigateur pour ce site."
-            : "L'alerte n'a pas pu être enregistrée. Réessaie plus tard.") +
+            ? T("Tu as refusé les notifications. Réactive-les dans les réglages du "
+              + "navigateur pour ce site.")
+            : T("L'alerte n'a pas pu être enregistrée. Réessaie plus tard.")) +
           "</p>";
       });
   }
@@ -281,18 +290,19 @@
     // alors que le film passe justement chez lui cette semaine.
     var sup = "";
     if (deja) {
-      sup = deja > 1
-        ? " Il y est déjà à l'affiche (" + deja + " salles)."
-        : " Il y est déjà à l'affiche.";
+      sup = " " + (deja > 1
+        ? TF("Il y est déjà à l'affiche ({n} salles).", { n: deja })
+        : T("Il y est déjà à l'affiche."));
     }
     bloc.innerHTML = "";
     var p = document.createElement("p");
     p.className = "alerte-note alerte-ok";
-    p.textContent = "🔔 Tu seras prévenu quand ce film repassera à " + ville + "." + sup;
+    p.textContent = TF("🔔 Tu seras prévenu quand ce film repassera à {ville}.",
+                       { ville: ville }) + sup;
     var retirer = document.createElement("button");
     retirer.type = "button";
     retirer.className = "lien-bouton";
-    retirer.textContent = "Ne plus me prévenir";
+    retirer.textContent = T("Ne plus me prévenir");
     retirer.addEventListener("click", function () {
       retirer.disabled = true;
       navigator.serviceWorker.ready
@@ -320,7 +330,7 @@
     p.appendChild(document.createTextNode(" · "));
     var vers = document.createElement("a");
     vers.href = BASE + "/mes-alertes/";
-    vers.textContent = "Mes alertes";
+    vers.textContent = T("Mes alertes");
     p.appendChild(vers);
     bloc.appendChild(p);
   }
@@ -329,19 +339,22 @@
 
   function pageListe(hote) {
     if (!supporte() || !worker()) {
-      hote.innerHTML = '<p class="alerte-note">Ce navigateur ne peut pas recevoir ' +
-        "de notifications" + (estIOS() && !estInstalle()
-          ? " tant que Séancéo n'est pas ajouté à ton écran d'accueil." : ".") + "</p>";
+      hote.innerHTML = '<p class="alerte-note">'
+        + T("Ce navigateur ne peut pas recevoir de notifications")
+        + (estIOS() && !estInstalle()
+          ? " " + T("tant que Séancéo n'est pas ajouté à ton écran d'accueil.") : ".")
+        + "</p>";
       return;
     }
-    hote.innerHTML = '<p class="alerte-note">Chargement…</p>';
+    hote.innerHTML = '<p class="alerte-note">' + T("Chargement…") + "</p>";
     navigator.serviceWorker.getRegistration(BASE + "/")
       .then(function (reg) { return reg ? reg.pushManager.getSubscription() : null; })
       .then(function (sub) {
         if (!sub) {
-          hote.innerHTML = '<p class="alerte-note">Tu ne suis aucun film pour le ' +
-            "moment. Sur la fiche d'un film, le bouton « Préviens-moi quand il " +
-            "repasse » te préviendra dès qu'une séance est programmée dans ta ville.</p>";
+          hote.innerHTML = '<p class="alerte-note">'
+            + T("Tu ne suis aucun film pour le moment. Sur la fiche d'un film, le "
+              + "bouton « Préviens-moi quand il repasse » te préviendra dès qu'une "
+              + "séance est programmée dans ta ville.") + "</p>";
           return;
         }
         return poste("/alerte/liste", { endpoint: sub.endpoint }).then(function (d) {
@@ -349,14 +362,15 @@
         });
       })
       .catch(function () {
-        hote.innerHTML = '<p class="alerte-note alerte-ko">La liste n\'a pas pu ' +
-          "être chargée. Réessaie plus tard.</p>";
+        hote.innerHTML = '<p class="alerte-note alerte-ko">'
+          + T("La liste n'a pas pu être chargée. Réessaie plus tard.") + "</p>";
       });
   }
 
   function affiche(hote, liste, sub) {
     if (!liste.length) {
-      hote.innerHTML = '<p class="alerte-note">Tu ne suis aucun film pour le moment.</p>';
+      hote.innerHTML = '<p class="alerte-note">'
+        + T("Tu ne suis aucun film pour le moment.") + "</p>";
       return;
     }
     hote.innerHTML = "";
@@ -373,11 +387,12 @@
       titre.href = a.url || "#";
       titre.textContent = a.titre;
       li.appendChild(titre);
-      li.appendChild(document.createTextNode(" à " + a.ville + " "));
+      li.appendChild(document.createTextNode(
+        " " + TF("à {ville}", { ville: a.ville }) + " "));
       var x = document.createElement("button");
       x.type = "button";
       x.className = "lien-bouton";
-      x.textContent = "retirer";
+      x.textContent = T("retirer");
       x.addEventListener("click", function () {
         x.disabled = true;
         poste("/alerte/retirer", { endpoint: sub.endpoint, film: a.film, ville: a.ville })

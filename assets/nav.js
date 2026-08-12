@@ -1,7 +1,60 @@
 /* nav.js — la barre de navigation quand elle déborde (téléphone et tablette).
    Deux rôles, tous deux inutiles sur desktop où les 6 pastilles tiennent :
      1. amener la pastille de la page courante dans le champ de vision ;
-     2. piloter les dégradés de bord qui annoncent « il y a la suite ». */
+     2. piloter les dégradés de bord qui annoncent « il y a la suite ».
+   Plus, en fin de fichier, la mémoire du choix de langue. */
+
+/* —— Mémoire du choix de langue ——————————————————————————————————————————
+   Le français est la langue PAR DÉFAUT : c'est ce que sert la racine à qui
+   n'a rien demandé. L'anglais, lui, ne s'atteint que par une URL /en/ — on n'y
+   arrive jamais par hasard.
+
+   Cette asymétrie dicte la règle, et elle ne va que DANS UN SENS :
+     · page française + préférence « anglais » → on redirige. La page servie
+       n'est que le défaut, la préférence est un vrai choix.
+     · page anglaise + préférence « français » → on ne redirige PAS. Être sur
+       /en/, c'est déjà l'avoir demandé par l'URL : renvoyer ce visiteur vers
+       le français casserait son lien (typiquement un résultat Google anglais).
+
+   Cliquer « FR » EFFACE donc la préférence au lieu de stocker « fr » : « FR »
+   veut dire « reviens au défaut », pas « ne me montre plus jamais l'anglais ».
+
+   ⚠️ CE N'EST PAS une redirection selon la langue du navigateur, et la
+   distinction est délibérée : RIEN ne se produit tant que personne n'a cliqué
+   sur le sélecteur. `localStorage` est vide au premier chargement, et il l'est
+   TOUJOURS pour un robot d'indexation — Googlebot voit exactement la page
+   demandée, jamais une redirection. C'est la condition pour que les deux
+   arbres de langue s'indexent proprement.
+
+   `location.replace` et non `location.href` : sinon le bouton « retour »
+   ramènerait sur la page qui redirige, donc immédiatement en avant. */
+(function () {
+  "use strict";
+  var CLE = "seanceo.lang";
+  var barre = document.querySelector(".lang-switch");
+  if (!barre) return;
+
+  barre.addEventListener("click", function (e) {
+    var a = e.target.closest ? e.target.closest("a[data-lang]") : null;
+    if (!a) return;
+    try {
+      if (a.dataset.lang === "fr") localStorage.removeItem(CLE);
+      else localStorage.setItem(CLE, a.dataset.lang);
+    } catch (err) { /* navigation privée : le choix ne survivra pas, tant pis */ }
+  });
+
+  if ((document.documentElement.lang || "fr") === "en") return; // jamais dans ce sens
+  var voulue;
+  try { voulue = localStorage.getItem(CLE); } catch (err) { return; }
+  if (!voulue || voulue === "fr") return;
+
+  // On suit le lien du sélecteur plutôt que de fabriquer l'URL : il porte déjà
+  // le sous-chemin d'hébergement et le bon segment de langue, et il pointe
+  // forcément vers une page qui existe (mêmes slugs des deux côtés).
+  var cible = barre.querySelector('a[data-lang="' + voulue + '"]');
+  if (cible && cible.href) location.replace(cible.href);
+})();
+
 (function () {
   var nav = document.querySelector('.site-nav');
   if (!nav) return;

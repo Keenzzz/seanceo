@@ -3,6 +3,17 @@
 Lit les JSON produits par fetch_data.py et écrit le site complet dans `site/` :
 accueil, une page par ville, par cinéma et par film, sitemap.xml, robots.txt.
 
+SITE BILINGUE. Le build tourne DEUX FOIS, une par langue (`i18n.LANGS`) : le
+français à la racine, l'anglais sous `/en/`. Chaque page anglaise a donc sa
+propre URL indexable, et les deux versions se déclarent l'une l'autre en
+`hreflang` — c'est la seule forme que Google traite comme deux pages
+équivalentes plutôt que comme du contenu dupliqué.
+
+Les SLUGS restent français dans les deux langues (`/en/film/mon-oncle/`) :
+ils sont calculés une seule fois, avant la boucle, à partir des titres
+français. Deux jeux de slugs auraient fait diverger les deux arbres à chaque
+changement de titre TMDB, pour un gain SEO marginal.
+
 Usage :  python scripts/build_site.py
 Aucune dépendance externe (stdlib uniquement).
 """
@@ -19,9 +30,12 @@ from urllib.parse import quote
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from fetch_data import slugify  # même slugification partout
-from sources import load_merged, cinema_kind, _fold_title  # fusion indés + chaînes
+from sources import load_merged, _fold_title  # fusion indés + chaînes
 from marathon import build_ideas  # doubles programmes par ville
 import repertoire  # reprises, cycles, séances uniques, salles de patrimoine
+import i18n  # traduction FR/EN ; `i18n.LANG` porte la langue du build en cours
+from i18n import (t, tf, plural, nombre, date_label, jour_mois, heure, decimal,
+                  localize_movies, lang_prefix, cinema_kind_label, LANGS)
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
@@ -59,6 +73,37 @@ BIG_CITY_SLUGS = ("paris", "marseille", "lyon", "toulouse", "nice",
 # sans JavaScript la recherche serait inopérante, tout doit rester affiché.
 JS_FLAG = '<script>document.documentElement.classList.add("js")</script>'
 
+# Traduction côté navigateur. `T()` est défini EN LIGNE dans le <head> de toutes
+# les pages (60 octets) et vaut l'identité tant que `window.I18N` est absent :
+# une page française ne télécharge donc aucun dictionnaire, et un script qui
+# oublie de traduire une chaîne affiche du français, pas une clé brute.
+# Le dictionnaire lui-même n'est chargé que sur les pages anglaises.
+#
+# `PL(n)` accompagne `T`/`TF` : le « s » du pluriel ne se coupe pas au même
+# endroit dans les deux langues (français « 1 film », « 0 film » ; anglais
+# « 1 film », « 0 films »). Il lit la langue sur <html lang>, seule source de
+# vérité côté navigateur.
+T_HELPER = ('<script>window.T=function(s){var d=window.I18N;'
+            'return(d&&d[s])||s},window.TF=function(s,v){'
+            'return window.T(s).replace(/\\{(\\w+)\\}/g,function(m,k){'
+            'return k in v?v[k]:m})},window.PL=function(n){'
+            'return document.documentElement.lang==="fr"?(n>1?"s":""):'
+            '(n===1?"":"s")}</script>')
+I18N_JS = '<script src="/assets/i18n.js" defer></script>'
+
+# Chemins servis À L'IDENTIQUE aux deux langues : ils ne prennent jamais le
+# préfixe /en. Dupliquer une feuille de style ou une icône par langue ferait
+# tout retélécharger au visiteur qui bascule, pour un fichier au contenu
+# rigoureusement identique. Le manifeste, lui, N'EST PAS ici : son `name`, sa
+# `description`, son `lang` et son `start_url` changent avec la langue.
+SHARED_PATHS = ("/assets/", "/favicon.png", "/apple-touch-icon.png", "/icon-",
+                "/sw.js", "/film-directors.json", "/cinematheque-directors.json")
+
+# Marque un href/src DÉJÀ complet (BASE_PATH et langue inclus) : _prefix_links()
+# la retire sans rien préfixer. Sert au sélecteur de langue, seul lien du site
+# qui pointe volontairement vers l'AUTRE arbre de langue.
+RAW = "@@"
+
 # Index de recherche : un fichier à part, chargé à la première frappe et pas
 # à chaque page. 931 films injectés dans chaque page pèseraient ~90 ko inutiles.
 SEARCH_INDEX = "/recherche.json"
@@ -77,12 +122,20 @@ LEADING_ARTICLES = ("le", "la", "les", "l", "un", "une", "des", "the", "a", "an"
 MOVIE_VERSIONS: dict[str, set[str]] = {}
 MOVIE_VENUES: dict[str, int] = {}
 
-# Recherche de film, présente dans le header de toutes les pages.
-# `data-index` porte le chemin complet (BASE_PATH inclus) : page() ne préfixe
-# que les attributs href/src, un data-* lui échapperait.
-FILM_SEARCH = f"""<div class="film-search">
-<input id="film-search" type="search" autocomplete="off" data-index="{BASE_PATH}{SEARCH_INDEX}"
-placeholder="Chercher un film ou un réalisateur…" aria-label="Chercher un film ou un réalisateur">
+def film_search() -> str:
+    """Recherche de film, présente dans le header de toutes les pages.
+
+    `data-index` porte le chemin complet (BASE_PATH ET langue inclus) : page()
+    ne préfixe que les attributs href/src, un data-* lui échapperait. L'index
+    anglais est un fichier distinct — il porte les titres anglais et des URLs
+    en /en/, chercher « Mr. Hulot's Holiday » depuis la version anglaise doit
+    marcher.
+    """
+    return f"""<div class="film-search">
+<input id="film-search" type="search" autocomplete="off"
+data-index="{BASE_PATH}{lang_prefix()}{SEARCH_INDEX}"
+placeholder="{esc(t("Chercher un film ou un réalisateur…"))}"
+aria-label="{esc(t("Chercher un film ou un réalisateur"))}">
 <ul id="film-suggest" hidden></ul>
 </div>
 <script src="/assets/search.js" defer></script>"""
@@ -131,32 +184,44 @@ def site_nav(current: str) -> str:
     for href, label, cls in NAV_ITEMS:
         c = f' class="{cls}"' if cls else ""
         cur = ' aria-current="page"' if current == href else ""
-        liens.append(f'<a{c} href="{href}"{cur}>{label}</a>')
-    return f'<nav class="site-nav" aria-label="Sections du site">{"".join(liens)}</nav>'
+        liens.append(f'<a{c} href="{href}"{cur}>{t(label)}</a>')
+    return (f'<nav class="site-nav" aria-label="{esc(t("Sections du site"))}">'
+            f'{"".join(liens)}</nav>')
 
 
-JOURS = ["lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi", "dimanche"]
-MOIS = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet",
-        "août", "septembre", "octobre", "novembre", "décembre"]
+def lang_switch(path: str) -> str:
+    """Sélecteur de langue du header : un lien par langue, vers LA MÊME page.
+
+    Les slugs étant communs aux deux arbres, la contrepartie d'une page est
+    toujours son chemin préfixé — aucune table de correspondance à tenir, donc
+    aucun lien de bascule ne peut pointer vers une page inexistante.
+
+    Les href sont écrits COMPLETS (marqués `RAW`) : ce sont les seuls liens du
+    site qui visent délibérément l'autre langue, le préfixage automatique de
+    page() les enverrait sinon sur /en/en/.
+
+    `hreflang` sur chaque lien et `aria-current` sur la langue affichée : c'est
+    ce couple qui fait comprendre le sélecteur à un lecteur d'écran.
+    """
+    liens = []
+    for lang, court, titre in (("fr", "FR", "Version française"),
+                               ("en", "EN", "Version anglaise")):
+        cible = f"{RAW}{BASE_PATH}{lang_prefix(lang)}{path}"
+        actif = ' aria-current="true"' if lang == i18n.LANG else ""
+        liens.append(f'<a href="{cible}" hreflang="{lang}" lang="{lang}"'
+                     f' title="{esc(t(titre))}" data-lang="{lang}"{actif}>{court}</a>')
+    return (f'<nav class="lang-switch" aria-label="{esc(t("Langue"))}">'
+            f'{"".join(liens)}</nav>')
 
 
-def fr_date(d: date, today: date) -> str:
-    if d == today:
-        return "Aujourd'hui"
-    if d == today + timedelta(days=1):
-        return "Demain"
-    return f"{JOURS[d.weekday()].capitalize()} {d.day} {MOIS[d.month - 1]}"
+# Les noms de jours et de mois, le format d'heure, le séparateur de milliers et
+# le « s » du pluriel vivent dans i18n.py : ils ne changent pas seulement de
+# mots d'une langue à l'autre, mais de RÈGLE (« 20h30 » vs « 8:30 pm »,
+# « 0 film » vs « 0 films »). Voir date_label(), heure(), nombre(), plural().
 
 
 def esc(text: str) -> str:
     return html.escape(str(text), quote=True)
-
-
-def nombre(n: int) -> str:
-    """Sépare les milliers par une espace insécable, comme l'usage français.
-    « 84640 » ne se lit pas ; « 84 640 » se lit d'un coup d'œil. L'espace est
-    insécable pour qu'un retour à la ligne ne coupe jamais un nombre en deux."""
-    return f"{n:,}".replace(",", " ")
 
 
 def load(name: str):
@@ -164,6 +229,46 @@ def load(name: str):
 
 
 # --- Gabarit commun -------------------------------------------------------
+
+_LINK_RE = re.compile(r'\b(href|src)="(/[^"]*)"')
+
+
+def _prefix_links(doc: str) -> str:
+    """Préfixe les URLs internes absolues : sous-chemin d'hébergement + langue.
+
+    Remplace l'ancien double `.replace('href="/', …)`. Un simple remplacement
+    de texte ne suffit plus dès lors que le préfixe dépend de la CIBLE du lien :
+    une page part sous `/seanceo/en/`, mais la feuille de style reste sur
+    `/seanceo/assets/` (voir SHARED_PATHS).
+
+    Ne touche ni aux liens externes (`https://…`, qui ne commencent pas par
+    `/`), ni aux ancres (`#…`), ni au canonical (URL absolue), ni aux `data-*`
+    (qui portent déjà leur préfixe à la main). Les href marqués `RAW` sont
+    laissés tels quels, débarrassés de leur marque.
+    """
+    prefixe = f"{BASE_PATH}{lang_prefix()}"
+
+    def sub(m: re.Match) -> str:
+        attr, url = m.group(1), m.group(2)
+        base = BASE_PATH if url.startswith(SHARED_PATHS) else prefixe
+        return f'{attr}="{base}{url}"'
+
+    return _LINK_RE.sub(sub, doc).replace(f'="{RAW}', '="')
+
+
+def alternates(path: str) -> str:
+    """Balises `hreflang` : les deux versions d'une page se déclarent l'une
+    l'autre, et `x-default` désigne le français.
+
+    C'est ce qui distingue « deux traductions de la même page » de « deux pages
+    au contenu dupliqué » pour un moteur de recherche. La déclaration doit être
+    RÉCIPROQUE et porter des URLs absolues, sinon Google l'ignore en silence —
+    d'où sa génération en un seul endroit plutôt qu'au cas par cas.
+    """
+    liens = [f'<link rel="alternate" hreflang="{lang}" '
+             f'href="{BASE_URL}{lang_prefix(lang)}{path}">' for lang in LANGS]
+    liens.append(f'<link rel="alternate" hreflang="x-default" href="{BASE_URL}{path}">')
+    return "\n".join(liens)
 
 def page(title: str, description: str, body: str, path: str,
          jsonld: dict | None = None, h1: str | None = None,
@@ -173,16 +278,22 @@ def page(title: str, description: str, body: str, path: str,
     `top_link` : bouton flottant « retour en haut » pour les gabarits longs."""
     ld = (f'<script type="application/ld+json">{json.dumps(jsonld, ensure_ascii=False)}</script>'
           if jsonld else "")
-    top = ('\n<a class="top-link" href="#" aria-label="Retour en haut de page">↑ Haut</a>'
+    top = ('\n<a class="top-link" href="#" '
+           f'aria-label="{esc(t("Retour en haut de page"))}">{t("↑ Haut")}</a>'
            if top_link else "")
+    # Dictionnaire de traduction des scripts : chargé sur les seules pages
+    # anglaises. Une page francaise n'en telecharge pas un octet, T() y valant
+    # l'identite (voir T_HELPER).
+    dico = I18N_JS if i18n.LANG != "fr" else ""
     doc = f"""<!DOCTYPE html>
-<html lang="fr">
+<html lang="{i18n.LANG}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{esc(title)}</title>
 <meta name="description" content="{esc(description)}">
-<link rel="canonical" href="{BASE_URL}{path}">
+<link rel="canonical" href="{BASE_URL}{lang_prefix()}{path}">
+{alternates(path)}
 <link rel="stylesheet" href="/assets/style.css">
 <link rel="icon" href="/favicon.png" type="image/png">
 <meta name="theme-color" content="#0d1014">
@@ -191,46 +302,64 @@ def page(title: str, description: str, body: str, path: str,
      apple-touch-icon. Sans elle, l'iPhone met une capture de la page. -->
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 {JS_FLAG}
+{T_HELPER}
+{dico}
 <script src="/assets/nav.js" defer></script>
-<script id="lb-core" src="/assets/letterboxd.js" data-index="{BASE_PATH}/watchlist-index.json" defer></script>
+<script id="lb-core" src="/assets/letterboxd.js" data-index="{BASE_PATH}{lang_prefix()}/watchlist-index.json" defer></script>
 {head_extra}
 {ld}
 </head>
 <body>
 <header class="site-header">
 <a class="brand" href="/">🎬 {SITE_NAME}</a>
-<p class="tagline">Le répertoire en salle, partout en France</p>
-{FILM_SEARCH}
+<p class="tagline">{esc(t("Le répertoire en salle, partout en France"))}</p>
+{film_search()}
 {site_nav(path)}
+{lang_switch(path)}
 </header>
 <main>
-<a class="retour" id="retour" href="#" hidden>← Retour</a>
+<a class="retour" id="retour" href="#" hidden>{esc(t("← Retour"))}</a>
 <h1>{esc(h1 if h1 is not None else title)}</h1>
 {body}
 </main>{top}
 <footer>
-<p>Données de programmation : <a href="https://datacinesindes.fr" rel="noopener">Data Ciné Indés / SCARE</a>
-(Syndicat des Cinémas d'Art, de Répertoire et d'Essai), sous Licence Ouverte 2.0.</p>
-<p>{SITE_NAME} réunit les séances des cinémas indépendants et des grandes enseignes, et met en avant les salles Art &amp; Essai.</p>
-<p>Fiches films (titres, notes, affiches, synopsis) enrichies via
-<a href="https://www.themoviedb.org/" rel="noopener">TMDB</a>. Ce produit utilise l'API TMDB
-mais n'est ni approuvé ni certifié par TMDB.</p>
+<p>{t("Données de programmation :")} <a href="https://datacinesindes.fr" rel="noopener">Data Ciné Indés / SCARE</a>
+{t("(Syndicat des Cinémas d'Art, de Répertoire et d'Essai), sous Licence Ouverte 2.0.")}</p>
+<p>{tf("{site} réunit les séances des cinémas indépendants et des grandes enseignes, et met en avant les salles Art &amp; Essai.", site=SITE_NAME)}</p>
+<p>{t("Fiches films (titres, notes, affiches, synopsis) enrichies via")}
+<a href="https://www.themoviedb.org/" rel="noopener">TMDB</a>.
+{t("Ce produit utilise l'API TMDB mais n'est ni approuvé ni certifié par TMDB.")}</p>
 </footer>
 </body>
 </html>"""
-    if BASE_PATH:
-        # Hébergement sous sous-chemin : préfixe les URLs internes absolues.
-        # Les liens externes (https://…) et le canonical ne commencent pas
-        # par href="/ ou src="/, ils ne sont donc pas touchés.
-        doc = doc.replace('href="/', f'href="{BASE_PATH}/').replace('src="/', f'src="{BASE_PATH}/')
-    return doc
+    return _prefix_links(doc)
+
+
+def lang_dir() -> Path:
+    """Racine sur le disque de la langue en cours : `site/` ou `site/en/`."""
+    return SITE / lang_prefix().strip("/") if lang_prefix() else SITE
 
 
 def write(path: str, content: str) -> None:
-    """path est le chemin URL (« /ville/tours/ ») ; écrit site/ville/tours/index.html."""
-    target = SITE / path.strip("/") / "index.html" if path != "/" else SITE / "index.html"
+    """path est le chemin URL (« /ville/tours/ »), SANS le segment de langue :
+    écrit site/ville/tours/index.html en français, site/en/ville/tours/index.html
+    en anglais. Les appelants n'ont donc pas à savoir dans quelle langue ils
+    tournent — un oubli de préfixe est impossible."""
+    racine = lang_dir()
+    target = racine / path.strip("/") / "index.html" if path != "/" else racine / "index.html"
     target.parent.mkdir(parents=True, exist_ok=True)
     target.write_text(content, encoding="utf-8")
+
+
+def write_data(name: str, payload) -> None:
+    """Écrit un index JSON dans la racine de la langue courante (recherche,
+    watchlist, agenda) : il porte des titres et des URLs, il est donc propre à
+    une langue. Les index qui ne portent que des noms de personnes restent à la
+    racine du site, partagés (voir SHARED_PATHS)."""
+    cible = lang_dir() / name
+    cible.parent.mkdir(parents=True, exist_ok=True)
+    cible.write_text(json.dumps(payload, ensure_ascii=False, separators=(",", ":")),
+                     encoding="utf-8")
 
 
 # --- Fragments réutilisés -------------------------------------------------
@@ -241,7 +370,8 @@ def chain_badge(cinema: dict) -> str:
     chain = cinema.get("chain")
     if chain:
         return f' <span class="badge badge-chain">{esc(chain)}</span>'
-    return ' <span class="badge badge-inde" title="Cinéma indépendant">Indé</span>'
+    return (f' <span class="badge badge-inde" title="{esc(t("Cinéma indépendant"))}">'
+            f'{t("Indé")}</span>')
 
 
 def is_classic(movie: dict) -> bool:
@@ -252,7 +382,7 @@ def is_classic(movie: dict) -> bool:
 
 
 def classic_badge(movie: dict) -> str:
-    return (' <span class="badge badge-classic">Classique</span>'
+    return (f' <span class="badge badge-classic">{t("Classique")}</span>'
             if is_classic(movie) else "")
 
 
@@ -274,8 +404,9 @@ def anniversaire_age(movie: dict) -> int | None:
 
 
 def anniversaire_texte(age: int) -> str:
-    """Formulation FR d'un anniversaire ; le centenaire a droit à sa tournure."""
-    return "fête son siècle" if age == 100 else f"fête ses {age} ans"
+    """Formulation d'un anniversaire ; le centenaire a droit à sa tournure
+    (« fête son siècle » / « turns one hundred »), les autres à un gabarit."""
+    return t("fête son siècle") if age == 100 else tf("fête ses {age} ans", age=age)
 
 
 def anniversaire_badge(movie: dict) -> str:
@@ -285,9 +416,24 @@ def anniversaire_badge(movie: dict) -> str:
     age = anniversaire_age(movie)
     if not age:
         return ""
-    libelle = "100 ans" if age == 100 else f"{age} ans"
-    return (f' <span class="badge badge-anniv" title="Sorti en {movie["year"]},'
-            f' {anniversaire_texte(age)} en {TODAY.year}">🎂 {libelle}</span>')
+    libelle = t("100 ans") if age == 100 else tf("{age} ans", age=age)
+    titre = tf("Sorti en {annee}, {celebration} en {cette_annee}",
+               annee=movie["year"], celebration=anniversaire_texte(age),
+               cette_annee=TODAY.year)
+    return (f' <span class="badge badge-anniv" title="{esc(titre)}">'
+            f'🎂 {esc(libelle)}</span>')
+
+
+def version_label(version: str) -> str:
+    """Version de projection affichée sur une pastille d'horaire.
+
+    « VF », « VO », « VOST » sont des sigles que tout spectateur français lit
+    d'un coup d'œil et qu'un anglophone ne peut pas deviner — or c'est
+    exactement l'information dont il a le plus besoin ici : savoir si le film
+    est doublé en français ou projeté en version originale. On les développe
+    donc en anglais, en restant assez court pour une pastille.
+    """
+    return t(version) if version else ""
 
 
 def showtime_pills(shows: list[dict]) -> str:
@@ -298,19 +444,23 @@ def showtime_pills(shows: list[dict]) -> str:
     avait justement corrigé en neutralisant ces pastilles."""
     pills = []
     for s in sorted(shows, key=lambda x: x["start"]):
-        t = s["start"][11:16].replace(":", "h")
-        v = f' <span class="v">{esc(s["version"])}</span>' if s["version"] else ""
+        # `hh` et pas `t` : `t` est la fonction de traduction importée depuis
+        # i18n, une variable locale du même nom la masquerait dans toute la
+        # boucle — et le titre de la pastille ci-dessous en a justement besoin.
+        hh = heure(s["start"])
+        v = f' <span class="v">{esc(version_label(s["version"]))}</span>' if s["version"] else ""
         # .get() : les snapshots de chaînes collectés avant l'ajout du champ
         # n'ont pas de clé « booking » — ils doivent rester affichables.
         url = s.get("booking")
         if url:
+            titre = tf("Réserver la séance de {heure} sur la billetterie du cinéma"
+                       " (nouvel onglet)", heure=hh)
             pills.append(
                 f'<li class="reservable"><a href="{esc(url)}" target="_blank"'
                 f' rel="noopener noreferrer"'
-                f' title="Réserver la séance de {t} sur la billetterie du cinéma'
-                f' (nouvel onglet)">{t}{v}</a></li>')
+                f' title="{esc(titre)}">{hh}{v}</a></li>')
         else:
-            pills.append(f'<li>{t}{v}</li>')
+            pills.append(f'<li>{hh}{v}</li>')
     return f'<ul class="showtimes">{"".join(pills)}</ul>'
 
 
@@ -381,12 +531,20 @@ def paris_cine_bridge() -> str:
     Placée en bas des pages parisiennes : le visiteur a d'abord vu ce que
     Séancéo propose, on lui signale ensuite l'outil plus complet pour Paris."""
     return f"""<div class="passerelle">
-<p><span class="titre">Vous êtes à Paris ?</span>
-<span class="meta">Pour la capitale, Paris Ciné Aujourd'hui recense tout plus efficacement.
-C'est un hub dédié à Paris : films à l'affiche, rétrospectives, séances de plein air de cet été,
-carte des cinémas et idées de marathon. Uniquement pour Paris.</span></p>
-<a class="bouton" href="{PARIS_CINE_URL}" target="_blank" rel="noopener noreferrer">Ouvrir Paris Ciné ↗</a>
+<p><span class="titre">{t("Vous êtes à Paris ?")}</span>
+<span class="meta">{t("Pour la capitale, Paris Ciné Aujourd'hui recense tout plus "
+                      "efficacement. C'est un hub dédié à Paris : films à l'affiche, "
+                      "rétrospectives, séances de plein air de cet été, carte des cinémas "
+                      "et idées de marathon. Uniquement pour Paris.")}</span></p>
+<a class="bouton" href="{PARIS_CINE_URL}" target="_blank" rel="noopener noreferrer">{t("Ouvrir Paris Ciné ↗")}</a>
 </div>"""
+
+
+def affiche_alt(movie: dict) -> str:
+    """Texte alternatif d'une affiche. Il n'existe QUE pour les lecteurs
+    d'écran et les images cassées : il doit donc être dans la langue de la
+    page, comme le reste, et pas figé en français."""
+    return tf("Affiche de {titre}", titre=movie["title"])
 
 
 def note_lb(movie: dict) -> str:
@@ -399,7 +557,7 @@ def note_lb(movie: dict) -> str:
     note = movie.get("lb_rating")
     if not note:
         return ""
-    return (f'<span class="note-lb" title="Note moyenne Letterboxd">{note}'
+    return (f'<span class="note-lb" title="{esc(t("Note moyenne Letterboxd"))}">{note}'
             f'<span class="sur">/5</span></span>')
 
 
@@ -413,12 +571,12 @@ def movie_card(movie: dict, movie_urls: dict, extra: str = "",
     `versions` : versions locales à poser sur `data-v` (voir card_attrs) —
     utilisé par la page ville pour un filtre langue propre à la ville."""
     url = movie_urls[movie["key"]]
-    poster = (f'<img src="{esc(movie["poster"])}" alt="Affiche de {esc(movie["title"])}" loading="lazy">'
+    poster = (f'<img src="{esc(movie["poster"])}" alt="{esc(affiche_alt(movie))}" loading="lazy">'
               if movie["poster"] else '<div class="noposter">🎞️</div>')
     meta = " · ".join(filter(None, [
         str(movie["year"]) if movie.get("year") else "",
         movie["genre"],
-        f"{movie['duration_min']} min" if movie["duration_min"] else "",
+        tf("{n} min", n=movie["duration_min"]) if movie["duration_min"] else "",
     ]))
     # La note est du HTML (elle porte sa couleur), le reste du texte échappé.
     ligne = " · ".join(filter(None, [note_lb(movie) if show_rating else "",
@@ -497,7 +655,7 @@ def poster_strip(keys: list[str], movies: dict, movie_urls: dict,
             continue
         items.append(
             f'<a class="affiche" href="{movie_urls[k]}">'
-            f'<img src="{esc(m["poster"])}" alt="Affiche de {esc(m["title"])}" loading="lazy">'
+            f'<img src="{esc(m["poster"])}" alt="{esc(affiche_alt(m))}" loading="lazy">'
             f'<span class="affiche-nom">{esc(m["title"])}</span></a>')
     return f'<div class="bande">{"".join(items)}</div>'
 
@@ -510,7 +668,8 @@ def city_search_nav(pills_html: str, cmap: dict, n_cities: int) -> str:
     return f"""<nav class="city-jump">
 {pills_html}
 <span class="city-search"><input id="city-search" type="search" autocomplete="off"
-placeholder="Chercher votre ville ({n_cities} villes)…" aria-label="Chercher une ville">
+placeholder="{esc(tf("Chercher votre ville ({n} villes)…", n=n_cities))}"
+aria-label="{esc(t("Chercher une ville"))}">
 <ul id="city-suggest" hidden></ul></span>
 <script type="application/json" id="city-map">{json.dumps(cmap, ensure_ascii=False)}</script>
 </nav>
@@ -522,7 +681,8 @@ placeholder="Chercher votre ville ({n_cities} villes)…" aria-label="Chercher u
 # chaque sens — un second clic sur le tri actif l'inverse (tri.js).
 # Le sens de départ est celui qu'on attend spontanément : les meilleures notes
 # d'abord, mais les titres de A à Z. Les flèches sont explicites sur le titre
-# (« A → Z ») là où un ↑ ne dirait pas grand-chose.
+# (« A → Z ») là où un ↑ ne dirait pas grand-chose. Les libellés passent par
+# t() au moment du rendu ; « A → Z » se lit pareil dans les deux langues.
 SORTS = {
     "lb": ("Note Letterboxd", "desc", "↑", "↓"),
     "title": ("Titre", "asc", "A → Z", "Z → A"),
@@ -537,10 +697,15 @@ GENRE_FILTER_MAX = 10
 
 def _select(cls: str, label: str, all_label: str, options: list[tuple[str, str]]) -> str:
     """Un menu déroulant de filtre (décennie, genre, pays). La 1re option
-    (valeur vide) ne filtre rien. `options` = liste (valeur, libellé) déjà triée."""
-    opts = f'<option value="">{esc(all_label)}</option>' + "".join(
-        f'<option value="{esc(v)}">{esc(t)}</option>' for v, t in options)
-    return (f'<label class="tri-filtre"><span class="tri-filtre-nom">{esc(label)}</span>'
+    (valeur vide) ne filtre rien. `options` = liste (valeur, libellé) déjà
+    triée et DÉJÀ DANS LA BONNE LANGUE — les genres et les pays viennent de
+    TMDB, pas du dictionnaire : c'est l'appelant qui sait dans quelle langue
+    il les a lus."""
+    opts = f'<option value="">{esc(t(all_label))}</option>' + "".join(
+        # `lbl` et pas `t` : `t` est la fonction de traduction importée, une
+        # variable de boucle du même nom la masquerait dans la compréhension.
+        f'<option value="{esc(v)}">{esc(lbl)}</option>' for v, lbl in options)
+    return (f'<label class="tri-filtre"><span class="tri-filtre-nom">{esc(t(label))}</span>'
             f'<select class="{cls}">{opts}</select></label>')
 
 
@@ -555,14 +720,14 @@ def film_tools(list_id: str, default: str, movies_list: list[dict]) -> str:
     order = [default] + [k for k in SORTS if k != default]
     options = "".join(
         f'<button type="button" data-sort="{k}" data-dir="{SORTS[k][1]}"'
-        f' data-asc="{esc(SORTS[k][2])}" data-desc="{esc(SORTS[k][3])}"'
+        f' data-asc="{esc(t(SORTS[k][2]))}" data-desc="{esc(t(SORTS[k][3]))}"'
         f' aria-pressed="{"true" if k == default else "false"}">'
-        f'<span class="tri-nom">{esc(SORTS[k][0])}</span>'
+        f'<span class="tri-nom">{esc(t(SORTS[k][0]))}</span>'
         f'<span class="tri-sens"></span></button>'
         for k in order)
     # « Toutes » est actif à l'arrivée : aucun film n'est masqué par défaut.
     versions = "".join(
-        f'<button type="button" data-v="{v}" aria-pressed="{pressed}">{lbl}</button>'
+        f'<button type="button" data-v="{v}" aria-pressed="{pressed}">{esc(t(lbl))}</button>'
         for v, lbl, pressed in (("", "Toutes", "true"), ("vo", "VO / VOST", "false"),
                                 ("vf", "VF", "false")))
 
@@ -570,44 +735,53 @@ def film_tools(list_id: str, default: str, movies_list: list[dict]) -> str:
     decades = sorted({(int(m["year"]) // 10) * 10 for m in movies_list if m.get("year")},
                      reverse=True)
     dec_sel = _select("tri-decennie", "Décennie", "Toutes",
-                      [(str(d), f"Années {d}") for d in decades]) if decades else ""
+                      [(str(d), tf("Années {d}", d=d)) for d in decades]) if decades else ""
 
     # Genres : on n'en propose que les PLUS PERTINENTS (les plus représentés
     # dans la liste), plafonnés à GENRE_FILTER_MAX, sinon le menu déroule une
     # vingtaine d'entrées dont beaucoup n'ont qu'un ou deux films. Comptage sur
     # les genres individuels, sélection par fréquence, réaffichage alphabétique.
+    #
+    # Les libellés viennent du champ `genre` du film, donc DÉJÀ dans la langue
+    # du build (localize_movies a promu `genre_en`) : rien à traduire ici. Le
+    # slug, lui, dérive du libellé — « Comédie » et « Comedy » ne produisent
+    # donc pas la même valeur d'option. Sans conséquence : le filtre compare le
+    # slug de la carte à celui de l'option, et les deux sont calculés dans la
+    # même langue au sein d'une même page.
     genre_labels: dict[str, str] = {}
     genre_count: dict[str, int] = {}
     for m in movies_list:
         for g in genre_parts(m):
-            s = genre_slug(g)
-            genre_labels.setdefault(s, g)
-            genre_count[s] = genre_count.get(s, 0) + 1
-    top_genres = sorted(genre_count, key=lambda s: -genre_count[s])[:GENRE_FILTER_MAX]
-    genres_opts = sorted(((s, genre_labels[s]) for s in top_genres),
-                         key=lambda t: t[1].lower())
+            sl = genre_slug(g)
+            genre_labels.setdefault(sl, g)
+            genre_count[sl] = genre_count.get(sl, 0) + 1
+    top_genres = sorted(genre_count, key=lambda sl: -genre_count[sl])[:GENRE_FILTER_MAX]
+    genres_opts = sorted(((sl, genre_labels[sl]) for sl in top_genres),
+                         key=lambda pair: pair[1].lower())
     genre_sel = _select("tri-genre", "Genre", "Tous", genres_opts) if genres_opts else ""
 
-    # Pays : GATÉ. Tant que le cache TMDB ne porte pas le pays, aucun film n'en
-    # a → le menu ne s'affiche pas du tout (il s'activera au prochain refresh).
+    # Pays : même logique que les genres — `country_tmdb` porte déjà le nom
+    # dans la langue du build (table COUNTRY_FR côté français, nom TMDB brut
+    # côté anglais, voir enrich_tmdb.py).
     country_labels: dict[str, str] = {}
     for m in movies_list:
         c = (m.get("country_tmdb") or "").strip()
         if c:
             country_labels.setdefault(genre_slug(c), c)
-    country_opts = sorted(country_labels.items(), key=lambda t: t[1].lower())
+    country_opts = sorted(country_labels.items(), key=lambda pair: pair[1].lower())
     country_sel = _select("tri-pays", "Pays", "Tous", country_opts) if country_opts else ""
 
     filtres = dec_sel + genre_sel + country_sel
-    filtres_html = (f'<span class="tri-filtres" role="group" aria-label="Filtrer les films">'
+    filtres_html = (f'<span class="tri-filtres" role="group" '
+                    f'aria-label="{esc(t("Filtrer les films"))}">'
                     f'{filtres}</span>' if filtres else "")
 
     return f"""<div class="film-tools" data-list="{list_id}" data-page="{PAGE_SIZE}">
-<span class="tri-tri" role="group" aria-label="Trier les films">
-<span class="tri-label">Trier par</span>{options}</span>
-<span class="tri-versions" role="group" aria-label="Filtrer par version">{versions}</span>
+<span class="tri-tri" role="group" aria-label="{esc(t("Trier les films"))}">
+<span class="tri-label">{t("Trier par")}</span>{options}</span>
+<span class="tri-versions" role="group" aria-label="{esc(t("Filtrer par version"))}">{versions}</span>
 {filtres_html}
-<p class="tri-compte" id="tri-compte" role="status">{len(movies_list)} films</p>
+<p class="tri-compte" id="tri-compte" role="status">{tf("{n} films", n=len(movies_list))}</p>
 </div>
 <script src="/assets/tri.js" defer></script>"""
 
@@ -618,16 +792,16 @@ def ville_tools() -> str:
     cinéma (la page reste groupée par salle). Sans JavaScript, le CSS la masque
     et le programme reste affiché en entier, dans l'ordre du jour."""
     langues = "".join(
-        f'<button type="button" data-v="{v}" aria-pressed="{p}">{lbl}</button>'
+        f'<button type="button" data-v="{v}" aria-pressed="{p}">{esc(t(lbl))}</button>'
         for v, lbl, p in (("", "Toutes", "true"), ("vo", "VO / VOST", "false"),
                           ("vf", "VF", "false")))
-    return f"""<div class="film-tools ville-tools" role="group" aria-label="Trier et filtrer les films">
-<span class="tri-tri" role="group" aria-label="Trier les films">
-<span class="tri-label">Trier par</span>
-<button type="button" class="ville-sort" data-sort="imminence" aria-pressed="true"><span class="tri-nom">Prochaine séance</span></button>
-<button type="button" class="ville-sort" data-sort="lb" aria-pressed="false"><span class="tri-nom">Note Letterboxd</span></button>
+    return f"""<div class="film-tools ville-tools" role="group" aria-label="{esc(t("Trier et filtrer les films"))}">
+<span class="tri-tri" role="group" aria-label="{esc(t("Trier les films"))}">
+<span class="tri-label">{t("Trier par")}</span>
+<button type="button" class="ville-sort" data-sort="imminence" aria-pressed="true"><span class="tri-nom">{t("Prochaine séance")}</span></button>
+<button type="button" class="ville-sort" data-sort="lb" aria-pressed="false"><span class="tri-nom">{t("Note Letterboxd")}</span></button>
 </span>
-<span class="tri-versions" role="group" aria-label="Filtrer par langue">{langues}</span>
+<span class="tri-versions" role="group" aria-label="{esc(t("Filtrer par langue"))}">{langues}</span>
 <p class="tri-compte ville-compte" role="status"></p>
 </div>
 <script src="/assets/ville.js" defer></script>"""
@@ -700,6 +874,93 @@ def main() -> int:
     if static_dir.exists():
         for f in static_dir.iterdir():
             shutil.copy(f, SITE / f.name)
+
+    # ----- Une passe de génération complète par langue -----
+    # Tout ce qui précède (fusion, index de séances, slugs) est calculé UNE
+    # fois : ces données ne dépendent pas de la langue, et recalculer la fusion
+    # pour l'anglais aurait surtout risqué de faire diverger les deux arbres.
+    # Ce qui suit est refait intégralement pour chaque langue.
+    urls_par_langue: dict[str, list[str]] = {}
+    for lang in LANGS:
+        i18n.set_lang(lang)
+        urls_par_langue[lang] = build_lang(
+            today, today_iso, cinemas, localize_movies(movies), showtimes,
+            cities, by_cinema, by_movie, cinema_urls, movie_urls)
+
+    # ----- sitemap & robots -----
+    # UN SEUL sitemap, qui liste les deux langues : le lien entre une page et
+    # sa traduction est porté par les balises `hreflang` du <head> (voir
+    # alternates()), pas ici — les répéter en `xhtml:link` doublerait le poids
+    # du fichier pour une information que Google a déjà lue sur la page.
+    lastmod = meta["generated_at"][:10]
+    entries = "".join(
+        f"<url><loc>{BASE_URL}{lang_prefix(lang)}{u}</loc>"
+        f"<lastmod>{lastmod}</lastmod></url>"
+        for lang in LANGS for u in sorted(urls_par_langue[lang]))
+    (SITE / "sitemap.xml").write_text(
+        f'<?xml version="1.0" encoding="UTF-8"?>'
+        f'<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{entries}</urlset>',
+        encoding="utf-8")
+    (SITE / "robots.txt").write_text(
+        f"User-agent: *\nAllow: /\nSitemap: {BASE_URL}/sitemap.xml\n", encoding="utf-8")
+
+    # ----- 404 de marque (GitHub Pages sert /404.html) -----
+    # La 404 brute de GitHub éjectait le visiteur du site (page blanche, sans
+    # lien de retour). Hors sitemap, volontairement.
+    #
+    # UNE SEULE 404, en français, et c'est une contrainte d'hébergement, pas un
+    # choix : GitHub Pages sert TOUJOURS le /404.html de la racine, quelle que
+    # soit l'adresse manquante. Un /en/404.html ne serait jamais affiché. D'où
+    # la ligne anglaise ajoutée sous le texte français : c'est le seul endroit
+    # du site où un anglophone peut atterrir sans avoir de version traduite.
+    i18n.set_lang("fr")
+    (SITE / "404.html").write_text(page(
+        f"Page introuvable — {SITE_NAME}",
+        "Cette page n'existe pas ou plus.",
+        """<p class="lead">Cette adresse ne mène à aucune page. Le programme change tous les
+jours, et la fiche d'un film disparaît quand il quitte l'affiche.</p>
+<p><a class="more" href="/">← Le répertoire</a> &nbsp;
+<a class="more" href="/a-l-affiche/">🎬 À l'affiche</a> &nbsp;
+<a class="more" href="/retrospectives/">🎞️ Rétrospectives</a> &nbsp;
+<a class="more" href="/carte/">🗺️ Carte</a></p>
+<p class="meta" lang="en">This page does not exist, or no longer does. The programme
+changes every day, and a film's page disappears when it stops showing.
+<a class="more" href="/en/">← English home</a></p>""",
+        "/404.html", h1="Oups, séance introuvable"), encoding="utf-8")
+
+    # Messages de fin en ASCII PUR, sans accent ni symbole. La console Windows
+    # tourne en cp1252 et lève UnicodeEncodeError sur « ⚠ » comme sur « é » :
+    # un build parfaitement réussi se terminait par une trace d'erreur.
+    total = sum(len(v) for v in urls_par_langue.values())
+    detail = " + ".join(f"{len(v)} {k}" for k, v in urls_par_langue.items())
+    print(f"Site genere dans {SITE} : {total} pages ({detail}) - "
+          f"{len(cinemas)} cinemas, {len(cities)} villes, {len(movies)} films")
+    # La liste des manques part dans un FICHIER (UTF-8) : ce sont des phrases
+    # françaises, la console ne saurait pas les afficher, et on veut pouvoir
+    # les relire après coup pour compléter le dictionnaire.
+    manquantes = i18n.report_missing()
+    if manquantes:
+        rapport = ROOT / "i18n-manquantes.txt"
+        rapport.write_text("\n".join(manquantes) + "\n", encoding="utf-8")
+        print(f"ATTENTION : {len(manquantes)} chaines sans traduction anglaise "
+              f"(affichees en francais sur /en/).")
+        print(f"            Liste complete : {rapport}")
+    else:
+        print("Traduction anglaise complete : aucune chaine sans equivalent.")
+    return 0
+
+
+def build_lang(today, today_iso, cinemas, movies, showtimes, cities,
+               by_cinema, by_movie, cinema_urls, movie_urls) -> list[str]:
+    """Génère le site entier dans la langue courante (`i18n.LANG`).
+
+    `movies` arrive DÉJÀ localisé (titres, synopsis, genres, pays) : voir
+    `localize_movies()`. `cinema_urls` et `movie_urls` sont au contraire
+    communs aux deux langues — ce sont des chemins sans segment de langue, que
+    `write()` et `page()` préfixent chacun de leur côté.
+
+    Renvoie la liste des chemins écrits, pour le sitemap.
+    """
     urls: list[str] = []
 
     # ----- Pages cinéma -----
@@ -718,12 +979,15 @@ def main() -> int:
                 for mk, ss in sorted(by_day[day].items(),
                                      key=lambda kv: kv[1][0]["start"])
             )
-            sections.append(f'<section><h2>{fr_date(d, today)}</h2>{films_html}</section>')
+            sections.append(f'<section><h2>{date_label(d, today)}</h2>{films_html}</section>')
         # Passerelle vers le site frère, sur les fiches des cinémas parisiens.
         bridge = paris_cine_bridge() if cinema["city_slug"] == "paris" else ""
+        nature = cinema_kind_label(cinema.get("chain"))
+        voir_ville = tf("Voir tous les cinémas de {ville}", ville=esc(cinema["city"]))
+        vide = f'<p>{t("Aucune séance annoncée pour les deux prochaines semaines.")}</p>'
         body = f"""<p class="lead">{esc(cinema["address"])}, {esc(cinema["postcode"])} {esc(cinema["city"])}.
-{esc(cinema_kind(cinema)).capitalize()}. <a href="/ville/{cinema["city_slug"]}/">Voir tous les cinémas de {esc(cinema["city"])}</a>.</p>
-{"".join(sections) or "<p>Aucune séance annoncée pour les deux prochaines semaines.</p>"}{bridge}"""
+{esc(nature).capitalize()}. <a href="/ville/{cinema["city_slug"]}/">{voir_ville}</a>.</p>
+{"".join(sections) or vide}{bridge}"""
         jsonld = {
             "@context": "https://schema.org", "@type": "MovieTheater",
             "name": cinema["name"],
@@ -735,9 +999,12 @@ def main() -> int:
             jsonld["geo"] = {"@type": "GeoCoordinates",
                              "latitude": cinema["lat"], "longitude": cinema["lon"]}
         write(path, page(
-            f"{cinema['name']} ({cinema['city']}) : séances et programme — {SITE_NAME}",
-            f"Programme et horaires des séances du cinéma {cinema['name']} à {cinema['city']} "
-            f"sur les 15 prochains jours. {cinema_kind(cinema).capitalize()}.",
+            tf("{cinema} ({ville}) : séances et programme — {site}",
+               cinema=cinema["name"], ville=cinema["city"], site=SITE_NAME),
+            tf("Programme et horaires des séances du cinéma {cinema} à {ville} "
+               "sur les 15 prochains jours. {nature}.",
+               cinema=cinema["name"], ville=cinema["city"],
+               nature=nature.capitalize()),
             body, path, jsonld, h1=f"{cinema['name']} — {cinema['city']}"))
         urls.append(path)
 
@@ -778,24 +1045,27 @@ def main() -> int:
                 else:
                     films_later.append(movie_card(
                         movies[mk], movie_urls,
-                        f'<p class="meta">prochaine séance : {fr_date(date.fromisoformat(ss[0]["start"][:10]), today)}</p>',
+                        f'<p class="meta">{tf("prochaine séance : {jour}", jour=date_label(date.fromisoformat(ss[0]["start"][:10]), today))}</p>',
                         versions=city_versions[mk]))
             today_html = f'<div class="films">{"".join(films_today)}</div>' if films_today else ""
             later_html = ""
             if films_later:
                 if films_today:
-                    later_html = (f'<details class="more-films"><summary>+ {len(films_later)} '
-                                  f'autre{"s" if len(films_later) > 1 else ""} film{"s" if len(films_later) > 1 else ""} '
-                                  f'plus tard cette semaine</summary>'
+                    n_later = len(films_later)
+                    resume = tf("+ {n} autre{s} film{s2} plus tard cette semaine",
+                                n=n_later, s=plural(n_later), s2=plural(n_later))
+                    later_html = (f'<details class="more-films"><summary>{esc(resume)}'
+                                  f'</summary>'
                                   f'<div class="films">{"".join(films_later)}</div></details>')
                 else:
                     # Rien aujourd'hui : ne pas cacher tout le programme du cinéma
-                    today_html = '<p class="meta">Pas de séance aujourd\'hui. Prochaines dates :</p>'
+                    today_html = (f'<p class="meta">'
+                                  f'{t("Pas de séance aujourd\'hui. Prochaines dates :")}</p>')
                     later_html = f'<div class="films">{"".join(films_later)}</div>'
             blocks.append(f"""<section class="cinema-block" id="c-{cid}">
 <h2><a href="{cinema_urls[cid]}">{esc(cinema["name"])}</a>{chain_badge(cinema)}</h2>
-<p class="meta">{esc(cinema["address"])}. <a href="{cinema_urls[cid]}">Programme complet</a></p>
-{(today_html + later_html) or "<p>Aucune séance cette semaine.</p>"}</section>""")
+<p class="meta">{esc(cinema["address"])}. <a href="{cinema_urls[cid]}">{t("Programme complet")}</a></p>
+{(today_html + later_html) or f'<p>{t("Aucune séance cette semaine.")}</p>'}</section>""")
         # Sommaire ancré : au-delà de 2 cinémas, l'accès direct évite de
         # scroller toute la page pour atteindre SA salle (Lyon = 17 écrans).
         toc = ""
@@ -808,13 +1078,13 @@ def main() -> int:
         n_inde = n_cine - n_chain
         parts = []
         if n_inde:
-            parts.append(f'{n_inde} cinéma{"s" if n_inde > 1 else ""} indépendant{"s" if n_inde > 1 else ""}')
+            parts.append(tf("{n} cinéma{s} indépendant{s}", n=n_inde, s=plural(n_inde)))
         if n_chain:
-            parts.append(f'{n_chain} cinéma{"s" if n_chain > 1 else ""} de chaîne')
+            parts.append(tf("{n} cinéma{s} de chaîne", n=n_chain, s=plural(n_chain)))
         n_classics = sum(1 for mk in city_movie_keys if is_classic(movies[mk]))
-        classics_bit = (f' Dont {n_classics} film{"s" if n_classics > 1 else ""} de plus de '
-                        f'{CLASSIC_AGE_YEARS} ans : '
-                        f'<a href="/classiques/">voir le classement</a>.'
+        classics_bit = (tf(" Dont {n} film{s} de plus de {age} ans : ",
+                           n=n_classics, s=plural(n_classics), age=CLASSIC_AGE_YEARS)
+                        + f'<a href="/classiques/">{t("voir le classement")}</a>.'
                         if n_classics else "")
         # Passerelle vers le site frère, EN HAUT de la seule page ville de
         # Paris (page d'aiguillage : l'encadré doit sauter aux yeux, pas
@@ -823,13 +1093,18 @@ def main() -> int:
         # Barre tri/langue seulement s'il y a assez de films pour que trier ou
         # filtrer ait un sens (sinon elle encombre pour rien).
         tools = ville_tools() if len(city_movie_keys) >= 5 else ""
-        body = f"""<p class="lead">{" et ".join(parts)} à {esc(city["name"])}.
-Les séances d'aujourd'hui d'abord, puis celles des jours suivants.{classics_bit}</p>{bridge}{toc}{tools}{"".join(blocks)}"""
+        # « X et Y » / « X and Y » : le connecteur lui-même change de langue.
+        inventaire = tf("{inventaire} à {ville}.",
+                        inventaire=f' {t("et")} '.join(parts), ville=esc(city["name"]))
+        body = f"""<p class="lead">{inventaire}
+{t("Les séances d'aujourd'hui d'abord, puis celles des jours suivants.")}{classics_bit}</p>{bridge}{toc}{tools}{"".join(blocks)}"""
         write(path, page(
-            f"Cinéma à {city['name']} : séances et horaires — {SITE_NAME}",
-            f"Quel film voir à {city['name']} ? Séances et horaires des {n_cine} cinéma(s) "
-            f"de la ville : programme du jour et de la semaine.",
-            body, path, h1=f"Cinémas à {city['name']}", top_link=True))
+            tf("Cinéma à {ville} : séances et horaires — {site}",
+               ville=city["name"], site=SITE_NAME),
+            tf("Quel film voir à {ville} ? Séances et horaires des {n} cinéma(s) "
+               "de la ville : programme du jour et de la semaine.",
+               ville=city["name"], n=n_cine),
+            body, path, h1=tf("Cinémas à {ville}", ville=city["name"]), top_link=True))
         urls.append(path)
 
     # ----- Pages film -----
@@ -865,15 +1140,15 @@ Les séances d'aujourd'hui d'abord, puis celles des jours suivants.{classics_bit
                 for s in nxt:
                     days[s["start"][:10]].append(s)
                 per_day = " ".join(
-                    f'<span class="day">{fr_date(date.fromisoformat(d), today)}</span>{showtime_pills(v)}'
+                    f'<span class="day">{date_label(date.fromisoformat(d), today)}</span>{showtime_pills(v)}'
                     for d, v in sorted(days.items()))
                 blocks.append(f"""<section class="cinema-block">
 <h4><a href="{cinema_urls[cid]}">{esc(cinema["name"])}</a>{chain_badge(cinema)}</h4>
 {per_day}</section>""")
             n = len(blocks)
             rows.append(f"""<section class="city-group" id="v-{cslug}">
-<h3>{esc(city_name(cslug))} <span class="meta">{n} cinéma{"s" if n > 1 else ""}</span></h3>
-<p class="meta"><a href="/ville/{cslug}/">Tous les cinémas de {esc(city_name(cslug))} →</a></p>
+<h3>{esc(city_name(cslug))} <span class="meta">{tf("{n} cinéma{s}", n=n, s=plural(n))}</span></h3>
+<p class="meta"><a href="/ville/{cslug}/">{tf("Tous les cinémas de {ville} →", ville=esc(city_name(cslug)))}</a></p>
 {"".join(blocks)}</section>""")
         # Sommaire des villes : les plus grandes villes en accès direct,
         # une recherche (suggestions maison, sans dépendance) pour les autres —
@@ -887,15 +1162,18 @@ Les séances d'aujourd'hui d'abord, puis celles des jours suivants.{classics_bit
             # ici rien ne s'ouvre avant 2 lettres tapées — voir film.js)
             city_jump = city_search_nav(pills, cmap, len(city_slugs))
             n_cine_total = len({s["cinema"] for s in shows})
-            prompt = (f'<p class="city-prompt" id="city-prompt">À l\'affiche dans '
-                      f'{n_cine_total} cinéma{"s" if n_cine_total > 1 else ""} de '
-                      f'{len(city_slugs)} villes. Choisissez la vôtre pour voir les horaires.</p>')
+            prompt = (f'<p class="city-prompt" id="city-prompt">'
+                      + tf("À l'affiche dans {n} cinéma{s} de {v} villes. "
+                           "Choisissez la vôtre pour voir les horaires.",
+                           n=n_cine_total, s=plural(n_cine_total), v=len(city_slugs))
+                      + '</p>')
         credits = " · ".join(filter(None, [
             movie.get("year") and str(movie["year"]),
-            movie["director"] and f"De {movie['director']}",
-            movie["cast"] and f"Avec {movie['cast']}",
-            movie["genre"], movie["duration_min"] and f"{movie['duration_min']} min"]))
-        poster = (f'<img class="poster" src="{esc(movie["poster"])}" alt="Affiche de {esc(movie["title"])}">'
+            movie["director"] and tf("De {realisateur}", realisateur=movie["director"]),
+            movie["cast"] and tf("Avec {acteurs}", acteurs=movie["cast"]),
+            movie["genre"],
+            movie["duration_min"] and tf("{n} min", n=movie["duration_min"])]))
+        poster = (f'<img class="poster" src="{esc(movie["poster"])}" alt="{esc(affiche_alt(movie))}">'
                   if movie["poster"] else "")
         # Ligne d'actions sous le synopsis : bande-annonce + fiche Letterboxd.
         # Le lien Letterboxd porte le vert réservé à Letterboxd sur le site,
@@ -903,10 +1181,10 @@ Les séances d'aujourd'hui d'abord, puis celles des jours suivants.{classics_bit
         actions = []
         if movie["trailer"]:
             actions.append(f'<a href="{esc(movie["trailer"])}" target="_blank" '
-                           f'rel="noopener noreferrer">▶ Bande-annonce</a>')
+                           f'rel="noopener noreferrer">{t("▶ Bande-annonce")}</a>')
         if movie.get("lb_url"):
             actions.append(f'<a class="lien-lb" href="{esc(movie["lb_url"])}" target="_blank" '
-                           f'rel="noopener noreferrer">Voir sur Letterboxd ↗</a>')
+                           f'rel="noopener noreferrer">{t("Voir sur Letterboxd ↗")}</a>')
         trailer = f'<p class="film-actions">{"".join(actions)}</p>' if actions else ""
         # Bloc « préviens-moi quand il repasse » : conteneur vide, rempli par
         # assets/alertes.js. Conditionné à `lb_url` parce que l'empreinte du
@@ -922,22 +1200,25 @@ Les séances d'aujourd'hui d'abord, puis celles des jours suivants.{classics_bit
             alerte_bloc = (
                 f'<div class="film-alerte" id="film-alerte" data-film="{esc(emp)}" '
                 f'data-titre="{esc(movie["title"])}" '
-                f'data-url="{esc(BASE_PATH + path)}"></div>{ALERTES_JS}')
+                f'data-url="{esc(BASE_PATH + lang_prefix() + path)}" '
+                f'data-lang="{i18n.LANG}"></div>{ALERTES_JS}')
         # `filtered` : les sections ville sont masquées en CSS tant que le
         # visiteur n'en a pas choisi une. Le masquage est conditionné à la
         # classe `js` posée dans le <head> — sans JavaScript, la recherche ne
         # marcherait pas et tout doit rester visible (et lisible par un robot).
         city_list = (f'<div class="city-list{" filtered" if filtered else ""}" id="city-list">'
-                     f'{"".join(rows)}</div>' if rows else "<p>Aucune séance à venir.</p>")
+                     f'{"".join(rows)}</div>' if rows else f'<p>{t("Aucune séance à venir.")}</p>')
         # Ligne anniversaire sous le synopsis : mise en avant éditoriale d'un
         # film qui fête un cap rond cette année (calculé depuis l'année TMDB).
         age_anniv = anniversaire_age(movie)
-        anniv_note = (f'<p class="anniv-note">🎂 Ce film {anniversaire_texte(age_anniv)} '
-                      f'en {TODAY.year}.</p>' if age_anniv else "")
+        anniv_note = (f'<p class="anniv-note">'
+                      + tf("🎂 Ce film {celebration} en {annee}.",
+                           celebration=anniversaire_texte(age_anniv), annee=TODAY.year)
+                      + '</p>' if age_anniv else "")
         body = f"""<div class="film-head">{poster}<div>
 <p class="lead">{classic_badge(movie)}{anniversaire_badge(movie)} {note_lb(movie)} {esc(credits)}</p>
 <p>{esc(movie["storyline"])}</p>{anniv_note}{trailer}{alerte_bloc}</div></div>
-<h2>Où voir {esc(movie["title"])} ?</h2>
+<h2>{tf("Où voir {titre} ?", titre=esc(movie["title"]))}</h2>
 {city_jump}
 {prompt}
 {city_list}"""
@@ -948,14 +1229,23 @@ Les séances d'aujourd'hui d'abord, puis celles des jours suivants.{classics_bit
             jsonld["director"] = {"@type": "Person", "name": movie["director"]}
         if movie["poster"]:
             jsonld["image"] = movie["poster"]
+        # « de Jacques Tati » se place avant le point d'interrogation en
+        # français comme en anglais, mais la préposition change : le fragment
+        # est donc traduit à part, puis inséré dans la phrase.
+        du_real = (tf(" de {realisateur}", realisateur=movie["director"])
+                   if movie["director"] else "")
+        if shows:
+            desc = tf("Où voir {titre}{de_realisateur} ? Séances et horaires ville "
+                      "par ville, dans {n} cinéma(s) en France.",
+                      titre=movie["title"], de_realisateur=du_real,
+                      n=len({s["cinema"] for s in shows}))
+        else:
+            desc = tf("Où voir {titre} ? Séances et horaires ville par ville en France.",
+                      titre=movie["title"])
         write(path, page(
-            f"{movie['title']} : séances près de chez vous — {SITE_NAME}",
-            (f"Où voir {movie['title']}"
-             + (f" de {movie['director']}" if movie["director"] else "")
-             + f" ? Séances et horaires ville par ville, dans {len({s['cinema'] for s in shows})}"
-               f" cinéma(s) en France." if shows else
-             f"Où voir {movie['title']} ? Séances et horaires ville par ville en France."),
-            body, path, jsonld, h1=movie["title"], top_link=True))
+            tf("{titre} : séances près de chez vous — {site}",
+               titre=movie["title"], site=SITE_NAME),
+            desc, body, path, jsonld, h1=movie["title"], top_link=True))
         urls.append(path)
 
     # ----- Index de recherche (titre + réalisateur) -----
@@ -963,12 +1253,16 @@ Les séances d'aujourd'hui d'abord, puis celles des jours suivants.{classics_bit
     # dans chaque page coûterait ~90 ko à chaque visite pour une fonction que
     # la plupart des visiteurs n'utiliseront pas. Tableaux plutôt qu'objets
     # (pas de noms de clés répétés 931 fois) : [titre, réalisateur, url, année].
+    #
+    # UN INDEX PAR LANGUE : il porte des titres (traduits) et des URLs (avec le
+    # segment de langue). Chercher « Mr. Hulot's Holiday » depuis /en/ doit
+    # marcher, et le résultat doit mener à la fiche anglaise, pas à la française.
     index = sorted(
-        ([m["title"], m["director"], f"{BASE_PATH}{movie_urls[k]}", m.get("year") or 0]
+        ([m["title"], m["director"],
+          f"{BASE_PATH}{lang_prefix()}{movie_urls[k]}", m.get("year") or 0]
          for k, m in movies.items()),
         key=lambda row: sort_title(row[0]))
-    (SITE / "recherche.json").write_text(
-        json.dumps(index, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+    write_data("recherche.json", index)
 
     # ----- Index de la watchlist (croisement Letterboxd) -----
     # Chargé par watchlist.js quand le visiteur dépose son export Letterboxd.
@@ -1079,7 +1373,7 @@ Les séances d'aujourd'hui d'abord, puis celles des jours suivants.{classics_bit
                 liens_salle.setdefault(p[0], []).append(p[3])
         entry = {
             "t": m["title"],
-            "u": f"{BASE_PATH}{movie_urls[key]}",
+            "u": f"{BASE_PATH}{lang_prefix()}{movie_urls[key]}",
             "p": m["poster"] or "",
             "r": m.get("lb_rating") or 0,
             "y": m.get("year") or 0,
@@ -1121,8 +1415,7 @@ Les séances d'aujourd'hui d'abord, puis celles des jours suivants.{classics_bit
         for p in entry["k"]:
             if p[3]:
                 p[3] = p[3][len(salles[p[0]][2]):]
-    (SITE / "watchlist-index.json").write_text(
-        json.dumps(wl_index, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+    write_data("watchlist-index.json", wl_index)
 
     # ----- Index agenda (détail des séances, pour le calendrier .ics) -----
     # Même clé d'empreinte que la watchlist, mais la valeur porte le DÉTAIL de
@@ -1166,14 +1459,13 @@ Les séances d'aujourd'hui d'abord, puis celles des jours suivants.{classics_bit
         # matching côté /pour-moi/ (reco par affinité de réalisateur), `dn` = nom
         # affiché. Champ ignoré par le calendrier .ics et l'import de listes.
         directors = [d.strip() for d in (m.get("director") or "").split(",") if d.strip()]
-        entry = {"t": m["title"], "u": f"{BASE_PATH}{movie_urls[key]}", "s": seances,
+        entry = {"t": m["title"], "u": f"{BASE_PATH}{lang_prefix()}{movie_urls[key]}", "s": seances,
                  "dk": [lb_slug_key(d) for d in directors], "dn": m.get("director") or ""}
         ag_index.setdefault(empreinte, entry)
         base = re.sub(r"(19|20)\d\d$", "", empreinte)
         if base != empreinte:
             ag_index.setdefault(base, entry)
-    (SITE / "agenda-index.json").write_text(
-        json.dumps(ag_index, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+    write_data("agenda-index.json", ag_index)
 
     # ----- Réalisateurs éligibles à « Ta cinémathèque » (page /cinematheque/) -----
     # Vivier du sélecteur : les réalisateurs qui ont AU MOINS 2 films de
@@ -1197,8 +1489,14 @@ Les séances d'aujourd'hui d'abord, puis celles des jours suivants.{classics_bit
         ({"name": cine_dir_name[k], "key": k, "n": len(us)}
          for k, us in cine_dir_films.items() if len(us) >= 2),
         key=lambda x: (-x["n"], x["name"].lower()))
-    (SITE / "cinematheque-directors.json").write_text(
-        json.dumps(cine_dirs, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+    # PARTAGÉ entre les deux langues (voir SHARED_PATHS) : ne contient que des
+    # noms de réalisateurs, qui ne se traduisent pas. Écrit par la SEULE passe
+    # française — voir la note sur film-directors.json plus bas, qui explique
+    # pourquoi laisser la passe anglaise réécrire ces fichiers est un piège.
+    if i18n.LANG == "fr":
+        (SITE / "cinematheque-directors.json").write_text(
+            json.dumps(cine_dirs, ensure_ascii=False, separators=(",", ":")),
+            encoding="utf-8")
 
     # ----- Index film -> réalisateur (pour la reco /pour-moi/) -----
     # La reco déduit les réalisateurs préférés du visiteur à partir de sa
@@ -1222,15 +1520,37 @@ Les séances d'aujourd'hui d'abord, puis celles des jours suivants.{classics_bit
             base = re.sub(r"(19|20)\d\d$", "", emp)
             if base != emp:
                 keys.append(base)
-        # Replis par titre (le Worker renvoie aussi le nom du film).
-        title_emp = lb_slug_key(m["title"])
-        if m.get("year"):
-            keys.append(title_emp + str(m["year"]))
-        keys.append(title_emp)
+        # Replis par titre (le Worker renvoie aussi le nom du film). On
+        # indexe le titre FRANÇAIS **et** l'anglais quand ils diffèrent : le
+        # Worker lit Letterboxd, dont le titre principal est le plus souvent
+        # l'anglais international — sans ce second repli, la reco par
+        # réalisateur ratait les films au titre français très éloigné.
+        titres = {m["title"]}
+        if m.get("title_en"):
+            titres.add(m["title_en"])
+        for titre in titres:
+            title_emp = lb_slug_key(titre)
+            if m.get("year"):
+                keys.append(title_emp + str(m["year"]))
+            keys.append(title_emp)
         for k in keys:
             dir_index.setdefault(k, director)
-    (SITE / "film-directors.json").write_text(
-        json.dumps(dir_index, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+    # ⚠ ÉCRIT PAR LA SEULE PASSE FRANÇAISE, et ce n'est pas un détail.
+    #
+    # Ce fichier est partagé par les deux langues (SHARED_PATHS) : la dernière
+    # passe qui l'écrit gagne. Or la passe anglaise reçoit un catalogue où
+    # `title` porte DÉJÀ le titre anglais — la boucle ci-dessus y calculait donc
+    # deux fois la même empreinte et n'indexait plus que l'anglais. Résultat
+    # mesuré avant correction : 963 clés françaises perdues sur 2 084, et la
+    # reco par réalisateur qui cessait de reconnaître les films dont Letterboxd
+    # renvoie le titre français.
+    #
+    # La passe française, elle, voit `title` (français) ET `title_en` : elle
+    # seule peut produire l'index bilingue complet.
+    if i18n.LANG == "fr":
+        (SITE / "film-directors.json").write_text(
+            json.dumps(dir_index, ensure_ascii=False, separators=(",", ":")),
+            encoding="utf-8")
 
     # ----- Répertoire : le moteur éditorial du site -----
     rep_window = repertoire.window(showtimes, today)
@@ -1269,48 +1589,56 @@ Les séances d'aujourd'hui d'abord, puis celles des jours suivants.{classics_bit
                                       -MOVIE_VENUES[m["key"]], sort_title(m["title"])))
     films_html = "".join(
         movie_card(m, movie_urls,
-                   f'<p class="meta">{MOVIE_VENUES[m["key"]]} '
-                   f'cinéma{"s" if MOVIE_VENUES[m["key"]] > 1 else ""}</p>')
+                   f'<p class="meta">'
+                   + tf("{n} cinéma{s}", n=MOVIE_VENUES[m["key"]],
+                        s=plural(MOVIE_VENUES[m["key"]]))
+                   + '</p>')
         for m in catalogue)
     # Liste complète repliée + tri alphabétique : 257 villes en vrac formaient
     # un mur de 57 % de la page (le « mur de pastilles » déjà refusé, en liste).
     cities_html = "".join(
         f'<li><a href="/ville/{slug}/">{esc(c["name"])}</a> '
-        f'<span class="meta">{len(c["cinemas"])} ciné{"s" if len(c["cinemas"]) > 1 else ""}</span></li>'
+        f'<span class="meta">'
+        + tf("{n} ciné{s}", n=len(c["cinemas"]), s=plural(len(c["cinemas"])))
+        + '</span></li>'
         for slug, c in sorted(cities.items(), key=lambda kv: kv[1]["name"]))
     majors = [s for s in BIG_CITY_SLUGS if s in cities]
     city_pills = " ".join(f'<a href="/ville/{s}/">{esc(cities[s]["name"])}</a>' for s in majors)
     # Cibles = URLs (avec BASE_PATH : le JSON échappe au préfixage automatique
     # de page(), qui ne touche que les attributs href/src)
-    city_cmap = {c["name"]: f"{BASE_PATH}/ville/{slug}/" for slug, c in cities.items()}
+    city_cmap = {c["name"]: f"{BASE_PATH}{lang_prefix()}/ville/{slug}/"
+                 for slug, c in cities.items()}
     city_finder = city_search_nav(city_pills, city_cmap, len(cities))
     n_chain = sum(1 for c in cinemas.values() if c.get("chain"))
     n_inde = len(cinemas) - n_chain
-    inventory = f"{n_inde} cinémas indépendants"
+    inventory = tf("{n} cinémas indépendants", n=n_inde)
     if n_chain:
-        inventory += f" et {n_chain} cinémas de chaîne"
+        inventory += tf(" et {n} cinémas de chaîne", n=n_chain)
     # ----- Page « À l'affiche » (l'ancien accueil, devenu un onglet) -----
     # Elle garde l'intention à plus gros volume (« quel film voir ce soir »)
     # pendant que l'accueil se recentre sur le répertoire.
-    affiche_body = f"""<p class="lead">{inventory} répartis dans {len(cities)} villes, et
-{nombre(len(showtimes))} séances annoncées. La liste est refaite chaque nuit.</p>
-<h2>Choisissez votre ville</h2>
+    affiche_body = f"""<p class="lead">{tf("{inventaire} répartis dans {v} villes, et "
+                                            "{s} séances annoncées. La liste est refaite chaque nuit.",
+                                            inventaire=inventory, v=len(cities),
+                                            s=nombre(len(showtimes)))}</p>
+<h2>{t("Choisissez votre ville")}</h2>
 {city_finder}
-<details class="all-cities"><summary>Toutes les villes ({len(cities)})</summary>
+<details class="all-cities"><summary>{tf("Toutes les villes ({n})", n=len(cities))}</summary>
 <ul class="cities">{cities_html}</ul></details>
-<h2>Tous les films à l'affiche</h2>
+<h2>{t("Tous les films à l'affiche")}</h2>
 {film_tools("film-list", "lb", catalogue)}
 <div class="grid" id="film-list">{films_html}</div>
 <div class="passerelle">
-<p><span class="titre">{n_rep_films} classiques sont aussi à l'affiche</span>
-<span class="meta">Rétrospectives, copies restaurées et ciné-clubs, partout en France.</span></p>
-<a class="bouton" href="/">Voir le répertoire</a>
+<p><span class="titre">{tf("{n} classiques sont aussi à l'affiche", n=n_rep_films)}</span>
+<span class="meta">{t("Rétrospectives, copies restaurées et ciné-clubs, partout en France.")}</span></p>
+<a class="bouton" href="/">{t("Voir le répertoire")}</a>
 </div>"""
     write("/a-l-affiche/", page(
-        f"Films à l'affiche cette semaine : séances et horaires — {SITE_NAME}",
-        f"Quel film voir au cinéma cette semaine ? Séances et horaires de {len(cinemas)} cinémas "
-        f"dans {len(cities)} villes en France, indépendants et grandes enseignes. Mis à jour chaque jour.",
-        affiche_body, "/a-l-affiche/", h1="Quel film voir au cinéma cette semaine ?",
+        tf("Films à l'affiche cette semaine : séances et horaires — {site}", site=SITE_NAME),
+        tf("Quel film voir au cinéma cette semaine ? Séances et horaires de {c} cinémas "
+           "dans {v} villes en France, indépendants et grandes enseignes. Mis à jour chaque jour.",
+           c=len(cinemas), v=len(cities)),
+        affiche_body, "/a-l-affiche/", h1=t("Quel film voir au cinéma cette semaine ?"),
         top_link=True))
     urls.append("/a-l-affiche/")
 
@@ -1318,22 +1646,25 @@ Les séances d'aujourd'hui d'abord, puis celles des jours suivants.{classics_bit
     def seance_row(s: dict) -> str:
         """Une ligne d'agenda : l'heure d'abord, comme sur un programme."""
         m, cin = movies[s["movie"]], cinemas[s["cinema"]]
-        img = (f'<img src="{esc(m["poster"])}" alt="Affiche de {esc(m["title"])}" loading="lazy">'
+        img = (f'<img src="{esc(m["poster"])}" alt="{esc(affiche_alt(m))}" loading="lazy">'
                if m["poster"] else '<span class="noposter">🎞️</span>')
         credits = " · ".join(filter(None, [
             m["director"], m["genre"],
-            f'{m["duration_min"]} min' if m["duration_min"] else "", s["version"]]))
-        note = (f'<span class="note-lb" title="Note moyenne Letterboxd">{m["lb_rating"]}'
-                f'<span class="sur">/5</span></span>' if m.get("lb_rating") else "")
+            tf("{n} min", n=m["duration_min"]) if m["duration_min"] else "",
+            version_label(s["version"])]))
+        note = (f'<span class="note-lb" title="{esc(t("Note moyenne Letterboxd"))}">'
+                f'{m["lb_rating"]}<span class="sur">/5</span></span>'
+                if m.get("lb_rating") else "")
         # L'heure est le point d'entrée naturel vers la réservation : c'est la
-        # séance précise que le visiteur vise dans un agenda.
-        heure = s["start"][11:16].replace(":", "h")
+        # séance précise que le visiteur vise dans un agenda. `hh` et pas
+        # `heure` : ce dernier est la fonction de formatage importée d'i18n.
+        hh = heure(s["start"])
         if s.get("booking"):
-            heure = (f'<a href="{esc(s["booking"])}" target="_blank"'
-                     f' rel="noopener noreferrer"'
-                     f' title="Réserver cette séance (nouvel onglet)">{heure}</a>')
+            hh = (f'<a href="{esc(s["booking"])}" target="_blank"'
+                  f' rel="noopener noreferrer"'
+                  f' title="{esc(t("Réserver cette séance (nouvel onglet)"))}">{hh}</a>')
         return f"""<li class="seance">
-<time class="heure{' reservable' if s.get("booking") else ''}" datetime="{s["start"][:16]}">{heure}</time>
+<time class="heure{' reservable' if s.get("booking") else ''}" datetime="{s["start"][:16]}">{hh}</time>
 <div class="vignette"><a href="{movie_urls[s["movie"]]}">{img}</a></div>
 <div class="corps">
 <h3 class="film"><a href="{movie_urls[s["movie"]]}">{esc(m["title"])}</a>
@@ -1342,7 +1673,7 @@ Les séances d'aujourd'hui d'abord, puis celles des jours suivants.{classics_bit
 <p class="meta lieu"><strong><a href="{cinema_urls[s["cinema"]]}">{esc(cin["name"])}</a></strong>,
 {esc(cin["city"])}{chain_badge(cin)}</p>
 </div>
-<div class="flags">{note}<span class="unique">Séance unique</span></div>
+<div class="flags">{note}<span class="unique">{t("Séance unique")}</span></div>
 </li>"""
 
     agenda_html = ""
@@ -1355,9 +1686,9 @@ Les séances d'aujourd'hui d'abord, puis celles des jours suivants.{classics_bit
                                                      key=lambda x: x["start"]))
         # « Aujourd'hui »/« Demain » ne disent pas la date : on la précise.
         # Les autres jours sont déjà datés — l'ajouter ferait un doublon.
-        libelle = fr_date(d, today)
-        precision = (f'<span class="jour-date">{JOURS[d.weekday()]} {d.day} {MOIS[d.month-1]}</span>'
-                     if libelle in ("Aujourd'hui", "Demain") else "")
+        libelle = date_label(d, today)
+        precision = (f'<span class="jour-date">{jour_mois(d)}</span>'
+                     if i18n.is_today_label(libelle) else "")
         agenda_html += (f'<section class="jour"><h3 class="jour-titre">'
                         f'<span>{libelle}</span>{precision}'
                         f'</h3><ul class="seances">{rows}</ul></section>')
@@ -1402,16 +1733,18 @@ Les séances d'aujourd'hui d'abord, puis celles des jours suivants.{classics_bit
             for cid in c["cinemas"][:3])
         reste = len(c["cinemas"]) - 3
         if reste > 0:
-            salles_liens += f' et {reste} autre{"s" if reste > 1 else ""} salle{"s" if reste > 1 else ""}'
-        villes_txt = (f'{len(c["cities"])} villes' if len(c["cities"]) > 1
+            salles_liens += tf(" et {n} autre{s} salle{s2}",
+                               n=reste, s=plural(reste), s2=plural(reste))
+        villes_txt = (tf("{n} villes", n=len(c["cities"])) if len(c["cities"]) > 1
                       else esc(c["cities"][0]))
         cycles_html += f"""<article class="cycle">
-<p class="eyebrow">Rétrospective</p>
+<p class="eyebrow">{t("Rétrospective")}</p>
 <h3 class="cycle-nom"><a href="{cycle_urls[c["key"]]}">{esc(c["director"])}</a></h3>
 {bande}
-<p class="meta"><strong>{len(c["movies"])} films</strong> · {c["n_shows"]} séances · {villes_txt}</p>
+<p class="meta">{tf("<strong>{n} films</strong> · {seances} séances · {villes}",
+                    n=len(c["movies"]), seances=c["n_shows"], villes=villes_txt)}</p>
 <p class="meta">{salles_liens}</p>
-<p class="meta"><a class="more" href="{cycle_urls[c["key"]]}">Voir le cycle →</a></p>
+<p class="meta"><a class="more" href="{cycle_urls[c["key"]]}">{t("Voir le cycle →")}</a></p>
 </article>"""
 
     salles_html = "".join(f"""<li class="salle">
@@ -1421,9 +1754,10 @@ Les séances d'aujourd'hui d'abord, puis celles des jours suivants.{classics_bit
 {chain_badge(cinemas[v["cinema"]])}</h3>
 <p class="meta">{esc(cinemas[v["cinema"]]["city"])}</p>
 </div>
-<div class="jauge" role="img" aria-label="{v["share"]} % de séances de répertoire">
+<div class="jauge" role="img" aria-label="{esc(tf("{part} % de séances de répertoire", part=v["share"]))}">
 <div class="jauge-piste"><div class="jauge-part" style="width:{v["share"]}%"></div></div>
-<p class="jauge-txt"><strong>{v["share"]} %</strong> de répertoire · {v["n_rep"]} séances sur {v["n_total"]}</p>
+<p class="jauge-txt">{tf("<strong>{part} %</strong> de répertoire · {rep} séances sur {total}",
+                         part=v["share"], rep=v["n_rep"], total=v["n_total"])}</p>
 </div></li>""" for i, v in enumerate(rep_venues[:8], 1))
 
     # Villes classées par nombre de films de répertoire (pas par démographie :
@@ -1433,11 +1767,11 @@ Les séances d'aujourd'hui d'abord, puis celles des jours suivants.{classics_bit
     villes_html = "".join(
         f'<a class="ville" href="/ville/{slug}/">'
         f'<span>{esc(cities[slug]["name"] if slug in cities else slug)}</span>'
-        f'<span class="ville-n">{st["films"]} films</span></a>'
+        f'<span class="ville-n">{tf("{n} films", n=st["films"])}</span></a>'
         for slug, st in top_rep_cities)
     raccourcis = ", ".join(
         f'<a href="/ville/{slug}/">{esc(cities[slug]["name"] if slug in cities else slug)} '
-        f'<span class="racc-n">({st["seances"]} séances)</span></a>'
+        f'<span class="racc-n">({tf("{n} séances", n=st["seances"])})</span></a>'
         for slug, st in top_rep_cities[:6])
     # Accueil : pas de pastilles de grandes villes. Elles listeraient Lyon ou
     # Nice, pauvres en reprises, alors que la ligne « villes les plus fournies »
@@ -1457,7 +1791,7 @@ Les séances d'aujourd'hui d'abord, puis celles des jours suivants.{classics_bit
             continue
         villes_geo.append({
             "n": c["name"],
-            "u": f"{BASE_PATH}/ville/{slug}/",
+            "u": f"{BASE_PATH}{lang_prefix()}/ville/{slug}/",
             "lat": round(sum(p[0] for p in pts) / len(pts), 4),
             "lon": round(sum(p[1] for p in pts) / len(pts), 4),
             "r": rep_cities.get(slug, {}).get("films", 0),
@@ -1469,9 +1803,10 @@ Les séances d'aujourd'hui d'abord, puis celles des jours suivants.{classics_bit
     # CSS (une géolocalisation morte n'aurait aucun sens) ; la recherche, elle,
     # reste utilisable via ses suggestions.
     home_finder = f"""<nav class="city-jump home-finder">
-<button type="button" id="proximite-btn" class="proximite-btn">📍 Autour de moi</button>
+<button type="button" id="proximite-btn" class="proximite-btn">{t("📍 Autour de moi")}</button>
 <span class="city-search"><input id="city-search" type="search" autocomplete="off"
-placeholder="Chercher votre ville ({len(cities)} villes)…" aria-label="Chercher une ville">
+placeholder="{esc(tf("Chercher votre ville ({n} villes)…", n=len(cities)))}"
+aria-label="{esc(t("Chercher une ville"))}">
 <ul id="city-suggest" hidden></ul></span>
 <script type="application/json" id="city-map">{json.dumps(city_cmap, ensure_ascii=False)}</script>
 </nav>
@@ -1493,95 +1828,103 @@ placeholder="Chercher votre ville ({len(cities)} villes)…" aria-label="Cherche
     anniv_cards = "".join(movie_card(m, movie_urls, show_classic=False)
                           for _, m in anniv_films[:HOME_ANNIV])
     reste_anniv = len(anniv_films) - HOME_ANNIV
-    anniv_more = (f'<p class="meta">Et {reste_anniv} autre'
-                  f'{"s" if reste_anniv > 1 else ""} film'
-                  f'{"s" if reste_anniv > 1 else ""} fêtent un cap cette année. '
-                  f'<a class="more" href="/classiques/">Parcourir les classiques →</a></p>'
+    anniv_more = (f'<p class="meta">'
+                  + tf("Et {n} autre{s} film{s2} fêtent un cap cette année.",
+                       n=reste_anniv, s=plural(reste_anniv), s2=plural(reste_anniv))
+                  + f' <a class="more" href="/classiques/">'
+                    f'{t("Parcourir les classiques →")}</a></p>'
                   if reste_anniv > 0 else "")
-    anniv_section = (f"""<h2>🎂 Les anniversaires de {TODAY.year}</h2>
-<p class="meta">{len(anniv_films)} films de patrimoine fêtent un anniversaire rond cette année
-(un demi-siècle, un centenaire…) et repassent en salle. L'occasion de les revoir sur grand écran.</p>
+    anniv_section = (f"""<h2>{tf("🎂 Les anniversaires de {annee}", annee=TODAY.year)}</h2>
+<p class="meta">{tf("{n} films de patrimoine fêtent un anniversaire rond cette année "
+                    "(un demi-siècle, un centenaire…) et repassent en salle. "
+                    "L'occasion de les revoir sur grand écran.", n=len(anniv_films))}</p>
 <div class="grid">{anniv_cards}</div>
 {anniv_more}""" if anniv_films else "")
 
     n_rep_cines = len({s["cinema"] for s in rep_shows})
     n_rep_villes = len(rep_cities)
-    body = f"""<p class="lead">Les films anciens qui repassent en salle cette semaine, partout
-en France : reprises, copies restaurées, séances de ciné-club.
-<strong>{n_rep_uniques} de ces séances n'ont pas de deuxième date.</strong></p>
+    body = f"""<p class="lead">{t("Les films anciens qui repassent en salle cette semaine, "
+                                  "partout en France : reprises, copies restaurées, séances "
+                                  "de ciné-club.")}
+{tf("<strong>{n} de ces séances n'ont pas de deuxième date.</strong>", n=n_rep_uniques)}</p>
 
 <div class="compteurs">
-<div class="compteur"><b>{n_rep_films}</b><span>films de répertoire</span></div>
-<div class="compteur"><b>{nombre(len(rep_shows))}</b><span>séances cette semaine</span></div>
-<div class="compteur"><b>{n_rep_cines}</b><span>cinémas</span></div>
-<div class="compteur"><b>{n_rep_villes}</b><span>villes</span></div>
-<div class="compteur compteur-fort"><b>{n_rep_uniques}</b><span>séances uniques</span></div>
+<div class="compteur"><b>{n_rep_films}</b><span>{t("films de répertoire")}</span></div>
+<div class="compteur"><b>{nombre(len(rep_shows))}</b><span>{t("séances cette semaine")}</span></div>
+<div class="compteur"><b>{n_rep_cines}</b><span>{t("cinémas")}</span></div>
+<div class="compteur"><b>{n_rep_villes}</b><span>{t("villes")}</span></div>
+<div class="compteur compteur-fort"><b>{n_rep_uniques}</b><span>{t("séances uniques")}</span></div>
 </div>
 
-<h2>Choisissez votre ville</h2>
+<h2>{t("Choisissez votre ville")}</h2>
 {home_finder}
-<p class="meta">Les villes les plus fournies : {raccourcis}.</p>
+<p class="meta">{tf("Les villes les plus fournies : {liste}.", liste=raccourcis)}</p>
 
 <div class="passerelle wl-cta">
-<p><span class="titre">Vous êtes sur Letterboxd ?</span>
-<span class="meta">Entrez votre pseudo : Séancéo vous dit lesquels de vos films à voir sont à
-l'affiche <strong>et vous recommande des reprises selon vos réalisateurs préférés</strong>.
-Tout se passe dans votre navigateur.</span></p>
-<button type="button" class="bouton bouton-lb" data-lb-open>Entrer mon pseudo</button>
-<a class="bouton" href="/ma-watchlist/">Ma watchlist en détail →</a>
+<p><span class="titre">{t("Vous êtes sur Letterboxd ?")}</span>
+<span class="meta">{tf("Entrez votre pseudo : {site} vous dit lesquels de vos films à voir "
+                       "sont à l'affiche <strong>et vous recommande des reprises selon vos "
+                       "réalisateurs préférés</strong>. Tout se passe dans votre navigateur.",
+                       site=SITE_NAME)}</span></p>
+<button type="button" class="bouton bouton-lb" data-lb-open>{t("Entrer mon pseudo")}</button>
+<a class="bouton" href="/ma-watchlist/">{t("Ma watchlist en détail →")}</a>
 </div>
 
 <!-- Recommandations par réalisateur, injectées par lb-reco.js quand le visiteur
      s'est connecté (portail Letterboxd). Absent du HTML pour un visiteur non
      connecté et pour les robots : purement personnel. -->
-<div id="reco-home" data-agenda="{BASE_PATH}/agenda-index.json" data-wl="{BASE_PATH}/watchlist-index.json" data-directors="{BASE_PATH}/film-directors.json" hidden></div>
+<div id="reco-home" data-agenda="{BASE_PATH}{lang_prefix()}/agenda-index.json" data-wl="{BASE_PATH}{lang_prefix()}/watchlist-index.json" data-directors="{BASE_PATH}/film-directors.json" hidden></div>
 <script src="/assets/lb-reco.js" defer></script>
 
-<h2>À ne pas rater</h2>
-<p class="meta">Des séances qui ne repassent nulle part ailleurs en France cette semaine.</p>
+<h2>{t("À ne pas rater")}</h2>
+<p class="meta">{t("Des séances qui ne repassent nulle part ailleurs en France cette semaine.")}</p>
 <p class="legende"><span class="puce">4.4<span class="sur">/5</span></span>
-Note moyenne donnée par les spectateurs de
-<a href="https://letterboxd.com" rel="noopener">Letterboxd</a>. Les séances ci-dessous sont les
-mieux notées de la semaine.</p>
-{agenda_html or "<p>Aucune séance unique repérée cette semaine.</p>"}
+{t("Note moyenne donnée par les spectateurs de")}
+<a href="https://letterboxd.com" rel="noopener">Letterboxd</a>.
+{t("Les séances ci-dessous sont les mieux notées de la semaine.")}</p>
+{agenda_html or f'<p>{t("Aucune séance unique repérée cette semaine.")}</p>'}
 
 {anniv_section}
 <div class="passerelle cine-cta">
-<p><span class="titre">🎞️ Compose ta cinémathèque</span>
-<span class="meta">Choisis un réalisateur : Séancéo réunit toutes ses séances de répertoire de France
-en une rétrospective à toi, à mettre dans ton agenda. Ne subis plus la séance unique à 400 km,
-programme-la.</span></p>
-<a class="bouton" href="/cinematheque/">Composer ma cinémathèque →</a>
+<p><span class="titre">{t("🎞️ Compose ta cinémathèque")}</span>
+<span class="meta">{tf("Choisis un réalisateur : {site} réunit toutes ses séances de "
+                       "répertoire de France en une rétrospective à toi, à mettre dans ton "
+                       "agenda. Ne subis plus la séance unique à 400 km, programme-la.",
+                       site=SITE_NAME)}</span></p>
+<a class="bouton" href="/cinematheque/">{t("Composer ma cinémathèque →")}</a>
 </div>
 
-<h2>Rétrospectives en cours</h2>
-<p class="meta">Les cycles programmés en ce moment, salle par salle.
-<a class="more" href="/retrospectives/">Toutes les rétrospectives →</a></p>
-<div class="cycles">{cycles_html or "<p>Aucun cycle en cours.</p>"}</div>
+<h2>{t("Rétrospectives en cours")}</h2>
+<p class="meta">{t("Les cycles programmés en ce moment, salle par salle.")}
+<a class="more" href="/retrospectives/">{t("Toutes les rétrospectives →")}</a></p>
+<div class="cycles">{cycles_html or f'<p>{t("Aucun cycle en cours.")}</p>'}</div>
 
-<h2>Salles de patrimoine</h2>
-<p class="meta">Les cinémas qui consacrent la plus grande part de leurs séances de la semaine
-au répertoire, ces films ressortis en salle plutôt qu'aux nouveautés. Un pourcentage, pas un
-volume : une petite salle qui ne programme que des reprises devance un multiplexe.
-<a class="more" href="/salles-patrimoine/">Le classement complet →</a></p>
+<h2>{t("Salles de patrimoine")}</h2>
+<p class="meta">{t("Les cinémas qui consacrent la plus grande part de leurs séances de la "
+                   "semaine au répertoire, ces films ressortis en salle plutôt qu'aux "
+                   "nouveautés. Un pourcentage, pas un volume : une petite salle qui ne "
+                   "programme que des reprises devance un multiplexe.")}
+<a class="more" href="/salles-patrimoine/">{t("Le classement complet →")}</a></p>
 <ul class="salles">{salles_html}</ul>
 
-<h2>Où voir du répertoire</h2>
-<p class="meta">{n_rep_villes} villes sur {len(cities)} programment au moins une reprise cette semaine.</p>
+<h2>{t("Où voir du répertoire")}</h2>
+<p class="meta">{tf("{n} villes sur {total} programment au moins une reprise cette semaine.",
+                    n=n_rep_villes, total=len(cities))}</p>
 <div class="villes">{villes_html}</div>
 
 <div class="passerelle">
-<p><span class="titre">Vous cherchez une sortie récente ?</span>
-<span class="meta">{len(movies)} films à l'affiche cette semaine dans {len(cinemas)} cinémas,
-indépendants et grandes enseignes.</span></p>
-<a class="bouton" href="/a-l-affiche/">Voir ce qui est à l'affiche</a>
+<p><span class="titre">{t("Vous cherchez une sortie récente ?")}</span>
+<span class="meta">{tf("{n} films à l'affiche cette semaine dans {c} cinémas, "
+                       "indépendants et grandes enseignes.",
+                       n=len(movies), c=len(cinemas))}</span></p>
+<a class="bouton" href="/a-l-affiche/">{t("Voir ce qui est à l'affiche")}</a>
 </div>"""
     write("/", page(
-        f"Reprises et rétrospectives au cinéma en France — {SITE_NAME}",
-        f"Quel classique voir en salle ? {n_rep_films} reprises, versions restaurées et "
-        f"rétrospectives à l'affiche cette semaine dans {n_rep_cines} cinémas en France. "
-        "Cherchez votre ville.",
-        body, "/", h1="Ce soir, un classique passe près de chez vous",
+        tf("Reprises et rétrospectives au cinéma en France — {site}", site=SITE_NAME),
+        tf("Quel classique voir en salle ? {n} reprises, versions restaurées et "
+           "rétrospectives à l'affiche cette semaine dans {c} cinémas en France. "
+           "Cherchez votre ville.", n=n_rep_films, c=n_rep_cines),
+        body, "/", h1=t("Ce soir, un classique passe près de chez vous"),
         top_link=True))
     urls.append("/")
 
@@ -1593,25 +1936,29 @@ indépendants et grandes enseignes.</span></p>
 {chain_badge(cinemas[v["cinema"]])}</h3>
 <p class="meta"><a href="/ville/{cinemas[v["cinema"]]["city_slug"]}/">{esc(cinemas[v["cinema"]]["city"])}</a></p>
 </div>
-<div class="jauge" role="img" aria-label="{v["share"]} % de séances de répertoire">
+<div class="jauge" role="img" aria-label="{esc(tf("{part} % de séances de répertoire", part=v["share"]))}">
 <div class="jauge-piste"><div class="jauge-part" style="width:{v["share"]}%"></div></div>
-<p class="jauge-txt"><strong>{v["share"]} %</strong> de répertoire · {v["n_rep"]} séances sur {v["n_total"]}</p>
+<p class="jauge-txt">{tf("<strong>{part} %</strong> de répertoire · {rep} séances sur {total}",
+                         part=v["share"], rep=v["n_rep"], total=v["n_total"])}</p>
 </div></li>""" for i, v in enumerate(rep_venues, 1))
-    venues_body = f"""<p class="lead">Une salle de patrimoine, ici, désigne un cinéma dont une
-grande part de la programmation est du répertoire : des films ressortis en salle (versions
-restaurées, reprises, séances de ciné-club), par opposition aux sorties récentes. Le classement
-mesure la <strong>part</strong> de ces séances de répertoire dans le total des séances de la
-salle sur la semaine. C'est donc un pourcentage, pas un décompte de rétrospectives ni le nombre
-de films à l'affiche : compter en volume mettrait les multiplexes en tête, puisqu'ils
-programment plus de tout. Il faut au moins {repertoire.VENUE_MIN_SHOWS} séances dans la semaine
-pour y figurer.</p>
+    venues_body = f"""<p class="lead">{tf(
+        "Une salle de patrimoine, ici, désigne un cinéma dont une grande part de la "
+        "programmation est du répertoire : des films ressortis en salle (versions "
+        "restaurées, reprises, séances de ciné-club), par opposition aux sorties "
+        "récentes. Le classement mesure la <strong>part</strong> de ces séances de "
+        "répertoire dans le total des séances de la salle sur la semaine. C'est donc "
+        "un pourcentage, pas un décompte de rétrospectives ni le nombre de films à "
+        "l'affiche : compter en volume mettrait les multiplexes en tête, puisqu'ils "
+        "programment plus de tout. Il faut au moins {min} séances dans la semaine "
+        "pour y figurer.", min=repertoire.VENUE_MIN_SHOWS)}</p>
 <ul class="salles">{salles_full}</ul>
-<p class="meta"><a class="more" href="/carte/">Retrouver ces salles sur la carte →</a></p>"""
+<p class="meta"><a class="more" href="/carte/">{t("Retrouver ces salles sur la carte →")}</a></p>"""
     write("/salles-patrimoine/", page(
-        f"Les salles de patrimoine en France : où voir du répertoire — {SITE_NAME}",
-        "Quels cinémas programment le plus de films de répertoire en France ? Classement des "
-        "salles par part de reprises, rétrospectives et copies restaurées dans leur programmation.",
-        venues_body, "/salles-patrimoine/", h1="Salles de patrimoine", top_link=True))
+        tf("Les salles de patrimoine en France : où voir du répertoire — {site}", site=SITE_NAME),
+        t("Quels cinémas programment le plus de films de répertoire en France ? Classement "
+          "des salles par part de reprises, rétrospectives et copies restaurées dans leur "
+          "programmation."),
+        venues_body, "/salles-patrimoine/", h1=t("Salles de patrimoine"), top_link=True))
     urls.append("/salles-patrimoine/")
 
     # ----- Page Classiques & rétrospectives -----
@@ -1628,8 +1975,9 @@ pour y figurer.</p>
         # Le rang est isolé dans son propre <span> : dès que le visiteur trie
         # autrement (titre, année…), tri.js le masque — un « n° 3 » affiché
         # en quatrième position serait un mensonge.
-        rang = f'<span class="rang-lb">n° {rank}</span> · ' if rank else ""
-        extra = f'<p class="meta">{rang}{n} cinéma{"s" if n > 1 else ""}</p>'
+        rang = (f'<span class="rang-lb">{tf("n° {rang}", rang=rank)}</span> · '
+                if rank else "")
+        extra = f'<p class="meta">{rang}{tf("{n} cinéma{s}", n=n, s=plural(n))}</p>'
         # show_classic=False : ici tout est classique, le badge serait du bruit.
         # La note vient de movie_card() comme partout ailleurs — la répéter ici
         # la faisait apparaître deux fois sur la même carte.
@@ -1642,18 +1990,20 @@ pour y figurer.</p>
     classics_html = ("".join(classic_card(m, i) for i, m in enumerate(rated, 1))
                      + "".join(classic_card(m) for m in unrated))
     n_classic_cines = len({s["cinema"] for m in classics for s in by_movie[m["key"]]})
-    classics_body = f"""<p class="lead">{len(classics)} films de plus de {CLASSIC_AGE_YEARS} ans
-repassent en ce moment dans {n_classic_cines} cinémas en France. Ils sont classés par la note
-que leur donnent les spectateurs de
+    classics_body = f"""<p class="lead">{tf(
+        "{n} films de plus de {age} ans repassent en ce moment dans {c} cinémas en "
+        "France. Ils sont classés par la note que leur donnent les spectateurs de",
+        n=len(classics), age=CLASSIC_AGE_YEARS, c=n_classic_cines)}
 <a href="https://letterboxd.com" rel="noopener">Letterboxd</a>.</p>
 {city_finder}
 {film_tools("film-list", "lb", classics)}
-<div class="grid" id="film-list">{classics_html or "<p>Aucune reprise annoncée en ce moment.</p>"}</div>"""
+<div class="grid" id="film-list">{classics_html or f'<p>{t("Aucune reprise annoncée en ce moment.")}</p>'}</div>"""
     write("/classiques/", page(
-        f"Films classiques et rétrospectives au cinéma — {SITE_NAME}",
-        f"Quel film classique revoir en salle ? {len(classics)} reprises, rétrospectives et "
-        "versions restaurées à l'affiche en France, classées par note Letterboxd.",
-        classics_body, "/classiques/", h1="Classiques & rétrospectives à l'affiche",
+        tf("Films classiques et rétrospectives au cinéma — {site}", site=SITE_NAME),
+        tf("Quel film classique revoir en salle ? {n} reprises, rétrospectives et "
+           "versions restaurées à l'affiche en France, classées par note Letterboxd.",
+           n=len(classics)),
+        classics_body, "/classiques/", h1=t("Classiques & rétrospectives à l'affiche"),
         top_link=True))
     urls.append("/classiques/")
 
@@ -1683,14 +2033,14 @@ que leur donnent les spectateurs de
                 for s in sorted(ss, key=lambda x: x["start"])[:8]:
                     jours[s["start"][:10]].append(s)
                 horaires = " ".join(
-                    f'<span class="day">{fr_date(date.fromisoformat(d), today)}</span>{showtime_pills(v)}'
+                    f'<span class="day">{date_label(date.fromisoformat(d), today)}</span>{showtime_pills(v)}'
                     for d, v in sorted(jours.items()))
                 cartes.append(movie_card(movies[mk], movie_urls, horaires,
                                          show_classic=False))
             blocs.append(f"""<section class="cinema-block">
 <h2><a href="{cinema_urls[cid]}">{esc(cinema["name"])}</a>{chain_badge(cinema)}</h2>
 <p class="meta"><a href="/ville/{cinema["city_slug"]}/">{esc(cinema["city"])}</a>,
-{len(par_film)} film{"s" if len(par_film) > 1 else ""} du cycle</p>
+{tf("{n} film{s} du cycle", n=len(par_film), s=plural(len(par_film)))}</p>
 <div class="films">{"".join(cartes)}</div></section>""")
 
         affiches = poster_strip(c["movies"], movies, movie_urls)
@@ -1700,53 +2050,64 @@ que leur donnent les spectateurs de
         # Pas de point final après « … » : « Montreuil…. » est disgracieux.
         fin = "" if tronque else "."
         n_films, n_salles = len(c["movies"]), len(c["cinemas"])
-        body = f"""<p class="lead"><strong>{n_films} films</strong> de {esc(c["director"])}
-passent cette semaine dans {n_salles} salle{"s" if n_salles > 1 else ""}
-({esc(villes_txt)}){fin} Soit {c["n_shows"]} séances en tout.</p>
+        body = f"""<p class="lead">{tf(
+        "<strong>{n} films</strong> de {realisateur} passent cette semaine dans "
+        "{salles} salle{s} ({villes}){fin} Soit {seances} séances en tout.",
+        n=n_films, realisateur=esc(c["director"]), salles=n_salles,
+        s=plural(n_salles), villes=esc(villes_txt), fin=fin, seances=c["n_shows"])}</p>
 {affiches}
-<p class="meta">Au programme : {esc(titres)}.</p>
-<p class="cine-extend"><a class="bouton" href="/cinematheque/?d={quote(c["director"])}">🎞️ Compose ta rétrospective {esc(c["director"])} →</a></p>
+<p class="meta">{tf("Au programme : {titres}.", titres=esc(titres))}</p>
+<p class="cine-extend"><a class="bouton" href="/cinematheque/?d={quote(c["director"])}">{tf("🎞️ Compose ta rétrospective {realisateur} →", realisateur=esc(c["director"]))}</a></p>
 {"".join(blocs)}
-<p class="meta"><a class="more" href="/retrospectives/">← Toutes les rétrospectives en cours</a></p>"""
+<p class="meta"><a class="more" href="/retrospectives/">{t("← Toutes les rétrospectives en cours")}</a></p>"""
         # @graph : la page de collection ET chacune de ses séances. Le
         # ScreeningEvent est le type que Google attend pour les horaires de
         # cinéma — le CollectionPage seul ne décrivait aucune date, donc rien
         # d'exploitable en résultat enrichi.
+        titre_cycle = tf("Rétrospective {realisateur}", realisateur=c["director"])
         jsonld = {"@context": "https://schema.org", "@graph": [
             {"@type": "CollectionPage",
-             "name": f"Rétrospective {c['director']}",
-             "url": f"{BASE_URL}{path}",
+             "name": titre_cycle,
+             "url": f"{BASE_URL}{lang_prefix()}{path}",
              "about": {"@type": "Person", "name": c["director"]}},
             *evenements,
         ]}
         write(path, page(
-            f"Rétrospective {c['director']} : où voir ses films en salle — {SITE_NAME}",
-            f"Où voir les films de {c['director']} au cinéma ? {n_films} films à l'affiche "
-            f"cette semaine en {c['n_shows']} séances, dans {n_salles} salle(s) : {villes_txt}.",
-            body, path, jsonld, h1=f"Rétrospective {c['director']}", top_link=True))
+            tf("Rétrospective {realisateur} : où voir ses films en salle — {site}",
+               realisateur=c["director"], site=SITE_NAME),
+            tf("Où voir les films de {realisateur} au cinéma ? {n} films à l'affiche "
+               "cette semaine en {seances} séances, dans {salles} salle(s) : {villes}.",
+               realisateur=c["director"], n=n_films, seances=c["n_shows"],
+               salles=n_salles, villes=villes_txt),
+            body, path, jsonld, h1=titre_cycle, top_link=True))
         urls.append(path)
 
     # ----- Index des rétrospectives -----
     if rep_cycles:
         index_cartes = "".join(f"""<article class="cycle">
-<p class="eyebrow">Rétrospective</p>
+<p class="eyebrow">{t("Rétrospective")}</p>
 <h3 class="cycle-nom"><a href="{cycle_urls[c["key"]]}">{esc(c["director"])}</a></h3>
 {poster_strip(c["movies"], movies, movie_urls, limit=6)}
-<p class="meta"><strong>{len(c["movies"])} films</strong> · {c["n_shows"]} séances ·
-{len(c["cities"])} ville{"s" if len(c["cities"]) > 1 else ""}</p>
+<p class="meta">{tf("<strong>{n} films</strong> · {seances} séances · {villes}",
+                    n=len(c["movies"]), seances=c["n_shows"],
+                    villes=tf("{n} ville{s}", n=len(c["cities"]),
+                              s=plural(len(c["cities"]))))}</p>
 <p class="meta">{esc(", ".join(c["cities"][:4]))}{"…" if len(c["cities"]) > 4 else ""}</p>
 </article>""" for c in rep_cycles)
         n_cyc_films = len({k for c in rep_cycles for k in c["movies"]})
-        index_body = f"""<p class="lead"><strong>{len(rep_cycles)} cinéastes</strong> font l'objet
-d'un cycle en ce moment, soit {n_cyc_films} films au total. On compte un cycle dès qu'une même
-salle passe au moins deux films du même réalisateur dans la semaine.</p>
+        index_body = f"""<p class="lead">{tf(
+            "<strong>{n} cinéastes</strong> font l'objet d'un cycle en ce moment, soit "
+            "{films} films au total. On compte un cycle dès qu'une même salle passe au "
+            "moins deux films du même réalisateur dans la semaine.",
+            n=len(rep_cycles), films=n_cyc_films)}</p>
 <div class="cycles">{index_cartes}</div>
-<p class="meta"><a class="more" href="/">← L'agenda du répertoire</a></p>"""
+<p class="meta"><a class="more" href="/">{t("← L'agenda du répertoire")}</a></p>"""
         write("/retrospectives/", page(
-            f"Rétrospectives et cycles au cinéma en France — {SITE_NAME}",
-            f"Quelles rétrospectives voir en salle ? {len(rep_cycles)} cycles de cinéastes "
-            f"programmés cette semaine en France, salle par salle : {n_cyc_films} films à l'affiche.",
-            index_body, "/retrospectives/", h1="Rétrospectives en cours", top_link=True))
+            tf("Rétrospectives et cycles au cinéma en France — {site}", site=SITE_NAME),
+            tf("Quelles rétrospectives voir en salle ? {n} cycles de cinéastes programmés "
+               "cette semaine en France, salle par salle : {films} films à l'affiche.",
+               n=len(rep_cycles), films=n_cyc_films),
+            index_body, "/retrospectives/", h1=t("Rétrospectives en cours"), top_link=True))
         urls.append("/retrospectives/")
 
     # ----- Idées de marathon -----
@@ -1762,21 +2123,22 @@ salle passe au moins deux films du même réalisateur dans la semaine.</p>
 
         def leg(show: dict) -> str:
             cinema = cinemas[show["cinema"]]
-            hour = show["start"][11:16].replace(":", "h")
+            hour = heure(show["start"])
             # Une idée de marathon désigne DEUX séances précises : si elles
             # sont réservables, c'est ici que le visiteur veut cliquer.
             if show.get("booking"):
                 hour = (f'<a href="{esc(show["booking"])}" target="_blank"'
                         f' rel="noopener noreferrer"'
-                        f' title="Réserver cette séance (nouvel onglet)">{hour}</a>')
-            version = f' <span class="v">{esc(show["version"])}</span>' if show["version"] else ""
+                        f' title="{esc(t("Réserver cette séance (nouvel onglet)"))}">{hour}</a>')
+            version = (f' <span class="v">{esc(version_label(show["version"]))}</span>'
+                       if show["version"] else "")
             extra = (f'<p class="meta"><strong>{hour}</strong>{version} · '
                      f'<a href="{cinema_urls[show["cinema"]]}">{esc(cinema["name"])}</a>'
                      f'{chain_badge(cinema)}</p>')
             return movie_card(movies[show["movie"]], movie_urls, extra)
 
         genre = min(idea["genres"]).capitalize()
-        day = fr_date(date.fromisoformat(idea["day"]), today)
+        day = date_label(date.fromisoformat(idea["day"]), today)
         # Un marathon qui a lieu aujourd'hui : on fait ressortir « Aujourd'hui »
         # en ambre (couleur d'accent du site) pour l'œil qui scanne la liste.
         day_html = (f'<span class="marathon-today">{esc(day)}</span>'
@@ -1787,20 +2149,23 @@ salle passe au moins deux films du même réalisateur dans la semaine.</p>
         if show_city and idea.get("city"):
             nom = cities[idea["city"]]["name"] if idea["city"] in cities else idea["city"]
             lieu = f' · {esc(nom)}'
-        cult = ' <span class="badge badge-cult">🏛️ Culte</span>' if idea["is_cult"] else ""
+        cult = (f' <span class="badge badge-cult">{t("🏛️ Culte")}</span>'
+                if idea["is_cult"] else "")
         if idea["kind"] == "meme_salle":
             cine = cinemas[first["cinema"]]
-            transfer = (f'🍿 Les deux films dans la même salle, '
-                        f'<a href="{cinema_urls[first["cinema"]]}">{esc(cine["name"])}</a> : '
-                        f'{idea["gap_min"]} min d\'entracte, sans bouger.')
+            lien_salle = (f'<a href="{cinema_urls[first["cinema"]]}">'
+                          f'{esc(cine["name"])}</a>')
+            transfer = tf("🍿 Les deux films dans la même salle, {salle} : "
+                          "{gap} min d'entracte, sans bouger.",
+                          salle=lien_salle, gap=idea["gap_min"])
         else:
-            km_txt = f'{idea["distance_km"]:.1f}'.replace(".", ",")
-            transfer = (f'🚶 {km_txt} km entre les deux salles, soit ~{idea["walk_min"]} min '
-                        f'à pied. Il vous reste {idea["gap_min"]} min d\'entracte '
-                        f'à la fin du premier film.')
+            transfer = tf("🚶 {km} km entre les deux salles, soit ~{marche} min à pied. "
+                          "Il vous reste {gap} min d'entracte à la fin du premier film.",
+                          km=decimal(idea["distance_km"]), marche=idea["walk_min"],
+                          gap=idea["gap_min"])
         cls = " marathon-cult" if idea["is_cult"] else ""
         return f"""<article class="marathon{cls}">
-<h3>{day_html}{lieu} · marathon {esc(genre)}{cult}</h3>
+<h3>{tf("{jour}{lieu} · marathon {genre}", jour=day_html, lieu=lieu, genre=esc(genre))}{cult}</h3>
 <div class="grid marathon-films">{leg(first)}{leg(second)}</div>
 <p class="marathon-transfer">{transfer}</p>
 </article>"""
@@ -1809,34 +2174,40 @@ salle passe au moins deux films du même réalisateur dans la semaine.</p>
         cult_section = ""
         if cult_ideas:
             cult_section = f"""<section class="marathon-cults" id="m-cultes">
-<h2>🏛️ Marathons cultes</h2>
-<p class="meta">Deux classiques très bien notés sur Letterboxd à enchaîner le même jour,
-dans la même salle ou à deux pas. Le meilleur du répertoire, d'affilée.</p>
+<h2>{t("🏛️ Marathons cultes")}</h2>
+<p class="meta">{t("Deux classiques très bien notés sur Letterboxd à enchaîner le même "
+                   "jour, dans la même salle ou à deux pas. Le meilleur du répertoire, "
+                   "d'affilée.")}</p>
 {"".join(marathon_card(i, show_city=True) for i in sorted(cult_ideas, key=lambda i: i["day"]))}
 </section>"""
-        jump = ('<a href="#m-cultes">🏛️ Cultes</a> ' if cult_ideas else "") + " ".join(
+        jump = (f'<a href="#m-cultes">{t("🏛️ Cultes")}</a> ' if cult_ideas else "") + " ".join(
             f'<a href="#m-{s}">{esc(cities[s]["name"])}</a>' for s in marathon_cities)
         sections = "".join(
             f'<section id="m-{s}"><h2>{esc(cities[s]["name"])}</h2>'
-            f'<p class="meta"><a href="/ville/{s}/">Toutes les séances à '
-            f'{esc(cities[s]["name"])} →</a></p>'
+            f'<p class="meta"><a href="/ville/{s}/">'
+            + tf("Toutes les séances à {ville} →", ville=esc(cities[s]["name"]))
+            + '</a></p>'
             + "".join(marathon_card(i) for i in sorted(ideas_by_city[s], key=lambda i: i["day"]))
             + "</section>"
             for s in marathon_cities)
         n_ideas = sum(len(v) for v in ideas_by_city.values())
-        marathon_body = f"""<p class="lead">Deux films du même genre à enchaîner le même jour :
-soit dans <strong>deux salles voisines</strong> (le trajet à pied tient dans l'entracte), soit
-<strong>à la suite dans la même salle</strong>, sans bouger. Horaires et entracte calculés sur
-les séances réelles. Les <a href="/classiques/">marathons de films cultes</a> passent en tête.
-Pour les {len(marathon_cities)} plus grandes villes de France.</p>
+        lien_cultes = f'<a href="/classiques/">{t("marathons de films cultes")}</a>'
+        marathon_body = f"""<p class="lead">{tf(
+            "Deux films du même genre à enchaîner le même jour : soit dans <strong>deux "
+            "salles voisines</strong> (le trajet à pied tient dans l'entracte), soit "
+            "<strong>à la suite dans la même salle</strong>, sans bouger. Horaires et "
+            "entracte calculés sur les séances réelles. Les {lien_cultes} passent en "
+            "tête. Pour les {n} plus grandes villes de France.",
+            lien_cultes=lien_cultes, n=len(marathon_cities))}</p>
 <nav class="city-jump">{jump}</nav>
 {cult_section}
 {sections}"""
         write("/marathon/", page(
-            f"Idées de marathon cinéma : deux films à la suite — {SITE_NAME}",
-            f"{n_ideas} idées de marathon dans les grandes villes de France : deux films du même "
-            "genre à la suite, dans la même salle ou deux salles voisines. Marathons cultes mis en avant.",
-            marathon_body, "/marathon/", h1="Idées de marathon", top_link=True))
+            tf("Idées de marathon cinéma : deux films à la suite — {site}", site=SITE_NAME),
+            tf("{n} idées de marathon dans les grandes villes de France : deux films du "
+               "même genre à la suite, dans la même salle ou deux salles voisines. "
+               "Marathons cultes mis en avant.", n=n_ideas),
+            marathon_body, "/marathon/", h1=t("Idées de marathon"), top_link=True))
         urls.append("/marathon/")
 
     # ----- Ma watchlist Letterboxd (croisement local) -----
@@ -1845,32 +2216,37 @@ Pour les {len(marathon_cities)} plus grandes villes de France.</p>
     # l'index par empreinte de slug, et affiche ceux qui passent cette semaine.
     # `_v`/`_s` sont les tables partagées de l'index, pas des films : on les saute.
     n_wl = len({v["t"] for k, v in wl_index.items() if not k.startswith("_")})
-    watchlist_body = f"""<div class="wl-tabs" role="tablist" aria-label="Mode de connexion">
-<button type="button" class="wl-tab is-active" role="tab" aria-selected="true" data-panel="wl-pane-pseudo">Par pseudo</button>
-<button type="button" class="wl-tab" role="tab" aria-selected="false" data-panel="wl-pane-liste">Depuis une liste</button>
+    watchlist_body = f"""<div class="wl-tabs" role="tablist" aria-label="{esc(t("Mode de connexion"))}">
+<button type="button" class="wl-tab is-active" role="tab" aria-selected="true" data-panel="wl-pane-pseudo">{t("Par pseudo")}</button>
+<button type="button" class="wl-tab" role="tab" aria-selected="false" data-panel="wl-pane-liste">{t("Depuis une liste")}</button>
 </div>
 
 <section id="wl-pane-pseudo" class="wl-pane">
-<p class="lead">Tu as une liste de films à voir sur
-<a href="https://letterboxd.com" target="_blank" rel="noopener noreferrer">Letterboxd</a> ?
-Donne ton <strong>pseudo</strong> : Séancéo te dit <strong>lesquels de tes films à voir
-sont à l'affiche, et dans quels cinémas près de chez toi</strong>. On croise ta watchlist
-avec {n_wl} films actuellement programmés en France.</p>
+<p class="lead">{t("Tu as une liste de films à voir sur")}
+<a href="https://letterboxd.com" target="_blank" rel="noopener noreferrer">Letterboxd</a>
+{tf("? Donne ton <strong>pseudo</strong> : {site} te dit <strong>lesquels de tes films "
+    "à voir sont à l'affiche, et dans quels cinémas près de chez toi</strong>. On croise "
+    "ta watchlist avec {n} films actuellement programmés en France.",
+    site=SITE_NAME, n=n_wl)}</p>
 
 <form class="lb-connect" id="lb-form">
-<label for="lb-user">Ton pseudo Letterboxd</label>
+<label for="lb-user">{t("Ton pseudo Letterboxd")}</label>
 <div class="lb-field">
 <input class="lb-input" id="lb-user" type="text" autocomplete="off" autocapitalize="none"
-spellcheck="false" placeholder="pseudo Letterboxd" aria-label="Ton pseudo Letterboxd">
-<button class="bouton bouton-lb" type="submit">Synchroniser</button>
+spellcheck="false" placeholder="{esc(t("pseudo Letterboxd"))}"
+aria-label="{esc(t("Ton pseudo Letterboxd"))}">
+<button class="bouton bouton-lb" type="submit">{t("Synchroniser")}</button>
 </div>
 </form>
-<p class="lb-hint">C'est l'identifiant de l'<strong>URL</strong> du profil, pas le nom affiché :
-pour <code>letterboxd.com/<b>cinephile_92</b>/</code>, tape <code>cinephile_92</code>. Les deux
-diffèrent souvent (à l'écran « Marie Dupont », dans l'URL <code>mariedupont__</code>). En cas de
-doute, ouvre le profil sur Letterboxd et recopie ce qui suit le slash.</p>
-<p class="lb-connect-note">On lit seulement ta watchlist <strong>publique</strong>. Rien
-n'est stocké côté serveur : la liste ne sert qu'à l'afficher sur ton appareil.</p>
+<p class="lb-hint">{t("C'est l'identifiant de l'<strong>URL</strong> du profil, pas le nom "
+                      "affiché : pour <code>letterboxd.com/<b>cinephile_92</b>/</code>, tape "
+                      "<code>cinephile_92</code>. Les deux diffèrent souvent (à l'écran "
+                      "« Marie Dupont », dans l'URL <code>mariedupont__</code>). En cas de "
+                      "doute, ouvre le profil sur Letterboxd et recopie ce qui suit le "
+                      "slash.")}</p>
+<p class="lb-connect-note">{t("On lit seulement ta watchlist <strong>publique</strong>. "
+                              "Rien n'est stocké côté serveur : la liste ne sert qu'à "
+                              "l'afficher sur ton appareil.")}</p>
 
 <div id="lb-status" aria-live="polite"></div>
 <div id="lb-city" hidden></div>
@@ -1878,38 +2254,41 @@ n'est stocké côté serveur : la liste ne sert qu'à l'afficher sur ton apparei
 <div id="lb-calendar" hidden></div>
 
 <details class="wl-alt">
-<summary>Watchlist privée, ou tu préfères un fichier ? Importer l'export</summary>
-<p class="wl-drop-help">Dépose le <code>watchlist.csv</code> de ton export Letterboxd :
-tout se passe dans le navigateur, rien n'est envoyé.</p>
-<div class="wl-drop" id="wl-drop" data-index="{BASE_PATH}/watchlist-index.json" data-agenda="{BASE_PATH}/agenda-index.json">
+<summary>{t("Watchlist privée, ou tu préfères un fichier ? Importer l'export")}</summary>
+<p class="wl-drop-help">{t("Dépose le <code>watchlist.csv</code> de ton export Letterboxd : "
+                           "tout se passe dans le navigateur, rien n'est envoyé.")}</p>
+<div class="wl-drop" id="wl-drop" data-index="{BASE_PATH}{lang_prefix()}/watchlist-index.json" data-agenda="{BASE_PATH}{lang_prefix()}/agenda-index.json">
 <input type="file" id="wl-file" accept=".csv,text/csv" hidden>
-<p class="wl-drop-main"><button type="button" id="wl-pick" class="bouton">Choisir mon fichier watchlist.csv</button></p>
-<p class="wl-drop-alt">ou glissez-le dans ce cadre</p>
+<p class="wl-drop-main"><button type="button" id="wl-pick" class="bouton">{t("Choisir mon fichier watchlist.csv")}</button></p>
+<p class="wl-drop-alt">{t("ou glissez-le dans ce cadre")}</p>
 </div>
 <ol class="wl-steps">
-<li>Sur <a href="https://letterboxd.com/settings/data/" target="_blank" rel="noopener noreferrer">letterboxd.com</a>,
-ouvre les réglages, onglet <strong>Data</strong> (ou « Import &amp; Export »).</li>
-<li>Clique sur <strong>Export your data</strong>. Un fichier <code>.zip</code> se télécharge.</li>
-<li>Décompresse-le et dépose le fichier <code>watchlist.csv</code> ci-dessus.</li>
+<li>{t("Sur")} <a href="https://letterboxd.com/settings/data/" target="_blank" rel="noopener noreferrer">letterboxd.com</a>,
+{t("ouvre les réglages, onglet <strong>Data</strong> (ou « Import &amp; Export »).")}</li>
+<li>{t("Clique sur <strong>Export your data</strong>. Un fichier <code>.zip</code> se télécharge.")}</li>
+<li>{t("Décompresse-le et dépose le fichier <code>watchlist.csv</code> ci-dessus.")}</li>
 </ol>
 </details>
 </section>
 
 <section id="wl-pane-liste" class="wl-pane" hidden>
-<p class="lead">Une <strong>liste</strong> Letterboxd publique (« 1001 films à voir », Palme d'or,
-tes classiques…) ? Colle son URL : Séancéo te montre <strong>lesquels de ces films de
-patrimoine repassent en salle</strong>, ville par ville, avec la séance et la réservation.</p>
+<p class="lead">{tf("Une <strong>liste</strong> Letterboxd publique (« 1001 films à voir », "
+                    "Palme d'or, tes classiques…) ? Colle son URL : {site} te montre "
+                    "<strong>lesquels de ces films de patrimoine repassent en salle</strong>, "
+                    "ville par ville, avec la séance et la réservation.", site=SITE_NAME)}</p>
 
-<form class="lb-connect" id="list-form" data-agenda="{BASE_PATH}/agenda-index.json" data-wl="{BASE_PATH}/watchlist-index.json">
-<label for="list-url">URL de la liste Letterboxd</label>
+<form class="lb-connect" id="list-form" data-agenda="{BASE_PATH}{lang_prefix()}/agenda-index.json" data-wl="{BASE_PATH}{lang_prefix()}/watchlist-index.json">
+<label for="list-url">{t("URL de la liste Letterboxd")}</label>
 <div class="lb-field">
 <input class="lb-input" id="list-url" type="url" autocomplete="off" autocapitalize="none"
-spellcheck="false" placeholder="https://letterboxd.com/pseudo/list/ma-liste/" aria-label="URL de la liste Letterboxd">
-<button class="bouton bouton-lb" type="submit">Chercher les séances</button>
+spellcheck="false" placeholder="https://letterboxd.com/pseudo/list/ma-liste/"
+aria-label="{esc(t("URL de la liste Letterboxd"))}">
+<button class="bouton bouton-lb" type="submit">{t("Chercher les séances")}</button>
 </div>
 </form>
-<p class="lb-connect-note">On lit seulement une liste <strong>publique</strong>. Rien n'est
-stocké côté serveur, et ta géolocalisation (pour trier par proximité) reste sur ton appareil.</p>
+<p class="lb-connect-note">{t("On lit seulement une liste <strong>publique</strong>. Rien "
+                              "n'est stocké côté serveur, et ta géolocalisation (pour trier "
+                              "par proximité) reste sur ton appareil.")}</p>
 
 <div id="list-status" aria-live="polite"></div>
 <div id="list-controls" class="list-controls" hidden></div>
@@ -1919,10 +2298,10 @@ stocké côté serveur, et ta géolocalisation (pour trier par proximité) reste
 <script src="/assets/lb-watchlist.js" defer></script>
 <script src="/assets/lb-listes.js" defer></script>"""
     write("/ma-watchlist/", page(
-        f"Ma watchlist Letterboxd au cinéma — {SITE_NAME}",
-        "Donne ton pseudo Letterboxd : Séancéo te montre lesquels de tes films à voir "
-        "sont à l'affiche, et dans quels cinémas près de chez toi.",
-        watchlist_body, "/ma-watchlist/", h1="Votre watchlist au cinéma",
+        tf("Ma watchlist Letterboxd au cinéma — {site}", site=SITE_NAME),
+        tf("Donne ton pseudo Letterboxd : {site} te montre lesquels de tes films à voir "
+           "sont à l'affiche, et dans quels cinémas près de chez toi.", site=SITE_NAME),
+        watchlist_body, "/ma-watchlist/", h1=t("Votre watchlist au cinéma"),
         top_link=True))
     urls.append("/ma-watchlist/")
 
@@ -1937,49 +2316,54 @@ stocké côté serveur, et ta géolocalisation (pour trier par proximité) reste
         f'<button type="button" class="cine-chip" data-dir="{esc(d["name"])}">'
         f'{esc(d["name"])} <span>{d["n"]}</span></button>'
         for d in cine_dirs[:6])
-    cine_body = f"""<p class="lead">6 films de répertoire sur 10 ne passent qu'une seule fois en
-France sur une semaine. Au lieu de subir cet éparpillement, compose-le : choisis un réalisateur,
-Séancéo réunit <strong>toutes ses séances du pays</strong> en une rétrospective à toi, à mettre
-dans ton agenda.</p>
+    cine_body = f"""<p class="lead">{tf(
+        "6 films de répertoire sur 10 ne passent qu'une seule fois en France sur une "
+        "semaine. Au lieu de subir cet éparpillement, compose-le : choisis un "
+        "réalisateur, {site} réunit <strong>toutes ses séances du pays</strong> en une "
+        "rétrospective à toi, à mettre dans ton agenda.", site=SITE_NAME)}</p>
 
-<form class="lb-connect" id="cine-form" data-agenda="{BASE_PATH}/agenda-index.json" data-wl="{BASE_PATH}/watchlist-index.json" data-directors="{BASE_PATH}/cinematheque-directors.json">
-<label for="cine-search">Choisis un réalisateur ({len(cine_dirs)} ont au moins deux films à l'affiche)</label>
+<form class="lb-connect" id="cine-form" data-agenda="{BASE_PATH}{lang_prefix()}/agenda-index.json" data-wl="{BASE_PATH}{lang_prefix()}/watchlist-index.json" data-directors="{BASE_PATH}/cinematheque-directors.json">
+<label for="cine-search">{tf("Choisis un réalisateur ({n} ont au moins deux films à l'affiche)", n=len(cine_dirs))}</label>
 <div class="lb-field">
 <input class="lb-input" id="cine-search" list="cine-dl" type="text" autocomplete="off"
-spellcheck="false" placeholder="ex. Akira Kurosawa" aria-label="Choisis un réalisateur">
-<button class="bouton" type="submit">Assembler</button>
+spellcheck="false" placeholder="{esc(t("ex. Akira Kurosawa"))}"
+aria-label="{esc(t("Choisis un réalisateur"))}">
+<button class="bouton" type="submit">{t("Assembler")}</button>
 </div>
 <datalist id="cine-dl">{cine_dl}</datalist>
 </form>
-<p class="cine-chips-label">Les plus programmés en ce moment</p>
+<p class="cine-chips-label">{t("Les plus programmés en ce moment")}</p>
 <div class="cine-chips">{cine_chips}</div>
 
 <div id="cine-status" aria-live="polite"></div>
 <div id="cine-result" aria-live="polite"></div>
 <script src="/assets/cinematheque.js" defer></script>"""
     write("/cinematheque/", page(
-        f"Ta cinémathèque : compose ta rétrospective — {SITE_NAME}",
-        "Choisis un réalisateur : Séancéo réunit toutes ses séances de répertoire à l'affiche "
-        "en France en une rétrospective personnelle, à ajouter à ton agenda.",
-        cine_body, "/cinematheque/", h1="Ta cinémathèque", top_link=True))
+        tf("Ta cinémathèque : compose ta rétrospective — {site}", site=SITE_NAME),
+        tf("Choisis un réalisateur : {site} réunit toutes ses séances de répertoire à "
+           "l'affiche en France en une rétrospective personnelle, à ajouter à ton agenda.",
+           site=SITE_NAME),
+        cine_body, "/cinematheque/", h1=t("Ta cinémathèque"), top_link=True))
     urls.append("/cinematheque/")
 
     # ----- Mes alertes -----
     # Page de gestion : ce que le visiteur suit, et de quoi le retirer. Elle
     # n'est pas dans le menu (elle ne concerne que ceux qui ont déjà marqué un
     # film) mais reste atteignable depuis la fiche film et /ma-watchlist/.
-    alertes_body = f"""<p class="lead">Sur la fiche d'un film, le bouton
-« Préviens-moi quand il repasse » te prévient dès qu'une séance est programmée dans ta ville.
-Les reprises ne s'annoncent pas : 6 films de répertoire sur 10 ne passent qu'une seule fois
-en France sur une semaine.</p>
+    alertes_body = f"""<p class="lead">{t(
+        "Sur la fiche d'un film, le bouton « Préviens-moi quand il repasse » te prévient "
+        "dès qu'une séance est programmée dans ta ville. Les reprises ne s'annoncent "
+        "pas : 6 films de répertoire sur 10 ne passent qu'une seule fois en France sur "
+        "une semaine.")}</p>
 <div id="mes-alertes" aria-live="polite"></div>
-<p class="meta">Rien n'est envoyé à personne : ton navigateur reçoit la notification
-directement, et tu peux retirer une alerte à tout moment.</p>
+<p class="meta">{t("Rien n'est envoyé à personne : ton navigateur reçoit la notification "
+                   "directement, et tu peux retirer une alerte à tout moment.")}</p>
 {ALERTES_JS}"""
     write("/mes-alertes/", page(
-        f"Mes alertes — {SITE_NAME}",
-        "Les films que tu suis : Séancéo te prévient quand ils repassent dans ta ville.",
-        alertes_body, "/mes-alertes/", h1="Mes alertes"))
+        tf("Mes alertes — {site}", site=SITE_NAME),
+        tf("Les films que tu suis : {site} te prévient quand ils repassent dans ta ville.",
+           site=SITE_NAME),
+        alertes_body, "/mes-alertes/", h1=t("Mes alertes")))
     # Volontairement ABSENTE du sitemap : son contenu n'existe que dans le
     # navigateur de celui qui a marqué des films, il n'y a rien à indexer.
     # On y arrive par le lien posé sous la confirmation d'une alerte.
@@ -1991,7 +2375,8 @@ directement, et tu peux retirer une alerte à tout moment.</p>
     # programment — c'est le cœur du site).
     map_points = [
         {"name": c["name"], "city": c["city"], "lat": c["lat"], "lon": c["lon"],
-         "chain": c.get("chain", ""), "url": f"{BASE_PATH}{cinema_urls[cid]}",
+         "chain": c.get("chain", ""),
+         "url": f"{BASE_PATH}{lang_prefix()}{cinema_urls[cid]}",
          "rep": len(rep_by_cinema.get(cid, []))}
         for cid, c in cinemas.items() if c["lat"] and c["lon"]
     ]
@@ -2002,17 +2387,18 @@ directement, et tu peux retirer une alerte à tout moment.</p>
         '<link rel="stylesheet" href="/assets/vendor/leaflet.markercluster/MarkerCluster.css">'
         '<link rel="stylesheet" href="/assets/vendor/leaflet.markercluster/MarkerCluster.Default.css">'
     )
-    map_body = f"""<p class="lead">{len(map_points)} cinémas situés sur la carte, dont
-{n_rep_map} programment du répertoire cette semaine. Trouvez une salle près de chez vous et
-ouvrez son programme.</p>
+    map_body = f"""<p class="lead">{tf(
+        "{n} cinémas situés sur la carte, dont {r} programment du répertoire cette "
+        "semaine. Trouvez une salle près de chez vous et ouvrez son programme.",
+        n=len(map_points), r=n_rep_map)}</p>
 <div class="map-tools">
-<button type="button" id="geoloc-btn" class="bouton">📍 Autour de moi</button>
-<label class="map-filter"><input type="checkbox" id="rep-only"> Salles de répertoire seulement</label>
+<button type="button" id="geoloc-btn" class="bouton">{t("📍 Autour de moi")}</button>
+<label class="map-filter"><input type="checkbox" id="rep-only"> {t("Salles de répertoire seulement")}</label>
 </div>
 <p id="geoloc-status" class="map-status" role="status" hidden></p>
 <div id="map-legend">
-<span class="legend-item"><span class="legend-dot dot-indep"></span>Cinéma indépendant</span>
-<span class="legend-item"><span class="legend-dot dot-chain"></span>Grande enseigne</span>
+<span class="legend-item"><span class="legend-dot dot-indep"></span>{t("Cinéma indépendant")}</span>
+<span class="legend-item"><span class="legend-dot dot-chain"></span>{t("Grande enseigne")}</span>
 </div>
 <div id="cine-map"></div>
 <div id="map-nearby" hidden></div>
@@ -2021,22 +2407,12 @@ ouvrez son programme.</p>
 <script src="/assets/vendor/leaflet.markercluster/leaflet.markercluster.js"></script>
 <script src="/assets/map.js"></script>"""
     write("/carte/", page(
-        f"Carte des cinémas en France — {SITE_NAME}",
-        f"Carte interactive de {len(map_points)} cinémas en France. « Autour de moi » vous montre "
-        "les salles les plus proches et lesquelles programment du répertoire cette semaine.",
-        map_body, "/carte/", h1="Carte des cinémas", head_extra=leaflet_css))
+        tf("Carte des cinémas en France — {site}", site=SITE_NAME),
+        tf("Carte interactive de {n} cinémas en France. « Autour de moi » vous montre les "
+           "salles les plus proches et lesquelles programment du répertoire cette semaine.",
+           n=len(map_points)),
+        map_body, "/carte/", h1=t("Carte des cinémas"), head_extra=leaflet_css))
     urls.append("/carte/")
-
-    # ----- sitemap & robots -----
-    lastmod = meta["generated_at"][:10]
-    entries = "".join(
-        f"<url><loc>{BASE_URL}{u}</loc><lastmod>{lastmod}</lastmod></url>" for u in sorted(urls))
-    (SITE / "sitemap.xml").write_text(
-        f'<?xml version="1.0" encoding="UTF-8"?>'
-        f'<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{entries}</urlset>',
-        encoding="utf-8")
-    (SITE / "robots.txt").write_text(
-        f"User-agent: *\nAllow: /\nSitemap: {BASE_URL}/sitemap.xml\n", encoding="utf-8")
 
     # ----- Manifeste (installation sur l'écran d'accueil) -----
     # GÉNÉRÉ, pas posé dans static/ : `start_url` et `scope` contiennent
@@ -2047,15 +2423,20 @@ ouvrez son programme.</p>
     # a été ajouté à l'écran d'accueil, ce qui exige un manifeste et des icônes.
     # `display: standalone` fait ouvrir le site sans la barre d'adresse, comme
     # une application. Les icônes sont générées par scripts/make_icons.py.
-    (SITE / "manifest.webmanifest").write_text(json.dumps({
-        "name": f"{SITE_NAME}, le répertoire en salle",
+    #
+    # UN MANIFESTE PAR LANGUE : `name`, `description` et `lang` sont du texte
+    # affiché (écran d'accueil, sélecteur d'applications), et `scope` doit
+    # cadrer l'arbre de la langue — sinon une application installée depuis
+    # /en/ retomberait sur des pages françaises.
+    (lang_dir() / "manifest.webmanifest").write_text(json.dumps({
+        "name": tf("{site}, le répertoire en salle", site=SITE_NAME),
         "short_name": SITE_NAME,
-        "description": "Les reprises, classiques et rétrospectives à l'affiche "
-                       "partout en France.",
-        "start_url": f"{BASE_PATH}/",
-        "scope": f"{BASE_PATH}/",
+        "description": t("Les reprises, classiques et rétrospectives à l'affiche "
+                         "partout en France."),
+        "start_url": f"{BASE_PATH}{lang_prefix()}/",
+        "scope": f"{BASE_PATH}{lang_prefix()}/",
         "display": "standalone",
-        "lang": "fr",
+        "lang": i18n.LANG,
         "background_color": "#0d1014",
         "theme_color": "#0d1014",
         "icons": [
@@ -2070,23 +2451,7 @@ ouvrez son programme.</p>
         ],
     }, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
 
-    # ----- 404 de marque (GitHub Pages sert /404.html) -----
-    # La 404 brute de GitHub éjectait le visiteur du site (page blanche, sans
-    # lien de retour). Hors sitemap, volontairement.
-    (SITE / "404.html").write_text(page(
-        f"Page introuvable — {SITE_NAME}",
-        "Cette page n'existe pas ou plus.",
-        """<p class="lead">Cette adresse ne mène à aucune page. Le programme change tous les
-jours, et la fiche d'un film disparaît quand il quitte l'affiche.</p>
-<p><a class="more" href="/">← Le répertoire</a> &nbsp;
-<a class="more" href="/a-l-affiche/">🎬 À l'affiche</a> &nbsp;
-<a class="more" href="/retrospectives/">🎞️ Rétrospectives</a> &nbsp;
-<a class="more" href="/carte/">🗺️ Carte</a></p>""",
-        "/404.html", h1="Oups, séance introuvable"), encoding="utf-8")
-
-    print(f"Site généré dans {SITE} : {len(urls)} pages "
-          f"({len(cinemas)} cinémas, {len(cities)} villes, {len(movies)} films)")
-    return 0
+    return urls
 
 
 if __name__ == "__main__":

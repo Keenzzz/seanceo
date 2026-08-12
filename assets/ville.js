@@ -61,8 +61,10 @@
     });
     if (compte) {
       compte.textContent = langue
-        ? visible + (visible > 1 ? " films" : " film") + " en "
-          + (langue === "vo" ? "VO / VOST" : "VF")
+        ? TF("{n} film{s} en {version}", {
+            n: visible, s: PL(visible),
+            version: langue === "vo" ? T("VO / VOST") : T("VF"),
+          })
         : "";
     }
   }

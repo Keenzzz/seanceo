@@ -113,11 +113,11 @@
 
     var reste = trouves - Math.min(trouves, affichees);
     compte.textContent = trouves === 0
-      ? "Aucun film ne correspond à ces filtres"
-      : trouves + (trouves > 1 ? " films" : " film")
-        + (reste ? " · " + Math.min(trouves, affichees) + " affichés" : "");
+      ? T("Aucun film ne correspond à ces filtres")
+      : TF("{n} film{s}", { n: trouves, s: PL(trouves) })
+        + (reste ? " · " + TF("{n} affichés", { n: Math.min(trouves, affichees) }) : "");
     plus.hidden = reste === 0;
-    plus.textContent = "Afficher " + Math.min(reste, PAGE) + " films de plus";
+    plus.textContent = TF("Afficher {n} films de plus", { n: Math.min(reste, PAGE) });
   }
 
   /* Un seul bouton actif, portant la marque de son sens ; les autres restent
@@ -129,8 +129,10 @@
       b.querySelector(".tri-sens").textContent =
         actif ? b.dataset[b.dataset.dir] : "";
       // Le libellé seul ne dit pas ce que fera le clic : on l'annonce.
-      b.title = actif ? "Cliquer pour inverser l'ordre"
-                      : "Trier par " + b.querySelector(".tri-nom").textContent.toLowerCase();
+      b.title = actif
+        ? T("Cliquer pour inverser l'ordre")
+        : TF("Trier par {critere}",
+             { critere: b.querySelector(".tri-nom").textContent.toLowerCase() });
     });
   }
 

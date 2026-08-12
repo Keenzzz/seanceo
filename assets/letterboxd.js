@@ -35,10 +35,10 @@
   // visiteur lit « ta watchlist est vide » sans comprendre pourquoi. Ce rappel
   // est repris à l'identique sur /ma-watchlist/ (voir build_site.py).
   var USER_HINT =
-    '<p class="lb-hint">C\'est l\'identifiant de l\'<strong>URL</strong> du profil, pas le nom ' +
-    'affiché : pour <code>letterboxd.com/<b>cinephile_92</b>/</code>, tape ' +
-    '<code>cinephile_92</code>. Les deux diffèrent souvent (à l\'écran « Marie Dupont », ' +
-    'dans l\'URL <code>mariedupont__</code>).</p>';
+    '<p class="lb-hint">' + T("C'est l'identifiant de l'<strong>URL</strong> du profil, "
+      + "pas le nom affiché : pour <code>letterboxd.com/<b>cinephile_92</b>/</code>, tape "
+      + "<code>cinephile_92</code>. Les deux diffèrent souvent (à l'écran "
+      + "« Marie Dupont », dans l'URL <code>mariedupont__</code>).") + "</p>";
 
   // Empreinte STRICTEMENT identique à watchlist.js et à lb_slug_key() (Python) :
   // NFKD → on retire le non-ASCII → on ne garde que [a-z0-9] collés. C'est la
@@ -239,7 +239,7 @@
     // Pas de compte de villes entre parenthèses, contrairement à ces deux
     // pages : l'index de la watchlist n'en couvre pas tout à fait autant
     // (256 contre 257), et deux nombres différents à l'écran font douter.
-    input.placeholder = "Chercher ta ville…";
+    input.placeholder = T("Chercher ta ville…");
 
     // Le menu est positionné par rapport à un conteneur inséré autour du champ :
     // les formulaires hôtes sont en display:flex, un <ul> posé à côté du champ
@@ -387,16 +387,41 @@
 
   // —— Rendu (mêmes classes CSS que watchlist.js) ————————————————————————————
 
+  // Site bilingue : `EN` décide du format des dates et des heures. On lit la
+  // langue sur <html lang>, posée au build — surtout PAS les réglages de
+  // l'appareil via toLocaleDateString(), qui donnerait une date française sur
+  // la page anglaise d'un visiteur au téléphone réglé en français.
+  var EN = document.documentElement.lang === "en";
+
   function frDate(iso) {
-    var jours = ["dim.", "lun.", "mar.", "mer.", "jeu.", "ven.", "sam."];
-    var mois = ["janv.", "févr.", "mars", "avril", "mai", "juin", "juil.",
-                "août", "sept.", "oct.", "nov.", "déc."];
+    var jours = EN
+      ? ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+      : ["dim.", "lun.", "mar.", "mer.", "jeu.", "ven.", "sam."];
+    var mois = EN
+      ? ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+         "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+      : ["janv.", "févr.", "mars", "avril", "mai", "juin", "juil.",
+         "août", "sept.", "oct.", "nov.", "déc."];
     var d = new Date(iso + "T00:00:00");
     var auj = new Date(); auj.setHours(0, 0, 0, 0);
     var delta = Math.round((d - auj) / 86400000);
-    if (delta <= 0) return "aujourd'hui";
-    if (delta === 1) return "demain";
+    if (delta <= 0) return T("aujourd'hui");
+    if (delta === 1) return T("demain");
     return jours[d.getDay()] + " " + d.getDate() + " " + mois[d.getMonth()];
+  }
+
+  // Heure d'une séance à partir d'un « …THH:MM ». Le format 24 h reste tel
+  // quel en français ; en anglais il devient « 8:30 pm », faute de quoi
+  // l'information la plus utile de la carte se lit de travers.
+  function hhmm(iso) { return fmtHeure(iso.slice(11, 16)); }
+
+  // Deux points d'entrée parce que les deux formes existent dans les données :
+  // agenda-index porte un « …THH:MM » complet, watchlist-index une heure déjà
+  // isolée (« 20:30 »). Le formatage, lui, est commun.
+  function fmtHeure(hm) {
+    if (!EN) return hm;
+    var h = parseInt(hm.slice(0, 2), 10);
+    return (h % 12 || 12) + ":" + hm.slice(3, 5) + (h < 12 ? " am" : " pm");
   }
 
   // Dans agenda-index, la séance qui correspond EXACTEMENT à la salle et au jour
@@ -427,7 +452,8 @@
     var ville = pick && pick.salle.ville;
     var jour = pick ? pick.date : f.d;
     var repli = pick && !pick.heure ? agSeance(ag, cine, jour) : null;
-    var heure = (pick && pick.heure) || (repli ? repli[0].slice(11, 16) : "");
+    var heure = (pick && pick.heure) ? fmtHeure(pick.heure)
+              : (repli ? hhmm(repli[0]) : "");
     var lien = (pick && pick.booking) || (repli ? repli[5] : "");
 
     var art = document.createElement("article");
@@ -436,12 +462,14 @@
       ? '<a href="' + f.u + '"><img src="' + f.p + '" alt="" loading="lazy"></a>'
       : '<a href="' + f.u + '"><span class="noposter">🎞️</span></a>';
     var note = f.r ? '<span class="note-lb">' + f.r + '<span class="sur">/5</span></span> · ' : "";
-    var quand = "prochaine séance " + frDate(jour) + (heure ? " à " + heure : "");
+    var quand = TF("prochaine séance {jour}", { jour: frDate(jour) })
+      + (heure ? " " + TF("à {heure}", { heure: heure }) : "");
     // Séance unique (champ `x`, posé au build) : le film ne repasse nulle part
     // ailleurs en France sur la fenêtre. Dit platement, sans point
     // d'exclamation ni compte à rebours : le fait se suffit, et c'est
     // justement parce qu'on ne crie jamais que ça se remarque quand on le dit.
-    var unique = f.x ? '<p class="wl-unique">Séance unique en France</p>' : "";
+    var unique = f.x
+      ? '<p class="wl-unique">' + T("Séance unique en France") + "</p>" : "";
     // innerHTML ne reçoit que des valeurs de NOTRE index (jamais le pseudo saisi).
     art.innerHTML =
       poster +
@@ -457,7 +485,10 @@
       line.className = "seance-line";
       var lieu = ville ? cine + ", " + ville : cine;
       var autres = pick.n - 1;
-      if (autres > 0) lieu += " + " + autres + (autres > 1 ? " autres cinémas" : " autre cinéma");
+      if (autres > 0) {
+        lieu += " + " + TF("{n} autre{s} cinéma{s2}",
+                           { n: autres, s: PL(autres), s2: PL(autres) });
+      }
       line.appendChild(document.createTextNode("📍 " + lieu)); // textContent : noms de salles
       // Billetterie : nouvel onglet, et seulement si l'URL est bien en http(s).
       if (lien && /^https?:\/\//i.test(lien)) {
@@ -467,7 +498,7 @@
         book.href = lien;
         book.target = "_blank";
         book.rel = "noopener noreferrer";
-        book.textContent = "Réserver ↗";
+        book.textContent = T("Réserver ↗");
         line.appendChild(book);
       }
       art.querySelector(".movie-info").appendChild(line);
@@ -517,6 +548,9 @@
   // par une voyelle sont assez nombreux (Albi, Angers, Orléans, Épinal…) pour
   // que l'absence d'élision se remarque.
   function deVille(nom) {
+    // L'élision n'existe qu'en français : « hors de Albi » → « hors d'Albi ».
+    // En anglais on rend le nom nu, le gabarit fournit la préposition.
+    if (document.documentElement.lang === "en") return nom;
     return (/^[aeiouyàâäéèêëîïôöùûü]/i.test(nom || "") ? "d'" : "de ") + nom;
   }
 
@@ -576,12 +610,14 @@
       sec.className = "lb-favs";
       var h = document.createElement("h3");
       h.textContent = "⭐ " + (favHits.length > 1
-        ? "Tes films préférés à revoir en salle"
-        : "Un de tes films préférés à revoir en salle");
+        ? T("Tes films préférés à revoir en salle")
+        : T("Un de tes films préférés à revoir en salle"));
       var sub = document.createElement("p");
       sub.className = "lb-favs-sub";
-      sub.textContent = (favHits.length > 1 ? favHits.length + " de tes films préférés repassent"
-        : "Un de tes films préférés repasse") + " en ce moment. L'occasion de le revoir sur grand écran.";
+      sub.textContent = (favHits.length > 1
+        ? TF("{n} de tes films préférés repassent", { n: favHits.length })
+        : T("Un de tes films préférés repasse"))
+        + " " + T("en ce moment. L'occasion de le revoir sur grand écran.");
       sec.appendChild(h); sec.appendChild(sub);
       // Cadrage par film : ceux qui passent dans la ville le montrent, les
       // autres gardent leur séance nationale (d'où les deux grilles).
@@ -606,9 +642,10 @@
     // favoris du profil juste au-dessus, « tes films à voir » ne disait pas
     // de quelle des deux listes venait le compte.
     if (!listHits.length) {
-      titre.textContent = "Aucun des " + (data.total || 0) + " films de ta watchlist "
-        + "Letterboxd n'est à l'affiche pour l'instant. La programmation change "
-        + "souvent, reviens y jeter un œil.";
+      titre.textContent = TF(
+        "Aucun des {total} films de ta watchlist Letterboxd n'est à l'affiche pour "
+        + "l'instant. La programmation change souvent, reviens y jeter un œil.",
+        { total: data.total || 0 });
       container.appendChild(titre);
       ajouteFavoris();
       return compte;
@@ -617,10 +654,11 @@
     // —— Sans ville : la vue nationale. Rien à dire sur « chez moi » puisqu'on
     // ne sait pas où c'est, mais le compte de la watchlist reste en tête.
     if (!city) {
-      titre.innerHTML = "<strong>" + listHits.length + "</strong> des "
-        + (data.total || listHits.length) + " films de ta watchlist Letterboxd "
-        + (listHits.length > 1 ? "sont" : "est")
-        + " à l'affiche. Ouvre une fiche pour voir toutes les séances près de chez toi.";
+      titre.innerHTML = TF(
+        "<strong>{n}</strong> des {total} films de ta watchlist Letterboxd {verbe} à "
+        + "l'affiche. Ouvre une fiche pour voir toutes les séances près de chez toi.",
+        { n: listHits.length, total: data.total || listHits.length,
+          verbe: listHits.length > 1 ? T("sont") : T("est") });
       container.appendChild(titre);
       ajouteFavoris();
       container.appendChild(grid(listHits, ag, ""));
@@ -630,15 +668,19 @@
     // —— Avec ville : sa ville d'abord, le reste en second rideau.
     var split = parVille(listHits, cityKey);
     compte.ici = split.ici.length;
-    titre.innerHTML = "<strong>" + listHits.length + "</strong> des "
-      + (data.total || listHits.length) + " films de ta watchlist Letterboxd "
-      + (listHits.length > 1 ? "sont" : "est") + " à l'affiche en France.";
+    titre.innerHTML = TF(
+      "<strong>{n}</strong> des {total} films de ta watchlist Letterboxd {verbe} à "
+      + "l'affiche en France.",
+      { n: listHits.length, total: data.total || listHits.length,
+        verbe: listHits.length > 1 ? T("sont") : T("est") });
     container.appendChild(titre);
 
     if (split.ici.length) {
-      container.appendChild(section("lb-ici", "🎬 À " + city.nom,
-        split.ici.length + (split.ici.length > 1 ? " films de ta watchlist passent"
-          : " film de ta watchlist passe") + " près de chez toi.",
+      container.appendChild(section("lb-ici",
+        TF("🎬 À {ville}", { ville: city.nom }),
+        TF("{n} film{s} de ta watchlist {verbe} près de chez toi.",
+           { n: split.ici.length, s: PL(split.ici.length),
+             verbe: split.ici.length > 1 ? T("passent") : T("passe") }),
         split.ici, ag, cityKey));
     } else {
       // Rien dans sa ville : on ne le renvoie pas à une liste nationale, on lui
@@ -651,22 +693,24 @@
       // un « Rien à Paris » sec serait alors démenti par la section des favoris
       // juste en dessous. On précise donc de quelle liste on parle.
       hv.textContent = favIci.length
-        ? "Rien de ta watchlist à " + city.nom + " pour l'instant"
-        : "Rien à " + city.nom + " pour l'instant";
+        ? TF("Rien de ta watchlist à {ville} pour l'instant", { ville: city.nom })
+        : TF("Rien à {ville} pour l'instant", { ville: city.nom });
       vide.appendChild(hv);
       if (favIci.length) {
         var pf = document.createElement("p");
         pf.className = "lb-sec-sub";
-        pf.textContent = "En revanche, " + (favIci.length > 1
-          ? favIci.length + " de tes films préférés y repassent"
-          : "un de tes films préférés y repasse") + ", juste en dessous.";
+        pf.textContent = T("En revanche,") + " " + (favIci.length > 1
+          ? TF("{n} de tes films préférés y repassent", { n: favIci.length })
+          : T("un de tes films préférés y repasse")) + T(", juste en dessous.");
         vide.appendChild(pf);
       }
       if (proche) {
         var pv = document.createElement("p");
         pv.className = "lb-sec-sub";
-        pv.textContent = "La ville la plus proche où un film de ta watchlist repasse est "
-          + proche.nom + ", à environ " + Math.round(proche.km) + " km.";
+        pv.textContent = TF(
+          "La ville la plus proche où un film de ta watchlist repasse est {ville}, "
+          + "à environ {km} km.",
+          { ville: proche.nom, km: Math.round(proche.km) });
         vide.appendChild(pv);
         var procheHits = parVille(listHits, proche.key).ici;
         vide.appendChild(grid(procheHits, ag, proche.key));
@@ -677,8 +721,8 @@
       } else {
         var pn = document.createElement("p");
         pn.className = "lb-sec-sub";
-        pn.textContent = "Aucun film de ta watchlist ne repasse à proximité. "
-          + "Voici ce qui passe ailleurs en France.";
+        pn.textContent = T("Aucun film de ta watchlist ne repasse à proximité. "
+                         + "Voici ce qui passe ailleurs en France.");
         vide.appendChild(pn);
       }
       container.appendChild(vide);
@@ -689,10 +733,12 @@
     ajouteFavoris();
 
     if (split.ailleurs.length) {
-      container.appendChild(section("lb-ailleurs", "Ailleurs en France",
-        split.ailleurs.length + (split.ailleurs.length > 1
-          ? " autres films de ta watchlist repassent" : " autre film de ta watchlist repasse")
-          + " hors " + deVille(city.nom) + ".",
+      container.appendChild(section("lb-ailleurs", T("Ailleurs en France"),
+        TF("{n} autre{s} film{s2} de ta watchlist {verbe} hors {ville}.",
+           { n: split.ailleurs.length, s: PL(split.ailleurs.length),
+             s2: PL(split.ailleurs.length),
+             verbe: split.ailleurs.length > 1 ? T("repassent") : T("repasse"),
+             ville: deVille(city.nom) }),
         split.ailleurs, ag, ""));
     }
     return compte;
@@ -704,16 +750,19 @@
     var p = document.createElement("p");
     p.className = "lb-empty";
     if (data.private) {
-      p.innerHTML = "La watchlist de <b class=\"lb-who\"></b> est <strong>privée</strong>, on ne peut pas la lire. "
-        + "Rends-la publique dans les réglages Letterboxd, ou importe ton fichier ci-dessous.";
+      p.innerHTML = T("La watchlist de <b class=\"lb-who\"></b> est "
+                    + "<strong>privée</strong>, on ne peut pas la lire. Rends-la publique "
+                    + "dans les réglages Letterboxd, ou importe ton fichier ci-dessous.");
     } else {
       // Cas très fréquent en vrai : le visiteur a tapé le NOM AFFICHÉ et est
       // tombé sur un homonyme au compte vide. On le dit ici, pas seulement
       // au-dessus du champ, parce que c'est le moment où il se pose la question.
-      p.innerHTML = "La watchlist de <b class=\"lb-who\"></b> est vide pour l'instant. Ajoute des films à voir "
-        + "sur Letterboxd, puis resynchronise. Si tu t'attendais à y trouver des films, "
-        + "vérifie le pseudo : c'est celui de l'URL du profil "
-        + "(<code>letterboxd.com/<b class=\"lb-eg\">cinephile_92</b>/</code>), pas le nom affiché.";
+      p.innerHTML = T("La watchlist de <b class=\"lb-who\"></b> est vide pour "
+                    + "l'instant. Ajoute des films à voir sur Letterboxd, puis "
+                    + "resynchronise. Si tu t'attendais à y trouver des films, vérifie le "
+                    + "pseudo : c'est celui de l'URL du profil "
+                    + "(<code>letterboxd.com/<b class=\"lb-eg\">cinephile_92</b>/</code>), "
+                    + "pas le nom affiché.");
     }
     p.querySelector(".lb-who").textContent = data.user;
     return p;
@@ -735,25 +784,29 @@
     overlay.setAttribute("aria-labelledby", "lb-portal-h");
     overlay.innerHTML =
       '<div class="lb-portal-card">' +
-        '<button type="button" class="lb-close" aria-label="Fermer">×</button>' +
+        '<button type="button" class="lb-close" aria-label="' + T("Fermer") + '">×</button>' +
         '<h2 id="lb-portal-h">🎬 Letterboxd + Séancéo</h2>' +
-        '<p>Entre ton pseudo Letterboxd : on te montre lesquels de tes films à voir ' +
-          'repassent au cinéma, et on te recommande des reprises selon tes ' +
-          '<strong>réalisateurs préférés</strong>.</p>' +
+        "<p>" + T("Entre ton pseudo Letterboxd : on te montre lesquels de tes films à "
+          + "voir repassent au cinéma, et on te recommande des reprises selon tes "
+          + "<strong>réalisateurs préférés</strong>.") + "</p>" +
         '<form class="lb-field" id="lb-portal-form">' +
           '<input class="lb-input" id="lb-portal-user" type="text" autocomplete="off" ' +
-            'autocapitalize="none" spellcheck="false" placeholder="pseudo Letterboxd" ' +
-            'aria-label="Ton pseudo Letterboxd">' +
-          '<button class="bouton bouton-lb" type="submit">Synchroniser</button>' +
+            'autocapitalize="none" spellcheck="false" placeholder="'
+              + T("pseudo Letterboxd") + '" ' +
+            'aria-label="' + T("Ton pseudo Letterboxd") + '">' +
+          '<button class="bouton bouton-lb" type="submit">'
+            + T("Synchroniser") + "</button>" +
         '</form>' +
         USER_HINT +
         '<p class="lb-msg" id="lb-portal-msg" hidden></p>' +
         '<p class="lb-portal-alt">' +
-          '<button type="button" class="lb-secondary" id="lb-portal-skip">Continuer sans compte</button>' +
-          '<a href="' + maWatchlist + '">Watchlist privée ? Importer un fichier</a>' +
+          '<button type="button" class="lb-secondary" id="lb-portal-skip">'
+            + T("Continuer sans compte") + "</button>" +
+          '<a href="' + maWatchlist + '">'
+            + T("Watchlist privée ? Importer un fichier") + "</a>" +
         '</p>' +
-        '<p class="lb-portal-note">On lit seulement ta watchlist <strong>publique</strong>. ' +
-          'Rien n\'est stocké côté serveur.</p>' +
+        '<p class="lb-portal-note">' + T("On lit seulement ta watchlist "
+          + "<strong>publique</strong>. Rien n'est stocké côté serveur.") + "</p>" +
       '</div>';
 
     function close(markSeen) {
@@ -776,7 +829,7 @@
     form.addEventListener("submit", function (e) {
       e.preventDefault();
       var user = input.value.trim();
-      showMsg("Lecture de ta watchlist…", "");
+      showMsg(T("Lecture de ta watchlist…"), "");
       form.querySelector("button").disabled = true;
       sync(user)
         .then(function (data) {
@@ -819,27 +872,30 @@
       if (!n && !f) { success(data, listHits, favHits, null); return; } // rien à cadrer
       var pcard = overlay.querySelector(".lb-portal-card");
       pcard.innerHTML =
-        '<button type="button" class="lb-close" aria-label="Fermer">×</button>' +
+        '<button type="button" class="lb-close" aria-label="' + T("Fermer") + '">×</button>' +
         '<h2></h2>' +
         '<p class="lb-ok-count"></p>' +
-        '<p>Dans quelle <strong>ville</strong> cherches-tu ? On te montrera d\'abord ' +
-          'ce qui passe près de chez toi, plutôt que partout en France.</p>' +
+        "<p>" + T("Dans quelle <strong>ville</strong> cherches-tu ? On te montrera "
+          + "d'abord ce qui passe près de chez toi, plutôt que partout en France.")
+          + "</p>" +
         '<form class="lb-field" id="lb-city-form">' +
           // Placeholder posé par autoVille (il connaît le nombre de villes).
           '<input class="lb-input" id="lb-city-input" type="text" autocomplete="off" ' +
-            'spellcheck="false" aria-label="Ta ville">' +
-          '<button class="bouton bouton-lb" type="submit">Continuer</button>' +
+            'spellcheck="false" aria-label="' + T("Ta ville") + '">' +
+          '<button class="bouton bouton-lb" type="submit">' + T("Continuer") + "</button>" +
         '</form>' +
         '<p class="lb-msg" id="lb-city-msg" hidden></p>' +
         '<p class="lb-portal-alt">' +
-          '<button type="button" class="lb-secondary" id="lb-city-geo">📍 me localiser</button>' +
-          '<button type="button" class="lb-secondary" id="lb-city-skip">Voir toute la France</button>' +
+          '<button type="button" class="lb-secondary" id="lb-city-geo">'
+            + T("📍 me localiser") + "</button>" +
+          '<button type="button" class="lb-secondary" id="lb-city-skip">'
+            + T("Voir toute la France") + "</button>" +
         '</p>';
-      pcard.querySelector("h2").textContent = "✅ Salut " + data.user + " !";
+      pcard.querySelector("h2").textContent = TF("✅ Salut {pseudo} !", { pseudo: data.user });
       var parts = [];
-      if (n) parts.push(n + " film" + (n > 1 ? "s" : "") + " de ta watchlist "
-        + (n > 1 ? "sont" : "est") + " à l'affiche en France");
-      if (f) parts.push(f + " de tes films préférés à revoir");
+      if (n) parts.push(TF("{n} film{s} de ta watchlist {verbe} à l'affiche en France",
+                           { n: n, s: PL(n), verbe: n > 1 ? T("sont") : T("est") }));
+      if (f) parts.push(TF("{n} de tes films préférés à revoir", { n: f }));
       var s0 = parts.join(" · ");
       pcard.querySelector(".lb-ok-count").textContent =
         s0.charAt(0).toUpperCase() + s0.slice(1) + ".";
@@ -854,8 +910,9 @@
       function choisir(nom) {
         var v = villeParNom(nom);
         if (!v) {
-          cityMsg("On ne programme rien à « " + nom + " » pour l'instant. Essaie la "
-            + "grande ville la plus proche, ou passe cette étape.", "err");
+          cityMsg(TF("On ne programme rien à « {ville} » pour l'instant. Essaie la "
+                   + "grande ville la plus proche, ou passe cette étape.",
+                     { ville: nom }), "err");
           return;
         }
         setCity(v.nom);
@@ -874,19 +931,22 @@
         success(data, listHits, favHits, null);
       });
       geo.addEventListener("click", function () {
-        if (!navigator.geolocation) { cityMsg("Géolocalisation indisponible sur ce navigateur.", "err"); return; }
-        geo.textContent = "…localisation";
+        if (!navigator.geolocation) {
+          cityMsg(T("Géolocalisation indisponible sur ce navigateur."), "err"); return;
+        }
+        geo.textContent = T("…localisation");
         navigator.geolocation.getCurrentPosition(
           function (pos) {
             var v = villeLaPlusProche(pos.coords.latitude, pos.coords.longitude);
-            geo.textContent = "📍 me localiser";
-            if (!v) { cityMsg("Impossible de déterminer ta ville.", "err"); return; }
+            geo.textContent = T("📍 me localiser");
+            if (!v) { cityMsg(T("Impossible de déterminer ta ville."), "err"); return; }
             cin.value = v.nom;
-            cityMsg("Ville la plus proche : " + v.nom + " (à ~" + Math.round(v.km) + " km).", "");
+            cityMsg(TF("Ville la plus proche : {ville} (à ~{km} km).",
+                       { ville: v.nom, km: Math.round(v.km) }), "");
           },
           function () {
-            geo.textContent = "📍 me localiser";
-            cityMsg("Localisation refusée. Tape ta ville à la main.", "err");
+            geo.textContent = T("📍 me localiser");
+            cityMsg(T("Localisation refusée. Tape ta ville à la main."), "err");
           });
       });
       pcard.querySelector(".lb-close").addEventListener("click", function () { close(false); });
@@ -899,42 +959,49 @@
     function success(data, listHits, favHits, city) {
       var n = listHits.length, f = favHits.length;
       var pcard = overlay.querySelector(".lb-portal-card");
-      var label = (n || f) ? "Voir les séances →" : "Ouvrir ma watchlist →";
+      var label = (n || f) ? T("Voir les séances →") : T("Ouvrir ma watchlist →");
       pcard.innerHTML =
-        '<button type="button" class="lb-close" aria-label="Fermer">×</button>' +
+        '<button type="button" class="lb-close" aria-label="' + T("Fermer") + '">×</button>' +
         '<h2></h2>' +
         '<p class="lb-ok-count"></p>' +
         '<p class="lb-field"><a class="bouton bouton-lb" href="' + maWatchlist + '"></a></p>';
-      pcard.querySelector("h2").textContent = "✅ Salut " + data.user + " !";
+      pcard.querySelector("h2").textContent = TF("✅ Salut {pseudo} !", { pseudo: data.user });
       pcard.querySelector(".bouton-lb").textContent = label;
       var p = pcard.querySelector(".lb-ok-count");
 
       if (city && (n || f)) {
         var ici = parVille(listHits, city.key).ici.length;
         if (ici) {
-          p.textContent = ici + " film" + (ici > 1 ? "s" : "") + " de ta watchlist "
-            + (ici > 1 ? "passent" : "passe") + " à " + city.nom
-            + (n > ici ? " (et " + (n - ici) + " ailleurs en France)." : ".");
+          p.textContent = TF("{n} film{s} de ta watchlist {verbe} à {ville}",
+                             { n: ici, s: PL(ici),
+                               verbe: ici > 1 ? T("passent") : T("passe"),
+                               ville: city.nom })
+            + (n > ici ? " " + TF("(et {n} ailleurs en France).", { n: n - ici }) : ".");
         } else {
           var proche = villeProcheAvecFilm(listHits, city);
           p.textContent = proche
-            ? "Rien à " + city.nom + " pour l'instant. Le plus proche est à " + proche.nom
-              + ", à environ " + Math.round(proche.km) + " km."
-            : "Rien à " + city.nom + " pour l'instant, mais " + n + " film"
-              + (n > 1 ? "s sont" : " est") + " à l'affiche ailleurs en France.";
+            ? TF("Rien à {ville} pour l'instant. Le plus proche est à {proche}, "
+               + "à environ {km} km.",
+                 { ville: city.nom, proche: proche.nom, km: Math.round(proche.km) })
+            : TF("Rien à {ville} pour l'instant, mais {n} film{s} {verbe} à l'affiche "
+               + "ailleurs en France.",
+                 { ville: city.nom, n: n, s: PL(n),
+                   verbe: n > 1 ? T("sont") : T("est") });
         }
       } else {
         var parts = [];
-        if (n) parts.push(n + " film" + (n > 1 ? "s" : "") + " de ta watchlist "
-          + (n > 1 ? "sont" : "est") + " à l'affiche");
-        if (f) parts.push(f + " de tes films préférés à revoir");
+        if (n) parts.push(TF("{n} film{s} de ta watchlist {verbe} à l'affiche",
+                             { n: n, s: PL(n), verbe: n > 1 ? T("sont") : T("est") }));
+        if (f) parts.push(TF("{n} de tes films préférés à revoir", { n: f }));
         if (parts.length) {
           var s = parts.join(" · ");
           p.textContent = s.charAt(0).toUpperCase() + s.slice(1) + ".";
         } else if (data.private) {
-          p.textContent = "Ta watchlist est privée : on ne peut pas la lire. Rends-la publique, ou importe ton fichier.";
+          p.textContent = T("Ta watchlist est privée : on ne peut pas la lire. "
+                          + "Rends-la publique, ou importe ton fichier.");
         } else {
-          p.textContent = "Rien de ta liste n'est à l'affiche pour l'instant, mais on la garde.";
+          p.textContent = T("Rien de ta liste n'est à l'affiche pour l'instant, "
+                          + "mais on la garde.");
         }
       }
       pcard.querySelector(".lb-close").addEventListener("click", function () { close(false); });
@@ -946,9 +1013,14 @@
   }
 
   function errText(code) {
-    if (code === "invalid_username") return "Ce pseudo n'a pas l'air valide (lettres, chiffres, - et _).";
-    if (code === "not_found") return "Pseudo introuvable sur Letterboxd. Vérifie l'orthographe.";
-    return "Impossible de lire cette watchlist pour l'instant. Réessaie, ou importe ton fichier.";
+    if (code === "invalid_username") {
+      return T("Ce pseudo n'a pas l'air valide (lettres, chiffres, - et _).");
+    }
+    if (code === "not_found") {
+      return T("Pseudo introuvable sur Letterboxd. Vérifie l'orthographe.");
+    }
+    return T("Impossible de lire cette watchlist pour l'instant. Réessaie, ou importe "
+           + "ton fichier.");
   }
 
   // —— API publique + auto-run du portail ————————————————————————————————————

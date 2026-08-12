@@ -12,6 +12,14 @@ ne contient que des données publiques de films, il peut donc être versionné.
 Le cache est incrémental : on ne réinterroge TMDB que pour les films absents du
 cache. Rafraîchir en local :  TMDB_API_KEY=... python scripts/enrich_tmdb.py
 
+DEUXIÈME PASSE, ANGLAISE. Le site est bilingue : chaque fiche trouvée reçoit
+aussi son titre, son synopsis, ses genres et son pays en anglais (`title_en`,
+`overview_en`, `genres_en`, `country_en`). Ces champs ne sont écrits QUE s'ils
+diffèrent du français — un film anglophone a le même titre dans les deux
+langues, le stocker deux fois gonflerait le cache pour rien. Le drapeau `en`
+marque une fiche déjà passée en anglais, pour que la passe reste incrémentale
+même quand elle n'a rien eu à écrire.
+
 Usage :  TMDB_API_KEY=xxxx python scripts/enrich_tmdb.py [--limit N] [--refresh]
 """
 
@@ -149,6 +157,52 @@ def enrich_one(title: str, director: str = "") -> dict:
     }
 
 
+def enrich_english(entry: dict) -> None:
+    """Complète une fiche du cache avec sa version anglaise, SUR PLACE.
+
+    Une seule requête par film : on repart de l'identifiant TMDB déjà validé
+    par la passe française (réalisateur vérifié), donc pas de nouvelle
+    recherche — et surtout aucun risque de tomber sur un autre film.
+
+    Les champs identiques au français ne sont pas écrits : « Blue Velvet » se
+    dit « Blue Velvet », et `localize_movies()` (i18n.py) retombe de toute
+    façon sur le français quand le champ anglais manque. Le drapeau `en` note
+    que la passe a bien eu lieu, y compris quand elle n'a rien écrit.
+    """
+    entry["en"] = 1
+    det = get(f"movie/{entry['tmdb_id']}", language="en-US")
+    if not det:
+        # Réseau en vrac : on retire le drapeau pour retenter au prochain run
+        # plutôt que de figer une fiche sans anglais.
+        del entry["en"]
+        return
+    titre = (det.get("title") or "").strip()
+    if titre and titre != entry.get("title"):
+        entry["title_en"] = titre
+    resume = (det.get("overview") or "").strip()
+    if resume and resume != entry.get("overview"):
+        entry["overview_en"] = resume
+    genres = ", ".join(g["name"] for g in (det.get("genres") or [])[:2])
+    if genres and genres != entry.get("genres"):
+        entry["genres_en"] = genres
+    # TMDB rend `production_countries` en anglais quelle que soit la langue
+    # demandée : c'est exactement ce qu'il nous faut ici, sans table de
+    # correspondance (COUNTRY_FR fait le chemin inverse pour le français).
+    pcs = det.get("production_countries") or []
+    pays = (pcs[0].get("name") or "").strip() if pcs else ""
+    if pays and pays != entry.get("country"):
+        entry["country_en"] = pays
+    # AFFICHE localisée. TMDB en stocke une par langue quand le distributeur en
+    # a fourni une : le visiteur anglophone doit voir « The Handmaiden » sur la
+    # jaquette, pas « Mademoiselle ». Sans version anglaise, TMDB renvoie
+    # l'affiche par défaut et la comparaison ci-dessous l'écarte d'elle-même.
+    aff = det.get("poster_path")
+    if aff:
+        url = IMG + aff
+        if url != entry.get("poster"):
+            entry["poster_en"] = url
+
+
 def load_all_movies() -> dict[str, tuple[str, str]]:
     """Union des films de toutes les sources : {clé film → (titre, réalisateur)}."""
     films: dict[str, tuple[str, str]] = {}
@@ -171,6 +225,8 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--limit", type=int, default=0, help="n films max (test)")
     ap.add_argument("--refresh", action="store_true", help="réinterroger même si en cache")
+    ap.add_argument("--refresh-en", action="store_true",
+                    help="refaire la seule passe anglaise (garde la passe française)")
     args = ap.parse_args()
 
     cache = {}
@@ -190,11 +246,33 @@ def main() -> int:
         if i % 50 == 0 or i == len(todo):
             print(f"  [{i}/{len(todo)}]")
 
+    # Passe anglaise : uniquement les fiches trouvées (une fiche sans
+    # correspondance n'a pas d'identifiant à interroger) et pas encore passées.
+    # `--refresh-en` lève le drapeau `en` pour tout refaire sans toucher à la
+    # passe française, bien plus coûteuse (deux requêtes par film + credits).
+    if args.refresh_en:
+        for v in cache.values():
+            v.pop("en", None)
+    todo_en = [v for v in cache.values()
+               if v.get("found") and v.get("tmdb_id") and not v.get("en")]
+    if args.limit:
+        todo_en = todo_en[:args.limit]
+    if todo_en:
+        print(f"\nVersion anglaise : {len(todo_en)} fiches à compléter…")
+        for i, entry in enumerate(todo_en, 1):
+            enrich_english(entry)
+            if i % 50 == 0 or i == len(todo_en):
+                print(f"  [{i}/{len(todo_en)}]")
+
     DATA_DIR.mkdir(exist_ok=True)
     CACHE.write_text(json.dumps(cache, ensure_ascii=False, indent=1), encoding="utf-8")
     found = sum(1 for v in cache.values() if v.get("found"))
+    n_en = sum(1 for v in cache.values() if v.get("en"))
+    n_titre_en = sum(1 for v in cache.values() if v.get("title_en"))
     print(f"\nCache TMDB : {len(cache)} films ({found} trouvés, "
           f"{len(cache) - found} sans correspondance).")
+    print(f"Anglais : {n_en} fiches complétées, dont {n_titre_en} avec un titre "
+          f"anglais distinct du titre français.")
     return 0
 
 

@@ -44,20 +44,45 @@
 
   function byStart(a, b) { return a[0] < b[0] ? -1 : a[0] > b[0] ? 1 : 0; }
 
+  // Site bilingue : `EN` décide du format des dates et des heures. On lit la
+  // langue sur <html lang>, posée au build — surtout PAS les réglages de
+  // l'appareil via toLocaleDateString(), qui donnerait une date française sur
+  // la page anglaise d'un visiteur au téléphone réglé en français.
+  var EN = document.documentElement.lang === "en";
+
   function frDate(iso) {
-    var jours = ["dim.", "lun.", "mar.", "mer.", "jeu.", "ven.", "sam."];
-    var mois = ["janv.", "févr.", "mars", "avril", "mai", "juin", "juil.",
-                "août", "sept.", "oct.", "nov.", "déc."];
+    var jours = EN
+      ? ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+      : ["dim.", "lun.", "mar.", "mer.", "jeu.", "ven.", "sam."];
+    var mois = EN
+      ? ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+         "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+      : ["janv.", "févr.", "mars", "avril", "mai", "juin", "juil.",
+         "août", "sept.", "oct.", "nov.", "déc."];
     var d = new Date(iso + "T00:00:00");
     var auj = new Date(); auj.setHours(0, 0, 0, 0);
     var delta = Math.round((d - auj) / 86400000);
-    if (delta <= 0) return "aujourd'hui";
-    if (delta === 1) return "demain";
+    if (delta <= 0) return T("aujourd'hui");
+    if (delta === 1) return T("demain");
     return jours[d.getDay()] + " " + d.getDate() + " " + mois[d.getMonth()];
   }
+
+  // Heure d'une séance à partir d'un « …THH:MM ». Le format 24 h reste tel
+  // quel en français ; en anglais il devient « 8:30 pm », faute de quoi
+  // l'information la plus utile de la carte se lit de travers.
+  function hhmm(iso) {
+    var hh = iso.slice(11, 13), mm = iso.slice(14, 16);
+    if (!EN) return hh + ":" + mm;
+    var h = parseInt(hh, 10);
+    return (h % 12 || 12) + ":" + mm + (h < 12 ? " am" : " pm");
+  }
+  // Date longue (« 16 août » / « 16 August »), pour la phrase d'accroche.
   function frLong(iso) {
-    var mois = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet",
-                "août", "septembre", "octobre", "novembre", "décembre"];
+    var mois = EN
+      ? ["January", "February", "March", "April", "May", "June", "July",
+         "August", "September", "October", "November", "December"]
+      : ["janvier", "février", "mars", "avril", "mai", "juin", "juillet",
+         "août", "septembre", "octobre", "novembre", "décembre"];
     var d = new Date(iso + "T00:00:00");
     return d.getDate() + " " + mois[d.getMonth()];
   }
@@ -138,7 +163,8 @@
       var sur = document.createElement("span"); sur.className = "sur"; sur.textContent = "/5";
       note.appendChild(sur); meta.appendChild(note); meta.appendChild(document.createTextNode(" · "));
     }
-    meta.appendChild(document.createTextNode(frDate(s[0].slice(0, 10)) + " à " + s[0].slice(11, 16)));
+    meta.appendChild(document.createTextNode(
+      TF("{jour} à {heure}", { jour: frDate(s[0].slice(0, 10)), heure: hhmm(s[0]) })));
     info.appendChild(meta);
 
     var line = document.createElement("p");
@@ -149,14 +175,16 @@
     if (others > 0) {
       var more = document.createElement("span");
       more.className = "cine-more";
-      more.textContent = " · +" + others + " autre" + (others > 1 ? "s" : "") + " séance" + (others > 1 ? "s" : "");
+      more.textContent = " · " + TF("+{n} autre{s} séance{s2}",
+                                    { n: others, s: PL(others), s2: PL(others) });
       line.appendChild(more);
     }
     if (s[5] && /^https?:\/\//i.test(s[5])) {
       line.appendChild(document.createTextNode(" · "));
       var book = document.createElement("a");
       book.className = "seance-book"; book.href = s[5];
-      book.target = "_blank"; book.rel = "noopener noreferrer"; book.textContent = "Réserver ↗";
+      book.target = "_blank"; book.rel = "noopener noreferrer";
+      book.textContent = T("Réserver ↗");
       line.appendChild(book);
     }
     info.appendChild(line);
@@ -184,7 +212,7 @@
     if (!shown.length) {
       var none = document.createElement("p");
       none.className = "wl-summary";
-      none.textContent = "Aucune séance dans cette ville. Choisis une autre ville.";
+      none.textContent = T("Aucune séance dans cette ville. Choisis une autre ville.");
       result.appendChild(none);
       return;
     }
@@ -202,24 +230,27 @@
     box.className = "cine-insight";
     var big = document.createElement("p");
     big.className = "cine-big";
-    big.innerHTML = "Tu peux voir <b>" + current.films.length + "</b> film"
-      + (current.films.length > 1 ? "s" : "") + " de " + escapeText(current.name)
-      + " sur grand écran d'ici le <b>" + frLong(last) + "</b>, dans <b>" + nCities + "</b> ville"
-      + (nCities > 1 ? "s" : "") + "."
-      + (grp ? " " + grp.n + " sont groupables à " + escapeText(grp.city) + "." : "");
+    big.innerHTML = TF(
+      "Tu peux voir <b>{n}</b> film{s} de {realisateur} sur grand écran d'ici le "
+      + "<b>{date}</b>, dans <b>{villes}</b> ville{s2}.",
+      { n: current.films.length, s: PL(current.films.length),
+        realisateur: escapeText(current.name), date: frLong(last),
+        villes: nCities, s2: PL(nCities) })
+      + (grp ? " " + TF("{n} sont groupables à {ville}.",
+                        { n: grp.n, ville: escapeText(grp.city) }) : "");
     box.appendChild(big);
     result.appendChild(box);
 
     // ---- controls ----
     var ctr = document.createElement("div");
     ctr.className = "cine-controls";
-    ctr.appendChild(seg("Ordre", [
-      { v: "chrono", l: "Chronologique" }, { v: "note", l: "Par note" }
+    ctr.appendChild(seg(T("Ordre"), [
+      { v: "chrono", l: T("Chronologique") }, { v: "note", l: T("Par note") }
     ], order, function (v) { order = v; render(); }));
-    var cityOpts = [{ v: "", l: "Toute la France" }].concat(
+    var cityOpts = [{ v: "", l: T("Toute la France") }].concat(
       Object.keys(cities).sort(function (a, b) { return a.localeCompare(b, "fr"); })
         .map(function (c) { return { v: c, l: c }; }));
-    ctr.appendChild(seg("Où", cityOpts, city, function (v) { city = v; render(); }, true));
+    ctr.appendChild(seg(T("Où"), cityOpts, city, function (v) { city = v; render(); }, true));
     result.appendChild(ctr);
 
     // ---- timeline ----
@@ -234,13 +265,14 @@
     foot.className = "cine-export";
     var btn = document.createElement("button");
     btn.type = "button"; btn.className = "bouton";
-    btn.textContent = "＋ Ajouter ces " + shown.length + " séances à mon agenda";
+    btn.textContent = TF("＋ Ajouter ces {n} séances à mon agenda", { n: shown.length });
     btn.addEventListener("click", function () { downloadIcs(current.name, shown); });
     foot.appendChild(btn);
     var note = document.createElement("p");
     note.className = "meta";
-    note.textContent = "Un fichier .ics à ouvrir dans Google Agenda, Apple Calendrier ou Outlook. "
-      + "Chaque séance devient un événement daté, avec le cinéma et le lien de réservation.";
+    note.textContent = T("Un fichier .ics à ouvrir dans Google Agenda, Apple Calendrier "
+                       + "ou Outlook. Chaque séance devient un événement daté, avec le "
+                       + "cinéma et le lien de réservation.");
     foot.appendChild(note);
     result.appendChild(foot);
   }
@@ -287,14 +319,15 @@
     var lines = [
       "BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Seanceo//Cinematheque//FR",
       "CALSCALE:GREGORIAN", "METHOD:PUBLISH",
-      "X-WR-CALNAME:" + icsEsc("Cinémathèque " + name), "X-WR-TIMEZONE:Europe/Paris"
+      "X-WR-CALNAME:" + icsEsc(TF("Cinémathèque {realisateur}", { realisateur: name })),
+      "X-WR-TIMEZONE:Europe/Paris"
     ];
     shown.forEach(function (o, i) {
       var s = o.s; // [start, cinema, city, lat, lon, booking]
       var dtStart = s[0].replace(/[-:]/g, "").slice(0, 13) + "00"; // 2026-08-16T20:00 -> 20260816T200000
       var loc = s[2] ? s[1] + ", " + s[2] : s[1];
-      var desc = (s[5] ? "Réserver : " + s[5] + "\\n" : "")
-        + "Fiche : " + location.origin + o.film.u;
+      var desc = (s[5] ? T("Réserver :") + " " + s[5] + "\\n" : "")
+        + T("Fiche :") + " " + location.origin + o.film.u;
       lines.push("BEGIN:VEVENT",
         "UID:cine-" + i + "-" + dtStart + "@seanceo",
         "DTSTAMP:" + stampNow(),
@@ -331,19 +364,19 @@
       var key = LB.empreinte(query);
       var dir = _dirByKey[key];
       if (!dir) {
-        setStatus("Ce réalisateur n'a pas (ou plus) au moins deux films de répertoire à l'affiche. "
-          + "Choisis-en un dans la liste.", "err");
+        setStatus(T("Ce réalisateur n'a pas (ou plus) au moins deux films de répertoire "
+                  + "à l'affiche. Choisis-en un dans la liste."), "err");
         result.textContent = "";
         return;
       }
       order = "chrono"; city = "";
       current = { name: dir.name, key: dir.key, films: gather(dir.key) };
       if (input) input.value = dir.name;
-      setStatus("Rétrospective " + dir.name + " — " + current.films.length
-        + " films de répertoire à l'affiche.", "");
+      setStatus(TF("Rétrospective {realisateur} — {n} films de répertoire à l'affiche.",
+                   { realisateur: dir.name, n: current.films.length }), "");
       render();
     }).catch(function () {
-      setStatus("Chargement impossible. Réessaie.", "err");
+      setStatus(T("Chargement impossible. Réessaie."), "err");
     });
   }
 

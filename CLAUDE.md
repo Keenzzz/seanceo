@@ -60,6 +60,60 @@ et la mention TMDB (« ce produit utilise l'API TMDB mais n'est ni approuvé ni 
   ajouter `static/CNAME` contenant `seanceo.fr`, config DNS, puis re-valider la Search Console.
 - Fichier de validation Search Console dans `static/` — **ne jamais le supprimer** (perte de propriété).
 
+## Site bilingue (français / anglais)
+
+Le build tourne **deux fois**, une passe par langue (`i18n.LANGS`) : le français
+à la racine, l'anglais sous `/en/`. Chaque page anglaise a donc sa propre URL
+indexable, et les deux se déclarent l'une l'autre en `hreflang` (`alternates()`).
+
+- **La clé de traduction EST la phrase française** (`scripts/i18n.py`,
+  `assets/i18n.js`). Deux conséquences voulues : en français `t()` est
+  l'identité, donc **zéro risque de régression sur la version déjà indexée** ;
+  et une traduction oubliée affiche du français correct, jamais une clé brute.
+  Contrepartie : corriger une faute de frappe dans le texte français casse le
+  lien avec sa traduction. La fin de build liste les manques dans
+  `i18n-manquantes.txt` ; `python scripts/i18n.py` audite le dictionnaire.
+- **Les slugs restent français dans les deux langues** (`/en/film/mon-oncle/`) :
+  calculés une seule fois, avant la boucle, depuis les titres français. Deux
+  jeux de slugs auraient fait diverger les arbres à chaque changement de titre
+  TMDB. Corollaire précieux : la contrepartie d'une page est toujours son
+  chemin préfixé, donc le sélecteur de langue ne peut pas pointer dans le vide.
+- **Ce qui change de RÈGLE et pas seulement de mots** (tout est dans i18n.py) :
+  le « s » du pluriel (`plural()` — le français met 0 au singulier, l'anglais
+  au pluriel), le séparateur de milliers (`nombre()`), le format d'heure
+  (`heure()` : « 20h30 » vs « 8:30 pm »), le séparateur décimal (`decimal()`).
+  En français `{s}` et l'accord du verbe voyagent en variable (`{verbe}`) :
+  « est / sont », « passe / passent » n'ont qu'une forme en anglais.
+- **`localize_movies()`** promeut les champs `*_en` du cache TMDB (titre,
+  synopsis, genres, pays, **affiche**) au moment de la passe anglaise. Toute la
+  génération lit ensuite `m["title"]` sans savoir dans quelle langue elle est.
+  L'enrichissement anglais est une 2ᵉ passe de `enrich_tmdb.py` (une requête
+  `language=en-US` par film déjà matché, `--refresh-en` pour la refaire seule).
+- **Assets partagés vs par langue** : `SHARED_PATHS` liste ce qui n'est jamais
+  préfixé par `/en` (CSS, JS, icônes, `film-directors.json`,
+  `cinematheque-directors.json`). Les index qui portent des titres ou des URLs
+  (`recherche`, `watchlist-index`, `agenda-index`) et le **manifeste** existent
+  en deux exemplaires. **PIÈGE VÉCU** : `film-directors.json` est partagé mais
+  écrit dans la boucle — la passe anglaise l'écrasait avec les seules
+  empreintes anglaises (963 clés françaises perdues sur 2 084). Il est
+  désormais réservé à la passe française, qui voit les deux titres.
+- **Sélecteur de langue** (`lang_switch()`) : ses href sont marqués `RAW` pour
+  échapper au préfixage automatique de `_prefix_links()` — ce sont les seuls
+  liens du site qui visent volontairement l'autre arbre.
+- **Mémoire du choix** (`nav.js`) : elle ne va que **dans un sens**. Page
+  française + préférence « anglais » → redirection ; page anglaise + préférence
+  « français » → **rien**, car être sur `/en/` c'est déjà l'avoir demandé par
+  l'URL (typiquement un résultat Google). Cliquer « FR » **efface** la
+  préférence au lieu de stocker « fr ». Ce n'est PAS une redirection selon la
+  langue du navigateur : `localStorage` est vide au premier chargement et
+  **toujours** vide pour un robot, donc Googlebot ne voit jamais de redirection.
+- **404** : GitHub Pages ne sert que le `/404.html` de la racine, quelle que
+  soit l'adresse manquante — un `/en/404.html` ne serait jamais affiché. La 404
+  est donc en français, avec une ligne anglaise et un lien vers `/en/`.
+- **Notifications** : un service worker n'a accès ni au DOM ni à `window`. La
+  langue lui arrive dans l'URL d'enregistrement (`/sw.js?lang=en`), qu'il relit
+  dans `self.location`.
+
 ## Points de repère
 
 - Distinction indé / chaîne : champ `chain` sur chaque cinéma. `chain_badge()` dans `build_site.py`
