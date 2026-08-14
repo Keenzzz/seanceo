@@ -2311,7 +2311,16 @@ aria-label="{esc(t("URL de la liste Letterboxd"))}">
     # parcours chronologique, avec insight (films/villes, week-end groupable) et
     # export .ics généré côté client. La page servie est légère et indexable ;
     # le parcours se construit en JS après le choix.
-    cine_dl = "".join(f'<option value="{esc(d["name"])}">' for d in cine_dirs)
+    # Le menu déroulant du champ liste les réalisateurs par ORDRE ALPHABÉTIQUE :
+    # c'est une liste qu'on PARCOURT pour retrouver un nom, pas un classement.
+    # `cine_dirs` est trié par nombre de films (l'ordre des pastilles « les plus
+    # programmés » juste en dessous) ; le reprendre ici donnait un déroulé sans
+    # logique visible dès qu'on cliquait dans le champ. Clé de tri = _fold_title
+    # (accents et ponctuation neutralisés), sinon « Éric Rohmer » se rangeait
+    # après « Zhang Yimou ».
+    cine_dl = "".join(
+        f'<option value="{esc(d["name"])}">'
+        for d in sorted(cine_dirs, key=lambda d: _fold_title(d["name"])))
     cine_chips = "".join(
         f'<button type="button" class="cine-chip" data-dir="{esc(d["name"])}">'
         f'{esc(d["name"])} <span>{d["n"]}</span></button>'

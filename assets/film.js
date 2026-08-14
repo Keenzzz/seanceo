@@ -29,7 +29,13 @@ function showCity(id) {
   if (!input || !list || !mapEl) return;
 
   var byName = JSON.parse(mapEl.textContent);
-  var names = Object.keys(byName).sort();
+  // Ordre alphabétique FRANÇAIS : .sort() compare les codes de caractères, donc
+  // « Évreux » et « Épinal » se rangeaient après « Zurich ». localeCompare("fr")
+  // les remet à leur place, comme partout ailleurs sur le site (letterboxd.js,
+  // cinematheque.js, lb-listes.js).
+  var names = Object.keys(byName).sort(function (a, b) {
+    return a.localeCompare(b, "fr");
+  });
   var MIN_CHARS = 2;
   var MAX_ITEMS = 8;
   var active = -1; // index de la suggestion surlignée au clavier
