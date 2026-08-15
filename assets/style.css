@@ -1744,3 +1744,25 @@ a:focus-visible, summary:focus-visible, input:focus-visible {
 .seance[hidden] { display: none; }
 .jour[hidden] { display: none; }
 .chance-export .bouton[hidden] { display: none; }
+
+/* —— Abonnement au répertoire d'une ville (bas des pages ville) ————————————
+   Même forme que les autres encadrés d'action du site (.cine-export,
+   .chance-export) : c'est la même promesse, « emporter ce programme ». */
+.abo {
+  margin-top: 26px; padding: 18px; background: var(--panel);
+  border: 1px solid var(--rule); border-left: 3px solid var(--accent);
+  border-radius: var(--radius);
+}
+.abo-titre { margin: 0 0 6px; font-weight: 700; }
+.abo-liens {
+  display: flex; flex-wrap: wrap; align-items: center;
+  gap: 10px 26px; margin: 14px 0 0;
+}
+.abo-liens .bouton { cursor: pointer; }
+.abo-liens a:not(.bouton) { font-size: .88rem; }
+
+/* Index des réalisateurs : la même grille que les villes, avec le compte de
+   films sur sa propre ligne (un nom de cinéaste est plus long qu'un nom de
+   ville, les deux ne tiennent pas côte à côte sous 190px). */
+.realisateurs li a { padding-bottom: 2px; }
+.realisateurs .meta { display: block; margin: 0 0 8px; font-size: .8rem; }

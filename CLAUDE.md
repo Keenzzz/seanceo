@@ -175,6 +175,50 @@ indexable, et les deux se déclarent l'une l'autre en `hreflang` (`alternates()`
   se construit avec un **vrai saut de ligne** ; c'est `esc()` qui le convertit en `\n` iCalendar.
   L'écrire déjà échappé le fait échapper deux fois et les agendas affichent « \n » en toutes
   lettres (bug d'origine de l'export cinémathèque, corrigé le 2026-08-15).
+- **Fiches réalisateur** (`/realisateur/<nom>/` + index `/realisateurs/`) : PERMANENTES, contrairement
+  aux pages de rétrospective qui disparaissent avec leur cycle. Elles répondent à « films de X au
+  cinéma » et ferment un trou de maillage (les 966 fiches film citaient un réalisateur sans jamais
+  pouvoir y renvoyer — c'est `credit_realisateurs()` qui pose ce lien).
+  - **SEUIL, à ne pas relâcher** : 746 réalisateurs ont un film à l'affiche ; une page pour chacun
+    ferait des centaines de pages maigres qui recopient une fiche film. On garde ≥ 2 films à
+    l'affiche **ou** un film de répertoire joué au moins 2 fois → **134 pages**. Le cas exclu (un
+    film de répertoire à séance unique) est déjà couvert par `/derniere-chance/` et par la fiche film.
+  - **Fusion d'alias LOCALE** (`alias_reels`) : certaines caisses créditent « A Demuynck » là où
+    d'autres écrivent « Arnaud Demuynck ». On ne fusionne que le cas sûr — prénom réduit à une
+    initiale, même nom de famille, **un seul** candidat au prénom complet. Sur 4 cas mesurés, 2 ont
+    un jumeau, les 2 autres gardent leur graphie. ⚠️ Cette fusion ne touche PAS
+    `_canonical_directors()` : ses garde-fous protègent la déduplication des FILMS, on n'y touche pas
+    pour un problème d'affichage. Le nom affiché reste celui du générique, seul le lien pointe vers
+    la fiche canonique.
+  - L'intro ne répète pas le nom du cinéaste (il est en h1 juste au-dessus) : « de {nom} »
+    obligerait à gérer l'élision française (« de Abbas » au lieu de « d'Abbas ») pour rien.
+  - L'agenda de la fiche ne liste que les séances de RÉPERTOIRE, plafonnées : un film récent du même
+    cinéaste peut passer 200 fois dans la semaine.
+- **⚠️ Le badge « Séance unique » de `seance_row()` est CONDITIONNEL** (`uniques_keys`, dérivé de
+  `repertoire.unique_all()`). Il était posé sur toutes les lignes, ce qui était juste tant que la
+  fonction ne servait qu'à l'accueil et à « Dernière chance » — deux pages qui ne montrent QUE des
+  séances uniques. Sur une fiche réalisateur, un film joué à Strasbourg ET à Nancy s'annonçait
+  comme une séance unique. Toute nouvelle page qui réutilise `seance_row()` hérite du bon
+  comportement, ne pas le re-figer.
+- **Abonnement au répertoire par ville** : un `.ics` et un flux RSS par ville, à URL fixe
+  (`/ville/<slug>/repertoire.ics` et `.xml`), réécrits à chaque build. Un agenda abonné à une URL la
+  re-télécharge tout seul : le répertoire de sa ville arrive chaque semaine chez le visiteur **sans
+  serveur, sans compte et sans e-mail**. C'est la seule forme d'abonnement possible pour un site
+  statique. Encadré `.abo` en bas de chaque page ville (webcal / .ics / RSS) + `<link rel="alternate">`
+  pour la découverte automatique.
+  - ⚠️ **LES FLUX EXISTENT POUR LES 257 VILLES, MÊME VIDES.** Une ville sans reprise cette semaine
+    en aura une le mois prochain, et l'abonné doit la recevoir. Ne générer que les villes non vides
+    ferait disparaître l'URL à la première semaine creuse, et un agenda qui reçoit un 404 finit par
+    se désabonner. 1 028 fichiers, 1,2 Mo au total.
+  - **UID stable** (`salle-film-début@seanceo`) : sans lui, chaque build effacerait puis recréerait
+    tous les événements de l'abonné, qui perdrait ses rappels. Un item RSS **par film et non par
+    séance** (dix séances du même film ne font pas dix lignes), avec un `guid` qui inclut la date de
+    la première séance — le même film reprogrammé plus tard redevient une nouveauté.
+  - ⚠️ **`write_raw()` écrit des OCTETS, jamais `write_text()`.** Sous Windows, `write_text()`
+    traduit « \n » en « \r\n » : un contenu déjà en CRLF (ce qu'exige la RFC 5545) ressortait en
+    **CR CR LF**, illisible pour les agendas, et le build ne donnait pas le même résultat que sur le
+    CI Linux. Le repliage à 75 octets (`ics_fold`) s'applique à TOUTES les lignes au moment de
+    l'assemblage, pas champ par champ : un en-tête traduit y échappait.
 - **Pages de rétrospective** : `/retrospectives/` (index) et `/retrospectives/<réalisateur>/` (une par
   cycle), générées depuis `repertoire.cycles(..., limit=None)`. Le programme y est présenté
   **salle par salle** (un cycle est ancré dans une salle), avec horaires. Ces URLs sont

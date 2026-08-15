@@ -24,12 +24,13 @@ import re
 import shutil
 import sys
 from collections import Counter, defaultdict
-from datetime import date, datetime, timedelta
+from datetime import date, datetime, timedelta, timezone
+from email.utils import format_datetime  # dates RFC 822 des flux RSS
 from pathlib import Path
 from urllib.parse import quote
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from fetch_data import slugify  # même slugification partout
+from fetch_data import slugify, decalage_paris  # même slugification, même fuseau
 from sources import load_merged, _fold_title  # fusion indés + chaînes
 from marathon import build_ideas  # doubles programmes par ville
 import repertoire  # reprises, cycles, séances uniques, salles de patrimoine
@@ -405,6 +406,86 @@ def write(path: str, content: str) -> None:
     target = racine / path.strip("/") / "index.html" if path != "/" else racine / "index.html"
     target.parent.mkdir(parents=True, exist_ok=True)
     target.write_text(content, encoding="utf-8")
+
+
+def write_raw(path: str, content: str) -> None:
+    """Écrit un fichier NON HTML à une URL précise de la langue courante
+    (`/ville/tours/repertoire.ics`). `write()` ajouterait un `index.html`.
+
+    ⚠️ ÉCRITURE EN OCTETS, jamais `write_text()`. Sur Windows, celui-ci
+    traduit chaque « \\n » en « \\r\\n » : un contenu déjà en CRLF (ce qu'exige
+    la RFC 5545 pour un .ics) ressortait en **CR CR LF**, illisible pour les
+    agendas — et le build ne donnait pas le même résultat que sur le CI Linux.
+    Le contenu porte déjà les fins de ligne voulues, on le pose tel quel.
+    """
+    cible = lang_dir() / path.strip("/")
+    cible.parent.mkdir(parents=True, exist_ok=True)
+    cible.write_bytes(content.encode("utf-8"))
+
+
+# --- Abonnements par ville (.ics et RSS) ----------------------------------
+#
+# Un fichier .ics servi à une URL FIXE et réécrit à chaque build est un vrai
+# abonnement : Google Agenda, Apple Calendrier et Outlook re-téléchargent
+# périodiquement l'adresse à laquelle on les a abonnés. Le répertoire de sa
+# ville arrive donc tout seul dans l'agenda du visiteur, chaque semaine, sans
+# qu'il ait à revenir sur le site — et sans le moindre serveur, ce qui serait
+# impossible avec un système de comptes ou de notifications.
+#
+# ⚠️ LE FLUX EXISTE POUR TOUTES LES VILLES, MÊME VIDES. C'est tout l'intérêt :
+# une ville sans reprise cette semaine en aura une le mois prochain, et
+# l'abonné doit la recevoir. Ne générer que les villes non vides ferait
+# disparaître l'URL dès la première semaine creuse, et les agendas qui
+# reçoivent un 404 finissent par se désabonner d'eux-mêmes.
+
+def ics_escape(texte: str) -> str:
+    """Échappement iCalendar (RFC 5545) : la virgule et le point-virgule y
+    séparent des champs. Même règle que `esc()` dans assets/ics.js."""
+    return (str(texte).replace("\\", "\\\\").replace(";", "\\;")
+            .replace(",", "\\,").replace("\n", "\\n"))
+
+
+def ics_fold(ligne: str) -> str:
+    """Replie une ligne à 75 octets, comme l'exige la RFC : les lignes
+    suivantes commencent par une espace. Un titre long non replié fait rejeter
+    l'événement par certains clients."""
+    brut = ligne.encode("utf-8")
+    if len(brut) <= 75:
+        return ligne
+    morceaux, courant = [], b""
+    for ch in ligne:
+        octets = ch.encode("utf-8")
+        # 74 : on garde la place de l'espace de continuation.
+        if len(courant) + len(octets) > (75 if not morceaux else 74):
+            morceaux.append(courant.decode("utf-8"))
+            courant = b""
+        courant += octets
+    morceaux.append(courant.decode("utf-8"))
+    return "\r\n ".join(morceaux)
+
+
+def abonnement_bloc(slug: str, ville: str) -> str:
+    """Encadré d'abonnement en bas d'une page ville.
+
+    Trois portes pour un même contenu : `webcal://` (abonnement qui se met à
+    jour tout seul), le `.ics` en téléchargement (instantané figé, pour qui
+    préfère), et le flux RSS. Le lien webcal est écrit en ABSOLU et sans `/`
+    initial, donc `_prefix_links()` ne le touche pas ; les deux autres sont
+    des chemins internes normaux, préfixés automatiquement.
+    """
+    hote = BASE_URL.split("://", 1)[1]
+    webcal = f"webcal://{hote}{lang_prefix()}/ville/{slug}/repertoire.ics"
+    return f"""<div class="abo">
+<p class="abo-titre">{tf("📅 Recevoir le répertoire de {ville}", ville=esc(ville))}</p>
+<p class="meta">{tf("Les reprises et rétrospectives programmées à {ville} arrivent dans "
+                    "votre agenda, et s'y mettent à jour toutes seules chaque nuit. Pas "
+                    "de compte à créer, pas d'adresse e-mail à donner.", ville=esc(ville))}</p>
+<p class="abo-liens">
+<a class="bouton" href="{webcal}">{t("S'abonner dans mon agenda")}</a>
+<a href="/ville/{slug}/repertoire.ics">{t("Télécharger le .ics")}</a>
+<a href="/ville/{slug}/repertoire.xml">{t("Flux RSS")}</a>
+</p>
+</div>"""
 
 
 def write_data(name: str, payload) -> None:
@@ -1153,15 +1234,113 @@ def build_lang(today, today_iso, cinemas, movies, showtimes, cities,
         inventaire = tf("{inventaire} à {ville}.",
                         inventaire=f' {t("et")} '.join(parts), ville=esc(city["name"]))
         body = f"""<p class="lead">{inventaire}
-{t("Les séances d'aujourd'hui d'abord, puis celles des jours suivants.")}{classics_bit}</p>{bridge}{toc}{tools}{"".join(blocks)}"""
+{t("Les séances d'aujourd'hui d'abord, puis celles des jours suivants.")}{classics_bit}</p>{bridge}{toc}{tools}{"".join(blocks)}
+{abonnement_bloc(slug, city["name"])}"""
         write(path, page(
             tf("Cinéma à {ville} : séances et horaires — {site}",
                ville=city["name"], site=SITE_NAME),
             tf("Quel film voir à {ville} ? Séances et horaires des {n} cinéma(s) "
                "de la ville : programme du jour et de la semaine.",
                ville=city["name"], n=n_cine),
-            body, path, h1=tf("Cinémas à {ville}", ville=city["name"]), top_link=True))
+            body, path, h1=tf("Cinémas à {ville}", ville=city["name"]), top_link=True,
+            # Découverte standard d'un flux : c'est ce que lisent les lecteurs
+            # RSS et les extensions de navigateur pour proposer l'abonnement.
+            # href écrit SANS préfixe : _prefix_links() s'en charge, comme pour
+            # tous les href/src du site (l'écrire à la main donnait
+            # « /seanceo/seanceo/… »).
+            head_extra=f'<link rel="alternate" type="application/rss+xml" '
+                       f'title="{esc(tf("Répertoire à {ville}", ville=city["name"]))}" '
+                       f'href="/ville/{slug}/repertoire.xml">'))
         urls.append(path)
+
+    # ----- Réalisateurs : qui mérite une fiche -----
+    # Calculé ICI, avant les pages film, parce que celles-ci doivent pouvoir
+    # lier le nom du réalisateur vers sa fiche : c'est le seul maillage interne
+    # qui mène à ces pages depuis les 967 fiches film.
+    #
+    # `rep_shows` est aussi calculé ici (le bloc « Répertoire » plus bas le
+    # reprend) : le seuil d'éligibilité en dépend.
+    rep_window = repertoire.window(showtimes, today)
+    rep_shows = repertoire.repertoire_shows(rep_window, movies)
+    rep_keys = {s["movie"] for s in rep_shows}
+
+    # Un film peut créditer plusieurs réalisateurs (« Stanton, McKenna ») : on
+    # indexe NOM PAR NOM, comme le registre `unitaires` de sources.py. Les
+    # graphies sont déjà normalisées en amont (_canonical_directors), donc
+    # « LYNCH David » et « David Lynch » sont ici le même nom.
+    real_films: dict[str, set] = defaultdict(set)
+    for k, m_ in movies.items():
+        if not by_movie[k]:
+            continue  # film sans séance : rien à programmer, donc pas de fiche
+        for nom in (m_.get("director") or "").split(","):
+            nom = nom.strip()
+            if nom and _fold_title(nom) not in ("collectif", "divers"):
+                real_films[nom].add(k)
+
+    # Certaines caisses créditent « A Demuynck » là où d'autres écrivent
+    # « Arnaud Demuynck » : sans rien faire, la même personne obtient deux
+    # fiches. On ne fusionne que le cas SÛR — prénom réduit à une initiale,
+    # même nom de famille, et UN SEUL candidat au prénom complet commençant
+    # par cette initiale. Deux des quatre cas mesurés n'ont pas de jumeau
+    # (« B Botella ») : ils gardent leur graphie, c'est tout ce que la source
+    # donne. Le motif inverse (« Abrams J.J. ») reste volontairement non
+    # traité, voir la note de sources.py.
+    #
+    # Cette fusion est LOCALE à ces pages : elle ne touche pas
+    # `_canonical_directors()`, dont les garde-fous protègent la déduplication
+    # des films.
+    alias_reels: dict[str, str] = {}
+    noms_credites = set(real_films)
+    for nom in noms_credites:
+        mots = nom.split()
+        if len(mots) < 2 or len(mots[0].strip(".")) != 1:
+            continue
+        initiale, famille = _fold_title(mots[0])[:1], _fold_title(" ".join(mots[1:]))
+        candidats = [o for o in noms_credites
+                     if o != nom and len(o.split()[0]) > 1
+                     and _fold_title(" ".join(o.split()[1:])) == famille
+                     and _fold_title(o)[:1] == initiale]
+        if len(candidats) == 1:
+            alias_reels[nom] = candidats[0]
+    for alias, complet in alias_reels.items():
+        real_films[complet] |= real_films.pop(alias)
+
+    # SEUIL. 746 réalisateurs ont un film à l'affiche ; leur faire à tous une
+    # page produirait des centaines de pages maigres, qui se résumeraient à
+    # recopier une fiche film. On garde ceux qui ont de quoi remplir une page :
+    # soit au moins deux films à l'affiche (une mini-rétrospective), soit un
+    # film de RÉPERTOIRE joué au moins deux fois (le sujet du site, avec un
+    # vrai agenda). Le cas exclu — un film de répertoire à séance unique — est
+    # déjà couvert par /derniere-chance/ et par la fiche du film.
+    def _real_eligible(films: set) -> bool:
+        return len(films) >= 2 or any(len(by_movie[k]) >= 2 for k in films & rep_keys)
+
+    realisateurs = sorted((nom for nom, f in real_films.items() if _real_eligible(f)),
+                          key=lambda n: (_fold_title(n), n))
+    realisateur_urls: dict[str, str] = {}
+    _pris: set[str] = set()
+    for nom in realisateurs:
+        slug = slugify(nom)[:60].strip("-") or "realisateur"
+        if slug in _pris:  # homonymes après slugification
+            slug = f"{slug}-{len(_pris)}"
+        _pris.add(slug)
+        realisateur_urls[nom] = f"/realisateur/{slug}/"
+
+    def credit_realisateurs(noms: str) -> str:
+        """Le champ `director` en HTML, chaque nom connu devenant un lien vers
+        sa fiche. Renvoie du HTML DÉJÀ ÉCHAPPÉ (les noms viennent de sources
+        externes) : ne pas le repasser dans esc()."""
+        sortie = []
+        for nom in noms.split(","):
+            nom = nom.strip()
+            if not nom:
+                continue
+            # Le nom AFFICHÉ reste celui du générique ; seul le lien pointe
+            # vers la fiche canonique (voir alias_reels). Réécrire le crédit
+            # serait un mensonge sur ce que la source dit.
+            url = realisateur_urls.get(alias_reels.get(nom, nom))
+            sortie.append(f'<a href="{url}">{esc(nom)}</a>' if url else esc(nom))
+        return ", ".join(sortie)
 
     # ----- Pages film -----
     for key, movie in movies.items():
@@ -1223,12 +1402,16 @@ def build_lang(today, today_iso, cinemas, movies, showtimes, cities,
                            "Choisissez la vôtre pour voir les horaires.",
                            n=n_cine_total, s=plural(n_cine_total), v=len(city_slugs))
                       + '</p>')
+        # Crédits assemblés en HTML DÉJÀ ÉCHAPPÉ (et non en texte brut échappé
+        # à l'insertion) : le nom du réalisateur doit pouvoir devenir un lien
+        # vers sa fiche. Tout le reste passe par esc() ici même.
         credits = " · ".join(filter(None, [
-            movie.get("year") and str(movie["year"]),
-            movie["director"] and tf("De {realisateur}", realisateur=movie["director"]),
-            movie["cast"] and tf("Avec {acteurs}", acteurs=movie["cast"]),
-            movie["genre"],
-            movie["duration_min"] and tf("{n} min", n=movie["duration_min"])]))
+            esc(movie["year"]) if movie.get("year") else "",
+            (tf("De {realisateur}", realisateur=credit_realisateurs(movie["director"]))
+             if movie["director"] else ""),
+            esc(tf("Avec {acteurs}", acteurs=movie["cast"])) if movie["cast"] else "",
+            esc(movie["genre"]) if movie["genre"] else "",
+            esc(tf("{n} min", n=movie["duration_min"])) if movie["duration_min"] else ""]))
         poster = (f'<img class="poster" src="{esc(movie["poster"])}" alt="{esc(affiche_alt(movie))}">'
                   if movie["poster"] else "")
         # Ligne d'actions sous le synopsis : bande-annonce + fiche Letterboxd.
@@ -1272,7 +1455,7 @@ def build_lang(today, today_iso, cinemas, movies, showtimes, cities,
                            celebration=anniversaire_texte(age_anniv), annee=TODAY.year)
                       + '</p>' if age_anniv else "")
         body = f"""<div class="film-head">{poster}<div>
-<p class="lead">{classic_badge(movie)}{anniversaire_badge(movie)} {note_lb(movie)} {esc(credits)}</p>
+<p class="lead">{classic_badge(movie)}{anniversaire_badge(movie)} {note_lb(movie)} {credits}</p>
 <p>{esc(movie["storyline"])}</p>{anniv_note}{trailer}{alerte_bloc}</div></div>
 <h2>{tf("Où voir {titre} ?", titre=esc(movie["title"]))}</h2>
 {city_jump}
@@ -1616,9 +1799,16 @@ def build_lang(today, today_iso, cinemas, movies, showtimes, cities,
             encoding="utf-8")
 
     # ----- Répertoire : le moteur éditorial du site -----
-    rep_window = repertoire.window(showtimes, today)
-    rep_shows = repertoire.repertoire_shows(rep_window, movies)
+    # `rep_window` et `rep_shows` sont calculés plus haut (le seuil des fiches
+    # réalisateur en dépend) : une seule définition, pas deux.
     rep_uniques = repertoire.unique_screenings(rep_shows, movies)
+    # Films qui ne passent qu'UNE fois en France sur la fenêtre. Dérivé de
+    # unique_all() et pas d'un Counter local : une seule définition de la
+    # séance unique dans tout le projet. Sert au badge de `seance_row()`, qui
+    # apparaît sur trois pages aux contenus différents — sur une fiche
+    # réalisateur, un film joué à Strasbourg ET à Nancy ne doit pas s'annoncer
+    # comme une séance unique.
+    uniques_keys = {s["movie"] for s in repertoire.unique_all(rep_shows)}
     # Tous les cycles (pas seulement ceux de l'accueil) : chacun a sa page.
     rep_cycles = repertoire.cycles(rep_shows, movies, cinemas, _fold_title, limit=None)
     cycle_urls: dict[str, str] = {}
@@ -1750,7 +1940,8 @@ def build_lang(today, today_iso, cinemas, movies, showtimes, cities,
 <p class="meta lieu"><strong><a href="{cinema_urls[s["cinema"]]}">{esc(cin["name"])}</a></strong>,
 {esc(cin["city"])}{chain_badge(cin)}</p>
 </div>
-<div class="flags">{note}<span class="unique">{t("Séance unique")}</span></div>
+<div class="flags">{note}{f'<span class="unique">{t("Séance unique")}</span>'
+                        if s["movie"] in uniques_keys else ""}</div>
 </li>"""
 
     def agenda_par_jour(seances: list, data: bool = False) -> str:
@@ -2063,6 +2254,125 @@ aria-label="{esc(t("Chercher une ville"))}">
         chance_body, "/derniere-chance/", h1=t("Dernière chance"), top_link=True))
     urls.append("/derniere-chance/")
 
+    # ----- Abonnements par ville : un .ics et un RSS par ville -----
+    # Voir la note au-dessus de ics_escape() : ces fichiers sont générés pour
+    # TOUTES les villes, y compris celles qui n'ont rien cette semaine. Une URL
+    # d'abonnement qui disparaît est une URL à laquelle plus personne ne se
+    # réabonne.
+    rep_par_ville: dict[str, list] = defaultdict(list)
+    for s in rep_shows:
+        rep_par_ville[cinemas[s["cinema"]]["city_slug"]].append(s)
+
+    horodatage = datetime.now(timezone.utc)
+    stamp_ics = horodatage.strftime("%Y%m%dT%H%M%SZ")
+
+    def en_utc(local_iso: str) -> datetime:
+        """Une heure locale française sans fuseau → un instant UTC.
+        On applique la règle européenne de fetch_data (jamais zoneinfo : voir
+        la note de decalage_paris, la machine de dev n'a pas de base de
+        fuseaux et le CI si)."""
+        naif = datetime.fromisoformat(local_iso[:16])
+        approx = naif.replace(tzinfo=timezone.utc)
+        return (naif - decalage_paris(approx)).replace(tzinfo=timezone.utc)
+
+    caldesc = t("Les films de répertoire à l'affiche, mis à jour chaque nuit.")
+
+    def ics_ville(ville: str, seances: list) -> str:
+        lignes = [
+            "BEGIN:VCALENDAR", "VERSION:2.0",
+            "PRODID:-//Seanceo//Repertoire//FR", "CALSCALE:GREGORIAN",
+            "METHOD:PUBLISH",
+            f"X-WR-CALNAME:{ics_escape(tf('Répertoire à {ville}', ville=ville))}",
+            f"X-WR-CALDESC:{ics_escape(caldesc)}",
+            "X-WR-TIMEZONE:Europe/Paris",
+            # Les agendas qui respectent cette extension espacent leurs
+            # rafraîchissements : inutile de re-télécharger plus souvent que le
+            # build, qui tourne une fois par nuit.
+            "REFRESH-INTERVAL;VALUE=DURATION:PT12H", "X-PUBLISHED-TTL:PT12H",
+        ]
+        for s in sorted(seances, key=lambda x: x["start"]):
+            m, cin = movies[s["movie"]], cinemas[s["cinema"]]
+            debut = s["start"][:16].replace("-", "").replace(":", "") + "00"
+            fin_dt = datetime.fromisoformat(s["start"][:16]) + timedelta(
+                minutes=m.get("duration_min") or 120)
+            desc = []
+            if m.get("director"):
+                desc.append(tf("De {realisateur}", realisateur=m["director"]))
+            if s.get("booking"):
+                desc.append(t("Réserver :") + " " + s["booking"])
+            desc.append(t("Fiche :") + " " + BASE_URL + lang_prefix() + movie_urls[s["movie"]])
+            # UID STABLE : même séance = même identifiant d'un build à l'autre,
+            # sinon chaque nuit l'agenda de l'abonné effacerait puis recréerait
+            # tous ses événements (et perdrait ses rappels).
+            uid = f"{s['cinema']}-{s['movie']}-{debut}@seanceo"
+            lignes += [
+                "BEGIN:VEVENT",
+                f"UID:{uid}",
+                f"DTSTAMP:{stamp_ics}",
+                f"DTSTART:{debut}",
+                f"DTEND:{fin_dt.strftime('%Y%m%dT%H%M00')}",
+                f"SUMMARY:{ics_escape('🎬 ' + m['title'])}",
+                f"LOCATION:{ics_escape(cin['name'] + ', ' + cin['city'])}",
+                f"DESCRIPTION:{ics_escape(chr(10).join(desc))}",
+                f"URL:{s.get('booking') or BASE_URL + lang_prefix() + movie_urls[s['movie']]}",
+                "END:VEVENT",
+            ]
+        lignes.append("END:VCALENDAR")
+        # Le repliage à 75 octets s'applique à TOUTES les lignes, ici et pas au
+        # cas par cas : un en-tête traduit ou un nom de salle inhabituellement
+        # long échapperait sinon à la règle (constaté sur X-WR-CALDESC).
+        return "\r\n".join(ics_fold(l) for l in lignes) + "\r\n"
+
+    def rss_ville(slug: str, ville: str, seances: list) -> str:
+        page_url = f"{BASE_URL}{lang_prefix()}/ville/{slug}/"
+        # UN ITEM PAR FILM, pas par séance : un lecteur RSS n'a pas à recevoir
+        # dix lignes pour le même film qui passe dix fois. La date affichée est
+        # celle de sa PROCHAINE séance dans la ville.
+        par_film: dict[str, list] = defaultdict(list)
+        for s in seances:
+            par_film[s["movie"]].append(s)
+        items = []
+        for mk, ss in sorted(par_film.items(), key=lambda kv: min(x["start"] for x in kv[1])):
+            m = movies[mk]
+            ss = sorted(ss, key=lambda x: x["start"])
+            salles = sorted({cinemas[x["cinema"]]["name"] for x in ss})
+            corps = tf("{titre} ({annee}) repasse à {ville} : {n} séance(s), à partir du "
+                       "{date} à {heure}, {salles}.",
+                       titre=m["title"], annee=m.get("year") or "", ville=ville,
+                       n=len(ss), date=jour_mois(date.fromisoformat(ss[0]["start"][:10])),
+                       heure=heure(ss[0]["start"]), salles=", ".join(salles))
+            lien = f"{BASE_URL}{lang_prefix()}{movie_urls[mk]}"
+            # GUID = film + date de sa première séance : le même film reprogrammé
+            # plus tard redevient une nouveauté dans le lecteur, alors qu'un
+            # simple rafraîchissement du site ne republie rien.
+            items.append(f"""<item>
+<title>{esc(m["title"])}</title>
+<link>{esc(lien)}</link>
+<guid isPermaLink="false">{esc(lien)}#{ss[0]["start"][:10]}</guid>
+<pubDate>{format_datetime(en_utc(ss[0]["start"]))}</pubDate>
+<description>{esc(corps)}</description>
+</item>""")
+        return f"""<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+<title>{esc(tf("Répertoire à {ville} — {site}", ville=ville, site=SITE_NAME))}</title>
+<link>{esc(page_url)}</link>
+<atom:link href="{esc(page_url)}repertoire.xml" rel="self" type="application/rss+xml"/>
+<description>{esc(tf("Les films de répertoire à l'affiche à {ville} : reprises, copies "
+                     "restaurées et séances de ciné-club.", ville=ville))}</description>
+<language>{i18n.LANG}</language>
+<lastBuildDate>{format_datetime(horodatage)}</lastBuildDate>
+<ttl>720</ttl>
+{"".join(items)}
+</channel>
+</rss>
+"""
+
+    for slug, city in cities.items():
+        seances = rep_par_ville.get(slug, [])
+        write_raw(f"/ville/{slug}/repertoire.ics", ics_ville(city["name"], seances))
+        write_raw(f"/ville/{slug}/repertoire.xml", rss_ville(slug, city["name"], seances))
+
     # ----- Page Salles de patrimoine -----
     salles_full = "".join(f"""<li class="salle">
 <span class="rang">{i}</span>
@@ -2244,6 +2554,171 @@ aria-label="{esc(t("Chercher une ville"))}">
                n=len(rep_cycles), films=n_cyc_films),
             index_body, "/retrospectives/", h1=t("Rétrospectives en cours"), top_link=True))
         urls.append("/retrospectives/")
+
+    # ----- Fiches réalisateur (une par cinéaste éligible) -----
+    # Une page de rétrospective (/retrospectives/<nom>/) est VOLATILE : elle
+    # n'existe que tant qu'une salle enchaîne deux films du cinéaste. Ces
+    # fiches-ci, elles, tiennent tant que le réalisateur a quelque chose à
+    # l'affiche, et répondent à la requête permanente « films de X au cinéma ».
+    # Elles ferment aussi un trou de maillage : les 967 fiches film citaient un
+    # réalisateur sans jamais pouvoir renvoyer vers lui.
+    real_cycles = {c["key"]: c for c in rep_cycles}
+    rep_by_movie: dict[str, list] = defaultdict(list)
+    for s in rep_shows:
+        rep_by_movie[s["movie"]].append(s)
+
+    REAL_AGENDA = 12  # séances de répertoire listées avant de renvoyer aux fiches
+
+    for nom in realisateurs:
+        path = realisateur_urls[nom]
+        films = real_films[nom]
+        # Répertoire d'abord, puis les mieux notés : la page ouvre sur ce que
+        # le site est venu montrer.
+        classes = sorted(films, key=lambda k: (k not in rep_keys,
+                                               -(movies[k].get("lb_rating") or 0),
+                                               sort_title(movies[k]["title"])))
+        n_rep = len(films & rep_keys)
+        salles = {s["cinema"] for k in films for s in by_movie[k]}
+        villes = {cinemas[s["cinema"]]["city"] for k in films for s in by_movie[k]}
+        n_seances = sum(len(by_movie[k]) for k in films)
+
+        cartes = "".join(
+            movie_card(movies[k], movie_urls,
+                       f'<p class="meta">'
+                       + tf("{n} cinéma{s}", n=MOVIE_VENUES[k], s=plural(MOVIE_VENUES[k]))
+                       + '</p>')
+            for k in classes)
+
+        # Agenda des séances de RÉPERTOIRE uniquement : un film récent du même
+        # cinéaste peut passer 200 fois dans la semaine, et une liste de 200
+        # lignes n'aide personne. Les fiches film portent le détail complet.
+        agenda_seances = sorted((s for k in films & rep_keys for s in rep_by_movie[k]),
+                                key=lambda s: s["start"])
+        agenda_bloc = ""
+        if agenda_seances:
+            reste = len(agenda_seances) - REAL_AGENDA
+            suite = (f'<p class="meta">'
+                     + tf("Et {n} autre{s} séance{s2} de répertoire : "
+                          "elles sont sur les fiches des films ci-dessus.",
+                          n=reste, s=plural(reste), s2=plural(reste))
+                     + '</p>') if reste > 0 else ""
+            agenda_bloc = (f'<h2>{t("Prochaines séances de répertoire")}</h2>'
+                           + agenda_par_jour(agenda_seances[:REAL_AGENDA]) + suite)
+
+        # Cycle en cours pour ce cinéaste : la page de rétrospective en dit
+        # plus (le programme salle par salle), on y renvoie explicitement.
+        cle_cycle = _fold_title(nom)
+        cycle_bloc = ""
+        if cle_cycle in real_cycles:
+            c = real_cycles[cle_cycle]
+            cycle_bloc = f"""<div class="passerelle cine-cta">
+<p><span class="titre">{t("🎞️ Une rétrospective est en cours")}</span>
+<span class="meta">{tf("{n} de ses films sont programmés ensemble, dans {v}. Le programme "
+                       "est détaillé salle par salle.",
+                       n=len(c["movies"]),
+                       v=(tf("{n} villes", n=len(c["cities"])) if len(c["cities"]) > 1
+                          else esc(c["cities"][0])))}</span></p>
+<a class="bouton" href="{cycle_urls[c["key"]]}">{t("Voir le cycle →")}</a>
+</div>"""
+
+        # La cinémathèque exige DEUX films de répertoire (c'est sa définition) :
+        # ne proposer le bouton que dans ce cas, sinon il mène à un message
+        # d'erreur.
+        cine_bloc = ""
+        if n_rep >= 2:
+            cine_bloc = f"""<div class="passerelle">
+<p><span class="titre">{tf("🏛️ Compose ta rétrospective {realisateur}", realisateur=esc(nom))}</span>
+<span class="meta">{t("Toutes ses séances de répertoire du pays réunies en un parcours "
+                      "chronologique, à mettre dans ton agenda.")}</span></p>
+<a class="bouton" href="/cinematheque/?d={quote(nom)}">{t("Composer ma cinémathèque →")}</a>
+</div>"""
+
+        # La phrase ne reprend PAS le nom du réalisateur : il est en h1 juste
+        # au-dessus, et « de {nom} » obligerait à gérer l'élision française
+        # (« de Abbas » au lieu de « d'Abbas ») pour rien.
+        intro = tf("<strong>{n} film{s}</strong> à l'affiche en France cette semaine, en "
+                   "{seances} séances, dans {salles} salle{s2} de {villes} ville{s3}.",
+                   n=len(films), s=plural(len(films)),
+                   seances=nombre(n_seances), salles=len(salles), s2=plural(len(salles)),
+                   villes=len(villes), s3=plural(len(villes)))
+        # Quatre variantes plutôt qu'un verbe en variable : le sujet ET le
+        # verbe changent ensemble, et un `{verbe}` isolé produisait « Tous est
+        # des reprises ». Le répertoire n'est mentionné que s'il y en a, sinon
+        # on annoncerait « dont 0 reprise ».
+        if n_rep and n_rep == len(films):
+            intro += " " + (t("C'est une reprise : un film ressorti en salle, en copie "
+                              "restaurée ou en séance de ciné-club.") if n_rep == 1 else
+                            t("Tous sont des reprises : des films ressortis en salle, en "
+                              "copies restaurées ou en séances de ciné-club."))
+        elif n_rep:
+            intro += " " + (t("L'un d'eux est une reprise : un film ressorti en salle, en "
+                              "copie restaurée ou en séance de ciné-club.") if n_rep == 1
+                            else tf("{n} d'entre eux sont des reprises : des films "
+                                    "ressortis en salle, en copies restaurées ou en "
+                                    "séances de ciné-club.", n=n_rep))
+
+        jsonld = {
+            "@context": "https://schema.org",
+            "@type": "CollectionPage",
+            "name": tf("Films de {realisateur} à l'affiche", realisateur=nom),
+            "url": f"{BASE_URL}{lang_prefix()}{path}",
+            "about": {"@type": "Person", "name": nom},
+            "mainEntity": {
+                "@type": "ItemList",
+                "numberOfItems": len(classes),
+                "itemListElement": [
+                    {"@type": "ListItem", "position": i,
+                     "url": f"{BASE_URL}{lang_prefix()}{movie_urls[k]}",
+                     "name": movies[k]["title"]}
+                    for i, k in enumerate(classes, 1)],
+            },
+        }
+        real_body = f"""<p class="lead">{intro}</p>
+{cycle_bloc}
+<h2>{t("Ses films à l'affiche")}</h2>
+<div class="grid">{cartes}</div>
+{agenda_bloc}
+{cine_bloc}
+<p class="meta"><a class="more" href="/realisateurs/">{t("Tous les réalisateurs à l'affiche →")}</a></p>"""
+        write(path, page(
+            tf("{realisateur} : ses films à l'affiche en France — {site}",
+               realisateur=nom, site=SITE_NAME),
+            tf("Où voir les films de {realisateur} au cinéma ? {n} film(s) à l'affiche "
+               "cette semaine dans {salles} salle(s) en France, avec les horaires et la "
+               "réservation.", realisateur=nom, n=len(films), salles=len(salles)),
+            real_body, path, jsonld, h1=nom, top_link=True))
+        urls.append(path)
+
+    # ----- Index des réalisateurs -----
+    # Sans lui, les fiches ci-dessus seraient orphelines : elles ne seraient
+    # atteignables que depuis les fiches film qui citent le cinéaste.
+    if realisateurs:
+        # Ordre alphabétique, et rien d'autre : c'est un répertoire de noms
+        # qu'on parcourt, pas un classement.
+        real_items = "".join(
+            f'<li><a href="{realisateur_urls[nom]}">{esc(nom)}</a> '
+            f'<span class="meta">'
+            + tf("{n} film{s}", n=len(real_films[nom]), s=plural(len(real_films[nom])))
+            + (" · " + tf("{n} de répertoire", n=len(real_films[nom] & rep_keys))
+               if (real_films[nom] & rep_keys) else "")
+            + '</span></li>'
+            for nom in realisateurs)
+        n_real_rep = sum(1 for nom in realisateurs if real_films[nom] & rep_keys)
+        real_index_body = f"""<p class="lead">{tf(
+            "Les <strong>{n} cinéastes</strong> dont au moins un film passe en salle cette "
+            "semaine et qui ont de quoi remplir une page : deux films à l'affiche, ou une "
+            "reprise jouée plusieurs fois. {r} d'entre eux ont au moins un film de "
+            "répertoire à l'affiche.", n=len(realisateurs), r=n_real_rep)}</p>
+<ul class="cities realisateurs">{real_items}</ul>
+<p class="meta"><a class="more" href="/cinematheque/">{t("Composer une rétrospective →")}</a></p>"""
+        write("/realisateurs/", page(
+            tf("Les réalisateurs à l'affiche en France — {site}", site=SITE_NAME),
+            tf("Quels cinéastes sont à l'affiche cette semaine ? {n} réalisateurs dont les "
+               "films passent en salle en France, avec leurs séances et leurs reprises.",
+               n=len(realisateurs)),
+            real_index_body, "/realisateurs/", h1=t("Les réalisateurs à l'affiche"),
+            top_link=True))
+        urls.append("/realisateurs/")
 
     # ----- Idées de marathon -----
     # Deux films du même genre enchaînables dans deux salles voisines, dans les

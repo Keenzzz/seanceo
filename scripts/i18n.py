@@ -407,6 +407,79 @@ EN: dict[str, str] = {
     "Aucune séance unique repérée cette semaine.":
         "No one-off screenings spotted this week.",
 
+    # --- Fiches réalisateur (/realisateur/<nom>/ et /realisateurs/) ---
+    "{realisateur} : ses films à l'affiche en France — {site}":
+        "{realisateur}: their films showing in France — {site}",
+    "Où voir les films de {realisateur} au cinéma ? {n} film(s) à l'affiche cette semaine dans {salles} salle(s) en France, avec les horaires et la réservation.":
+        "Where to watch {realisateur}'s films? {n} film(s) showing this week in "
+        "{salles} venue(s) across France, with showtimes and booking.",
+    "Films de {realisateur} à l'affiche": "{realisateur} films showing",
+    "<strong>{n} film{s}</strong> à l'affiche en France cette semaine, en {seances} séances, dans {salles} salle{s2} de {villes} ville{s3}.":
+        # « cities » sans marque de pluriel variable : c'est la convention du
+        # reste du dictionnaire (voir « across {v} cities »), l'anglais n'ayant
+        # pas de pluriel régulier pour « city ».
+        "<strong>{n} film{s}</strong> showing in France this week, across {seances} "
+        "screenings, in {salles} venue{s2} across {villes} cities.",
+    "C'est une reprise : un film ressorti en salle, en copie restaurée ou en séance de ciné-club.":
+        "It is a revival: a film back in cinemas, as a restored print or a film club "
+        "screening.",
+    "Tous sont des reprises : des films ressortis en salle, en copies restaurées ou en séances de ciné-club.":
+        "All of them are revivals: films back in cinemas, as restored prints or film "
+        "club screenings.",
+    "L'un d'eux est une reprise : un film ressorti en salle, en copie restaurée ou en séance de ciné-club.":
+        "One of them is a revival: a film back in cinemas, as a restored print or a "
+        "film club screening.",
+    "{n} d'entre eux sont des reprises : des films ressortis en salle, en copies restaurées ou en séances de ciné-club.":
+        "{n} of them are revivals: films back in cinemas, as restored prints or film "
+        "club screenings.",
+    "Ses films à l'affiche": "Their films showing",
+    "Prochaines séances de répertoire": "Next repertory screenings",
+    "Et {n} autre{s} séance{s2} de répertoire : elles sont sur les fiches des films ci-dessus.":
+        "And {n} more repertory screening{s2}: they are on the film pages above.",
+    "🎞️ Une rétrospective est en cours": "🎞️ A season is running",
+    "{n} de ses films sont programmés ensemble, dans {v}. Le programme est détaillé salle par salle.":
+        "{n} of their films are programmed together, in {v}. The schedule is listed "
+        "venue by venue.",
+    "🏛️ Compose ta rétrospective {realisateur}": "🏛️ Build your {realisateur} season",
+    "Toutes ses séances de répertoire du pays réunies en un parcours chronologique, à mettre dans ton agenda.":
+        "Every one of their repertory screenings in the country, gathered into one "
+        "chronological run to drop into your calendar.",
+    "Tous les réalisateurs à l'affiche →": "Every director showing →",
+    "Les réalisateurs à l'affiche": "Directors showing",
+    "Les réalisateurs à l'affiche en France — {site}":
+        "Directors showing in France — {site}",
+    "Quels cinéastes sont à l'affiche cette semaine ? {n} réalisateurs dont les films passent en salle en France, avec leurs séances et leurs reprises.":
+        "Which filmmakers are showing this week? {n} directors whose films are in "
+        "cinemas across France, with their screenings and revivals.",
+    "Les <strong>{n} cinéastes</strong> dont au moins un film passe en salle cette semaine et qui ont de quoi remplir une page : deux films à l'affiche, ou une reprise jouée plusieurs fois. {r} d'entre eux ont au moins un film de répertoire à l'affiche.":
+        "The <strong>{n} filmmakers</strong> with at least one film in cinemas this "
+        "week and enough to fill a page: two films showing, or one revival played "
+        "more than once. {r} of them have at least one repertory film showing.",
+    "{n} film{s}": "{n} film{s}",
+    "{n} de répertoire": "{n} repertory",
+    "Composer une rétrospective →": "Build a season →",
+
+    # --- Abonnements par ville (.ics et RSS) ---
+    "📅 Recevoir le répertoire de {ville}": "📅 Get {ville}'s repertory listings",
+    "Les reprises et rétrospectives programmées à {ville} arrivent dans votre agenda, et s'y mettent à jour toutes seules chaque nuit. Pas de compte à créer, pas d'adresse e-mail à donner.":
+        "Revivals and seasons programmed in {ville} land in your calendar, and update "
+        "themselves there every night. No account to create, no email address to give.",
+    "S'abonner dans mon agenda": "Subscribe in my calendar",
+    "Télécharger le .ics": "Download the .ics",
+    "Flux RSS": "RSS feed",
+    "Répertoire à {ville}": "Repertory in {ville}",
+    "Répertoire à {ville} — {site}": "Repertory in {ville} — {site}",
+    "Les films de répertoire à l'affiche, mis à jour chaque nuit.":
+        "Repertory films showing, updated every night.",
+    "Les films de répertoire à l'affiche à {ville} : reprises, copies restaurées et séances de ciné-club.":
+        "Repertory films showing in {ville}: revivals, restored prints and film club "
+        "screenings.",
+    "{titre} ({annee}) repasse à {ville} : {n} séance(s), à partir du {date} à {heure}, {salles}.":
+        "{titre} ({annee}) is back in {ville}: {n} screening(s), from {date} at "
+        "{heure}, {salles}.",
+    "Réserver :": "Book:",
+    "Fiche :": "Details:",
+
     # --- Dernière chance (page /derniere-chance/) ---
     "Dernière chance": "Last chance",
     "⏳ Dernière chance": "⏳ Last chance",
