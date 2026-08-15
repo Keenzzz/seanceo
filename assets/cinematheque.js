@@ -297,56 +297,24 @@
     return wrap;
   }
 
-  // ---- .ics généré côté client ----
-  function pad(n) { return n < 10 ? "0" + n : "" + n; }
-  function icsEsc(s) {
-    return String(s).replace(/\\/g, "\\\\").replace(/;/g, "\\;")
-      .replace(/,/g, "\\,").replace(/\r?\n/g, "\\n");
-  }
-  function stampNow() {
-    var d = new Date();
-    return d.getUTCFullYear() + pad(d.getUTCMonth() + 1) + pad(d.getUTCDate()) + "T"
-      + pad(d.getUTCHours()) + pad(d.getUTCMinutes()) + pad(d.getUTCSeconds()) + "Z";
-  }
-  function plus2h(start) {
-    var d = start.slice(0, 10).split("-").map(Number);
-    var t = start.slice(11, 16).split(":").map(Number);
-    var dt = new Date(Date.UTC(d[0], d[1] - 1, d[2], t[0] + 2, t[1])); // arithmétique UTC = reste flottant
-    return dt.getUTCFullYear() + pad(dt.getUTCMonth() + 1) + pad(dt.getUTCDate()) + "T"
-      + pad(dt.getUTCHours()) + pad(dt.getUTCMinutes()) + "00";
-  }
+  // ---- .ics généré côté client (module partagé avec « Dernière chance ») ----
+  // Le générateur vit dans assets/ics.js : les deux pages qui proposent
+  // « ajouter à mon agenda » doivent produire exactement le même fichier.
+  // Ici on ne fait que traduire nos séances dans sa forme d'événement.
   function downloadIcs(name, shown) {
-    var lines = [
-      "BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Seanceo//Cinematheque//FR",
-      "CALSCALE:GREGORIAN", "METHOD:PUBLISH",
-      "X-WR-CALNAME:" + icsEsc(TF("Cinémathèque {realisateur}", { realisateur: name })),
-      "X-WR-TIMEZONE:Europe/Paris"
-    ];
-    shown.forEach(function (o, i) {
-      var s = o.s; // [start, cinema, city, lat, lon, booking]
-      var dtStart = s[0].replace(/[-:]/g, "").slice(0, 13) + "00"; // 2026-08-16T20:00 -> 20260816T200000
-      var loc = s[2] ? s[1] + ", " + s[2] : s[1];
-      var desc = (s[5] ? T("Réserver :") + " " + s[5] + "\\n" : "")
-        + T("Fiche :") + " " + location.origin + o.film.u;
-      lines.push("BEGIN:VEVENT",
-        "UID:cine-" + i + "-" + dtStart + "@seanceo",
-        "DTSTAMP:" + stampNow(),
-        "DTSTART:" + dtStart,
-        "DTEND:" + plus2h(s[0]),
-        "SUMMARY:" + icsEsc("🎬 " + o.film.t),
-        "LOCATION:" + icsEsc(loc),
-        "DESCRIPTION:" + icsEsc(desc),
-        "URL:" + (s[5] || (location.origin + o.film.u)),
-        "END:VEVENT");
-    });
-    lines.push("END:VCALENDAR", "");
-    var blob = new Blob([lines.join("\r\n")], { type: "text/calendar;charset=utf-8" });
-    var url = URL.createObjectURL(blob);
-    var a = document.createElement("a");
-    a.href = url;
-    a.download = "cinematheque-" + LB.empreinte(name) + ".ics";
-    document.body.appendChild(a); a.click(); document.body.removeChild(a);
-    setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+    ICS.telecharger(
+      TF("Cinémathèque {realisateur}", { realisateur: name }),
+      "cinematheque-" + LB.empreinte(name),
+      shown.map(function (o) {
+        var s = o.s; // [start, cinema, city, lat, lon, booking]
+        return {
+          titre: o.film.t,
+          start: s[0],
+          lieu: s[2] ? s[1] + ", " + s[2] : s[1],
+          url: location.origin + o.film.u,
+          booking: s[5] || ""
+        };
+      }));
   }
 
   function escapeText(s) {

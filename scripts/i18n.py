@@ -406,6 +406,28 @@ EN: dict[str, str] = {
         "The screenings below are the best rated of the week.",
     "Aucune séance unique repérée cette semaine.":
         "No one-off screenings spotted this week.",
+
+    # --- Dernière chance (page /derniere-chance/) ---
+    "Dernière chance": "Last chance",
+    "⏳ Dernière chance": "⏳ Last chance",
+    "Dernière chance : les séances uniques de la semaine — {site}":
+        "Last chance: this week's one-off screenings — {site}",
+    "{n} films de répertoire ne passent qu'une seule fois en France cette semaine. Toutes les séances sans deuxième date, ville par ville, avec la réservation.":
+        "{n} repertory films play only once in France this week. Every screening "
+        "with no second date, city by city, with booking links.",
+    "Ces <strong>{n} films de répertoire</strong> ne passent qu'une seule fois en France cette semaine, dans {v} villes. Pas de deuxième date, pas de reprise le lendemain dans la salle d'à côté. Ils sont classés du jour le plus proche au plus lointain.":
+        "These <strong>{n} repertory films</strong> play only once in France this "
+        "week, across {v} cities. No second date, no encore the next day at the "
+        "cinema down the road. They are listed from the nearest day to the furthest.",
+    "Ville": "City",
+    "{n} séances en France": "{n} screenings in France",
+    "＋ Ajouter ces séances à mon agenda": "＋ Add these screenings to my calendar",
+    "Un fichier .ics à ouvrir dans Google Agenda, Apple Calendrier ou Outlook. Le filtre de ville s'applique : choisissez votre ville avant d'exporter et vous n'emportez que ce qui vous concerne.":
+        "An .ics file to open in Google Calendar, Apple Calendar or Outlook. The "
+        "city filter applies: pick your city before exporting and you only take "
+        "away what concerns you.",
+    "Les {n} séances sans deuxième date, ville par ville →":
+        "All {n} screenings with no second date, city by city →",
     "🎂 Les anniversaires de {annee}": "🎂 {annee} anniversaries",
     "{n} films de patrimoine fêtent un anniversaire rond cette année (un demi-siècle, un centenaire…) et repassent en salle. L'occasion de les revoir sur grand écran.":
         "{n} heritage films hit a round anniversary this year (half a century, "

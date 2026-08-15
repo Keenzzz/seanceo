@@ -1701,3 +1701,46 @@ a:focus-visible, summary:focus-visible, input:focus-visible {
   flex-wrap: wrap;
 }
 .alerte-liste a { font-weight: 600; }
+
+/* —— Dernière chance (page /derniere-chance/) ————————————————————————————————
+   L'agenda lui-même réutilise .jour / .seance de l'accueil : les deux pages
+   doivent se lire pareil, seule la longueur de la liste change. Il ne reste
+   ici que la barre de filtre et l'encadré d'export. */
+.chance-tools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 18px;
+  margin: 18px 0 4px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--rule);
+}
+/* Même pastille que les filtres de liste (.tri-filtres select) : c'est le même
+   geste pour le visiteur, il doit avoir la même forme. */
+.chance-ville {
+  background: var(--sunk);
+  color: var(--text);
+  border: 1px solid #3a4150;
+  border-radius: 999px;
+  padding: 6px 10px;
+  font: inherit;
+  font-size: .85rem;
+  cursor: pointer;
+  max-width: 100%;
+}
+.chance-ville:focus { outline: none; border-color: var(--accent); }
+
+.chance-export {
+  margin-top: 22px; padding: 18px; background: var(--panel);
+  border: 1px solid var(--rule); border-left: 3px solid var(--accent);
+  border-radius: var(--radius);
+}
+.chance-export .bouton { cursor: pointer; }
+.chance-export .meta { margin: 12px 0 0; }
+
+/* ⚠️ PIÈGE RÉCURRENT : `display:` l'emporte sur l'attribut `hidden`.
+   .seance est en grid et .jour en block — sans ces règles, le filtre de ville
+   de chance.js serait silencieusement sans effet. */
+.seance[hidden] { display: none; }
+.jour[hidden] { display: none; }
+.chance-export .bouton[hidden] { display: none; }

@@ -23,7 +23,7 @@ import json
 import re
 import shutil
 import sys
-from collections import defaultdict
+from collections import Counter, defaultdict
 from datetime import date, datetime, timedelta
 from pathlib import Path
 from urllib.parse import quote
@@ -47,6 +47,11 @@ ASSETS = ROOT / "assets"
 BASE_PATH = "/seanceo"
 BASE_URL = f"https://keenzzz.github.io{BASE_PATH}"
 SITE_NAME = "Séancéo"
+
+# Open Graph attend une locale complète (langue_PAYS), pas le code court du
+# <html lang>. Table à part pour que l'ajout d'une langue ne se traduise pas
+# par une locale inventée à la volée.
+OG_LOCALES = {"fr": "fr_FR", "en": "en_US"}
 
 # Site frère dédié à Paris (« Paris Ciné Aujourd'hui ») : plus complet que
 # Séancéo pour la capitale au quotidien — il liste TOUT ce qui passe à Paris,
@@ -159,6 +164,7 @@ ALERTES_JS = '<script src="/assets/alertes.js" defer></script>'
 # il ne distinguait donc rien. La cinémathèque prend 🏛️.
 NAV_ITEMS = [
     ("/ma-watchlist/",   "Watchlist",          "nav-wl"),
+    ("/derniere-chance/", "⏳ Dernière chance", ""),
     ("/a-l-affiche/",    "🎬 À l'affiche",     ""),
     ("/retrospectives/", "🎞️ Rétrospectives",  ""),
     ("/marathon/",       "🍿 Marathons",       ""),
@@ -270,12 +276,60 @@ def alternates(path: str) -> str:
     liens.append(f'<link rel="alternate" hreflang="x-default" href="{BASE_URL}{path}">')
     return "\n".join(liens)
 
+def open_graph(title: str, description: str, path: str,
+               image: str = "", image_alt: str = "", portrait: bool = False) -> str:
+    """Balises de partage (Open Graph + Twitter) : le titre, le texte et
+    l'image affichés quand un lien du site est collé dans WhatsApp, Discord,
+    Bluesky, Slack ou un forum.
+
+    Sans elles, un lien s'affiche en URL nue — c'est-à-dire que la moitié des
+    fonctions du site (la watchlist croisée, une rétrospective composée, une
+    séance unique repérée) circulait sans rien dire de ce qu'elle montre.
+
+    `image` : URL ABSOLUE. Les réseaux ne résolvent pas les chemins relatifs,
+    et `_prefix_links()` ne touche de toute façon qu'aux attributs href/src,
+    pas aux `content` — l'URL doit donc être complète dès ici. Par défaut, la
+    carte de marque de `static/` (voir make_icons.py), déclinée par langue.
+
+    `portrait` : l'image est une affiche de film (ratio 2:3). Twitter/X est le
+    seul réseau à choisir son cadrage d'après une balise : en
+    `summary_large_image` il rogne une affiche en une bande horizontale qui
+    coupe têtes et titre. On lui demande alors la vignette `summary`, où
+    l'affiche reste entière. Les autres réseaux respectent le ratio réel.
+    """
+    if not image:
+        suffixe = "" if i18n.LANG == "fr" else f"-{i18n.LANG}"
+        image = f"{BASE_URL}/og{suffixe}.png"
+        image_alt = image_alt or t("Le répertoire en salle, partout en France")
+    autres = [l for l in LANGS if l != i18n.LANG]
+    balises = [
+        '<meta property="og:type" content="website">',
+        f'<meta property="og:site_name" content="{esc(SITE_NAME)}">',
+        f'<meta property="og:title" content="{esc(title)}">',
+        f'<meta property="og:description" content="{esc(description)}">',
+        f'<meta property="og:url" content="{BASE_URL}{lang_prefix()}{path}">',
+        f'<meta property="og:image" content="{esc(image)}">',
+        f'<meta property="og:locale" content="{esc(OG_LOCALES[i18n.LANG])}">',
+    ]
+    balises += [f'<meta property="og:locale:alternate" content="{esc(OG_LOCALES[l])}">'
+                for l in autres]
+    if image_alt:
+        balises.append(f'<meta property="og:image:alt" content="{esc(image_alt)}">')
+    balises.append('<meta name="twitter:card" content="'
+                   + ("summary" if portrait else "summary_large_image") + '">')
+    return "\n".join(balises)
+
+
 def page(title: str, description: str, body: str, path: str,
          jsonld: dict | None = None, h1: str | None = None,
-         head_extra: str = "", top_link: bool = False) -> str:
+         head_extra: str = "", top_link: bool = False,
+         og_image: str = "", og_image_alt: str = "",
+         og_portrait: bool = False) -> str:
     """Enveloppe une page : head SEO complet + header/footer communs.
     `head_extra` : balises à ajouter dans le <head> (ex. CSS Leaflet de la carte).
-    `top_link` : bouton flottant « retour en haut » pour les gabarits longs."""
+    `top_link` : bouton flottant « retour en haut » pour les gabarits longs.
+    `og_image` / `og_portrait` : image de partage propre à la page (l'affiche,
+    sur une fiche film) — voir open_graph()."""
     ld = (f'<script type="application/ld+json">{json.dumps(jsonld, ensure_ascii=False)}</script>'
           if jsonld else "")
     top = ('\n<a class="top-link" href="#" '
@@ -294,6 +348,8 @@ def page(title: str, description: str, body: str, path: str,
 <meta name="description" content="{esc(description)}">
 <link rel="canonical" href="{BASE_URL}{lang_prefix()}{path}">
 {alternates(path)}
+{open_graph(h1 if h1 is not None else title, description, path,
+            og_image, og_image_alt, og_portrait)}
 <link rel="stylesheet" href="/assets/style.css">
 <link rel="icon" href="/favicon.png" type="image/png">
 <meta name="theme-color" content="#0d1014">
@@ -1245,7 +1301,14 @@ def build_lang(today, today_iso, cinemas, movies, showtimes, cities,
         write(path, page(
             tf("{titre} : séances près de chez vous — {site}",
                titre=movie["title"], site=SITE_NAME),
-            desc, body, path, jsonld, h1=movie["title"], top_link=True))
+            desc, body, path, jsonld, h1=movie["title"], top_link=True,
+            # L'affiche TMDB est déjà une URL absolue : la fiche partagée
+            # s'annonce avec le film lui-même, pas avec la carte de marque.
+            # `og_portrait` parce que c'est une affiche (ratio 2:3) — voir
+            # open_graph(). Sans affiche, on retombe sur la carte par défaut.
+            og_image=movie["poster"] or "",
+            og_image_alt=affiche_alt(movie) if movie["poster"] else "",
+            og_portrait=bool(movie["poster"])))
         urls.append(path)
 
     # ----- Index de recherche (titre + réalisateur) -----
@@ -1643,8 +1706,14 @@ def build_lang(today, today_iso, cinemas, movies, showtimes, cities,
     urls.append("/a-l-affiche/")
 
     # ----- Accueil : l'agenda du répertoire -----
-    def seance_row(s: dict) -> str:
-        """Une ligne d'agenda : l'heure d'abord, comme sur un programme."""
+    def seance_row(s: dict, data: bool = False) -> str:
+        """Une ligne d'agenda : l'heure d'abord, comme sur un programme.
+
+        `data` ajoute sur le <li> les attributs dont « Dernière chance » a
+        besoin pour filtrer par ville et fabriquer un .ics sans re-télécharger
+        d'index (chance.js lit la page qu'il a sous les yeux). L'accueil, lui,
+        n'en a pas l'usage : autant ne pas alourdir son HTML.
+        """
         m, cin = movies[s["movie"]], cinemas[s["cinema"]]
         img = (f'<img src="{esc(m["poster"])}" alt="{esc(affiche_alt(m))}" loading="lazy">'
                if m["poster"] else '<span class="noposter">🎞️</span>')
@@ -1663,7 +1732,15 @@ def build_lang(today, today_iso, cinemas, movies, showtimes, cities,
             hh = (f'<a href="{esc(s["booking"])}" target="_blank"'
                   f' rel="noopener noreferrer"'
                   f' title="{esc(t("Réserver cette séance (nouvel onglet)"))}">{hh}</a>')
-        return f"""<li class="seance">
+        # URL de fiche SANS BASE_PATH ni langue : elle passe par _prefix_links()
+        # comme les href, puisqu'elle est écrite dans un attribut… data-url, que
+        # _prefix_links ne touche PAS. On la préfixe donc à la main ici.
+        attrs = (f' data-start="{s["start"][:16]}" data-city="{esc(cin["city"])}"'
+                 f' data-title="{esc(m["title"])}"'
+                 f' data-lieu="{esc(cin["name"] + ", " + cin["city"])}"'
+                 f' data-url="{BASE_PATH}{lang_prefix()}{movie_urls[s["movie"]]}"'
+                 f' data-booking="{esc(s.get("booking") or "")}"' if data else "")
+        return f"""<li class="seance"{attrs}>
 <time class="heure{' reservable' if s.get("booking") else ''}" datetime="{s["start"][:16]}">{hh}</time>
 <div class="vignette"><a href="{movie_urls[s["movie"]]}">{img}</a></div>
 <div class="corps">
@@ -1676,22 +1753,28 @@ def build_lang(today, today_iso, cinemas, movies, showtimes, cities,
 <div class="flags">{note}<span class="unique">{t("Séance unique")}</span></div>
 </li>"""
 
-    agenda_html = ""
-    par_jour: dict[str, list] = defaultdict(list)
-    for s in rep_uniques:
-        par_jour[s["start"][:10]].append(s)
-    for iso in sorted(par_jour):
-        d = date.fromisoformat(iso)
-        rows = "".join(seance_row(s) for s in sorted(par_jour[iso],
-                                                     key=lambda x: x["start"]))
-        # « Aujourd'hui »/« Demain » ne disent pas la date : on la précise.
-        # Les autres jours sont déjà datés — l'ajouter ferait un doublon.
-        libelle = date_label(d, today)
-        precision = (f'<span class="jour-date">{jour_mois(d)}</span>'
-                     if i18n.is_today_label(libelle) else "")
-        agenda_html += (f'<section class="jour"><h3 class="jour-titre">'
-                        f'<span>{libelle}</span>{precision}'
-                        f'</h3><ul class="seances">{rows}</ul></section>')
+    def agenda_par_jour(seances: list, data: bool = False) -> str:
+        """Un agenda groupé par journée. Sert à l'accueil (une sélection) et à
+        « Dernière chance » (tout), qui doivent se lire exactement pareil."""
+        html_jours = ""
+        par_jour: dict[str, list] = defaultdict(list)
+        for s in seances:
+            par_jour[s["start"][:10]].append(s)
+        for iso in sorted(par_jour):
+            d = date.fromisoformat(iso)
+            rows = "".join(seance_row(s, data) for s in sorted(par_jour[iso],
+                                                               key=lambda x: x["start"]))
+            # « Aujourd'hui »/« Demain » ne disent pas la date : on la précise.
+            # Les autres jours sont déjà datés — l'ajouter ferait un doublon.
+            libelle = date_label(d, today)
+            precision = (f'<span class="jour-date">{jour_mois(d)}</span>'
+                         if i18n.is_today_label(libelle) else "")
+            html_jours += (f'<section class="jour"><h3 class="jour-titre">'
+                           f'<span>{libelle}</span>{precision}'
+                           f'</h3><ul class="seances">{rows}</ul></section>')
+        return html_jours
+
+    agenda_html = agenda_par_jour(rep_uniques)
 
     # Rétrospectives mises en avant sur l'accueil : jusqu'à 9, les plus
     # fournies d'abord (rep_cycles est déjà trié par nb de films puis séances).
@@ -1883,6 +1966,8 @@ aria-label="{esc(t("Chercher une ville"))}">
 <a href="https://letterboxd.com" rel="noopener">Letterboxd</a>.
 {t("Les séances ci-dessous sont les mieux notées de la semaine.")}</p>
 {agenda_html or f'<p>{t("Aucune séance unique repérée cette semaine.")}</p>'}
+<p class="meta"><a class="more" href="/derniere-chance/">{tf(
+    "Les {n} séances sans deuxième date, ville par ville →", n=n_rep_uniques)}</a></p>
 
 {anniv_section}
 <div class="passerelle cine-cta">
@@ -1927,6 +2012,56 @@ aria-label="{esc(t("Chercher une ville"))}">
         body, "/", h1=t("Ce soir, un classique passe près de chez vous"),
         top_link=True))
     urls.append("/")
+
+    # ----- Page « Dernière chance » : toutes les séances uniques -----
+    # L'accueil n'en montre qu'une douzaine, les mieux notées : c'est une
+    # sélection éditoriale. Ici on donne le catalogue entier, notes ou pas,
+    # parce que c'est la promesse chiffrée du site (« N séances n'ont pas de
+    # deuxième date ») et qu'un visiteur de Quimper doit pouvoir vérifier ce
+    # que ce nombre contient POUR LUI.
+    #
+    # Le filtre ville est un <select>, pas une recherche : ici le visiteur ne
+    # cherche pas une ville précise dans les 257 du pays, il regarde ce qui
+    # existe parmi la petite centaine qui programme une séance unique. Une
+    # liste qu'on déroule est le bon geste, et elle annonce au passage les
+    # villes concernées.
+    chance_shows = repertoire.unique_all(rep_shows)
+    chance_villes = Counter(cinemas[s["cinema"]]["city"] for s in chance_shows)
+    chance_opts = "".join(
+        f'<option value="{esc(v)}">{esc(v)} ({n})</option>'
+        for v, n in sorted(chance_villes.items(), key=lambda kv: _fold_title(kv[0])))
+    n_chance_villes = len(chance_villes)
+    chance_body = f"""<p class="lead">{tf(
+        "Ces <strong>{n} films de répertoire</strong> ne passent qu'une seule fois en "
+        "France cette semaine, dans {v} villes. Pas de deuxième date, pas de reprise le "
+        "lendemain dans la salle d'à côté. Ils sont classés du jour le plus proche au "
+        "plus lointain.", n=len(chance_shows), v=n_chance_villes)}</p>
+
+<div class="chance-tools">
+<label class="tri-filtre"><span class="tri-filtre-nom">{t("Ville")}</span>
+<select id="chance-ville" class="chance-ville">
+<option value="">{tf("Toutes les villes ({n})", n=n_chance_villes)}</option>
+{chance_opts}</select></label>
+<p class="tri-compte" id="chance-compte" role="status">{tf("{n} séances en France", n=len(chance_shows))}</p>
+</div>
+
+{agenda_par_jour(chance_shows, data=True) or f'<p>{t("Aucune séance unique repérée cette semaine.")}</p>'}
+
+<div class="chance-export">
+<button type="button" id="chance-ics" class="bouton">{t("＋ Ajouter ces séances à mon agenda")}</button>
+<p class="meta">{t("Un fichier .ics à ouvrir dans Google Agenda, Apple Calendrier ou "
+                   "Outlook. Le filtre de ville s'applique : choisissez votre ville avant "
+                   "d'exporter et vous n'emportez que ce qui vous concerne.")}</p>
+</div>
+<script src="/assets/ics.js" defer></script>
+<script src="/assets/chance.js" defer></script>"""
+    write("/derniere-chance/", page(
+        tf("Dernière chance : les séances uniques de la semaine — {site}", site=SITE_NAME),
+        tf("{n} films de répertoire ne passent qu'une seule fois en France cette semaine. "
+           "Toutes les séances sans deuxième date, ville par ville, avec la réservation.",
+           n=len(chance_shows)),
+        chance_body, "/derniere-chance/", h1=t("Dernière chance"), top_link=True))
+    urls.append("/derniere-chance/")
 
     # ----- Page Salles de patrimoine -----
     salles_full = "".join(f"""<li class="salle">
@@ -2346,6 +2481,9 @@ aria-label="{esc(t("Choisis un réalisateur"))}">
 
 <div id="cine-status" aria-live="polite"></div>
 <div id="cine-result" aria-live="polite"></div>
+<!-- ics.js AVANT cinematheque.js : le second appelle ICS.telecharger(). Les
+     deux sont `defer`, donc exécutés dans l'ordre du document. -->
+<script src="/assets/ics.js" defer></script>
 <script src="/assets/cinematheque.js" defer></script>"""
     write("/cinematheque/", page(
         tf("Ta cinémathèque : compose ta rétrospective — {site}", site=SITE_NAME),

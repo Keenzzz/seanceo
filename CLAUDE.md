@@ -154,6 +154,27 @@ indexable, et les deux se déclarent l'une l'autre en `hreflang` (`alternates()`
   salle, agrégés ensuite au national. **Le seuil 2020 n'est pas arbitraire** : à 20 ans d'âge,
   84 villes sur 257 seulement étaient couvertes ; avant 2020, 154 villes le sont. Ne pas le
   remonter sans re-mesurer la couverture.
+- **Page « Dernière chance »** (`/derniere-chance/`) : TOUTES les séances uniques de la fenêtre,
+  en agenda chronologique, filtrables par ville. Deux fonctions distinctes dans `repertoire.py`,
+  ne pas les confondre : `unique_screenings()` = la SÉLECTION de l'accueil (les mieux notées, une
+  douzaine) ; `unique_all()` = le catalogue complet, **notes ou pas**. Un film sans note
+  Letterboxd reste une séance unique : l'écarter ferait mentir le compte affiché juste à côté.
+  `count_unique()` est défini à partir de `unique_all()` pour qu'il n'existe qu'UNE définition de
+  la séance unique — le compteur de l'accueil et la page ne peuvent pas diverger.
+  - Le filtre de ville est un `<select>` et non la recherche à suggestions du reste du site :
+    ici le visiteur ne cherche pas une ville parmi 257, il regarde ce qui existe parmi la
+    trentaine qui programme une séance unique. La liste déroulée annonce au passage les villes
+    concernées. `chance.js` masque aussi les journées devenues vides (sinon un titre de jour
+    reste orphelin), et les règles `.seance[hidden]` / `.jour[hidden]` sont indispensables
+    (`display:` l'emporte sur `hidden`, voir le piège récurrent plus bas).
+- **`assets/ics.js` est PARTAGÉ** par `/cinematheque/` et `/derniere-chance/` : les deux boutons
+  « ajouter à mon agenda » doivent produire exactement le même fichier. Le module est chargé
+  **avant** le script de la page qui l'appelle (les deux en `defer`, donc dans l'ordre du
+  document) — l'oublier rend le bouton silencieusement mort. Il n'est PAS chargé ailleurs :
+  inutile de le mettre dans le `<head>` commun pour deux pages. ⚠️ La description d'un événement
+  se construit avec un **vrai saut de ligne** ; c'est `esc()` qui le convertit en `\n` iCalendar.
+  L'écrire déjà échappé le fait échapper deux fois et les agendas affichent « \n » en toutes
+  lettres (bug d'origine de l'export cinémathèque, corrigé le 2026-08-15).
 - **Pages de rétrospective** : `/retrospectives/` (index) et `/retrospectives/<réalisateur>/` (une par
   cycle), générées depuis `repertoire.cycles(..., limit=None)`. Le programme y est présenté
   **salle par salle** (un cycle est ancré dans une salle), avec horaires. Ces URLs sont
@@ -280,7 +301,23 @@ indexable, et les deux se déclarent l'une l'autre en `hreflang` (`alternates()`
   JavaScript masque via `.hidden = true` ET qui porte une règle `display:` doit avoir sa règle
   `[hidden] { display: none }`. Déjà rencontré trois fois : `.movie-card` (flex), `.retour`
   (inline-block), `.tri-plus` (block). Sans elle, le masquage est silencieusement sans effet —
-  et pour `.retour` ça annulait la protection ci-dessus.
+  et pour `.retour` ça annulait la protection ci-dessus. Cinquième et sixième cas : `.seance`
+  (grid) et `.jour` (block), masqués par le filtre de ville de « Dernière chance ».
+- **Cartes de partage (Open Graph)** : `open_graph()` est appelée par `page()`, donc TOUTES les
+  pages en portent. Trois règles à ne pas défaire :
+  - **`og:title` = le `h1`, pas le `<title>`.** Le titre SEO d'une fiche film (« Titre : séances
+    près de chez vous — Séancéo ») fait un mauvais titre de partage ; le nom du site est déjà
+    porté par `og:site_name`.
+  - **Une fiche film partage SON AFFICHE** (URL TMDB déjà absolue, rien à générer) avec
+    `og_portrait=True`, ce qui bascule la carte Twitter en `summary`. X est le seul réseau à
+    cadrer d'après une balise : en `summary_large_image` il rogne une affiche 2:3 en bandeau
+    horizontal qui coupe le titre. Les autres réseaux respectent le ratio réel.
+  - **L'image par défaut existe en DEUX langues** (`static/og.png`, `og-en.png`), sinon un lien
+    vers `/en/` s'annonce avec une accroche française sous un titre anglais. Elles sont
+    produites par `make_icons.py` (hors pipeline, Pillow autorisé, sorties versionnées) et
+    servies depuis la racine, jamais préfixées.
+  - ⚠️ Les URLs d'`og:` vivent dans des attributs `content`, que `_prefix_links()` ne touche
+    PAS (il ne voit que `href`/`src`) : elles doivent être **absolues dès l'écriture**.
 - **Ton des textes d'intro** : pas de tiret cadratin dans la prose (l'utilisateur trouve que ça
   fait « AI generated »), et pas de tournures d'IA : « ce n'est pas X, c'est Y », les chutes
   d'effet (« le grand écran, c'est aussi fait pour ça »), les triades décoratives. Écrire plat

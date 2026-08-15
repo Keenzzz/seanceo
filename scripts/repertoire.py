@@ -60,10 +60,26 @@ def unique_screenings(rep_shows: list, movies: dict, limit: int = 12) -> list:
     return notees
 
 
-def count_unique(rep_shows: list) -> int:
-    """Nombre de films à séance unique (l'argument chiffré de l'accueil)."""
+def unique_all(rep_shows: list) -> list:
+    """TOUTES les séances uniques de la fenêtre, en ordre chronologique.
+
+    Là où `unique_screenings()` fait une sélection éditoriale pour l'accueil
+    (les mieux notées, une douzaine), celle-ci ne trie ni ne coupe : c'est le
+    catalogue complet de la page « Dernière chance ». Les films sans note
+    Letterboxd en font donc partie — une séance unique reste une séance unique
+    même si Letterboxd ne la connaît pas, et l'écarter reviendrait à mentir sur
+    le compte annoncé juste à côté.
+    """
     par_film = Counter(s["movie"] for s in rep_shows)
-    return sum(1 for n in par_film.values() if n == 1)
+    return sorted((s for s in rep_shows if par_film[s["movie"]] == 1),
+                  key=lambda s: s["start"])
+
+
+def count_unique(rep_shows: list) -> int:
+    """Nombre de films à séance unique (l'argument chiffré de l'accueil).
+    Défini à partir de `unique_all()` pour qu'il n'existe qu'UNE définition de
+    la séance unique : le compteur et la page ne peuvent pas diverger."""
+    return len(unique_all(rep_shows))
 
 
 def _director_key(movie: dict, fold) -> str:
