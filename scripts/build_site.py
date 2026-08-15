@@ -35,8 +35,8 @@ from sources import load_merged, _fold_title  # fusion indés + chaînes
 from marathon import build_ideas  # doubles programmes par ville
 import repertoire  # reprises, cycles, séances uniques, salles de patrimoine
 import i18n  # traduction FR/EN ; `i18n.LANG` porte la langue du build en cours
-from i18n import (t, tf, plural, nombre, date_label, jour_mois, heure, decimal,
-                  localize_movies, lang_prefix, cinema_kind_label, LANGS)
+from i18n import (t, tf, plural, nombre, date_label, jour_mois, jour_date, heure,
+                  decimal, localize_movies, lang_prefix, cinema_kind_label, LANGS)
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
@@ -1896,13 +1896,20 @@ def build_lang(today, today_iso, cinemas, movies, showtimes, cities,
     urls.append("/a-l-affiche/")
 
     # ----- Accueil : l'agenda du répertoire -----
-    def seance_row(s: dict, data: bool = False) -> str:
+    def seance_row(s: dict, data: bool = False, jour: str = "") -> str:
         """Une ligne d'agenda : l'heure d'abord, comme sur un programme.
 
         `data` ajoute sur le <li> les attributs dont « Dernière chance » a
-        besoin pour filtrer par ville et fabriquer un .ics sans re-télécharger
-        d'index (chance.js lit la page qu'il a sous les yeux). L'accueil, lui,
-        n'en a pas l'usage : autant ne pas alourdir son HTML.
+        besoin pour filtrer par ville et par jour, trier par note et fabriquer
+        un .ics sans re-télécharger d'index (chance.js lit la page qu'il a sous
+        les yeux). L'accueil, lui, n'en a pas l'usage : autant ne pas alourdir
+        son HTML.
+
+        `jour` est le libellé de la journée, écrit dans la ligne elle-même et
+        masqué en CSS. Il ne sert QUE au tri par note, qui casse le groupement
+        par jour : sans lui, une liste classée par note n'annoncerait plus
+        aucune date. En tri chronologique c'est l'en-tête de section qui la
+        porte, et le libellé de la ligne resterait un doublon.
         """
         m, cin = movies[s["movie"]], cinemas[s["cinema"]]
         img = (f'<img src="{esc(m["poster"])}" alt="{esc(affiche_alt(m))}" loading="lazy">'
@@ -1925,11 +1932,17 @@ def build_lang(today, today_iso, cinemas, movies, showtimes, cities,
         # URL de fiche SANS BASE_PATH ni langue : elle passe par _prefix_links()
         # comme les href, puisqu'elle est écrite dans un attribut… data-url, que
         # _prefix_links ne touche PAS. On la préfixe donc à la main ici.
+        # `data-lb` vaut 0 pour un film sans note : le tri par note l'envoie
+        # alors en queue, comme le fait renseigne() dans tri.js. L'écarter de
+        # la liste ferait mentir le compte affiché juste au-dessus.
         attrs = (f' data-start="{s["start"][:16]}" data-city="{esc(cin["city"])}"'
                  f' data-title="{esc(m["title"])}"'
+                 f' data-lb="{m.get("lb_rating") or 0}"'
                  f' data-lieu="{esc(cin["name"] + ", " + cin["city"])}"'
                  f' data-url="{BASE_PATH}{lang_prefix()}{movie_urls[s["movie"]]}"'
                  f' data-booking="{esc(s.get("booking") or "")}"' if data else "")
+        jour_chip = (f'<span class="jour-inline">{esc(jour)}</span>'
+                     if data and jour else "")
         return f"""<li class="seance"{attrs}>
 <time class="heure{' reservable' if s.get("booking") else ''}" datetime="{s["start"][:16]}">{hh}</time>
 <div class="vignette"><a href="{movie_urls[s["movie"]]}">{img}</a></div>
@@ -1940,8 +1953,8 @@ def build_lang(today, today_iso, cinemas, movies, showtimes, cities,
 <p class="meta lieu"><strong><a href="{cinema_urls[s["cinema"]]}">{esc(cin["name"])}</a></strong>,
 {esc(cin["city"])}{chain_badge(cin)}</p>
 </div>
-<div class="flags">{note}{f'<span class="unique">{t("Séance unique")}</span>'
-                        if s["movie"] in uniques_keys else ""}</div>
+<div class="flags">{jour_chip}{note}{f'<span class="unique">{t("Séance unique")}</span>'
+                                   if s["movie"] in uniques_keys else ""}</div>
 </li>"""
 
     def agenda_par_jour(seances: list, data: bool = False) -> str:
@@ -1953,8 +1966,8 @@ def build_lang(today, today_iso, cinemas, movies, showtimes, cities,
             par_jour[s["start"][:10]].append(s)
         for iso in sorted(par_jour):
             d = date.fromisoformat(iso)
-            rows = "".join(seance_row(s, data) for s in sorted(par_jour[iso],
-                                                               key=lambda x: x["start"]))
+            rows = "".join(seance_row(s, data, jour_date(d))
+                           for s in sorted(par_jour[iso], key=lambda x: x["start"]))
             # « Aujourd'hui »/« Demain » ne disent pas la date : on la précise.
             # Les autres jours sont déjà datés — l'ajouter ferait un doublon.
             libelle = date_label(d, today)
@@ -2216,33 +2229,61 @@ aria-label="{esc(t("Chercher une ville"))}">
     # existe parmi la petite centaine qui programme une séance unique. Une
     # liste qu'on déroule est le bon geste, et elle annonce au passage les
     # villes concernées.
+    #
+    # Le filtre de JOUR suit la même logique, avec une nuance : ses options
+    # sont dans l'ordre de la semaine, jamais alphabétique. « Jeudi » avant
+    # « Lundi » dans un agenda n'aurait aucun sens, et la valeur transportée
+    # est la DATE ISO, pas le nom du jour : la fenêtre peut déborder sur la
+    # semaine suivante et deux « lundi » ne seraient plus distinguables.
     chance_shows = repertoire.unique_all(rep_shows)
     chance_villes = Counter(cinemas[s["cinema"]]["city"] for s in chance_shows)
     chance_opts = "".join(
         f'<option value="{esc(v)}">{esc(v)} ({n})</option>'
         for v, n in sorted(chance_villes.items(), key=lambda kv: _fold_title(kv[0])))
     n_chance_villes = len(chance_villes)
+    chance_jours = Counter(s["start"][:10] for s in chance_shows)
+    # `data-label` porte le libellé SANS son compte : c'est lui que chance.js
+    # recopie dans le compteur (« 12 séances · Jeudi 21 août »), où répéter le
+    # nombre entre parenthèses ferait doublon avec le nombre juste à gauche.
+    chance_jours_opts = "".join(
+        f'<option value="{iso}" data-label="{esc(jour_date(date.fromisoformat(iso)))}">'
+        f'{esc(jour_date(date.fromisoformat(iso)))} ({n})</option>'
+        for iso, n in sorted(chance_jours.items()))
     chance_body = f"""<p class="lead">{tf(
         "Ces <strong>{n} films de répertoire</strong> ne passent qu'une seule fois en "
-        "France cette semaine, dans {v} villes. Pas de deuxième date, pas de reprise le "
-        "lendemain dans la salle d'à côté. Ils sont classés du jour le plus proche au "
-        "plus lointain.", n=len(chance_shows), v=n_chance_villes)}</p>
+        "France cette semaine, dans {v} villes et sur {j} jours. Pas de deuxième date, "
+        "pas de reprise le lendemain dans la salle d'à côté. Choisissez votre ville et "
+        "votre jour, et classez-les par note si vous cherchez d'abord le meilleur film.",
+        n=len(chance_shows), v=n_chance_villes, j=len(chance_jours))}</p>
 
 <div class="chance-tools">
 <label class="tri-filtre"><span class="tri-filtre-nom">{t("Ville")}</span>
-<select id="chance-ville" class="chance-ville">
+<select id="chance-ville">
 <option value="">{tf("Toutes les villes ({n})", n=n_chance_villes)}</option>
 {chance_opts}</select></label>
-<p class="tri-compte" id="chance-compte" role="status">{tf("{n} séances en France", n=len(chance_shows))}</p>
+<label class="tri-filtre"><span class="tri-filtre-nom">{t("Jour")}</span>
+<select id="chance-jour">
+<option value="">{tf("Tous les jours ({n})", n=len(chance_jours))}</option>
+{chance_jours_opts}</select></label>
+<label class="tri-filtre"><span class="tri-filtre-nom">{t("Ordre")}</span>
+<select id="chance-tri">
+<option value="date">{t("Par date")}</option>
+<option value="note">{t("Par note Letterboxd")}</option>
+</select></label>
+<p class="tri-compte" id="chance-compte" role="status">{tf(
+    "{n} séance{s} en France", n=len(chance_shows), s=plural(len(chance_shows)))}</p>
 </div>
 
 {agenda_par_jour(chance_shows, data=True) or f'<p>{t("Aucune séance unique repérée cette semaine.")}</p>'}
+<ul class="seances par-note" id="chance-note"></ul>
+<p class="chance-vide" id="chance-vide" hidden>{t(
+    "Aucune séance unique ne correspond. Élargissez le jour ou la ville.")}</p>
 
 <div class="chance-export">
 <button type="button" id="chance-ics" class="bouton">{t("＋ Ajouter ces séances à mon agenda")}</button>
 <p class="meta">{t("Un fichier .ics à ouvrir dans Google Agenda, Apple Calendrier ou "
-                   "Outlook. Le filtre de ville s'applique : choisissez votre ville avant "
-                   "d'exporter et vous n'emportez que ce qui vous concerne.")}</p>
+                   "Outlook. Les filtres s'appliquent : choisissez votre ville et votre "
+                   "jour avant d'exporter et vous n'emportez que ce qui vous concerne.")}</p>
 </div>
 <script src="/assets/ics.js" defer></script>
 <script src="/assets/chance.js" defer></script>"""

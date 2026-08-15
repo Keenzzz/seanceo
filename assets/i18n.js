@@ -293,7 +293,7 @@ window.I18N = {
 
   // --- Dernière chance (chance.js) ---
   "{n} séance{s} à {ville}": "{n} screening{s} in {ville}",
-  "{n} séances en France": "{n} screenings in France",
+  "{n} séance{s} en France": "{n} screening{s} in France",
   "Dernière chance à {ville}": "Last chance in {ville}",
   "Dernière chance en France": "Last chance in France",
   "Ce réalisateur n'a pas (ou plus) au moins deux films de répertoire à l'affiche. Choisis-en un dans la liste.":

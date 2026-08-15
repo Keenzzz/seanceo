@@ -1716,8 +1716,9 @@ a:focus-visible, summary:focus-visible, input:focus-visible {
   border-bottom: 1px solid var(--rule);
 }
 /* Même pastille que les filtres de liste (.tri-filtres select) : c'est le même
-   geste pour le visiteur, il doit avoir la même forme. */
-.chance-ville {
+   geste pour le visiteur, il doit avoir la même forme. Les trois menus (ville,
+   jour, ordre) la partagent, sinon la barre aurait trois allures. */
+.chance-tools select {
   background: var(--sunk);
   color: var(--text);
   border: 1px solid #3a4150;
@@ -1728,7 +1729,41 @@ a:focus-visible, summary:focus-visible, input:focus-visible {
   cursor: pointer;
   max-width: 100%;
 }
-.chance-ville:focus { outline: none; border-color: var(--accent); }
+.chance-tools select:focus { outline: none; border-color: var(--accent); }
+
+/* Liste plate du tri par note : chance.js y déplace les lignes, les sections
+   de jour étant alors masquées. Vide (tri chronologique), elle ne doit pas
+   laisser une marge fantôme entre l'agenda et l'encadré d'export. */
+.seances.par-note { margin-top: 20px; }
+.seances.par-note:empty { margin-top: 0; }
+
+/* La date de la séance, portée par chaque ligne mais visible SEULEMENT dans la
+   liste plate : en tri chronologique l'en-tête de journée la dit déjà, et la
+   répéter sur chaque ligne serait un doublon. Même typographie que
+   .jour-titre, dont elle prend le relais. */
+.jour-inline { display: none; }
+.par-note .jour-inline {
+  display: inline-block;
+  font-size: .7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: var(--accent);
+  /* Sur mobile .flags passe en rangée : sans ça « Jeudi 20 août » se coupe
+     en deux lignes à côté de la note. Mesuré à 390 px de large : la rangée
+     complète (date + note + badge) tient en 298 px pour 331 px dispo. */
+  white-space: nowrap;
+}
+
+.chance-vide {
+  margin: 26px 0 0;
+  padding: 18px;
+  background: var(--sunk);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  color: var(--muted);
+  text-align: center;
+}
 
 .chance-export {
   margin-top: 22px; padding: 18px; background: var(--panel);
@@ -1739,10 +1774,12 @@ a:focus-visible, summary:focus-visible, input:focus-visible {
 .chance-export .meta { margin: 12px 0 0; }
 
 /* ⚠️ PIÈGE RÉCURRENT : `display:` l'emporte sur l'attribut `hidden`.
-   .seance est en grid et .jour en block — sans ces règles, le filtre de ville
-   de chance.js serait silencieusement sans effet. */
+   .seance est en grid et .jour en block — sans ces règles, les filtres de
+   chance.js seraient silencieusement sans effet. `.chance-vide` n'a pas
+   encore de `display:`, sa règle est là pour le jour où on lui en donnera un. */
 .seance[hidden] { display: none; }
 .jour[hidden] { display: none; }
+.chance-vide[hidden] { display: none; }
 .chance-export .bouton[hidden] { display: none; }
 
 /* —— Abonnement au répertoire d'une ville (bas des pages ville) ————————————

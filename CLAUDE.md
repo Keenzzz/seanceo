@@ -155,7 +155,7 @@ indexable, et les deux se déclarent l'une l'autre en `hreflang` (`alternates()`
   84 villes sur 257 seulement étaient couvertes ; avant 2020, 154 villes le sont. Ne pas le
   remonter sans re-mesurer la couverture.
 - **Page « Dernière chance »** (`/derniere-chance/`) : TOUTES les séances uniques de la fenêtre,
-  en agenda chronologique, filtrables par ville. Deux fonctions distinctes dans `repertoire.py`,
+  en agenda chronologique, filtrables par ville et par jour, classables par note. Deux fonctions distinctes dans `repertoire.py`,
   ne pas les confondre : `unique_screenings()` = la SÉLECTION de l'accueil (les mieux notées, une
   douzaine) ; `unique_all()` = le catalogue complet, **notes ou pas**. Un film sans note
   Letterboxd reste une séance unique : l'écarter ferait mentir le compte affiché juste à côté.
@@ -167,6 +167,19 @@ indexable, et les deux se déclarent l'une l'autre en `hreflang` (`alternates()`
     concernées. `chance.js` masque aussi les journées devenues vides (sinon un titre de jour
     reste orphelin), et les règles `.seance[hidden]` / `.jour[hidden]` sont indispensables
     (`display:` l'emporte sur `hidden`, voir le piège récurrent plus bas).
+  - **Le filtre de JOUR transporte la DATE ISO, jamais le nom du jour.** La fenêtre déborde sur
+    la semaine suivante (8 jours mesurés), donc deux « dimanche » y coexistent : filtrer sur
+    « dimanche » en mélangerait deux. Les options sont dans l'ordre de la semaine, jamais
+    alphabétique. `i18n.jour_date()` (≠ `date_label()`) nomme TOUJOURS le jour : « Aujourd'hui »
+    dans une liste déroulante ne dit pas quel jour on choisit et changerait de sens le lendemain.
+  - **Le tri par note DÉPLACE les `<li>` dans une liste plate** (`#chance-note`, vide dans le HTML
+    servi) et masque les sections `.jour` : classer par note casse forcément le groupement par
+    jour. Retour au tri chronologique = chaque ligne réintègre le `<ul>` de sa journée, via la
+    table `accueil` construite au chargement. Vérifié : le round-trip redonne le HTML du build au
+    nœud près. Chaque ligne porte donc sa date en dur (`.jour-inline`, écrite par `seance_row()`),
+    **masquée en CSS** sauf sous `.par-note` — en tri chronologique l'en-tête de section la dit
+    déjà. Un film sans note Letterboxd porte `data-lb="0"` et part en queue, comme `renseigne()`
+    dans tri.js ; l'écarter ferait mentir le compte affiché juste au-dessus.
 - **`assets/ics.js` est PARTAGÉ** par `/cinematheque/` et `/derniere-chance/` : les deux boutons
   « ajouter à mon agenda » doivent produire exactement le même fichier. Le module est chargé
   **avant** le script de la page qui l'appelle (les deux en `defer`, donc dans l'ordre du
@@ -346,7 +359,8 @@ indexable, et les deux se déclarent l'une l'autre en `hreflang` (`alternates()`
   `[hidden] { display: none }`. Déjà rencontré trois fois : `.movie-card` (flex), `.retour`
   (inline-block), `.tri-plus` (block). Sans elle, le masquage est silencieusement sans effet —
   et pour `.retour` ça annulait la protection ci-dessus. Cinquième et sixième cas : `.seance`
-  (grid) et `.jour` (block), masqués par le filtre de ville de « Dernière chance ».
+  (grid) et `.jour` (block), masqués par les filtres de « Dernière chance » (`.chance-vide` a sa
+  règle par avance, elle n'a pas encore de `display:`).
 - **Cartes de partage (Open Graph)** : `open_graph()` est appelée par `page()`, donc TOUTES les
   pages en portent. Trois règles à ne pas défaire :
   - **`og:title` = le `h1`, pas le `<title>`.** Le titre SEO d'une fiche film (« Titre : séances

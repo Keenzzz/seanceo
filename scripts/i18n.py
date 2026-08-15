@@ -128,6 +128,14 @@ def date_label(d: date, today: date) -> str:
     return jour_mois(d).capitalize() if LANG == "fr" else jour_mois(d)
 
 
+def jour_date(d: date) -> str:
+    """Comme date_label(), mais SANS le repère « Aujourd'hui/Demain » : le jour
+    de la semaine est toujours nommé. C'est ce qu'attend un filtre par jour —
+    « Aujourd'hui » dans une liste déroulante ne dit pas quel jour on choisit,
+    et l'option changerait de sens d'un jour à l'autre pour un même libellé."""
+    return jour_mois(d).capitalize() if LANG == "fr" else jour_mois(d)
+
+
 def is_today_label(label: str) -> bool:
     """Vrai si le libellé est « Aujourd'hui »/« Demain » (ou leur traduction).
     Ces deux-là ne DISENT pas la date : l'accueil leur ajoute la date exacte
@@ -488,17 +496,25 @@ EN: dict[str, str] = {
     "{n} films de répertoire ne passent qu'une seule fois en France cette semaine. Toutes les séances sans deuxième date, ville par ville, avec la réservation.":
         "{n} repertory films play only once in France this week. Every screening "
         "with no second date, city by city, with booking links.",
-    "Ces <strong>{n} films de répertoire</strong> ne passent qu'une seule fois en France cette semaine, dans {v} villes. Pas de deuxième date, pas de reprise le lendemain dans la salle d'à côté. Ils sont classés du jour le plus proche au plus lointain.":
+    "Ces <strong>{n} films de répertoire</strong> ne passent qu'une seule fois en France cette semaine, dans {v} villes et sur {j} jours. Pas de deuxième date, pas de reprise le lendemain dans la salle d'à côté. Choisissez votre ville et votre jour, et classez-les par note si vous cherchez d'abord le meilleur film.":
         "These <strong>{n} repertory films</strong> play only once in France this "
-        "week, across {v} cities. No second date, no encore the next day at the "
-        "cinema down the road. They are listed from the nearest day to the furthest.",
+        "week, across {v} cities and over {j} days. No second date, no encore the "
+        "next day at the cinema down the road. Pick your city and your day, and "
+        "sort by rating if what you want first is the best film.",
     "Ville": "City",
-    "{n} séances en France": "{n} screenings in France",
+    "Jour": "Day",
+    "Ordre": "Order",
+    "Par date": "By date",
+    "Par note Letterboxd": "By Letterboxd rating",
+    "Tous les jours ({n})": "All days ({n})",
+    "{n} séance{s} en France": "{n} screening{s} in France",
+    "Aucune séance unique ne correspond. Élargissez le jour ou la ville.":
+        "No one-off screening matches. Widen the day or the city.",
     "＋ Ajouter ces séances à mon agenda": "＋ Add these screenings to my calendar",
-    "Un fichier .ics à ouvrir dans Google Agenda, Apple Calendrier ou Outlook. Le filtre de ville s'applique : choisissez votre ville avant d'exporter et vous n'emportez que ce qui vous concerne.":
+    "Un fichier .ics à ouvrir dans Google Agenda, Apple Calendrier ou Outlook. Les filtres s'appliquent : choisissez votre ville et votre jour avant d'exporter et vous n'emportez que ce qui vous concerne.":
         "An .ics file to open in Google Calendar, Apple Calendar or Outlook. The "
-        "city filter applies: pick your city before exporting and you only take "
-        "away what concerns you.",
+        "filters apply: pick your city and your day before exporting and you only "
+        "take away what concerns you.",
     "Les {n} séances sans deuxième date, ville par ville →":
         "All {n} screenings with no second date, city by city →",
     "🎂 Les anniversaires de {annee}": "🎂 {annee} anniversaries",
