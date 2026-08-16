@@ -239,10 +239,33 @@ function statusFor(data) {
   return 502;
 }
 
+/* ⚠️ LES 4 FILMS PRÉFÉRÉS ONT ÉTÉ RETIRÉS (2026-08-16). NE PAS LES REMETTRE
+   SANS RELIRE CECI.
+
+   Ils vivaient sur la page de profil `letterboxd.com/<pseudo>/`, récupérée en
+   parallèle de la page 1. Letterboxd **403 cette page depuis les IP datacenter
+   de Cloudflare** ; le champ `favorites` est donc revenu vide pendant trois
+   semaines sans que personne le voie, l'échec étant silencieux par
+   construction (`profile.status === 200 ? parse : []`).
+
+   Ce n'est PAS un changement de HTML : le profil lu depuis une IP résidentielle
+   est intact et le parseur le lisait parfaitement. C'est l'extension du blocage
+   déjà connu sur `/<user>/films/`. Sondage depuis l'edge (même IP, même UA, même
+   instant) : `/<u>/` 403, `/<u>/likes/films/` 403, `/<u>/films/diary/` 403,
+   `/<u>/watchlist/` 200, `/<u>/rss/` 200 mais sans aucun poster. Le tri par
+   chemin prouve une règle délibérée, pas un score de réputation qui fluctue.
+
+   Aucune surface non bloquée ne porte les favoris : la fonctionnalité n'est pas
+   récupérable depuis un Worker. Et **surtout, ne pas maquiller l'User-Agent** —
+   le blocage est indépendant de l'UA (même UA = 200 en résidentiel) et ce serait
+   contraire à la posture « bot transparent » du projet.
+
+   Pourquoi retirer plutôt que laisser dormant : l'appel partait sur CHAQUE
+   requête non cachée et se prenait un 403 à tous les coups. Marteler un endpoint
+   qui nous refuse est exactement ce qui fait durcir un blocage, et le prochain
+   sur la liste serait `/watchlist/`, dont tout le service dépend. */
 async function buildWatchlist(user) {
-  // On récupère EN PARALLÈLE la page 1 de la watchlist (existence du membre,
-  // total d'entrées) et la page de profil (les 4 films préférés).
-  const [first, profile] = await Promise.all([fetchPage(user, 1), fetchProfile(user)]);
+  const first = await fetchPage(user, 1);
   if (first.status === 404) {
     return { ok: false, error: "not_found", user };
   }
@@ -250,22 +273,17 @@ async function buildWatchlist(user) {
     return { ok: false, error: "upstream_error", user, status: first.status };
   }
 
-  // Les 4 favoris affichés sur le profil (peuvent manquer si le membre n'en a
-  // pas défini, ou si le profil est restreint → tableau vide, non bloquant).
-  const favorites = profile.status === 200 ? parseFavorites(profile.html) : [];
-
   const total = readTotal(first.html); // null si l'attribut n'est pas là
   let films = parseFilms(first.html);
 
   // Watchlist vide OU privée : dans les deux cas la page ne liste aucun film.
   // On tranche par des signaux STRUCTURELS (voir isPrivate) pour que l'UI dise
-  // « rends-la publique » plutôt que « elle est vide ». Les favoris, eux,
-  // restent souvent lisibles même watchlist privée : on les renvoie quand même.
+  // « rends-la publique » plutôt que « elle est vide ».
   if (films.length === 0) {
     return {
       ok: true, user, count: 0, total: 0,
       empty: true, private: isPrivate(first.html, total),
-      favorites, films: [],
+      films: [],
     };
   }
 
@@ -284,7 +302,6 @@ async function buildWatchlist(user) {
     count: films.length,
     total: total || films.length,
     truncated,
-    favorites,
     generatedAt: new Date().toISOString(),
     films,
   };
@@ -394,11 +411,6 @@ function fetchPage(user, page) {
   return fetchPageAt(watchlistBase(user), page);
 }
 
-// Page de profil : sert à récupérer les 4 films préférés.
-function fetchProfile(user) {
-  return fetchHtml(`${LB}/${user}/`);
-}
-
 async function fetchHtml(path) {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), PAGE_TIMEOUT);
@@ -463,16 +475,6 @@ function readTotal(html) {
   return m ? parseInt(m[1], 10) : null;
 }
 
-// Les 4 films préférés sont dans une section `id="favourites"` de la page de
-// profil, avec les MÊMES posters LazyPoster que la watchlist. On borne la
-// fenêtre à la section (les posters d'activité récente viennent après) et on
-// plafonne à 4 par sécurité.
-function parseFavorites(html) {
-  const i = html.indexOf('id="favourites"');
-  if (i < 0) return [];
-  return parseFilms(html.slice(i, i + 7000)).slice(0, 4);
-}
-
 // Détection best-effort d'une watchlist privée, par signaux STRUCTURELS tirés du
 // HTML réel de Letterboxd, dans l'ordre de fiabilité. La watchlist privée est
 // une option payante (Pro/Patron), donc rare : le cas privé lui-même n'a pas pu
@@ -527,10 +529,12 @@ async function fetchAgendaIndex() {
 }
 
 // `near` = { lat, lon } optionnel ; `km` = rayon. Construit le VCALENDAR des
-// séances de répertoire des films de la watchlist + favoris du membre.
+// séances de répertoire des films de la watchlist du membre. (Les 4 favoris en
+// faisaient partie jusqu'au 2026-08-16 : voir la note au-dessus de
+// buildWatchlist, la page de profil est 403 depuis l'edge.)
 async function buildCalendar(user, near, km) {
   const data = await buildWatchlist(user); // réutilise le cache watchlist (12 h)
-  const wanted = data.ok ? [...(data.films || []), ...(data.favorites || [])] : [];
+  const wanted = data.ok ? (data.films || []) : [];
   const index = wanted.length ? await fetchAgendaIndex() : {};
 
   const events = [];

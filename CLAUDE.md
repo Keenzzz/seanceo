@@ -473,6 +473,16 @@ indexable, et les deux se déclarent l'une l'autre en `hreflang` (`alternates()`
     France »**, sinon ils s'affichent deux fois. Les FAVORIS, eux, ne sont jamais filtrés par
     ville : ils sont au maximum 4, et « un de tes films préférés repasse, à 60 km » reste une
     information qu'on veut donner.
+  - **⚠️ LES 4 FAVORIS NE SONT PLUS ALIMENTÉS DEPUIS LE 2026-08-16 : Letterboxd 403 la page de
+    profil `letterboxd.com/<pseudo>/` depuis les IP datacenter de Cloudflare.** Le Worker ne va
+    donc plus la chercher (voir la note en tête de `buildWatchlist` dans `worker/src/index.js`,
+    qui porte le diagnostic complet et les chemins encore ouverts). Le front, lui, garde son code
+    de rendu : `if (!favHits.length) return;` fait que la section `.lb-favs` n'est simplement pas
+    rendue, sans bloc vide. **Les deux points ci-dessous décrivent donc du comportement DORMANT** ;
+    ils restent écrits parce qu'ils redeviendraient vrais si la source rouvrait, et parce que la
+    règle d'ordre de page vaut pour toute section non filtrée par ville qu'on ajouterait demain.
+    Ne pas re-brancher la page de profil sans relire la note du Worker (ne PAS maquiller l'UA :
+    le blocage est indépendant de l'UA).
   - **⚠️ ORDRE DE LA PAGE : le verdict sur SA ville passe AVANT les favoris.** `render()`
     construit la section des favoris tôt mais ne l'insère que par `ajouteFavoris()`, appelé
     dans chaque branche APRÈS le compte de la watchlist et la section de la ville. Les favoris
@@ -493,8 +503,9 @@ indexable, et les deux se déclarent l'une l'autre en `hreflang` (`alternates()`
     saisie (portail `USER_HINT` + `/ma-watchlist/` dans build_site.py) et la relance dans le
     message « watchlist vide » — c'est là que la question se pose. Ne pas les retirer.
   - **Nommer la source dans les compteurs** : « 32 des 380 films de ta watchlist Letterboxd sont
-    à l'affiche », pas « de tes 380 films à voir ». La page affiche aussi les favoris du profil
-    juste au-dessus : sans le mot « watchlist », on ne sait pas ce qui a été compté.
+    à l'affiche », pas « de tes 380 films à voir ». La page affichait aussi les favoris du profil
+    juste au-dessus (dormant depuis le 2026-08-16, voir plus haut) : sans le mot « watchlist », on
+    ne sait pas ce qui a été compté.
 - **« Autour de moi » sur la carte** (`assets/map.js`, page `/carte/`) : bouton `#geoloc-btn` →
   `navigator.geolocation` (position lue dans le navigateur, **rien n'est envoyé**), marqueur
   « vous êtes ici » (`.cine-moi`), carte recentrée, et panneau `#map-nearby` listant les 12
