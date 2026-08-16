@@ -181,6 +181,17 @@
     });
     bloc.innerHTML = "";
     bloc.appendChild(b);
+
+    // L'abonné n'est identifié que par son endpoint de push, propre à CE
+    // navigateur sur CET appareil : rien ne relie le PC au téléphone (pas de
+    // compte, c'est le revers assumé du « zéro inscription »). S'abonner
+    // depuis un ordinateur notifie l'ordinateur. Le visiteur n'a aucun moyen
+    // de le deviner, d'où cette ligne.
+    var note = document.createElement("p");
+    note.className = "alerte-note alerte-appareil";
+    note.textContent = T("L'alerte arrive sur l'appareil où tu l'actives.")
+      + " " + T("Sur iPhone, ajoute d'abord Séancéo à ton écran d'accueil.");
+    bloc.appendChild(note);
   }
 
   // Ville de cadrage déjà choisie par le visiteur (portail Letterboxd ou

@@ -312,6 +312,10 @@ window.I18N = {
   "🔔 Préviens-moi quand il repasse à {ville}":
     "🔔 Notify me when it returns to {ville}",
   "🔔 Préviens-moi quand il repasse": "🔔 Notify me when it returns",
+  "L'alerte arrive sur l'appareil où tu l'actives.":
+    "The alert lands on the device you turn it on from.",
+  "Sur iPhone, ajoute d'abord Séancéo à ton écran d'accueil.":
+    "On iPhone, add Séancéo to your home screen first.",
   "Dans quelle ville veux-tu être prévenu ?":
     "Which city do you want to be notified about?",
   "Valider": "Confirm",

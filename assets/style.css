@@ -1653,6 +1653,9 @@ a:focus-visible, summary:focus-visible, input:focus-visible {
   padding-left: 12px;
 }
 .alerte-ko { color: var(--indie); }
+/* Précision sous le bouton : discrète, c'est un mode d'emploi, pas le message
+   principal. Plus petite que .alerte-note, qui sert aussi aux confirmations. */
+.alerte-appareil { margin-top: 8px; font-size: .82rem; }
 /* Marche à suivre iPhone : c'est la seule voie vers les notifications sur
    iOS, elle mérite d'être vue plutôt que lue en petit gris. */
 .alerte-ios {
