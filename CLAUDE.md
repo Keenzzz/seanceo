@@ -36,6 +36,25 @@ et la mention TMDB (« ce produit utilise l'API TMDB mais n'est ni approuvé ni 
 
 ## Contraintes à respecter (ne jamais violer)
 
+### Reprise sur erreur du fetch SCARE
+- `fetch_data.py` passe par **`lire_page()`**, qui réessaie 4 fois (2/4/8 s) les ruptures de
+  transport. Motif : depuis les IP datacenter du CI, l'API du SCARE accepte la connexion puis la
+  lâche en cours de transfert — `RemoteDisconnected` ou `IncompleteRead`. Trois runs d'affilée en
+  échec le 2026-08-21, alors que la même requête passait en 2 s depuis la machine de dev : ce
+  n'est ni l'API ni le code, c'est le trajet. Même famille que les blocages Pathé/CGR, mais sous
+  une forme PARTIELLE, qui ressemble à un bug plutôt qu'à un blocage.
+- ⚠️ **Une `HTTPError` (4xx/5xx) n'est PAS réessayée**, volontairement : elle signale une requête
+  fautive ou un service en panne, insister ne ferait que retarder un échec mérité. Ne pas
+  élargir le `except` à toutes les exceptions, ce serait transformer une reprise utile en boucle
+  qui masque les vrais problèmes.
+- **SCARE n'a PAS de garde-fou best-effort** contrairement aux connecteurs de chaînes, et c'est
+  assumé : c'est la source principale (les indés sont la raison d'être du site), déployer sans
+  elle n'aurait pas de sens. On insiste, puis on échoue franchement.
+- `PAGE_SIZE` reste à 10 000 (~12 Mo par page, 2 requêtes pour ~17 000 séances). **Levier
+  disponible si les reprises deviennent fréquentes** : le descendre à 2 000 fait des pages de
+  2,4 Mo, bien moins exposées à une coupure, au prix de 5 fois plus d'appels chez la source.
+  Le journal du CI dit désormais quand une reprise se déclenche : décider sur cette mesure.
+
 ### Snapshots de chaînes versionnés
 - **Pathé, CGR, Grand Écran bloquent les IP datacenter du CI (403).** Leurs séances sont donc
   collectées **en local** et **versionnées** dans `data/<chain>_*.json` (dé-gitignorés). Le CI retente

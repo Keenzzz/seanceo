@@ -8,15 +8,20 @@ Usage :  python scripts/fetch_data.py
 Aucune dépendance externe (stdlib uniquement).
 """
 
+import http.client
 import json
 import re
 import sys
 import unicodedata
+import urllib.error
 import urllib.parse
 import urllib.request
 from collections import defaultdict
 from datetime import date, datetime, time, timedelta, timezone
 from pathlib import Path
+# ⚠️ `from time import sleep` et NON `import time` : le nom `time` est déjà
+# pris par `datetime.time` juste au-dessus, et le module l'écraserait.
+from time import sleep
 
 API_BASE = "https://datacinesindes.fr/data-fair/api/v1/datasets/programmation-cinemas/lines"
 PAGE_SIZE = 10_000
@@ -37,6 +42,49 @@ FIELDS = [
 ]
 
 
+def lire_page(url: str, essais: int = 4) -> dict:
+    """Lit une page de l'API, en réessayant les coupures de connexion.
+
+    Pourquoi : depuis les IP datacenter du CI, l'API du SCARE accepte la
+    connexion puis la lâche **en cours de transfert** — `RemoteDisconnected`
+    (rien reçu) ou `IncompleteRead` (corps tronqué en route). Mesuré le
+    2026-08-21 : trois runs d'affilée en échec sur GitHub Actions, alors que
+    la même requête passait en 2 s depuis la machine de dev. Ce n'est donc ni
+    l'API ni le code, c'est le trajet — même famille que les blocages
+    Pathé/CGR, mais sous une forme partielle qui ne dit pas son nom.
+
+    Chaque tentative rouvre une connexion NEUVE, et c'est tout l'intérêt :
+    une réponse tronquée n'est pas rattrapable sur la socket existante, il
+    faut relancer la requête entière.
+
+    ⚠️ On ne rattrape QUE les ruptures de transport. Une erreur HTTP (4xx,
+    5xx) remonte immédiatement : elle veut dire que la requête est mauvaise
+    ou que le service est en panne, et la réessayer ne ferait que retarder un
+    échec mérité. C'est ce qui distingue une reprise utile d'une boucle qui
+    masque un vrai problème.
+
+    Volontairement PAS de garde-fou best-effort ici, contrairement aux
+    connecteurs de chaînes : le SCARE est la source principale (les indés
+    sont la raison d'être du site), déployer sans elle n'aurait pas de sens.
+    On insiste, puis on échoue franchement.
+    """
+    for n in range(essais):
+        try:
+            with urllib.request.urlopen(url, timeout=60) as resp:
+                return json.load(resp)
+        except urllib.error.HTTPError:
+            raise
+        except (http.client.IncompleteRead, http.client.RemoteDisconnected,
+                urllib.error.URLError, TimeoutError, ConnectionError) as err:
+            if n == essais - 1:
+                raise
+            attente = 2 ** n * 2  # 2 s, 4 s, 8 s
+            print(f"  connexion coupée ({type(err).__name__}), "
+                  f"reprise {n + 1}/{essais - 1} dans {attente} s…", flush=True)
+            sleep(attente)
+    raise AssertionError("inatteignable")  # pour le lecteur : la boucle sort par return ou raise
+
+
 def fetch_all_showtimes(since: date) -> list[dict]:
     """Récupère toutes les séances à partir de `since`, en suivant la
     pagination par curseur de l'API data-fair (champ `next`)."""
@@ -49,8 +97,7 @@ def fetch_all_showtimes(since: date) -> list[dict]:
     url = f"{API_BASE}?{urllib.parse.urlencode(params)}"
     rows: list[dict] = []
     while url:
-        with urllib.request.urlopen(url, timeout=60) as resp:
-            page = json.load(resp)
+        page = lire_page(url)
         rows.extend(page["results"])
         # `next` n'est présent que s'il reste des pages
         url = page.get("next") if page["results"] else None
