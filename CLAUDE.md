@@ -93,6 +93,21 @@ et la mention TMDB (« ce produit utilise l'API TMDB mais n'est ni approuvé ni 
   CORS, au User-Agent et aux liens du `.ics`. `ORIGINS_OK` garde l'ancienne origine le temps que
   les caches navigateur se vident. `WATCHLIST_INDEX` (`worker/wrangler.toml`) doit suivre.
 - Fichier de validation Search Console dans `static/` — **ne jamais le supprimer** (perte de propriété).
+- **⚠️ PIÈGE CLOUDFLARE : les URL en `.html` sont réécrites.** Cloudflare Pages retire
+  automatiquement l'extension et renvoie un **308** vers la version sans `.html` — GitHub Pages
+  servait le fichier tel quel. Google Search Console, lui, exige son fichier de validation
+  EXACTEMENT à `/google….html` et ne suit pas la redirection : la validation échouait avec
+  « impossible de trouver le fichier de validation à l'emplacement requis » alors que le fichier
+  était bien déployé et son contenu correct. Correctif : `static/_redirects` avec une règle en
+  **200** (une RÉÉCRITURE, pas une redirection — un 301/302 ne marcherait pas). Vérifié sur un
+  déploiement de préversion avant mise en prod. Vaut pour tout fichier devant être servi à une
+  URL en `.html` exacte.
+- **⚠️ Le site fantôme de l'ancienne adresse doit AUSSI porter le fichier de validation.**
+  `build_redirects.py` recopie `static/google*.html` dans `redirect/`. Oublié à sa première
+  version : le fichier est tombé en 404 sur `keenzzz.github.io/seanceo/` dès le premier
+  déploiement, ce qui aurait fait révoquer l'ancienne propriété — et avec elle l'historique de
+  performance et le suivi du transfert d'indexation. L'ancienne propriété doit rester valide
+  tant que Google sert encore les anciennes URL.
 
 ## Site bilingue (français / anglais)
 

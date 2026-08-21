@@ -1,0 +1,21 @@
+# Règles de routage lues par Cloudflare Pages (fichier servi à la racine du
+# site via static/, et consommé au déploiement : il n'apparaît pas en ligne).
+#
+# ⚠️ POURQUOI CE FICHIER EXISTE
+# Cloudflare Pages fabrique des « jolies URL » : il retire automatiquement le
+# « .html » et répond 308 vers la version sans extension. GitHub Pages, lui,
+# servait le fichier tel quel — d'où un piège invisible au moment de la
+# migration (2026-08-21).
+#
+# Or Google Search Console exige de trouver son fichier de validation
+# EXACTEMENT à /google….html, et ne se contente pas d'une redirection : la
+# validation échouait avec « impossible de trouver le fichier de validation à
+# l'emplacement requis », alors que le fichier était bien déployé et correct.
+#
+# Le code « 200 » est une RÉÉCRITURE, pas une redirection : l'URL demandée
+# répond elle-même, en servant le contenu de la cible. C'est ce qui satisfait
+# Google. Un 301/302 ici ne marcherait PAS.
+#
+# ⚠️ Ne pas supprimer cette ligne : perdre la validation = perdre la propriété
+# Search Console, donc l'historique de performance du site.
+/google2105f78113be32c1.html  /google2105f78113be32c1  200

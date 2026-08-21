@@ -124,6 +124,18 @@ def main() -> None:
         "</body>\n</html>\n",
     )
 
+    # ⚠️ Le fichier de validation Search Console doit RESTER servi par l'ancienne
+    # adresse. La propriété `keenzzz.github.io/seanceo/` est celle qui porte tout
+    # l'historique de performance et qui permet de suivre le transfert vers la
+    # nouvelle adresse ; si Google ne retrouve plus son fichier, il finit par
+    # révoquer la propriété et cet historique devient inaccessible.
+    # Oublié à la première version de ce script (2026-08-21) : le site fantôme ne
+    # contenait que des redirections, et le fichier est tombé en 404 dès le
+    # premier déploiement. Diagnostiqué en essayant de valider la NOUVELLE
+    # propriété — l'ancienne se serait éteinte en silence.
+    for f in (ROOT / "static").glob("google*.html"):
+        ecrire(f.name, f.read_text(encoding="utf-8"))
+
     # Un robots.txt qui ne renvoie PAS de sitemap : l'ancienne adresse n'a plus
     # rien à faire découvrir, elle n'a plus qu'à laisser suivre les canoniques.
     # On autorise l'exploration — interdire empêcherait Google de LIRE les
