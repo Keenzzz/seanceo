@@ -18,4 +18,9 @@
 #
 # ⚠️ Ne pas supprimer cette ligne : perdre la validation = perdre la propriété
 # Search Console, donc l'historique de performance du site.
-/google2105f78113be32c1.html  /google2105f78113be32c1  200
+#
+# La règle est GÉNÉRIQUE (`*` = joker, `:splat` = ce qu'il a capturé) et non
+# écrite pour un fichier précis : Google émet un jeton différent par propriété,
+# et il faudra en ajouter d'autres le jour de seanceo.fr. Avec ce motif, il
+# suffit de déposer le nouveau fichier dans `static/` — rien à toucher ici.
+/google*.html  /google:splat  200
