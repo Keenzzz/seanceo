@@ -409,6 +409,14 @@ indexable, et les deux se déclarent l'une l'autre en `hreflang` (`alternates()`
   **la page `/classiques/` existe toujours** — elle porte le classement COMPLET triable/filtrable
   que l'accueil n'a pas. Elle reste reliée par les « voir le classement » des pages ville et par
   la page marathon (≈ 100 liens internes), donc ni orpheline ni désindexée. Ne pas la supprimer.
+- **L'onglet « Carte » a été retiré du header** (demande utilisateur, 2026-08-21), **mais la
+  page `/carte/` existe toujours**, avec Leaflet, « Autour de moi » et le filtre répertoire, et
+  elle reste dans le sitemap. ⚠️ Différence critique avec `/classiques/` ci-dessus : le classement
+  gardait ~100 liens internes, la carte n'en garde que **DEUX** (`/salles-patrimoine/` et la 404).
+  C'est le minimum vital pour rester indexée — **ne pas retirer ces deux liens** sans décider
+  franchement de supprimer la page, sinon elle devient orpheline et sort de l'index toute seule.
+  Si la suppression est un jour décidée : Cloudflare Pages sait faire une vraie 301 (fichier
+  `_redirects`), ce que GitHub Pages ne permettait pas.
 - **INTERACTIONS LETTERBOXD.** `sources.py` propage `lb_url` (filtré aux URLs
   `letterboxd.com/film/…`) en plus de `lb_rating`. Deux usages :
   - **Lien « Voir sur Letterboxd »** sur chaque fiche film notée (700 films), à côté de la

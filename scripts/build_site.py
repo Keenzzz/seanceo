@@ -170,9 +170,15 @@ NAV_ITEMS = [
     ("/a-l-affiche/",    "🎬 À l'affiche",     ""),
     ("/retrospectives/", "🎞️ Rétrospectives",  ""),
     ("/marathon/",       "🍿 Marathons",       ""),
-    ("/carte/",          "🗺️ Carte",           ""),
     ("/cinematheque/",   "🏛️ Ma cinémathèque", ""),
 ]
+# ⚠️ « 🗺️ Carte » a été retiré du menu le 2026-08-21 (demande utilisateur), mais
+# **la page `/carte/` existe toujours** et reste dans le sitemap — même choix que
+# pour « 🏆 Le classement » avant elle. Différence importante : le classement
+# gardait une centaine de liens internes, la carte n'en garde que DEUX
+# (`/salles-patrimoine/` et la 404). C'est peu pour rester indexée : ne pas
+# retirer ces liens-là sans la supprimer franchement, sinon la page devient
+# orpheline et Google finit par la sortir de l'index sans qu'on l'ait décidé.
 
 
 def site_nav(current: str) -> str:
