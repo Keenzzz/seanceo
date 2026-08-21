@@ -16,9 +16,10 @@
 (function () {
   "use strict";
 
-  // Chemin de base du site (« …/seanceo »), déduit de l'URL de ce script.
-  // Il sert à enregistrer le service worker au bon endroit : sa portée sera
-  // /seanceo/, donc le site et rien d'autre de l'origine github.io.
+  // Chemin de base du site, déduit de l'URL de ce script. Il vaut "" depuis
+  // que le site est servi à la racine de son propre sous-domaine, mais on le
+  // garde déduit plutôt qu'écrit en dur : c'est ce calcul qui a permis au
+  // service worker de suivre le déménagement sans qu'on y touche.
   var MOI = document.currentScript;
   var BASE = MOI ? MOI.src.replace(/\/assets\/alertes\.js.*$/, "") : "";
 

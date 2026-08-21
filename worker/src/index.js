@@ -6,7 +6,7 @@
    demander au visiteur d'exporter le moindre fichier.
 
    Pourquoi un Worker et pas du JavaScript dans le navigateur ? Letterboxd ne
-   renvoie PAS d'en-tête CORS : un `fetch()` direct depuis keenzzz.github.io est
+   renvoie PAS d'en-tête CORS : un `fetch()` direct depuis le site est
    bloqué par le navigateur. Le Worker, lui, est un serveur : il n'est pas soumis
    au CORS quand IL appelle Letterboxd, et c'est nous qui ajoutons les en-têtes
    CORS sur SA réponse vers le site.
@@ -26,11 +26,18 @@
 
 // —— Réglages ———————————————————————————————————————————————————————————————
 
+// Origine canonique du site : celle qu'on écrit dans les liens sortants
+// (calendrier .ics, User-Agent). UNE constante, parce que le site a déjà
+// déménagé une fois — le jour de seanceo.fr, cette ligne suffit.
+const SITE_ORIGIN = "https://seanceo.pages.dev";
+
 // Origines autorisées à appeler le Worker (CORS). On reflète l'origine exacte
 // plutôt que « * » : le jour où le Worker fera de l'authentifié, « * » serait à
 // proscrire, autant prendre l'habitude tout de suite.
 const ORIGINS_OK = [
-  "https://keenzzz.github.io", // GitHub Pages (prod actuelle)
+  SITE_ORIGIN,                 // Cloudflare Pages (prod actuelle)
+  "https://keenzzz.github.io", // ancienne prod : gardée le temps que les
+                               // onglets ouverts et le cache se vident
   "https://seanceo.fr",        // domaine prévu
   "https://www.seanceo.fr",
 ];
@@ -39,8 +46,8 @@ const ORIGIN_LOCAL = /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/;
 
 const LB = "https://letterboxd.com";
 // Index des séances de répertoire, servi par le site (détail par film). Sert au
-// calendrier .ics. TODO(domaine) : passer sur https://seanceo.fr/... le jour venu.
-const AGENDA_INDEX = "https://keenzzz.github.io/seanceo/agenda-index.json";
+// calendrier .ics.
+const AGENDA_INDEX = `${SITE_ORIGIN}/agenda-index.json`;
 const PER_PAGE = 28;      // Letterboxd sert 28 affiches par page de watchlist
 const MAX_PAGES = 40;     // garde-fou : au-delà (~1120 films) on tronque
 const CONCURRENCY = 4;    // pages récupérées de front (poli mais pas lent)
@@ -50,7 +57,7 @@ const PAGE_TIMEOUT = 15000; // ms par requête vers Letterboxd
 // UA transparent : on se nomme et on pointe vers le site. C'est la politesse
 // minimale quand on lit des pages publiques sans API.
 const UA =
-  "SeanceoBot/1.0 (+https://keenzzz.github.io/seanceo/; " +
+  `SeanceoBot/1.0 (+${SITE_ORIGIN}/; ` +
   "croisement de watchlist a la demande du visiteur)";
 
 // Pseudos Letterboxd : lettres, chiffres, tirets et underscores. On borne la
@@ -582,7 +589,7 @@ function vevent(entry, s, uid) {
   const dtEnd = plus2h(start);
   const loc = city ? `${cinema}, ${city}` : cinema;
   const desc = (booking ? `Réserver : ${booking}\\n` : "") +
-    `Fiche : https://keenzzz.github.io${entry.u}`;
+    `Fiche : ${SITE_ORIGIN}${entry.u}`;
   return [
     "BEGIN:VEVENT",
     `UID:${uid}`,
@@ -592,7 +599,7 @@ function vevent(entry, s, uid) {
     `SUMMARY:${icsEsc("🎬 " + entry.t)}`,
     `LOCATION:${icsEsc(loc)}`,
     `DESCRIPTION:${icsEsc(desc)}`,
-    `URL:${booking || "https://keenzzz.github.io" + entry.u}`,
+    `URL:${booking || SITE_ORIGIN + entry.u}`,
     "END:VEVENT",
   ].join("\r\n");
 }

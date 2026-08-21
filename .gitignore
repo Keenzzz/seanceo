@@ -20,6 +20,9 @@ data/*
 !data/grandecran_cities.json
 !data/tmdb.json
 site/
+# Redirections vers la nouvelle adresse, régénérées depuis le sitemap
+# (scripts/build_redirects.py) — 3 500 fichiers, aucun intérêt à les versionner.
+redirect/
 
 __pycache__/
 *.pyc
@@ -27,3 +30,6 @@ __pycache__/
 
 # Rapport de fin de build : chaînes sans traduction anglaise (regénéré à chaque build)
 i18n-manquantes.txt
+
+# Cache local de wrangler (CLI Cloudflare)
+.wrangler/

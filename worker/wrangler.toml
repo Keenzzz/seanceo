@@ -38,4 +38,4 @@ VAPID_PUBLIC = "BBdxT1kgttqzFix3_a3jmCWDw8UrB6HjXLKkcxuJjZaXnG7HgoakW4hxfJsmv2ce
 VAPID_SUBJECT = "mailto:kenz.heribi@gmail.com"
 # Index lu par le balayage quotidien : il porte, pour chaque film à l'affiche,
 # ses prochaines séances par salle (et `_s`/`_v` donnent la ville).
-WATCHLIST_INDEX = "https://keenzzz.github.io/seanceo/watchlist-index.json"
+WATCHLIST_INDEX = "https://seanceo.pages.dev/watchlist-index.json"

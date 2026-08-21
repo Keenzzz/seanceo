@@ -43,10 +43,11 @@ DATA = ROOT / "data"
 SITE = ROOT / "site"
 ASSETS = ROOT / "assets"
 
-# Hébergement GitHub Pages (projet) : le site vit sous un sous-chemin.
-# Quand le domaine seanceo.fr sera branché : BASE_PATH = "" et BASE_URL = "https://seanceo.fr".
-BASE_PATH = "/seanceo"
-BASE_URL = f"https://keenzzz.github.io{BASE_PATH}"
+# Hébergement Cloudflare Pages : le site vit à la RACINE de son sous-domaine,
+# d'où BASE_PATH vide (avant, GitHub Pages le servait sous /seanceo).
+# Quand le domaine seanceo.fr sera branché : seul BASE_URL change.
+BASE_PATH = ""
+BASE_URL = f"https://seanceo.pages.dev{BASE_PATH}"
 SITE_NAME = "Séancéo"
 
 # Open Graph attend une locale complète (langue_PAYS), pas le code court du

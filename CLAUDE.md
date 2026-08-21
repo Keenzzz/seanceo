@@ -4,7 +4,8 @@ Site national des séances de cinéma en France : **cinémas indépendants + gra
 avec mise en avant des salles Art & Essai. Objectif : trafic monétisable via SEO programmatique
 (une page par ville / cinéma / film). Extension nationale du projet Paris Ciné Aujourd'hui.
 
-- **En ligne** : https://keenzzz.github.io/seanceo/ (GitHub Pages, repo `Keenzzz/seanceo`).
+- **En ligne** : https://seanceo.pages.dev/ (Cloudflare Pages, projet `seanceo`).
+  L'ancienne adresse `keenzzz.github.io/seanceo/` sert encore des **redirections** (voir plus bas).
 - **Dossier local** : `C:\Users\knz92\Projects\cine-indes` (non renommé, sans importance).
 - **Domaine** `seanceo.fr` prévu mais pas encore acheté (nom vérifié 100 % libre + sans marque déposée).
 
@@ -55,9 +56,23 @@ et la mention TMDB (« ce produit utilise l'API TMDB mais n'est ni approuvé ni 
 - Les popups de la carte échappent le texte côté JS (`map.js`, fonction `esc`).
 
 ### URL / déploiement
-- `BASE_PATH = "/seanceo"` dans `build_site.py` (site servi sous sous-chemin GitHub Pages).
-  **Le jour où `seanceo.fr` est branché** : `BASE_PATH = ""`, `BASE_URL = "https://seanceo.fr"`,
-  ajouter `static/CNAME` contenant `seanceo.fr`, config DNS, puis re-valider la Search Console.
+- **Le site est servi à la RACINE de son domaine** : `BASE_PATH = ""`,
+  `BASE_URL = "https://seanceo.pages.dev"` dans `build_site.py`. Tout le site en dérive
+  (canoniques, hreflang, og:url, sitemap, robots, liens internes) : **le jour de `seanceo.fr`,
+  seule la ligne `BASE_URL` change**, plus le domaine perso côté Cloudflare et la Search Console.
+- **Le build reste dans GitHub Actions, Cloudflare ne fait que RECEVOIR `site/`**
+  (`wrangler pages deploy`). Ne pas basculer sur le build intégré de Cloudflare Pages : lui seul
+  ne saurait pas relancer les connecteurs best-effort ni retomber sur les snapshots versionnés,
+  et le cron quotidien vient de GitHub. Secrets requis : `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID`.
+- **L'ancienne adresse GitHub Pages n'est PAS éteinte** : `scripts/build_redirects.py` y publie un
+  site fantôme (une page de redirection par URL du sitemap + un `404.html` qui reporte le chemin).
+  GitHub Pages ne permet pas de choisir les en-têtes HTTP, donc **pas de 301 possible** : on
+  redirige avec `rel="canonical"` + `meta refresh` à délai nul. **Pas de `noindex`** dessus — la
+  consigne risquerait d'être reportée sur la page CIBLE. À garder tant que Google sert encore les
+  anciennes URL.
+- **Une seule origine à déclarer dans le Worker** : `SITE_ORIGIN` (`worker/src/index.js`) sert au
+  CORS, au User-Agent et aux liens du `.ics`. `ORIGINS_OK` garde l'ancienne origine le temps que
+  les caches navigateur se vident. `WATCHLIST_INDEX` (`worker/wrangler.toml`) doit suivre.
 - Fichier de validation Search Console dans `static/` — **ne jamais le supprimer** (perte de propriété).
 
 ## Site bilingue (français / anglais)
@@ -107,9 +122,10 @@ indexable, et les deux se déclarent l'une l'autre en `hreflang` (`alternates()`
   préférence au lieu de stocker « fr ». Ce n'est PAS une redirection selon la
   langue du navigateur : `localStorage` est vide au premier chargement et
   **toujours** vide pour un robot, donc Googlebot ne voit jamais de redirection.
-- **404** : GitHub Pages ne sert que le `/404.html` de la racine, quelle que
-  soit l'adresse manquante — un `/en/404.html` ne serait jamais affiché. La 404
-  est donc en français, avec une ligne anglaise et un lien vers `/en/`.
+- **404** : l'hébergeur ne sert que le `/404.html` de la racine, quelle que
+  soit l'adresse manquante — un `/en/404.html` ne serait jamais affiché (vrai
+  sur GitHub Pages hier, sur Cloudflare Pages aujourd'hui). La 404 est donc en
+  français, avec une ligne anglaise et un lien vers `/en/`.
 - **Notifications** : un service worker n'a accès ni au DOM ni à `window`. La
   langue lui arrive dans l'URL d'enregistrement (`/sw.js?lang=en`), qu'il relit
   dans `self.location`.

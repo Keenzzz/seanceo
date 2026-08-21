@@ -11,9 +11,9 @@
    qu'il n'y a pas d'écouteur `fetch`, le navigateur va chercher le site
    normalement et le risque est nul.
 
-   Servi depuis static/ à la racine du site, donc sur /seanceo/sw.js : sa
-   portée est /seanceo/, exactement le site et rien d'autre de l'origine
-   github.io.
+   Servi depuis static/ à la racine du site, donc sur /sw.js : sa portée est
+   l'origine entière — mais celle-ci (seanceo.pages.dev) n'héberge que le
+   site, contrairement à l'ancienne (github.io, partagée avec tout GitHub).
 
    Les notifications arrivent SANS CONTENU (voir worker/src/index.js) : le
    réveil ne transporte rien, on vient chercher quoi afficher ici même. */
@@ -114,7 +114,7 @@ function quand(s) {
 
 self.addEventListener("notificationclick", function (event) {
   event.notification.close();
-  var cible = (event.notification.data && event.notification.data.url) || "/seanceo/";
+  var cible = (event.notification.data && event.notification.data.url) || "/";
   event.waitUntil(
     self.clients.matchAll({ type: "window", includeUncontrolled: true })
       .then(function (fenetres) {

@@ -2,7 +2,8 @@
 
 Site national des séances de cinéma en France : cinémas indépendants (open data SCARE)
 et grandes enseignes (connecteur Pathé), avec mise en avant des salles Art & Essai.
-En ligne : https://keenzzz.github.io/seanceo/ (domaine seanceo.fr à venir).
+En ligne : https://seanceo.pages.dev/ (domaine seanceo.fr à venir).
+L'ancienne adresse `keenzzz.github.io/seanceo/` redirige.
 Extension du projet [Paris Ciné Aujourd'hui](https://github.com/Keenzzz/paris-cine-aujourdhui) à l'échelle nationale.
 
 ## Source de données

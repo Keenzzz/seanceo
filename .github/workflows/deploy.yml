@@ -45,9 +45,28 @@ jobs:
         run: python scripts/fetch_ugc.py --cinemas 0 --days 7
       - name: Générer le site
         run: python scripts/build_site.py
+
+      # ---- Prod : Cloudflare Pages (https://seanceo.pages.dev) --------------
+      # Le build reste ici plutôt que dans Cloudflare Pages : lui seul sait
+      # relancer les connecteurs best-effort et retomber sur les snapshots
+      # versionnés, et seul GitHub Actions offre le cron quotidien. Cloudflare
+      # ne fait que recevoir le dossier déjà construit.
+      - name: Déployer sur Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy site --project-name=seanceo --branch=main --commit-dirty=true
+
+      # ---- Ancienne adresse : redirections sur GitHub Pages -----------------
+      # keenzzz.github.io/seanceo/ garde des milliers d'URL indexées par Google.
+      # On y publie un site fantôme de redirections (canonical + meta refresh)
+      # pour transférer cette réputation au lieu de la perdre en 404.
+      - name: Générer les redirections de l'ancienne adresse
+        run: python scripts/build_redirects.py
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: site
+          path: redirect
 
   deploy:
     needs: build
