@@ -468,7 +468,7 @@ html:not(.js) .film-tools { display: none; }
 /* Boutons de tri et de filtre : même grammaire visuelle, l'actif porte
    l'accent. Un second clic sur le tri actif inverse le sens (voir tri.js) ;
    la marque « ↓ » ou « A → Z » dit lequel est appliqué. */
-.tri-tri button, .tri-versions button {
+.tri-tri button, .tri-versions button, .agenda-villes button {
   background: none;
   color: var(--muted);
   border: 1px solid #3a4150;
@@ -478,11 +478,13 @@ html:not(.js) .film-tools { display: none; }
   font-size: .85rem;
   cursor: pointer;
 }
-.tri-tri button:hover, .tri-versions button:hover {
+.tri-tri button:hover, .tri-versions button:hover, .agenda-villes button:hover {
   border-color: var(--accent);
   color: var(--text);
 }
-.tri-tri button[aria-pressed="true"], .tri-versions button[aria-pressed="true"] {
+.tri-tri button[aria-pressed="true"],
+.tri-versions button[aria-pressed="true"],
+.agenda-villes button[aria-pressed="true"] {
   background: var(--accent-soft);
   border-color: var(--accent);
   color: var(--text);
@@ -1713,6 +1715,16 @@ a:focus-visible, summary:focus-visible, input:focus-visible {
    l'accueil. Elle partage les styles plutôt que de les recopier : c'est le
    même geste pour le visiteur (choisir sa ville), il doit avoir la même
    forme d'une page à l'autre. */
+/* Les villes sont des BOUTONS et non un menu (voir build_site.py) : avec
+   deux a quatre villes, un <select> cacherait derriere un clic une
+   information qui tient sur une ligne. Le groupe passe a la ligne sur
+   mobile plutot que de deborder. */
+.agenda-villes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
 .chance-tools,
 .agenda-tools {
   display: flex;

@@ -512,6 +512,8 @@ EN: dict[str, str] = {
         "No one-off screening matches. Widen the day or the city.",
     "Aucune de ces séances n'est dans cette ville.":
         "None of these screenings is in that city.",
+    "Filtrer par ville": "Filter by city",
+    "Toutes ({n})": "All ({n})",
     "＋ Ajouter ces séances à mon agenda": "＋ Add these screenings to my calendar",
     "Un fichier .ics à ouvrir dans Google Agenda, Apple Calendrier ou Outlook. Les filtres s'appliquent : choisissez votre ville et votre jour avant d'exporter et vous n'emportez que ce qui vous concerne.":
         "An .ics file to open in Google Calendar, Apple Calendar or Outlook. The "

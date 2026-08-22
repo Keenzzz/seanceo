@@ -1996,15 +1996,26 @@ def build_lang(today, today_iso, cinemas, movies, showtimes, cities,
     # ⚠️ Compté sur `rep_uniques`, c'est-à-dire exactement ce qui est affiché
     # au-dessus — si un jour la sélection change, la liste suit toute seule.
     home_villes = Counter(cinemas[s["cinema"]]["city"] for s in rep_uniques)
-    home_ville_opts = "".join(
-        f'<option value="{esc(v)}">{esc(v)} ({n})</option>'
+    # BOUTONS et non un <select>, contrairement à « Dernière chance » : là-bas le
+    # menu liste une trentaine de villes, ici il y en a deux à quatre. Un menu
+    # déroulant pour deux choix cache l'information derrière un clic, alors que
+    # des boutons annoncent d'emblée les villes concernées. Même grammaire que
+    # les boutons de tri (`aria-pressed`), c'est le même geste pour le visiteur.
+    #
+    # ⚠️ Les compteurs sont TOUS en séances, y compris « Toutes » : le <select>
+    # mélangeait deux unités (« Toutes les villes (3) » = des villes, « Nantes
+    # (7) » = des séances), ce qui se lisait mal une fois côte à côte.
+    home_ville_btns = "".join(
+        f'<button type="button" data-city="{esc(v)}" aria-pressed="false">'
+        f'{esc(v)} ({n})</button>'
         for v, n in sorted(home_villes.items(), key=lambda kv: _fold_title(kv[0])))
-    # Une seule ville dans la sélection : le menu n'offrirait aucun choix réel.
+    # Une seule ville dans la sélection : aucun choix réel à offrir.
     home_ville_tools = (f"""<div class="agenda-tools">
-<label class="tri-filtre"><span class="tri-filtre-nom">{t("Ville")}</span>
-<select id="agenda-ville">
-<option value="">{tf("Toutes les villes ({n})", n=len(home_villes))}</option>
-{home_ville_opts}</select></label>
+<span class="tri-filtre-nom">{t("Ville")}</span>
+<span class="agenda-villes" role="group" aria-label="{esc(t("Filtrer par ville"))}">
+<button type="button" data-city="" aria-pressed="true">{tf(
+    "Toutes ({n})", n=len(rep_uniques))}</button>
+{home_ville_btns}</span>
 <p class="tri-compte" id="agenda-compte" role="status">{tf(
     "{n} séance{s} en France", n=len(rep_uniques), s=plural(len(rep_uniques)))}</p>
 </div>""" if len(home_villes) > 1 else "")

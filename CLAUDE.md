@@ -210,9 +210,20 @@ indexable, et les deux se déclarent l'une l'autre en `hreflang` (`alternates()`
   anniversaires. L'encart cinémathèque a suivi les rétrospectives et n'est pas resté en place :
   il propose de composer SA PROPRE rétrospective, il enchaîne donc sur les cycles existants ;
   coincé derrière les anniversaires il n'était plus rattaché à rien.
-- **Filtre par ville sur « À ne pas rater »** (`assets/agenda-ville.js`, 2026-08-22) : un `<select>`
-  des seules villes DIFFUSATRICES de la sélection, jamais les 255 villes du site — proposer une
-  ville sans résultat fait cliquer dans le vide. L'accueil appelle donc désormais
+- **Filtre par ville sur « À ne pas rater »** (`assets/agenda-ville.js`, 2026-08-22) : des BOUTONS
+  portant les seules villes DIFFUSATRICES de la sélection, jamais les 255 villes du site —
+  proposer une ville sans résultat fait cliquer dans le vide.
+  - **Boutons et non un `<select>`, contrairement à « Dernière chance »** : là-bas le menu liste
+    une trentaine de villes, ici il y en a deux à quatre. Un menu déroulant pour deux choix
+    cache derrière un clic une information qui tient sur une ligne. Même grammaire que les
+    boutons de tri (`aria-pressed`, styles partagés) : c'est le même geste pour le visiteur.
+  - **La ville active est portée par `aria-pressed`, pas par une variable à part** : l'état lu
+    par un lecteur d'écran et l'état interne sont le même, ils ne peuvent pas diverger.
+  - Re-cliquer la ville active ne la désélectionne pas : il faut qu'une ville soit toujours
+    choisie, sinon plus aucun bouton n'indiquerait ce qui est affiché.
+  - ⚠️ **Tous les compteurs sont en SÉANCES**, « Toutes (12) » compris. Le `<select>` d'origine
+    mélangeait deux unités (« Toutes les villes (3) » = des villes, « Nantes (7) » = des
+    séances), illisible une fois les deux côte à côte. L'accueil appelle donc désormais
   `agenda_par_jour(rep_uniques, data=True)` (c'est `data-city` qui sert ; 12 lignes, surcoût nul).
   - Le script est une version RÉDUITE de `chance.js`, volontairement : la page « Dernière chance »
     filtre aussi par jour, trie par note et exporte un .ics. La réutiliser telle quelle aurait

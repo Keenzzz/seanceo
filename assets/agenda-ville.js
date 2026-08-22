@@ -19,7 +19,6 @@
 (function () {
   "use strict";
 
-  var sel = document.getElementById("agenda-ville");
   var compte = document.getElementById("agenda-compte");
   var vide = document.getElementById("agenda-vide");
   // Portée EXPLICITE (#agenda-uniques) plutôt que le document entier : rien ne
@@ -27,13 +26,28 @@
   // filtre ville de celui-ci masquerait alors des lignes qui ne le regardent
   // pas. Le conteneur coûte une div et supprime la question.
   var bloc = document.getElementById("agenda-uniques");
-  if (!sel || !bloc) return;
+  if (!bloc) return;
+  var groupe = bloc.querySelector(".agenda-villes");
+  if (!groupe) return;
+  var boutons = [].slice.call(groupe.querySelectorAll("button[data-city]"));
   var lignes = [].slice.call(bloc.querySelectorAll(".seance[data-city]"));
   var jours = [].slice.call(bloc.querySelectorAll(".jour"));
-  if (!lignes.length) return;
+  if (!boutons.length || !lignes.length) return;
+
+  // La ville active est portée par `aria-pressed` et NON par une variable à
+  // part : l'état lisible par un lecteur d'écran et l'état interne sont ainsi
+  // le même, ils ne peuvent pas diverger. Même principe que les boutons de tri.
+  function villeActive() {
+    for (var i = 0; i < boutons.length; i++) {
+      if (boutons[i].getAttribute("aria-pressed") === "true") {
+        return boutons[i].dataset.city;
+      }
+    }
+    return "";
+  }
 
   function appliquer() {
-    var ville = sel.value;
+    var ville = villeActive();
     var n = 0;
     for (var i = 0; i < lignes.length; i++) {
       var garde = !ville || lignes[i].dataset.city === ville;
@@ -55,7 +69,20 @@
     }
   }
 
-  sel.addEventListener("change", appliquer);
+  // Un seul écouteur sur le groupe plutôt qu'un par bouton : le nombre de
+  // villes change à chaque build, autant ne pas en dépendre.
+  groupe.addEventListener("click", function (e) {
+    var btn = e.target.closest ? e.target.closest("button[data-city]") : null;
+    if (!btn || !groupe.contains(btn)) return;
+    // Re-cliquer la ville déjà active ne la désélectionne pas : il faut qu'une
+    // ville soit toujours choisie, sinon la liste tomberait dans un état sans
+    // bouton actif où plus rien n'indiquerait ce qui est affiché.
+    if (btn.getAttribute("aria-pressed") === "true") return;
+    for (var i = 0; i < boutons.length; i++) {
+      boutons[i].setAttribute("aria-pressed", boutons[i] === btn ? "true" : "false");
+    }
+    appliquer();
+  });
   // Pas d'appel au chargement : le HTML servi est déjà l'état « toutes villes »,
   // et le rejouer ferait clignoter la liste pour rien.
 })();
