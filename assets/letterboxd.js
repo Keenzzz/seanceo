@@ -29,6 +29,14 @@
   var KEY = "seanceo.lb"; // une seule entrée localStorage (objet JSON)
   var USER_RE = /^[a-z0-9_-]{1,40}$/;
 
+  // Durée pendant laquelle on respecte un refus avant de reproposer le portail.
+  // Un refus était DÉFINITIF jusqu'au 2026-08-22 : le visiteur qui fermait une
+  // fois ne revoyait jamais l'offre, alors que la programmation change chaque
+  // semaine et qu'il peut très bien avoir refusé un jour où il était pressé.
+  // 60 jours est un compromis : assez long pour ne pas harceler quelqu'un qui a
+  // dit non, assez court pour qu'un visiteur fidèle retombe sur la proposition.
+  var REFUS_MS = 60 * 24 * 60 * 60 * 1000;
+
   // Le piège n°1 du formulaire : sur Letterboxd le NOM AFFICHÉ et l'identifiant
   // de l'URL sont deux choses différentes, et c'est le second qu'il nous faut.
   // Taper le nom affiché tombe souvent sur un homonyme au compte vide, et le
@@ -51,8 +59,9 @@
   }
 
   // —— Stockage local ———————————————————————————————————————————————————————
-  // { user, films:[{slug,name,year}], at:<ms>, seen:true } — `seen` seul = le
-  // visiteur a fermé le portail sans se connecter (on ne le rouvre plus).
+  // { user, films:[{slug,name,year}], at:<ms>, seen:true, seenAt:<ms> }
+  // `seen` seul = le visiteur a fermé le portail sans se connecter ; `seenAt`
+  // date ce refus, qui expire au bout de REFUS_MS au lieu d'être définitif.
 
   function load() {
     try { return JSON.parse(localStorage.getItem(KEY) || "null"); }
@@ -809,8 +818,11 @@
           + "<strong>publique</strong>. Rien n'est stocké côté serveur.") + "</p>" +
       '</div>';
 
+    // `markSeen` = « le visiteur a VOULU fermer ». On horodate le refus au lieu
+    // de poser un simple booléen : c'est ce qui permet de le laisser expirer
+    // (voir REFUS_MS) plutôt que de le tenir pour définitif.
     function close(markSeen) {
-      if (markSeen) patch({ seen: true });
+      if (markSeen) patch({ seen: true, seenAt: Date.now() });
       document.body.style.overflow = prev;
       document.removeEventListener("keydown", onKey);
       overlay.remove();
@@ -823,7 +835,11 @@
 
     overlay.querySelector(".lb-close").addEventListener("click", function () { close(true); });
     overlay.querySelector("#lb-portal-skip").addEventListener("click", function () { close(true); });
-    overlay.addEventListener("click", function (e) { if (e.target === overlay) close(true); });
+    // ⚠️ Le clic à CÔTÉ de la carte ferme SANS marquer de refus. C'est le seul
+    // des quatre gestes de fermeture qui peut être accidentel — viser un lien
+    // de la page et toucher le fond suffisait à éteindre le portail à vie.
+    // La croix, « continuer sans compte » et Échap, eux, sont délibérés.
+    overlay.addEventListener("click", function (e) { if (e.target === overlay) close(false); });
     document.addEventListener("keydown", onKey);
 
     form.addEventListener("submit", function (e) {
@@ -1056,8 +1072,14 @@
     var state = load();
     // Déjà connecté : on retire l'invitation « entrer mon pseudo » de l'accueil.
     if (state && state.user) hideConnectCta();
-    // Déjà connecté (`user`) ou déjà fermé (`seen`) → on ne rouvre pas tout seul.
-    if (state && (state.user || state.seen)) return;
+    // Connecté : le portail n'a plus rien à demander, jamais.
+    if (state && state.user) return;
+    // Refus encore frais : on le respecte. Un refus SANS date vient d'avant le
+    // 2026-08-22, où il était définitif : on ne peut pas savoir quand il a été
+    // exprimé, et le tenir pour éternel reconduirait précisément le défaut
+    // qu'on corrige. On le laisse donc expirer.
+    if (state && state.seen && state.seenAt &&
+        Date.now() - state.seenAt < REFUS_MS) return;
     // Sur la page dédiée, le portail ferait doublon avec le champ de la page.
     if (/\/ma-watchlist\//.test(location.pathname)) return;
     showPortal(indexUrl);

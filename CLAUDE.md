@@ -580,6 +580,24 @@ indexable, et les deux se déclarent l'une l'autre en `hreflang` (`alternates()`
       n'y a rien. Le titre devient alors « Rien **de ta watchlist** à Paris » plus une ligne qui
       renvoie aux favoris juste en dessous, sinon le « Rien à Paris » sec est démenti par la
       section suivante.
+  - **QUAND le portail d'accueil s'ouvre** (`letterboxd.js`, revu le 2026-08-22). Trois règles :
+    visiteur **connecté** (`user`) → jamais, il n'y a plus rien à demander ; **refus horodaté**
+    (`seen` + `seenAt`) → pas avant `REFUS_MS` (60 jours) ; sinon → on l'ouvre.
+    - ⚠️ **Le clic à CÔTÉ de la carte ferme SANS marquer de refus** — c'est le seul des quatre
+      gestes de fermeture qui peut être accidentel (viser un lien de la page et toucher le fond).
+      La croix, « continuer sans compte » et Échap sont délibérés et marquent, eux. Avant cette
+      révision un clic malheureux éteignait le portail **à vie**, et c'est exactement comme ça
+      que l'utilisateur l'avait perdu sans s'en rendre compte.
+    - ⚠️ **Un refus n'est plus définitif.** Il l'était jusqu'ici, alors que la programmation change
+      chaque semaine : quelqu'un qui refuse un jour de presse ne revoyait plus jamais l'offre.
+      60 jours = assez long pour ne pas harceler, assez court pour qu'un visiteur fidèle retombe
+      dessus. Ne pas descendre ce seuil sans y penser à deux fois : un modal qui revient trop vite
+      après un « non » est pire que pas de modal.
+    - Un `seen` **sans** `seenAt` vient d'avant cette révision : on ne peut pas savoir quand il a
+      été posé, et le tenir pour éternel reconduirait le défaut corrigé. Il est donc traité comme
+      expiré (le portail se représente une fois, puis le refus est correctement daté).
+    - Diagnostic à connaître : « la popup ne s'ouvre plus » n'est presque jamais un bug. Regarder
+      `localStorage["seanceo.lb"]` AVANT de chercher ailleurs.
   - **⚠️ PIÈGE UTILISATEUR N°1 : nom affiché ≠ identifiant d'URL sur Letterboxd.** « Alex Her »
     à l'écran peut avoir `alexher__` dans son URL, et `alexher` est alors un AUTRE compte, réel
     mais vide. Le visiteur lisait « ta watchlist est vide » sans comprendre (constaté en vrai,
