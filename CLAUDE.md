@@ -262,13 +262,18 @@ indexable, et les deux se déclarent l'une l'autre en `hreflang` (`alternates()`
     la barre sans JavaScript, comme `.film-tools`.
   - ⚠️ Dépend des règles `.seance[hidden]` / `.jour[hidden]` déjà présentes (piège CSS récurrent),
     et masque les sections `.jour` devenues vides pour ne pas laisser un titre de jour orphelin.
-  - ⚠️ **La sélection est très concentrée** : mesuré le 2026-08-22, 12 séances pour seulement
-    **3 villes** (Nantes 7, Paris 4, Dunkerque 1). `unique_screenings()` retient les mieux notées
-    de France, qui se groupent sur quelques salles. Le filtre n'offre donc que 3 choix et un
-    visiteur lyonnais ne trouve jamais sa ville. Le remède existe déjà ailleurs dans le fichier
-    (`PARIS_CAP` plafonne les cycles parisiens « pour ne pas afficher que Paris ») : un plafond
-    par ville sur la sélection diversifierait. **Écarté par l'utilisateur le 2026-08-22** (filtre
-    seul demandé) — ne pas le réintroduire sans lui redemander.
+  - **La sélection est PLAFONNÉE PAR VILLE depuis le 2026-08-22** (`unique_screenings()`,
+    repertoire.py) : 2 séances par ville, **3 pour Paris**. Avant ce plafond, les 12 meilleures
+    notes de France se groupaient sur 3 villes (Nantes 7, Paris 4, Dunkerque 1) alors que le
+    vivier comptait 81 séances notées sur 20 villes ; on affiche désormais **9 villes**, Paris en
+    tête. Le filtre est donc passé de 4 à 10 boutons, qui s'enroulent sur deux lignes.
+  - ⚠️ **Le quota parisien va dans le sens INVERSE du `PARIS_CAP` des cycles**, et c'est voulu :
+    sur les rétrospectives, la Cinémathèque et le Quartier latin saturent le classement, il faut
+    brider Paris ; sur les séances uniques, c'est Nantes qui domine et Paris a besoin d'être
+    protégé. Chaque réglage corrige la sur-représentation de SA section — ne pas « harmoniser ».
+  - Réglages mesurés avant d'être choisis : quota Paris à 3 → 9 villes, à 4 → 8 villes. La note
+    moyenne ne bouge quasiment pas (4,29 contre 4,30) : les rangs 13 à 30 du classement se valent,
+    diversifier ne coûte rien en qualité.
 - **Page « Dernière chance »** (`/derniere-chance/`) : TOUTES les séances uniques de la fenêtre,
   en agenda chronologique, filtrables par ville et par jour, classables par note. Deux fonctions distinctes dans `repertoire.py`,
   ne pas les confondre : `unique_screenings()` = la SÉLECTION de l'accueil (les mieux notées, une

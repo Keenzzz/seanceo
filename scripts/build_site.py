@@ -1895,7 +1895,9 @@ def build_lang(today, today_iso, cinemas, movies, showtimes, cities,
     # ----- Répertoire : le moteur éditorial du site -----
     # `rep_window` et `rep_shows` sont calculés plus haut (le seuil des fiches
     # réalisateur en dépend) : une seule définition, pas deux.
-    rep_uniques = repertoire.unique_screenings(rep_shows, movies)
+    # `cinemas` est désormais nécessaire : la sélection est plafonnée par ville
+    # (et Paris y a un quota supérieur). Voir unique_screenings().
+    rep_uniques = repertoire.unique_screenings(rep_shows, movies, cinemas)
     # Films qui ne passent qu'UNE fois en France sur la fenêtre. Dérivé de
     # unique_all() et pas d'un Counter local : une seule définition de la
     # séance unique dans tout le projet. Sert au badge de `seance_row()`, qui

@@ -48,16 +48,72 @@ def repertoire_shows(showtimes: list, movies: dict) -> list:
     return [s for s in showtimes if is_repertoire(movies[s["movie"]])]
 
 
-def unique_screenings(rep_shows: list, movies: dict, limit: int = 12) -> list:
+def unique_screenings(rep_shows: list, movies: dict, cinemas: dict,
+                      limit: int = 12, per_city: int = 2,
+                      paris_quota: int = 3, paris: str = "Paris") -> list:
     """Séances de films qui ne passent qu'une fois en France, les MIEUX NOTÉES
-    sur Letterboxd d'abord, puis remises dans l'ordre chronologique pour
-    l'affichage en agenda."""
+    sur Letterboxd d'abord, PLAFONNÉES PAR VILLE, puis remises dans l'ordre
+    chronologique pour l'affichage en agenda.
+
+    Pourquoi un plafond. Sans lui la sélection prend les 12 meilleures notes de
+    France, qui se groupent sur une poignée de salles : mesuré le 2026-08-22,
+    12 séances pour seulement 3 villes (Nantes 7, Paris 4, Dunkerque 1), alors
+    que le vivier comptait 81 séances notées réparties sur 20 villes. Un
+    visiteur lyonnais ne pouvait pas y trouver sa ville. Avec `per_city=2` on
+    remonte à une dizaine de villes sans rien perdre en qualité (note moyenne
+    4,26 contre 4,30 : les rangs 13 à 30 du classement se valent).
+
+    Pourquoi Paris a un quota SUPÉRIEUR. C'est le premier bassin de public du
+    site et la ville la plus fournie après Nantes (15 séances dans le vivier) ;
+    la traiter comme n'importe quelle autre l'aurait réduite à deux lignes. Le
+    quota lui donne la première place sans lui rendre la sélection entière : à
+    3 on garde 9 villes, à 4 on n'en garde plus que 8.
+
+    ⚠️ Ne pas confondre avec le `PARIS_CAP` des cycles (build_site.py), qui va
+    dans l'AUTRE sens : là-bas on BRIDE Paris parce que la Cinémathèque et le
+    Quartier latin saturent le haut du classement des rétrospectives. Ici Paris
+    n'écrase rien, c'est Nantes qui domine. Les deux réglages sont cohérents :
+    chacun corrige la sur-représentation propre à SA section.
+
+    Trois passes, dans cet ordre : Paris jusqu'à son quota — c'est ce qui fait
+    la priorité, Paris est servi AVANT que les places ne partent ; puis les
+    autres villes, plafonnées ; puis, si les plafonds n'ont pas rempli les 12
+    lignes, un complément pris au mérite dans ce qui reste. Sans cette
+    troisième passe, une semaine peu fournie afficherait une section trouée.
+    """
     par_film = Counter(s["movie"] for s in rep_shows)
     seules = [s for s in rep_shows if par_film[s["movie"]] == 1]
     notees = sorted((s for s in seules if movies[s["movie"]].get("lb_rating")),
-                    key=lambda s: -movies[s["movie"]]["lb_rating"])[:limit]
-    notees.sort(key=lambda s: s["start"])
-    return notees
+                    key=lambda s: -movies[s["movie"]]["lb_rating"])
+
+    def ville(s: dict) -> str:
+        return cinemas[s["cinema"]]["city"]
+
+    def plafond(v: str) -> int:
+        return paris_quota if v == paris else per_city
+
+    choisies: list = []
+    # On mémorise les INDEX déjà retenus, pas les séances : deux séances
+    # distinctes peuvent être des dictionnaires égaux, `in` se tromperait.
+    prises: set[int] = set()
+    pris: Counter = Counter()
+    for phase in ("paris", "autres", "complement"):
+        for i, s in enumerate(notees):
+            if len(choisies) >= limit:
+                break
+            if i in prises:
+                continue
+            v = ville(s)
+            if phase == "paris" and v != paris:
+                continue
+            if phase != "complement" and pris[v] >= plafond(v):
+                continue
+            choisies.append(s)
+            prises.add(i)
+            pris[v] += 1
+
+    choisies.sort(key=lambda s: s["start"])
+    return choisies
 
 
 def unique_all(rep_shows: list) -> list:
