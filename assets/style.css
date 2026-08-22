@@ -1709,7 +1709,12 @@ a:focus-visible, summary:focus-visible, input:focus-visible {
    L'agenda lui-même réutilise .jour / .seance de l'accueil : les deux pages
    doivent se lire pareil, seule la longueur de la liste change. Il ne reste
    ici que la barre de filtre et l'encadré d'export. */
-.chance-tools {
+/* `.agenda-tools` = la même barre, sur la section « À ne pas rater » de
+   l'accueil. Elle partage les styles plutôt que de les recopier : c'est le
+   même geste pour le visiteur (choisir sa ville), il doit avoir la même
+   forme d'une page à l'autre. */
+.chance-tools,
+.agenda-tools {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -1721,7 +1726,8 @@ a:focus-visible, summary:focus-visible, input:focus-visible {
 /* Même pastille que les filtres de liste (.tri-filtres select) : c'est le même
    geste pour le visiteur, il doit avoir la même forme. Les trois menus (ville,
    jour, ordre) la partagent, sinon la barre aurait trois allures. */
-.chance-tools select {
+.chance-tools select,
+.agenda-tools select {
   background: var(--sunk);
   color: var(--text);
   border: 1px solid #3a4150;
@@ -1758,7 +1764,8 @@ a:focus-visible, summary:focus-visible, input:focus-visible {
   white-space: nowrap;
 }
 
-.chance-vide {
+.chance-vide,
+.agenda-vide {
   margin: 26px 0 0;
   padding: 18px;
   background: var(--sunk);
@@ -1783,6 +1790,10 @@ a:focus-visible, summary:focus-visible, input:focus-visible {
 .seance[hidden] { display: none; }
 .jour[hidden] { display: none; }
 .chance-vide[hidden] { display: none; }
+.agenda-vide[hidden] { display: none; }
+/* Sans JavaScript le filtre ne filtre rien : une barre morte serait pire que
+   pas de barre. Même contrat que .film-tools et .proximite-btn. */
+html:not(.js) .agenda-tools { display: none; }
 .chance-export .bouton[hidden] { display: none; }
 
 /* —— Abonnement au répertoire d'une ville (bas des pages ville) ————————————

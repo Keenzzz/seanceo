@@ -1985,7 +1985,29 @@ def build_lang(today, today_iso, cinemas, movies, showtimes, cities,
                            f'</h3><ul class="seances">{rows}</ul></section>')
         return html_jours
 
-    agenda_html = agenda_par_jour(rep_uniques)
+    # `data=True` : l'accueil filtre désormais par ville, il a donc besoin des
+    # mêmes attributs que « Dernière chance » (c'est `data-city` qui sert ici).
+    # Douze lignes seulement : le surcoût de HTML est négligeable.
+    agenda_html = agenda_par_jour(rep_uniques, data=True)
+
+    # Villes DIFFUSATRICES de la sélection : uniquement celles qui programment
+    # vraiment une de ces séances, jamais les 255 villes du site. Une liste qui
+    # propose des villes sans résultat fait cliquer dans le vide.
+    # ⚠️ Compté sur `rep_uniques`, c'est-à-dire exactement ce qui est affiché
+    # au-dessus — si un jour la sélection change, la liste suit toute seule.
+    home_villes = Counter(cinemas[s["cinema"]]["city"] for s in rep_uniques)
+    home_ville_opts = "".join(
+        f'<option value="{esc(v)}">{esc(v)} ({n})</option>'
+        for v, n in sorted(home_villes.items(), key=lambda kv: _fold_title(kv[0])))
+    # Une seule ville dans la sélection : le menu n'offrirait aucun choix réel.
+    home_ville_tools = (f"""<div class="agenda-tools">
+<label class="tri-filtre"><span class="tri-filtre-nom">{t("Ville")}</span>
+<select id="agenda-ville">
+<option value="">{tf("Toutes les villes ({n})", n=len(home_villes))}</option>
+{home_ville_opts}</select></label>
+<p class="tri-compte" id="agenda-compte" role="status">{tf(
+    "{n} séance{s} en France", n=len(rep_uniques), s=plural(len(rep_uniques)))}</p>
+</div>""" if len(home_villes) > 1 else "")
 
     # Rétrospectives mises en avant sur l'accueil : jusqu'à 9, les plus
     # fournies d'abord (rep_cycles est déjà trié par nb de films puis séances).
@@ -2176,11 +2198,21 @@ aria-label="{esc(t("Chercher une ville"))}">
 {t("Note moyenne donnée par les spectateurs de")}
 <a href="https://letterboxd.com" rel="noopener">Letterboxd</a>.
 {t("Les séances ci-dessous sont les mieux notées de la semaine.")}</p>
+<div id="agenda-uniques">
+{home_ville_tools}
 {agenda_html or f'<p>{t("Aucune séance unique repérée cette semaine.")}</p>'}
+<p class="agenda-vide" id="agenda-vide" hidden>{t(
+    "Aucune de ces séances n'est dans cette ville.")}</p>
+</div>
 <p class="meta"><a class="more" href="/derniere-chance/">{tf(
     "Les {n} séances sans deuxième date, ville par ville →", n=n_rep_uniques)}</a></p>
+<script src="/assets/agenda-ville.js" defer></script>
 
-{anniv_section}
+<h2>{t("Rétrospectives en cours")}</h2>
+<p class="meta">{t("Les cycles programmés en ce moment, salle par salle.")}
+<a class="more" href="/retrospectives/">{t("Toutes les rétrospectives →")}</a></p>
+<div class="cycles">{cycles_html or f'<p>{t("Aucun cycle en cours.")}</p>'}</div>
+
 <div class="passerelle cine-cta">
 <p><span class="titre">{t("🎞️ Compose ta cinémathèque")}</span>
 <span class="meta">{tf("Choisis un réalisateur : {site} réunit toutes ses séances de "
@@ -2190,11 +2222,7 @@ aria-label="{esc(t("Chercher une ville"))}">
 <a class="bouton" href="/cinematheque/">{t("Composer ma cinémathèque →")}</a>
 </div>
 
-<h2>{t("Rétrospectives en cours")}</h2>
-<p class="meta">{t("Les cycles programmés en ce moment, salle par salle.")}
-<a class="more" href="/retrospectives/">{t("Toutes les rétrospectives →")}</a></p>
-<div class="cycles">{cycles_html or f'<p>{t("Aucun cycle en cours.")}</p>'}</div>
-
+{anniv_section}
 <h2>{t("Salles de patrimoine")}</h2>
 <p class="meta">{t("Les cinémas qui consacrent la plus grande part de leurs séances de la "
                    "semaine au répertoire, ces films ressortis en salle plutôt qu'aux "

@@ -204,6 +204,33 @@ indexable, et les deux se déclarent l'une l'autre en `hreflang` (`alternates()`
   salle, agrégés ensuite au national. **Le seuil 2020 n'est pas arbitraire** : à 20 ans d'âge,
   84 villes sur 257 seulement étaient couvertes ; avant 2020, 154 villes le sont. Ne pas le
   remonter sans re-mesurer la couverture.
+- **ORDRE DE L'ACCUEIL (modifié le 2026-08-22, demande utilisateur)** : « À ne pas rater », puis
+  « Rétrospectives en cours », puis l'encart « Compose ta cinémathèque », puis « Les anniversaires
+  de {année} », puis « Salles de patrimoine ». Les rétrospectives sont passées AVANT les
+  anniversaires. L'encart cinémathèque a suivi les rétrospectives et n'est pas resté en place :
+  il propose de composer SA PROPRE rétrospective, il enchaîne donc sur les cycles existants ;
+  coincé derrière les anniversaires il n'était plus rattaché à rien.
+- **Filtre par ville sur « À ne pas rater »** (`assets/agenda-ville.js`, 2026-08-22) : un `<select>`
+  des seules villes DIFFUSATRICES de la sélection, jamais les 255 villes du site — proposer une
+  ville sans résultat fait cliquer dans le vide. L'accueil appelle donc désormais
+  `agenda_par_jour(rep_uniques, data=True)` (c'est `data-city` qui sert ; 12 lignes, surcoût nul).
+  - Le script est une version RÉDUITE de `chance.js`, volontairement : la page « Dernière chance »
+    filtre aussi par jour, trie par note et exporte un .ics. La réutiliser telle quelle aurait
+    chargé tout ça sur l'accueil pour n'en garder qu'un dixième.
+  - Portée EXPLICITE `#agenda-uniques` et non le document : rien ne garantit que l'accueil
+    n'accueillera pas un second agenda un jour.
+  - Styles partagés avec `.chance-tools` (`.agenda-tools` ajoutée aux mêmes sélecteurs) : c'est le
+    même geste pour le visiteur, il doit avoir la même forme. `html:not(.js) .agenda-tools` masque
+    la barre sans JavaScript, comme `.film-tools`.
+  - ⚠️ Dépend des règles `.seance[hidden]` / `.jour[hidden]` déjà présentes (piège CSS récurrent),
+    et masque les sections `.jour` devenues vides pour ne pas laisser un titre de jour orphelin.
+  - ⚠️ **La sélection est très concentrée** : mesuré le 2026-08-22, 12 séances pour seulement
+    **3 villes** (Nantes 7, Paris 4, Dunkerque 1). `unique_screenings()` retient les mieux notées
+    de France, qui se groupent sur quelques salles. Le filtre n'offre donc que 3 choix et un
+    visiteur lyonnais ne trouve jamais sa ville. Le remède existe déjà ailleurs dans le fichier
+    (`PARIS_CAP` plafonne les cycles parisiens « pour ne pas afficher que Paris ») : un plafond
+    par ville sur la sélection diversifierait. **Écarté par l'utilisateur le 2026-08-22** (filtre
+    seul demandé) — ne pas le réintroduire sans lui redemander.
 - **Page « Dernière chance »** (`/derniere-chance/`) : TOUTES les séances uniques de la fenêtre,
   en agenda chronologique, filtrables par ville et par jour, classables par note. Deux fonctions distinctes dans `repertoire.py`,
   ne pas les confondre : `unique_screenings()` = la SÉLECTION de l'accueil (les mieux notées, une
