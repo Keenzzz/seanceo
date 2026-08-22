@@ -71,6 +71,33 @@ et la mention TMDB (« ce produit utilise l'API TMDB mais n'est ni approuvé ni 
 - Notes affichées seulement si `votes >= 30` (une note sur 1-2 votes = 10/10 trompeur).
 
 ### Sécurité / rendu
+- **CSP et en-têtes de sécurité** (`site/_headers`, posé le 2026-08-22). GitHub Pages ne permettait
+  aucun en-tête, Cloudflare oui : c'est ce que la migration a débloqué.
+  - **Le fichier est GÉNÉRÉ par `csp_headers()`, jamais écrit à la main dans `static/`.** La CSP
+    contient l'empreinte SHA-256 des deux scripts EN LIGNE du gabarit (`JS_FLAG`, `T_HELPER`) ;
+    un site statique ne peut pas utiliser de `nonce` (il devrait changer à chaque réponse). Le
+    hash porte sur les octets exacts : **un espace ajouté dans JS_FLAG ou T_HELPER suffirait à
+    faire rejeter le script**, et le site perdrait son JavaScript sans un mot au build. Le dériver
+    du code est ce qui rend cette divergence impossible.
+  - ⚠️ **`img-src` autorise `https:` en bloc, PAS une liste de domaines.** Les affiches viennent de
+    TMDB et du CDN de chaque chaîne (8 domaines observés le 2026-08-22). Cette liste vient des
+    DONNÉES : une salle qui change d'hébergeur en ajoute un du jour au lendemain, et une liste
+    blanche ferait alors disparaître des affiches en silence. Une image ne s'exécute pas ;
+    l'essentiel de la protection est dans `script-src`, qui reste strict. Ne pas « durcir » ce
+    point sans prévoir un garde-fou qui signale les hôtes inconnus au build.
+  - ⚠️ **`style-src 'unsafe-inline'`** : les jauges de « Salles de patrimoine » portent un
+    `style="width:NN%"` dont la valeur vient des données, impossible à mettre en feuille de style
+    sans une centaine de classes de largeur. Tout contenu externe passant par `html.escape()`, le
+    risque résiduel est faible.
+  - `connect-src` autorise `'self'` **et le Worker watchlist** (`WORKER_ORIGIN`) : sans lui, la
+    watchlist par pseudo échoue. Cette constante est aussi répétée dans `letterboxd.js` et `sw.js`.
+  - **PIÈGE DE TEST** : sur un déploiement de PRÉVERSION, l'appel au Worker échoue en
+    « Failed to fetch » — non pas à cause de la CSP mais parce que `ORIGINS_OK` (worker/src/index.js)
+    n'autorise pas les hôtes `*.pages.dev` de test. Pour distinguer les deux, refaire l'appel en
+    `mode:'no-cors'` : ce mode contourne le CORS mais reste soumis à la CSP.
+  - Vérifié sous CSP avant mise en prod : carte Leaflet (55/55 tuiles cartocdn), affiches TMDB,
+    scripts en ligne, enregistrement du service worker, fetch de l'index local, et blocage effectif
+    d'un domaine tiers.
 - **Tout contenu externe passe par `html.escape()`** (titres, noms de cinémas…) — jamais d'injection HTML.
 - Les popups de la carte échappent le texte côté JS (`map.js`, fonction `esc`).
 

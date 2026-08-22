@@ -18,6 +18,8 @@ Usage :  python scripts/build_site.py
 Aucune dépendance externe (stdlib uniquement).
 """
 
+import base64
+import hashlib
 import html
 import json
 import re
@@ -97,6 +99,83 @@ T_HELPER = ('<script>window.T=function(s){var d=window.I18N;'
             'return document.documentElement.lang==="fr"?(n>1?"s":""):'
             '(n===1?"":"s")}</script>')
 I18N_JS = '<script src="/assets/i18n.js" defer></script>'
+
+# Origine du Worker watchlist. Répétée dans assets/letterboxd.js et static/sw.js
+# (ni l'un ni l'autre ne passe par le gabarit) ; elle est ici parce que la CSP
+# doit l'autoriser en `connect-src`, sans quoi la watchlist par pseudo échoue.
+WORKER_ORIGIN = "https://seanceo-watchlist.keenzzz.workers.dev"
+
+
+def csp_hash(balise: str) -> str:
+    """Empreinte CSP d'un `<script>…</script>` écrit en dur dans le gabarit.
+
+    Un site statique ne peut pas utiliser de `nonce` : celui-ci doit changer à
+    CHAQUE réponse, or nos pages sont des fichiers servis tels quels. Le hash
+    est l'autre mécanisme prévu par la spec, et il convient parfaitement à du
+    contenu figé au build.
+
+    ⚠️ Calculé sur le CONTENU RÉEL de la balise, jamais recopié à la main : le
+    hash porte sur les octets exacts, donc un espace ajouté dans JS_FLAG ou
+    T_HELPER suffirait à faire rejeter le script par le navigateur. Le dériver
+    du code garantit qu'ils ne peuvent pas diverger.
+    """
+    corps = re.search(r"<script>(.*)</script>", balise, re.S).group(1)
+    digest = hashlib.sha256(corps.encode("utf-8")).digest()
+    return "'sha256-" + base64.b64encode(digest).decode("ascii") + "'"
+
+
+def csp_headers() -> str:
+    """Contenu du fichier `_headers`, lu par Cloudflare Pages au déploiement.
+
+    GitHub Pages ne permettait aucun en-tête ; Cloudflare oui, d'où cette
+    politique posée après la migration (2026-08-22).
+
+    Deux assouplissements ASSUMÉS, à ne pas retirer sans lire ces raisons :
+
+    - `style-src 'unsafe-inline'` : les jauges de « Salles de patrimoine »
+      portent un `style="width:NN%"`, une valeur qui vient des données et ne
+      peut donc pas vivre dans la feuille de style. La seule alternative serait
+      une centaine de classes de largeur. Le risque est faible : tout contenu
+      externe passe déjà par `html.escape()`, et une injection CSS suppose une
+      injection HTML que `script-src` bloquerait de toute façon.
+
+    - `img-src https:` plutôt qu'une liste de domaines : les affiches viennent
+      de TMDB ET du CDN de chaque chaîne (8 domaines observés le 2026-08-22 :
+      image.tmdb.org, cinemedia.cine.digital, images.monnaie-services.com,
+      all.web.img.acsta.net, media.pathe.fr…). Cette liste vient des DONNÉES :
+      une salle qui change d'hébergeur d'affiches en ajouterait un du jour au
+      lendemain, et une liste blanche ferait alors disparaître des affiches en
+      silence, sans que rien ne le signale. On garde donc `https:` (qui interdit
+      quand même le `http:` et le contenu mixte). Une image ne s'exécute pas :
+      l'essentiel de la protection est dans `script-src`, qui reste strict.
+
+    Le reste est verrouillé : pas de script tiers, `object-src 'none'`, pas
+    d'encadrement possible du site (`frame-ancestors`), et `connect-src` limité
+    au site plus le Worker watchlist.
+    """
+    scripts = " ".join(csp_hash(b) for b in (JS_FLAG, T_HELPER))
+    csp = "; ".join([
+        "default-src 'self'",
+        f"script-src 'self' {scripts}",
+        "style-src 'self' 'unsafe-inline'",
+        "img-src 'self' data: https:",
+        f"connect-src 'self' {WORKER_ORIGIN}",
+        "font-src 'self'",
+        "manifest-src 'self'",
+        "worker-src 'self'",
+        "object-src 'none'",
+        "frame-src 'none'",
+        "frame-ancestors 'none'",
+        "base-uri 'self'",
+        "form-action 'self'",
+    ])
+    # `geolocation=(self)` : « Autour de moi » (carte et accueil) en a besoin.
+    # Tout le reste est refusé — le site n'a aucune raison de demander la
+    # caméra, le micro ou un moyen de paiement.
+    return (f"/*\n"
+            f"  Content-Security-Policy: {csp}\n"
+            f"  X-Frame-Options: DENY\n"
+            f"  Permissions-Policy: geolocation=(self), camera=(), microphone=(), payment=()\n")
 
 # Chemins servis À L'IDENTIQUE aux deux langues : ils ne prennent jamais le
 # préfixe /en. Dupliquer une feuille de style ou une icône par langue ferait
@@ -1047,6 +1126,14 @@ def main() -> int:
         encoding="utf-8")
     (SITE / "robots.txt").write_text(
         f"User-agent: *\nAllow: /\nSitemap: {BASE_URL}/sitemap.xml\n", encoding="utf-8")
+
+    # ----- En-têtes de sécurité (Cloudflare Pages) -----
+    # GÉNÉRÉ, jamais écrit à la main dans static/ : la CSP contient l'empreinte
+    # des deux scripts en ligne du gabarit, qui doit suivre le code au caractère
+    # près (voir csp_headers). Un fichier figé se désynchroniserait au premier
+    # espace ajouté dans JS_FLAG ou T_HELPER, et le site perdrait son JavaScript
+    # sans le moindre avertissement au build.
+    (SITE / "_headers").write_text(csp_headers(), encoding="utf-8")
 
     # ----- 404 de marque (GitHub Pages sert /404.html) -----
     # La 404 brute de GitHub éjectait le visiteur du site (page blanche, sans
