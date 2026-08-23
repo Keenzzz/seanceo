@@ -119,6 +119,18 @@
   "trailer": "",
   "storyline": ""
  },
+ "les-tourouges-et-les-toubleus|samantha-cutler": {
+  "key": "les-tourouges-et-les-toubleus|samantha-cutler",
+  "title": "Les Tourouges et les Toubleus",
+  "director": "Samantha Cutler",
+  "cast": "",
+  "genre": "Animation",
+  "country": "",
+  "duration_min": 38,
+  "poster": "https://all.web.img.acsta.net/pictures/23/06/27/16/09/5479872.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
  "la-pat-patrouille-le-film-mission-dino|cal-brunker": {
   "key": "la-pat-patrouille-le-film-mission-dino|cal-brunker",
   "title": "La Pat' Patrouille : Le film mission Dino",
@@ -263,6 +275,18 @@
   "trailer": "",
   "storyline": ""
  },
+ "ghost-in-the-shell|mamoru-oshii": {
+  "key": "ghost-in-the-shell|mamoru-oshii",
+  "title": "Ghost in the Shell",
+  "director": "Mamoru Oshii",
+  "cast": "",
+  "genre": "Action",
+  "country": "",
+  "duration_min": 83,
+  "poster": "https://all.web.img.acsta.net/pictures/17/02/13/16/44/595862.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
  "kiki-la-petite-sorciere|hayao-miyazaki": {
   "key": "kiki-la-petite-sorciere|hayao-miyazaki",
   "title": "Kiki la petite sorcière",
@@ -287,15 +311,15 @@
   "trailer": "",
   "storyline": ""
  },
- "l-oeuf-de-l-ange|mamoru-oshii": {
-  "key": "l-oeuf-de-l-ange|mamoru-oshii",
-  "title": "L'Oeuf de l'ange",
-  "director": "Mamoru Oshii",
+ "ponyo-sur-la-falaise|hayao-miyazaki": {
+  "key": "ponyo-sur-la-falaise|hayao-miyazaki",
+  "title": "Ponyo sur la falaise",
+  "director": "Hayao Miyazaki",
   "cast": "",
   "genre": "Animation",
   "country": "",
-  "duration_min": 71,
-  "poster": "https://all.web.img.acsta.net/img/ec/66/ec66bd38c0db458248e7b3175cc3628f.jpg",
+  "duration_min": 101,
+  "poster": "https://all.web.img.acsta.net/medias/nmedia/18/87/90/53/19980426.jpg",
   "trailer": "",
   "storyline": ""
  },
@@ -524,6 +548,18 @@
   "country": "",
   "duration_min": 93,
   "poster": "https://all.web.img.acsta.net/img/ab/1c/ab1c2d220f53d99fc4d1e60dac0f1d9d.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "histoires-de-la-nuit|lea-mysius": {
+  "key": "histoires-de-la-nuit|lea-mysius",
+  "title": "Histoires De La Nuit",
+  "director": "Léa Mysius",
+  "cast": "",
+  "genre": "Thriller",
+  "country": "",
+  "duration_min": 114,
+  "poster": "https://all.web.img.acsta.net/img/19/09/1909e9c54c476076e4a485531de407d5.jpg",
   "trailer": "",
   "storyline": ""
  },
