@@ -237,9 +237,20 @@
   // (« saint e » trouve « Saint-Étienne », accents et tirets neutralisés).
   var MIN_VILLE = 2, MAX_VILLE = 8;
 
-  function autoVille(input, onPick) {
-    var noms = villes();
+  // `opts` (facultatif) sert aux appelants qui filtrent une liste DÉJÀ affichée
+  // plutôt que d'interroger tout le site :
+  //   noms        — le jeu de villes proposées (défaut : toutes celles du site) ;
+  //   placeholder — remplace le texte ci-dessous ;
+  //   min         — nombre de caractères avant de proposer (0 = dès le focus) ;
+  //   surFocus    — dérouler la liste au focus, sans avoir rien tapé.
+  // Les deux derniers n'ont de sens QUE sur un petit jeu de villes : dérouler
+  // les 257 villes du site au premier clic, c'est le menu déroulant qu'on
+  // cherchait justement à remplacer.
+  function autoVille(input, onPick, opts) {
+    opts = opts || {};
+    var noms = opts.noms || villes();
     var plies = noms.map(empreinte);
+    var min = opts.min == null ? MIN_VILLE : opts.min;
 
     // Placeholder posé ICI plutôt que dans les deux gabarits HTML : une seule
     // formulation pour le portail et pour /ma-watchlist/. Même modèle que les
@@ -248,7 +259,7 @@
     // Pas de compte de villes entre parenthèses, contrairement à ces deux
     // pages : l'index de la watchlist n'en couvre pas tout à fait autant
     // (256 contre 257), et deux nombres différents à l'écran font douter.
-    input.placeholder = T("Chercher ta ville…");
+    input.placeholder = opts.placeholder || T("Chercher ta ville…");
 
     // Le menu est positionné par rapport à un conteneur inséré autour du champ :
     // les formulaires hôtes sont en display:flex, un <ul> posé à côté du champ
@@ -275,9 +286,11 @@
     function proposer() {
       var q = empreinte(input.value);
       fermer();
-      if (q.length < MIN_VILLE) return;
+      if (q.length < min) return;
       var debut = [], dedans = [];
       for (var i = 0; i < noms.length; i++) {
+        // Saisie vide (possible seulement si min vaut 0) : tout correspond,
+        // indexOf("") rend 0 et range donc chaque ville dans « débute par ».
         var pos = plies[i].indexOf(q);
         if (pos === 0) debut.push(noms[i]);
         else if (pos > 0) dedans.push(noms[i]);
@@ -302,6 +315,7 @@
     input.setAttribute("autocomplete", "off");
     input.removeAttribute("list"); // plus de <datalist>, même si le HTML en portait un
     input.addEventListener("input", proposer);
+    if (opts.surFocus) input.addEventListener("focus", proposer);
     input.addEventListener("keydown", function (e) {
       var items = liste.querySelectorAll("li");
       if (e.key === "ArrowDown" && items.length) {
@@ -808,6 +822,15 @@
         '</form>' +
         USER_HINT +
         '<p class="lb-msg" id="lb-portal-msg" hidden></p>' +
+        // Le portail ne demande PAS que le pseudo : coller une liste publique
+        // marche sans compte et sans watchlist, et c'est la seule porte
+        // ouverte à un visiteur qui n'est pas sur Letterboxd. Elle est donc
+        // annoncée ici, dans le premier écran, et pas seulement sur la page.
+        '<p class="lb-portal-liste">' +
+          '<a href="' + maWatchlist + '#liste">'
+            + T("Pas de compte ? Colle plutôt l'URL d'une liste publique "
+              + "(« 1001 films à voir », Palmes d'or…) →") + "</a>" +
+        '</p>' +
         '<p class="lb-portal-alt">' +
           '<button type="button" class="lb-secondary" id="lb-portal-skip">'
             + T("Continuer sans compte") + "</button>" +

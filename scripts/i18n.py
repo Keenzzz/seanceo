@@ -222,7 +222,9 @@ EN: dict[str, str] = {
     "Demain": "Tomorrow",
 
     # --- Navigation ---
-    "Watchlist": "Watchlist",
+    # Le nom du service se traduit tout seul : entrée d'identité, gardée pour
+    # que le rapport de chaînes manquantes ne la signale pas à chaque build.
+    "Letterboxd": "Letterboxd",
     "🎬 À l'affiche": "🎬 Now showing",
     "🎞️ Rétrospectives": "🎞️ Retrospectives",
     "🍿 Marathons": "🍿 Double bills",
@@ -411,6 +413,14 @@ EN: dict[str, str] = {
         "directors</strong>. Everything happens in your browser.",
     "Entrer mon pseudo": "Enter my username",
     "Ma watchlist en détail →": "My watchlist in detail →",
+    "Votre watchlist Letterboxd": "Your Letterboxd watchlist",
+    "N'importe quelle liste Letterboxd": "Any Letterboxd list",
+    "Vous n'avez pas de watchlist ? Collez l'URL d'une <strong>liste publique</strong> — « 1001 films à voir », les Palmes d'or, le top d'un ami — et {site} vous montre lesquels de ces films repassent en salle, avec la séance et la réservation.":
+        "No watchlist? Paste the URL of a <strong>public list</strong> — “1001 "
+        "Movies to See”, the Palme d'Or winners, a friend's top — and {site} "
+        "shows you which of those films are back in cinemas, with the screening "
+        "and the booking link.",
+    "Explorer une liste": "Explore a list",
     "À ne pas rater": "Don't miss",
     "Des séances qui ne repassent nulle part ailleurs en France cette semaine.":
         "Screenings that play nowhere else in France this week.",
@@ -686,20 +696,26 @@ EN: dict[str, str] = {
         "you a {gap} min interval when the first film ends.",
 
     # --- Watchlist ---
-    "Ma watchlist Letterboxd au cinéma — {site}":
-        "My Letterboxd watchlist in cinemas — {site}",
-    "Donne ton pseudo Letterboxd : {site} te montre lesquels de tes films à voir sont à l'affiche, et dans quels cinémas près de chez toi.":
-        "Give your Letterboxd username: {site} shows which of your watchlist films "
-        "are playing, and in which cinemas near you.",
-    "Votre watchlist au cinéma": "Your watchlist in cinemas",
+    "Ma watchlist et mes listes Letterboxd au cinéma — {site}":
+        "My Letterboxd watchlist and lists in cinemas — {site}",
+    "Donne ton pseudo Letterboxd, ou colle l'URL d'une liste publique : {site} te montre lesquels de ces films sont à l'affiche, et dans quels cinémas près de chez toi.":
+        "Give your Letterboxd username, or paste the URL of a public list: {site} "
+        "shows which of those films are playing, and in which cinemas near you.",
+    "Vos films Letterboxd au cinéma": "Your Letterboxd films in cinemas",
+    "Deux façons de partir de tes films plutôt que de la programmation : ta <strong>watchlist</strong>, en donnant ton pseudo Letterboxd, ou <strong>n'importe quelle liste publique</strong>, en collant son URL. Dans les deux cas, {site} croise tes films avec les {n} films actuellement programmés en France et te dit lesquels repassent, où et quand.":
+        "Two ways to start from your films rather than from the listings: your "
+        "<strong>watchlist</strong>, by giving your Letterboxd username, or "
+        "<strong>any public list</strong>, by pasting its URL. Either way, {site} "
+        "crosses your films with the {n} films currently playing in France and "
+        "tells you which ones are back, where and when.",
     "Mode de connexion": "Connection method",
-    "Par pseudo": "By username",
-    "Depuis une liste": "From a list",
-    "Tu as une liste de films à voir sur": "Do you keep a watchlist on",
-    "? Donne ton <strong>pseudo</strong> : {site} te dit <strong>lesquels de tes films à voir sont à l'affiche, et dans quels cinémas près de chez toi</strong>. On croise ta watchlist avec {n} films actuellement programmés en France.":
+    "Ma watchlist": "My watchlist",
+    "Une liste Letterboxd": "A Letterboxd list",
+    "Ta liste de films à voir sur": "Your watchlist on",
+    "? Donne ton <strong>pseudo</strong> : {site} te dit <strong>lesquels de tes films à voir sont à l'affiche, et dans quels cinémas près de chez toi</strong>. En prime, des reprises recommandées selon tes réalisateurs préférés.":
         "? Give your <strong>username</strong>: {site} tells you <strong>which of "
         "your watchlist films are showing, and in which cinemas near you</strong>. "
-        "We cross your watchlist with {n} films currently playing in France.",
+        "As a bonus, revivals recommended from your favourite directors.",
     "Ton pseudo Letterboxd": "Your Letterboxd username",
     "pseudo Letterboxd": "Letterboxd username",
     "Synchroniser": "Sync",
@@ -727,11 +743,13 @@ EN: dict[str, str] = {
         "downloads.",
     "Décompresse-le et dépose le fichier <code>watchlist.csv</code> ci-dessus.":
         "Unzip it and drop the <code>watchlist.csv</code> file above.",
-    "Une <strong>liste</strong> Letterboxd publique (« 1001 films à voir », Palme d'or, tes classiques…) ? Colle son URL : {site} te montre <strong>lesquels de ces films de patrimoine repassent en salle</strong>, ville par ville, avec la séance et la réservation.":
-        "A public Letterboxd <strong>list</strong> (“1001 Movies to See”, Palme "
-        "d'Or winners, your own classics…)? Paste its URL: {site} shows you "
-        "<strong>which of those heritage films are back in cinemas</strong>, city "
-        "by city, with the screening and the booking link.",
+    "Pas de watchlist, ou envie de suivre un programme précis ? <strong>N'importe quelle liste publique</strong> fait l'affaire : « 1001 films à voir avant de mourir », les Palmes d'or, la filmo d'un réalisateur, le top d'un ami. Colle son URL et {site} te montre <strong>lesquels de ces films repassent en salle</strong>, ville par ville, avec la séance et la réservation. Aucun compte n'est nécessaire : la liste n'a même pas besoin d'être la tienne.":
+        "No watchlist, or after a specific programme? <strong>Any public "
+        "list</strong> will do: “1001 Movies to See Before You Die”, the Palme "
+        "d'Or winners, a director's filmography, a friend's top. Paste its URL "
+        "and {site} shows you <strong>which of those films are back in "
+        "cinemas</strong>, city by city, with the screening and the booking link. "
+        "No account needed: the list does not even have to be yours.",
     "URL de la liste Letterboxd": "Letterboxd list URL",
     "Chercher les séances": "Find screenings",
     "On lit seulement une liste <strong>publique</strong>. Rien n'est stocké côté serveur, et ta géolocalisation (pour trier par proximité) reste sur ton appareil.":

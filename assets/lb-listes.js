@@ -26,18 +26,29 @@
   // d'onglets) : rien n'est caché derrière un onglet mort.
 
   var tabs = Array.prototype.slice.call(document.querySelectorAll(".wl-tab"));
+
+  function activer(tab) {
+    tabs.forEach(function (t) {
+      var pane = document.getElementById(t.dataset.panel);
+      var on = t === tab;
+      t.classList.toggle("is-active", on);
+      t.setAttribute("aria-selected", on ? "true" : "false");
+      if (pane) pane.hidden = !on;
+    });
+  }
+
   if (tabs.length) {
     tabs.forEach(function (tab) {
-      tab.addEventListener("click", function () {
-        tabs.forEach(function (t) {
-          var pane = document.getElementById(t.dataset.panel);
-          var on = t === tab;
-          t.classList.toggle("is-active", on);
-          t.setAttribute("aria-selected", on ? "true" : "false");
-          if (pane) pane.hidden = !on;
-        });
-      });
+      tab.addEventListener("click", function () { activer(tab); });
     });
+    // Arrivée par /ma-watchlist/#liste (accueil, portail) : l'onglet des
+    // listes doit être celui qu'on trouve ouvert. Sans ça l'ancre amenait le
+    // visiteur sur une barre d'onglets où « Ma watchlist » restait actif —
+    // exactement l'inverse de ce qu'il venait de cliquer.
+    if (location.hash === "#liste") {
+      var t = document.getElementById("liste");
+      if (t) activer(t);
+    }
   }
 
   // —— Import de liste ———————————————————————————————————————————————————————
@@ -279,9 +290,14 @@
     var summary = document.createElement("p");
     summary.className = "wl-summary";
     if (!shown.length) {
+      // T() comme partout ailleurs : ces deux phrases partaient en français sur
+      // la version anglaise, alors qu'elles sont justement celles que voit un
+      // visiteur dont la liste ne donne rien.
       summary.textContent = currentCity
-        ? "Aucun film de cette liste ne repasse dans cette ville pour l'instant. Choisis une autre ville."
-        : "Aucun film de cette liste ne repasse en salle pour l'instant. La programmation change souvent, reviens y jeter un œil.";
+        ? T("Aucun film de cette liste ne repasse dans cette ville pour l'instant. "
+          + "Choisis une autre ville.")
+        : T("Aucun film de cette liste ne repasse en salle pour l'instant. La "
+          + "programmation change souvent, reviens y jeter un œil.");
       results.appendChild(summary);
       return;
     }
@@ -301,7 +317,7 @@
     results.appendChild(grid);
   }
 
-  // Construit la barre de contrôles (menu des villes + bouton géoloc) une fois
+  // Construit la barre de contrôles (champ de ville + bouton géoloc) une fois
   // qu'on a des résultats.
   function buildControls() {
     controls.hidden = false;
@@ -317,27 +333,64 @@
     var cities = Object.keys(cityMap).sort(function (a, b) {
       return cityMap[a].localeCompare(cityMap[b], "fr");
     });
+    var noms = cities.map(function (k) { return cityMap[k]; });
 
     var label = document.createElement("label");
     label.className = "list-city-label";
     label.setAttribute("for", "list-city");
     label.textContent = T("Ville");
-    var select = document.createElement("select");
-    select.id = "list-city";
-    select.className = "list-city";
-    var optAll = document.createElement("option");
-    optAll.value = "";
-    optAll.textContent = TF("Toutes les villes ({n})", { n: cities.length });
-    select.appendChild(optAll);
-    cities.forEach(function (key) {
-      var o = document.createElement("option");
-      o.value = key; o.textContent = cityMap[key];
-      select.appendChild(o);
+
+    // Un CHAMP DE SAISIE, pas un <select>. Une liste croisée couvre couramment
+    // trente ou quarante villes : les faire défiler pour trouver la sienne
+    // coûtait plusieurs secondes, alors que trois lettres suffisent à la
+    // désigner. Le menu reste atteignable — la liste se déroule au focus, sans
+    // rien taper — mais ce n'est plus le seul chemin.
+    // `min: 0` + `surFocus` sont licites ICI et pas dans le champ de ville du
+    // portail : on ne propose que les villes de la liste affichée, pas les 257
+    // du site.
+    var input = document.createElement("input");
+    input.type = "text";
+    input.id = "list-city";
+    input.className = "lb-input list-city";
+    input.setAttribute("aria-label", T("Ville"));
+    controls.appendChild(label);
+    // autoVille insère un conteneur AUTOUR du champ : il doit déjà être dans
+    // le document (sinon `input.parentNode` est nul).
+    controls.appendChild(input);
+    LB.autoVille(input, function (nom) {
+      currentCity = empreinteCity(nom);
+      majReset();
+      renderResults();
+    }, {
+      noms: noms, min: 0, surFocus: true,
+      placeholder: TF("Tapez une ville ({n})", { n: cities.length })
     });
-    select.addEventListener("change", function () {
-      currentCity = select.value;
+
+    // Champ vidé à la main = retour à toutes les villes, sans avoir à viser le
+    // bouton. On ne filtre PAS sur une saisie partielle : « Bo » n'est pas une
+    // ville, et filtrer à chaque touche ferait clignoter la grille.
+    input.addEventListener("input", function () {
+      if (!input.value.trim() && currentCity) {
+        currentCity = "";
+        majReset();
+        renderResults();
+      }
+    });
+
+    var reset = document.createElement("button");
+    reset.type = "button";
+    reset.className = "lb-secondary list-city-reset";
+    reset.textContent = TF("Toutes les villes ({n})", { n: cities.length });
+    reset.hidden = true;
+    reset.addEventListener("click", function () {
+      input.value = "";
+      currentCity = "";
+      majReset();
       renderResults();
     });
+    controls.appendChild(reset);
+
+    function majReset() { reset.hidden = !currentCity; }
 
     var geo = document.createElement("button");
     geo.type = "button";
@@ -362,8 +415,6 @@
       );
     });
 
-    controls.appendChild(label);
-    controls.appendChild(select);
     controls.appendChild(geo);
   }
 

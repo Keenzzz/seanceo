@@ -237,14 +237,16 @@ ALERTES_JS = '<script src="/assets/alertes.js" defer></script>'
 # deux premières places sont les seules vues sans faire le moindre geste.
 # La watchlist y reste donc en tête — c'est la fonction phare du site, celle
 # qu'on veut voir sans avoir à faire défiler la barre.
-# Libellé raccourci : « Ma watchlist letterboxd » faisait 192 px à lui seul et
-# provoquait une ligne orpheline sur mobile. L'anneau vert (.nav-wl) dit déjà
-# Letterboxd, le mot était redondant.
+# Libellé « Letterboxd » et non « Watchlist » : la page ne fait plus QUE la
+# watchlist, elle prend aussi n'importe quelle liste publique. « Watchlist »
+# annonçait donc la moitié de ce qui s'y trouve, et le nom du service est ce
+# que le visiteur cherche des yeux. Il reste court (le libellé précédent,
+# « Ma watchlist letterboxd », faisait 192 px et cassait la ligne sur mobile).
 # Un emoji par entrée, et surtout UN SEUL SENS PAR EMOJI — même discipline que
 # les couleurs : 🎞️ servait à la fois à la cinémathèque et aux rétrospectives,
 # il ne distinguait donc rien. La cinémathèque prend 🏛️.
 NAV_ITEMS = [
-    ("/ma-watchlist/",   "Watchlist",          "nav-wl"),
+    ("/ma-watchlist/",   "Letterboxd",         "nav-wl"),
     ("/derniere-chance/", "⏳ Dernière chance", ""),
     ("/a-l-affiche/",    "🎬 À l'affiche",     ""),
     ("/retrospectives/", "🎞️ Rétrospectives",  ""),
@@ -2341,14 +2343,26 @@ aria-label="{esc(t("Chercher une ville"))}">
 {home_finder}
 <p class="meta">{tf("Les villes les plus fournies : {liste}.", liste=raccourcis)}</p>
 
-<div class="passerelle wl-cta">
-<p><span class="titre">{t("Vous êtes sur Letterboxd ?")}</span>
+<div class="lb-duo">
+<div class="lb-offre wl-cta">
+<p><span class="titre">{t("Votre watchlist Letterboxd")}</span>
 <span class="meta">{tf("Entrez votre pseudo : {site} vous dit lesquels de vos films à voir "
                        "sont à l'affiche <strong>et vous recommande des reprises selon vos "
                        "réalisateurs préférés</strong>. Tout se passe dans votre navigateur.",
                        site=SITE_NAME)}</span></p>
+<p class="lb-offre-go">
 <button type="button" class="bouton bouton-lb" data-lb-open>{t("Entrer mon pseudo")}</button>
-<a class="bouton" href="/ma-watchlist/">{t("Ma watchlist en détail →")}</a>
+<a class="lb-detail" href="/ma-watchlist/">{t("Ma watchlist en détail →")}</a></p>
+</div>
+<div class="lb-offre">
+<p><span class="titre">{t("N'importe quelle liste Letterboxd")}</span>
+<span class="meta">{tf("Vous n'avez pas de watchlist ? Collez l'URL d'une <strong>liste "
+                       "publique</strong> — « 1001 films à voir », les Palmes d'or, le top "
+                       "d'un ami — et {site} vous montre lesquels de ces films repassent en "
+                       "salle, avec la séance et la réservation.", site=SITE_NAME)}</span></p>
+<p class="lb-offre-go">
+<a class="bouton bouton-lb" href="/ma-watchlist/#liste">{t("Explorer une liste")}</a></p>
+</div>
 </div>
 
 <!-- Recommandations par réalisateur, injectées par lb-reco.js quand le visiteur
@@ -3067,18 +3081,29 @@ aria-label="{esc(t("Chercher une ville"))}">
     # l'index par empreinte de slug, et affiche ceux qui passent cette semaine.
     # `_v`/`_s` sont les tables partagées de l'index, pas des films : on les saute.
     n_wl = len({v["t"] for k, v in wl_index.items() if not k.startswith("_")})
-    watchlist_body = f"""<div class="wl-tabs" role="tablist" aria-label="{esc(t("Mode de connexion"))}">
-<button type="button" class="wl-tab is-active" role="tab" aria-selected="true" data-panel="wl-pane-pseudo">{t("Par pseudo")}</button>
-<button type="button" class="wl-tab" role="tab" aria-selected="false" data-panel="wl-pane-liste">{t("Depuis une liste")}</button>
+    watchlist_body = f"""<p class="lead">{tf(
+        "Deux façons de partir de tes films plutôt que de la programmation : ta "
+        "<strong>watchlist</strong>, en donnant ton pseudo Letterboxd, ou <strong>n'importe "
+        "quelle liste publique</strong>, en collant son URL. Dans les deux cas, {site} "
+        "croise tes films avec les {n} films actuellement programmés en France et te dit "
+        "lesquels repassent, où et quand.", site=SITE_NAME, n=n_wl)}</p>
+
+<div class="wl-tabs" role="tablist" aria-label="{esc(t("Mode de connexion"))}">
+<button type="button" class="wl-tab is-active" role="tab" aria-selected="true" data-panel="wl-pane-pseudo">{t("Ma watchlist")}</button>
+<!-- id="liste" : cible de l'ancre /ma-watchlist/#liste posée sur l'accueil et
+     dans le portail. Elle est portée par l'ONGLET et non par le panneau (qui a
+     déjà `wl-pane-liste`) pour que le navigateur amène le visiteur sur la barre
+     d'onglets — c'est-à-dire sur le choix, pas sur le milieu du formulaire. -->
+<button type="button" class="wl-tab" role="tab" aria-selected="false" id="liste" data-panel="wl-pane-liste">{t("Une liste Letterboxd")}</button>
 </div>
 
 <section id="wl-pane-pseudo" class="wl-pane">
-<p class="lead">{t("Tu as une liste de films à voir sur")}
+<p>{t("Ta liste de films à voir sur")}
 <a href="https://letterboxd.com" target="_blank" rel="noopener noreferrer">Letterboxd</a>
 {tf("? Donne ton <strong>pseudo</strong> : {site} te dit <strong>lesquels de tes films "
-    "à voir sont à l'affiche, et dans quels cinémas près de chez toi</strong>. On croise "
-    "ta watchlist avec {n} films actuellement programmés en France.",
-    site=SITE_NAME, n=n_wl)}</p>
+    "à voir sont à l'affiche, et dans quels cinémas près de chez toi</strong>. "
+    "En prime, des reprises recommandées selon tes réalisateurs préférés.",
+    site=SITE_NAME)}</p>
 
 <form class="lb-connect" id="lb-form">
 <label for="lb-user">{t("Ton pseudo Letterboxd")}</label>
@@ -3123,10 +3148,13 @@ aria-label="{esc(t("Ton pseudo Letterboxd"))}">
 </section>
 
 <section id="wl-pane-liste" class="wl-pane" hidden>
-<p class="lead">{tf("Une <strong>liste</strong> Letterboxd publique (« 1001 films à voir », "
-                    "Palme d'or, tes classiques…) ? Colle son URL : {site} te montre "
-                    "<strong>lesquels de ces films de patrimoine repassent en salle</strong>, "
-                    "ville par ville, avec la séance et la réservation.", site=SITE_NAME)}</p>
+<p>{tf("Pas de watchlist, ou envie de suivre un programme précis ? <strong>N'importe "
+       "quelle liste publique</strong> fait l'affaire : « 1001 films à voir avant de "
+       "mourir », les Palmes d'or, la filmo d'un réalisateur, le top d'un ami. Colle son "
+       "URL et {site} te montre <strong>lesquels de ces films repassent en salle</strong>, "
+       "ville par ville, avec la séance et la réservation. Aucun compte n'est "
+       "nécessaire : la liste n'a même pas besoin d'être la tienne.",
+       site=SITE_NAME)}</p>
 
 <form class="lb-connect" id="list-form" data-agenda="{BASE_PATH}{lang_prefix()}/agenda-index.json" data-wl="{BASE_PATH}{lang_prefix()}/watchlist-index.json">
 <label for="list-url">{t("URL de la liste Letterboxd")}</label>
@@ -3149,10 +3177,11 @@ aria-label="{esc(t("URL de la liste Letterboxd"))}">
 <script src="/assets/lb-watchlist.js" defer></script>
 <script src="/assets/lb-listes.js" defer></script>"""
     write("/ma-watchlist/", page(
-        tf("Ma watchlist Letterboxd au cinéma — {site}", site=SITE_NAME),
-        tf("Donne ton pseudo Letterboxd : {site} te montre lesquels de tes films à voir "
-           "sont à l'affiche, et dans quels cinémas près de chez toi.", site=SITE_NAME),
-        watchlist_body, "/ma-watchlist/", h1=t("Votre watchlist au cinéma"),
+        tf("Ma watchlist et mes listes Letterboxd au cinéma — {site}", site=SITE_NAME),
+        tf("Donne ton pseudo Letterboxd, ou colle l'URL d'une liste publique : {site} te "
+           "montre lesquels de ces films sont à l'affiche, et dans quels cinémas près de "
+           "chez toi.", site=SITE_NAME),
+        watchlist_body, "/ma-watchlist/", h1=t("Vos films Letterboxd au cinéma"),
         top_link=True))
     urls.append("/ma-watchlist/")
 

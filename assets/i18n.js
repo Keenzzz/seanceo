@@ -156,6 +156,9 @@ window.I18N = {
   "Ton pseudo Letterboxd": "Your Letterboxd username",
   "Synchroniser": "Sync",
   "Continuer sans compte": "Continue without an account",
+  "Pas de compte ? Colle plutôt l'URL d'une liste publique (« 1001 films à voir », Palmes d'or…) →":
+    "No account? Paste the URL of a public list instead (“1001 Movies to See”, "
+    + "Palme d'Or winners…) →",
   "Watchlist privée ? Importer un fichier": "Private watchlist? Import a file",
   "On lit seulement ta watchlist <strong>publique</strong>. Rien n'est stocké côté serveur.":
     "We only read your <strong>public</strong> watchlist. Nothing is stored "
@@ -251,6 +254,7 @@ window.I18N = {
   ", du plus proche au plus loin": ", from nearest to furthest",
   "Ville": "City",
   "Toutes les villes ({n})": "All cities ({n})",
+  "Tapez une ville ({n})": "Type a city ({n})",
   "📍 autour de moi": "📍 near me",
   "Géolocalisation indisponible": "Location unavailable",
   "Colle l'URL complète de la liste (letterboxd.com/…/list/…), pas le lien court boxd.it.":
@@ -259,6 +263,11 @@ window.I18N = {
     "That link does not look like a Letterboxd list. Example: "
     + "letterboxd.com/username/list/my-list/",
   "Lecture de la liste…": "Reading the list…",
+  "Aucun film de cette liste ne repasse dans cette ville pour l'instant. Choisis une autre ville.":
+    "No film from this list is back in that city right now. Try another city.",
+  "Aucun film de cette liste ne repasse en salle pour l'instant. La programmation change souvent, reviens y jeter un œil.":
+    "No film from this list is back in cinemas right now. Programmes change "
+    + "often, come back and take another look.",
   "Cette liste": "This list",
   "{liste} — {total} films dans la liste, {trouves} repassent en salle.":
     "{liste} — {total} films in the list, {trouves} back in cinemas.",

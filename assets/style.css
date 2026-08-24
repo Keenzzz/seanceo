@@ -614,10 +614,57 @@ html:not(.js) .film-tools { display: none; }
    `.bouton` (base ambre) est défini plus bas dans la feuille ; à specificité
    égale il gagnerait par ordre de cascade et repeindrait le bouton en ambre.
    `.bouton.bouton-lb` (0,2,0) passe devant `.bouton` (0,1,0) quel que soit l'ordre. */
-.bouton.bouton-lb { border-color: var(--lb); color: var(--lb); }
-.bouton.bouton-lb:hover { background: var(--lb); color: #06130c; border-color: var(--lb); }
+/* Les boutons LB sont PLEINS, pas en contour : ce sont les actions
+   principales de leur encart (« Synchroniser », « Entrer mon pseudo »,
+   « Chercher les séances »). Un contour vert sur fond sombre se lisait, mais
+   ne se distinguait pas des boutons secondaires ambrés qui l'entourent. */
+.bouton.bouton-lb { background: var(--lb); border-color: var(--lb); color: #06130c; }
+.bouton.bouton-lb:hover { background: #7bf0ad; border-color: #7bf0ad; color: #06130c; }
 .wl-cta { border-color: #24402f; }
 .wl-cta[hidden] { display: none; }  /* .passerelle est en display:flex : garde anti-piège */
+
+/* Double appel Letterboxd de l'accueil : DEUX arguments de même poids — la
+   watchlist par pseudo, et n'importe quelle liste publique. Deux encarts
+   distincts, et non un seul à deux boutons, pour une raison de comportement :
+   letterboxd.js masque `.wl-cta` dès que le visiteur est connecté (le bloc
+   « Pour toi » a pris le relais). Une liste logée dans le même conteneur
+   disparaîtrait avec lui, alors qu'elle reste utile connecté ou non. */
+.lb-duo {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  margin: 34px 0 0;
+}
+.lb-offre {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 20px 22px;
+  border-radius: var(--radius);
+  background: var(--panel);
+  border: 1px solid #24402f;
+}
+.lb-offre[hidden] { display: none; }  /* display:flex : même garde que .wl-cta */
+.lb-offre p { margin: 0; }
+.lb-offre .titre {
+  display: block;
+  font-family: var(--display);
+  font-size: 1.12rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+/* Le bouton est collé en bas : les deux encarts n'ont pas le même nombre de
+   lignes de texte, sans ça leurs boutons ne s'alignaient pas. */
+.lb-offre .lb-offre-go {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px 16px;
+  flex-wrap: wrap;
+}
+.lb-offre .bouton { cursor: pointer; }
+.lb-detail { font-size: .88rem; color: var(--muted); }
 .nav-wl { border-color: var(--lb) !important; }
 
 /* ---- Connexion Letterboxd par pseudo (page /ma-watchlist/) ---- */
@@ -840,12 +887,18 @@ html:not(.js) .wl-tabs { display: none; }
 }
 .list-controls[hidden] { display: none; }
 .list-city-label { font-weight: 600; color: var(--muted); }
+/* Le champ de ville est enveloppé par autoVille dans un `.lb-suggest-wrap`
+   (positionnement du menu de suggestions) : c'est LUI qui porte la largeur
+   dans la barre de filtre, le champ ne fait que le remplir. */
+.list-controls .lb-suggest-wrap { flex: 0 1 240px; }
 .list-city {
   background: var(--sunk); color: var(--text);
   border: 1px solid var(--rule); border-radius: 8px;
-  padding: 8px 10px; font: inherit; max-width: 220px;
+  padding: 9px 12px; font: inherit;
 }
 .list-city:focus { outline: none; border-color: var(--accent); }
+.list-city-reset { font-size: .88rem; }
+.list-city-reset[hidden] { display: none; }
 .list-geo { margin-left: auto; }
 
 /* Séance unique : le film ne passe qu'une fois dans toute la France sur la
@@ -973,6 +1026,20 @@ html:not(.js) .wl-tabs { display: none; }
   display: flex; flex-wrap: wrap; gap: 6px 16px;
   margin: 14px 0 0; font-size: .9rem;
 }
+/* Seconde porte du portail (« colle une liste publique ») : encadrée et
+   soulignée de vert, pour se lire comme une OFFRE et non comme la ligne de
+   liens secondaires juste en dessous. */
+.lb-portal-liste {
+  margin: 16px 0 0;
+  padding: 10px 12px;
+  font-size: .9rem;
+  background: #12211a;
+  border: 1px solid #24402f;
+  border-radius: 8px;
+  text-wrap: pretty;
+}
+.lb-portal-liste a { color: var(--lb); text-decoration: none; font-weight: 600; }
+.lb-portal-liste a:hover { text-decoration: underline; }
 .lb-portal-note { color: var(--muted); font-size: .82rem; margin: 14px 0 0; }
 .lb-msg { margin: 12px 0 0; font-size: .92rem; }
 .lb-error { color: var(--indie); }
@@ -1527,9 +1594,17 @@ a:focus-visible, summary:focus-visible, input:focus-visible {
 }
 .passerelle p { margin: 0; flex: 1 1 300px; }
 .passerelle .titre { font-family: var(--display); font-size: 1.12rem; font-weight: 600; }
+/* ⚠️ `background: transparent` et `font: inherit` ne sont PAS décoratifs.
+   `.bouton` habille indifféremment des <a> et des <button> ; sans ces deux
+   déclarations, les <button> gardaient le fond `buttonface` du navigateur —
+   un gris quasi blanc — et leur texte de couleur (l'ambre, et surtout le vert
+   Letterboxd de « Synchroniser ») devenait illisible dessus. Un <a> n'avait
+   pas le problème : le bug ne se voyait donc que sur une partie des boutons. */
 .bouton {
   font-size: .9rem;
   font-weight: 600;
+  font-family: inherit;
+  background: transparent;
   text-decoration: none;
   padding: 12px 18px;
   border-radius: 9px;
