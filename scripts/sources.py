@@ -460,6 +460,23 @@ def _apply_letterboxd(movies: dict, lb: dict) -> None:
         m["lb_url"] = url if url.startswith("https://letterboxd.com/film/") else ""
 
 
+def _apply_abonnements(cinemas: dict, ab: dict) -> None:
+    """Pose sur chaque cinéma les cartes d'abonnement illimité qu'il accepte.
+
+    Le champ s'appelle `cartes` et non `abonnements` pour ne pas se confondre
+    avec l'encadré d'abonnement AGENDA des pages ville (webcal/ics/RSS), qui
+    n'a rien à voir. Une liste, pas un dictionnaire : le site n'affiche que ce
+    qui est accepté, jamais « n'accepte pas la carte X » — l'absence de preuve
+    n'est pas une preuve d'absence, et nos deux listes officielles ne couvrent
+    que ce qu'elles couvrent.
+
+    Fichier optionnel : sans lui, `cartes` vaut [] partout et le site perd
+    simplement ses badges, comme il perd les affiches sans tmdb.json.
+    """
+    for cid, c in cinemas.items():
+        c["cartes"] = [k for k, v in sorted((ab.get(cid) or {}).items()) if v]
+
+
 def load_merged(data_dir: Path) -> tuple[dict, dict, list, dict]:
     """Renvoie (cinemas, movies, showtimes, cities) fusionnés et prêts à bâtir."""
     ci, mo, sh, ct = (_load(data_dir, n) for n in INDE)
@@ -480,6 +497,10 @@ def load_merged(data_dir: Path) -> tuple[dict, dict, list, dict]:
         merged_any = True
     if merged_any:
         showtimes.sort(key=lambda s: s["start"])
+
+    # Cartes d'abonnement illimité : après la fusion des chaînes, pour que les
+    # salles Pathé/UGC/Grand Écran soient déjà là quand on les décore.
+    _apply_abonnements(cinemas, _load(data_dir, "abonnements.json") or {})
 
     tmdb = _load(data_dir, "tmdb.json") or {}
     # Uniformise les noms de réalisateurs AVANT le dédoublonnage et les cycles :

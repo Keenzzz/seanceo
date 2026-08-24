@@ -247,6 +247,11 @@ EN: dict[str, str] = {
         "This product uses the TMDB API but is not endorsed or certified by TMDB.",
 
     # --- Badges et pastilles ---
+    "Accepte l'abonnement {carte}": "Accepts {carte}",
+    "Accepte {cartes}.": "Accepts {cartes}.",
+    "Filtrer par carte d'abonnement": "Filter by unlimited pass",
+    "J'ai la carte": "I have the pass",
+    "Peu importe": "Any",
     "Indé": "Indie",
     "Cinéma indépendant": "Independent cinema",
     "cinéma indépendant": "independent cinema",

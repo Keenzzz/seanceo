@@ -43,6 +43,14 @@ jobs:
       - name: Récupérer les séances UGC (best-effort)
         continue-on-error: true
         run: python scripts/fetch_ugc.py --cinemas 0 --days 7
+      - name: Récupérer les cartes d'abonnement illimité (best-effort)
+        # UGC Illimité + CinéPass Pathé. Les deux sources passent depuis une IP
+        # datacenter (page HTML ugc.fr et CDN media.pathe.fr), donc l'étape a sa
+        # place ici — mais elle est best-effort comme les connecteurs de chaînes :
+        # data/abonnements.json est versionné, un échec garde la version d'hier
+        # plutôt que de faire tomber tout le déploiement pour des badges.
+        continue-on-error: true
+        run: python scripts/fetch_abonnements.py
       - name: Générer le site
         run: python scripts/build_site.py
 

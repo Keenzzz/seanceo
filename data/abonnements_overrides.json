@@ -1,0 +1,48 @@
+{
+ "_lisez_moi": [
+  "Corrections manuelles appliquées PAR-DESSUS l'appariement automatique de",
+  "scripts/fetch_abonnements.py. Elles gagnent toujours. Une entrée ici doit",
+  "porter sa justification dans _pourquoi : c'est ce qui distingue une",
+  "correction vérifiée d'une intuition, six mois plus tard.",
+  "Format : \"<cinema_id>\": {\"ugc_illimite\": true|false, \"cinepass\": true|false}",
+  "Les clés commençant par _ sont ignorées à la lecture.",
+  "Relire ce fichier quand les listes officielles changent (le collecteur",
+  "signale les lignes non appariées, c'est là que se recrutent les overrides)."
+ ],
+ "_pourquoi": {
+  "grandecran-p0170": [
+   "Limoges - Centre-ville. La page UGC liste 3 salles à Limoges (GRAND ECRAN",
+   "ESTER et LE LIDO, appariées automatiquement, plus HORIZON GRAND ECRAN que",
+   "son nom ne rattache à aucune des nôtres). Nous avons exactement 3 Grand",
+   "Écran à Limoges : la troisième ligne est donc la troisième salle.",
+   "Confirmé indépendamment par grandecran.fr/ugc-illimite/, qui énonce la",
+   "règle en clair — valable dans tous les Grand Écran participants HORS La",
+   "Chapelle-sur-Erdre, Montaigu-Vendée, Fontenay-le-Comte, Vichy, Bergerac et",
+   "Villeneuve-sur-Lot. Limoges n'est pas dans les exclusions."
+  ],
+  "2252134": [
+   "Cinémassy. Le PDF CinéPass porte « Ciné Massy » (groupe « Cinéma",
+   "indépendant », agglomération PARIS - ILE DE France) : même salle, écrite",
+   "en deux mots. L'appariement automatique ne peut pas la voir, sa clé de nom",
+   "étant CINEMASSY en un seul bloc. Le seul homonyme, Pathé Massy, est écarté",
+   "par le groupe du PDF — c'est bien l'indé qui est listé."
+  ],
+  "2381912": [
+   "L'Écran, à Saint-Denis (93200). Le PDF porte « L'Ecran de Saint-Denis »,",
+   "groupe « Cinéma indépendant ». Clé de nom trop différente pour l'automate.",
+   "ATTENTION en relisant : sans le garde-fou de groupe, cette ligne s'apparie",
+   "au Pathé Saint-Denis (93210), dont le nom normalisé est identique."
+  ],
+  "_absents_volontaires": [
+   "Le Renoir (Aix-en-Provence) et Pathé Île Seguin (Boulogne-Billancourt)",
+   "sont des salles Pathé qui NE FIGURENT PAS sur la liste CinéPass du",
+   "2026-05-06. Ne pas les ajouter « parce que ce sont des Pathé » : la liste",
+   "compte 77 salles Pathé, nos snapshots 77 aussi, mais ce ne sont pas les",
+   "mêmes (la liste connaît Le Cézanne et Ciné Jaude, que nous n'avons pas).",
+   "Si Pathé republie le PDF en les incluant, ils apparaîtront tout seuls."
+  ]
+ },
+ "grandecran-p0170": { "ugc_illimite": true },
+ "2252134": { "cinepass": true },
+ "2381912": { "cinepass": true }
+}

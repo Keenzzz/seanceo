@@ -17,6 +17,8 @@ avec mise en avant des salles Art & Essai. Objectif : trafic monétisable via SE
   - `fetch_webedia.py --chain {cgr,grandecran}` — chaînes sur plateforme Webedia boxofficeapi → `data/<chain>_*.json`
   - `fetch_ugc.py` — chaîne UGC via l'API mobile `backend.ugc.fr` → `data/ugc_*.json`
   - `enrich_tmdb.py` — enrichissement TMDB (titres/notes/affiches/durées) → cache `data/tmdb.json`
+  - `fetch_abonnements.py` — cartes d'abonnement illimité (UGC Illimité, CinéPass Pathé)
+    → `data/abonnements.json` (+ `data/abonnements_overrides.json`, tenu à la main)
   - `sources.py` — **fusionne** toutes les sources + applique TMDB (`load_merged()`)
   - `build_site.py` — génère `site/` (accueil, villes, cinémas, films, carte, sitemap, robots)
 - `assets/` — CSS, `map.js`, Leaflet + markercluster **vendorisés** (pas de CDN)
@@ -30,6 +32,7 @@ avec mise en avant des salles Art & Essai. Objectif : trafic monétisable via SE
 | **Indés** (SCARE, `datacinesindes.fr`) | Open data, Licence Ouverte 2.0 (attribution obligatoire) | Auto en CI (chaque jour) |
 | **UGC** (`backend.ugc.fr`, API mobile) | API interne ouverte | **Auto en CI** (non bloquée) |
 | **Pathé / CGR / Grand Écran** | APIs internes | **Snapshot local** (voir ci-dessous) |
+| **Cartes d'abonnement** (page UGC + PDF Pathé) | Pages publiques | **Auto en CI**, best-effort |
 
 **Attribution obligatoire, ne jamais retirer du footer** : « Data Ciné Indés / SCARE » (Licence Ouverte 2.0)
 et la mention TMDB (« ce produit utilise l'API TMDB mais n'est ni approuvé ni certifié par TMDB »).
@@ -136,6 +139,84 @@ et la mention TMDB (« ce produit utilise l'API TMDB mais n'est ni approuvé ni 
   performance et le suivi du transfert d'indexation. L'ancienne propriété doit rester valide
   tant que Google sert encore les anciennes URL.
 
+### Cartes d'abonnement illimité (UGC Illimité / CinéPass Pathé)
+
+`fetch_abonnements.py` produit `data/abonnements.json` (`{cinema_id: {ugc_illimite, cinepass}}`),
+que `sources.py` pose sur chaque cinéma sous le champ **`cartes`** (nommé ainsi pour ne pas se
+confondre avec l'encadré d'ABONNEMENT AGENDA des pages ville, qui n'a rien à voir). Rendu par
+`carte_badges()` / `carte_attr()` et le filtre `cartes_filtre()` + `assets/cartes.js`.
+Résultat au 2026-08-24 : **153 salles sur 357** — UGC Illimité 75, CinéPass 89, **11 les deux**.
+
+- **Deux sources, deux requêtes, ~400 Ko** :
+  `https://www.ugc.fr/cinemas-acceptant-ui.html` (HTML, 144 salles avec code postal) et
+  `https://media.pathe.fr/files/conditions/Reseau%20CinePass-CineCartes.pdf` (137 lignes).
+  - ⚠️ **Le PDF Pathé DOIT être pris sur `media.pathe.fr`, jamais `www.pathe.fr`** : la même URL
+    en `www` renvoie **403** depuis une IP datacenter (le blocage Pathé habituel), le CDN Akamai
+    sert le fichier identique octet pour octet et passe. C'est ce qui rend l'étape CI possible.
+  - ⚠️ **La page UGC échappe à la détection de bot d'ugc.fr**, contrairement aux pages de séances
+    (cf. `fetch_ugc.py`) : elle se sert entière sans User-Agent de navigateur. Ne pas conclure de
+    l'une à l'autre.
+  - Le PDF est un **export Excel** : texte en clair, un `Tj` par cellule, extractible en stdlib
+    pure (zlib + regex). Fragile par nature — d'où `MIN_UGC`/`MIN_PATHE`, qui font échouer
+    bruyamment plutôt que de publier un `abonnements.json` amputé.
+  - Fraîcheur : le `CreationDate` du PDF (2026-05-06) est le marqueur à surveiller.
+
+- **PAS de règle par enseigne, et ce n'est pas de la prudence excessive** :
+  - `chain == "Grand Écran"` ne détermine rien : **6 des 14 sont EXCLUS** d'UGC Illimité
+    (La Chapelle-sur-Erdre, Montaigu-Vendée, Fontenay-le-Comte, Vichy, Bergerac, Villeneuve-sur-Lot).
+  - Badger « CinéPass » les 77 Pathé serait FAUX : la liste compte 77 salles Pathé et nos
+    snapshots 77 aussi, **mais ce ne sont pas les mêmes** — `Le Renoir` (Aix) et `Pathé Île Seguin`
+    n'y figurent pas, la liste connaît `Le Cézanne` et `Ciné Jaude` que nous n'avons pas. On badge
+    ce qui est listé, rien de plus.
+  - **CGR : aucune offre illimitée n'existe.** Club CGR = fidélité, La Box = carnet de places.
+    Ne pas re-chercher. Et ne pas confondre avec le « CinéPass » de grandecran.fr : **homonyme
+    total**, c'est une carte rechargeable sans rapport avec l'abonnement Pathé.
+
+- **Appariement : trois garde-fous, tous nés d'un faux positif observé.** Un badge « accepte ta
+  carte » qui se trompe envoie quelqu'un au guichet pour rien : on préfère le silence au faux.
+  1. **Les mots d'enseigne ne sont retirés qu'en PRÉFIXE** (`PREFIXES`, jamais `VIDES`). Les
+     retirer partout écrasait « L'Écran de Saint-Denis » en « SAINT DENIS », qui s'appariait au
+     **Pathé Saint-Denis** — et la vraie salle (L'Écran, indé) perdait son badge.
+  2. **`compatibles()`** refuse d'apparier deux noms qui revendiquent des enseignes différentes :
+     « MK2 Parnasse » (75006) et « Pathé Parnasse » (75014) se réduisent tous deux à « PARNASSE »
+     et se rejoignaient au rattrapage par commune — Paris est une commune, et une grande.
+  3. **Le groupe du PDF fait foi** : une ligne « Cinéma indépendant » ne peut pas désigner une de
+     nos salles Pathé. C'est le seul discriminant entre « Ciné Massy » (l'indé Cinémassy) et
+     Pathé Massy, dont les noms normalisés sont identiques et les villes correctes.
+  - **Blocage géographique asymétrique, volontairement** : côté UGC, code postal puis commune en
+    rattrapage (UGC range les 3 salles de Limoges en 87100 quand nos snapshots disent 87000).
+    Côté Pathé, le PDF ne donne qu'une **agglomération** qui n'est presque jamais la commune
+    (Labège sous TOULOUSE, Coquelles sous CALAIS, Quetigny sous DIJON) : on exige la commune pour
+    les lignes **indé** — dont les noms (Le Vox, Le Capitole, Les Capucins) sont partagés par toute
+    la France — et on s'en remet à l'unicité du nom pour les lignes **Pathé**, que l'exploitant
+    nomme sans ambiguïté. Exiger la commune partout perdait 11 salles Pathé.
+
+- **`data/abonnements_overrides.json` est tenu à la main et gagne toujours.** Trois entrées
+  aujourd'hui, chacune avec sa justification dans le fichier (`_pourquoi`) — c'est ce qui
+  distingue une correction vérifiée d'une intuition, six mois plus tard. Y figure aussi la liste
+  des **absents volontaires**, pour qu'on ne « corrige » pas un jour ce qui est juste.
+  Quand les listes officielles changent, le collecteur affiche les lignes non appariées : c'est
+  là que se recrutent les overrides.
+
+- **Le filtre est mémorisé** (`localStorage["seanceo:carte"]`) : une carte d'abonnement, on l'a
+  pour l'année, pas pour une visite. Il agit au niveau du **bloc cinéma** (la carte donne accès à
+  une salle, tous ses films y compris) via `data-carte-off` et **pas** `style.display`, que
+  `ville.js` écraserait au tri suivant. Il masque aussi les liens du sommaire ancré
+  (`.city-jump`), sans quoi ils mèneraient à des ancres invisibles. Une carte mémorisée qu'aucune
+  salle de la ville n'accepte retombe sur « Peu importe » plutôt que de vider la page.
+  ⚠️ Le build ne propose QUE les cartes représentées dans la ville : proposer « CinéPass » à
+  Nancy, où aucune salle ne l'accepte, ne rendrait qu'une page vide et l'impression d'un bug.
+
+- **Ne badge que ce qui est accepté, jamais l'inverse.** Sur 357 salles, une trentaine seulement
+  portent une information que le visiteur ne devine pas en lisant l'enseigne ; afficher
+  « n'accepte pas le CinéPass » partout ailleurs affirmerait ce que nos sources ne disent pas —
+  elles listent les partenaires, elles ne certifient pas l'absence.
+
+- **Piste d'élargissement notée au passage** : la liste UGC contient **~60 salles absentes de
+  Séancéo**, dont une trentaine à Paris intra-muros (MK2, Luminor, Reflet Médicis, Épée de Bois,
+  Mac-Mahon, Max Linder…). C'est un inventaire de cibles tout fait, plus rentable en trafic que
+  les badges eux-mêmes.
+
 ## Site bilingue (français / anglais)
 
 Le build tourne **deux fois**, une passe par langue (`i18n.LANGS`) : le français
@@ -195,6 +276,8 @@ indexable, et les deux se déclarent l'une l'autre en `hreflang` (`alternates()`
 
 - Distinction indé / chaîne : champ `chain` sur chaque cinéma. `chain_badge()` dans `build_site.py`
   (point rouge « Indé » = signature ; badge gris + nom = chaîne).
+- Cartes d'abonnement illimité : champ `cartes` sur chaque cinéma, badge bleu (`carte_badges()`).
+  Voir la section dédiée plus haut — **l'enseigne ne détermine pas la carte**, dans les deux sens.
 - Ajouter une chaîne Webedia = une entrée dans `SITES` de `fetch_webedia.py` (domaine + regex des
   pages `/theaters/` ou `/nos-cinemas/`). Ajouter une chaîne quelconque à la fusion = un préfixe dans
   `CHAIN_PREFIXES` de `sources.py`.

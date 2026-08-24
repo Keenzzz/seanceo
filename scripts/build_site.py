@@ -597,6 +597,63 @@ def chain_badge(cinema: dict) -> str:
             f'{t("Indé")}</span>')
 
 
+# Cartes d'abonnement illimité : clé technique → nom commercial. Ce sont des
+# marques déposées, elles ne se traduisent pas — seule l'infobulle passe par t().
+CARTES = {"ugc_illimite": "UGC Illimité", "cinepass": "CinéPass"}
+
+
+def carte_badges(cinema: dict) -> str:
+    """Pastilles « accepte telle carte d'abonnement illimité ».
+
+    Volontairement muet quand la salle n'accepte rien : sur 357 cinémas, une
+    trentaine seulement portent une info que le visiteur ne devine pas déjà en
+    lisant l'enseigne. Afficher « n'accepte pas le CinéPass » partout ailleurs
+    ferait beaucoup de bruit pour rien — et affirmerait quelque chose que nos
+    sources ne disent pas : elles listent les salles partenaires, elles ne
+    certifient pas l'inverse.
+    """
+    return "".join(
+        f' <span class="badge badge-carte" title="'
+        f'{esc(tf("Accepte l\'abonnement {carte}", carte=CARTES[k]))}">'
+        f'{esc(CARTES[k])}</span>'
+        for k in cinema.get("cartes") or [] if k in CARTES)
+
+
+def carte_attr(cinema: dict) -> str:
+    """Attribut data-* lu par cartes.js pour filtrer sans recharger la page."""
+    cartes = [k for k in cinema.get("cartes") or [] if k in CARTES]
+    return f' data-cartes="{" ".join(cartes)}"' if cartes else ""
+
+
+def cartes_filtre(cids: list, cinemas: dict) -> str:
+    """Filtre « je n'affiche que les salles qui acceptent ma carte ».
+
+    N'apparaît que si la ville a de quoi filtrer : au moins deux salles, et au
+    moins une carte représentée. À Vitry-sur-Seine (une seule salle) le filtre
+    n'aurait rien à cacher ; ailleurs il n'aurait rien à montrer.
+
+    On ne propose que les cartes PRÉSENTES dans cette ville — proposer
+    « CinéPass » à Nancy, où aucune salle ne l'accepte, ne rend qu'une page
+    vide et l'impression d'un bug.
+    """
+    if len(cids) < 2:
+        return ""
+    presentes = [k for k in CARTES
+                 if any(k in (cinemas[c].get("cartes") or []) for c in cids)]
+    if not presentes:
+        return ""
+    boutons = "".join(
+        f'<button type="button" data-carte="{k}" aria-pressed="false">{esc(v)}</button>'
+        for k, v in ((k, CARTES[k]) for k in presentes))
+    return f"""<div class="film-tools cartes-tools" role="group" aria-label="{esc(t("Filtrer par carte d'abonnement"))}">
+<span class="tri-label">{t("J'ai la carte")}</span>
+<button type="button" data-carte="" aria-pressed="true">{t("Peu importe")}</button>
+{boutons}
+<p class="tri-compte cartes-compte" role="status"></p>
+</div>
+<script src="/assets/cartes.js" defer></script>"""
+
+
 def is_classic(movie: dict) -> bool:
     """Vrai si le film est une reprise : année de sortie connue (via TMDB) et
     vieille d'au moins CLASSIC_AGE_YEARS ans. Sans année fiable, on s'abstient."""
@@ -1216,8 +1273,15 @@ def build_lang(today, today_iso, cinemas, movies, showtimes, cities,
         nature = cinema_kind_label(cinema.get("chain"))
         voir_ville = tf("Voir tous les cinémas de {ville}", ville=esc(cinema["city"]))
         vide = f'<p>{t("Aucune séance annoncée pour les deux prochaines semaines.")}</p>'
+        # Les cartes acceptées, en clair sous l'adresse : c'est une information
+        # pratique de premier ordre pour un abonné, elle mérite une phrase et
+        # pas seulement une pastille.
+        cartes = [CARTES[k] for k in cinema.get("cartes") or [] if k in CARTES]
+        cartes_bit = (" " + tf("Accepte {cartes}.",
+                               cartes=esc(f' {t("et")} '.join(cartes)))
+                      if cartes else "")
         body = f"""<p class="lead">{esc(cinema["address"])}, {esc(cinema["postcode"])} {esc(cinema["city"])}.
-{esc(nature).capitalize()}. <a href="/ville/{cinema["city_slug"]}/">{voir_ville}</a>.</p>
+{esc(nature).capitalize()}.{cartes_bit} <a href="/ville/{cinema["city_slug"]}/">{voir_ville}</a>.</p>
 {"".join(sections) or vide}{bridge}"""
         jsonld = {
             "@context": "https://schema.org", "@type": "MovieTheater",
@@ -1293,8 +1357,8 @@ def build_lang(today, today_iso, cinemas, movies, showtimes, cities,
                     today_html = (f'<p class="meta">'
                                   f'{t("Pas de séance aujourd\'hui. Prochaines dates :")}</p>')
                     later_html = f'<div class="films">{"".join(films_later)}</div>'
-            blocks.append(f"""<section class="cinema-block" id="c-{cid}">
-<h2><a href="{cinema_urls[cid]}">{esc(cinema["name"])}</a>{chain_badge(cinema)}</h2>
+            blocks.append(f"""<section class="cinema-block" id="c-{cid}"{carte_attr(cinema)}>
+<h2><a href="{cinema_urls[cid]}">{esc(cinema["name"])}</a>{chain_badge(cinema)}{carte_badges(cinema)}</h2>
 <p class="meta">{esc(cinema["address"])}. <a href="{cinema_urls[cid]}">{t("Programme complet")}</a></p>
 {(today_html + later_html) or f'<p>{t("Aucune séance cette semaine.")}</p>'}</section>""")
         # Sommaire ancré : au-delà de 2 cinémas, l'accès direct évite de
@@ -1324,11 +1388,12 @@ def build_lang(today, today_iso, cinemas, movies, showtimes, cities,
         # Barre tri/langue seulement s'il y a assez de films pour que trier ou
         # filtrer ait un sens (sinon elle encombre pour rien).
         tools = ville_tools() if len(city_movie_keys) >= 5 else ""
+        filtre_cartes = cartes_filtre(sorted_cids, cinemas)
         # « X et Y » / « X and Y » : le connecteur lui-même change de langue.
         inventaire = tf("{inventaire} à {ville}.",
                         inventaire=f' {t("et")} '.join(parts), ville=esc(city["name"]))
         body = f"""<p class="lead">{inventaire}
-{t("Les séances d'aujourd'hui d'abord, puis celles des jours suivants.")}{classics_bit}</p>{bridge}{toc}{tools}{"".join(blocks)}
+{t("Les séances d'aujourd'hui d'abord, puis celles des jours suivants.")}{classics_bit}</p>{bridge}{toc}{filtre_cartes}{tools}{"".join(blocks)}
 {abonnement_bloc(slug, city["name"])}"""
         write(path, page(
             tf("Cinéma à {ville} : séances et horaires — {site}",

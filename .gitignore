@@ -19,6 +19,10 @@ data/*
 !data/grandecran_showtimes.json
 !data/grandecran_cities.json
 !data/tmdb.json
+# Cartes d'abonnement illimité : collectées par fetch_abonnements.py (2 requêtes,
+# sources qui ne bougent que 2-3 fois par an) + corrections manuelles relues.
+!data/abonnements.json
+!data/abonnements_overrides.json
 site/
 # Redirections vers la nouvelle adresse, régénérées depuis le sitemap
 # (scripts/build_redirects.py) — 3 500 fichiers, aucun intérêt à les versionner.

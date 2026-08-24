@@ -206,6 +206,16 @@ h2 { margin-top: 2em; border-bottom: 1px solid var(--accent-deep); padding-botto
 
 .badge-inde { background: var(--indie); color: #fff; }
 .badge-chain { background: #2a2f3a; color: var(--muted); border: 1px solid #3a4150; }
+/* Cartes d'abonnement illimité : bleu froid, une famille à part. Ni le rouge
+   des indés (identité du site) ni le doré des classiques (le contenu) — c'est
+   une information de billetterie, elle a droit à sa propre couleur pour ne pas
+   se lire comme un jugement sur la salle ou sur le film. */
+.badge-carte { background: #12293d; color: #7dc4ff; border: 1px solid #1d4a6b; }
+/* Salle masquée par le filtre de carte. Attribut plutôt que style inline :
+   ville.js réécrit display sur les mêmes blocs au moindre tri, et le dernier
+   qui écrit gagnerait. Ici les deux cohabitent sans se marcher dessus. */
+.cinema-block[data-carte-off] { display: none; }
+html:not(.js) .cartes-tools { display: none; }
 /* Reprises de classiques : badge doré, clin d'œil pellicule */
 .badge-classic { background: #33290f; color: var(--accent); border: 1px solid var(--accent-deep); }
 /* Anniversaire rond : même famille dorée que Classique, une nuance plus chaude
@@ -468,7 +478,8 @@ html:not(.js) .film-tools { display: none; }
 /* Boutons de tri et de filtre : même grammaire visuelle, l'actif porte
    l'accent. Un second clic sur le tri actif inverse le sens (voir tri.js) ;
    la marque « ↓ » ou « A → Z » dit lequel est appliqué. */
-.tri-tri button, .tri-versions button, .agenda-villes button {
+.tri-tri button, .tri-versions button, .agenda-villes button,
+.cartes-tools button {
   background: none;
   color: var(--muted);
   border: 1px solid #3a4150;
@@ -478,13 +489,15 @@ html:not(.js) .film-tools { display: none; }
   font-size: .85rem;
   cursor: pointer;
 }
-.tri-tri button:hover, .tri-versions button:hover, .agenda-villes button:hover {
+.tri-tri button:hover, .tri-versions button:hover, .agenda-villes button:hover,
+.cartes-tools button:hover {
   border-color: var(--accent);
   color: var(--text);
 }
 .tri-tri button[aria-pressed="true"],
 .tri-versions button[aria-pressed="true"],
-.agenda-villes button[aria-pressed="true"] {
+.agenda-villes button[aria-pressed="true"],
+.cartes-tools button[aria-pressed="true"] {
   background: var(--accent-soft);
   border-color: var(--accent);
   color: var(--text);

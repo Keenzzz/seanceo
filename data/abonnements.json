@@ -1,0 +1,472 @@
+{
+ "1000035": {
+  "ugc_illimite": true,
+  "cinepass": true
+ },
+ "1000483": {
+  "ugc_illimite": true,
+  "cinepass": true
+ },
+ "1000751": {
+  "ugc_illimite": true,
+  "cinepass": true
+ },
+ "1008422": {
+  "ugc_illimite": true
+ },
+ "1008451": {
+  "ugc_illimite": true,
+  "cinepass": true
+ },
+ "1008531": {
+  "ugc_illimite": true,
+  "cinepass": true
+ },
+ "2081101": {
+  "ugc_illimite": true,
+  "cinepass": true
+ },
+ "2115104": {
+  "ugc_illimite": true
+ },
+ "2242003": {
+  "ugc_illimite": true
+ },
+ "2252134": {
+  "ugc_illimite": true,
+  "cinepass": true
+ },
+ "2274702": {
+  "ugc_illimite": true
+ },
+ "2381912": {
+  "ugc_illimite": true,
+  "cinepass": true
+ },
+ "2404603": {
+  "ugc_illimite": true,
+  "cinepass": true
+ },
+ "2463931": {
+  "ugc_illimite": true,
+  "cinepass": true
+ },
+ "3081451": {
+  "cinepass": true
+ },
+ "3244492": {
+  "cinepass": true
+ },
+ "4046862": {
+  "ugc_illimite": true
+ },
+ "6019945": {
+  "cinepass": true
+ },
+ "8368801": {
+  "ugc_illimite": true,
+  "cinepass": true
+ },
+ "9284113": {
+  "ugc_illimite": true
+ },
+ "9284121": {
+  "ugc_illimite": true
+ },
+ "9405441": {
+  "ugc_illimite": true
+ },
+ "grandecran-p0169": {
+  "ugc_illimite": true
+ },
+ "grandecran-p0170": {
+  "ugc_illimite": true
+ },
+ "grandecran-p0764": {
+  "ugc_illimite": true
+ },
+ "grandecran-p2129": {
+  "ugc_illimite": true
+ },
+ "grandecran-p8001": {
+  "ugc_illimite": true
+ },
+ "grandecran-p9488": {
+  "ugc_illimite": true
+ },
+ "grandecran-w3321": {
+  "ugc_illimite": true
+ },
+ "grandecran-w3356": {
+  "ugc_illimite": true
+ },
+ "pathe-cinema-cine-cap-vert": {
+  "cinepass": true
+ },
+ "pathe-cinema-cine-capitole": {
+  "cinepass": true
+ },
+ "pathe-cinema-gaumont-disney-village": {
+  "cinepass": true
+ },
+ "pathe-cinema-la-geode": {
+  "cinepass": true
+ },
+ "pathe-cinema-le-mazarin": {
+  "cinepass": true
+ },
+ "pathe-cinema-les-3-palmes": {
+  "cinepass": true
+ },
+ "pathe-cinema-les-7-batignolles": {
+  "cinepass": true
+ },
+ "pathe-cinema-multiplexe-liberte": {
+  "cinepass": true
+ },
+ "pathe-cinema-pathe-aeroville": {
+  "cinepass": true
+ },
+ "pathe-cinema-pathe-alesia": {
+  "cinepass": true
+ },
+ "pathe-cinema-pathe-amiens": {
+  "cinepass": true
+ },
+ "pathe-cinema-pathe-angers": {
+  "cinepass": true
+ },
+ "pathe-cinema-pathe-annecy": {
+  "cinepass": true
+ },
+ "pathe-cinema-pathe-aquaboulevard": {
+  "cinepass": true
+ },
+ "pathe-cinema-pathe-archamps": {
+  "cinepass": true
+ },
+ "pathe-cinema-pathe-atlantis": {
+  "cinepass": true
+ },
+ "pathe-cinema-pathe-aubiere": {
+  "cinepass": true
+ },
+ "pathe-cinema-pathe-beaugrenelle": {
+  "cinepass": true
+ },
+ "pathe-cinema-pathe-belle-epine": {
+  "cinepass": true
+ },
+ "pathe-cinema-pathe-bellecour": {
+  "cinepass": true
+ },
+ "pathe-cinema-pathe-bnp-paribas": {
+  "cinepass": true
+ },
+ "pathe-cinema-pathe-boulogne": {
+  "cinepass": true
+ },
+ "pathe-cinema-pathe-brumath": {
+  "cinepass": true
+ },
+ "pathe-cinema-pathe-cap-sud": {
+  "cinepass": true
+ },
+ "pathe-cinema-pathe-capucins": {
+  "cinepass": true
+ },
+ "pathe-cinema-pathe-carre-de-soie": {
+  "cinepass": true
+ },
+ "pathe-cinema-pathe-carre-senart": {
+  "cinepass": true
+ },
+ "pathe-cinema-pathe-chambery": {
+  "cinepass": true
+ },
+ "pathe-cinema-pathe-cite-europe": {
+  "cinepass": true
+ },
+ "pathe-cinema-pathe-comedie": {
+  "cinepass": true
+ },
+ "pathe-cinema-pathe-conflans": {
+  "cinepass": true
+ },
+ "pathe-cinema-pathe-convention": {
+  "cinepass": true
+ },
+ "pathe-cinema-pathe-dammarie": {
+  "cinepass": true
+ },
+ "pathe-cinema-pathe-dijon": {
+  "cinepass": true
+ },
+ "pathe-cinema-pathe-docks-76": {
+  "cinepass": true
+ },
+ "pathe-cinema-pathe-docks-vauban": {
+  "cinepass": true
+ },
+ "pathe-cinema-pathe-echirolles": {
+  "cinepass": true
+ },
+ "pathe-cinema-pathe-evreux": {
+  "cinepass": true
+ },
+ "pathe-cinema-pathe-gare-du-sud": {
+  "cinepass": true
+ },
+ "pathe-cinema-pathe-grand-quevilly": {
+  "cinepass": true
+ },
+ "pathe-cinema-pathe-grenoble": {
+  "cinepass": true
+ },
+ "pathe-cinema-pathe-la-joliette": {
+  "cinepass": true
+ },
+ "pathe-cinema-pathe-la-valette": {
+  "cinepass": true
+ },
+ "pathe-cinema-pathe-la-villette": {
+  "cinepass": true
+ },
+ "pathe-cinema-pathe-labege": {
+  "cinepass": true
+ },
+ "pathe-cinema-pathe-le-mans": {
+  "cinepass": true
+ },
+ "pathe-cinema-pathe-les-fauvettes": {
+  "cinepass": true
+ },
+ "pathe-cinema-pathe-les-rives-de-l-orne": {
+  "cinepass": true
+ },
+ "pathe-cinema-pathe-levallois": {
+  "cinepass": true
+ },
+ "pathe-cinema-pathe-lievin": {
+  "cinepass": true
+ },
+ "pathe-cinema-pathe-lingostiere": {
+  "cinepass": true
+ },
+ "pathe-cinema-pathe-macon": {
+  "cinepass": true
+ },
+ "pathe-cinema-pathe-madeleine": {
+  "cinepass": true
+ },
+ "pathe-cinema-pathe-massena": {
+  "cinepass": true
+ },
+ "pathe-cinema-pathe-massy": {
+  "cinepass": true
+ },
+ "pathe-cinema-pathe-montataire": {
+  "cinepass": true
+ },
+ "pathe-cinema-pathe-montparnos": {
+  "cinepass": true
+ },
+ "pathe-cinema-pathe-nantes": {
+  "cinepass": true
+ },
+ "pathe-cinema-pathe-odysseum": {
+  "cinepass": true
+ },
+ "pathe-cinema-pathe-orleans": {
+  "cinepass": true
+ },
+ "pathe-cinema-pathe-palace": {
+  "cinepass": true
+ },
+ "pathe-cinema-pathe-parnasse": {
+  "cinepass": true
+ },
+ "pathe-cinema-pathe-plan-de-campagne": {
+  "cinepass": true
+ },
+ "pathe-cinema-pathe-quai-d-ivry": {
+  "cinepass": true
+ },
+ "pathe-cinema-pathe-rennes": {
+  "cinepass": true
+ },
+ "pathe-cinema-pathe-saint-denis": {
+  "cinepass": true
+ },
+ "pathe-cinema-pathe-saran": {
+  "cinepass": true
+ },
+ "pathe-cinema-pathe-thillois": {
+  "cinepass": true
+ },
+ "pathe-cinema-pathe-toulon": {
+  "cinepass": true
+ },
+ "pathe-cinema-pathe-tours": {
+  "cinepass": true
+ },
+ "pathe-cinema-pathe-vaise": {
+  "cinepass": true
+ },
+ "pathe-cinema-pathe-valence": {
+  "cinepass": true
+ },
+ "pathe-cinema-pathe-valenciennes": {
+  "cinepass": true
+ },
+ "pathe-cinema-pathe-wepler": {
+  "cinepass": true
+ },
+ "pathe-cinema-pathe-wilson": {
+  "cinepass": true
+ },
+ "ugc-1": {
+  "ugc_illimite": true
+ },
+ "ugc-10": {
+  "ugc_illimite": true
+ },
+ "ugc-11": {
+  "ugc_illimite": true
+ },
+ "ugc-12": {
+  "ugc_illimite": true
+ },
+ "ugc-13": {
+  "ugc_illimite": true
+ },
+ "ugc-14": {
+  "ugc_illimite": true
+ },
+ "ugc-15": {
+  "ugc_illimite": true
+ },
+ "ugc-16": {
+  "ugc_illimite": true
+ },
+ "ugc-17": {
+  "ugc_illimite": true
+ },
+ "ugc-18": {
+  "ugc_illimite": true
+ },
+ "ugc-19": {
+  "ugc_illimite": true
+ },
+ "ugc-20": {
+  "ugc_illimite": true
+ },
+ "ugc-21": {
+  "ugc_illimite": true
+ },
+ "ugc-24": {
+  "ugc_illimite": true
+ },
+ "ugc-25": {
+  "ugc_illimite": true
+ },
+ "ugc-27": {
+  "ugc_illimite": true
+ },
+ "ugc-28": {
+  "ugc_illimite": true
+ },
+ "ugc-29": {
+  "ugc_illimite": true
+ },
+ "ugc-30": {
+  "ugc_illimite": true
+ },
+ "ugc-31": {
+  "ugc_illimite": true
+ },
+ "ugc-32": {
+  "ugc_illimite": true
+ },
+ "ugc-33": {
+  "ugc_illimite": true
+ },
+ "ugc-36": {
+  "ugc_illimite": true
+ },
+ "ugc-37": {
+  "ugc_illimite": true
+ },
+ "ugc-38": {
+  "ugc_illimite": true
+ },
+ "ugc-39": {
+  "ugc_illimite": true
+ },
+ "ugc-4": {
+  "ugc_illimite": true
+ },
+ "ugc-40": {
+  "ugc_illimite": true
+ },
+ "ugc-41": {
+  "ugc_illimite": true
+ },
+ "ugc-42": {
+  "ugc_illimite": true
+ },
+ "ugc-43": {
+  "ugc_illimite": true
+ },
+ "ugc-44": {
+  "ugc_illimite": true
+ },
+ "ugc-45": {
+  "ugc_illimite": true
+ },
+ "ugc-46": {
+  "ugc_illimite": true
+ },
+ "ugc-47": {
+  "ugc_illimite": true
+ },
+ "ugc-48": {
+  "ugc_illimite": true
+ },
+ "ugc-49": {
+  "ugc_illimite": true
+ },
+ "ugc-5": {
+  "ugc_illimite": true
+ },
+ "ugc-52": {
+  "ugc_illimite": true
+ },
+ "ugc-54": {
+  "ugc_illimite": true
+ },
+ "ugc-55": {
+  "ugc_illimite": true
+ },
+ "ugc-56": {
+  "ugc_illimite": true
+ },
+ "ugc-57": {
+  "ugc_illimite": true
+ },
+ "ugc-58": {
+  "ugc_illimite": true
+ },
+ "ugc-59": {
+  "ugc_illimite": true
+ },
+ "ugc-6": {
+  "ugc_illimite": true
+ },
+ "ugc-7": {
+  "ugc_illimite": true
+ },
+ "ugc-9": {
+  "ugc_illimite": true
+ }
+}

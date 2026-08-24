@@ -346,4 +346,9 @@ window.I18N = {
   "Tu ne suis aucun film pour le moment.": "You are not following any film yet.",
   "à {ville}": "in {ville}",
   "retirer": "remove",
+
+  /* —— Filtre par carte d'abonnement illimité (cartes.js) ————————————— */
+  "{n} salle{s} {verbe} cette carte": "{n} venue{s} {verbe} this pass",
+  "accepte": "accepts",
+  "acceptent": "accept",
 };
