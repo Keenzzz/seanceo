@@ -110,13 +110,34 @@ MONTHS_EN = ["January", "February", "March", "April", "May", "June", "July",
              "August", "September", "October", "November", "December"]
 
 
+# Année de référence du build : une date qui tombe dans cette année-là
+# s'affiche sans son millésime (« samedi 12 août »), les autres le portent.
+# C'est un état de module comme LANG, posé une fois au démarrage ; les tests
+# peuvent le déplacer avec set_annee_ref() pour figer un « aujourd'hui ».
+ANNEE_REF = date.today().year
+
+
+def set_annee_ref(annee: int) -> None:
+    global ANNEE_REF
+    ANNEE_REF = annee
+
+
 def jour_mois(d: date) -> str:
     """Date sans le repère « aujourd'hui/demain » : « samedi 12 août » ou
     « Saturday 12 August ». Le jour reste en chiffres dans les deux langues
-    (l'ordinal anglais « 12th » alourdit une grille d'horaires pour rien)."""
+    (l'ordinal anglais « 12th » alourdit une grille d'horaires pour rien).
+
+    L'ANNÉE apparaît dès que la date sort de l'année en cours. Les salles de
+    répertoire programment des opéras et des rétrospectives plus d'un an à
+    l'avance : « mercredi 7 avril » lu au mois d'août se comprend comme dans
+    huit mois, alors que la séance est dans vingt. Le millésime n'est ajouté
+    que dans ce cas — l'écrire sur les 99 % de séances de l'année en cours
+    alourdirait toutes les grilles d'horaires pour rien.
+    """
+    annee = f" {d.year}" if d.year != ANNEE_REF else ""
     if LANG == "fr":
-        return f"{JOURS[d.weekday()]} {d.day} {MOIS[d.month - 1]}"
-    return f"{DAYS_EN[d.weekday()]} {d.day} {MONTHS_EN[d.month - 1]}"
+        return f"{JOURS[d.weekday()]} {d.day} {MOIS[d.month - 1]}{annee}"
+    return f"{DAYS_EN[d.weekday()]} {d.day} {MONTHS_EN[d.month - 1]}{annee}"
 
 
 def date_label(d: date, today: date) -> str:

@@ -71,6 +71,9 @@ CINEMA_WINDOW_DAYS = 14  # séances affichées sur une page cinéma
 # rétrospective, version restaurée, ciné-club. Mise en avant éditoriale du site.
 CLASSIC_AGE_YEARS = 20
 TODAY = date.today()
+# Les libellés de date n'écrivent l'année que si elle sort de celle-ci
+# (voir i18n.jour_mois) : on l'aligne sur le TODAY du build.
+i18n.set_annee_ref(TODAY.year)
 
 # Fiche film : les 10 plus grandes villes de France en accès direct dans le
 # sommaire des séances ; les autres passent par la recherche.

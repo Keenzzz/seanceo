@@ -430,7 +430,12 @@
     var delta = Math.round((d - auj) / 86400000);
     if (delta <= 0) return T("aujourd'hui");
     if (delta === 1) return T("demain");
-    return jours[d.getDay()] + " " + d.getDate() + " " + mois[d.getMonth()];
+    // L'ANNÉE n'apparaît que si la séance sort de l'année en cours. Les
+    // salles de répertoire programment opéras et rétrospectives plus d'un an
+    // à l'avance : « mer. 7 avril » lu au mois d'août se comprend comme dans
+    // huit mois, alors que la séance est dans vingt.
+    var an = d.getFullYear() !== auj.getFullYear() ? " " + d.getFullYear() : "";
+    return jours[d.getDay()] + " " + d.getDate() + " " + mois[d.getMonth()] + an;
   }
 
   // Heure d'une séance à partir d'un « …THH:MM ». Le format 24 h reste tel
