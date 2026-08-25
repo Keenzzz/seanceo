@@ -105,6 +105,16 @@ I18N_JS = '<script src="/assets/i18n.js" defer></script>'
 # doit l'autoriser en `connect-src`, sans quoi la watchlist par pseudo échoue.
 WORKER_ORIGIN = "https://seanceo-watchlist.keenzzz.workers.dev"
 
+# Cloudflare Web Analytics (activé le 2026-08-25). Cloudflare Pages injecte
+# lui-même `<script src=".../beacon.min.js">` dans chaque réponse HTML : le
+# script n'est donc NULLE PART dans ce dépôt, mais la CSP doit quand même
+# l'autoriser, sinon le navigateur le refuse et la mesure reste à zéro sans le
+# moindre message. Deux origines distinctes, ne pas les confondre :
+#   - static.cloudflareinsights.com sert le script  -> script-src
+#   - cloudflareinsights.com reçoit les mesures     -> connect-src
+RUM_SCRIPT_ORIGIN = "https://static.cloudflareinsights.com"
+RUM_BEACON_ORIGIN = "https://cloudflareinsights.com"
+
 
 def csp_hash(balise: str) -> str:
     """Empreinte CSP d'un `<script>…</script>` écrit en dur dans le gabarit.
@@ -149,17 +159,21 @@ def csp_headers() -> str:
       quand même le `http:` et le contenu mixte). Une image ne s'exécute pas :
       l'essentiel de la protection est dans `script-src`, qui reste strict.
 
-    Le reste est verrouillé : pas de script tiers, `object-src 'none'`, pas
-    d'encadrement possible du site (`frame-ancestors`), et `connect-src` limité
-    au site plus le Worker watchlist.
+    Le reste est verrouillé : `object-src 'none'`, pas d'encadrement possible
+    du site (`frame-ancestors`), et un seul script tiers toléré — le beacon de
+    Cloudflare Web Analytics (voir RUM_SCRIPT_ORIGIN). C'est le prix de la
+    mesure d'audience sur un site statique : sans script côté navigateur, on ne
+    sait pas quelles pages sont vues. Cloudflare a été préféré à Google
+    Analytics parce qu'il ne pose pas de cookie (donc pas de bandeau de
+    consentement) et n'ajoute qu'une seule origine à la politique.
     """
     scripts = " ".join(csp_hash(b) for b in (JS_FLAG, T_HELPER))
     csp = "; ".join([
         "default-src 'self'",
-        f"script-src 'self' {scripts}",
+        f"script-src 'self' {RUM_SCRIPT_ORIGIN} {scripts}",
         "style-src 'self' 'unsafe-inline'",
         "img-src 'self' data: https:",
-        f"connect-src 'self' {WORKER_ORIGIN}",
+        f"connect-src 'self' {WORKER_ORIGIN} {RUM_BEACON_ORIGIN}",
         "font-src 'self'",
         "manifest-src 'self'",
         "worker-src 'self'",
