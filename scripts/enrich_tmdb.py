@@ -50,6 +50,29 @@ TITLE_OVERRIDES = {
     81: "Nausicaä de la vallée du vent",
 }
 
+# Films dont la RECHERCHE TMDB ne rend rien d'exploitable, et dont on force
+# l'identifiant à la main. Clé = clé de film (`movie_key` : titre|réalisateur
+# slugifiés, telle que l'écrit le connecteur), valeur = id TMDB **vérifié**.
+#
+# Ce n'est PAS un contournement de la validation par réalisateur : celle-ci
+# départage des candidats, elle ne peut rien quand la recherche en rend zéro.
+# Chaque entrée porte donc sa justification, comme les overrides d'abonnement —
+# c'est ce qui distingue une correction contrôlée d'une intuition, six mois plus
+# tard. Vérifier un id avant de l'inscrire : titre original, année, réalisateur.
+#
+# ⚠️ La clé dépend de la GRAPHIE de la source. Une autre caisse qui écrirait le
+# même film autrement produirait une autre clé, que cette table ne couvrirait
+# pas. C'est voulu : on corrige un cas constaté, on ne parie pas sur les autres.
+ID_OVERRIDES = {
+    # « Le Cadet d'eau douce » (Le Brady). TMDB titre sa fiche « Cadet d'eau
+    # douce », SANS l'article, et sa recherche ne trouve rien avec « Le » —
+    # zéro résultat, donc rien à départager. L'id 25768 est bien le Keaton de
+    # 1928 (titre original « Steamboat Bill, Jr. »), que TMDB crédite à Charles
+    # Reisner ET Buster Keaton : la validation par réalisateur passerait si la
+    # recherche aboutissait.
+    "le-cadet-d-eau-douce|buster-keaton": 25768,
+}
+
 
 def get(path: str, **params):
     params["api_key"] = KEY
@@ -122,7 +145,7 @@ def _country_fr(det: dict) -> str:
     return COUNTRY_FR.get(iso) or pcs[0].get("name") or ""
 
 
-def enrich_one(title: str, director: str = "") -> dict:
+def enrich_one(title: str, director: str = "", key: str = "") -> dict:
     """Cherche un film sur TMDB et renvoie ses données propres, ou {found: False}.
 
     La recherche TMDB trie par popularité, pas par exactitude : « Ten » de
@@ -130,18 +153,31 @@ def enrich_one(title: str, director: str = "") -> dict:
     fournit un réalisateur, on ne retient donc un candidat que si son
     réalisateur TMDB concorde ; sans candidat validé, mieux vaut ne rien
     enrichir que d'afficher les données d'un autre film.
+
+    `key` n'a qu'un rôle : consulter `ID_OVERRIDES`. Un film qui n'y figure pas
+    suit EXACTEMENT le chemin d'avant — la recherche, puis la validation.
     """
-    data = get("search/movie", query=title, language="fr-FR", include_adult="false")
-    results = (data or {}).get("results") or []
-    if not results:
-        return {"found": False}
-    if director:
-        m = next((c for c in results[:5] if _director_ok(c["id"], director)), None)
-        if m is None:
+    force = ID_OVERRIDES.get(key)
+    if force:
+        # Identifiant vérifié à la main : ni recherche ni validation, il n'y a
+        # rien à départager. La fiche détaillée porte tous les champs que la
+        # recherche aurait donnés (titre, note, votes, affiche, date), donc la
+        # construction ci-dessous reste commune aux deux chemins.
+        m = det = get(f"movie/{force}", language="fr-FR")
+        if not m:
             return {"found": False}
     else:
-        m = results[0]  # pas de réalisateur source : on garde le plus populaire
-    det = get(f"movie/{m['id']}", language="fr-FR") or {}
+        data = get("search/movie", query=title, language="fr-FR", include_adult="false")
+        results = (data or {}).get("results") or []
+        if not results:
+            return {"found": False}
+        if director:
+            m = next((c for c in results[:5] if _director_ok(c["id"], director)), None)
+            if m is None:
+                return {"found": False}
+        else:
+            m = results[0]  # pas de réalisateur source : on garde le plus populaire
+        det = get(f"movie/{m['id']}", language="fr-FR") or {}
     return {
         "found": True,
         "tmdb_id": m["id"],
@@ -242,7 +278,7 @@ def main() -> int:
           f"({len(cache)} déjà en cache)…")
 
     for i, (key, title, director) in enumerate(todo, 1):
-        cache[key] = enrich_one(title, director)
+        cache[key] = enrich_one(title, director, key)
         if i % 50 == 0 or i == len(todo):
             print(f"  [{i}/{len(todo)}]")
 

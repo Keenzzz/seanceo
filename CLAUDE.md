@@ -407,6 +407,25 @@ indexable, et les deux se déclarent l'une l'autre en `hreflang` (`alternates()`
 - **Matching TMDB validé par réalisateur** (`enrich_tmdb.py`) : la recherche TMDB trie par popularité,
   jamais prendre `results[0]` sans vérifier les credits. `TITLE_OVERRIDES` corrige les fiches TMDB
   au titre fr erroné. Sans candidat validé → fiche brute (mieux que des données d'un autre film).
+  - **`ID_OVERRIDES` force un id TMDB pour une clé de film donnée** (ajouté le 2026-08-28). Il ne
+    contourne PAS la validation par réalisateur : celle-ci départage des candidats, elle ne peut
+    rien quand la recherche en rend **zéro**. C'est le cas de figure visé — « Le Cadet d'eau
+    douce » (Le Brady) ne remonte aucun résultat parce que TMDB titre sa fiche « Cadet d'eau
+    douce », sans l'article ; l'id 25768 (Keaton 1928, « Steamboat Bill, Jr. ») est vérifié à la
+    main. Un film absent de la table suit **exactement** le chemin d'avant : mesuré en rejouant
+    22 films (trouvés, non trouvés, avec et sans réalisateur) sur les deux versions au même
+    instant — 22/22 identiques, 0 divergence.
+    - ⚠️ **La clé dépend de la GRAPHIE de la source** (`movie_key` = titre|réalisateur slugifiés).
+      Une autre caisse écrivant le même film autrement produirait une autre clé, non couverte.
+      On corrige un cas constaté, on ne parie pas sur les autres.
+    - ⚠️ **Le cache est incrémental** : ajouter une entrée ne suffit pas, le film garde son
+      `{found: false}`. Retirer SA clé de `data/tmdb.json` puis relancer le script (ne PAS faire
+      `--refresh`, qui réinterroge les 1 879 films). Puis `fetch_letterboxd.py`, qui a besoin de
+      l'id TMDB pour trouver la fiche Letterboxd.
+    - **Piste NON retenue** : rejouer la recherche sans l'article de tête réglerait cette classe
+      de films d'un coup. Écarté pour l'instant — élargir la recherche, c'est augmenter le risque
+      de faux positifs sur 1 879 films pour en gagner quelques-uns, alors qu'un override est
+      explicite et vérifié. À reconsidérer si le cas devient fréquent.
 - **POSITIONNEMENT : le site est un agenda du RÉPERTOIRE.** L'accueil ne montre plus les sorties
   récentes mais les films anciens qui repassent. `scripts/repertoire.py` porte toute la détection :
   reprise = `year < REPERTOIRE_BEFORE` (2020) ; séance unique = le film ne passe qu'une fois en

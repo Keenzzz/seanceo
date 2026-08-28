@@ -26214,9 +26214,6 @@
  "la-seance-70mm-kill-bill-the-whole-bloody-affair|quentin-tarantino": {
   "found": false
  },
- "le-cadet-d-eau-douce|buster-keaton": {
-  "found": false
- },
  "le-voyage-du-prince|jean-francois-laguionie": {
   "found": true,
   "tmdb_id": 575557,
@@ -26801,5 +26798,23 @@
   "genres_en": "Crime, Mystery",
   "country_en": "United States of America",
   "poster_en": "https://image.tmdb.org/t/p/w500/6YmeO4pB7XTh8P8F960O1uA14JO.jpg"
+ },
+ "le-cadet-d-eau-douce|buster-keaton": {
+  "found": true,
+  "tmdb_id": 25768,
+  "title": "Cadet d'eau douce",
+  "rating": 7.6,
+  "votes": 405,
+  "poster": "https://image.tmdb.org/t/p/w500/zygJMsmXxeyDc1N67OCZc8xtq4I.jpg",
+  "overview": "Le jeune William Canfield retrouve son père propriétaire d'un vieux bateau qui navigue sur le Mississippi. Le vieux Canfield voudrait que son fils l'aide, mais William a mieux à faire : il est amoureux de Kitty, la fille d'un banquier qui possède un magnifique bateau à vapeur.",
+  "runtime": 70,
+  "genres": "Comédie, Romance",
+  "country": "États-Unis",
+  "year": "1928",
+  "en": 1,
+  "title_en": "Steamboat Bill, Jr.",
+  "overview_en": "The just-out-of-college, effete son of a no-nonsense steamboat captain comes to visit his father whom he's not seen since he was a child.",
+  "genres_en": "Comedy, Romance",
+  "country_en": "United States of America"
  }
 }
