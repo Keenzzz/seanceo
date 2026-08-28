@@ -154,6 +154,31 @@ def lire_json(url: str):
         raise SourceIndisponible(f"{url[:80]} : réponse non-JSON ({err})") from err
 
 
+def lire_dict(url: str) -> dict:
+    """GET JSON qui doit rendre un OBJET, avec une tolérance NOMMÉE.
+
+    ⚠️ La caisse Côté Ciné répond littéralement `false` — pas `{}` — quand un
+    film n'a plus aucun jour ouvert à la vente. C'est une réponse NORMALE : le
+    film a fini son exploitation en cours de semaine, il reste dans la liste
+    déroulante mais n'a plus rien à vendre. Repéré par le CI le 2026-08-28
+    (« Le Violent », « Mirage de la vie »), qui plantait sur un
+    `TypeError: 'bool' object is not iterable`.
+
+    La traiter comme une panne bloquerait tout le snapshot chaque fois qu'un
+    film s'arrête — c'est-à-dire toutes les semaines. On la nomme donc ici, une
+    fois, plutôt que de la deviner sur chaque appel.
+
+    Toute autre forme (une liste, une chaîne non vide) signalerait un vrai
+    changement de format : là on veut échouer bruyamment."""
+    valeur = lire_json(url)
+    if isinstance(valeur, dict):
+        return valeur
+    if not valeur:          # false, null, 0, "", [] → « rien à cette adresse »
+        return {}
+    raise SourceIndisponible(
+        f"{url[:80]} : objet attendu, reçu {type(valeur).__name__}")
+
+
 # —— Plateforme Webedia (Le Louxor, Le Brady) ————————————————————————————————
 
 _META_THEATER = re.compile(
@@ -305,6 +330,10 @@ def fiche_cms(titre: str, cms: str) -> dict:
         url = (f"{cms}?per_page=8&_fields=link,title,acf&"
                + urllib.parse.urlencode({"search": question}))
         resultats = lire_json(url)
+        if not isinstance(resultats, list):
+            # L'API REST signale ses erreurs par un OBJET ({"code": …}) : itéré
+            # tel quel, on parcourrait ses clés en croyant lire des films.
+            continue
         trouve = (
             next((r for r in resultats
                   if _plie(r["title"]["rendered"]) == _plie(titre)), None)
@@ -390,7 +419,7 @@ def collecte_cotecine(cid: str, cfg: dict, jours: int) -> tuple[dict, list]:
         # (rétrospectives annoncées, séances événement) : on garde la même
         # fenêtre que les autres connecteurs pour ne pas remplir le site de
         # dates hors sujet.
-        dates = [j for j in lire_json(f"{vad}/ajax/?modresa_film={fid}")
+        dates = [j for j in lire_dict(f"{vad}/ajax/?modresa_film={fid}")
                  if _dans_fenetre(j, limite)]
         if not dates:
             continue
@@ -412,7 +441,7 @@ def collecte_cotecine(cid: str, cfg: dict, jours: int) -> tuple[dict, list]:
         })
 
         for jour in dates:
-            creneaux = lire_json(f"{vad}/ajax/?modresa_film={fid}&modresa_jour={jour}")
+            creneaux = lire_dict(f"{vad}/ajax/?modresa_film={fid}&modresa_jour={jour}")
             # Clé d'une séance : « <horodatage>/<version>/<salle> ».
             for reference, libelle in creneaux.items():
                 morceaux = reference.split("/")

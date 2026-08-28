@@ -147,7 +147,12 @@ et la mention TMDB (« ce produit utilise l'API TMDB mais n'est ni approuvé ni 
 L'open data du SCARE ne couvre QUE ses adhérents publiants : des salles Art & Essai
 majeures y manquent, alors qu'elles sont au cœur de la cible. `fetch_salles.py` va les
 chercher une par une. Trois aujourd'hui, toutes à Paris — **Le Louxor** (75010),
-**Le Brady** (75010), **La Filmothèque du Quartier Latin** (75005) — pour ~206 séances.
+**Le Brady** (75010), **La Filmothèque du Quartier Latin** (75005) — pour ~205 séances.
+
+- **MESURÉ le 2026-08-28 : les trois sources PASSENT depuis le CI**, contrairement à
+  Pathé/CGR/Grand Écran. Le snapshot reste versionné par prudence (et parce qu'il fait
+  filet en cas de panne d'un petit serveur), mais la collecte se rafraîchit toute seule
+  chaque nuit. Ne pas conclure du blocage des chaînes à un blocage ici.
 
 - **Ce ne sont PAS des chaînes.** Aucune fiche ne porte de champ `chain`, ce qui les fait
   libeller « cinéma indépendant » par `cinema_kind()`. Le préfixe `salles` est dans
@@ -175,6 +180,15 @@ chercher une par une. Trois aujourd'hui, toutes à Paris — **Le Louxor** (7501
 
 - **⚠️ La billetterie Côté Ciné sert de l'iso-8859-1**, pas de l'UTF-8. Décoder en UTF-8
   donnerait des titres accentués en bouillie, sans erreur.
+
+- **⚠️ La caisse Côté Ciné répond `false`, pas `{}`, quand un film n'a plus de jour ouvert
+  à la vente.** Le film reste dans la liste déroulante mais son exploitation est finie.
+  C'est une réponse NORMALE, qui arrive toutes les semaines — la traiter comme une panne
+  bloquerait le snapshot entier à chaque fin d'exploitation. `lire_dict()` la nomme une
+  fois pour toutes ; toute AUTRE forme non-objet (liste, chaîne) lève `SourceIndisponible`,
+  parce que là ce serait un vrai changement de format. **Trouvé par le CI le 2026-08-28**
+  (`TypeError: 'bool' object is not iterable`, sur « Le Violent » et « Mirage de la vie »),
+  pas en local : les deux films avaient encore des jours ouverts au moment du test.
 
 - **Heure des séances : on CROISE l'horodatage et l'heure affichée**, on ne convertit pas.
   Windows n'embarque pas la base IANA, donc `zoneinfo("Europe/Paris")` n'est pas garanti

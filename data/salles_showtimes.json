@@ -200,26 +200,6 @@
   "booking": "https://achat.lebrady.fr/r/64403"
  },
  {
-  "id": "salles-filmotheque-45867-1787932200/VO/270673",
-  "movie": "le-violent|nicholas-ray",
-  "cinema": "salles-filmotheque",
-  "start": "2026-08-28T17:50:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=45867&modresa_jour=2026-08-28"
- },
- {
-  "id": "salles-filmotheque-12285-1787932800/VO/270671",
-  "movie": "mirage-de-la-vie|douglas-sirk",
-  "cinema": "salles-filmotheque",
-  "start": "2026-08-28T18:00:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=12285&modresa_jour=2026-08-28"
- },
- {
   "id": "salles-brady-1000022114-2026-08-28T18:25:00",
   "movie": "shana|lila-pinell",
   "cinema": "salles-brady",
