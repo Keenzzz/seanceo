@@ -40,9 +40,38 @@
    "compte 77 salles Pathé, nos snapshots 77 aussi, mais ce ne sont pas les",
    "mêmes (la liste connaît Le Cézanne et Ciné Jaude, que nous n'avons pas).",
    "Si Pathé republie le PDF en les incluant, ils apparaîtront tout seuls."
+  ],
+  "salles-louxor": [
+   "Le Louxor - Palais du cinéma (75010). La page UGC Illimité porte « LE LOUXOR,",
+   "170, boulevard de Magenta, 75010 PARIS » : même adresse que la nôtre, aucun",
+   "doute sur la salle. L'appariement automatique échoue sur le NOM : nous la",
+   "nommons de son titre complet (« Le Louxor - Palais du cinéma », comme son",
+   "propre site), UGC de son nom d'usage — la clé de nom devient LOUXOR PALAIS DU",
+   "CINEMA contre LOUXOR. On corrige ici plutôt que de raccourcir son nom sur le",
+   "site : le nom d'une salle ne se règle pas sur les besoins d'un appariement.",
+   "Absente du PDF CinéPass du 2026-05-06 : pas de cinepass, et c'est volontaire."
+  ],
+  "salles-brady": [
+   "Le Brady (75010). Le PDF CinéPass porte « Le Brady Cinéma Théâtre », groupe",
+   "« Cinéma indépendant », agglomération PARIS - ILE DE France : c'est bien notre",
+   "salle, qui est aussi une salle de spectacle et se déclare ainsi à Pathé. Clé de",
+   "nom trop différente pour l'automate (BRADY contre BRADY CINEMA THEATRE).",
+   "Son UGC Illimité, lui, s'apparie tout seul — d'où la seule ligne cinepass ici."
   ]
  },
- "grandecran-p0170": { "ugc_illimite": true },
- "2252134": { "cinepass": true },
- "2381912": { "cinepass": true }
+ "grandecran-p0170": {
+  "ugc_illimite": true
+ },
+ "2252134": {
+  "cinepass": true
+ },
+ "2381912": {
+  "cinepass": true
+ },
+ "salles-louxor": {
+  "ugc_illimite": true
+ },
+ "salles-brady": {
+  "cinepass": true
+ }
 }

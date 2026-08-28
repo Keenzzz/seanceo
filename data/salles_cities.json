@@ -1,0 +1,12 @@
+{
+ "paris": {
+  "slug": "paris",
+  "name": "Paris",
+  "cinemas": [
+   "salles-louxor",
+   "salles-brady",
+   "salles-filmotheque"
+  ],
+  "showtime_count": 206
+ }
+}

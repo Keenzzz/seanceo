@@ -18,6 +18,13 @@ data/*
 !data/grandecran_movies.json
 !data/grandecran_showtimes.json
 !data/grandecran_cities.json
+# Salles indépendantes hors SCARE (fetch_salles.py) : mêmes raisons que les
+# chaînes — sources privées, collecte locale, snapshot versionné pour que le
+# build tienne même si le CI n'y accède pas.
+!data/salles_cinemas.json
+!data/salles_movies.json
+!data/salles_showtimes.json
+!data/salles_cities.json
 !data/tmdb.json
 # Cartes d'abonnement illimité : collectées par fetch_abonnements.py (2 requêtes,
 # sources qui ne bougent que 2-3 fois par an) + corrections manuelles relues.

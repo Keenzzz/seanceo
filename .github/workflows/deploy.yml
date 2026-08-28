@@ -43,6 +43,14 @@ jobs:
       - name: Récupérer les séances UGC (best-effort)
         continue-on-error: true
         run: python scripts/fetch_ugc.py --cinemas 0 --days 7
+      - name: Récupérer les salles indépendantes hors SCARE (best-effort)
+        # Le Louxor, Le Brady, La Filmothèque du Quartier Latin : des salles
+        # Art & Essai qui ne publient pas dans l'open data du SCARE. Comme les
+        # chaînes, leur snapshot est versionné : si ces sites refusent l'IP du
+        # runner, le connecteur n'écrit rien et le build reprend la photo
+        # précédente au lieu de faire disparaître trois cinémas.
+        continue-on-error: true
+        run: python scripts/fetch_salles.py --days 7
       - name: Récupérer les cartes d'abonnement illimité (best-effort)
         # UGC Illimité + CinéPass Pathé. Les deux sources passent depuis une IP
         # datacenter (page HTML ugc.fr et CDN media.pathe.fr), donc l'étape a sa

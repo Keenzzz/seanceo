@@ -66,7 +66,12 @@ MIN_UGC = 100      # 144 lignes le 2026-08-24
 MIN_PATHE = 100    # 137 lignes le 2026-08-24
 
 # Fichiers de données lus pour l'appariement (tous les cinémas connus du site).
-SNAPSHOTS = [("cinemas.json", None), ("ugc_cinemas.json", "UGC"),
+# `salles_cinemas.json` (fetch_salles.py) vient avec une enseigne à None, comme
+# les indés du SCARE : ce sont des cinémas indépendants, et c'est ce qui permet
+# au garde-fou « le groupe du PDF fait foi » de les apparier aux lignes
+# « Cinéma indépendant » plutôt qu'à une salle d'enseigne homonyme.
+SNAPSHOTS = [("cinemas.json", None), ("salles_cinemas.json", None),
+             ("ugc_cinemas.json", "UGC"),
              ("pathe_cinemas.json", "Pathé"), ("cgr_cinemas.json", "CGR"),
              ("grandecran_cinemas.json", "Grand Écran")]
 

@@ -20,9 +20,12 @@ from pathlib import Path
 # Quatre fichiers par source, dans l'ordre cinemas/movies/showtimes/cities.
 KINDS = ("cinemas", "movies", "showtimes", "cities")
 INDE = tuple(f"{k}.json" for k in KINDS)
-# Chaînes (phase 2) : snapshots optionnels versionnés, collectés en local.
-# Ajouter un préfixe ici suffit à intégrer une nouvelle chaîne à la fusion.
-CHAIN_PREFIXES = ("pathe", "cgr", "ugc", "grandecran", "megarama", "mk2", "kinepolis", "cineville")
+# Sources complémentaires : snapshots optionnels versionnés, collectés en local.
+# Ajouter un préfixe ici suffit à intégrer une nouvelle source à la fusion.
+# « salles » n'est pas une chaîne mais le lot des salles INDÉPENDANTES absentes
+# de l'open data du SCARE (fetch_salles.py) — elles n'ont pas de champ `chain`.
+CHAIN_PREFIXES = ("pathe", "cgr", "ugc", "grandecran", "salles",
+                  "megarama", "mk2", "kinepolis", "cineville")
 
 
 def _load(data_dir: Path, name: str):

@@ -1,0 +1,32 @@
+{
+ "salles-louxor": {
+  "id": "salles-louxor",
+  "name": "Le Louxor - Palais du cinéma",
+  "address": "170 boulevard de Magenta",
+  "postcode": "75010",
+  "city": "Paris",
+  "city_slug": "paris",
+  "lat": 48.883472,
+  "lon": 2.349866
+ },
+ "salles-brady": {
+  "id": "salles-brady",
+  "name": "Le Brady",
+  "address": "39 boulevard de Strasbourg",
+  "postcode": "75010",
+  "city": "Paris",
+  "city_slug": "paris",
+  "lat": 48.871779,
+  "lon": 2.355403
+ },
+ "salles-filmotheque": {
+  "id": "salles-filmotheque",
+  "name": "La Filmothèque du Quartier Latin",
+  "address": "9 rue Champollion",
+  "postcode": "75005",
+  "city": "Paris",
+  "city_slug": "paris",
+  "lat": 48.84951,
+  "lon": 2.34279
+ }
+}

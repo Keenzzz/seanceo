@@ -16,6 +16,8 @@ avec mise en avant des salles Art & Essai. Objectif : trafic monétisable via SE
   - `fetch_pathe.py` — chaîne Pathé (API pathe.fr) → `data/pathe_*.json`
   - `fetch_webedia.py --chain {cgr,grandecran}` — chaînes sur plateforme Webedia boxofficeapi → `data/<chain>_*.json`
   - `fetch_ugc.py` — chaîne UGC via l'API mobile `backend.ugc.fr` → `data/ugc_*.json`
+  - `fetch_salles.py` — salles indépendantes ABSENTES du SCARE (Le Louxor, Le Brady,
+    La Filmothèque du Quartier Latin) → `data/salles_*.json`
   - `enrich_tmdb.py` — enrichissement TMDB (titres/notes/affiches/durées) → cache `data/tmdb.json`
   - `fetch_abonnements.py` — cartes d'abonnement illimité (UGC Illimité, CinéPass Pathé)
     → `data/abonnements.json` (+ `data/abonnements_overrides.json`, tenu à la main)
@@ -32,6 +34,7 @@ avec mise en avant des salles Art & Essai. Objectif : trafic monétisable via SE
 | **Indés** (SCARE, `datacinesindes.fr`) | Open data, Licence Ouverte 2.0 (attribution obligatoire) | Auto en CI (chaque jour) |
 | **UGC** (`backend.ugc.fr`, API mobile) | API interne ouverte | **Auto en CI** (non bloquée) |
 | **Pathé / CGR / Grand Écran** | APIs internes | **Snapshot local** (voir ci-dessous) |
+| **Salles indés hors SCARE** (`fetch_salles.py`) | Sites/billetteries des salles | **Snapshot local** + tentative CI |
 | **Cartes d'abonnement** (page UGC + PDF Pathé) | Pages publiques | **Auto en CI**, best-effort |
 
 **Attribution obligatoire, ne jamais retirer du footer** : « Data Ciné Indés / SCARE » (Licence Ouverte 2.0)
@@ -138,6 +141,89 @@ et la mention TMDB (« ce produit utilise l'API TMDB mais n'est ni approuvé ni 
   déploiement, ce qui aurait fait révoquer l'ancienne propriété — et avec elle l'historique de
   performance et le suivi du transfert d'indexation. L'ancienne propriété doit rester valide
   tant que Google sert encore les anciennes URL.
+
+### Salles indépendantes hors SCARE (`fetch_salles.py`)
+
+L'open data du SCARE ne couvre QUE ses adhérents publiants : des salles Art & Essai
+majeures y manquent, alors qu'elles sont au cœur de la cible. `fetch_salles.py` va les
+chercher une par une. Trois aujourd'hui, toutes à Paris — **Le Louxor** (75010),
+**Le Brady** (75010), **La Filmothèque du Quartier Latin** (75005) — pour ~206 séances.
+
+- **Ce ne sont PAS des chaînes.** Aucune fiche ne porte de champ `chain`, ce qui les fait
+  libeller « cinéma indépendant » par `cinema_kind()`. Le préfixe `salles` est dans
+  `CHAIN_PREFIXES` (sources.py) uniquement parce que c'est le mécanisme de fusion ; ne pas
+  en conclure qu'il faut leur inventer une enseigne.
+
+- **Deux plateformes, une par type de salle :**
+  - `webedia` — le site de la salle est un Gatsby « boxofficeapi », **le même produit que
+    CGR et Grand Écran**. Le connecteur IMPORTE `fetch_webedia.py` au lieu de le recopier
+    (mêmes endpoints, mêmes tags, mêmes liens). Le piège du `theaterId` en MAJUSCULES +
+    JSON compact vaut ici aussi.
+  - `cotecine` — billetterie Côté Ciné (`*-vad.cotecine.fr`), un JSON en trois temps
+    (film → jours → séances), plus le CMS de la salle pour les fiches films.
+
+- **⚠️ Le code salle Webedia se lit dans `<meta name="bocms:theater:id">`** — et pas au
+  même endroit selon la salle : sur l'ACCUEIL du Louxor (`W7510`), mais **seulement sur une
+  page film** au Brady (`C0023`), dont l'accueil est un gabarit générique. D'où les deux
+  essais du connecteur (accueil, puis premier film du sitemap). Le code du registre sert de
+  repli ET de témoin : un écart est signalé, parce que collecter la mauvaise salle
+  produirait des séances valides… et fausses.
+
+- **⚠️ L'API Webedia de chaque site est CLOISONNÉE à ses propres salles.** Demander à
+  `cinemalouxor.fr` le planning d'un code CGR répond **500**, et réciproquement. Il n'y a
+  donc pas de passerelle universelle à chercher : une salle = son site.
+
+- **⚠️ La billetterie Côté Ciné sert de l'iso-8859-1**, pas de l'UTF-8. Décoder en UTF-8
+  donnerait des titres accentués en bouillie, sans erreur.
+
+- **Heure des séances : on CROISE l'horodatage et l'heure affichée**, on ne convertit pas.
+  Windows n'embarque pas la base IANA, donc `zoneinfo("Europe/Paris")` n'est pas garanti
+  sans dépendance. La caisse donne l'epoch UTC ET « 21h20 » : chercher le décalage (+1/+2)
+  qui reproduit l'heure murale donne du même coup la bonne DATE — ce que le jour de la
+  caisse ne dit pas toujours (une séance de minuit est rangée sous la soirée qui précède).
+
+- **Le formulaire Côté Ciné est en POST : aucun lien ne mène à UNE séance.** Mais film et
+  jour se présélectionnent en GET (`?modresa_film=…&modresa_jour=…`) : le visiteur arrive
+  sur le bon film au bon jour et ne choisit que l'heure. C'est le meilleur lien disponible,
+  et il est honnête. **100 % des 206 séances ont une billetterie cliquable.**
+
+- **Le réalisateur n'est PAS un luxe** : `enrich_tmdb.py` s'en sert pour départager les
+  homonymes (« Drive », « Bird », « Possession »…). La caisse ne donne qu'un titre, donc le
+  connecteur résout chaque titre sur le CMS de la salle (recherche REST WordPress) puis lit
+  `<h3 class="director">` dans la fiche. Trois requêtes de recherche au plus, de la plus
+  fidèle à la plus permissive, et **jamais de « premier résultat » pris au hasard** : seule
+  une correspondance exacte (empreinte, ou radical sans article ni parenthèse) est acceptée,
+  sans quoi « Alien 3 » se retrouverait projeté à la place d'« Alien ».
+  - `TITRES_CMS` nomme les cas qu'aucune recherche ne rapproche — « 12 hommes en colère »
+    (caisse) contre « Douze Hommes en Colère » (site). Une table de nombres générique
+    apparierait aussi « Alien » et « Alien 3 » : on préfère nommer les cas, et le connecteur
+    SIGNALE les titres non résolus au lieu d'en inventer la résolution.
+
+- **Affiches : on ne prend que les portraits** (marqueur `-c_<l>_<h>_` avec h > l). La même
+  figure du CMS porte parfois un photogramme panoramique, qui ferait une carte écrasée.
+  Sans affiche valable on laisse vide — **TMDB la pose ensuite** (après fusion : 0 film sans
+  affiche, 0 sans réalisateur sur les 76).
+
+- **GARDE-FOU d'écriture, différent de celui des chaînes.** Une salle en RELÂCHE (0 séance)
+  est un état NORMAL — travaux, fermeture annuelle — et ne doit pas bloquer les autres. Une
+  salle dont la SOURCE n'a pas répondu est autre chose : le connecteur n'écrit alors RIEN
+  et sort en 1, pour ne pas faire rétrécir le snapshot en silence. C'est pour ça que le
+  réseau lève `SourceIndisponible` au lieu de renvoyer `None`.
+
+- **Abonnements : les trois salles sont badgées, et deux le sont par override.**
+  `salles_cinemas.json` est dans `SNAPSHOTS` (fetch_abonnements.py) avec une enseigne à
+  `None`, comme les indés du SCARE. Deux faux négatifs de nom ont dû être corrigés à la
+  main dans `abonnements_overrides.json`, chacun vérifié sur la source officielle :
+  **Le Louxor** (UGC écrit « LE LOUXOR », nous « Le Louxor - Palais du cinéma ») et
+  **Le Brady** (le PDF Pathé écrit « Le Brady Cinéma Théâtre »). On ne raccourcit pas le nom
+  d'une salle sur le site pour arranger un appariement.
+
+- **Pour ajouter une salle** : une entrée dans `SALLES` (adresse relevée sur le site de la
+  salle — *le siège social de l'exploitant n'est pas l'adresse de la salle*, celui du Louxor
+  est rue des Martyrs ; lat/lon via la Base Adresse Nationale) et le nom de sa plateforme.
+  La liste UGC Illimité contient **~60 salles absentes de Séancéo**, dont une trentaine à
+  Paris (MK2, Luminor, Reflet Médicis, Épée de Bois, Mac-Mahon, Max Linder…) : c'est
+  l'inventaire de cibles tout fait.
 
 ### Cartes d'abonnement illimité (UGC Illimité / CinéPass Pathé)
 

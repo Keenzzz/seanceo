@@ -1,0 +1,2062 @@
+[
+ {
+  "id": "salles-brady-2605-2026-08-28T10:00:00",
+  "movie": "jour-de-fete|jacques-tati",
+  "cinema": "salles-brady",
+  "start": "2026-08-28T10:00:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64476"
+ },
+ {
+  "id": "salles-brady-274108-2026-08-28T10:15:00",
+  "movie": "un-petit-air-de-famille|",
+  "cinema": "salles-brady",
+  "start": "2026-08-28T10:15:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/63093"
+ },
+ {
+  "id": "salles-brady-317561-2026-08-28T10:15:00",
+  "movie": "les-tourouges-et-les-toubleus|samantha-cutler",
+  "cinema": "salles-brady",
+  "start": "2026-08-28T10:15:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64479"
+ },
+ {
+  "id": "salles-brady-304130-2026-08-28T11:10:00",
+  "movie": "romeria|carla-simon",
+  "cinema": "salles-brady",
+  "start": "2026-08-28T11:10:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64478"
+ },
+ {
+  "id": "salles-brady-1000001453-2026-08-28T11:10:00",
+  "movie": "disclosure-day|steven-spielberg",
+  "cinema": "salles-brady",
+  "start": "2026-08-28T11:10:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64475"
+ },
+ {
+  "id": "salles-brady-1000022832-2026-08-28T11:40:00",
+  "movie": "l-objet-du-delit|agnes-jaoui",
+  "cinema": "salles-brady",
+  "start": "2026-08-28T11:40:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64477"
+ },
+ {
+  "id": "salles-louxor-327993-2026-08-28T13:00:00",
+  "movie": "l-inconnue|arthur-harari",
+  "cinema": "salles-louxor",
+  "start": "2026-08-28T13:00:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://www.louxor-reserver.cotecine.fr/r/252242"
+ },
+ {
+  "id": "salles-louxor-1000024105-2026-08-28T13:15:00",
+  "movie": "soudain|ryusuke-hamaguchi",
+  "cinema": "salles-louxor",
+  "start": "2026-08-28T13:15:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://www.louxor-reserver.cotecine.fr/r/252263"
+ },
+ {
+  "id": "salles-brady-1000034332-2026-08-28T13:20:00",
+  "movie": "une-affaire-turque|huseyin-aydin-gursoy",
+  "cinema": "salles-brady",
+  "start": "2026-08-28T13:20:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64401"
+ },
+ {
+  "id": "salles-louxor-188280-2026-08-28T13:45:00",
+  "movie": "fjord|cristian-mungiu",
+  "cinema": "salles-louxor",
+  "start": "2026-08-28T13:45:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://www.louxor-reserver.cotecine.fr/r/252220"
+ },
+ {
+  "id": "salles-brady-19395-2026-08-28T13:50:00",
+  "movie": "le-bon-la-brute-et-le-truand|sergio-leone",
+  "cinema": "salles-brady",
+  "start": "2026-08-28T13:50:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64393"
+ },
+ {
+  "id": "salles-brady-1609-2026-08-28T14:00:00",
+  "movie": "le-cadet-d-eau-douce|buster-keaton",
+  "cinema": "salles-brady",
+  "start": "2026-08-28T14:00:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/63094"
+ },
+ {
+  "id": "salles-brady-1000014327-2026-08-28T15:00:00",
+  "movie": "sous-le-ciel-de-kyoto|akiko-ohku",
+  "cinema": "salles-brady",
+  "start": "2026-08-28T15:00:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64402"
+ },
+ {
+  "id": "salles-brady-15254-2026-08-28T15:20:00",
+  "movie": "ghost-in-the-shell|mamoru-oshii",
+  "cinema": "salles-brady",
+  "start": "2026-08-28T15:20:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64397"
+ },
+ {
+  "id": "salles-louxor-327993-2026-08-28T15:45:00",
+  "movie": "l-inconnue|arthur-harari",
+  "cinema": "salles-louxor",
+  "start": "2026-08-28T15:45:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://www.louxor-reserver.cotecine.fr/r/252243"
+ },
+ {
+  "id": "salles-louxor-188280-2026-08-28T16:45:00",
+  "movie": "fjord|cristian-mungiu",
+  "cinema": "salles-louxor",
+  "start": "2026-08-28T16:45:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://www.louxor-reserver.cotecine.fr/r/252221"
+ },
+ {
+  "id": "salles-louxor-1000024105-2026-08-28T16:50:00",
+  "movie": "soudain|ryusuke-hamaguchi",
+  "cinema": "salles-louxor",
+  "start": "2026-08-28T16:50:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://www.louxor-reserver.cotecine.fr/r/252264"
+ },
+ {
+  "id": "salles-brady-1000017192-2026-08-28T16:50:00",
+  "movie": "sur-la-route-d-omaha|cole-webley",
+  "cinema": "salles-brady",
+  "start": "2026-08-28T16:50:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64398"
+ },
+ {
+  "id": "salles-brady-6796-2026-08-28T17:00:00",
+  "movie": "wake-in-fright|ted-kotcheff",
+  "cinema": "salles-brady",
+  "start": "2026-08-28T17:00:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64394"
+ },
+ {
+  "id": "salles-brady-925-2026-08-28T17:20:00",
+  "movie": "parade|jacques-tati",
+  "cinema": "salles-brady",
+  "start": "2026-08-28T17:20:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64403"
+ },
+ {
+  "id": "salles-filmotheque-45867-1787932200/VO/270673",
+  "movie": "le-violent|nicholas-ray",
+  "cinema": "salles-filmotheque",
+  "start": "2026-08-28T17:50:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=45867&modresa_jour=2026-08-28"
+ },
+ {
+  "id": "salles-filmotheque-12285-1787932800/VO/270671",
+  "movie": "mirage-de-la-vie|douglas-sirk",
+  "cinema": "salles-filmotheque",
+  "start": "2026-08-28T18:00:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=12285&modresa_jour=2026-08-28"
+ },
+ {
+  "id": "salles-brady-1000022114-2026-08-28T18:25:00",
+  "movie": "shana|lila-pinell",
+  "cinema": "salles-brady",
+  "start": "2026-08-28T18:25:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64399"
+ },
+ {
+  "id": "salles-louxor-327993-2026-08-28T18:30:00",
+  "movie": "l-inconnue|arthur-harari",
+  "cinema": "salles-louxor",
+  "start": "2026-08-28T18:30:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://www.louxor-reserver.cotecine.fr/r/252244"
+ },
+ {
+  "id": "salles-brady-293636-2026-08-28T19:00:00",
+  "movie": "in-waves|phuong-mai-nguyen",
+  "cinema": "salles-brady",
+  "start": "2026-08-28T19:00:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64395"
+ },
+ {
+  "id": "salles-brady-316460-2026-08-28T19:10:00",
+  "movie": "the-last-viking|anders-thomas-jensen",
+  "cinema": "salles-brady",
+  "start": "2026-08-28T19:10:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64500"
+ },
+ {
+  "id": "salles-filmotheque-46281-1787938800/VO/270673",
+  "movie": "les-hommes-du-president|alan-j-pakula",
+  "cinema": "salles-filmotheque",
+  "start": "2026-08-28T19:40:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=46281&modresa_jour=2026-08-28"
+ },
+ {
+  "id": "salles-louxor-188280-2026-08-28T19:45:00",
+  "movie": "fjord|cristian-mungiu",
+  "cinema": "salles-louxor",
+  "start": "2026-08-28T19:45:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://www.louxor-reserver.cotecine.fr/r/252222"
+ },
+ {
+  "id": "salles-brady-1000034332-2026-08-28T19:55:00",
+  "movie": "une-affaire-turque|huseyin-aydin-gursoy",
+  "cinema": "salles-brady",
+  "start": "2026-08-28T19:55:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64400"
+ },
+ {
+  "id": "salles-filmotheque-1242-1787941200/VO/270671",
+  "movie": "in-the-mood-for-love|wong-kar-wai",
+  "cinema": "salles-filmotheque",
+  "start": "2026-08-28T20:20:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=1242&modresa_jour=2026-08-28"
+ },
+ {
+  "id": "salles-brady-4749-2026-08-28T20:35:00",
+  "movie": "lawrence-d-arabie|david-lean",
+  "cinema": "salles-brady",
+  "start": "2026-08-28T20:35:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64396"
+ },
+ {
+  "id": "salles-louxor-1000041528-2026-08-28T21:00:00",
+  "movie": "un-grand-raccourci|armand-foex",
+  "cinema": "salles-louxor",
+  "start": "2026-08-28T21:00:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://www.louxor-reserver.cotecine.fr/r/252297"
+ },
+ {
+  "id": "salles-brady-16382-2026-08-28T21:10:00",
+  "movie": "boogie-nights|paul-thomas-anderson",
+  "cinema": "salles-brady",
+  "start": "2026-08-28T21:10:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64405"
+ },
+ {
+  "id": "salles-louxor-327993-2026-08-28T21:15:00",
+  "movie": "l-inconnue|arthur-harari",
+  "cinema": "salles-louxor",
+  "start": "2026-08-28T21:15:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://www.louxor-reserver.cotecine.fr/r/252286"
+ },
+ {
+  "id": "salles-brady-1000003998-2026-08-28T21:35:00",
+  "movie": "i-want-your-sex|gregg-araki",
+  "cinema": "salles-brady",
+  "start": "2026-08-28T21:35:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64406"
+ },
+ {
+  "id": "salles-filmotheque-8715-1787947800/VO/270673",
+  "movie": "drive|nicolas-winding-refn",
+  "cinema": "salles-filmotheque",
+  "start": "2026-08-28T22:10:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=8715&modresa_jour=2026-08-28"
+ },
+ {
+  "id": "salles-filmotheque-7951-1787948400/VF/270671",
+  "movie": "a-bout-de-souffle|jean-luc-godard",
+  "cinema": "salles-filmotheque",
+  "start": "2026-08-28T22:20:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=7951&modresa_jour=2026-08-28"
+ },
+ {
+  "id": "salles-brady-15254-2026-08-29T10:00:00",
+  "movie": "ghost-in-the-shell|mamoru-oshii",
+  "cinema": "salles-brady",
+  "start": "2026-08-29T10:00:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64483"
+ },
+ {
+  "id": "salles-brady-1609-2026-08-29T10:10:00",
+  "movie": "le-cadet-d-eau-douce|buster-keaton",
+  "cinema": "salles-brady",
+  "start": "2026-08-29T10:10:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64481"
+ },
+ {
+  "id": "salles-brady-317561-2026-08-29T10:15:00",
+  "movie": "les-tourouges-et-les-toubleus|samantha-cutler",
+  "cinema": "salles-brady",
+  "start": "2026-08-29T10:15:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/63095"
+ },
+ {
+  "id": "salles-louxor-188280-2026-08-29T10:45:00",
+  "movie": "fjord|cristian-mungiu",
+  "cinema": "salles-louxor",
+  "start": "2026-08-29T10:45:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://www.louxor-reserver.cotecine.fr/r/252223"
+ },
+ {
+  "id": "salles-louxor-317561-2026-08-29T10:45:00",
+  "movie": "les-tourouges-et-les-toubleus|samantha-cutler",
+  "cinema": "salles-louxor",
+  "start": "2026-08-29T10:45:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://www.louxor-reserver.cotecine.fr/r/252282"
+ },
+ {
+  "id": "salles-louxor-327993-2026-08-29T11:00:00",
+  "movie": "l-inconnue|arthur-harari",
+  "cinema": "salles-louxor",
+  "start": "2026-08-29T11:00:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://www.louxor-reserver.cotecine.fr/r/252248"
+ },
+ {
+  "id": "salles-brady-52309-2026-08-29T11:00:00",
+  "movie": "cowboy-bebop|shin-ichiro-watanabe",
+  "cinema": "salles-brady",
+  "start": "2026-08-29T11:00:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64480"
+ },
+ {
+  "id": "salles-brady-925-2026-08-29T11:30:00",
+  "movie": "parade|jacques-tati",
+  "cinema": "salles-brady",
+  "start": "2026-08-29T11:30:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64482"
+ },
+ {
+  "id": "salles-brady-10251-2026-08-29T11:30:00",
+  "movie": "le-tombeau-des-lucioles|isao-takahata",
+  "cinema": "salles-brady",
+  "start": "2026-08-29T11:30:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64484"
+ },
+ {
+  "id": "salles-louxor-327993-2026-08-29T13:00:00",
+  "movie": "l-inconnue|arthur-harari",
+  "cinema": "salles-louxor",
+  "start": "2026-08-29T13:00:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://www.louxor-reserver.cotecine.fr/r/252245"
+ },
+ {
+  "id": "salles-brady-6796-2026-08-29T13:00:00",
+  "movie": "wake-in-fright|ted-kotcheff",
+  "cinema": "salles-brady",
+  "start": "2026-08-29T13:00:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64407"
+ },
+ {
+  "id": "salles-brady-2605-2026-08-29T13:10:00",
+  "movie": "jour-de-fete|jacques-tati",
+  "cinema": "salles-brady",
+  "start": "2026-08-29T13:10:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64417"
+ },
+ {
+  "id": "salles-brady-293636-2026-08-29T13:10:00",
+  "movie": "in-waves|phuong-mai-nguyen",
+  "cinema": "salles-brady",
+  "start": "2026-08-29T13:10:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64411"
+ },
+ {
+  "id": "salles-filmotheque-4490-1788003000/VO/270671",
+  "movie": "12-hommes-en-colere|sidney-lumet",
+  "cinema": "salles-filmotheque",
+  "start": "2026-08-29T13:30:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=4490&modresa_jour=2026-08-29"
+ },
+ {
+  "id": "salles-filmotheque-14009-1788003000/VO/270673",
+  "movie": "rashomon|akira-kurosawa",
+  "cinema": "salles-filmotheque",
+  "start": "2026-08-29T13:30:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=14009&modresa_jour=2026-08-29"
+ },
+ {
+  "id": "salles-louxor-188280-2026-08-29T13:45:00",
+  "movie": "fjord|cristian-mungiu",
+  "cinema": "salles-louxor",
+  "start": "2026-08-29T13:45:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://www.louxor-reserver.cotecine.fr/r/252224"
+ },
+ {
+  "id": "salles-louxor-1000024105-2026-08-29T13:45:00",
+  "movie": "soudain|ryusuke-hamaguchi",
+  "cinema": "salles-louxor",
+  "start": "2026-08-29T13:45:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://www.louxor-reserver.cotecine.fr/r/252265"
+ },
+ {
+  "id": "salles-brady-16382-2026-08-29T14:45:00",
+  "movie": "boogie-nights|paul-thomas-anderson",
+  "cinema": "salles-brady",
+  "start": "2026-08-29T14:45:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64418"
+ },
+ {
+  "id": "salles-brady-316460-2026-08-29T14:50:00",
+  "movie": "the-last-viking|anders-thomas-jensen",
+  "cinema": "salles-brady",
+  "start": "2026-08-29T14:50:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64499"
+ },
+ {
+  "id": "salles-brady-4749-2026-08-29T15:00:00",
+  "movie": "lawrence-d-arabie|david-lean",
+  "cinema": "salles-brady",
+  "start": "2026-08-29T15:00:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64408"
+ },
+ {
+  "id": "salles-filmotheque-46281-1788009000/VO/270673",
+  "movie": "les-hommes-du-president|alan-j-pakula",
+  "cinema": "salles-filmotheque",
+  "start": "2026-08-29T15:10:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=46281&modresa_jour=2026-08-29"
+ },
+ {
+  "id": "salles-filmotheque-44525-1788009300/VO/270671",
+  "movie": "la-rue-rouge|fritz-lang",
+  "cinema": "salles-filmotheque",
+  "start": "2026-08-29T15:15:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=44525&modresa_jour=2026-08-29"
+ },
+ {
+  "id": "salles-louxor-327993-2026-08-29T15:45:00",
+  "movie": "l-inconnue|arthur-harari",
+  "cinema": "salles-louxor",
+  "start": "2026-08-29T15:45:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://www.louxor-reserver.cotecine.fr/r/252246"
+ },
+ {
+  "id": "salles-louxor-188280-2026-08-29T16:45:00",
+  "movie": "fjord|cristian-mungiu",
+  "cinema": "salles-louxor",
+  "start": "2026-08-29T16:45:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://www.louxor-reserver.cotecine.fr/r/252225"
+ },
+ {
+  "id": "salles-brady-1000022114-2026-08-29T16:55:00",
+  "movie": "shana|lila-pinell",
+  "cinema": "salles-brady",
+  "start": "2026-08-29T16:55:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64413"
+ },
+ {
+  "id": "salles-filmotheque-32690-1788016200/VO/270671",
+  "movie": "thelma-et-louise|ridley-scott",
+  "cinema": "salles-filmotheque",
+  "start": "2026-08-29T17:10:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=32690&modresa_jour=2026-08-29"
+ },
+ {
+  "id": "salles-louxor-1000041528-2026-08-29T17:30:00",
+  "movie": "un-grand-raccourci|armand-foex",
+  "cinema": "salles-louxor",
+  "start": "2026-08-29T17:30:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://www.louxor-reserver.cotecine.fr/r/252276"
+ },
+ {
+  "id": "salles-brady-1000034332-2026-08-29T17:30:00",
+  "movie": "une-affaire-turque|huseyin-aydin-gursoy",
+  "cinema": "salles-brady",
+  "start": "2026-08-29T17:30:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64419"
+ },
+ {
+  "id": "salles-filmotheque-47228-1788017700/VO/270673",
+  "movie": "le-point-de-non-retour|john-boorman",
+  "cinema": "salles-filmotheque",
+  "start": "2026-08-29T17:35:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=47228&modresa_jour=2026-08-29"
+ },
+ {
+  "id": "salles-brady-1000017192-2026-08-29T18:25:00",
+  "movie": "sur-la-route-d-omaha|cole-webley",
+  "cinema": "salles-brady",
+  "start": "2026-08-29T18:25:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64414"
+ },
+ {
+  "id": "salles-louxor-327993-2026-08-29T18:30:00",
+  "movie": "l-inconnue|arthur-harari",
+  "cinema": "salles-louxor",
+  "start": "2026-08-29T18:30:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://www.louxor-reserver.cotecine.fr/r/252247"
+ },
+ {
+  "id": "salles-brady-19395-2026-08-29T19:00:00",
+  "movie": "le-bon-la-brute-et-le-truand|sergio-leone",
+  "cinema": "salles-brady",
+  "start": "2026-08-29T19:00:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64409"
+ },
+ {
+  "id": "salles-brady-1000014327-2026-08-29T19:10:00",
+  "movie": "sous-le-ciel-de-kyoto|akiko-ohku",
+  "cinema": "salles-brady",
+  "start": "2026-08-29T19:10:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64420"
+ },
+ {
+  "id": "salles-louxor-1000024105-2026-08-29T19:15:00",
+  "movie": "soudain|ryusuke-hamaguchi",
+  "cinema": "salles-louxor",
+  "start": "2026-08-29T19:15:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://www.louxor-reserver.cotecine.fr/r/252266"
+ },
+ {
+  "id": "salles-filmotheque-46281-1788023700/VO/270673",
+  "movie": "les-hommes-du-president|alan-j-pakula",
+  "cinema": "salles-filmotheque",
+  "start": "2026-08-29T19:15:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=46281&modresa_jour=2026-08-29"
+ },
+ {
+  "id": "salles-filmotheque-124974-1788025200/VO/270671",
+  "movie": "la-la-land|damien-chazelle",
+  "cinema": "salles-filmotheque",
+  "start": "2026-08-29T19:40:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=124974&modresa_jour=2026-08-29"
+ },
+ {
+  "id": "salles-louxor-188280-2026-08-29T19:45:00",
+  "movie": "fjord|cristian-mungiu",
+  "cinema": "salles-louxor",
+  "start": "2026-08-29T19:45:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://www.louxor-reserver.cotecine.fr/r/252226"
+ },
+ {
+  "id": "salles-brady-1000003998-2026-08-29T19:55:00",
+  "movie": "i-want-your-sex|gregg-araki",
+  "cinema": "salles-brady",
+  "start": "2026-08-29T19:55:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64415"
+ },
+ {
+  "id": "salles-louxor-327993-2026-08-29T21:15:00",
+  "movie": "l-inconnue|arthur-harari",
+  "cinema": "salles-louxor",
+  "start": "2026-08-29T21:15:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://www.louxor-reserver.cotecine.fr/r/252292"
+ },
+ {
+  "id": "salles-brady-1000017160-2026-08-29T21:25:00",
+  "movie": "maspalomas|aitor-arregi",
+  "cinema": "salles-brady",
+  "start": "2026-08-29T21:25:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64421"
+ },
+ {
+  "id": "salles-brady-316460-2026-08-29T21:35:00",
+  "movie": "the-last-viking|anders-thomas-jensen",
+  "cinema": "salles-brady",
+  "start": "2026-08-29T21:35:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64498"
+ },
+ {
+  "id": "salles-filmotheque-48967-1788033000/VO/270673",
+  "movie": "blade-runner|ridley-scott",
+  "cinema": "salles-filmotheque",
+  "start": "2026-08-29T21:50:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=48967&modresa_jour=2026-08-29"
+ },
+ {
+  "id": "salles-brady-293636-2026-08-29T22:00:00",
+  "movie": "in-waves|phuong-mai-nguyen",
+  "cinema": "salles-brady",
+  "start": "2026-08-29T22:00:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64410"
+ },
+ {
+  "id": "salles-filmotheque-45541-1788033600/VO/270671",
+  "movie": "possession|andrzej-zulawski",
+  "cinema": "salles-filmotheque",
+  "start": "2026-08-29T22:00:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=45541&modresa_jour=2026-08-29"
+ },
+ {
+  "id": "salles-louxor-1000024105-2026-08-30T10:15:00",
+  "movie": "soudain|ryusuke-hamaguchi",
+  "cinema": "salles-louxor",
+  "start": "2026-08-30T10:15:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://www.louxor-reserver.cotecine.fr/r/252267"
+ },
+ {
+  "id": "salles-brady-274108-2026-08-30T10:15:00",
+  "movie": "un-petit-air-de-famille|",
+  "cinema": "salles-brady",
+  "start": "2026-08-30T10:15:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/63096"
+ },
+ {
+  "id": "salles-brady-317561-2026-08-30T10:15:00",
+  "movie": "les-tourouges-et-les-toubleus|samantha-cutler",
+  "cinema": "salles-brady",
+  "start": "2026-08-30T10:15:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64485"
+ },
+ {
+  "id": "salles-louxor-140987-2026-08-30T10:30:00",
+  "movie": "panda-petit-panda|isao-takahata",
+  "cinema": "salles-louxor",
+  "start": "2026-08-30T10:30:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://www.louxor-reserver.cotecine.fr/r/252283"
+ },
+ {
+  "id": "salles-louxor-188280-2026-08-30T10:45:00",
+  "movie": "fjord|cristian-mungiu",
+  "cinema": "salles-louxor",
+  "start": "2026-08-30T10:45:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://www.louxor-reserver.cotecine.fr/r/252288"
+ },
+ {
+  "id": "salles-brady-1000001453-2026-08-30T11:00:00",
+  "movie": "disclosure-day|steven-spielberg",
+  "cinema": "salles-brady",
+  "start": "2026-08-30T11:00:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64488"
+ },
+ {
+  "id": "salles-brady-2615-2026-08-30T11:20:00",
+  "movie": "les-vacances-de-monsieur-hulot|jacques-tati",
+  "cinema": "salles-brady",
+  "start": "2026-08-30T11:20:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64486"
+ },
+ {
+  "id": "salles-brady-1000015954-2026-08-30T11:45:00",
+  "movie": "juste-une-illusion|olivier-nakache",
+  "cinema": "salles-brady",
+  "start": "2026-08-30T11:45:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64487"
+ },
+ {
+  "id": "salles-louxor-327993-2026-08-30T13:00:00",
+  "movie": "l-inconnue|arthur-harari",
+  "cinema": "salles-louxor",
+  "start": "2026-08-30T13:00:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://www.louxor-reserver.cotecine.fr/r/252250"
+ },
+ {
+  "id": "salles-brady-1000022114-2026-08-30T13:00:00",
+  "movie": "shana|lila-pinell",
+  "cinema": "salles-brady",
+  "start": "2026-08-30T13:00:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64426"
+ },
+ {
+  "id": "salles-brady-316460-2026-08-30T13:30:00",
+  "movie": "the-last-viking|anders-thomas-jensen",
+  "cinema": "salles-brady",
+  "start": "2026-08-30T13:30:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64501"
+ },
+ {
+  "id": "salles-filmotheque-13825-1788089400/VO/270671",
+  "movie": "casablanca|michael-curtiz",
+  "cinema": "salles-filmotheque",
+  "start": "2026-08-30T13:30:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=13825&modresa_jour=2026-08-30"
+ },
+ {
+  "id": "salles-filmotheque-12287-1788089400/VO/270673",
+  "movie": "la-ronde-de-laube|douglas-sirk",
+  "cinema": "salles-filmotheque",
+  "start": "2026-08-30T13:30:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=12287&modresa_jour=2026-08-30"
+ },
+ {
+  "id": "salles-louxor-188280-2026-08-30T13:45:00",
+  "movie": "fjord|cristian-mungiu",
+  "cinema": "salles-louxor",
+  "start": "2026-08-30T13:45:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://www.louxor-reserver.cotecine.fr/r/252227"
+ },
+ {
+  "id": "salles-brady-327050-2026-08-30T13:45:00",
+  "movie": "le-heros-de-berlin|wolfgang-becker",
+  "cinema": "salles-brady",
+  "start": "2026-08-30T13:45:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64431"
+ },
+ {
+  "id": "salles-louxor-1000024105-2026-08-30T14:00:00",
+  "movie": "soudain|ryusuke-hamaguchi",
+  "cinema": "salles-louxor",
+  "start": "2026-08-30T14:00:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://www.louxor-reserver.cotecine.fr/r/252268"
+ },
+ {
+  "id": "salles-brady-1000034332-2026-08-30T14:30:00",
+  "movie": "une-affaire-turque|huseyin-aydin-gursoy",
+  "cinema": "salles-brady",
+  "start": "2026-08-30T14:30:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64427"
+ },
+ {
+  "id": "salles-filmotheque-46281-1788095400/VO/270673",
+  "movie": "les-hommes-du-president|alan-j-pakula",
+  "cinema": "salles-filmotheque",
+  "start": "2026-08-30T15:10:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=46281&modresa_jour=2026-08-30"
+ },
+ {
+  "id": "salles-filmotheque-145624-1788096600/VO/270671",
+  "movie": "tout-ce-que-le-ciel-permet|douglas-sirk",
+  "cinema": "salles-filmotheque",
+  "start": "2026-08-30T15:30:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=145624&modresa_jour=2026-08-30"
+ },
+ {
+  "id": "salles-brady-293636-2026-08-30T15:35:00",
+  "movie": "in-waves|phuong-mai-nguyen",
+  "cinema": "salles-brady",
+  "start": "2026-08-30T15:35:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64424"
+ },
+ {
+  "id": "salles-louxor-327993-2026-08-30T15:45:00",
+  "movie": "l-inconnue|arthur-harari",
+  "cinema": "salles-louxor",
+  "start": "2026-08-30T15:45:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://www.louxor-reserver.cotecine.fr/r/252251"
+ },
+ {
+  "id": "salles-brady-1000017192-2026-08-30T15:50:00",
+  "movie": "sur-la-route-d-omaha|cole-webley",
+  "cinema": "salles-brady",
+  "start": "2026-08-30T15:50:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64432"
+ },
+ {
+  "id": "salles-brady-4749-2026-08-30T16:10:00",
+  "movie": "lawrence-d-arabie|david-lean",
+  "cinema": "salles-brady",
+  "start": "2026-08-30T16:10:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64429"
+ },
+ {
+  "id": "salles-louxor-188280-2026-08-30T16:45:00",
+  "movie": "fjord|cristian-mungiu",
+  "cinema": "salles-louxor",
+  "start": "2026-08-30T16:45:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://www.louxor-reserver.cotecine.fr/r/252228"
+ },
+ {
+  "id": "salles-filmotheque-94534-1788102600/VO/270671",
+  "movie": "guet-apens|sam-peckinpah",
+  "cinema": "salles-filmotheque",
+  "start": "2026-08-30T17:10:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=94534&modresa_jour=2026-08-30"
+ },
+ {
+  "id": "salles-brady-1000034332-2026-08-30T17:15:00",
+  "movie": "une-affaire-turque|huseyin-aydin-gursoy",
+  "cinema": "salles-brady",
+  "start": "2026-08-30T17:15:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64428"
+ },
+ {
+  "id": "salles-brady-1363-2026-08-30T17:25:00",
+  "movie": "playtime|jacques-tati",
+  "cinema": "salles-brady",
+  "start": "2026-08-30T17:25:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64433"
+ },
+ {
+  "id": "salles-louxor-1000024105-2026-08-30T17:45:00",
+  "movie": "soudain|ryusuke-hamaguchi",
+  "cinema": "salles-louxor",
+  "start": "2026-08-30T17:45:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://www.louxor-reserver.cotecine.fr/r/252269"
+ },
+ {
+  "id": "salles-filmotheque-3065-1788104700/VO/270673",
+  "movie": "goodbye-dragon-inn|tsai-ming-liang",
+  "cinema": "salles-filmotheque",
+  "start": "2026-08-30T17:45:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=3065&modresa_jour=2026-08-30"
+ },
+ {
+  "id": "salles-louxor-327993-2026-08-30T18:30:00",
+  "movie": "l-inconnue|arthur-harari",
+  "cinema": "salles-louxor",
+  "start": "2026-08-30T18:30:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://www.louxor-reserver.cotecine.fr/r/252252"
+ },
+ {
+  "id": "salles-brady-316460-2026-08-30T19:05:00",
+  "movie": "the-last-viking|anders-thomas-jensen",
+  "cinema": "salles-brady",
+  "start": "2026-08-30T19:05:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64502"
+ },
+ {
+  "id": "salles-filmotheque-46281-1788110100/VO/270673",
+  "movie": "les-hommes-du-president|alan-j-pakula",
+  "cinema": "salles-filmotheque",
+  "start": "2026-08-30T19:15:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=46281&modresa_jour=2026-08-30"
+ },
+ {
+  "id": "salles-filmotheque-13871-1788111000/VO/270671",
+  "movie": "fargo|joel-et-ethan-coen",
+  "cinema": "salles-filmotheque",
+  "start": "2026-08-30T19:30:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=13871&modresa_jour=2026-08-30"
+ },
+ {
+  "id": "salles-brady-1000017160-2026-08-30T19:35:00",
+  "movie": "maspalomas|aitor-arregi",
+  "cinema": "salles-brady",
+  "start": "2026-08-30T19:35:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64422"
+ },
+ {
+  "id": "salles-louxor-188280-2026-08-30T19:45:00",
+  "movie": "fjord|cristian-mungiu",
+  "cinema": "salles-louxor",
+  "start": "2026-08-30T19:45:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://www.louxor-reserver.cotecine.fr/r/252229"
+ },
+ {
+  "id": "salles-brady-293636-2026-08-30T20:10:00",
+  "movie": "in-waves|phuong-mai-nguyen",
+  "cinema": "salles-brady",
+  "start": "2026-08-30T20:10:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64425"
+ },
+ {
+  "id": "salles-brady-16382-2026-08-30T21:10:00",
+  "movie": "boogie-nights|paul-thomas-anderson",
+  "cinema": "salles-brady",
+  "start": "2026-08-30T21:10:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64436"
+ },
+ {
+  "id": "salles-louxor-327993-2026-08-30T21:15:00",
+  "movie": "l-inconnue|arthur-harari",
+  "cinema": "salles-louxor",
+  "start": "2026-08-30T21:15:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://www.louxor-reserver.cotecine.fr/r/252289"
+ },
+ {
+  "id": "salles-filmotheque-4320-1788117600/VO/270671",
+  "movie": "zodiac|david-fincher",
+  "cinema": "salles-filmotheque",
+  "start": "2026-08-30T21:20:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=4320&modresa_jour=2026-08-30"
+ },
+ {
+  "id": "salles-louxor-1000041528-2026-08-30T21:30:00",
+  "movie": "un-grand-raccourci|armand-foex",
+  "cinema": "salles-louxor",
+  "start": "2026-08-30T21:30:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://www.louxor-reserver.cotecine.fr/r/252277"
+ },
+ {
+  "id": "salles-brady-1000003998-2026-08-30T21:35:00",
+  "movie": "i-want-your-sex|gregg-araki",
+  "cinema": "salles-brady",
+  "start": "2026-08-30T21:35:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64423"
+ },
+ {
+  "id": "salles-brady-6796-2026-08-30T21:45:00",
+  "movie": "wake-in-fright|ted-kotcheff",
+  "cinema": "salles-brady",
+  "start": "2026-08-30T21:45:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64430"
+ },
+ {
+  "id": "salles-filmotheque-3733-1788119400/VO/270673",
+  "movie": "profession-reporter|michelangelo-antonioni",
+  "cinema": "salles-filmotheque",
+  "start": "2026-08-30T21:50:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=3733&modresa_jour=2026-08-30"
+ },
+ {
+  "id": "salles-brady-10251-2026-08-31T10:00:00",
+  "movie": "le-tombeau-des-lucioles|isao-takahata",
+  "cinema": "salles-brady",
+  "start": "2026-08-31T10:00:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64492"
+ },
+ {
+  "id": "salles-brady-293636-2026-08-31T10:00:00",
+  "movie": "in-waves|phuong-mai-nguyen",
+  "cinema": "salles-brady",
+  "start": "2026-08-31T10:00:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64489"
+ },
+ {
+  "id": "salles-brady-317561-2026-08-31T10:15:00",
+  "movie": "les-tourouges-et-les-toubleus|samantha-cutler",
+  "cinema": "salles-brady",
+  "start": "2026-08-31T10:15:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/63097"
+ },
+ {
+  "id": "salles-brady-2614-2026-08-31T11:15:00",
+  "movie": "mon-oncle|jacques-tati",
+  "cinema": "salles-brady",
+  "start": "2026-08-31T11:15:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64491"
+ },
+ {
+  "id": "salles-brady-1000022832-2026-08-31T11:40:00",
+  "movie": "l-objet-du-delit|agnes-jaoui",
+  "cinema": "salles-brady",
+  "start": "2026-08-31T11:40:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64493"
+ },
+ {
+  "id": "salles-brady-1000044063-2026-08-31T11:45:00",
+  "movie": "le-vertige|quentin-dupieux",
+  "cinema": "salles-brady",
+  "start": "2026-08-31T11:45:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64490"
+ },
+ {
+  "id": "salles-louxor-327993-2026-08-31T13:00:00",
+  "movie": "l-inconnue|arthur-harari",
+  "cinema": "salles-louxor",
+  "start": "2026-08-31T13:00:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://www.louxor-reserver.cotecine.fr/r/252253"
+ },
+ {
+  "id": "salles-brady-6796-2026-08-31T13:00:00",
+  "movie": "wake-in-fright|ted-kotcheff",
+  "cinema": "salles-brady",
+  "start": "2026-08-31T13:00:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64438"
+ },
+ {
+  "id": "salles-brady-1000017192-2026-08-31T13:25:00",
+  "movie": "sur-la-route-d-omaha|cole-webley",
+  "cinema": "salles-brady",
+  "start": "2026-08-31T13:25:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64447"
+ },
+ {
+  "id": "salles-filmotheque-49096-1788175800/VO/270673",
+  "movie": "bunny-lake-a-disparu|otto-preminger",
+  "cinema": "salles-filmotheque",
+  "start": "2026-08-31T13:30:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=49096&modresa_jour=2026-08-31"
+ },
+ {
+  "id": "salles-filmotheque-46281-1788175800/VO/270671",
+  "movie": "les-hommes-du-president|alan-j-pakula",
+  "cinema": "salles-filmotheque",
+  "start": "2026-08-31T13:30:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=46281&modresa_jour=2026-08-31"
+ },
+ {
+  "id": "salles-louxor-188280-2026-08-31T13:45:00",
+  "movie": "fjord|cristian-mungiu",
+  "cinema": "salles-louxor",
+  "start": "2026-08-31T13:45:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://www.louxor-reserver.cotecine.fr/r/252230"
+ },
+ {
+  "id": "salles-louxor-1000041528-2026-08-31T13:45:00",
+  "movie": "un-grand-raccourci|armand-foex",
+  "cinema": "salles-louxor",
+  "start": "2026-08-31T13:45:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://www.louxor-reserver.cotecine.fr/r/252278"
+ },
+ {
+  "id": "salles-brady-1609-2026-08-31T14:00:00",
+  "movie": "le-cadet-d-eau-douce|buster-keaton",
+  "cinema": "salles-brady",
+  "start": "2026-08-31T14:00:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/63098"
+ },
+ {
+  "id": "salles-brady-4749-2026-08-31T15:00:00",
+  "movie": "lawrence-d-arabie|david-lean",
+  "cinema": "salles-brady",
+  "start": "2026-08-31T15:00:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64439"
+ },
+ {
+  "id": "salles-brady-16382-2026-08-31T15:20:00",
+  "movie": "boogie-nights|paul-thomas-anderson",
+  "cinema": "salles-brady",
+  "start": "2026-08-31T15:20:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64437"
+ },
+ {
+  "id": "salles-louxor-1000024105-2026-08-31T15:30:00",
+  "movie": "soudain|ryusuke-hamaguchi",
+  "cinema": "salles-louxor",
+  "start": "2026-08-31T15:30:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://www.louxor-reserver.cotecine.fr/r/252270"
+ },
+ {
+  "id": "salles-filmotheque-29507-1788183000/VO/270673",
+  "movie": "cutters-way|ivan-passer",
+  "cinema": "salles-filmotheque",
+  "start": "2026-08-31T15:30:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=29507&modresa_jour=2026-08-31"
+ },
+ {
+  "id": "salles-louxor-327993-2026-08-31T15:45:00",
+  "movie": "l-inconnue|arthur-harari",
+  "cinema": "salles-louxor",
+  "start": "2026-08-31T15:45:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://www.louxor-reserver.cotecine.fr/r/252254"
+ },
+ {
+  "id": "salles-filmotheque-44071-1788184800/VF/270671",
+  "movie": "le-doulos|jean-pierre-melville",
+  "cinema": "salles-filmotheque",
+  "start": "2026-08-31T16:00:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=44071&modresa_jour=2026-08-31"
+ },
+ {
+  "id": "salles-louxor-188280-2026-08-31T16:45:00",
+  "movie": "fjord|cristian-mungiu",
+  "cinema": "salles-louxor",
+  "start": "2026-08-31T16:45:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://www.louxor-reserver.cotecine.fr/r/252231"
+ },
+ {
+  "id": "salles-brady-1000014327-2026-08-31T17:00:00",
+  "movie": "sous-le-ciel-de-kyoto|akiko-ohku",
+  "cinema": "salles-brady",
+  "start": "2026-08-31T17:00:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64448"
+ },
+ {
+  "id": "salles-filmotheque-46281-1788190200/VO/270673",
+  "movie": "les-hommes-du-president|alan-j-pakula",
+  "cinema": "salles-filmotheque",
+  "start": "2026-08-31T17:30:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=46281&modresa_jour=2026-08-31"
+ },
+ {
+  "id": "salles-filmotheque-13925-1788192000/VO/270671",
+  "movie": "le-baiser-du-tueur|stanley-kubrick",
+  "cinema": "salles-filmotheque",
+  "start": "2026-08-31T18:00:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=13925&modresa_jour=2026-08-31"
+ },
+ {
+  "id": "salles-brady-1000034332-2026-08-31T18:10:00",
+  "movie": "une-affaire-turque|huseyin-aydin-gursoy",
+  "cinema": "salles-brady",
+  "start": "2026-08-31T18:10:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64446"
+ },
+ {
+  "id": "salles-louxor-327993-2026-08-31T18:30:00",
+  "movie": "l-inconnue|arthur-harari",
+  "cinema": "salles-louxor",
+  "start": "2026-08-31T18:30:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://www.louxor-reserver.cotecine.fr/r/252255"
+ },
+ {
+  "id": "salles-brady-19395-2026-08-31T19:00:00",
+  "movie": "le-bon-la-brute-et-le-truand|sergio-leone",
+  "cinema": "salles-brady",
+  "start": "2026-08-31T19:00:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64440"
+ },
+ {
+  "id": "salles-louxor-1000024105-2026-08-31T19:15:00",
+  "movie": "soudain|ryusuke-hamaguchi",
+  "cinema": "salles-louxor",
+  "start": "2026-08-31T19:15:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://www.louxor-reserver.cotecine.fr/r/252271"
+ },
+ {
+  "id": "salles-brady-327050-2026-08-31T19:20:00",
+  "movie": "le-heros-de-berlin|wolfgang-becker",
+  "cinema": "salles-brady",
+  "start": "2026-08-31T19:20:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64441"
+ },
+ {
+  "id": "salles-filmotheque-25407-1788197400/VO/270671",
+  "movie": "les-anges-dechus|wong-kar-wai",
+  "cinema": "salles-filmotheque",
+  "start": "2026-08-31T19:30:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=25407&modresa_jour=2026-08-31"
+ },
+ {
+  "id": "salles-louxor-188280-2026-08-31T19:45:00",
+  "movie": "fjord|cristian-mungiu",
+  "cinema": "salles-louxor",
+  "start": "2026-08-31T19:45:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://www.louxor-reserver.cotecine.fr/r/252232"
+ },
+ {
+  "id": "salles-brady-293636-2026-08-31T19:55:00",
+  "movie": "in-waves|phuong-mai-nguyen",
+  "cinema": "salles-brady",
+  "start": "2026-08-31T19:55:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64443"
+ },
+ {
+  "id": "salles-filmotheque-13992-1788199200/VO/270673",
+  "movie": "nostalghia|andrei-tarkovski",
+  "cinema": "salles-filmotheque",
+  "start": "2026-08-31T20:00:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=13992&modresa_jour=2026-08-31"
+ },
+ {
+  "id": "salles-louxor-327993-2026-08-31T21:15:00",
+  "movie": "l-inconnue|arthur-harari",
+  "cinema": "salles-louxor",
+  "start": "2026-08-31T21:15:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://www.louxor-reserver.cotecine.fr/r/252290"
+ },
+ {
+  "id": "salles-filmotheque-83-1788204000/VO/270671",
+  "movie": "boogie-nights|paul-thomas-anderson",
+  "cinema": "salles-filmotheque",
+  "start": "2026-08-31T21:20:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=83&modresa_jour=2026-08-31"
+ },
+ {
+  "id": "salles-brady-1000017160-2026-08-31T21:25:00",
+  "movie": "maspalomas|aitor-arregi",
+  "cinema": "salles-brady",
+  "start": "2026-08-31T21:25:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64445"
+ },
+ {
+  "id": "salles-brady-316460-2026-08-31T21:35:00",
+  "movie": "the-last-viking|anders-thomas-jensen",
+  "cinema": "salles-brady",
+  "start": "2026-08-31T21:35:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64503"
+ },
+ {
+  "id": "salles-brady-1000003998-2026-08-31T22:00:00",
+  "movie": "i-want-your-sex|gregg-araki",
+  "cinema": "salles-brady",
+  "start": "2026-08-31T22:00:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64442"
+ },
+ {
+  "id": "salles-filmotheque-249805-1788207600/VF/270673",
+  "movie": "climax|gaspar-noe",
+  "cinema": "salles-filmotheque",
+  "start": "2026-08-31T22:20:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=249805&modresa_jour=2026-08-31"
+ },
+ {
+  "id": "salles-brady-304130-2026-09-01T11:00:00",
+  "movie": "romeria|carla-simon",
+  "cinema": "salles-brady",
+  "start": "2026-09-01T11:00:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64494"
+ },
+ {
+  "id": "salles-brady-1000015954-2026-09-01T11:00:00",
+  "movie": "juste-une-illusion|olivier-nakache",
+  "cinema": "salles-brady",
+  "start": "2026-09-01T11:00:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64496"
+ },
+ {
+  "id": "salles-brady-1000041395-2026-09-01T11:10:00",
+  "movie": "labandon|vincent-garenq",
+  "cinema": "salles-brady",
+  "start": "2026-09-01T11:10:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64495"
+ },
+ {
+  "id": "salles-louxor-327993-2026-09-01T13:00:00",
+  "movie": "l-inconnue|arthur-harari",
+  "cinema": "salles-louxor",
+  "start": "2026-09-01T13:00:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://www.louxor-reserver.cotecine.fr/r/252256"
+ },
+ {
+  "id": "salles-brady-1786-2026-09-01T13:00:00",
+  "movie": "trafic|jacques-tati",
+  "cinema": "salles-brady",
+  "start": "2026-09-01T13:00:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64455"
+ },
+ {
+  "id": "salles-brady-4749-2026-09-01T13:00:00",
+  "movie": "lawrence-d-arabie|david-lean",
+  "cinema": "salles-brady",
+  "start": "2026-09-01T13:00:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64450"
+ },
+ {
+  "id": "salles-brady-327050-2026-09-01T13:10:00",
+  "movie": "le-heros-de-berlin|wolfgang-becker",
+  "cinema": "salles-brady",
+  "start": "2026-09-01T13:10:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64452"
+ },
+ {
+  "id": "salles-louxor-1000024105-2026-09-01T13:30:00",
+  "movie": "soudain|ryusuke-hamaguchi",
+  "cinema": "salles-louxor",
+  "start": "2026-09-01T13:30:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://www.louxor-reserver.cotecine.fr/r/252259"
+ },
+ {
+  "id": "salles-filmotheque-313167-1788262200/VF/270671",
+  "movie": "bob-le-flambeur|jean-pierre-melville",
+  "cinema": "salles-filmotheque",
+  "start": "2026-09-01T13:30:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=313167&modresa_jour=2026-09-01"
+ },
+ {
+  "id": "salles-filmotheque-12915-1788262200/VO/270673",
+  "movie": "mort-dun-cycliste|juan-antonio-bardem",
+  "cinema": "salles-filmotheque",
+  "start": "2026-09-01T13:30:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=12915&modresa_jour=2026-09-01"
+ },
+ {
+  "id": "salles-louxor-188280-2026-09-01T13:45:00",
+  "movie": "fjord|cristian-mungiu",
+  "cinema": "salles-louxor",
+  "start": "2026-09-01T13:45:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://www.louxor-reserver.cotecine.fr/r/252233"
+ },
+ {
+  "id": "salles-brady-293636-2026-09-01T14:45:00",
+  "movie": "in-waves|phuong-mai-nguyen",
+  "cinema": "salles-brady",
+  "start": "2026-09-01T14:45:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64460"
+ },
+ {
+  "id": "salles-brady-1000034332-2026-09-01T15:10:00",
+  "movie": "une-affaire-turque|huseyin-aydin-gursoy",
+  "cinema": "salles-brady",
+  "start": "2026-09-01T15:10:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64463"
+ },
+ {
+  "id": "salles-filmotheque-32191-1788268200/VO/270673",
+  "movie": "coeur-de-tonnerre|michael-apted",
+  "cinema": "salles-filmotheque",
+  "start": "2026-09-01T15:10:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=32191&modresa_jour=2026-09-01"
+ },
+ {
+  "id": "salles-filmotheque-46281-1788268200/VO/270671",
+  "movie": "les-hommes-du-president|alan-j-pakula",
+  "cinema": "salles-filmotheque",
+  "start": "2026-09-01T15:10:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=46281&modresa_jour=2026-09-01"
+ },
+ {
+  "id": "salles-louxor-327993-2026-09-01T15:45:00",
+  "movie": "l-inconnue|arthur-harari",
+  "cinema": "salles-louxor",
+  "start": "2026-09-01T15:45:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://www.louxor-reserver.cotecine.fr/r/252257"
+ },
+ {
+  "id": "salles-brady-2615-2026-09-01T16:20:00",
+  "movie": "les-vacances-de-monsieur-hulot|jacques-tati",
+  "cinema": "salles-brady",
+  "start": "2026-09-01T16:20:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64461"
+ },
+ {
+  "id": "salles-louxor-188280-2026-09-01T16:45:00",
+  "movie": "fjord|cristian-mungiu",
+  "cinema": "salles-louxor",
+  "start": "2026-09-01T16:45:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://www.louxor-reserver.cotecine.fr/r/252234"
+ },
+ {
+  "id": "salles-brady-316460-2026-09-01T16:50:00",
+  "movie": "the-last-viking|anders-thomas-jensen",
+  "cinema": "salles-brady",
+  "start": "2026-09-01T16:50:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64504"
+ },
+ {
+  "id": "salles-brady-19395-2026-09-01T16:55:00",
+  "movie": "le-bon-la-brute-et-le-truand|sergio-leone",
+  "cinema": "salles-brady",
+  "start": "2026-09-01T16:55:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64451"
+ },
+ {
+  "id": "salles-filmotheque-288075-1788276000/VO/270673",
+  "movie": "les-flics-ne-dorment-pas-la-nuit|richard-fleischer",
+  "cinema": "salles-filmotheque",
+  "start": "2026-09-01T17:20:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=288075&modresa_jour=2026-09-01"
+ },
+ {
+  "id": "salles-louxor-1000041528-2026-09-01T17:30:00",
+  "movie": "un-grand-raccourci|armand-foex",
+  "cinema": "salles-louxor",
+  "start": "2026-09-01T17:30:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://www.louxor-reserver.cotecine.fr/r/252279"
+ },
+ {
+  "id": "salles-filmotheque-8588-1788277200/VO/270671",
+  "movie": "duellistes|ridley-scott",
+  "cinema": "salles-filmotheque",
+  "start": "2026-09-01T17:40:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=8588&modresa_jour=2026-09-01"
+ },
+ {
+  "id": "salles-brady-1000017192-2026-09-01T17:55:00",
+  "movie": "sur-la-route-d-omaha|cole-webley",
+  "cinema": "salles-brady",
+  "start": "2026-09-01T17:55:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64462"
+ },
+ {
+  "id": "salles-louxor-327993-2026-09-01T18:30:00",
+  "movie": "l-inconnue|arthur-harari",
+  "cinema": "salles-louxor",
+  "start": "2026-09-01T18:30:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://www.louxor-reserver.cotecine.fr/r/252258"
+ },
+ {
+  "id": "salles-brady-16382-2026-09-01T19:00:00",
+  "movie": "boogie-nights|paul-thomas-anderson",
+  "cinema": "salles-brady",
+  "start": "2026-09-01T19:00:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64464"
+ },
+ {
+  "id": "salles-louxor-1000024105-2026-09-01T19:15:00",
+  "movie": "soudain|ryusuke-hamaguchi",
+  "cinema": "salles-louxor",
+  "start": "2026-09-01T19:15:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://www.louxor-reserver.cotecine.fr/r/252260"
+ },
+ {
+  "id": "salles-filmotheque-46281-1788282900/VO/270673",
+  "movie": "les-hommes-du-president|alan-j-pakula",
+  "cinema": "salles-filmotheque",
+  "start": "2026-09-01T19:15:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=46281&modresa_jour=2026-09-01"
+ },
+ {
+  "id": "salles-brady-316460-2026-09-01T19:30:00",
+  "movie": "the-last-viking|anders-thomas-jensen",
+  "cinema": "salles-brady",
+  "start": "2026-09-01T19:30:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64505"
+ },
+ {
+  "id": "salles-filmotheque-28538-1788283800/VO/270671",
+  "movie": "chungking-express|wong-kar-wai",
+  "cinema": "salles-filmotheque",
+  "start": "2026-09-01T19:30:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=28538&modresa_jour=2026-09-01"
+ },
+ {
+  "id": "salles-louxor-188280-2026-09-01T19:45:00",
+  "movie": "fjord|cristian-mungiu",
+  "cinema": "salles-louxor",
+  "start": "2026-09-01T19:45:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://www.louxor-reserver.cotecine.fr/r/252235"
+ },
+ {
+  "id": "salles-brady-6796-2026-09-01T20:00:00",
+  "movie": "wake-in-fright|ted-kotcheff",
+  "cinema": "salles-brady",
+  "start": "2026-09-01T20:00:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64453"
+ },
+ {
+  "id": "salles-louxor-327993-2026-09-01T21:15:00",
+  "movie": "l-inconnue|arthur-harari",
+  "cinema": "salles-louxor",
+  "start": "2026-09-01T21:15:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://www.louxor-reserver.cotecine.fr/r/252291"
+ },
+ {
+  "id": "salles-filmotheque-52928-1788291000/VO/270671",
+  "movie": "inherent-vice|paul-thomas-anderson",
+  "cinema": "salles-filmotheque",
+  "start": "2026-09-01T21:30:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=52928&modresa_jour=2026-09-01"
+ },
+ {
+  "id": "salles-brady-1000003998-2026-09-01T21:35:00",
+  "movie": "i-want-your-sex|gregg-araki",
+  "cinema": "salles-brady",
+  "start": "2026-09-01T21:35:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64458"
+ },
+ {
+  "id": "salles-filmotheque-173874-1788291600/VO/270673",
+  "movie": "love-streams|john-cassavetes",
+  "cinema": "salles-filmotheque",
+  "start": "2026-09-01T21:40:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=173874&modresa_jour=2026-09-01"
+ },
+ {
+  "id": "salles-brady-293636-2026-09-01T21:45:00",
+  "movie": "in-waves|phuong-mai-nguyen",
+  "cinema": "salles-brady",
+  "start": "2026-09-01T21:45:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64459"
+ },
+ {
+  "id": "salles-brady-15254-2026-09-01T21:55:00",
+  "movie": "ghost-in-the-shell|mamoru-oshii",
+  "cinema": "salles-brady",
+  "start": "2026-09-01T21:55:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64454"
+ },
+ {
+  "id": "salles-brady-14788-2026-09-02T13:45:00",
+  "movie": "trainspotting|danny-boyle",
+  "cinema": "salles-brady",
+  "start": "2026-09-02T13:45:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64364"
+ },
+ {
+  "id": "salles-brady-197309-2026-09-02T14:00:00",
+  "movie": "jean-de-la-lune|stephan-schesch",
+  "cinema": "salles-brady",
+  "start": "2026-09-02T14:00:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/63099"
+ },
+ {
+  "id": "salles-brady-256874-2026-09-02T15:30:00",
+  "movie": "le-voyage-du-prince|jean-francois-laguionie",
+  "cinema": "salles-brady",
+  "start": "2026-09-02T15:30:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/63100"
+ },
+ {
+  "id": "salles-brady-14788-2026-09-02T19:50:00",
+  "movie": "trainspotting|danny-boyle",
+  "cinema": "salles-brady",
+  "start": "2026-09-02T19:50:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64360"
+ },
+ {
+  "id": "salles-brady-14788-2026-09-03T21:30:00",
+  "movie": "trainspotting|danny-boyle",
+  "cinema": "salles-brady",
+  "start": "2026-09-03T21:30:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64361"
+ }
+]

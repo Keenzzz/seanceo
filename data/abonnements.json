@@ -26,6 +26,9 @@
   "ugc_illimite": true,
   "cinepass": true
  },
+ "2106262": {
+  "ugc_illimite": true
+ },
  "2115104": {
   "ugc_illimite": true
  },
@@ -324,6 +327,17 @@
  },
  "pathe-cinema-pathe-wilson": {
   "cinepass": true
+ },
+ "salles-brady": {
+  "ugc_illimite": true,
+  "cinepass": true
+ },
+ "salles-filmotheque": {
+  "ugc_illimite": true,
+  "cinepass": true
+ },
+ "salles-louxor": {
+  "ugc_illimite": true
  },
  "ugc-1": {
   "ugc_illimite": true

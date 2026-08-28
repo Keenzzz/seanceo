@@ -65,6 +65,10 @@ CHAINS = {
     "pathe":      [PY, "scripts/fetch_pathe.py", "--cinemas", "0", "--days", "7"],
     "cgr":        [PY, "scripts/fetch_webedia.py", "--chain", "cgr", "--days", "7"],
     "grandecran": [PY, "scripts/fetch_webedia.py", "--chain", "grandecran", "--days", "7"],
+    # Pas une chaîne : les salles indépendantes absentes du SCARE
+    # (fetch_salles.py). Elles sont ici parce que leur snapshot est versionné
+    # comme celui des chaînes, et bénéficie donc du même garde-fou de volume.
+    "salles":     [PY, "scripts/fetch_salles.py", "--days", "7"],
 }
 
 

@@ -17,6 +17,10 @@ Extension du projet [Paris Ciné Aujourd'hui](https://github.com/Keenzzz/paris-c
 - Licence : [Licence Ouverte 2.0](https://www.etalab.gouv.fr/licence-ouverte-open-licence) — réutilisation
   commerciale autorisée avec attribution. **Créditer le SCARE / Data Ciné Indés sur le site.**
 
+Le SCARE ne couvre que ses adhérents publiants. Les salles indépendantes qui y manquent
+sont collectées à la source par `scripts/fetch_salles.py` (Le Louxor, Le Brady,
+La Filmothèque du Quartier Latin) — voir CLAUDE.md pour la marche à suivre et les pièges.
+
 ## Pipeline de données
 
 ```
