@@ -467,30 +467,6 @@
   "trailer": "",
   "storyline": ""
  },
- "12-hommes-en-colere|sidney-lumet": {
-  "key": "12-hommes-en-colere|sidney-lumet",
-  "title": "12 hommes en colère",
-  "director": "Sidney Lumet",
-  "cast": "",
-  "genre": "",
-  "country": "",
-  "duration_min": null,
-  "poster": "",
-  "trailer": "",
-  "storyline": ""
- },
- "a-bout-de-souffle|jean-luc-godard": {
-  "key": "a-bout-de-souffle|jean-luc-godard",
-  "title": "A bout de souffle",
-  "director": "Jean-Luc Godard",
-  "cast": "Jean-Paul Belmondo, Jean Seberg, Daniel Boulanger, Michel Fabre, Henri-Jacques Huet, Jean-Pierre Melville",
-  "genre": "",
-  "country": "",
-  "duration_min": 90,
-  "poster": "",
-  "trailer": "",
-  "storyline": "Alors qu’il conduisait une voiture volée, un petit voyou a tué un motard lors d’un contrôle routier. Traqué par la police, il se lance dans Paris à la recherche d’un débiteur pour tenter de récupérer l’argent qui lui permettrait de quitter la France… While driving a stolen car, a small-time crook killed a motorcyclist during a traffic stop. Hunted by the police, he embarks on a chase through Paris, searching for a debtor in an attempt to recover the money that would allow him to leave France..."
- },
  "blade-runner|ridley-scott": {
   "key": "blade-runner|ridley-scott",
   "title": "Blade Runner",
@@ -587,18 +563,6 @@
   "trailer": "",
   "storyline": "Un vétéran du Vietnam, à la vie professionnelle et affective abîmée, enquête sur un meurtre dont l’un de ses amis croit avoir identifié l’auteur en la personne d’un potentat local."
  },
- "drive|nicolas-winding-refn": {
-  "key": "drive|nicolas-winding-refn",
-  "title": "Drive",
-  "director": "Nicolas Winding Refn",
-  "cast": "Ryan Gosling, Carey Mulligan, Bryan Cranston",
-  "genre": "",
-  "country": "",
-  "duration_min": 100,
-  "poster": "https://lafilmotheque.fr/v4/content/uploads/2022/10/19803697.jpg-c_310_420_x-f_jpg-q_x-xxyxx.jpg",
-  "trailer": "",
-  "storyline": "Un jeune homme solitaire, The Driver, conduit le jour à Hollywood pour le cinéma en tant que cascadeur et la nuit pour des truands. Jamais il n'a pris part aux crimes de ses employeurs autrement qu'en conduisant — et au volant, il est le meilleur !"
- },
  "fargo|joel-et-ethan-coen": {
   "key": "fargo|joel-et-ethan-coen",
   "title": "Fargo",
@@ -622,18 +586,6 @@
   "poster": "",
   "trailer": "",
   "storyline": "À Taïpei, un cinéma ferme ses portes, mais pas avant d'avoir joué un dernier film, qui s'avère être une source de nostalgie pour ceux qui fréquentent le lieu et pour les employés du vieil immeuble décrépit et hanté."
- },
- "in-the-mood-for-love|wong-kar-wai": {
-  "key": "in-the-mood-for-love|wong-kar-wai",
-  "title": "In The Mood For Love",
-  "director": "Wong Kar-wai",
-  "cast": "Tony Leung Chiu Wai, Maggie Cheung, Rebecca Pan",
-  "genre": "",
-  "country": "",
-  "duration_min": 98,
-  "poster": "",
-  "trailer": "",
-  "storyline": "Hong Kong, 1962. Mme Chan loue une chambre chez Mme Suen. Le même jour et sur le même palier, s’installe M. Chow. Leurs conjoints sont souvent absents. Un jour, M. Chow et Mme Chan découvrent que leurs époux sont amants. Blessés, ils se fréquentent alors de plus en plus et développent eux aussi une liaison…"
  },
  "inherent-vice|paul-thomas-anderson": {
   "key": "inherent-vice|paul-thomas-anderson",
@@ -671,18 +623,6 @@
   "trailer": "",
   "storyline": "Pendant la Dépression, en plein carnaval de la Nouvelle-Orléans, un journaliste s'immisce dans la vie d'un couple d'aviateurs acrobates."
  },
- "la-rue-rouge|fritz-lang": {
-  "key": "la-rue-rouge|fritz-lang",
-  "title": "La rue rouge",
-  "director": "Fritz Lang",
-  "cast": "Edward G. Robinson, Joan Bennett, Dan Duryea",
-  "genre": "",
-  "country": "",
-  "duration_min": 102,
-  "poster": "",
-  "trailer": "",
-  "storyline": "Une jeune femme soutire de l'argent à un petit caissier marié qui s'est entiché d'elle. Poussé par son amant, elle demande toujours plus..."
- },
  "le-baiser-du-tueur|stanley-kubrick": {
   "key": "le-baiser-du-tueur|stanley-kubrick",
   "title": "Le Baiser du tueur",
@@ -718,18 +658,6 @@
   "poster": "",
   "trailer": "",
   "storyline": "Int. -12 ans Un criminel endurci est libéré de prison grâce à un avocat corrompu, contre la promesse de braquer une banque avec sa femme. Malgré une préparation minutieuse, le hold-up tourne mal et les amants prennent la fuite à travers les Etats-Unis..."
- },
- "le-point-de-non-retour|john-boorman": {
-  "key": "le-point-de-non-retour|john-boorman",
-  "title": "Le Point de non-retour",
-  "director": "John Boorman",
-  "cast": "Lee Marvin, Angie Dickinson, Keenan Wynn, Carroll O'Connor, Lloyd Bochner, Michael Strong, John Vernon",
-  "genre": "",
-  "country": "",
-  "duration_min": 92,
-  "poster": "",
-  "trailer": "",
-  "storyline": "Après un hold-up, un truand est trahi par son complice et par sa opropre femme qui le laissent pour mort dans la prison désaffectée d'Alcatraz. Quelques mois plus tard, il recherche l’homme pour se venger et doit affronter une mystérieuse et toute-puissante organisation."
  },
  "les-anges-dechus|wong-kar-wai": {
   "key": "les-anges-dechus|wong-kar-wai",
@@ -838,30 +766,6 @@
   "poster": "",
   "trailer": "",
   "storyline": "Un reporter américain basé en Afrique, découvre à son hôtel, dans la chambre voisine, le corps sans vie d'un homme lui ressemblant étrangement. Il décide de lui prendre son identité et de vivre une nouvelle vie qu'il espère plus passionnante, ce qui l'amènera à rencontrer une mystérieuse femme qui semble aussi perdue que lui. Ce qu'il ne sait pas, c'est que le cadavre dont il a pris l'identité était un espion au service d'un groupe terroriste..."
- },
- "rashomon|akira-kurosawa": {
-  "key": "rashomon|akira-kurosawa",
-  "title": "RASHOMON",
-  "director": "Akira Kurosawa",
-  "cast": "Toshiro Mifune, Masayuki Mori, Machiko Kyo, Takashi Shimura",
-  "genre": "",
-  "country": "",
-  "duration_min": 88,
-  "poster": "",
-  "trailer": "",
-  "storyline": "Au XIème siècle, période de famine et de guerre civiles, la femme d’un samouraï est violée et son mari assassiné. Lors du procès les différents acteurs du drame donnent des versions contradictoires des faits… A chacun sa vérité…"
- },
- "thelma-et-louise|ridley-scott": {
-  "key": "thelma-et-louise|ridley-scott",
-  "title": "THELMA ET LOUISE",
-  "director": "Ridley Scott",
-  "cast": "Susan Sarandon, Geena Davis, Harvey Keitel, Michael Madsen, Christopher McDonald, Stephen Tobolowsky, Brad Pitt",
-  "genre": "",
-  "country": "",
-  "duration_min": 129,
-  "poster": "",
-  "trailer": "",
-  "storyline": "Deux meilleures amies, Thelma et Louise, décident de s'offrir un week-end sur les routes magnifiques de l'Arkansas. Premier arrêt, premier saloon, premiers ennuis et tout bascule. Elles partent en cavale, pourchassées par la police..."
  },
  "tout-ce-que-le-ciel-permet|douglas-sirk": {
   "key": "tout-ce-que-le-ciel-permet|douglas-sirk",
