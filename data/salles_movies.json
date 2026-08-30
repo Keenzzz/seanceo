@@ -23,18 +23,6 @@
   "trailer": "",
   "storyline": ""
  },
- "les-tourouges-et-les-toubleus|samantha-cutler": {
-  "key": "les-tourouges-et-les-toubleus|samantha-cutler",
-  "title": "Les Tourouges et les Toubleus",
-  "director": "Samantha Cutler",
-  "cast": "",
-  "genre": "Animation",
-  "country": "",
-  "duration_min": 38,
-  "poster": "https://all.web.img.acsta.net/pictures/23/06/27/16/09/5479872.jpg",
-  "trailer": "",
-  "storyline": ""
- },
  "l-inconnue|arthur-harari": {
   "key": "l-inconnue|arthur-harari",
   "title": "L'Inconnue",
@@ -71,18 +59,6 @@
   "trailer": "",
   "storyline": ""
  },
- "parade|jacques-tati": {
-  "key": "parade|jacques-tati",
-  "title": "Parade",
-  "director": "Jacques Tati",
-  "cast": "",
-  "genre": "Comédie",
-  "country": "",
-  "duration_min": 84,
-  "poster": "https://all.web.img.acsta.net/medias/nmedia/18/60/01/45/18602482.jpg",
-  "trailer": "",
-  "storyline": ""
- },
  "playtime|jacques-tati": {
   "key": "playtime|jacques-tati",
   "title": "Playtime",
@@ -116,18 +92,6 @@
   "country": "",
   "duration_min": 92,
   "poster": "https://all.web.img.acsta.net/medias/nmedia/18/36/01/55/18445363.jpg",
-  "trailer": "",
-  "storyline": ""
- },
- "jour-de-fete|jacques-tati": {
-  "key": "jour-de-fete|jacques-tati",
-  "title": "Jour de fête",
-  "director": "Jacques Tati",
-  "cast": "",
-  "genre": "Comédie",
-  "country": "",
-  "duration_min": 76,
-  "poster": "https://all.web.img.acsta.net/medias/nmedia/00/02/48/75/ph2.jpg",
   "trailer": "",
   "storyline": ""
  },
@@ -239,18 +203,6 @@
   "trailer": "",
   "storyline": ""
  },
- "cowboy-bebop|shin-ichiro-watanabe": {
-  "key": "cowboy-bebop|shin-ichiro-watanabe",
-  "title": "Cowboy Bebop",
-  "director": "Shin'ichirô Watanabe",
-  "cast": "",
-  "genre": "Animation",
-  "country": "",
-  "duration_min": 111,
-  "poster": "https://all.web.img.acsta.net/medias/nmedia/18/87/79/88/19967850.jpg",
-  "trailer": "",
-  "storyline": ""
- },
  "jean-de-la-lune|stephan-schesch": {
   "key": "jean-de-la-lune|stephan-schesch",
   "title": "Jean de la Lune",
@@ -320,6 +272,18 @@
   "country": "",
   "duration_min": 116,
   "poster": "https://all.web.img.acsta.net/img/03/74/0374a45b5fa44930e288bc58bafd9613.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "les-tourouges-et-les-toubleus|samantha-cutler": {
+  "key": "les-tourouges-et-les-toubleus|samantha-cutler",
+  "title": "Les Tourouges et les Toubleus",
+  "director": "Samantha Cutler",
+  "cast": "",
+  "genre": "Animation",
+  "country": "",
+  "duration_min": 38,
+  "poster": "https://all.web.img.acsta.net/pictures/23/06/27/16/09/5479872.jpg",
   "trailer": "",
   "storyline": ""
  },
@@ -467,18 +431,6 @@
   "trailer": "",
   "storyline": ""
  },
- "blade-runner|ridley-scott": {
-  "key": "blade-runner|ridley-scott",
-  "title": "Blade Runner",
-  "director": "Ridley Scott",
-  "cast": "Harrison Ford, Rutger Hauer, Sean Young, Edward James Olmos, M. Emmet Walsh, Darryl Hannah, Joanna Cassidy",
-  "genre": "",
-  "country": "",
-  "duration_min": 117,
-  "poster": "",
-  "trailer": "",
-  "storyline": "Dans les dernières années du XXème siècle, des milliers d'hommes et de femmes partent à la conquête de l'espace, fuyant les mégalopoles devenues insalubres. Sur les colonies, une nouvelle race d'esclaves voit le jour : les répliquants, des androïdes que rien ne peut distinguer de l'être humain. Los Angeles, 2019. Après avoir massacré un équipage et pris le contrôle d'un vaisseau, les répliquants de type Nexus 6, le modèle le plus perfectionné, sont désormais déclarés \"hors la loi\". Quatre d'entre eux parviennent cependant à s'échapper et à s'introduire dans Los Angeles. Un agent d'une unité spéciale, un blade runner, est chargé de les éliminer. Selon la terminologie officielle, on ne parle pas d'exécution, mais de retrait..."
- },
  "bob-le-flambeur|jean-pierre-melville": {
   "key": "bob-le-flambeur|jean-pierre-melville",
   "title": "Bob le flambeur",
@@ -502,18 +454,6 @@
   "poster": "",
   "trailer": "",
   "storyline": "Une jeune mère va chercher à l'école sa fille Bunny. Mais cette dernière est introuvable et personne ne semble se souvenir d'elle."
- },
- "casablanca|michael-curtiz": {
-  "key": "casablanca|michael-curtiz",
-  "title": "Casablanca",
-  "director": "Michael Curtiz",
-  "cast": "Humphrey Bogart, Ingrid Bergman, Paul Henreid, Claude Rains, Conrad Veidt, Sydney Greenstreet, Peter Lorre, Marcel Dalio",
-  "genre": "",
-  "country": "",
-  "duration_min": 102,
-  "poster": "",
-  "trailer": "",
-  "storyline": "A Casablanca, en 1943, un Américain en exil tient le night club le plus couru de la ville, sous la surveillance du capitaine Renault, de la police de Vichy, et des Allemands. Il doit aider un Résistant tchèque en fuite, mais l’homme est accompagné par la femme qu’il a toujours aimée, ce qui l’enferme dans un dilemme."
  },
  "chungking-express|wong-kar-wai": {
   "key": "chungking-express|wong-kar-wai",
@@ -563,30 +503,6 @@
   "trailer": "",
   "storyline": "Un vétéran du Vietnam, à la vie professionnelle et affective abîmée, enquête sur un meurtre dont l’un de ses amis croit avoir identifié l’auteur en la personne d’un potentat local."
  },
- "fargo|joel-et-ethan-coen": {
-  "key": "fargo|joel-et-ethan-coen",
-  "title": "Fargo",
-  "director": "Joel et Ethan Coen",
-  "cast": "Frances McDormand, William H. Macy, Steve Buscemi, Peter Stormare, Harve Presnell, John Carroll Lynch",
-  "genre": "",
-  "country": "",
-  "duration_min": 98,
-  "poster": "",
-  "trailer": "",
-  "storyline": "Int. - 12 ans. Un vendeur de voitures d’occasion fait enlever sa femme afin de toucher la rançon qui sera versée par son richissime beau-père. Mais le plan ne va pas résister longtemps à l’épreuve des faits ni au flair d’une policière enceinte…"
- },
- "goodbye-dragon-inn|tsai-ming-liang": {
-  "key": "goodbye-dragon-inn|tsai-ming-liang",
-  "title": "Goodbye, Dragon Inn",
-  "director": "Tsai Ming-Liang",
-  "cast": "Miao Tien, Lee Kang-sheng, Chun Shih",
-  "genre": "",
-  "country": "",
-  "duration_min": 82,
-  "poster": "",
-  "trailer": "",
-  "storyline": "À Taïpei, un cinéma ferme ses portes, mais pas avant d'avoir joué un dernier film, qui s'avère être une source de nostalgie pour ceux qui fréquentent le lieu et pour les employés du vieil immeuble décrépit et hanté."
- },
  "inherent-vice|paul-thomas-anderson": {
   "key": "inherent-vice|paul-thomas-anderson",
   "title": "Inherent Vice",
@@ -598,30 +514,6 @@
   "poster": "",
   "trailer": "",
   "storyline": "L'ex-petite amie du détective privé Doc Sportello surgit un beau jour, en lui racontant qu'elle est tombée amoureuse d'un promoteur immobilier milliardaire : elle craint que l'épouse de ce dernier et son amant ne conspirent tous les deux pour faire interner le milliardaire… Mais ce n'est pas si simple… C'est la toute fin des psychédéliques années 60, et la paranoïa règne en maître. Doc sait bien que, tout comme \"trip\" ou \"démentiel\", \"amour\" est l'un de ces mots galvaudés à force d'être utilisés – sauf que celui-là n'attire que les ennuis."
- },
- "la-la-land|damien-chazelle": {
-  "key": "la-la-land|damien-chazelle",
-  "title": "LA LA LAND",
-  "director": "Damien Chazelle",
-  "cast": "Ryan Gosling, Emma Stone, John Legend, J. K. Simmons, Callie Hernandez",
-  "genre": "",
-  "country": "",
-  "duration_min": 128,
-  "poster": "",
-  "trailer": "",
-  "storyline": "Au cœur de Los Angeles, une actrice en devenir prénommée Mia sert des cafés entre deux auditions. De son côté, Sebastian, passionné de jazz, joue du piano dans des clubs miteux pour assurer sa subsistance. Tous deux sont bien loin de la vie rêvée à laquelle ils aspirent… Le destin va réunir ces doux rêveurs, mais leur coup de foudre résistera-t-il aux tentations, aux déceptions, et à la vie trépidante d’Hollywood ?"
- },
- "la-ronde-de-laube|douglas-sirk": {
-  "key": "la-ronde-de-laube|douglas-sirk",
-  "title": "La Ronde de l’aube",
-  "director": "Douglas Sirk",
-  "cast": "Rock Hudson, Robert Stack, Dorothy Malone",
-  "genre": "",
-  "country": "",
-  "duration_min": 91,
-  "poster": "https://lafilmotheque.fr/v4/content/uploads/2022/10/18958191.jpg-c_310_420_x-f_jpg-q_x-xxyxx.jpg",
-  "trailer": "",
-  "storyline": "Pendant la Dépression, en plein carnaval de la Nouvelle-Orléans, un journaliste s'immisce dans la vie d'un couple d'aviateurs acrobates."
  },
  "le-baiser-du-tueur|stanley-kubrick": {
   "key": "le-baiser-du-tueur|stanley-kubrick",
@@ -646,18 +538,6 @@
   "poster": "",
   "trailer": "",
   "storyline": "Un « doulos » (indicateur de police) est écartelé entre ses deux amis, un truand et un flic. Sans illusion sur les suites, il tente l’impossible « pour l’honneur »."
- },
- "guet-apens|sam-peckinpah": {
-  "key": "guet-apens|sam-peckinpah",
-  "title": "Guet-Apens",
-  "director": "Sam Peckinpah",
-  "cast": "Steve McQueen, Ali MacGraw, Ben Johnson, Al Lettieri, Sally Struthers, Slim Pickens",
-  "genre": "",
-  "country": "",
-  "duration_min": 122,
-  "poster": "",
-  "trailer": "",
-  "storyline": "Int. -12 ans Un criminel endurci est libéré de prison grâce à un avocat corrompu, contre la promesse de braquer une banque avec sa femme. Malgré une préparation minutieuse, le hold-up tourne mal et les amants prennent la fuite à travers les Etats-Unis..."
  },
  "les-anges-dechus|wong-kar-wai": {
   "key": "les-anges-dechus|wong-kar-wai",
@@ -743,52 +623,424 @@
   "trailer": "",
   "storyline": "Andrei est accompagné par une interprète d'une grande beauté, Eugenia. Il pourrait vivre avec elle une grande histoire d'amour, mais le souvenir de sa femme le hante. Il rencontre Domenico, un fou qui prêche la paix et lui demande d'accomplir un petit geste, afin de sauver, du moins le prétend-il, le monde."
  },
- "possession|andrzej-zulawski": {
-  "key": "possession|andrzej-zulawski",
-  "title": "POSSESSION",
-  "director": "Andrzej Zulawski",
-  "cast": "Isabelle Adjani, Sam Neill, Margit Carstensen, Heinz Bennent",
-  "genre": "",
+ "venise-la-lune-et-toi|dino-risi": {
+  "key": "venise-la-lune-et-toi|dino-risi",
+  "title": "Venise, la Lune et toi",
+  "director": "Dino Risi",
+  "cast": "",
+  "genre": "Comédie",
   "country": "",
-  "duration_min": 123,
+  "duration_min": 107,
   "poster": "",
   "trailer": "",
-  "storyline": "Rentrant d'un long voyage, Marc retrouve sa femme Anna et son fils Bob. Il s'aperçoit rapidement que le comportement de sa femme a changé. Prise de violentes crises, elle quitte le domicile. Marc engage un détective qui retrouve bientôt Anna, réfugiée dans une étrange demeure, où semble se cacher une créature surgie des ténèbres."
+  "storyline": ""
  },
- "profession-reporter|michelangelo-antonioni": {
-  "key": "profession-reporter|michelangelo-antonioni",
-  "title": "Profession : reporter",
-  "director": "Michelangelo Antonioni",
-  "cast": "Jack Nicholson, Maria Schneider, Jenny Runacre, Ian Hendry, Steven Berkoff",
+ "des-jours-et-des-nuits-dans-la-foret|satyajit-ray": {
+  "key": "des-jours-et-des-nuits-dans-la-foret|satyajit-ray",
+  "title": "Des jours et des nuits dans la forêt",
+  "director": "Satyajit Ray",
+  "cast": "",
+  "genre": "Drame",
+  "country": "",
+  "duration_min": 115,
+  "poster": "https://all.web.img.acsta.net/img/fd/ee/fdeeb7c079f706cdc008a786fa9fe2de.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "la-bataille-de-gaulle-partie-1-l-age-de-fer|antonin-baudry": {
+  "key": "la-bataille-de-gaulle-partie-1-l-age-de-fer|antonin-baudry",
+  "title": "La Bataille de Gaulle - partie 1 : L'Âge de Fer",
+  "director": "Antonin Baudry",
+  "cast": "",
+  "genre": "Thriller",
+  "country": "",
+  "duration_min": 160,
+  "poster": "https://all.web.img.acsta.net/img/ab/ab/ababe8e671849300cbf221a224f5f844.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "la-bataille-de-gaulle-partie-2-jecris-ton-nom|antonin-baudry": {
+  "key": "la-bataille-de-gaulle-partie-2-jecris-ton-nom|antonin-baudry",
+  "title": "La Bataille de Gaulle - Partie 2 : J’écris ton nom",
+  "director": "Antonin Baudry",
+  "cast": "",
+  "genre": "Thriller",
+  "country": "",
+  "duration_min": 160,
+  "poster": "https://all.web.img.acsta.net/img/75/da/75da06789966503000d90f15af6dacb6.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "oklahoma-honey|andrew-patterson-i": {
+  "key": "oklahoma-honey|andrew-patterson-i",
+  "title": "Oklahoma Honey",
+  "director": "Andrew Patterson (I)",
+  "cast": "",
+  "genre": "Thriller",
+  "country": "",
+  "duration_min": 130,
+  "poster": "https://all.web.img.acsta.net/img/f7/80/f780b71585d7208cc0fc4ac673802964.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "decorado|alberto-vazquez-ii": {
+  "key": "decorado|alberto-vazquez-ii",
+  "title": "Decorado",
+  "director": "Alberto Vázquez (II)",
+  "cast": "",
+  "genre": "Animation",
+  "country": "",
+  "duration_min": 95,
+  "poster": "https://all.web.img.acsta.net/img/b7/4b/b74bd427d7158eaac7952f9cabe28931.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "la-vie-d-une-femme|charline-bourgeois-tacquet": {
+  "key": "la-vie-d-une-femme|charline-bourgeois-tacquet",
+  "title": "La Vie d'une femme",
+  "director": "Charline Bourgeois-Tacquet",
+  "cast": "",
+  "genre": "Drame",
+  "country": "",
+  "duration_min": 98,
+  "poster": "https://all.web.img.acsta.net/img/b8/1d/b81d5eb81fb2544cfa765d7649d0ec7f.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "l-odyssee|christopher-nolan": {
+  "key": "l-odyssee|christopher-nolan",
+  "title": "L'Odyssée",
+  "director": "Christopher Nolan",
+  "cast": "",
+  "genre": "Action",
+  "country": "",
+  "duration_min": 173,
+  "poster": "https://all.web.img.acsta.net/img/65/11/6511bca384db17562fd5b5c4ba428ced.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "kayara-princesse-inca|cesar-zelada": {
+  "key": "kayara-princesse-inca|cesar-zelada",
+  "title": "Kayara, Princesse inca",
+  "director": "Cesar Zelada",
+  "cast": "",
+  "genre": "Animation",
+  "country": "",
+  "duration_min": 81,
+  "poster": "https://all.web.img.acsta.net/img/8e/65/8e65fa43e653e75838507beee9d4d768.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "de-la-comedie-francaise|martin-darondeau": {
+  "key": "de-la-comedie-francaise|martin-darondeau",
+  "title": "De la Comédie-Française",
+  "director": "Martin Darondeau",
+  "cast": "",
+  "genre": "Comédie",
+  "country": "",
+  "duration_min": 75,
+  "poster": "https://all.web.img.acsta.net/img/20/fc/20fc20ff48049a8cce1221422e3efaab.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "degel|manuela-martelli": {
+  "key": "degel|manuela-martelli",
+  "title": "Dégel",
+  "director": "Manuela Martelli",
+  "cast": "",
+  "genre": "Drame",
+  "country": "",
+  "duration_min": 108,
+  "poster": "https://all.web.img.acsta.net/img/19/f3/19f31991ed82e3ff679db5c4737f0c9f.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "si-tu-penses-bien|geraldine-nakache": {
+  "key": "si-tu-penses-bien|geraldine-nakache",
+  "title": "Si tu penses bien",
+  "director": "Géraldine Nakache",
+  "cast": "",
+  "genre": "Drame",
+  "country": "",
+  "duration_min": 94,
+  "poster": "https://all.web.img.acsta.net/img/d2/fd/d2fd6346b8e6ef171348f00654e6ff40.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "un-amour-depouvantail|samantha-cutler": {
+  "key": "un-amour-depouvantail|samantha-cutler",
+  "title": "Un amour d’épouvantail",
+  "director": "Samantha Cutler",
+  "cast": "",
+  "genre": "Animation",
+  "country": "",
+  "duration_min": 44,
+  "poster": "https://all.web.img.acsta.net/img/6f/8a/6f8a8922ac1f1323d4becc8ce77da9bb.png",
+  "trailer": "",
+  "storyline": ""
+ },
+ "histoires-de-la-nuit|lea-mysius": {
+  "key": "histoires-de-la-nuit|lea-mysius",
+  "title": "Histoires de la nuit",
+  "director": "Léa Mysius",
+  "cast": "H. Herzi, B. Magimel, B. Bouillon",
   "genre": "",
   "country": "",
-  "duration_min": 126,
-  "poster": "",
+  "duration_min": 114,
+  "poster": "https://www.cinemas-lumiere.com/cache/data/files/cinemas/movie/poster/4969/e4057c680c238cc18211ffc8140eed28/s,490,650-q,90-4be576.jpg",
   "trailer": "",
-  "storyline": "Un reporter américain basé en Afrique, découvre à son hôtel, dans la chambre voisine, le corps sans vie d'un homme lui ressemblant étrangement. Il décide de lui prendre son identité et de vivre une nouvelle vie qu'il espère plus passionnante, ce qui l'amènera à rencontrer une mystérieuse femme qui semble aussi perdue que lui. Ce qu'il ne sait pas, c'est que le cadavre dont il a pris l'identité était un espion au service d'un groupe terroriste..."
+  "storyline": "Nora, Thomas et leur fille Ida vivent dans une ferme isolée avec pour seule voisine, Cristina, une peintre italienne. Alors que tout le monde prépare une soirée d'anniversaire surprise pour Nora, trois hommes rôdent autour de la maison et s'invitent à la fête, faisant surgir des secrets bien gardés... Sortie en salle le 16 septembre 2026 Remerciements à Le Pacte"
  },
- "tout-ce-que-le-ciel-permet|douglas-sirk": {
-  "key": "tout-ce-que-le-ciel-permet|douglas-sirk",
-  "title": "Tout ce que le ciel permet",
-  "director": "Douglas Sirk",
-  "cast": "Jane Wyman, Rock Hudson, Agnes Moorehead, Conrad Nagel, Virginia Grey, Gloria Talbott, William Reynolds",
+ "la-bataille-de-gaulle-partie-2-j-ecris-ton-nom|antonin-baudry": {
+  "key": "la-bataille-de-gaulle-partie-2-j-ecris-ton-nom|antonin-baudry",
+  "title": "La Bataille de Gaulle - Partie 2 : J'écris ton nom",
+  "director": "Antonin Baudry",
+  "cast": "S. Abkarian, N. Schneider, A. Vartolomei",
   "genre": "",
   "country": "",
-  "duration_min": 89,
-  "poster": "",
+  "duration_min": 160,
+  "poster": "https://www.cinemas-lumiere.com/cache/data/files/cinemas/movie/poster/4990/feaf214ef84e96e437f8c65e7c540e86/s,490,650-q,90-ab9015.jpg",
   "trailer": "",
-  "storyline": "Une veuve d’âge mûr mène une vie terne dans une petite localité de la Nouvelle-Angleterre. Alors que ses enfants et sa meilleure amie la poussent à se remarier avec un rassurant quinquagénaire, elle est séduite par son jeune jardinier. Celui-ci partage ses sentiments mais leur liaison ne tarde pas à être décriée, voire combattue…"
+  "storyline": "Juin 1940. La France s'effondre et signe l'armistice. Au milieu du chaos, un homme refuse de céder. Seul contre tous, ce général inconnu s'échappe vers Londres pour sauver ce qu'il reste d'un rêve : la liberté. Sans armée, sans appui, sans espoir. Mais avec une folle conviction : la France, sa France, n'a pas déposé les armes. Il tente un ultime pari : convaincre le monde que la bataille de France n'est ni terminée, ni perdue. La réalité est têtue, et lui donne tort. Mais peu à peu se lèvent autour de lui en Angleterre, en France et en Afrique des résistants de l'ombre, des lycéens révoltés, des soldats déterminés. Leur foi, leur audace, leur rage de liberté défient l'Histoire qui semblait pourtant écrite d'avance."
  },
- "zodiac|david-fincher": {
-  "key": "zodiac|david-fincher",
-  "title": "Zodiac",
+ "le-chateau-de-l-araignee|akira-kurosawa": {
+  "key": "le-chateau-de-l-araignee|akira-kurosawa",
+  "title": "Le Château de l'araignée",
+  "director": "Akira Kurosawa",
+  "cast": "T. Mifune, I. Yamada, M. Chiaki",
+  "genre": "",
+  "country": "",
+  "duration_min": 110,
+  "poster": "https://www.cinemas-lumiere.com/cache/data/files/cinemas/movie/poster/5024/472275/s,490,650-q,90-d818a7.jpg",
+  "trailer": "",
+  "storyline": "Dans le Japon féodal, alors que les guerres civiles font rage, les généraux Washizu et Miki rentrent victorieux chez leur seigneur Tsuzuki. Ils traversent une mystérieuse forêt où ils rencontrent un esprit qui leur annonce leur destinée : Washizu deviendra seigneur du château de l'Araignée, mais ce sera le fils de Miki qui lui succèdera. Troublé par cette prophétie, Washizu se confie à sa femme, Asaji. Celle-ci lui conseille alors de forcer le destin en assassinant Tsuzuki..."
+ },
+ "memory-of-princess-mumbi|damien-hauser": {
+  "key": "memory-of-princess-mumbi|damien-hauser",
+  "title": "Memory Of Princess Mumbi",
+  "director": "Damien Hauser",
+  "cast": "S. Apondi, I. Joseph, S. Waithaka",
+  "genre": "",
+  "country": "",
+  "duration_min": 79,
+  "poster": "https://www.cinemas-lumiere.com/cache/data/files/cinemas/movie/poster/5039/a63fd4133896b53a7411cd619cc4be80/s,490,650-q,90-8b2cde.jpg",
+  "trailer": "",
+  "storyline": "En 2093, le cinéaste Kuve se rend à Umata pour filmer un documentaire sur la Grande Guerre des années 2070, qui a effacé les technologies modernes et fait renaître d'anciens royaumes. Il y rencontre Mumbi, qui le met au défi de réaliser son film sans intelligence artificielle. Il commence alors à comprendre que même les plus petits moments peuvent être d'une profonde beauté."
+ },
+ "paradise|jeremy-comte": {
+  "key": "paradise|jeremy-comte",
+  "title": "Paradise",
+  "director": "Jérémy Comte",
+  "cast": "D. A. Hukporti, J. Boivin-Desmeules, E. De la Chenelière",
+  "genre": "",
+  "country": "",
+  "duration_min": 93,
+  "poster": "https://www.cinemas-lumiere.com/cache/data/files/cinemas/movie/poster/5034/e3bcdfc468de5e583a6b4789afcda3e0/s,490,650-q,90-fa67f7.jpg",
+  "trailer": "",
+  "storyline": "Au Ghana, Kojo, adolescent marqué par la disparition de son père en mer, se rapproche des gangs de rue sans parvenir à combler le vide qu'il ressent. Pendant ce temps, au Québec, Tony, en quête de repères, s'interroge sur l'homme dont sa mère est amoureuse et qui pourrait être le père qu'il n'a jamais connu... Entre la lente déchéance de l'un et la recherche d'identité de l'autre, un lien insoupçonné se tisse, unissant les destins croisés de ces deux jeunes hommes que tout semble séparer."
+ },
+ "sanjuro|akira-kurosawa": {
+  "key": "sanjuro|akira-kurosawa",
+  "title": "Sanjuro",
+  "director": "Akira Kurosawa",
+  "cast": "T. Mifune, T. Nakadai, Y. Kayama",
+  "genre": "",
+  "country": "",
+  "duration_min": 96,
+  "poster": "https://www.cinemas-lumiere.com/cache/data/files/cinemas/movie/poster/5025/074367/s,490,650-q,90-d9626f.jpg",
+  "trailer": "",
+  "storyline": "Le samouraï rônin Sanjuro Tsubaki prend sous son aile une bande de jeunes guerriers inexpérimentés et les aide à déjouer un complot contre le chambellan. Jouant de ruse avec les conspirateurs, Sanjuro se révélera un tacticien hors pair, avant de se confronter avec le redoutable Muroto, bras droit du chef des comploteurs."
+ },
+ "un-grand-raccourci|armand-foex-clement-devilliers": {
+  "key": "un-grand-raccourci|armand-foex-clement-devilliers",
+  "title": "Un grand raccourci",
+  "director": "Armand Foëx & Clément Devilliers",
+  "cast": "S. Montpetit, L. Labeque, F. Le Bris",
+  "genre": "",
+  "country": "",
+  "duration_min": 81,
+  "poster": "https://www.cinemas-lumiere.com/cache/data/files/cinemas/movie/poster/5026/0bba7c07804e33c96916e23ba1ee7ec2/s,490,650-q,90-da4d4e.jpg",
+  "trailer": "",
+  "storyline": "Quand le restaurant familial menace de fermer, deux cousins bretons relâchent des rats pour s'improviser dératiseurs. Le même été, deux jeunes femmes trafiquent le concours de beauté local pour promouvoir leurs bijoux. Embarqués dans leurs stratagèmes chaotiques, ces quatre débrouillards en quête d'avenir finissent par se percuter."
+ },
+ "chicas-tristes|fernanda-tovar": {
+  "key": "chicas-tristes|fernanda-tovar",
+  "title": "Chicas tristes",
+  "director": "Fernanda Tovar",
+  "cast": "D. Álvarez, R. Guzmán",
+  "genre": "",
+  "country": "",
+  "duration_min": 90,
+  "poster": "https://www.cinemas-lumiere.com/cache/data/files/cinemas/movie/poster/5028/5732fc7877b55cb456ac1a47200b74fc/s,490,650-q,90-7cd777.jpg",
+  "trailer": "",
+  "storyline": "La Maestra et Paula, deux amies inséparables, sont les meilleures nageuses de leur équipe. Jusqu'à ce qu'un évènement traumatique, survenu au cours d'une soirée, les oblige à choisir entre garder le silence et prendre la parole, quitte à mettre leur amitié à rude épreuve..."
+ },
+ "de-la-comedie-francaise|martin-darondeau-bertrand-usclat": {
+  "key": "de-la-comedie-francaise|martin-darondeau-bertrand-usclat",
+  "title": "De la Comédie-Française",
+  "director": "Martin Darondeau & Bertrand Usclat",
+  "cast": "P. Clément, L. Stocker, J . Frison",
+  "genre": "",
+  "country": "",
+  "duration_min": 75,
+  "poster": "https://www.cinemas-lumiere.com/cache/data/files/cinemas/movie/poster/4989/9c4daa6e94f7107c83f7d732700c44a0/s,490,650-q,90-553a1d.jpg",
+  "trailer": "",
+  "storyline": "Dans 3 heures, Nina dévoile sa première mise en scène à la Comédie-Française. Mais dans l'agitation des dernières répétitions, rien ne se passe comme prévu : retards, coups de stress, problèmes techniques et problèmes d'égo secouent la troupe. Pourtant, Nina n'a pas d'autre choix que d'aller jusqu'au bout car s'il y a bien une règle d'or à la Comédie-Française, c'est qu'on n'annule pas. Commence alors une course contre la montre pour sauver la représentation."
+ },
+ "fight-club|david-fincher": {
+  "key": "fight-club|david-fincher",
+  "title": "Fight Club",
   "director": "David Fincher",
-  "cast": "Jake Gyllenhaal, Robert Downey Jr., Mark Ruffalo, Anthony Edwards, Chloë Sevigny, Philip Baker Hall",
+  "cast": "B. Pitt, E. Norton, E. Bonham Carter",
   "genre": "",
   "country": "",
-  "duration_min": 157,
-  "poster": "",
+  "duration_min": 139,
+  "poster": "https://www.cinemas-lumiere.com/cache/data/files/cinemas/movie/poster/5019/0688770/s,490,650-q,90-6b3986.jpg",
   "trailer": "",
-  "storyline": "À la fin des années 60, un tueur en série sème la terreur à San Francisco. Revendiquant trente-sept meurtres, il prend un malin plaisir à narguer la police en envoyant des lettres codées à la presse. un jeune dessinateur de presse se lance corps et âme dans ce qui deviendra l'enquête de sa vie."
+  "storyline": "Le narrateur, sans identité précise, vit seul, travaille seul, dort seul, mange seul ses plateaux-repas pour une personne comme beaucoup d'autres personnes seules qui connaissent la misère humaine, morale et sexuelle. C'est pourquoi il va devenir membre du Fight club, un lieu clandestin ou il va pouvoir retrouver sa virilité, l'échange et la communication. Ce club est dirigé par Tyler Durden, une sorte d'anarchiste entre gourou et philosophe qui prêche l'amour de son prochain."
+ },
+ "in-waves|phuong-mai-nguen": {
+  "key": "in-waves|phuong-mai-nguen",
+  "title": "In Waves",
+  "director": "Phuong Mai Nguen",
+  "cast": "",
+  "genre": "",
+  "country": "",
+  "duration_min": 91,
+  "poster": "https://www.cinemas-lumiere.com/cache/data/files/cinemas/movie/poster/4964/66956c0d0a15062c936b14d7dd48c5b7/s,490,650-q,90-5ca9c7.jpg",
+  "trailer": "",
+  "storyline": "À Los Angeles, AJ, lycéen discret, rencontre Kristen. Elle est passionnée de surf, lui de skateboard et de dessin. Ils tombent follement amoureux ; un avenir heureux se profile. Mais tout bascule lorsque Kristen tombe malade. Ensemble, ils se lancent dans un combat contre l'adversité, portés par la force de leur amour, leurs amis et leur passion désormais commune pour le surf et l'océan.Adaptation du roman graphique d'AJ Dungo (2019)."
+ },
+ "jim-queen|marco-nguyen-et-nicolas-athane": {
+  "key": "jim-queen|marco-nguyen-et-nicolas-athane",
+  "title": "Jim Queen",
+  "director": "Marco Nguyen et Nicolas Athane",
+  "cast": "A. Ramires, J. Gillet, S. Souagnon",
+  "genre": "",
+  "country": "",
+  "duration_min": 85,
+  "poster": "https://www.cinemas-lumiere.com/cache/data/files/cinemas/movie/poster/4944/0b2475fd5c509b222ed908d2ee8bb3c5/s,490,650-q,90-9fa710.jpg",
+  "trailer": "",
+  "storyline": "Jim, icône sexy de la scène gay parisienne, voit sa vie basculer lorsqu'il contracte l'Hétérose, un étrange virus qui transforme les hommes gays... en hétérosexuels ! Il voit alors tout le monde lui tourner le dos à l'exception de son dernier follower (et premier admirateur), Lucien, un jeune homme qui peine à s'assumer. Ensemble, ils partiront en quête d'un mystérieux remède capable de guérir Jim et d'empêcher l'extinction de l'homosexualité..."
+ },
+ "le-petit-monde-de-leo|giulio-gianini": {
+  "key": "le-petit-monde-de-leo|giulio-gianini",
+  "title": "Le Petit monde de Leo",
+  "director": "Giulio Gianini",
+  "cast": "",
+  "genre": "",
+  "country": "",
+  "duration_min": 30,
+  "poster": "https://www.cinemas-lumiere.com/cache/data/files/cinemas/movie/poster/5035/128500/s,490,650-q,90-33f16d.jpg",
+  "trailer": "",
+  "storyline": "Venez découvrir le beau monde de Leo Lionni ! Un programme de cinq courts-métrages rempli de douceur, de poésie et surtout... Plein de philosophie pour les plus petits ! 5€ pour tous"
+ },
+ "le-triangle-d-or|helene-rosselet-ruiz": {
+  "key": "le-triangle-d-or|helene-rosselet-ruiz",
+  "title": "Le Triangle d'or",
+  "director": "Hélène Rosselet-Ruiz",
+  "cast": "M. Khebizi, S. Mosbah, Z. Bakri",
+  "genre": "",
+  "country": "",
+  "duration_min": 87,
+  "poster": "https://www.cinemas-lumiere.com/cache/data/files/cinemas/movie/poster/5004/8e81e196c0cbbb89bdbbc4b45d4ded0c/s,490,650-q,90-2b38f6.jpg",
+  "trailer": "",
+  "storyline": "Pour gagner sa vie, Laura accepte un emploi au service de Souria. Installée dans un hôtel particulier du triangle d'or par son amant, un riche prince saoudien, Souria vit dans l'attente de ses visites. Tandis que Laura doit s'adapter à cet univers de luxe démesuré et de surveillance constante, un lien fragile se tisse entre les deux femmes. Mais Laura pressent qu'un danger pèse sur Souria et que cette cage dorée pourrait bien se refermer sur elles deux."
+ },
+ "les-nouvelles-aventures-de-la-petite-taupe|zdenek-miler": {
+  "key": "les-nouvelles-aventures-de-la-petite-taupe|zdenek-miler",
+  "title": "Les Nouvelles aventures de la petite taupe",
+  "director": "Zdenek Miler",
+  "cast": "les voix de V. Garcia, M. Aurélio, L. Horta",
+  "genre": "",
+  "country": "",
+  "duration_min": 44,
+  "poster": "https://www.cinemas-lumiere.com/cache/data/files/cinemas/movie/poster/5041/18966124/s,490,650-q,90-05e508.jpg",
+  "trailer": "",
+  "storyline": "Les aventures de la petite taupe continuent avec cinq nouveaux courts métrages : La Petite taupe et le hérisson (1970), La Petite taupe et le téléphone (1974), La Petite taupe et les allumettes (id.), La Petite taupe et l'automobile (1963) et La Petite taupe et la musique (1974). 5€ pour tous"
+ },
+ "marius-et-le-royaume-des-mers|endre-skandfer": {
+  "key": "marius-et-le-royaume-des-mers|endre-skandfer",
+  "title": "Marius et le Royaume des mers",
+  "director": "Endre Skandfer",
+  "cast": "",
+  "genre": "",
+  "country": "",
+  "duration_min": 80,
+  "poster": "https://www.cinemas-lumiere.com/cache/data/files/cinemas/movie/poster/5040/de07c88f2baa5a2d8f890dc5d7b39326/s,490,650-q,90-823734.jpg",
+  "trailer": "",
+  "storyline": "Au beau milieu de l’océan se cache une île merveilleuse peuplée de serpents de mer. Parmi eux vit Marius, qui n’est pas tout à fait comme les autres : il ne sait pas nager ! Mais lorsqu’un danger menace leur île, il n’a plus le choix : armé de tout son courage, il se lance dans une aventure extraordinaire. Pour sauver les siens, Marius va devoir se jeter à l’eau et prouver qu’il peut devenir un héros. 5€ pour les - 14 ans"
+ },
+ "le-berger-et-les-ours|max-keegan": {
+  "key": "le-berger-et-les-ours|max-keegan",
+  "title": "Le berger et les ours",
+  "director": "Max Keegan",
+  "cast": "",
+  "genre": "Documentaire",
+  "country": "",
+  "duration_min": 101,
+  "poster": "https://images.monnaie-services.com/movie_poster/120/FRLCW9Y/UMLH9YJT.jpg",
+  "trailer": "https://trailers.imscine.com/ld/bbbc1d2ef825d640d3c9fb8e5ccdf25ee46ea496e94096e97502beee4d387acfa27ca8b11a9080cbc1880adb83a8f2.mp4",
+  "storyline": "En Ariège, dans les Pyrénées françaises, l'ours brun a été réintroduit dans une zone où les bergers font traditionnellement paître leurs moutons pendant l'été. L'augmentation de la population d'ours s'accompagne du mécontentement des éleveurs, dont le bétail est attaqué de plus en plus régulièrement. Yves est l'un des vieux bergers que le film suit alors qu'il tente de trouver un successeur. Sa jeune apprentie, Lisa, l'accompagne dans ses excursions à travers les magnifiques paysages de montagne. Pendant ce temps, Cyril, fils d'agriculteur, est obsédé par son désir de voir un ours. Son ambition est de rejoindre la police de la faune, chargée d'empêcher les bergers d'abattre les ours."
+ },
+ "des-fleurs-pour-tokyo|": {
+  "key": "des-fleurs-pour-tokyo|",
+  "title": "Des Fleurs pour Tokyo",
+  "director": "????",
+  "cast": "Kodai Kurosaki, Ken''ichi Endô, Haruka Igawa",
+  "genre": "Drame",
+  "country": "",
+  "duration_min": 115,
+  "poster": "https://images.monnaie-services.com/movie_poster/120/FROCLOD/WP8DBG8Z.jpg",
+  "trailer": "https://trailers.imscine.com/ld/bbbc1d2ef825d640d3c9fb8e5ccdf25ee46ea496e94096e97502beee4d387acf9d4fa8b14a808496e9b605d2c8a8f2.mp4",
+  "storyline": "Dans le paysage en perpétuelle transformation de Shibuya, à Tokyo, Ren travaille comme livreur d’orchidées papillon. Hanté par la disparition lorsqu’il était enfant de sa mère, Yumiko, il est depuis longtemps en froid avec son père, Hajime, un architecte-paysagiste. Jusqu’au jour où, lors d’une livraison ordinaire, père et fils se retrouvent face à face…"
+ },
+ "la-pat-patrouille-le-film-mission-dino|cal-brunker": {
+  "key": "la-pat-patrouille-le-film-mission-dino|cal-brunker",
+  "title": "La Pat' Patrouille : Le film mission Dino",
+  "director": "Cal Brunker",
+  "cast": "Carter Young, Mckenna Grace, Terry Crews, Meredith MacNeill, Ron Pardo",
+  "genre": "Animation, Aventure, Comédie, Familial, Fantastique",
+  "country": "",
+  "duration_min": 88,
+  "poster": "https://images.monnaie-services.com/movie_poster/120/FRJGTZO/QHLL4MMM.jpg",
+  "trailer": "https://trailers.imscine.com/ld/bbbc1d2ef825d640d3c9fb8e5ccdf25ee46ea496e94096e97502beee4d387acfba76a8b14ec0bec6c6b57ceeeaa8f2.mp4",
+  "storyline": "Lorsqu’une mystérieuse tempête surprend leur navire, la Pat’ Patrouille s’échoue sur une île tropicale encore inexplorée… et peuplée de dinosaures ! Ils y rencontrent Rex, un chiot courageux installé sur l’île depuis des années et devenu un véritable expert des dinosaures. Mais leur ennemi de toujours, M. Hellinger, arrive lui aussi sur l’île avec un projet dangereux : exploiter ses richesses naturelles en creusant des mines. Ses actions imprudentes déclenchent bientôt l’éruption d’un gigantesque volcan endormi. La Pat’ Patrouille se retrouve alors entraînée dans une série de missions de sauvetage spectaculaires, plus impressionnantes que tout ce qu’elle a connu jusqu’ici. Elle devra arrêter M. Hellinger et sauver l’île avant qu’il ne soit trop tard."
+ },
+ "de-la-comedie-francaise|bertrand-usclat-martin-darondeau": {
+  "key": "de-la-comedie-francaise|bertrand-usclat-martin-darondeau",
+  "title": "De la Comédie-Française",
+  "director": "Bertrand Usclat, Martin Darondeau",
+  "cast": "Pauline Clément, Julien Frison, Laurent Stocker",
+  "genre": "Comédie",
+  "country": "",
+  "duration_min": 75,
+  "poster": "https://images.monnaie-services.com/movie_poster/120/FRQM478/U41N7XO4.jpg",
+  "trailer": "https://trailers.imscine.com/ld/bbbc1d2ef825d640d3c9fb8e5ccdf25ee46ea496e94096e97502beee4d387acf8f2ea8b15498b4d7ebf356d68ba8f2.mp4",
+  "storyline": "Dans 3 heures, Nina dévoile sa première mise en scène à la Comédie-Française. Mais dans l’agitation des dernières répétitions, rien ne se passe comme prévu : retards, coups de stress, problèmes techniques et problèmes d’égo secouent la troupe. Pourtant, Nina n’a pas d’autre choix que d’aller jusqu’au bout car s’il y a bien une règle d’or à la Comédie-Française, c’est qu’on n’annule pas. Commence alors une course contre la montre pour sauver la représentation."
+ },
+ "un-grand-raccourci|clement-devilliers-armand-foex": {
+  "key": "un-grand-raccourci|clement-devilliers-armand-foex",
+  "title": "Un grand raccourci",
+  "director": "Clément Devilliers, Armand Foëx",
+  "cast": "Sara Montpetit, Louise Labèque, François Le Bris, Jules Porier, Anja Verderosa",
+  "genre": "Drame, Comédie",
+  "country": "",
+  "duration_min": 81,
+  "poster": "https://images.monnaie-services.com/movie_poster/120/FRXUXJV/O5Q9SIAG.jpg",
+  "trailer": "https://trailers.imscine.com/ld/bbbc1d2ef825d640d3c9fb8e5ccdf25ee46ea496e94096e97502beee4d387acf855da8b1148a88cae78d40d38fa8f2.mp4",
+  "storyline": "Quand le restaurant familial menace de fermer, deux cousins bretons relâchent des rats pour s’improviser dératiseurs. Le même été, deux jeunes femmes trafiquent le concours de beauté local pour promouvoir leurs bijoux. Embarqués dans leurs stratagèmes chaotiques, ces quatre débrouillards en quête d’avenir finissent par se percuter."
+ },
+ "la-fille-condor|alvaro-olmos": {
+  "key": "la-fille-condor|alvaro-olmos",
+  "title": "La Fille Condor",
+  "director": "Álvaro Olmos",
+  "cast": "María Magdalena Sanizo, Marisol Vallejos Montaño, Nely Huayta, Alisson Jimenez, Gregoria Maldonado",
+  "genre": "Drame, Musique",
+  "country": "",
+  "duration_min": 109,
+  "poster": "https://images.monnaie-services.com/movie_poster/120/FRQ9VQ7/L5IMJJTK.jpg",
+  "trailer": "https://trailers.imscine.com/ld/bbbc1d2ef825d640d3c9fb8e5ccdf25ee46ea496e94096e97502beee4d387acfc55da8b14ea493dbe09b0ae2d0a8f2.mp4",
+  "storyline": "Clara est une doula quechua qui chante pour apaiser la douleur des femmes enceintes. Sa mère Ana, sage-femme chevronnée, considère ce don comme un miracle. Influencée par une amie, et après une dispute avec sa mère, la jeune femme décide de partir pour la grande ville. Depuis la communauté subit la mort mystérieuse d'animaux et des récoltes, les villageois attribuent cette punition au départ de Clara. Sa mère décide de la retrouver."
  }
 }

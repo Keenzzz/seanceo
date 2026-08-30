@@ -12,6 +12,7 @@ sans accents) et en complétant chaque champ vide par l'autre source.
 """
 
 import json
+import math
 import re
 import unicodedata
 from collections import Counter, defaultdict
@@ -26,6 +27,137 @@ INDE = tuple(f"{k}.json" for k in KINDS)
 # de l'open data du SCARE (fetch_salles.py) — elles n'ont pas de champ `chain`.
 CHAIN_PREFIXES = ("pathe", "cgr", "ugc", "grandecran", "salles",
                   "megarama", "mk2", "kinepolis", "cineville")
+
+
+# —— Agglomérations : rattacher les banlieues à leur ville-centre ——————————
+#
+# Signalé le 2026-08-30 par un habitant de Décines-Charpieu : chercher « Lyon »
+# ne montrait QUE les salles de la commune de Lyon. Ni le Ciné Toboggan (sa
+# propre salle, à 10 km), ni le Pathé Carré de Soie (Vaulx-en-Velin) n'y
+# apparaissaient — au point qu'il croyait ce dernier ABSENT du site alors qu'il
+# y était depuis toujours, rangé sous sa commune. Une frontière communale n'est
+# pas une frontière de spectateur : personne ne renonce à un cinéma parce qu'il
+# est de l'autre côté du périphérique.
+#
+# ⚠️ On rattache par DISTANCE, pas par code postal ni par département. Le
+# département 69 mettrait Villefranche-sur-Saône (30 km, une autre vie
+# quotidienne) dans « Lyon », et raterait au passage les agglomérations à
+# cheval sur deux départements — Bayonne (64) et Tarnos (40) en sont, à 3,6 km
+# l'une de l'autre. La distance dit ce qu'on veut vraiment dire : « à portée de
+# soirée ».
+#
+# Le rayon a été calibré sur les données réelles (2026-08-30, 360 salles) :
+#   12 km → rate Brignais (11,1 km) de peu et n'attrape pas La Mézière ;
+#   15 km → les 5 banlieues lyonnaises attendues, Blagnac/Labège à Toulouse,
+#           Bègles/Talence/Villenave à Bordeaux, Tourcoing/Villeneuve-d'Ascq
+#           à Lille — et RIEN d'aberrant ;
+#   20 km → fait entrer Trévoux (Ain) dans Lyon et Autrans dans Grenoble : des
+#           villages de montagne ou d'un autre bassin de vie. Trop large.
+AGGLO_RAYON_KM = 15
+
+# Villes-centres candidates. C'est une LISTE TENUE À LA MAIN, et c'est
+# volontaire : elle n'encode pas « la plus grosse ville du coin » (Grenoble n'a
+# qu'une salle chez nous, Échirolles aussi) mais « le nom que les gens tapent ».
+#
+# Une ville-centre n'est JAMAIS rattachée à une autre. C'est ce qui empêche
+# Marseille et Aix-en-Provence de s'absorber mutuellement selon l'ordre de
+# parcours — mais c'est aussi pourquoi **on n'y met que de vraies villes-centres**.
+# Y ajouter Villeurbanne, Montreuil ou Roubaix COUPERAIT leur agglomération en
+# deux : Le Zola cesserait d'apparaître dans Lyon pour former un « Villeurbanne »
+# solitaire à 4 km de la place Bellecour, ce qui est exactement le bug qu'on
+# corrige. Une commune de banlieue, même grande, reste une banlieue ici.
+AGGLO_CORES = (
+    "paris", "lyon", "marseille", "toulouse", "nice", "nantes", "montpellier",
+    "strasbourg", "bordeaux", "lille", "rennes", "reims", "saint-etienne",
+    "toulon", "grenoble", "dijon", "angers", "nimes", "clermont-ferrand",
+    "le-mans", "aix-en-provence", "brest", "tours", "amiens", "limoges",
+    "annecy", "perpignan", "besancon", "metz", "orleans", "rouen", "mulhouse",
+    "caen", "nancy", "avignon", "poitiers", "pau", "le-havre", "bayonne",
+    "valence", "quimper", "la-rochelle", "lorient", "troyes", "chambery",
+)
+
+
+def _distance_km(a: tuple[float, float], b: tuple[float, float]) -> float:
+    """Distance à vol d'oiseau (Haversine), en kilomètres.
+
+    Même formule que `km()` dans assets/proximite.js : le site classe déjà les
+    villes par distance côté navigateur, on ne va pas en inventer une seconde.
+    À vol d'oiseau suffit — on trie des communes limitrophes, pas des trajets."""
+    rayon_terre, rad = 6371.0, math.pi / 180
+    d_lat = (b[0] - a[0]) * rad
+    d_lon = (b[1] - a[1]) * rad
+    x = (math.sin(d_lat / 2) ** 2
+         + math.cos(a[0] * rad) * math.cos(b[0] * rad) * math.sin(d_lon / 2) ** 2)
+    return rayon_terre * 2 * math.atan2(math.sqrt(x), math.sqrt(1 - x))
+
+
+def _centre_ville(cinemas: dict, city: dict) -> tuple[float, float] | None:
+    """Position d'une ville : le barycentre de SES SALLES.
+
+    On ne géocode rien et on n'embarque aucune table de communes : les
+    coordonnées des cinémas sont déjà là, et c'est même la bonne mesure ici —
+    ce qu'on veut savoir, c'est à quelle distance sont les ÉCRANS, pas les
+    mairies. Renvoie None pour une ville dont aucune salle n'a de coordonnées
+    (une seule dans le jeu du 2026-08-30) : elle reste alors seule, sans
+    agglomération, ce qui est le comportement d'avant."""
+    points = [(cinemas[cid]["lat"], cinemas[cid]["lon"]) for cid in city["cinemas"]
+              if cid in cinemas and cinemas[cid].get("lat") is not None
+              and cinemas[cid].get("lon") is not None]
+    if not points:
+        return None
+    return (sum(p[0] for p in points) / len(points),
+            sum(p[1] for p in points) / len(points))
+
+
+def build_agglos(cinemas: dict, cities: dict) -> dict[str, str]:
+    """Rattache chaque commune de banlieue à sa ville-centre.
+
+    Renvoie {slug de la banlieue: slug de la ville-centre}. Les villes-centres
+    elles-mêmes n'y figurent PAS : `agglos.get(slug, slug)` donne donc le slug
+    de regroupement de n'importe quelle ville, centre ou banlieue.
+
+    Une commune à portée de DEUX centres (ça arrive entre Marseille et
+    Aix-en-Provence, entre Lyon et Villeurbanne) va au PLUS PROCHE, jamais au
+    premier rencontré : le résultat ne doit pas dépendre de l'ordre de
+    `AGGLO_CORES`."""
+    centres = {slug: c for slug, c in
+               ((s, _centre_ville(cinemas, cities[s])) for s in AGGLO_CORES
+                if s in cities) if c}
+    agglos: dict[str, str] = {}
+    for slug, city in cities.items():
+        if slug in AGGLO_CORES:
+            continue
+        position = _centre_ville(cinemas, city)
+        if not position:
+            continue
+        proches = [(_distance_km(centre, position), coeur)
+                   for coeur, centre in centres.items()]
+        if not proches:
+            continue
+        distance, coeur = min(proches)
+        if distance <= AGGLO_RAYON_KM:
+            agglos[slug] = coeur
+    return agglos
+
+
+def _apply_agglos(cinemas: dict, cities: dict) -> None:
+    """Pose l'agglomération sur les fiches ville, sans rien y retirer.
+
+    Chaque ville-centre reçoit `metro` (la liste de ses banlieues) et chaque
+    banlieue `metro_of` (le slug de son centre). **Aucune ville ne disparaît**
+    et aucune ne change de nom : /ville/decines-charpieu/ garde sa page, son
+    flux et son référencement — « cinéma à Décines-Charpieu » est une vraie
+    requête, la fusionner dans Lyon la ferait perdre. C'est l'AFFICHAGE qui
+    regroupe (build_site.py), pas les données qui s'effacent."""
+    for banlieue, coeur in build_agglos(cinemas, cities).items():
+        cities[coeur].setdefault("metro", []).append(banlieue)
+        cities[banlieue]["metro_of"] = coeur
+    for city in cities.values():
+        if "metro" in city:
+            # Tri sur le SLUG, pas sur le nom : le slug est déjà déaccentué,
+            # donc « Échirolles » se range à sa place alphabétique au lieu de
+            # tomber après « Vizille » (le É vaut U+00C9, au-delà du Z).
+            city["metro"].sort()
 
 
 def _load(data_dir: Path, name: str):
@@ -515,6 +647,12 @@ def load_merged(data_dir: Path) -> tuple[dict, dict, list, dict]:
     _apply_tmdb(movies, tmdb)
     # Notes Letterboxd (cache local optionnel : classement des Classiques)
     _apply_letterboxd(movies, _load(data_dir, "letterboxd.json") or {})
+
+    # Agglomérations : APRÈS la fusion des chaînes, sinon le barycentre d'une
+    # ville serait calculé sur ses seules salles indés (le Pathé Carré de Soie
+    # est la seule salle de Vaulx-en-Velin : sans lui, la commune n'existe même
+    # pas encore à ce stade).
+    _apply_agglos(cinemas, cities)
 
     # Recalcule le tri des villes par volume de séances (l'ordre a changé)
     cities = dict(sorted(cities.items(), key=lambda kv: -kv[1]["showtime_count"]))

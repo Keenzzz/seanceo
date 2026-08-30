@@ -28,5 +28,55 @@
   "city_slug": "paris",
   "lat": 48.84951,
   "lon": 2.34279
+ },
+ "salles-comoedia": {
+  "id": "salles-comoedia",
+  "name": "Cinéma Comœdia",
+  "address": "13 avenue Berthelot",
+  "postcode": "69007",
+  "city": "Lyon",
+  "city_slug": "lyon",
+  "lat": 45.747368,
+  "lon": 4.835551
+ },
+ "salles-lumiere-terreaux": {
+  "id": "salles-lumiere-terreaux",
+  "name": "Cinéma Lumière Terreaux",
+  "address": "40 rue du Président Édouard Herriot",
+  "postcode": "69001",
+  "city": "Lyon",
+  "city_slug": "lyon",
+  "lat": 45.765295,
+  "lon": 4.834225
+ },
+ "salles-lumiere-bellecour": {
+  "id": "salles-lumiere-bellecour",
+  "name": "Cinéma Lumière Bellecour",
+  "address": "12 rue de la Barre",
+  "postcode": "69002",
+  "city": "Lyon",
+  "city_slug": "lyon",
+  "lat": 45.757456,
+  "lon": 4.835596
+ },
+ "salles-lumiere-fourmi": {
+  "id": "salles-lumiere-fourmi",
+  "name": "Cinéma Lumière Fourmi",
+  "address": "68 rue Pierre Corneille",
+  "postcode": "69003",
+  "city": "Lyon",
+  "city_slug": "lyon",
+  "lat": 45.763283,
+  "lon": 4.843833
+ },
+ "salles-zola": {
+  "id": "salles-zola",
+  "name": "Le Zola",
+  "address": "117 cours Émile Zola",
+  "postcode": "69100",
+  "city": "Villeurbanne",
+  "city_slug": "villeurbanne",
+  "lat": 45.770556,
+  "lon": 4.874404
  }
 }

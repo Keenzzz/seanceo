@@ -349,6 +349,50 @@ html.js .city-list.filtered > .city-group.shown { display: block; }
 }
 .city-group > h3 .meta { font-size: .8rem; font-weight: 400; }
 
+/* —— Agglomérations —————————————————————————————————————————————————————
+   Une page ville-centre (et un bloc « Lyon et sa métropole » sur une fiche
+   film) montre AUSSI les salles des communes voisines. Rien ici n'invente de
+   couleur : la commune se lit en `--muted`, comme toutes les métadonnées du
+   site. Une salle de banlieue n'est pas un cas particulier à signaler, c'est
+   une salle qu'on situe. */
+
+/* La commune d'une salle, dans le titre de son bloc sur une fiche film.
+   Volontairement PAS un .badge : un badge dit une catégorie (indé, chaîne,
+   classique), ici on donne un lieu. */
+.agglo-commune {
+  color: var(--muted);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: .8rem;
+  font-weight: 400;
+  margin-left: 8px;
+  white-space: nowrap;
+}
+
+/* Intertitre « Autour de Lyon » sur une page ville : une vraie césure, pas un
+   titre de plus — c'est là que le lecteur quitte la commune. */
+.agglo-titre {
+  margin-top: 34px;
+  padding-top: 18px;
+  border-top: 1px solid var(--rule);
+}
+.agglo-titre + .meta { margin-top: -.4em; color: var(--muted); }
+
+/* Le saut « Autour de X » dans le sommaire ancré : ambré, parce qu'il SÉPARE
+   deux groupes de pastilles au lieu d'en être une de plus. */
+.city-jump a.saut-agglo {
+  border-color: var(--accent-deep);
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* Page d'une commune de banlieue : le renvoi vers l'agglomération. En haut,
+   juste sous le chapeau — un habitant de Décines a autant besoin du Pathé
+   Carré de Soie que du Ciné Toboggan. */
+.vers-agglo { margin: 12px 0 0; font-size: .95rem; }
+.vers-agglo a { color: var(--accent); text-decoration: none; font-weight: 600; }
+.vers-agglo a:hover { text-decoration: underline; }
+
 .city-prompt {
   color: var(--muted);
   background: var(--panel);

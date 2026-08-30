@@ -1,385 +1,5 @@
 [
  {
-  "id": "salles-brady-15254-2026-08-29T10:00:00",
-  "movie": "ghost-in-the-shell|mamoru-oshii",
-  "cinema": "salles-brady",
-  "start": "2026-08-29T10:00:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://achat.lebrady.fr/r/64483"
- },
- {
-  "id": "salles-brady-1609-2026-08-29T10:10:00",
-  "movie": "le-cadet-d-eau-douce|buster-keaton",
-  "cinema": "salles-brady",
-  "start": "2026-08-29T10:10:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://achat.lebrady.fr/r/64481"
- },
- {
-  "id": "salles-brady-317561-2026-08-29T10:15:00",
-  "movie": "les-tourouges-et-les-toubleus|samantha-cutler",
-  "cinema": "salles-brady",
-  "start": "2026-08-29T10:15:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://achat.lebrady.fr/r/63095"
- },
- {
-  "id": "salles-louxor-188280-2026-08-29T10:45:00",
-  "movie": "fjord|cristian-mungiu",
-  "cinema": "salles-louxor",
-  "start": "2026-08-29T10:45:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://www.louxor-reserver.cotecine.fr/r/252223"
- },
- {
-  "id": "salles-louxor-317561-2026-08-29T10:45:00",
-  "movie": "les-tourouges-et-les-toubleus|samantha-cutler",
-  "cinema": "salles-louxor",
-  "start": "2026-08-29T10:45:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://www.louxor-reserver.cotecine.fr/r/252282"
- },
- {
-  "id": "salles-louxor-327993-2026-08-29T11:00:00",
-  "movie": "l-inconnue|arthur-harari",
-  "cinema": "salles-louxor",
-  "start": "2026-08-29T11:00:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://www.louxor-reserver.cotecine.fr/r/252248"
- },
- {
-  "id": "salles-brady-52309-2026-08-29T11:00:00",
-  "movie": "cowboy-bebop|shin-ichiro-watanabe",
-  "cinema": "salles-brady",
-  "start": "2026-08-29T11:00:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://achat.lebrady.fr/r/64480"
- },
- {
-  "id": "salles-brady-925-2026-08-29T11:30:00",
-  "movie": "parade|jacques-tati",
-  "cinema": "salles-brady",
-  "start": "2026-08-29T11:30:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://achat.lebrady.fr/r/64482"
- },
- {
-  "id": "salles-brady-10251-2026-08-29T11:30:00",
-  "movie": "le-tombeau-des-lucioles|isao-takahata",
-  "cinema": "salles-brady",
-  "start": "2026-08-29T11:30:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://achat.lebrady.fr/r/64484"
- },
- {
-  "id": "salles-louxor-327993-2026-08-29T13:00:00",
-  "movie": "l-inconnue|arthur-harari",
-  "cinema": "salles-louxor",
-  "start": "2026-08-29T13:00:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://www.louxor-reserver.cotecine.fr/r/252245"
- },
- {
-  "id": "salles-brady-6796-2026-08-29T13:00:00",
-  "movie": "wake-in-fright|ted-kotcheff",
-  "cinema": "salles-brady",
-  "start": "2026-08-29T13:00:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://achat.lebrady.fr/r/64407"
- },
- {
-  "id": "salles-brady-2605-2026-08-29T13:10:00",
-  "movie": "jour-de-fete|jacques-tati",
-  "cinema": "salles-brady",
-  "start": "2026-08-29T13:10:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://achat.lebrady.fr/r/64417"
- },
- {
-  "id": "salles-brady-293636-2026-08-29T13:10:00",
-  "movie": "in-waves|phuong-mai-nguyen",
-  "cinema": "salles-brady",
-  "start": "2026-08-29T13:10:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://achat.lebrady.fr/r/64411"
- },
- {
-  "id": "salles-louxor-188280-2026-08-29T13:45:00",
-  "movie": "fjord|cristian-mungiu",
-  "cinema": "salles-louxor",
-  "start": "2026-08-29T13:45:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://www.louxor-reserver.cotecine.fr/r/252224"
- },
- {
-  "id": "salles-louxor-1000024105-2026-08-29T13:45:00",
-  "movie": "soudain|ryusuke-hamaguchi",
-  "cinema": "salles-louxor",
-  "start": "2026-08-29T13:45:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://www.louxor-reserver.cotecine.fr/r/252265"
- },
- {
-  "id": "salles-brady-16382-2026-08-29T14:45:00",
-  "movie": "boogie-nights|paul-thomas-anderson",
-  "cinema": "salles-brady",
-  "start": "2026-08-29T14:45:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://achat.lebrady.fr/r/64418"
- },
- {
-  "id": "salles-brady-316460-2026-08-29T14:50:00",
-  "movie": "the-last-viking|anders-thomas-jensen",
-  "cinema": "salles-brady",
-  "start": "2026-08-29T14:50:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://achat.lebrady.fr/r/64499"
- },
- {
-  "id": "salles-brady-4749-2026-08-29T15:00:00",
-  "movie": "lawrence-d-arabie|david-lean",
-  "cinema": "salles-brady",
-  "start": "2026-08-29T15:00:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://achat.lebrady.fr/r/64408"
- },
- {
-  "id": "salles-louxor-327993-2026-08-29T15:45:00",
-  "movie": "l-inconnue|arthur-harari",
-  "cinema": "salles-louxor",
-  "start": "2026-08-29T15:45:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://www.louxor-reserver.cotecine.fr/r/252246"
- },
- {
-  "id": "salles-louxor-188280-2026-08-29T16:45:00",
-  "movie": "fjord|cristian-mungiu",
-  "cinema": "salles-louxor",
-  "start": "2026-08-29T16:45:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://www.louxor-reserver.cotecine.fr/r/252225"
- },
- {
-  "id": "salles-brady-1000022114-2026-08-29T16:55:00",
-  "movie": "shana|lila-pinell",
-  "cinema": "salles-brady",
-  "start": "2026-08-29T16:55:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://achat.lebrady.fr/r/64413"
- },
- {
-  "id": "salles-louxor-1000041528-2026-08-29T17:30:00",
-  "movie": "un-grand-raccourci|armand-foex",
-  "cinema": "salles-louxor",
-  "start": "2026-08-29T17:30:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://www.louxor-reserver.cotecine.fr/r/252276"
- },
- {
-  "id": "salles-brady-1000034332-2026-08-29T17:30:00",
-  "movie": "une-affaire-turque|huseyin-aydin-gursoy",
-  "cinema": "salles-brady",
-  "start": "2026-08-29T17:30:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://achat.lebrady.fr/r/64419"
- },
- {
-  "id": "salles-brady-1000017192-2026-08-29T18:25:00",
-  "movie": "sur-la-route-d-omaha|cole-webley",
-  "cinema": "salles-brady",
-  "start": "2026-08-29T18:25:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://achat.lebrady.fr/r/64414"
- },
- {
-  "id": "salles-louxor-327993-2026-08-29T18:30:00",
-  "movie": "l-inconnue|arthur-harari",
-  "cinema": "salles-louxor",
-  "start": "2026-08-29T18:30:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://www.louxor-reserver.cotecine.fr/r/252247"
- },
- {
-  "id": "salles-brady-19395-2026-08-29T19:00:00",
-  "movie": "le-bon-la-brute-et-le-truand|sergio-leone",
-  "cinema": "salles-brady",
-  "start": "2026-08-29T19:00:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://achat.lebrady.fr/r/64409"
- },
- {
-  "id": "salles-brady-1000014327-2026-08-29T19:10:00",
-  "movie": "sous-le-ciel-de-kyoto|akiko-ohku",
-  "cinema": "salles-brady",
-  "start": "2026-08-29T19:10:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://achat.lebrady.fr/r/64420"
- },
- {
-  "id": "salles-louxor-1000024105-2026-08-29T19:15:00",
-  "movie": "soudain|ryusuke-hamaguchi",
-  "cinema": "salles-louxor",
-  "start": "2026-08-29T19:15:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://www.louxor-reserver.cotecine.fr/r/252266"
- },
- {
-  "id": "salles-filmotheque-46281-1788023700/VO/270673",
-  "movie": "les-hommes-du-president|alan-j-pakula",
-  "cinema": "salles-filmotheque",
-  "start": "2026-08-29T19:15:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=46281&modresa_jour=2026-08-29"
- },
- {
-  "id": "salles-filmotheque-124974-1788025200/VO/270671",
-  "movie": "la-la-land|damien-chazelle",
-  "cinema": "salles-filmotheque",
-  "start": "2026-08-29T19:40:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=124974&modresa_jour=2026-08-29"
- },
- {
-  "id": "salles-louxor-188280-2026-08-29T19:45:00",
-  "movie": "fjord|cristian-mungiu",
-  "cinema": "salles-louxor",
-  "start": "2026-08-29T19:45:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://www.louxor-reserver.cotecine.fr/r/252226"
- },
- {
-  "id": "salles-brady-1000003998-2026-08-29T19:55:00",
-  "movie": "i-want-your-sex|gregg-araki",
-  "cinema": "salles-brady",
-  "start": "2026-08-29T19:55:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://achat.lebrady.fr/r/64415"
- },
- {
-  "id": "salles-louxor-327993-2026-08-29T21:15:00",
-  "movie": "l-inconnue|arthur-harari",
-  "cinema": "salles-louxor",
-  "start": "2026-08-29T21:15:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://www.louxor-reserver.cotecine.fr/r/252292"
- },
- {
-  "id": "salles-brady-1000017160-2026-08-29T21:25:00",
-  "movie": "maspalomas|aitor-arregi",
-  "cinema": "salles-brady",
-  "start": "2026-08-29T21:25:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://achat.lebrady.fr/r/64421"
- },
- {
-  "id": "salles-brady-316460-2026-08-29T21:35:00",
-  "movie": "the-last-viking|anders-thomas-jensen",
-  "cinema": "salles-brady",
-  "start": "2026-08-29T21:35:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://achat.lebrady.fr/r/64498"
- },
- {
-  "id": "salles-filmotheque-48967-1788033000/VO/270673",
-  "movie": "blade-runner|ridley-scott",
-  "cinema": "salles-filmotheque",
-  "start": "2026-08-29T21:50:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=48967&modresa_jour=2026-08-29"
- },
- {
-  "id": "salles-brady-293636-2026-08-29T22:00:00",
-  "movie": "in-waves|phuong-mai-nguyen",
-  "cinema": "salles-brady",
-  "start": "2026-08-29T22:00:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://achat.lebrady.fr/r/64410"
- },
- {
-  "id": "salles-filmotheque-45541-1788033600/VO/270671",
-  "movie": "possession|andrzej-zulawski",
-  "cinema": "salles-filmotheque",
-  "start": "2026-08-29T22:00:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=45541&modresa_jour=2026-08-29"
- },
- {
   "id": "salles-louxor-1000024105-2026-08-30T10:15:00",
   "movie": "soudain|ryusuke-hamaguchi",
   "cinema": "salles-louxor",
@@ -430,6 +50,56 @@
   "booking": "https://www.louxor-reserver.cotecine.fr/r/252288"
  },
  {
+  "id": "salles-comoedia-294281-2026-08-30T10:45:00",
+  "movie": "la-bataille-de-gaulle-partie-2-jecris-ton-nom|antonin-baudry",
+  "cinema": "salles-comoedia",
+  "start": "2026-08-30T10:45:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335535"
+ },
+ {
+  "id": "salles-comoedia-1000013045-2026-08-30T10:45:00",
+  "movie": "l-odyssee|christopher-nolan",
+  "cinema": "salles-comoedia",
+  "start": "2026-08-30T10:45:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335368"
+ },
+ {
+  "id": "salles-comoedia-188280-2026-08-30T10:50:00",
+  "movie": "fjord|cristian-mungiu",
+  "cinema": "salles-comoedia",
+  "start": "2026-08-30T10:50:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335296"
+ },
+ {
+  "id": "salles-comoedia-316021-2026-08-30T10:50:00",
+  "movie": "oklahoma-honey|andrew-patterson-i",
+  "cinema": "salles-comoedia",
+  "start": "2026-08-30T10:50:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335475"
+ },
+ {
+  "id": "salles-comoedia-327993-2026-08-30T10:55:00",
+  "movie": "l-inconnue|arthur-harari",
+  "cinema": "salles-comoedia",
+  "start": "2026-08-30T10:55:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335403"
+ },
+ {
   "id": "salles-brady-1000001453-2026-08-30T11:00:00",
   "movie": "disclosure-day|steven-spielberg",
   "cinema": "salles-brady",
@@ -438,6 +108,46 @@
   "version": "VO",
   "auditorium": "",
   "booking": "https://achat.lebrady.fr/r/64488"
+ },
+ {
+  "id": "salles-comoedia-1000014102-2026-08-30T11:00:00",
+  "movie": "kayara-princesse-inca|cesar-zelada",
+  "cinema": "salles-comoedia",
+  "start": "2026-08-30T11:00:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335332"
+ },
+ {
+  "id": "salles-comoedia-1000045286-2026-08-30T11:00:00",
+  "movie": "un-amour-depouvantail|samantha-cutler",
+  "cinema": "salles-comoedia",
+  "start": "2026-08-30T11:00:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335431"
+ },
+ {
+  "id": "salles-comoedia-316460-2026-08-30T11:10:00",
+  "movie": "the-last-viking|anders-thomas-jensen",
+  "cinema": "salles-comoedia",
+  "start": "2026-08-30T11:10:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335508"
+ },
+ {
+  "id": "salles-comoedia-1000037046-2026-08-30T11:15:00",
+  "movie": "de-la-comedie-francaise|martin-darondeau",
+  "cinema": "salles-comoedia",
+  "start": "2026-08-30T11:15:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335589"
  },
  {
   "id": "salles-brady-2615-2026-08-30T11:20:00",
@@ -460,6 +170,16 @@
   "booking": "https://achat.lebrady.fr/r/64487"
  },
  {
+  "id": "salles-comoedia-1000024105-2026-08-30T12:45:00",
+  "movie": "soudain|ryusuke-hamaguchi",
+  "cinema": "salles-comoedia",
+  "start": "2026-08-30T12:45:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335323"
+ },
+ {
   "id": "salles-louxor-327993-2026-08-30T13:00:00",
   "movie": "l-inconnue|arthur-harari",
   "cinema": "salles-louxor",
@@ -480,6 +200,16 @@
   "booking": "https://achat.lebrady.fr/r/64426"
  },
  {
+  "id": "salles-comoedia-1000013045-2026-08-30T13:25:00",
+  "movie": "l-odyssee|christopher-nolan",
+  "cinema": "salles-comoedia",
+  "start": "2026-08-30T13:25:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335410"
+ },
+ {
   "id": "salles-brady-316460-2026-08-30T13:30:00",
   "movie": "the-last-viking|anders-thomas-jensen",
   "cinema": "salles-brady",
@@ -490,24 +220,34 @@
   "booking": "https://achat.lebrady.fr/r/64501"
  },
  {
-  "id": "salles-filmotheque-13825-1788089400/VO/270671",
-  "movie": "casablanca|michael-curtiz",
-  "cinema": "salles-filmotheque",
+  "id": "salles-comoedia-1000037046-2026-08-30T13:30:00",
+  "movie": "de-la-comedie-francaise|martin-darondeau",
+  "cinema": "salles-comoedia",
   "start": "2026-08-30T13:30:00",
   "end": "",
-  "version": "VO",
+  "version": "VF",
   "auditorium": "",
-  "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=13825&modresa_jour=2026-08-30"
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335574"
  },
  {
-  "id": "salles-filmotheque-12287-1788089400/VO/270673",
-  "movie": "la-ronde-de-laube|douglas-sirk",
-  "cinema": "salles-filmotheque",
-  "start": "2026-08-30T13:30:00",
+  "id": "salles-comoedia-316021-2026-08-30T13:35:00",
+  "movie": "oklahoma-honey|andrew-patterson-i",
+  "cinema": "salles-comoedia",
+  "start": "2026-08-30T13:35:00",
   "end": "",
   "version": "VO",
   "auditorium": "",
-  "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=12287&modresa_jour=2026-08-30"
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335463"
+ },
+ {
+  "id": "salles-comoedia-1000041528-2026-08-30T13:40:00",
+  "movie": "un-grand-raccourci|armand-foex",
+  "cinema": "salles-comoedia",
+  "start": "2026-08-30T13:40:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335502"
  },
  {
   "id": "salles-louxor-188280-2026-08-30T13:45:00",
@@ -530,6 +270,36 @@
   "booking": "https://achat.lebrady.fr/r/64431"
  },
  {
+  "id": "salles-comoedia-188280-2026-08-30T13:45:00",
+  "movie": "fjord|cristian-mungiu",
+  "cinema": "salles-comoedia",
+  "start": "2026-08-30T13:45:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335278"
+ },
+ {
+  "id": "salles-comoedia-327993-2026-08-30T13:45:00",
+  "movie": "l-inconnue|arthur-harari",
+  "cinema": "salles-comoedia",
+  "start": "2026-08-30T13:45:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335394"
+ },
+ {
+  "id": "salles-comoedia-294280-2026-08-30T13:55:00",
+  "movie": "la-bataille-de-gaulle-partie-1-l-age-de-fer|antonin-baudry",
+  "cinema": "salles-comoedia",
+  "start": "2026-08-30T13:55:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335519"
+ },
+ {
   "id": "salles-louxor-1000024105-2026-08-30T14:00:00",
   "movie": "soudain|ryusuke-hamaguchi",
   "cinema": "salles-louxor",
@@ -538,6 +308,16 @@
   "version": "VO",
   "auditorium": "",
   "booking": "https://www.louxor-reserver.cotecine.fr/r/252268"
+ },
+ {
+  "id": "salles-comoedia-294281-2026-08-30T14:10:00",
+  "movie": "la-bataille-de-gaulle-partie-2-jecris-ton-nom|antonin-baudry",
+  "cinema": "salles-comoedia",
+  "start": "2026-08-30T14:10:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335359"
  },
  {
   "id": "salles-brady-1000034332-2026-08-30T14:30:00",
@@ -550,24 +330,14 @@
   "booking": "https://achat.lebrady.fr/r/64427"
  },
  {
-  "id": "salles-filmotheque-46281-1788095400/VO/270673",
-  "movie": "les-hommes-du-president|alan-j-pakula",
-  "cinema": "salles-filmotheque",
-  "start": "2026-08-30T15:10:00",
+  "id": "salles-comoedia-1000037046-2026-08-30T15:20:00",
+  "movie": "de-la-comedie-francaise|martin-darondeau",
+  "cinema": "salles-comoedia",
+  "start": "2026-08-30T15:20:00",
   "end": "",
-  "version": "VO",
+  "version": "VF",
   "auditorium": "",
-  "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=46281&modresa_jour=2026-08-30"
- },
- {
-  "id": "salles-filmotheque-145624-1788096600/VO/270671",
-  "movie": "tout-ce-que-le-ciel-permet|douglas-sirk",
-  "cinema": "salles-filmotheque",
-  "start": "2026-08-30T15:30:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=145624&modresa_jour=2026-08-30"
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335577"
  },
  {
   "id": "salles-brady-293636-2026-08-30T15:35:00",
@@ -610,6 +380,46 @@
   "booking": "https://achat.lebrady.fr/r/64429"
  },
  {
+  "id": "salles-comoedia-1000039625-2026-08-30T16:10:00",
+  "movie": "degel|manuela-martelli",
+  "cinema": "salles-comoedia",
+  "start": "2026-08-30T16:10:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335484"
+ },
+ {
+  "id": "salles-comoedia-96113-2026-08-30T16:15:00",
+  "movie": "des-jours-et-des-nuits-dans-la-foret|satyajit-ray",
+  "cinema": "salles-comoedia",
+  "start": "2026-08-30T16:15:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335472"
+ },
+ {
+  "id": "salles-comoedia-1000024105-2026-08-30T16:30:00",
+  "movie": "soudain|ryusuke-hamaguchi",
+  "cinema": "salles-comoedia",
+  "start": "2026-08-30T16:30:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335326"
+ },
+ {
+  "id": "salles-comoedia-327993-2026-08-30T16:40:00",
+  "movie": "l-inconnue|arthur-harari",
+  "cinema": "salles-comoedia",
+  "start": "2026-08-30T16:40:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335397"
+ },
+ {
   "id": "salles-louxor-188280-2026-08-30T16:45:00",
   "movie": "fjord|cristian-mungiu",
   "cinema": "salles-louxor",
@@ -620,14 +430,34 @@
   "booking": "https://www.louxor-reserver.cotecine.fr/r/252228"
  },
  {
-  "id": "salles-filmotheque-94534-1788102600/VO/270671",
-  "movie": "guet-apens|sam-peckinpah",
-  "cinema": "salles-filmotheque",
+  "id": "salles-comoedia-188280-2026-08-30T16:50:00",
+  "movie": "fjord|cristian-mungiu",
+  "cinema": "salles-comoedia",
+  "start": "2026-08-30T16:50:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335284"
+ },
+ {
+  "id": "salles-comoedia-1000013045-2026-08-30T17:05:00",
+  "movie": "l-odyssee|christopher-nolan",
+  "cinema": "salles-comoedia",
+  "start": "2026-08-30T17:05:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335416"
+ },
+ {
+  "id": "salles-comoedia-318365-2026-08-30T17:10:00",
+  "movie": "decorado|alberto-vazquez-ii",
+  "cinema": "salles-comoedia",
   "start": "2026-08-30T17:10:00",
   "end": "",
   "version": "VO",
   "auditorium": "",
-  "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=94534&modresa_jour=2026-08-30"
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335583"
  },
  {
   "id": "salles-brady-1000034332-2026-08-30T17:15:00",
@@ -638,6 +468,26 @@
   "version": "VF",
   "auditorium": "",
   "booking": "https://achat.lebrady.fr/r/64428"
+ },
+ {
+  "id": "salles-comoedia-294280-2026-08-30T17:15:00",
+  "movie": "la-bataille-de-gaulle-partie-1-l-age-de-fer|antonin-baudry",
+  "cinema": "salles-comoedia",
+  "start": "2026-08-30T17:15:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335525"
+ },
+ {
+  "id": "salles-comoedia-294281-2026-08-30T17:20:00",
+  "movie": "la-bataille-de-gaulle-partie-2-jecris-ton-nom|antonin-baudry",
+  "cinema": "salles-comoedia",
+  "start": "2026-08-30T17:20:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335362"
  },
  {
   "id": "salles-brady-1363-2026-08-30T17:25:00",
@@ -660,16 +510,6 @@
   "booking": "https://www.louxor-reserver.cotecine.fr/r/252269"
  },
  {
-  "id": "salles-filmotheque-3065-1788104700/VO/270673",
-  "movie": "goodbye-dragon-inn|tsai-ming-liang",
-  "cinema": "salles-filmotheque",
-  "start": "2026-08-30T17:45:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=3065&modresa_jour=2026-08-30"
- },
- {
   "id": "salles-louxor-327993-2026-08-30T18:30:00",
   "movie": "l-inconnue|arthur-harari",
   "cinema": "salles-louxor",
@@ -678,6 +518,26 @@
   "version": "VF",
   "auditorium": "",
   "booking": "https://www.louxor-reserver.cotecine.fr/r/252252"
+ },
+ {
+  "id": "salles-comoedia-51536-2026-08-30T18:30:00",
+  "movie": "venise-la-lune-et-toi|dino-risi",
+  "cinema": "salles-comoedia",
+  "start": "2026-08-30T18:30:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335496"
+ },
+ {
+  "id": "salles-comoedia-316021-2026-08-30T18:35:00",
+  "movie": "oklahoma-honey|andrew-patterson-i",
+  "cinema": "salles-comoedia",
+  "start": "2026-08-30T18:35:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335466"
  },
  {
   "id": "salles-brady-316460-2026-08-30T19:05:00",
@@ -690,24 +550,14 @@
   "booking": "https://achat.lebrady.fr/r/64502"
  },
  {
-  "id": "salles-filmotheque-46281-1788110100/VO/270673",
-  "movie": "les-hommes-du-president|alan-j-pakula",
-  "cinema": "salles-filmotheque",
-  "start": "2026-08-30T19:15:00",
+  "id": "salles-comoedia-1000037046-2026-08-30T19:10:00",
+  "movie": "de-la-comedie-francaise|martin-darondeau",
+  "cinema": "salles-comoedia",
+  "start": "2026-08-30T19:10:00",
   "end": "",
-  "version": "VO",
+  "version": "VF",
   "auditorium": "",
-  "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=46281&modresa_jour=2026-08-30"
- },
- {
-  "id": "salles-filmotheque-13871-1788111000/VO/270671",
-  "movie": "fargo|joel-et-ethan-coen",
-  "cinema": "salles-filmotheque",
-  "start": "2026-08-30T19:30:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=13871&modresa_jour=2026-08-30"
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335580"
  },
  {
   "id": "salles-brady-1000017160-2026-08-30T19:35:00",
@@ -740,6 +590,86 @@
   "booking": "https://achat.lebrady.fr/r/64425"
  },
  {
+  "id": "salles-comoedia-327993-2026-08-30T20:10:00",
+  "movie": "l-inconnue|arthur-harari",
+  "cinema": "salles-comoedia",
+  "start": "2026-08-30T20:10:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335400"
+ },
+ {
+  "id": "salles-comoedia-1000024105-2026-08-30T20:15:00",
+  "movie": "soudain|ryusuke-hamaguchi",
+  "cinema": "salles-comoedia",
+  "start": "2026-08-30T20:15:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335329"
+ },
+ {
+  "id": "salles-comoedia-294280-2026-08-30T20:25:00",
+  "movie": "la-bataille-de-gaulle-partie-1-l-age-de-fer|antonin-baudry",
+  "cinema": "salles-comoedia",
+  "start": "2026-08-30T20:25:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335531"
+ },
+ {
+  "id": "salles-comoedia-1000013045-2026-08-30T20:30:00",
+  "movie": "l-odyssee|christopher-nolan",
+  "cinema": "salles-comoedia",
+  "start": "2026-08-30T20:30:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335422"
+ },
+ {
+  "id": "salles-comoedia-294281-2026-08-30T20:35:00",
+  "movie": "la-bataille-de-gaulle-partie-2-jecris-ton-nom|antonin-baudry",
+  "cinema": "salles-comoedia",
+  "start": "2026-08-30T20:35:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335365"
+ },
+ {
+  "id": "salles-comoedia-188280-2026-08-30T20:40:00",
+  "movie": "fjord|cristian-mungiu",
+  "cinema": "salles-comoedia",
+  "start": "2026-08-30T20:40:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335290"
+ },
+ {
+  "id": "salles-comoedia-1000039625-2026-08-30T20:50:00",
+  "movie": "degel|manuela-martelli",
+  "cinema": "salles-comoedia",
+  "start": "2026-08-30T20:50:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335490"
+ },
+ {
+  "id": "salles-comoedia-318365-2026-08-30T20:55:00",
+  "movie": "decorado|alberto-vazquez-ii",
+  "cinema": "salles-comoedia",
+  "start": "2026-08-30T20:55:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335586"
+ },
+ {
   "id": "salles-brady-16382-2026-08-30T21:10:00",
   "movie": "boogie-nights|paul-thomas-anderson",
   "cinema": "salles-brady",
@@ -750,6 +680,16 @@
   "booking": "https://achat.lebrady.fr/r/64436"
  },
  {
+  "id": "salles-comoedia-316021-2026-08-30T21:10:00",
+  "movie": "oklahoma-honey|andrew-patterson-i",
+  "cinema": "salles-comoedia",
+  "start": "2026-08-30T21:10:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335469"
+ },
+ {
   "id": "salles-louxor-327993-2026-08-30T21:15:00",
   "movie": "l-inconnue|arthur-harari",
   "cinema": "salles-louxor",
@@ -758,16 +698,6 @@
   "version": "VF",
   "auditorium": "",
   "booking": "https://www.louxor-reserver.cotecine.fr/r/252289"
- },
- {
-  "id": "salles-filmotheque-4320-1788117600/VO/270671",
-  "movie": "zodiac|david-fincher",
-  "cinema": "salles-filmotheque",
-  "start": "2026-08-30T21:20:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=4320&modresa_jour=2026-08-30"
  },
  {
   "id": "salles-louxor-1000041528-2026-08-30T21:30:00",
@@ -800,16 +730,6 @@
   "booking": "https://achat.lebrady.fr/r/64430"
  },
  {
-  "id": "salles-filmotheque-3733-1788119400/VO/270673",
-  "movie": "profession-reporter|michelangelo-antonioni",
-  "cinema": "salles-filmotheque",
-  "start": "2026-08-30T21:50:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=3733&modresa_jour=2026-08-30"
- },
- {
   "id": "salles-brady-10251-2026-08-31T10:00:00",
   "movie": "le-tombeau-des-lucioles|isao-takahata",
   "cinema": "salles-brady",
@@ -838,6 +758,46 @@
   "version": "VF",
   "auditorium": "",
   "booking": "https://achat.lebrady.fr/r/63097"
+ },
+ {
+  "id": "salles-lumiere-terreaux-449360-1788164100/VO/263874",
+  "movie": "fjord|cristian-mungiu",
+  "cinema": "salles-lumiere-terreaux",
+  "start": "2026-08-31T10:15:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-terreaux-vad.cotecine.fr/reserver/?modresa_film=449360&modresa_jour=2026-08-31"
+ },
+ {
+  "id": "salles-lumiere-terreaux-603934-1788164100/VF/263894",
+  "movie": "l-inconnue|arthur-harari",
+  "cinema": "salles-lumiere-terreaux",
+  "start": "2026-08-31T10:15:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-terreaux-vad.cotecine.fr/reserver/?modresa_film=603934&modresa_jour=2026-08-31"
+ },
+ {
+  "id": "salles-lumiere-terreaux-378034-1788164100/VFST/263884",
+  "movie": "la-bataille-de-gaulle-partie-2-j-ecris-ton-nom|antonin-baudry",
+  "cinema": "salles-lumiere-terreaux",
+  "start": "2026-08-31T10:15:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-terreaux-vad.cotecine.fr/reserver/?modresa_film=378034&modresa_jour=2026-08-31"
+ },
+ {
+  "id": "salles-lumiere-terreaux-627218-1788164100/VO/263864",
+  "movie": "soudain|ryusuke-hamaguchi",
+  "cinema": "salles-lumiere-terreaux",
+  "start": "2026-08-31T10:15:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-terreaux-vad.cotecine.fr/reserver/?modresa_film=627218&modresa_jour=2026-08-31"
  },
  {
   "id": "salles-brady-2614-2026-08-31T11:15:00",
@@ -890,6 +850,26 @@
   "booking": "https://achat.lebrady.fr/r/64438"
  },
  {
+  "id": "salles-lumiere-terreaux-603934-1788174000/VF/263874",
+  "movie": "l-inconnue|arthur-harari",
+  "cinema": "salles-lumiere-terreaux",
+  "start": "2026-08-31T13:00:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-terreaux-vad.cotecine.fr/reserver/?modresa_film=603934&modresa_jour=2026-08-31"
+ },
+ {
+  "id": "salles-lumiere-terreaux-627218-1788174000/VO/263894",
+  "movie": "soudain|ryusuke-hamaguchi",
+  "cinema": "salles-lumiere-terreaux",
+  "start": "2026-08-31T13:00:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-terreaux-vad.cotecine.fr/reserver/?modresa_film=627218&modresa_jour=2026-08-31"
+ },
+ {
   "id": "salles-brady-1000017192-2026-08-31T13:25:00",
   "movie": "sur-la-route-d-omaha|cole-webley",
   "cinema": "salles-brady",
@@ -898,6 +878,16 @@
   "version": "VO",
   "auditorium": "",
   "booking": "https://achat.lebrady.fr/r/64447"
+ },
+ {
+  "id": "salles-comoedia-1000013045-2026-08-31T13:25:00",
+  "movie": "l-odyssee|christopher-nolan",
+  "cinema": "salles-comoedia",
+  "start": "2026-08-31T13:25:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335411"
  },
  {
   "id": "salles-filmotheque-49096-1788175800/VO/270673",
@@ -920,6 +910,56 @@
   "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=46281&modresa_jour=2026-08-31"
  },
  {
+  "id": "salles-comoedia-1000037046-2026-08-31T13:30:00",
+  "movie": "de-la-comedie-francaise|martin-darondeau",
+  "cinema": "salles-comoedia",
+  "start": "2026-08-31T13:30:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335536"
+ },
+ {
+  "id": "salles-comoedia-316021-2026-08-31T13:35:00",
+  "movie": "oklahoma-honey|andrew-patterson-i",
+  "cinema": "salles-comoedia",
+  "start": "2026-08-31T13:35:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335440"
+ },
+ {
+  "id": "salles-lumiere-terreaux-615318-1788176100/VO/263884",
+  "movie": "l-odyssee|christopher-nolan",
+  "cinema": "salles-lumiere-terreaux",
+  "start": "2026-08-31T13:35:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-terreaux-vad.cotecine.fr/reserver/?modresa_film=615318&modresa_jour=2026-08-31"
+ },
+ {
+  "id": "salles-comoedia-316460-2026-08-31T13:40:00",
+  "movie": "the-last-viking|anders-thomas-jensen",
+  "cinema": "salles-comoedia",
+  "start": "2026-08-31T13:40:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335509"
+ },
+ {
+  "id": "salles-comoedia-1000041528-2026-08-31T13:40:00",
+  "movie": "un-grand-raccourci|armand-foex",
+  "cinema": "salles-comoedia",
+  "start": "2026-08-31T13:40:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335333"
+ },
+ {
   "id": "salles-louxor-188280-2026-08-31T13:45:00",
   "movie": "fjord|cristian-mungiu",
   "cinema": "salles-louxor",
@@ -940,6 +980,86 @@
   "booking": "https://www.louxor-reserver.cotecine.fr/r/252278"
  },
  {
+  "id": "salles-comoedia-188280-2026-08-31T13:45:00",
+  "movie": "fjord|cristian-mungiu",
+  "cinema": "salles-comoedia",
+  "start": "2026-08-31T13:45:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335279"
+ },
+ {
+  "id": "salles-comoedia-327993-2026-08-31T13:45:00",
+  "movie": "l-inconnue|arthur-harari",
+  "cinema": "salles-comoedia",
+  "start": "2026-08-31T13:45:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335377"
+ },
+ {
+  "id": "salles-lumiere-bellecour-566664-1788176700/VO/263804",
+  "movie": "paradise|jeremy-comte",
+  "cinema": "salles-lumiere-bellecour",
+  "start": "2026-08-31T13:45:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-bellecour-vad.cotecine.fr/reserver/?modresa_film=566664&modresa_jour=2026-08-31"
+ },
+ {
+  "id": "salles-lumiere-fourmi-584420-1788176700/VF/263834",
+  "movie": "jim-queen|marco-nguyen-et-nicolas-athane",
+  "cinema": "salles-lumiere-fourmi",
+  "start": "2026-08-31T13:45:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-fourmi-vad.cotecine.fr/reserver/?modresa_film=584420&modresa_jour=2026-08-31"
+ },
+ {
+  "id": "salles-lumiere-bellecour-634032-1788177000/VO/262704",
+  "movie": "degel|manuela-martelli",
+  "cinema": "salles-lumiere-bellecour",
+  "start": "2026-08-31T13:50:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-bellecour-vad.cotecine.fr/reserver/?modresa_film=634032&modresa_jour=2026-08-31"
+ },
+ {
+  "id": "salles-lumiere-fourmi-289433-1788177000/VO/263844",
+  "movie": "le-bon-la-brute-et-le-truand|sergio-leone",
+  "cinema": "salles-lumiere-fourmi",
+  "start": "2026-08-31T13:50:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-fourmi-vad.cotecine.fr/reserver/?modresa_film=289433&modresa_jour=2026-08-31"
+ },
+ {
+  "id": "salles-lumiere-fourmi-626418-1788177000/VF/263824",
+  "movie": "marius-et-le-royaume-des-mers|endre-skandfer",
+  "cinema": "salles-lumiere-fourmi",
+  "start": "2026-08-31T13:50:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-fourmi-vad.cotecine.fr/reserver/?modresa_film=626418&modresa_jour=2026-08-31"
+ },
+ {
+  "id": "salles-comoedia-294280-2026-08-31T13:55:00",
+  "movie": "la-bataille-de-gaulle-partie-1-l-age-de-fer|antonin-baudry",
+  "cinema": "salles-comoedia",
+  "start": "2026-08-31T13:55:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335520"
+ },
+ {
   "id": "salles-brady-1609-2026-08-31T14:00:00",
   "movie": "le-cadet-d-eau-douce|buster-keaton",
   "cinema": "salles-brady",
@@ -948,6 +1068,46 @@
   "version": "VF",
   "auditorium": "",
   "booking": "https://achat.lebrady.fr/r/63098"
+ },
+ {
+  "id": "salles-lumiere-bellecour-14239-1788177600/VO/263814",
+  "movie": "sanjuro|akira-kurosawa",
+  "cinema": "salles-lumiere-bellecour",
+  "start": "2026-08-31T14:00:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-bellecour-vad.cotecine.fr/reserver/?modresa_film=14239&modresa_jour=2026-08-31"
+ },
+ {
+  "id": "salles-comoedia-294281-2026-08-31T14:10:00",
+  "movie": "la-bataille-de-gaulle-partie-2-jecris-ton-nom|antonin-baudry",
+  "cinema": "salles-comoedia",
+  "start": "2026-08-31T14:10:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335342"
+ },
+ {
+  "id": "salles-zola-8946",
+  "movie": "le-berger-et-les-ours|max-keegan",
+  "cinema": "salles-zola",
+  "start": "2026-08-31T14:15:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "1",
+  "booking": "https://www.ticketingcine.fr/index.php?lang=fr&nc=1217&ids=8946"
+ },
+ {
+  "id": "salles-lumiere-terreaux-449360-1788179400/VO/263864",
+  "movie": "fjord|cristian-mungiu",
+  "cinema": "salles-lumiere-terreaux",
+  "start": "2026-08-31T14:30:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-terreaux-vad.cotecine.fr/reserver/?modresa_film=449360&modresa_jour=2026-08-31"
  },
  {
   "id": "salles-brady-4749-2026-08-31T15:00:00",
@@ -970,6 +1130,16 @@
   "booking": "https://achat.lebrady.fr/r/64437"
  },
  {
+  "id": "salles-comoedia-1000037046-2026-08-31T15:20:00",
+  "movie": "de-la-comedie-francaise|martin-darondeau",
+  "cinema": "salles-comoedia",
+  "start": "2026-08-31T15:20:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335537"
+ },
+ {
   "id": "salles-louxor-1000024105-2026-08-31T15:30:00",
   "movie": "soudain|ryusuke-hamaguchi",
   "cinema": "salles-louxor",
@@ -988,6 +1158,46 @@
   "version": "VO",
   "auditorium": "",
   "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=29507&modresa_jour=2026-08-31"
+ },
+ {
+  "id": "salles-lumiere-fourmi-608104-1788183000/VO/263834",
+  "movie": "i-want-your-sex|gregg-araki",
+  "cinema": "salles-lumiere-fourmi",
+  "start": "2026-08-31T15:30:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-fourmi-vad.cotecine.fr/reserver/?modresa_film=608104&modresa_jour=2026-08-31"
+ },
+ {
+  "id": "salles-lumiere-fourmi-5892-1788183000/VF/263824",
+  "movie": "les-nouvelles-aventures-de-la-petite-taupe|zdenek-miler",
+  "cinema": "salles-lumiere-fourmi",
+  "start": "2026-08-31T15:30:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-fourmi-vad.cotecine.fr/reserver/?modresa_film=5892&modresa_jour=2026-08-31"
+ },
+ {
+  "id": "salles-lumiere-terreaux-603934-1788183600/VF/263874",
+  "movie": "l-inconnue|arthur-harari",
+  "cinema": "salles-lumiere-terreaux",
+  "start": "2026-08-31T15:40:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-terreaux-vad.cotecine.fr/reserver/?modresa_film=603934&modresa_jour=2026-08-31"
+ },
+ {
+  "id": "salles-lumiere-bellecour-635022-1788183600/VF/263804",
+  "movie": "un-grand-raccourci|armand-foex-clement-devilliers",
+  "cinema": "salles-lumiere-bellecour",
+  "start": "2026-08-31T15:40:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-bellecour-vad.cotecine.fr/reserver/?modresa_film=635022&modresa_jour=2026-08-31"
  },
  {
   "id": "salles-louxor-327993-2026-08-31T15:45:00",
@@ -1010,6 +1220,86 @@
   "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=44071&modresa_jour=2026-08-31"
  },
  {
+  "id": "salles-lumiere-bellecour-578708-1788185100/VO/262704",
+  "movie": "the-last-viking|anders-thomas-jensen",
+  "cinema": "salles-lumiere-bellecour",
+  "start": "2026-08-31T16:05:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-bellecour-vad.cotecine.fr/reserver/?modresa_film=578708&modresa_jour=2026-08-31"
+ },
+ {
+  "id": "salles-lumiere-bellecour-636419-1788185100/VO/263814",
+  "movie": "une-affaire-turque|huseyin-aydin-gursoy",
+  "cinema": "salles-lumiere-bellecour",
+  "start": "2026-08-31T16:05:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-bellecour-vad.cotecine.fr/reserver/?modresa_film=636419&modresa_jour=2026-08-31"
+ },
+ {
+  "id": "salles-comoedia-1000039625-2026-08-31T16:10:00",
+  "movie": "degel|manuela-martelli",
+  "cinema": "salles-comoedia",
+  "start": "2026-08-31T16:10:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335485"
+ },
+ {
+  "id": "salles-comoedia-96113-2026-08-31T16:15:00",
+  "movie": "des-jours-et-des-nuits-dans-la-foret|satyajit-ray",
+  "cinema": "salles-comoedia",
+  "start": "2026-08-31T16:15:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335458"
+ },
+ {
+  "id": "salles-zola-8951",
+  "movie": "des-fleurs-pour-tokyo|",
+  "cinema": "salles-zola",
+  "start": "2026-08-31T16:20:00",
+  "end": "",
+  "version": "VOST",
+  "auditorium": "1",
+  "booking": "https://www.ticketingcine.fr/index.php?lang=fr&nc=1217&ids=8951"
+ },
+ {
+  "id": "salles-comoedia-1000024105-2026-08-31T16:30:00",
+  "movie": "soudain|ryusuke-hamaguchi",
+  "cinema": "salles-comoedia",
+  "start": "2026-08-31T16:30:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335312"
+ },
+ {
+  "id": "salles-lumiere-terreaux-627218-1788186900/VO/263894",
+  "movie": "soudain|ryusuke-hamaguchi",
+  "cinema": "salles-lumiere-terreaux",
+  "start": "2026-08-31T16:35:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-terreaux-vad.cotecine.fr/reserver/?modresa_film=627218&modresa_jour=2026-08-31"
+ },
+ {
+  "id": "salles-comoedia-327993-2026-08-31T16:40:00",
+  "movie": "l-inconnue|arthur-harari",
+  "cinema": "salles-comoedia",
+  "start": "2026-08-31T16:40:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335383"
+ },
+ {
   "id": "salles-louxor-188280-2026-08-31T16:45:00",
   "movie": "fjord|cristian-mungiu",
   "cinema": "salles-louxor",
@@ -1020,6 +1310,36 @@
   "booking": "https://www.louxor-reserver.cotecine.fr/r/252231"
  },
  {
+  "id": "salles-lumiere-fourmi-376520-1788187500/VF/263824",
+  "movie": "in-waves|phuong-mai-nguen",
+  "cinema": "salles-lumiere-fourmi",
+  "start": "2026-08-31T16:45:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-fourmi-vad.cotecine.fr/reserver/?modresa_film=376520&modresa_jour=2026-08-31"
+ },
+ {
+  "id": "salles-comoedia-188280-2026-08-31T16:50:00",
+  "movie": "fjord|cristian-mungiu",
+  "cinema": "salles-comoedia",
+  "start": "2026-08-31T16:50:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335285"
+ },
+ {
+  "id": "salles-lumiere-terreaux-378032-1788188100/VF/263884",
+  "movie": "la-bataille-de-gaulle-partie-1-l-age-de-fer|antonin-baudry",
+  "cinema": "salles-lumiere-terreaux",
+  "start": "2026-08-31T16:55:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-terreaux-vad.cotecine.fr/reserver/?modresa_film=378032&modresa_jour=2026-08-31"
+ },
+ {
   "id": "salles-brady-1000014327-2026-08-31T17:00:00",
   "movie": "sous-le-ciel-de-kyoto|akiko-ohku",
   "cinema": "salles-brady",
@@ -1028,6 +1348,86 @@
   "version": "VO",
   "auditorium": "",
   "booking": "https://achat.lebrady.fr/r/64448"
+ },
+ {
+  "id": "salles-comoedia-1000013045-2026-08-31T17:05:00",
+  "movie": "l-odyssee|christopher-nolan",
+  "cinema": "salles-comoedia",
+  "start": "2026-08-31T17:05:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335417"
+ },
+ {
+  "id": "salles-comoedia-318365-2026-08-31T17:10:00",
+  "movie": "decorado|alberto-vazquez-ii",
+  "cinema": "salles-comoedia",
+  "start": "2026-08-31T17:10:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335539"
+ },
+ {
+  "id": "salles-lumiere-fourmi-633174-1788189000/VF/263844",
+  "movie": "de-la-comedie-francaise|martin-darondeau-bertrand-usclat",
+  "cinema": "salles-lumiere-fourmi",
+  "start": "2026-08-31T17:10:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-fourmi-vad.cotecine.fr/reserver/?modresa_film=633174&modresa_jour=2026-08-31"
+ },
+ {
+  "id": "salles-comoedia-294280-2026-08-31T17:15:00",
+  "movie": "la-bataille-de-gaulle-partie-1-l-age-de-fer|antonin-baudry",
+  "cinema": "salles-comoedia",
+  "start": "2026-08-31T17:15:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335526"
+ },
+ {
+  "id": "salles-comoedia-294281-2026-08-31T17:20:00",
+  "movie": "la-bataille-de-gaulle-partie-2-jecris-ton-nom|antonin-baudry",
+  "cinema": "salles-comoedia",
+  "start": "2026-08-31T17:20:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335348"
+ },
+ {
+  "id": "salles-lumiere-bellecour-566664-1788189600/VO/263804",
+  "movie": "paradise|jeremy-comte",
+  "cinema": "salles-lumiere-bellecour",
+  "start": "2026-08-31T17:20:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-bellecour-vad.cotecine.fr/reserver/?modresa_film=566664&modresa_jour=2026-08-31"
+ },
+ {
+  "id": "salles-lumiere-fourmi-584420-1788189600/VF/263834",
+  "movie": "jim-queen|marco-nguyen-et-nicolas-athane",
+  "cinema": "salles-lumiere-fourmi",
+  "start": "2026-08-31T17:20:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-fourmi-vad.cotecine.fr/reserver/?modresa_film=584420&modresa_jour=2026-08-31"
+ },
+ {
+  "id": "salles-lumiere-terreaux-449360-1788189900/VO/263864",
+  "movie": "fjord|cristian-mungiu",
+  "cinema": "salles-lumiere-terreaux",
+  "start": "2026-08-31T17:25:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-terreaux-vad.cotecine.fr/reserver/?modresa_film=449360&modresa_jour=2026-08-31"
  },
  {
   "id": "salles-filmotheque-46281-1788190200/VO/270673",
@@ -1060,6 +1460,36 @@
   "booking": "https://achat.lebrady.fr/r/64446"
  },
  {
+  "id": "salles-lumiere-bellecour-636419-1788192600/VFST/263814",
+  "movie": "une-affaire-turque|huseyin-aydin-gursoy",
+  "cinema": "salles-lumiere-bellecour",
+  "start": "2026-08-31T18:10:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-bellecour-vad.cotecine.fr/reserver/?modresa_film=636419&modresa_jour=2026-08-31"
+ },
+ {
+  "id": "salles-lumiere-terreaux-603934-1788193200/VF/263874",
+  "movie": "l-inconnue|arthur-harari",
+  "cinema": "salles-lumiere-terreaux",
+  "start": "2026-08-31T18:20:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-terreaux-vad.cotecine.fr/reserver/?modresa_film=603934&modresa_jour=2026-08-31"
+ },
+ {
+  "id": "salles-lumiere-bellecour-634032-1788193500/VO/262704",
+  "movie": "degel|manuela-martelli",
+  "cinema": "salles-lumiere-bellecour",
+  "start": "2026-08-31T18:25:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-bellecour-vad.cotecine.fr/reserver/?modresa_film=634032&modresa_jour=2026-08-31"
+ },
+ {
   "id": "salles-louxor-327993-2026-08-31T18:30:00",
   "movie": "l-inconnue|arthur-harari",
   "cinema": "salles-louxor",
@@ -1068,6 +1498,56 @@
   "version": "VF",
   "auditorium": "",
   "booking": "https://www.louxor-reserver.cotecine.fr/r/252255"
+ },
+ {
+  "id": "salles-comoedia-51536-2026-08-31T18:30:00",
+  "movie": "venise-la-lune-et-toi|dino-risi",
+  "cinema": "salles-comoedia",
+  "start": "2026-08-31T18:30:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335497"
+ },
+ {
+  "id": "salles-comoedia-316021-2026-08-31T18:35:00",
+  "movie": "oklahoma-honey|andrew-patterson-i",
+  "cinema": "salles-comoedia",
+  "start": "2026-08-31T18:35:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335446"
+ },
+ {
+  "id": "salles-zola-8941",
+  "movie": "sur-la-route-d-omaha|cole-webley",
+  "cinema": "salles-zola",
+  "start": "2026-08-31T18:40:00",
+  "end": "",
+  "version": "VOST",
+  "auditorium": "1",
+  "booking": "https://www.ticketingcine.fr/index.php?lang=fr&nc=1217&ids=8941"
+ },
+ {
+  "id": "salles-lumiere-fourmi-629427-1788194700/VO/263824",
+  "movie": "chicas-tristes|fernanda-tovar",
+  "cinema": "salles-lumiere-fourmi",
+  "start": "2026-08-31T18:45:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-fourmi-vad.cotecine.fr/reserver/?modresa_film=629427&modresa_jour=2026-08-31"
+ },
+ {
+  "id": "salles-lumiere-fourmi-630150-1788194700/VF/263844",
+  "movie": "le-triangle-d-or|helene-rosselet-ruiz",
+  "cinema": "salles-lumiere-fourmi",
+  "start": "2026-08-31T18:45:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-fourmi-vad.cotecine.fr/reserver/?modresa_film=630150&modresa_jour=2026-08-31"
  },
  {
   "id": "salles-brady-19395-2026-08-31T19:00:00",
@@ -1080,6 +1560,26 @@
   "booking": "https://achat.lebrady.fr/r/64440"
  },
  {
+  "id": "salles-lumiere-fourmi-42978-1788195900/VO/263834",
+  "movie": "lawrence-d-arabie|david-lean",
+  "cinema": "salles-lumiere-fourmi",
+  "start": "2026-08-31T19:05:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-fourmi-vad.cotecine.fr/reserver/?modresa_film=42978&modresa_jour=2026-08-31"
+ },
+ {
+  "id": "salles-comoedia-1000037046-2026-08-31T19:10:00",
+  "movie": "de-la-comedie-francaise|martin-darondeau",
+  "cinema": "salles-comoedia",
+  "start": "2026-08-31T19:10:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335538"
+ },
+ {
   "id": "salles-louxor-1000024105-2026-08-31T19:15:00",
   "movie": "soudain|ryusuke-hamaguchi",
   "cinema": "salles-louxor",
@@ -1088,6 +1588,16 @@
   "version": "VO",
   "auditorium": "",
   "booking": "https://www.louxor-reserver.cotecine.fr/r/252271"
+ },
+ {
+  "id": "salles-lumiere-bellecour-628871-1788196500/VO/263804",
+  "movie": "memory-of-princess-mumbi|damien-hauser",
+  "cinema": "salles-lumiere-bellecour",
+  "start": "2026-08-31T19:15:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-bellecour-vad.cotecine.fr/reserver/?modresa_film=628871&modresa_jour=2026-08-31"
  },
  {
   "id": "salles-brady-327050-2026-08-31T19:20:00",
@@ -1138,6 +1648,196 @@
   "version": "VO",
   "auditorium": "",
   "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=13992&modresa_jour=2026-08-31"
+ },
+ {
+  "id": "salles-lumiere-terreaux-449360-1788199200/VO/263884",
+  "movie": "fjord|cristian-mungiu",
+  "cinema": "salles-lumiere-terreaux",
+  "start": "2026-08-31T20:00:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-terreaux-vad.cotecine.fr/reserver/?modresa_film=449360&modresa_jour=2026-08-31"
+ },
+ {
+  "id": "salles-comoedia-327993-2026-08-31T20:10:00",
+  "movie": "l-inconnue|arthur-harari",
+  "cinema": "salles-comoedia",
+  "start": "2026-08-31T20:10:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335389"
+ },
+ {
+  "id": "salles-lumiere-terreaux-627218-1788199800/VO/263894",
+  "movie": "soudain|ryusuke-hamaguchi",
+  "cinema": "salles-lumiere-terreaux",
+  "start": "2026-08-31T20:10:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-terreaux-vad.cotecine.fr/reserver/?modresa_film=627218&modresa_jour=2026-08-31"
+ },
+ {
+  "id": "salles-comoedia-1000024105-2026-08-31T20:15:00",
+  "movie": "soudain|ryusuke-hamaguchi",
+  "cinema": "salles-comoedia",
+  "start": "2026-08-31T20:15:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335318"
+ },
+ {
+  "id": "salles-lumiere-bellecour-635022-1788200100/VF/263814",
+  "movie": "un-grand-raccourci|armand-foex-clement-devilliers",
+  "cinema": "salles-lumiere-bellecour",
+  "start": "2026-08-31T20:15:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-bellecour-vad.cotecine.fr/reserver/?modresa_film=635022&modresa_jour=2026-08-31"
+ },
+ {
+  "id": "salles-comoedia-294280-2026-08-31T20:25:00",
+  "movie": "la-bataille-de-gaulle-partie-1-l-age-de-fer|antonin-baudry",
+  "cinema": "salles-comoedia",
+  "start": "2026-08-31T20:25:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335532"
+ },
+ {
+  "id": "salles-comoedia-1000013045-2026-08-31T20:30:00",
+  "movie": "l-odyssee|christopher-nolan",
+  "cinema": "salles-comoedia",
+  "start": "2026-08-31T20:30:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335423"
+ },
+ {
+  "id": "salles-lumiere-terreaux-620410-1788201000/VF/263864",
+  "movie": "histoires-de-la-nuit|lea-mysius",
+  "cinema": "salles-lumiere-terreaux",
+  "start": "2026-08-31T20:30:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-terreaux-vad.cotecine.fr/reserver/?modresa_film=620410&modresa_jour=2026-08-31"
+ },
+ {
+  "id": "salles-zola-8947",
+  "movie": "le-berger-et-les-ours|max-keegan",
+  "cinema": "salles-zola",
+  "start": "2026-08-31T20:30:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "1",
+  "booking": "https://www.ticketingcine.fr/index.php?lang=fr&nc=1217&ids=8947"
+ },
+ {
+  "id": "salles-comoedia-294281-2026-08-31T20:35:00",
+  "movie": "la-bataille-de-gaulle-partie-2-jecris-ton-nom|antonin-baudry",
+  "cinema": "salles-comoedia",
+  "start": "2026-08-31T20:35:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335354"
+ },
+ {
+  "id": "salles-lumiere-fourmi-44889-1788201300/VO/263844",
+  "movie": "wake-in-fright|ted-kotcheff",
+  "cinema": "salles-lumiere-fourmi",
+  "start": "2026-08-31T20:35:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-fourmi-vad.cotecine.fr/reserver/?modresa_film=44889&modresa_jour=2026-08-31"
+ },
+ {
+  "id": "salles-comoedia-188280-2026-08-31T20:40:00",
+  "movie": "fjord|cristian-mungiu",
+  "cinema": "salles-comoedia",
+  "start": "2026-08-31T20:40:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335291"
+ },
+ {
+  "id": "salles-lumiere-bellecour-634032-1788201600/VO/262704",
+  "movie": "degel|manuela-martelli",
+  "cinema": "salles-lumiere-bellecour",
+  "start": "2026-08-31T20:40:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-bellecour-vad.cotecine.fr/reserver/?modresa_film=634032&modresa_jour=2026-08-31"
+ },
+ {
+  "id": "salles-lumiere-fourmi-633174-1788201600/VF/263824",
+  "movie": "de-la-comedie-francaise|martin-darondeau-bertrand-usclat",
+  "cinema": "salles-lumiere-fourmi",
+  "start": "2026-08-31T20:40:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-fourmi-vad.cotecine.fr/reserver/?modresa_film=633174&modresa_jour=2026-08-31"
+ },
+ {
+  "id": "salles-comoedia-1000039625-2026-08-31T20:50:00",
+  "movie": "degel|manuela-martelli",
+  "cinema": "salles-comoedia",
+  "start": "2026-08-31T20:50:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335491"
+ },
+ {
+  "id": "salles-comoedia-318365-2026-08-31T20:55:00",
+  "movie": "decorado|alberto-vazquez-ii",
+  "cinema": "salles-comoedia",
+  "start": "2026-08-31T20:55:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335540"
+ },
+ {
+  "id": "salles-lumiere-bellecour-578708-1788202500/VO/263804",
+  "movie": "the-last-viking|anders-thomas-jensen",
+  "cinema": "salles-lumiere-bellecour",
+  "start": "2026-08-31T20:55:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-bellecour-vad.cotecine.fr/reserver/?modresa_film=578708&modresa_jour=2026-08-31"
+ },
+ {
+  "id": "salles-lumiere-terreaux-603934-1788202800/VF/263874",
+  "movie": "l-inconnue|arthur-harari",
+  "cinema": "salles-lumiere-terreaux",
+  "start": "2026-08-31T21:00:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-terreaux-vad.cotecine.fr/reserver/?modresa_film=603934&modresa_jour=2026-08-31"
+ },
+ {
+  "id": "salles-comoedia-316021-2026-08-31T21:10:00",
+  "movie": "oklahoma-honey|andrew-patterson-i",
+  "cinema": "salles-comoedia",
+  "start": "2026-08-31T21:10:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335452"
  },
  {
   "id": "salles-louxor-327993-2026-08-31T21:15:00",
@@ -1200,6 +1900,46 @@
   "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=249805&modresa_jour=2026-08-31"
  },
  {
+  "id": "salles-lumiere-terreaux-449360-1788250500/VO/263874",
+  "movie": "fjord|cristian-mungiu",
+  "cinema": "salles-lumiere-terreaux",
+  "start": "2026-09-01T10:15:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-terreaux-vad.cotecine.fr/reserver/?modresa_film=449360&modresa_jour=2026-09-01"
+ },
+ {
+  "id": "salles-lumiere-terreaux-603934-1788250500/VF/263894",
+  "movie": "l-inconnue|arthur-harari",
+  "cinema": "salles-lumiere-terreaux",
+  "start": "2026-09-01T10:15:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-terreaux-vad.cotecine.fr/reserver/?modresa_film=603934&modresa_jour=2026-09-01"
+ },
+ {
+  "id": "salles-lumiere-terreaux-615318-1788250500/VO/263884",
+  "movie": "l-odyssee|christopher-nolan",
+  "cinema": "salles-lumiere-terreaux",
+  "start": "2026-09-01T10:15:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-terreaux-vad.cotecine.fr/reserver/?modresa_film=615318&modresa_jour=2026-09-01"
+ },
+ {
+  "id": "salles-lumiere-terreaux-627218-1788250500/VO/263864",
+  "movie": "soudain|ryusuke-hamaguchi",
+  "cinema": "salles-lumiere-terreaux",
+  "start": "2026-09-01T10:15:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-terreaux-vad.cotecine.fr/reserver/?modresa_film=627218&modresa_jour=2026-09-01"
+ },
+ {
   "id": "salles-brady-304130-2026-09-01T11:00:00",
   "movie": "romeria|carla-simon",
   "cinema": "salles-brady",
@@ -1260,6 +2000,26 @@
   "booking": "https://achat.lebrady.fr/r/64450"
  },
  {
+  "id": "salles-lumiere-terreaux-603934-1788260400/VF/263874",
+  "movie": "l-inconnue|arthur-harari",
+  "cinema": "salles-lumiere-terreaux",
+  "start": "2026-09-01T13:00:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-terreaux-vad.cotecine.fr/reserver/?modresa_film=603934&modresa_jour=2026-09-01"
+ },
+ {
+  "id": "salles-lumiere-terreaux-627218-1788260400/VO/263894",
+  "movie": "soudain|ryusuke-hamaguchi",
+  "cinema": "salles-lumiere-terreaux",
+  "start": "2026-09-01T13:00:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-terreaux-vad.cotecine.fr/reserver/?modresa_film=627218&modresa_jour=2026-09-01"
+ },
+ {
   "id": "salles-brady-327050-2026-09-01T13:10:00",
   "movie": "le-heros-de-berlin|wolfgang-becker",
   "cinema": "salles-brady",
@@ -1268,6 +2028,16 @@
   "version": "VO",
   "auditorium": "",
   "booking": "https://achat.lebrady.fr/r/64452"
+ },
+ {
+  "id": "salles-comoedia-1000013045-2026-09-01T13:25:00",
+  "movie": "l-odyssee|christopher-nolan",
+  "cinema": "salles-comoedia",
+  "start": "2026-09-01T13:25:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335412"
  },
  {
   "id": "salles-louxor-1000024105-2026-09-01T13:30:00",
@@ -1300,6 +2070,56 @@
   "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=12915&modresa_jour=2026-09-01"
  },
  {
+  "id": "salles-comoedia-1000037046-2026-09-01T13:30:00",
+  "movie": "de-la-comedie-francaise|martin-darondeau",
+  "cinema": "salles-comoedia",
+  "start": "2026-09-01T13:30:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335546"
+ },
+ {
+  "id": "salles-comoedia-316021-2026-09-01T13:35:00",
+  "movie": "oklahoma-honey|andrew-patterson-i",
+  "cinema": "salles-comoedia",
+  "start": "2026-09-01T13:35:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335441"
+ },
+ {
+  "id": "salles-lumiere-terreaux-615318-1788262500/VO/263884",
+  "movie": "l-odyssee|christopher-nolan",
+  "cinema": "salles-lumiere-terreaux",
+  "start": "2026-09-01T13:35:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-terreaux-vad.cotecine.fr/reserver/?modresa_film=615318&modresa_jour=2026-09-01"
+ },
+ {
+  "id": "salles-comoedia-316460-2026-09-01T13:40:00",
+  "movie": "the-last-viking|anders-thomas-jensen",
+  "cinema": "salles-comoedia",
+  "start": "2026-09-01T13:40:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335334"
+ },
+ {
+  "id": "salles-comoedia-1000041528-2026-09-01T13:40:00",
+  "movie": "un-grand-raccourci|armand-foex",
+  "cinema": "salles-comoedia",
+  "start": "2026-09-01T13:40:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335504"
+ },
+ {
   "id": "salles-louxor-188280-2026-09-01T13:45:00",
   "movie": "fjord|cristian-mungiu",
   "cinema": "salles-louxor",
@@ -1308,6 +2128,126 @@
   "version": "VO",
   "auditorium": "",
   "booking": "https://www.louxor-reserver.cotecine.fr/r/252233"
+ },
+ {
+  "id": "salles-comoedia-188280-2026-09-01T13:45:00",
+  "movie": "fjord|cristian-mungiu",
+  "cinema": "salles-comoedia",
+  "start": "2026-09-01T13:45:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335280"
+ },
+ {
+  "id": "salles-comoedia-327993-2026-09-01T13:45:00",
+  "movie": "l-inconnue|arthur-harari",
+  "cinema": "salles-comoedia",
+  "start": "2026-09-01T13:45:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335378"
+ },
+ {
+  "id": "salles-lumiere-bellecour-635022-1788263100/VF/263804",
+  "movie": "un-grand-raccourci|armand-foex-clement-devilliers",
+  "cinema": "salles-lumiere-bellecour",
+  "start": "2026-09-01T13:45:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-bellecour-vad.cotecine.fr/reserver/?modresa_film=635022&modresa_jour=2026-09-01"
+ },
+ {
+  "id": "salles-lumiere-bellecour-634032-1788263400/VO/262704",
+  "movie": "degel|manuela-martelli",
+  "cinema": "salles-lumiere-bellecour",
+  "start": "2026-09-01T13:50:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-bellecour-vad.cotecine.fr/reserver/?modresa_film=634032&modresa_jour=2026-09-01"
+ },
+ {
+  "id": "salles-lumiere-fourmi-630150-1788263400/VF/263844",
+  "movie": "le-triangle-d-or|helene-rosselet-ruiz",
+  "cinema": "salles-lumiere-fourmi",
+  "start": "2026-09-01T13:50:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-fourmi-vad.cotecine.fr/reserver/?modresa_film=630150&modresa_jour=2026-09-01"
+ },
+ {
+  "id": "salles-lumiere-fourmi-626418-1788263400/VF/263824",
+  "movie": "marius-et-le-royaume-des-mers|endre-skandfer",
+  "cinema": "salles-lumiere-fourmi",
+  "start": "2026-09-01T13:50:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-fourmi-vad.cotecine.fr/reserver/?modresa_film=626418&modresa_jour=2026-09-01"
+ },
+ {
+  "id": "salles-comoedia-294280-2026-09-01T13:55:00",
+  "movie": "la-bataille-de-gaulle-partie-1-l-age-de-fer|antonin-baudry",
+  "cinema": "salles-comoedia",
+  "start": "2026-09-01T13:55:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335512"
+ },
+ {
+  "id": "salles-lumiere-bellecour-13928-1788264000/VO/263814",
+  "movie": "le-chateau-de-l-araignee|akira-kurosawa",
+  "cinema": "salles-lumiere-bellecour",
+  "start": "2026-09-01T14:00:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-bellecour-vad.cotecine.fr/reserver/?modresa_film=13928&modresa_jour=2026-09-01"
+ },
+ {
+  "id": "salles-lumiere-fourmi-42978-1788264000/VO/263834",
+  "movie": "lawrence-d-arabie|david-lean",
+  "cinema": "salles-lumiere-fourmi",
+  "start": "2026-09-01T14:00:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-fourmi-vad.cotecine.fr/reserver/?modresa_film=42978&modresa_jour=2026-09-01"
+ },
+ {
+  "id": "salles-comoedia-294281-2026-09-01T14:10:00",
+  "movie": "la-bataille-de-gaulle-partie-2-jecris-ton-nom|antonin-baudry",
+  "cinema": "salles-comoedia",
+  "start": "2026-09-01T14:10:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335343"
+ },
+ {
+  "id": "salles-zola-8942",
+  "movie": "sur-la-route-d-omaha|cole-webley",
+  "cinema": "salles-zola",
+  "start": "2026-09-01T14:15:00",
+  "end": "",
+  "version": "VOST",
+  "auditorium": "1",
+  "booking": "https://www.ticketingcine.fr/index.php?lang=fr&nc=1217&ids=8942"
+ },
+ {
+  "id": "salles-lumiere-terreaux-449360-1788265800/VO/263864",
+  "movie": "fjord|cristian-mungiu",
+  "cinema": "salles-lumiere-terreaux",
+  "start": "2026-09-01T14:30:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-terreaux-vad.cotecine.fr/reserver/?modresa_film=449360&modresa_jour=2026-09-01"
  },
  {
   "id": "salles-brady-293636-2026-09-01T14:45:00",
@@ -1350,6 +2290,46 @@
   "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=46281&modresa_jour=2026-09-01"
  },
  {
+  "id": "salles-comoedia-1000037046-2026-09-01T15:20:00",
+  "movie": "de-la-comedie-francaise|martin-darondeau",
+  "cinema": "salles-comoedia",
+  "start": "2026-09-01T15:20:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335552"
+ },
+ {
+  "id": "salles-lumiere-bellecour-628871-1788269100/VO/263804",
+  "movie": "memory-of-princess-mumbi|damien-hauser",
+  "cinema": "salles-lumiere-bellecour",
+  "start": "2026-09-01T15:25:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-bellecour-vad.cotecine.fr/reserver/?modresa_film=628871&modresa_jour=2026-09-01"
+ },
+ {
+  "id": "salles-lumiere-fourmi-5892-1788269400/VF/263824",
+  "movie": "les-nouvelles-aventures-de-la-petite-taupe|zdenek-miler",
+  "cinema": "salles-lumiere-fourmi",
+  "start": "2026-09-01T15:30:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-fourmi-vad.cotecine.fr/reserver/?modresa_film=5892&modresa_jour=2026-09-01"
+ },
+ {
+  "id": "salles-lumiere-terreaux-603934-1788270000/VFST/263874",
+  "movie": "l-inconnue|arthur-harari",
+  "cinema": "salles-lumiere-terreaux",
+  "start": "2026-09-01T15:40:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-terreaux-vad.cotecine.fr/reserver/?modresa_film=603934&modresa_jour=2026-09-01"
+ },
+ {
   "id": "salles-louxor-327993-2026-09-01T15:45:00",
   "movie": "l-inconnue|arthur-harari",
   "cinema": "salles-louxor",
@@ -1358,6 +2338,56 @@
   "version": "VF",
   "auditorium": "",
   "booking": "https://www.louxor-reserver.cotecine.fr/r/252257"
+ },
+ {
+  "id": "salles-lumiere-fourmi-633174-1788270300/VF/263844",
+  "movie": "de-la-comedie-francaise|martin-darondeau-bertrand-usclat",
+  "cinema": "salles-lumiere-fourmi",
+  "start": "2026-09-01T15:45:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-fourmi-vad.cotecine.fr/reserver/?modresa_film=633174&modresa_jour=2026-09-01"
+ },
+ {
+  "id": "salles-zola-8952",
+  "movie": "des-fleurs-pour-tokyo|",
+  "cinema": "salles-zola",
+  "start": "2026-09-01T16:00:00",
+  "end": "",
+  "version": "VOST",
+  "auditorium": "1",
+  "booking": "https://www.ticketingcine.fr/index.php?lang=fr&nc=1217&ids=8952"
+ },
+ {
+  "id": "salles-lumiere-bellecour-578708-1788271500/VO/262704",
+  "movie": "the-last-viking|anders-thomas-jensen",
+  "cinema": "salles-lumiere-bellecour",
+  "start": "2026-09-01T16:05:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-bellecour-vad.cotecine.fr/reserver/?modresa_film=578708&modresa_jour=2026-09-01"
+ },
+ {
+  "id": "salles-comoedia-1000039625-2026-09-01T16:10:00",
+  "movie": "degel|manuela-martelli",
+  "cinema": "salles-comoedia",
+  "start": "2026-09-01T16:10:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335486"
+ },
+ {
+  "id": "salles-comoedia-96113-2026-09-01T16:15:00",
+  "movie": "des-jours-et-des-nuits-dans-la-foret|satyajit-ray",
+  "cinema": "salles-comoedia",
+  "start": "2026-09-01T16:15:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335459"
  },
  {
   "id": "salles-brady-2615-2026-09-01T16:20:00",
@@ -1370,6 +2400,46 @@
   "booking": "https://achat.lebrady.fr/r/64461"
  },
  {
+  "id": "salles-lumiere-bellecour-636419-1788272400/VO/263814",
+  "movie": "une-affaire-turque|huseyin-aydin-gursoy",
+  "cinema": "salles-lumiere-bellecour",
+  "start": "2026-09-01T16:20:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-bellecour-vad.cotecine.fr/reserver/?modresa_film=636419&modresa_jour=2026-09-01"
+ },
+ {
+  "id": "salles-comoedia-1000024105-2026-09-01T16:30:00",
+  "movie": "soudain|ryusuke-hamaguchi",
+  "cinema": "salles-comoedia",
+  "start": "2026-09-01T16:30:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335313"
+ },
+ {
+  "id": "salles-lumiere-terreaux-627218-1788273300/VO/263894",
+  "movie": "soudain|ryusuke-hamaguchi",
+  "cinema": "salles-lumiere-terreaux",
+  "start": "2026-09-01T16:35:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-terreaux-vad.cotecine.fr/reserver/?modresa_film=627218&modresa_jour=2026-09-01"
+ },
+ {
+  "id": "salles-comoedia-327993-2026-09-01T16:40:00",
+  "movie": "l-inconnue|arthur-harari",
+  "cinema": "salles-comoedia",
+  "start": "2026-09-01T16:40:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335384"
+ },
+ {
   "id": "salles-louxor-188280-2026-09-01T16:45:00",
   "movie": "fjord|cristian-mungiu",
   "cinema": "salles-louxor",
@@ -1378,6 +2448,16 @@
   "version": "VO",
   "auditorium": "",
   "booking": "https://www.louxor-reserver.cotecine.fr/r/252234"
+ },
+ {
+  "id": "salles-lumiere-fourmi-629427-1788273900/VO/263824",
+  "movie": "chicas-tristes|fernanda-tovar",
+  "cinema": "salles-lumiere-fourmi",
+  "start": "2026-09-01T16:45:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-fourmi-vad.cotecine.fr/reserver/?modresa_film=629427&modresa_jour=2026-09-01"
  },
  {
   "id": "salles-brady-316460-2026-09-01T16:50:00",
@@ -1390,6 +2470,16 @@
   "booking": "https://achat.lebrady.fr/r/64504"
  },
  {
+  "id": "salles-comoedia-188280-2026-09-01T16:50:00",
+  "movie": "fjord|cristian-mungiu",
+  "cinema": "salles-comoedia",
+  "start": "2026-09-01T16:50:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335286"
+ },
+ {
   "id": "salles-brady-19395-2026-09-01T16:55:00",
   "movie": "le-bon-la-brute-et-le-truand|sergio-leone",
   "cinema": "salles-brady",
@@ -1400,6 +2490,56 @@
   "booking": "https://achat.lebrady.fr/r/64451"
  },
  {
+  "id": "salles-lumiere-terreaux-378034-1788274500/VF/263884",
+  "movie": "la-bataille-de-gaulle-partie-2-j-ecris-ton-nom|antonin-baudry",
+  "cinema": "salles-lumiere-terreaux",
+  "start": "2026-09-01T16:55:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-terreaux-vad.cotecine.fr/reserver/?modresa_film=378034&modresa_jour=2026-09-01"
+ },
+ {
+  "id": "salles-comoedia-1000013045-2026-09-01T17:05:00",
+  "movie": "l-odyssee|christopher-nolan",
+  "cinema": "salles-comoedia",
+  "start": "2026-09-01T17:05:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335418"
+ },
+ {
+  "id": "salles-lumiere-bellecour-566664-1788275100/VO/263804",
+  "movie": "paradise|jeremy-comte",
+  "cinema": "salles-lumiere-bellecour",
+  "start": "2026-09-01T17:05:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-bellecour-vad.cotecine.fr/reserver/?modresa_film=566664&modresa_jour=2026-09-01"
+ },
+ {
+  "id": "salles-comoedia-318365-2026-09-01T17:10:00",
+  "movie": "decorado|alberto-vazquez-ii",
+  "cinema": "salles-comoedia",
+  "start": "2026-09-01T17:10:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335564"
+ },
+ {
+  "id": "salles-comoedia-294280-2026-09-01T17:15:00",
+  "movie": "la-bataille-de-gaulle-partie-1-l-age-de-fer|antonin-baudry",
+  "cinema": "salles-comoedia",
+  "start": "2026-09-01T17:15:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335513"
+ },
+ {
   "id": "salles-filmotheque-288075-1788276000/VO/270673",
   "movie": "les-flics-ne-dorment-pas-la-nuit|richard-fleischer",
   "cinema": "salles-filmotheque",
@@ -1408,6 +2548,36 @@
   "version": "VO",
   "auditorium": "",
   "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=288075&modresa_jour=2026-09-01"
+ },
+ {
+  "id": "salles-comoedia-294281-2026-09-01T17:20:00",
+  "movie": "la-bataille-de-gaulle-partie-2-jecris-ton-nom|antonin-baudry",
+  "cinema": "salles-comoedia",
+  "start": "2026-09-01T17:20:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335349"
+ },
+ {
+  "id": "salles-lumiere-terreaux-449360-1788276300/VO/263864",
+  "movie": "fjord|cristian-mungiu",
+  "cinema": "salles-lumiere-terreaux",
+  "start": "2026-09-01T17:25:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-terreaux-vad.cotecine.fr/reserver/?modresa_film=449360&modresa_jour=2026-09-01"
+ },
+ {
+  "id": "salles-lumiere-fourmi-289433-1788276300/VO/263844",
+  "movie": "le-bon-la-brute-et-le-truand|sergio-leone",
+  "cinema": "salles-lumiere-fourmi",
+  "start": "2026-09-01T17:25:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-fourmi-vad.cotecine.fr/reserver/?modresa_film=289433&modresa_jour=2026-09-01"
  },
  {
   "id": "salles-louxor-1000041528-2026-09-01T17:30:00",
@@ -1440,6 +2610,36 @@
   "booking": "https://achat.lebrady.fr/r/64462"
  },
  {
+  "id": "salles-lumiere-terreaux-603934-1788279600/VF/263874",
+  "movie": "l-inconnue|arthur-harari",
+  "cinema": "salles-lumiere-terreaux",
+  "start": "2026-09-01T18:20:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-terreaux-vad.cotecine.fr/reserver/?modresa_film=603934&modresa_jour=2026-09-01"
+ },
+ {
+  "id": "salles-lumiere-bellecour-634032-1788279900/VO/262704",
+  "movie": "degel|manuela-martelli",
+  "cinema": "salles-lumiere-bellecour",
+  "start": "2026-09-01T18:25:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-bellecour-vad.cotecine.fr/reserver/?modresa_film=634032&modresa_jour=2026-09-01"
+ },
+ {
+  "id": "salles-lumiere-bellecour-635022-1788279900/VF/263814",
+  "movie": "un-grand-raccourci|armand-foex-clement-devilliers",
+  "cinema": "salles-lumiere-bellecour",
+  "start": "2026-09-01T18:25:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-bellecour-vad.cotecine.fr/reserver/?modresa_film=635022&modresa_jour=2026-09-01"
+ },
+ {
   "id": "salles-louxor-327993-2026-09-01T18:30:00",
   "movie": "l-inconnue|arthur-harari",
   "cinema": "salles-louxor",
@@ -1450,6 +2650,56 @@
   "booking": "https://www.louxor-reserver.cotecine.fr/r/252258"
  },
  {
+  "id": "salles-comoedia-51536-2026-09-01T18:30:00",
+  "movie": "venise-la-lune-et-toi|dino-risi",
+  "cinema": "salles-comoedia",
+  "start": "2026-09-01T18:30:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335498"
+ },
+ {
+  "id": "salles-lumiere-fourmi-608104-1788280200/VO/263834",
+  "movie": "i-want-your-sex|gregg-araki",
+  "cinema": "salles-lumiere-fourmi",
+  "start": "2026-09-01T18:30:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-fourmi-vad.cotecine.fr/reserver/?modresa_film=608104&modresa_jour=2026-09-01"
+ },
+ {
+  "id": "salles-zola-8936",
+  "movie": "soudain|ryusuke-hamaguchi",
+  "cinema": "salles-zola",
+  "start": "2026-09-01T18:30:00",
+  "end": "",
+  "version": "VOST",
+  "auditorium": "1",
+  "booking": "https://www.ticketingcine.fr/index.php?lang=fr&nc=1217&ids=8936"
+ },
+ {
+  "id": "salles-comoedia-316021-2026-09-01T18:35:00",
+  "movie": "oklahoma-honey|andrew-patterson-i",
+  "cinema": "salles-comoedia",
+  "start": "2026-09-01T18:35:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335447"
+ },
+ {
+  "id": "salles-lumiere-fourmi-376520-1788281100/VF/263824",
+  "movie": "in-waves|phuong-mai-nguen",
+  "cinema": "salles-lumiere-fourmi",
+  "start": "2026-09-01T18:45:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-fourmi-vad.cotecine.fr/reserver/?modresa_film=376520&modresa_jour=2026-09-01"
+ },
+ {
   "id": "salles-brady-16382-2026-09-01T19:00:00",
   "movie": "boogie-nights|paul-thomas-anderson",
   "cinema": "salles-brady",
@@ -1458,6 +2708,26 @@
   "version": "VO",
   "auditorium": "",
   "booking": "https://achat.lebrady.fr/r/64464"
+ },
+ {
+  "id": "salles-lumiere-bellecour-628871-1788282000/VO/263804",
+  "movie": "memory-of-princess-mumbi|damien-hauser",
+  "cinema": "salles-lumiere-bellecour",
+  "start": "2026-09-01T19:00:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-bellecour-vad.cotecine.fr/reserver/?modresa_film=628871&modresa_jour=2026-09-01"
+ },
+ {
+  "id": "salles-comoedia-1000037046-2026-09-01T19:10:00",
+  "movie": "de-la-comedie-francaise|martin-darondeau",
+  "cinema": "salles-comoedia",
+  "start": "2026-09-01T19:10:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335558"
  },
  {
   "id": "salles-louxor-1000024105-2026-09-01T19:15:00",
@@ -1518,6 +2788,196 @@
   "version": "VO",
   "auditorium": "",
   "booking": "https://achat.lebrady.fr/r/64453"
+ },
+ {
+  "id": "salles-comoedia-327993-2026-09-01T20:10:00",
+  "movie": "l-inconnue|arthur-harari",
+  "cinema": "salles-comoedia",
+  "start": "2026-09-01T20:10:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335390"
+ },
+ {
+  "id": "salles-lumiere-terreaux-627218-1788286200/VO/263894",
+  "movie": "soudain|ryusuke-hamaguchi",
+  "cinema": "salles-lumiere-terreaux",
+  "start": "2026-09-01T20:10:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-terreaux-vad.cotecine.fr/reserver/?modresa_film=627218&modresa_jour=2026-09-01"
+ },
+ {
+  "id": "salles-comoedia-1000024105-2026-09-01T20:15:00",
+  "movie": "soudain|ryusuke-hamaguchi",
+  "cinema": "salles-comoedia",
+  "start": "2026-09-01T20:15:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335319"
+ },
+ {
+  "id": "salles-lumiere-terreaux-378032-1788286500/VF/263884",
+  "movie": "la-bataille-de-gaulle-partie-1-l-age-de-fer|antonin-baudry",
+  "cinema": "salles-lumiere-terreaux",
+  "start": "2026-09-01T20:15:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-terreaux-vad.cotecine.fr/reserver/?modresa_film=378032&modresa_jour=2026-09-01"
+ },
+ {
+  "id": "salles-lumiere-bellecour-636419-1788286500/VO/263814",
+  "movie": "une-affaire-turque|huseyin-aydin-gursoy",
+  "cinema": "salles-lumiere-bellecour",
+  "start": "2026-09-01T20:15:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-bellecour-vad.cotecine.fr/reserver/?modresa_film=636419&modresa_jour=2026-09-01"
+ },
+ {
+  "id": "salles-lumiere-terreaux-449360-1788286800/VO/263864",
+  "movie": "fjord|cristian-mungiu",
+  "cinema": "salles-lumiere-terreaux",
+  "start": "2026-09-01T20:20:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-terreaux-vad.cotecine.fr/reserver/?modresa_film=449360&modresa_jour=2026-09-01"
+ },
+ {
+  "id": "salles-comoedia-294280-2026-09-01T20:25:00",
+  "movie": "la-bataille-de-gaulle-partie-1-l-age-de-fer|antonin-baudry",
+  "cinema": "salles-comoedia",
+  "start": "2026-09-01T20:25:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335514"
+ },
+ {
+  "id": "salles-comoedia-1000013045-2026-09-01T20:30:00",
+  "movie": "l-odyssee|christopher-nolan",
+  "cinema": "salles-comoedia",
+  "start": "2026-09-01T20:30:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335424"
+ },
+ {
+  "id": "salles-lumiere-fourmi-584420-1788287400/VF/263834",
+  "movie": "jim-queen|marco-nguyen-et-nicolas-athane",
+  "cinema": "salles-lumiere-fourmi",
+  "start": "2026-09-01T20:30:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-fourmi-vad.cotecine.fr/reserver/?modresa_film=584420&modresa_jour=2026-09-01"
+ },
+ {
+  "id": "salles-comoedia-294281-2026-09-01T20:35:00",
+  "movie": "la-bataille-de-gaulle-partie-2-jecris-ton-nom|antonin-baudry",
+  "cinema": "salles-comoedia",
+  "start": "2026-09-01T20:35:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335355"
+ },
+ {
+  "id": "salles-comoedia-188280-2026-09-01T20:40:00",
+  "movie": "fjord|cristian-mungiu",
+  "cinema": "salles-comoedia",
+  "start": "2026-09-01T20:40:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335292"
+ },
+ {
+  "id": "salles-lumiere-bellecour-634032-1788288000/VO/262704",
+  "movie": "degel|manuela-martelli",
+  "cinema": "salles-lumiere-bellecour",
+  "start": "2026-09-01T20:40:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-bellecour-vad.cotecine.fr/reserver/?modresa_film=634032&modresa_jour=2026-09-01"
+ },
+ {
+  "id": "salles-lumiere-fourmi-633174-1788288000/VF/263824",
+  "movie": "de-la-comedie-francaise|martin-darondeau-bertrand-usclat",
+  "cinema": "salles-lumiere-fourmi",
+  "start": "2026-09-01T20:40:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-fourmi-vad.cotecine.fr/reserver/?modresa_film=633174&modresa_jour=2026-09-01"
+ },
+ {
+  "id": "salles-lumiere-bellecour-578708-1788288300/VO/263804",
+  "movie": "the-last-viking|anders-thomas-jensen",
+  "cinema": "salles-lumiere-bellecour",
+  "start": "2026-09-01T20:45:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-bellecour-vad.cotecine.fr/reserver/?modresa_film=578708&modresa_jour=2026-09-01"
+ },
+ {
+  "id": "salles-comoedia-1000039625-2026-09-01T20:50:00",
+  "movie": "degel|manuela-martelli",
+  "cinema": "salles-comoedia",
+  "start": "2026-09-01T20:50:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335492"
+ },
+ {
+  "id": "salles-lumiere-fourmi-44889-1788288600/VO/263844",
+  "movie": "wake-in-fright|ted-kotcheff",
+  "cinema": "salles-lumiere-fourmi",
+  "start": "2026-09-01T20:50:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-fourmi-vad.cotecine.fr/reserver/?modresa_film=44889&modresa_jour=2026-09-01"
+ },
+ {
+  "id": "salles-comoedia-318365-2026-09-01T20:55:00",
+  "movie": "decorado|alberto-vazquez-ii",
+  "cinema": "salles-comoedia",
+  "start": "2026-09-01T20:55:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335570"
+ },
+ {
+  "id": "salles-lumiere-terreaux-603934-1788289200/VF/263874",
+  "movie": "l-inconnue|arthur-harari",
+  "cinema": "salles-lumiere-terreaux",
+  "start": "2026-09-01T21:00:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-terreaux-vad.cotecine.fr/reserver/?modresa_film=603934&modresa_jour=2026-09-01"
+ },
+ {
+  "id": "salles-comoedia-316021-2026-09-01T21:10:00",
+  "movie": "oklahoma-honey|andrew-patterson-i",
+  "cinema": "salles-comoedia",
+  "start": "2026-09-01T21:10:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/335453"
  },
  {
   "id": "salles-louxor-327993-2026-09-01T21:15:00",
@@ -1600,6 +3060,16 @@
   "booking": "https://achat.lebrady.fr/r/63099"
  },
  {
+  "id": "salles-zola-8878",
+  "movie": "la-pat-patrouille-le-film-mission-dino|cal-brunker",
+  "cinema": "salles-zola",
+  "start": "2026-09-02T14:30:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "1",
+  "booking": "https://www.ticketingcine.fr/index.php?lang=fr&nc=1217&ids=8878"
+ },
+ {
   "id": "salles-brady-256874-2026-09-02T15:30:00",
   "movie": "le-voyage-du-prince|jean-francois-laguionie",
   "cinema": "salles-brady",
@@ -1608,6 +3078,26 @@
   "version": "VF",
   "auditorium": "",
   "booking": "https://achat.lebrady.fr/r/63100"
+ },
+ {
+  "id": "salles-zola-8882",
+  "movie": "de-la-comedie-francaise|bertrand-usclat-martin-darondeau",
+  "cinema": "salles-zola",
+  "start": "2026-09-02T16:20:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "1",
+  "booking": "https://www.ticketingcine.fr/index.php?lang=fr&nc=1217&ids=8882"
+ },
+ {
+  "id": "salles-zola-8888",
+  "movie": "un-grand-raccourci|clement-devilliers-armand-foex",
+  "cinema": "salles-zola",
+  "start": "2026-09-02T18:00:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "1",
+  "booking": "https://www.ticketingcine.fr/index.php?lang=fr&nc=1217&ids=8888"
  },
  {
   "id": "salles-brady-14788-2026-09-02T19:50:00",
@@ -1620,6 +3110,76 @@
   "booking": "https://achat.lebrady.fr/r/64360"
  },
  {
+  "id": "salles-zola-8899",
+  "movie": "degel|manuela-martelli",
+  "cinema": "salles-zola",
+  "start": "2026-09-02T20:00:00",
+  "end": "",
+  "version": "VOST",
+  "auditorium": "1",
+  "booking": "https://www.ticketingcine.fr/index.php?lang=fr&nc=1217&ids=8899"
+ },
+ {
+  "id": "salles-zola-8883",
+  "movie": "de-la-comedie-francaise|bertrand-usclat-martin-darondeau",
+  "cinema": "salles-zola",
+  "start": "2026-09-03T14:30:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "1",
+  "booking": "https://www.ticketingcine.fr/index.php?lang=fr&nc=1217&ids=8883"
+ },
+ {
+  "id": "salles-zola-8889",
+  "movie": "un-grand-raccourci|clement-devilliers-armand-foex",
+  "cinema": "salles-zola",
+  "start": "2026-09-03T16:15:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "1",
+  "booking": "https://www.ticketingcine.fr/index.php?lang=fr&nc=1217&ids=8889"
+ },
+ {
+  "id": "salles-zola-8900",
+  "movie": "degel|manuela-martelli",
+  "cinema": "salles-zola",
+  "start": "2026-09-03T18:00:00",
+  "end": "",
+  "version": "VOST",
+  "auditorium": "1",
+  "booking": "https://www.ticketingcine.fr/index.php?lang=fr&nc=1217&ids=8900"
+ },
+ {
+  "id": "salles-lumiere-fourmi-785-1788453000/VO/263824",
+  "movie": "fight-club|david-fincher",
+  "cinema": "salles-lumiere-fourmi",
+  "start": "2026-09-03T18:30:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-fourmi-vad.cotecine.fr/reserver/?modresa_film=785&modresa_jour=2026-09-03"
+ },
+ {
+  "id": "salles-zola-8895",
+  "movie": "la-fille-condor|alvaro-olmos",
+  "cinema": "salles-zola",
+  "start": "2026-09-03T20:00:00",
+  "end": "",
+  "version": "VOST",
+  "auditorium": "1",
+  "booking": "https://www.ticketingcine.fr/index.php?lang=fr&nc=1217&ids=8895"
+ },
+ {
+  "id": "salles-comoedia-327941-2026-09-03T20:30:00",
+  "movie": "la-vie-d-une-femme|charline-bourgeois-tacquet",
+  "cinema": "salles-comoedia",
+  "start": "2026-09-03T20:30:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/333959"
+ },
+ {
   "id": "salles-brady-14788-2026-09-03T21:30:00",
   "movie": "trainspotting|danny-boyle",
   "cinema": "salles-brady",
@@ -1630,6 +3190,56 @@
   "booking": "https://achat.lebrady.fr/r/64361"
  },
  {
+  "id": "salles-zola-8890",
+  "movie": "un-grand-raccourci|clement-devilliers-armand-foex",
+  "cinema": "salles-zola",
+  "start": "2026-09-04T14:15:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "1",
+  "booking": "https://www.ticketingcine.fr/index.php?lang=fr&nc=1217&ids=8890"
+ },
+ {
+  "id": "salles-zola-8896",
+  "movie": "la-fille-condor|alvaro-olmos",
+  "cinema": "salles-zola",
+  "start": "2026-09-04T16:00:00",
+  "end": "",
+  "version": "VOST",
+  "auditorium": "1",
+  "booking": "https://www.ticketingcine.fr/index.php?lang=fr&nc=1217&ids=8896"
+ },
+ {
+  "id": "salles-zola-8884",
+  "movie": "de-la-comedie-francaise|bertrand-usclat-martin-darondeau",
+  "cinema": "salles-zola",
+  "start": "2026-09-04T18:15:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "1",
+  "booking": "https://www.ticketingcine.fr/index.php?lang=fr&nc=1217&ids=8884"
+ },
+ {
+  "id": "salles-zola-8901",
+  "movie": "degel|manuela-martelli",
+  "cinema": "salles-zola",
+  "start": "2026-09-04T20:00:00",
+  "end": "",
+  "version": "VOST",
+  "auditorium": "1",
+  "booking": "https://www.ticketingcine.fr/index.php?lang=fr&nc=1217&ids=8901"
+ },
+ {
+  "id": "salles-comoedia-1000043221-2026-09-04T20:30:00",
+  "movie": "si-tu-penses-bien|geraldine-nakache",
+  "cinema": "salles-comoedia",
+  "start": "2026-09-04T20:30:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/333960"
+ },
+ {
   "id": "salles-brady-14788-2026-09-04T21:30:00",
   "movie": "trainspotting|danny-boyle",
   "cinema": "salles-brady",
@@ -1638,5 +3248,115 @@
   "version": "VO",
   "auditorium": "",
   "booking": "https://achat.lebrady.fr/r/64362"
+ },
+ {
+  "id": "salles-brady-197309-2026-09-05T10:00:00",
+  "movie": "jean-de-la-lune|stephan-schesch",
+  "cinema": "salles-brady",
+  "start": "2026-09-05T10:00:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/63101"
+ },
+ {
+  "id": "salles-brady-256874-2026-09-05T14:00:00",
+  "movie": "le-voyage-du-prince|jean-francois-laguionie",
+  "cinema": "salles-brady",
+  "start": "2026-09-05T14:00:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/63102"
+ },
+ {
+  "id": "salles-zola-8880",
+  "movie": "la-pat-patrouille-le-film-mission-dino|cal-brunker",
+  "cinema": "salles-zola",
+  "start": "2026-09-05T14:00:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "1",
+  "booking": "https://www.ticketingcine.fr/index.php?lang=fr&nc=1217&ids=8880"
+ },
+ {
+  "id": "salles-zola-8902",
+  "movie": "degel|manuela-martelli",
+  "cinema": "salles-zola",
+  "start": "2026-09-05T16:00:00",
+  "end": "",
+  "version": "VOST",
+  "auditorium": "1",
+  "booking": "https://www.ticketingcine.fr/index.php?lang=fr&nc=1217&ids=8902"
+ },
+ {
+  "id": "salles-zola-8891",
+  "movie": "un-grand-raccourci|clement-devilliers-armand-foex",
+  "cinema": "salles-zola",
+  "start": "2026-09-05T18:15:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "1",
+  "booking": "https://www.ticketingcine.fr/index.php?lang=fr&nc=1217&ids=8891"
+ },
+ {
+  "id": "salles-zola-8954",
+  "movie": "de-la-comedie-francaise|bertrand-usclat-martin-darondeau",
+  "cinema": "salles-zola",
+  "start": "2026-09-05T20:00:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "1",
+  "booking": "https://www.ticketingcine.fr/index.php?lang=fr&nc=1217&ids=8954"
+ },
+ {
+  "id": "salles-zola-8881",
+  "movie": "la-pat-patrouille-le-film-mission-dino|cal-brunker",
+  "cinema": "salles-zola",
+  "start": "2026-09-06T14:00:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "1",
+  "booking": "https://www.ticketingcine.fr/index.php?lang=fr&nc=1217&ids=8881"
+ },
+ {
+  "id": "salles-lumiere-fourmi-15621-1788699000/VF/263824",
+  "movie": "le-petit-monde-de-leo|giulio-gianini",
+  "cinema": "salles-lumiere-fourmi",
+  "start": "2026-09-06T14:50:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-fourmi-vad.cotecine.fr/reserver/?modresa_film=15621&modresa_jour=2026-09-06"
+ },
+ {
+  "id": "salles-zola-8897",
+  "movie": "la-fille-condor|alvaro-olmos",
+  "cinema": "salles-zola",
+  "start": "2026-09-06T16:00:00",
+  "end": "",
+  "version": "VOST",
+  "auditorium": "1",
+  "booking": "https://www.ticketingcine.fr/index.php?lang=fr&nc=1217&ids=8897"
+ },
+ {
+  "id": "salles-zola-8885",
+  "movie": "de-la-comedie-francaise|bertrand-usclat-martin-darondeau",
+  "cinema": "salles-zola",
+  "start": "2026-09-06T18:15:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "1",
+  "booking": "https://www.ticketingcine.fr/index.php?lang=fr&nc=1217&ids=8885"
+ },
+ {
+  "id": "salles-zola-8892",
+  "movie": "un-grand-raccourci|clement-devilliers-armand-foex",
+  "cinema": "salles-zola",
+  "start": "2026-09-06T20:00:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "1",
+  "booking": "https://www.ticketingcine.fr/index.php?lang=fr&nc=1217&ids=8892"
  }
 ]

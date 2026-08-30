@@ -7,6 +7,25 @@
    "salles-brady",
    "salles-filmotheque"
   ],
-  "showtime_count": 164
+  "showtime_count": 118
+ },
+ "lyon": {
+  "slug": "lyon",
+  "name": "Lyon",
+  "cinemas": [
+   "salles-comoedia",
+   "salles-lumiere-terreaux",
+   "salles-lumiere-bellecour",
+   "salles-lumiere-fourmi"
+  ],
+  "showtime_count": 191
+ },
+ "villeurbanne": {
+  "slug": "villeurbanne",
+  "name": "Villeurbanne",
+  "cinemas": [
+   "salles-zola"
+  ],
+  "showtime_count": 27
  }
 }

@@ -26816,5 +26816,222 @@
   "overview_en": "The just-out-of-college, effete son of a no-nonsense steamboat captain comes to visit his father whom he's not seen since he was a child.",
   "genres_en": "Comedy, Romance",
   "country_en": "United States of America"
+ },
+ "le-fabuleux-destin-d-amelie-poulain|jean-pierre-jeunet": {
+  "found": true,
+  "tmdb_id": 194,
+  "title": "Le Fabuleux Destin d'Amélie Poulain",
+  "rating": 7.9,
+  "votes": 12605,
+  "poster": "https://image.tmdb.org/t/p/w500/tdXtLG6L1QMwrv0MNdW6B9IwC8B.jpg",
+  "overview": "Amélie, une jeune serveuse dans un bar de Montmartre, passe son temps à observer les gens et à laisser son imagination divaguer. Elle s'est fixée un but : faire le bien de ceux qui l'entourent. Elle invente alors des stratagèmes pour intervenir incognito dans leur existence. Le chemin d'Amélie est jalonné de rencontres: Georgette, la buraliste hypocondriaque, Lucien, le commis d'épicerie, Madeleine Wallace, la concierge portée sur le porto et les chiens empaillés, ou encore Raymond Dufayel alias « l'homme de verre », son voisin qui ne vit qu'à travers une reproduction d'un tableau de Renoir. Cette quête du bonheur amène Amélie à faire la connaissance de Nino Quincampoix, un étrange « prince charmant ». Celui-ci partage son temps entre un train fantôme et un sex-shop, et cherche à identifier un inconnu dont la photo réapparaît sans cesse dans plusieurs cabines de photomaton.",
+  "runtime": 120,
+  "genres": "Comédie, Romance",
+  "country": "France",
+  "year": "2001",
+  "en": 1,
+  "title_en": "Amélie",
+  "overview_en": "At a tiny Parisian café, the adorable yet painfully shy Amélie accidentally discovers a gift for helping others. Soon Amelie is spending her days as a matchmaker, guardian angel, and all-around do-gooder. But when she bumps into a handsome stranger, will she find the courage to become the star of her very own love story?",
+  "genres_en": "Comedy, Romance",
+  "poster_en": "https://image.tmdb.org/t/p/w500/nSxDa3M9aMvGVLoItzWTepQ5h5d.jpg"
+ },
+ "les-desaxes|john-huston": {
+  "found": true,
+  "tmdb_id": 11536,
+  "title": "Les Désaxés",
+  "rating": 7.0,
+  "votes": 448,
+  "poster": "https://image.tmdb.org/t/p/w500/rs7oZvEJOrYfB32gIop2sQwiOjz.jpg",
+  "overview": "À Reno, Roslyn s'apprête à divorcer. Fasciné par la beauté de la jeune femme, un cow-boy entre deux âges lui demande de partager son existence. Elle se lie également d'amitié avec un riche éleveur et un garagiste veuf. Ils paraissent comblés mais subissent en fait une misère affective et intellectuelle.",
+  "runtime": 125,
+  "genres": "Drame, Romance",
+  "country": "États-Unis",
+  "year": "1961",
+  "en": 1,
+  "title_en": "The Misfits",
+  "overview_en": "While filing for a divorce, beautiful ex-stripper Roslyn Taber ends up meeting aging cowboy-turned-gambler Gay Langland and former World War II aviator Guido Racanelli. The two men instantly become infatuated with Roslyn and, on a whim, the three decide to move into Guido's half-finished desert home together. When grizzled ex-rodeo rider Perce Howland arrives, the unlikely foursome strike up a business capturing wild horses.",
+  "genres_en": "Drama, Romance",
+  "country_en": "United States of America",
+  "poster_en": "https://image.tmdb.org/t/p/w500/rkIkyPhT5oetT463HxpdIuct30l.jpg"
+ },
+ "les-rendez-vous-de-l-anime-akira|katsuhiro-otomo": {
+  "found": false
+ },
+ "il-etait-une-fois-terminator-2-le-jugement-dernier|james-cameron": {
+  "found": false
+ },
+ "le-monde-en-grand-les-baleines-bleues-le-retour-des-geants|": {
+  "found": false
+ },
+ "ma-mini-seance-wallace-gromit|nick-park": {
+  "found": false
+ },
+ "retour-au-college|": {
+  "found": true,
+  "tmdb_id": 1711917,
+  "title": "Retour au collège",
+  "rating": null,
+  "votes": 0,
+  "poster": "https://image.tmdb.org/t/p/w500/3wL9RDAm3ql6WxrisFQK2GwVYej.jpg",
+  "overview": "Sarah et Yasmine, élèves de 3ème dans un collège de banlieue, risquent de passer devant le conseil de discipline. À quelques semaines de son départ en retraite, M. Comès, un principal pas comme les autres, a une décision difficile à prendre.",
+  "runtime": 83,
+  "genres": "Documentaire",
+  "country": "France",
+  "year": "2026",
+  "en": 1,
+  "genres_en": "Documentary"
+ },
+ "loot|don-millar": {
+  "found": false
+ },
+ "lettres-d-amour-de-ma-grand-mere|lan-hongchun": {
+  "found": true,
+  "tmdb_id": 1671548,
+  "title": "Lettres d’amour de ma grand-mère",
+  "rating": 8.9,
+  "votes": 50,
+  "poster": "https://image.tmdb.org/t/p/w500/A1sistnRovhZ4nBiph2X5sr7Y9N.jpg",
+  "overview": "Pendant des décennies, Ye Sogriu a survécu grâce aux lettres et aux mandats que son mari lui envoie depuis la Thaïlande. Lorsque son petit-fils Hiou-ui part sur les traces de son grand-père, il découvre que l’histoire derrière cette correspondance est bien différente de ce que la famille avait toujours imaginé. À mesure que ressurgissent des souvenirs enfouis et des gestes de dévouement restés dans l’ombre, se dessine le portrait d’existences liées par la séparation, le sacrifice et le temps.",
+  "runtime": 118,
+  "genres": "Drame, Familial",
+  "country": "Chine",
+  "year": "2026",
+  "en": 1,
+  "title_en": "Dear You",
+  "overview_en": "Xiaowei travels to Thailand to find his \"billionaire grandfather\" who is out of contact due to debt problems, but unexpectedly find the one who has been corresponding with his grandmother for years is not her husband.",
+  "genres_en": "Drama, Family",
+  "country_en": "China",
+  "poster_en": "https://image.tmdb.org/t/p/w500/rjmhzdVS3Ia535pFawju857e2Na.jpg"
+ },
+ "once-more-version-tamoule|vignesh-srikanth": {
+  "found": false
+ },
+ "hi-version-tamoule|vishnu-edavan": {
+  "found": false
+ },
+ "horror-cinema-club-flush|": {
+  "found": false
+ },
+ "point-break-extreme-limite|kathryn-bigelow": {
+  "found": true,
+  "tmdb_id": 1089,
+  "title": "Point Break : Extrême limite",
+  "rating": 7.2,
+  "votes": 4106,
+  "poster": "https://image.tmdb.org/t/p/w500/yRjcd5vmqoXTDlLyiQNpIHOYlj7.jpg",
+  "overview": "Johnny Utah, jeune recrue du FBI, se voit confier sa première enquête : démanteler un réseau de braqueurs responsables de vingt-six attaques de banques. Convaincu d'avoir affaire à d'intrépides surfeurs, Johnny décide d'infiltrer le milieu de la planche...  Action, suspense, casting époustouflant, tous les ingrédients sont réunis pour faire de Point Break un film prenant.",
+  "runtime": 120,
+  "genres": "Action, Thriller",
+  "country": "États-Unis",
+  "year": "1991",
+  "en": 1,
+  "title_en": "Point Break",
+  "overview_en": "In Los Angeles, a gang of bank robbers who call themselves The Ex-Presidents commit their crimes while wearing masks of Reagan, Carter, Nixon and Johnson. Believing that the members of the gang could be surfers, the F.B.I. sends young agent Johnny Utah to the beach undercover to mix with the surfers and gather information.",
+  "country_en": "United States of America",
+  "poster_en": "https://image.tmdb.org/t/p/w500/tlbERIghrQ4oofqlbF7H0K0EYnx.jpg"
+ },
+ "clap-de-paname-competition-clips-2|": {
+  "found": false
+ },
+ "clap-de-paname-competition-courts-metrages-2|": {
+  "found": false
+ },
+ "clap-de-paname-ceremonie-douverture-competition-clips-1|": {
+  "found": false
+ },
+ "clap-de-paname-competition-courts-metrages-1|": {
+  "found": false
+ },
+ "venise-la-lune-et-toi|dino-risi": {
+  "found": true,
+  "tmdb_id": 48937,
+  "title": "Venise, la lune et toi",
+  "rating": 5.9,
+  "votes": 41,
+  "poster": "https://image.tmdb.org/t/p/w500/jc3Tvi66zwFVSCjTk7aM6kuokSA.jpg",
+  "overview": "Bepi le gondolier et Nina doivent se marier. Seulement, les incartades de Bepi rendent Nina jalouse surtout quand deux touristes américaines décident elles aussi d'épouser Bepi... Nina se laisse alors tenter par Toni qui lui fait la cour depuis longtemps... Seulement Toni est un conducteur de bateau à moteur timide alors que Bepi est un beau gondolier. Malgré ses promesses envers Toni, Nina continue d'aimer Bepi et finit par l'épouser quand Bepi arrive enfin à se séparer des deux touristes...",
+  "runtime": 86,
+  "genres": "Comédie",
+  "country": "France",
+  "year": "1958",
+  "en": 1,
+  "title_en": "Venice, the Moon and You",
+  "overview_en": "Bepi, a gondolier with a girl in every port becomes entangled in too many romances. While  Bepi is overly focused on a pair of gamine American tourists, fellow motor-boatman, Toni, threatens to steal away his childhood sweetheart.",
+  "genres_en": "Comedy"
+ },
+ "un-amour-depouvantail|samantha-cutler": {
+  "found": true,
+  "tmdb_id": 1488459,
+  "title": "Un amour d'épouvantail",
+  "rating": 7.0,
+  "votes": 1,
+  "poster": "https://image.tmdb.org/t/p/w500/dlLlAINgInFzHC10JV44oOSw5gG.jpg",
+  "overview": "Betty Delorge et Harry Fortepaille, deux épouvantails très amoureux, rêvent d’un mariage inoubliable. Tout semble prêt pour le grand jour… jusqu’à ce que Harry parte chercher une dernière chose indispensable à la célébration : des fleurs roses. Pendant son absence, Réginald Dufoin, un épouvantail malin et un peu trop sûr de lui, arrive avec des idées qui pourraient bien gâcher la fête.",
+  "runtime": 26,
+  "genres": "Animation, Familial",
+  "country": "Royaume-Uni",
+  "year": "2026",
+  "en": 1,
+  "title_en": "The Scarecrows' Wedding",
+  "overview_en": "Devoted scarecrows Betty O'Barley and Harry O'Hay are planning a wedding to remember. When Harry insists on leaving the farm to collect one last thing for their big day, smooth-talking Reginald Rake swoops in with plans of his own. Chaos follows, and soon Betty's in danger and everything's at risk. Can Harry get back in time and save the day?",
+  "genres_en": "Animation, Family",
+  "country_en": "United Kingdom"
+ },
+ "fight-club|david-fincher": {
+  "found": true,
+  "tmdb_id": 550,
+  "title": "Fight Club",
+  "rating": 8.4,
+  "votes": 32740,
+  "poster": "https://image.tmdb.org/t/p/w500/t1i10ptOivG4hV7erkX3tmKpiqm.jpg",
+  "overview": "Le narrateur, sans identité précise, vit seul, travaille seul, dort seul, mange seul ses plateaux‐repas pour une personne comme beaucoup d’autres personnes seules qui connaissent la misère humaine, morale et sexuelle. C’est pourquoi il va devenir membre du Fight club, un lieu clandestin où il va pouvoir retrouver sa virilité, l’échange et la communication. Ce club est dirigé par Tyler Durden, une sorte d’anarchiste entre gourou et philosophe qui prêche l’amour de son prochain.",
+  "runtime": 139,
+  "genres": "Drame, Thriller",
+  "country": "Allemagne",
+  "year": "1999",
+  "en": 1,
+  "overview_en": "A ticking-time-bomb insomniac and a slippery soap salesman channel primal male aggression into a shocking new form of therapy. Their concept catches on, with underground \"fight clubs\" forming in every town, until an eccentric gets in the way and ignites an out-of-control spiral toward oblivion.",
+  "genres_en": "Drama, Thriller",
+  "country_en": "Germany",
+  "poster_en": "https://image.tmdb.org/t/p/w500/jSziioSwPVrOy9Yow3XhWIBDjq1.jpg"
+ },
+ "in-waves|phuong-mai-nguen": {
+  "found": true,
+  "tmdb_id": 947502,
+  "title": "In Waves",
+  "rating": 7.2,
+  "votes": 26,
+  "poster": "https://image.tmdb.org/t/p/w500/3z3gZ6faikQ81EM19zTX4lHfpwL.jpg",
+  "overview": "À Los Angeles, AJ, lycéen discret, rencontre Kristen. Elle est passionnée de surf, lui de skateboard et de dessin. Ils tombent follement amoureux ; un avenir heureux se profile. Mais tout bascule lorsque Kristen tombe malade. Ensemble, ils se lancent dans un combat contre l’adversité, portés par la force de leur amour, leurs amis et leur passion désormais commune pour le surf et l’océan.",
+  "runtime": 91,
+  "genres": "Animation, Romance",
+  "country": "France",
+  "year": "2026",
+  "en": 1,
+  "overview_en": "In Los Angeles, AJ, a shy teenager, meets Kristen. She lives for surfing; he loves skateboarding and drawing. They fall madly in love, and a happy future seems within reach. But everything changes when Kristen faces a sudden illness. Together, they face adversity, driven by the strength of their love, their friends, and their newly shared passion for surfing and the ocean.",
+  "poster_en": "https://image.tmdb.org/t/p/w500/ry9Kj3maM9WllIe9T6C7EnS5kxI.jpg"
+ },
+ "jim-queen|marco-nguyen-et-nicolas-athane": {
+  "found": true,
+  "tmdb_id": 1061798,
+  "title": "Jim Queen",
+  "rating": 7.9,
+  "votes": 82,
+  "poster": "https://image.tmdb.org/t/p/w500/jw8vwfyKOf509Zj1cu27waGFZLB.jpg",
+  "overview": "Jim, icône sexy de la scène gay parisienne, voit sa vie basculer lorsqu’il contracte l’Hétérose, un étrange virus qui transforme les hommes gays… en hétérosexuels ! Il voit alors tout le monde lui tourner le dos à l’exception de son dernier follower (et premier admirateur), Lucien, un jeune homme qui peine à s’assumer. Ensemble, ils partiront en quête d’un mystérieux remède capable de guérir Jim et d’empêcher l’extinction de l’homosexualité…",
+  "runtime": 85,
+  "genres": "Animation, Comédie",
+  "country": "France",
+  "year": "2026",
+  "en": 1,
+  "overview_en": "When Heterosis - a mysterious virus that turns gay men straight sweeps through the Parisian gay scene, Jim, the six packed sovereign of the Gym Queens, goes from Pride royalty to social outcast. With only Lucien, a freshly-out twink with more heart than abs, still by his side, Jim must race to find a cure before the disease erases the community that once worshipped him.",
+  "genres_en": "Animation, Comedy",
+  "poster_en": "https://image.tmdb.org/t/p/w500/nvmGrOzolKlW1z90rLudSjPm9cG.jpg"
+ },
+ "le-petit-monde-de-leo|giulio-gianini": {
+  "found": false
+ },
+ "les-nouvelles-aventures-de-la-petite-taupe|zdenek-miler": {
+  "found": false
  }
 }

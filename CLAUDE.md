@@ -16,8 +16,8 @@ avec mise en avant des salles Art & Essai. Objectif : trafic monétisable via SE
   - `fetch_pathe.py` — chaîne Pathé (API pathe.fr) → `data/pathe_*.json`
   - `fetch_webedia.py --chain {cgr,grandecran}` — chaînes sur plateforme Webedia boxofficeapi → `data/<chain>_*.json`
   - `fetch_ugc.py` — chaîne UGC via l'API mobile `backend.ugc.fr` → `data/ugc_*.json`
-  - `fetch_salles.py` — salles indépendantes ABSENTES du SCARE (Le Louxor, Le Brady,
-    La Filmothèque du Quartier Latin) → `data/salles_*.json`
+  - `fetch_salles.py` — salles indépendantes ABSENTES du SCARE (Paris : Le Louxor, Le Brady,
+    La Filmothèque ; Lyon : Comœdia, les trois Lumière, Le Zola) → `data/salles_*.json`
   - `enrich_tmdb.py` — enrichissement TMDB (titres/notes/affiches/durées) → cache `data/tmdb.json`
   - `fetch_abonnements.py` — cartes d'abonnement illimité (UGC Illimité, CinéPass Pathé)
     → `data/abonnements.json` (+ `data/abonnements_overrides.json`, tenu à la main)
@@ -146,26 +146,89 @@ et la mention TMDB (« ce produit utilise l'API TMDB mais n'est ni approuvé ni 
 
 L'open data du SCARE ne couvre QUE ses adhérents publiants : des salles Art & Essai
 majeures y manquent, alors qu'elles sont au cœur de la cible. `fetch_salles.py` va les
-chercher une par une. Trois aujourd'hui, toutes à Paris — **Le Louxor** (75010),
-**Le Brady** (75010), **La Filmothèque du Quartier Latin** (75005) — pour ~205 séances.
+chercher une par une. **Huit aujourd'hui, pour ~336 séances** :
 
-- **MESURÉ le 2026-08-28 : les trois sources PASSENT depuis le CI**, contrairement à
-  Pathé/CGR/Grand Écran. Le snapshot reste versionné par prudence (et parce qu'il fait
-  filet en cas de panne d'un petit serveur), mais la collecte se rafraîchit toute seule
-  chaque nuit. Ne pas conclure du blocage des chaînes à un blocage ici.
+| Salle | Ville | Plateforme |
+|---|---|---|
+| Le Louxor - Palais du cinéma | Paris 10e | `webedia` |
+| Le Brady | Paris 10e | `webedia` |
+| La Filmothèque du Quartier Latin | Paris 5e | `cotecine` (CMS WordPress) |
+| Cinéma Comœdia | Lyon 7e | `webedia` (`P3757`) |
+| Cinéma Lumière Terreaux | Lyon 1er | `cotecine` (CMS Lumière) |
+| Cinéma Lumière Bellecour | Lyon 2e | `cotecine` (CMS Lumière) |
+| Cinéma Lumière Fourmi | Lyon 3e | `cotecine` (CMS Lumière) |
+| Le Zola | Villeurbanne | `ticketingcine` (`1217`) |
+
+- **⚠️ POURQUOI LYON : le SCARE ne connaît que 4 salles dans TOUT le Rhône** (CinéDuchère,
+  Les Alizés à Bron, le Ciné Toboggan à Décines, le Ciné Mourguet à Sainte-Foy) — vérifié en
+  interrogeant l'API sur `cinecp:69*` le 2026-08-30. Autrement dit : aucune salle de
+  répertoire du centre de Lyon. Pour un site dont c'est le sujet, c'était le trou le plus
+  voyant de la carte. Les cinq ajouts le comblent (les trois Lumière appartiennent à
+  l'Institut Lumière ; le Lumière Fourmi et le Comœdia programment des reprises toute l'année).
+- **Restent hors de portée à Lyon**, faute de source exploitable :
+  **l'Institut Lumière** lui-même (billetterie See Tickets, aucun flux de séances trouvé) et
+  **le Cinéma Opéra** (`cinema-opera.com` ne répond plus — site hors service au 2026-08-30 ;
+  son code Webedia serait `P0006`, à retenter le jour où le site revient).
+- ⚠️ **`--only` écrase le snapshot complet**, exactement comme `--theaters/--cinemas` chez les
+  chaînes : `main()` écrit ce qu'il a collecté, pas ce qu'il a fusionné. Après un test ciblé,
+  TOUJOURS relancer `python scripts/fetch_salles.py --days 7` en entier avant de committer.
+
+- **MESURÉ le 2026-08-28 : les trois sources PARISIENNES passent depuis le CI**,
+  contrairement à Pathé/CGR/Grand Écran. Le blocage est donc par SITE, pas par
+  plateforme — le Louxor et Le Brady sont sur Webedia comme CGR, et passent. Le snapshot
+  reste versionné par prudence (et parce qu'il fait filet en cas de panne d'un petit
+  serveur), mais la collecte se rafraîchit toute seule chaque nuit.
+- **⚠️ À SURVEILLER : les cinq salles lyonnaises (2026-08-30) n'ont été mesurées qu'en
+  LOCAL.** Le garde-fou d'écriture est tout-ou-rien : si UNE seule source refuse l'IP du
+  runner, `main()` sort en 1 et **rien n'est écrit** — les huit salles gardent alors la
+  photo de la veille. Ça ne casse pas les données, mais ça fige le rafraîchissement
+  nocturne en silence. À regarder au premier run du CI ; si une source lyonnaise bloque,
+  le levier est de la collecter en local comme Pathé/CGR, pas d'assouplir le garde-fou.
 
 - **Ce ne sont PAS des chaînes.** Aucune fiche ne porte de champ `chain`, ce qui les fait
   libeller « cinéma indépendant » par `cinema_kind()`. Le préfixe `salles` est dans
   `CHAIN_PREFIXES` (sources.py) uniquement parce que c'est le mécanisme de fusion ; ne pas
   en conclure qu'il faut leur inventer une enseigne.
 
-- **Deux plateformes, une par type de salle :**
+- **Trois plateformes :**
   - `webedia` — le site de la salle est un Gatsby « boxofficeapi », **le même produit que
     CGR et Grand Écran**. Le connecteur IMPORTE `fetch_webedia.py` au lieu de le recopier
     (mêmes endpoints, mêmes tags, mêmes liens). Le piège du `theaterId` en MAJUSCULES +
     JSON compact vaut ici aussi.
   - `cotecine` — billetterie Côté Ciné (`*-vad.cotecine.fr`), un JSON en trois temps
     (film → jours → séances), plus le CMS de la salle pour les fiches films.
+  - `ticketingcine` — caisse `ticketingcine.fr` (éditeur Monnaie-Services), **~500 salles
+    indépendantes françaises** dont Le Zola. Voir ses deux pièges plus bas.
+
+- **⚠️ `cotecine` connaît DEUX CMS, `cms_kind` dit lequel.** La caisse est identique d'une
+  salle à l'autre ; c'est le site qui porte les fiches films qui change.
+  - `wp` (La Filmothèque) — API REST WordPress, puis une requête de plus par film pour lire
+    le réalisateur et l'affiche dans la PAGE (absents de l'API).
+  - `lumiere` (les trois Cinémas Lumière) — pas de WordPress, des pages `/film/<slug>.html`.
+    On indexe **deux** pages : `/calendrier-general.html` (programmation régulière, 27 films)
+    ET l'accueil (55 films, séances événement comprises). ⚠️ **Le calendrier seul ne suffit
+    pas** : « Fight Club » (Midnight Movie) et « Le Petit monde de Leo » y manquaient alors
+    que la caisse les vendait — deux titres partis sans réalisateur, donc sans appariement
+    TMDB possible. ⚠️ **Sur l'accueil, le lien enveloppe toute une carte** (titre, réalisateur,
+    date, « Voir la fiche ») : son texte ne vaut rien comme titre. On indexe donc aussi par le
+    **SLUG de l'URL**, qui est le titre du site déjà déaccentué et sans ponctuation —
+    c'est-à-dire exactement ce que produit `_plie()`.
+  - ⚠️ **Côté Ciné sert des versions hors vocabulaire du site.** Les Lumière renvoient
+    `VFST` (VF sous-titrée français, séance accessible aux sourds et malentendants).
+    Laissée telle quelle, la séance n'était NI dans « VF » NI dans « VO/VOST » : invisible dès
+    qu'un visiteur touchait au filtre langue. `VERSIONS_COTECINE` la ramène à `VF`.
+
+- **⚠️ TicketingCiné exige le COOKIE DE SESSION.** Sans lui, les `ajax/*.php` répondent
+  **200 avec un corps VIDE** — zéro octet, pas une erreur, pas un JSON d'erreur : rien. Le
+  choix de la salle (`?nc=1217`) vit dans la session PHP et non dans le POST, même si
+  `num_cine` y est répété. Il faut charger la page de la salle d'abord, uniquement pour poser
+  le cookie. `_tc_post()` traite une réponse vide comme une PANNE, pas comme « rien à dire » :
+  sans ça la salle passerait pour en relâche et le snapshot rétrécirait sans un mot.
+- **⚠️ TicketingCiné : `dates_sessions` ≠ `sessions`.** La première liste les jours où le film
+  passe, la seconde ne rend les horaires QUE du jour demandé. Interroger un seul jour et
+  conclure « ce film ne passe pas » serait faux — d'où la boucle sur les jours annoncés.
+  Bonus de la plateforme : `booking_url` mène à LA séance (`&ids=8946`), donc 100 % de
+  billetterie cliquable, et les fiches films portent déjà réalisateur, durée et affiche.
 
 - **⚠️ Le code salle Webedia se lit dans `<meta name="bocms:theater:id">`** — et pas au
   même endroit selon la salle : sur l'ACCUEIL du Louxor (`W7510`), mais **seulement sur une
@@ -238,6 +301,47 @@ chercher une par une. Trois aujourd'hui, toutes à Paris — **Le Louxor** (7501
   La liste UGC Illimité contient **~60 salles absentes de Séancéo**, dont une trentaine à
   Paris (MK2, Luminor, Reflet Médicis, Épée de Bois, Mac-Mahon, Max Linder…) : c'est
   l'inventaire de cibles tout fait.
+
+### Agglomérations : les banlieues sont rattachées à leur ville-centre
+
+Signalé le 2026-08-30 par un habitant de **Décines-Charpieu** : chercher « Lyon » ne montrait
+que les salles de la commune de Lyon. Ni le Ciné Toboggan (sa propre salle), ni le Pathé Carré
+de Soie (Vaulx-en-Velin) n'y apparaissaient — au point qu'il croyait ce dernier **absent du
+site** alors qu'il y était depuis toujours, rangé sous sa commune. Une frontière communale
+n'est pas une frontière de spectateur.
+
+- **`sources.build_agglos()` rattache par DISTANCE, pas par code postal ni par département.**
+  Le département 69 mettrait Villefranche-sur-Saône (30 km) dans « Lyon » et raterait les
+  agglomérations à cheval sur deux départements (Bayonne 64 / Tarnos 40, 3,6 km d'écart).
+- **`AGGLO_RAYON_KM = 15`, calibré sur les données réelles** (2026-08-30, 365 salles) :
+  12 km ratait Brignais (11,1 km) de peu ; 20 km faisait entrer Trévoux (Ain) dans Lyon et
+  Autrans dans Grenoble. À 15 km : 75 communes rattachées, rien d'aberrant.
+- **La position d'une ville est le barycentre de SES SALLES** — aucun géocodage, aucune table
+  de communes embarquée. C'est aussi la bonne mesure : on veut la distance aux ÉCRANS.
+- ⚠️ **`AGGLO_CORES` ne doit contenir que de VRAIES villes-centres.** Une ville-centre n'est
+  jamais rattachée à une autre (c'est ce qui empêche Marseille et Aix de s'absorber selon
+  l'ordre de parcours) — donc y ajouter Villeurbanne, Montreuil ou Roubaix **couperait leur
+  agglomération en deux** : Le Zola formerait un « Villeurbanne » solitaire à 4 km de
+  Bellecour, exactement le bug qu'on corrige.
+- **Aucune ville ne disparaît.** `/ville/decines-charpieu/` garde sa page, son flux et son
+  référencement (« cinéma à Décines-Charpieu » est une vraie requête) ; elle gagne seulement
+  un renvoi vers `/ville/lyon/`. C'est l'AFFICHAGE qui regroupe, pas les données qui
+  s'effacent. Une salle de banlieue apparaît donc sur deux pages ville, et porte sa commune
+  en lien sur celle du centre — on regroupe l'offre, on ne déménage pas les cinémas.
+- Ce que ça change à l'affichage : page ville du centre (salles propres, puis un bloc
+  « Autour de X »), **fiche film** (un seul groupe `#v-lyon` pour toute l'agglo, la recherche
+  de ville acceptant le nom de chaque commune), et les flux `.ics`/RSS de la ville-centre.
+
+### Lien film contextualisé (`#v-<agglo>`)
+
+Signalé en même temps : depuis une page ville ou cinéma, cliquer un film menait au sommaire
+« Où voir X ? » — un choix de ville qu'on venait justement de faire.
+
+- `movie_card(..., ancre_ville=…)` écrit `/film/…/#v-lyon` dès que la carte est servie depuis
+  un contexte géographique (page ville, page cinéma, page rétrospective).
+- **Rien de neuf côté navigateur** : `assets/film.js` ouvrait déjà la ville d'une ancre
+  `#v-…` (`openHash()`), c'était le LIEN qui ne la portait pas. L'ancre doit être celle du
+  GROUPE (`v-lyon`), pas de la commune — c'est l'id de section que la fiche film écrit.
 
 ### Cartes d'abonnement illimité (UGC Illimité / CinéPass Pathé)
 

@@ -8131,5 +8131,62 @@
   "rating": 4.02,
   "votes": 33900,
   "url": "https://letterboxd.com/film/steamboat-bill-jr/"
+ },
+ "le-fabuleux-destin-d-amelie-poulain|jean-pierre-jeunet": {
+  "found": true,
+  "rating": 4.2,
+  "votes": 1432583,
+  "url": "https://letterboxd.com/film/amelie/"
+ },
+ "les-desaxes|john-huston": {
+  "found": true,
+  "rating": 3.69,
+  "votes": 32899,
+  "url": "https://letterboxd.com/film/the-misfits/"
+ },
+ "retour-au-college|": {
+  "found": false
+ },
+ "lettres-d-amour-de-ma-grand-mere|lan-hongchun": {
+  "found": true,
+  "rating": 3.93,
+  "votes": 9558,
+  "url": "https://letterboxd.com/film/dear-you-2026/"
+ },
+ "point-break-extreme-limite|kathryn-bigelow": {
+  "found": true,
+  "rating": 3.78,
+  "votes": 452243,
+  "url": "https://letterboxd.com/film/point-break/"
+ },
+ "venise-la-lune-et-toi|dino-risi": {
+  "found": true,
+  "rating": 3.31,
+  "votes": 727,
+  "url": "https://letterboxd.com/film/venice-the-moon-and-you/"
+ },
+ "un-amour-depouvantail|samantha-cutler": {
+  "found": true,
+  "rating": 3.22,
+  "votes": 2053,
+  "url": "https://letterboxd.com/film/the-scarecrows-wedding/"
+ },
+ "fight-club|david-fincher": {
+  "found": true,
+  "rating": 4.27,
+  "votes": 5984038,
+  "url": "https://letterboxd.com/film/fight-club/"
+ },
+ "in-waves|phuong-mai-nguen": {
+  "found": true,
+  "rating": 3.75,
+  "votes": 23086,
+  "url": "https://letterboxd.com/film/in-waves/"
+ },
+ "jim-queen|marco-nguyen-et-nicolas-athane": {
+  "found": true,
+  "rating": 3.99,
+  "votes": 47330,
+  "url": "https://letterboxd.com/film/jim-queen/"
  }
 }

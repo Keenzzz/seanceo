@@ -220,6 +220,33 @@ SEARCH_INDEX = "/recherche.json"
 # Combien de cartes une liste triable affiche avant « Afficher plus » (tri.js).
 PAGE_SIZE = 40
 
+# Ligatures à DÉPLIER avant de fabriquer une URL. `slugify()` normalise en NFKD
+# puis jette tout ce qui n'est pas ASCII : « œ » n'ayant pas de décomposition,
+# il DISPARAÎT au lieu de devenir « oe ». D'où « Cœurs » → `curs`, « L'Œuvre
+# invisible » → `l-uvre-invisible`, et le Cinéma Comœdia → `cinema-comdia` :
+# des URLs qui ne correspondent à aucune requête humaine.
+#
+# ⚠️ On déplie ICI et pas dans `fetch_data.slugify()`, volontairement : cette
+# fonction fabrique aussi `movie_key()`, la clé de dédoublonnage du pipeline.
+# La changer réécrirait les clés des caches TMDB et Letterboxd ET celles déjà
+# figées dans les snapshots de chaînes versionnés — le même film s'y
+# retrouverait scindé en deux jusqu'à la prochaine collecte complète. Le
+# problème est celui des URLs ; le correctif reste dans les URLs.
+LIGATURES = str.maketrans({"œ": "oe", "Œ": "OE", "æ": "ae", "Æ": "AE"})
+
+# Anciennes URLs (ligature perdue) vers les nouvelles, remplies au fil des
+# appels à `slug_url()` et écrites dans `_redirects`. Voir `write_redirects()`.
+REDIRECTIONS_SLUG: dict[str, str] = {}
+
+
+def slug_url(texte: str) -> tuple[str, str]:
+    """Slug d'URL, et le slug qu'on aurait produit AVANT le dépliage.
+
+    Renvoie (slug, ancien_slug). Les deux sont égaux dès qu'il n'y a pas de
+    ligature — c'est-à-dire pour l'écrasante majorité des noms."""
+    return slugify(texte.translate(LIGATURES)), slugify(texte)
+
+
 # Articles ignorés pour le tri alphabétique : « Le Bon, la Brute… » se range
 # à B, pas à L — c'est l'usage des catalogues de cinéma et de bibliothèque.
 # Comparés à la sortie de _fold_title(), où l'apostrophe est déjà une espace
@@ -868,14 +895,21 @@ def note_lb(movie: dict) -> str:
 
 def movie_card(movie: dict, movie_urls: dict, extra: str = "",
                show_rating: bool = True, show_classic: bool = True,
-               versions: set | None = None) -> str:
+               versions: set | None = None, ancre_ville: str = "") -> str:
     """`show_rating=False` masque la note — utile quand la carte l'affiche
     déjà ailleurs (le classement de /classiques/ la met dans son propre rang).
     `show_classic=False` masque le badge Classique — bruit pur sur une page
     qui ne liste QUE des classiques.
     `versions` : versions locales à poser sur `data-v` (voir card_attrs) —
-    utilisé par la page ville pour un filtre langue propre à la ville."""
-    url = movie_urls[movie["key"]]
+    utilisé par la page ville pour un filtre langue propre à la ville.
+
+    `ancre_ville` : slug de regroupement (`lyon`) quand la carte est servie
+    DEPUIS un contexte géographique — page ville, page cinéma, rétrospective.
+    Le lien devient alors `/film/…/#v-lyon`, et la fiche film s'ouvre sur les
+    séances de cette agglomération au lieu du sommaire « Où voir X ? ».
+    Signalé le 2026-08-30 : depuis Décines-Charpieu, cliquer un film renvoyait
+    à un choix de ville qu'on venait justement de faire."""
+    url = movie_urls[movie["key"]] + (f"#v-{ancre_ville}" if ancre_ville else "")
     poster = (f'<img src="{esc(movie["poster"])}" alt="{esc(affiche_alt(movie))}" loading="lazy">'
               if movie["poster"] else '<div class="noposter">🎞️</div>')
     meta = " · ".join(filter(None, [
@@ -1153,22 +1187,32 @@ def main() -> int:
     cinema_urls: dict[str, str] = {}
     taken: dict[str, str] = {}
     for cid, c in cinemas.items():
-        slug = slugify(c["name"]) or f"cinema-{cid}"
+        slug, avant = slug_url(c["name"])
+        slug = slug or f"cinema-{cid}"
         if slug in taken:
             slug = f"{slug}-{c['city_slug']}"
+            avant = f"{avant}-{c['city_slug']}"
         taken[slug] = cid
         cinema_urls[cid] = f"/cinema/{slug}/"
+        # `avant` vide = titre entièrement non-ASCII : le repli ne s'applique
+        # qu'au slug neuf, il n'y a donc pas d'ancienne URL à faire suivre.
+        if avant and avant != slug:
+            REDIRECTIONS_SLUG[f"/cinema/{avant}/"] = cinema_urls[cid]
     movie_urls: dict[str, str] = {}
     taken = {}
     for key, m in movies.items():
         # Slug borné à 60 caractères : les listes de réalisateurs à rallonge
         # produisaient des chemins dépassant la limite Windows (260 car.).
-        slug = slugify(m["title"])[:60].strip("-") or "film"
+        slug, avant = slug_url(m["title"])
+        slug, avant = slug[:60].strip("-") or "film", avant[:60].strip("-")
         if slug in taken:
-            alt = f"{slug}-{slugify(m['director'])}"[:60].strip("-")
+            alt = f"{slug}-{slug_url(m['director'])[0]}"[:60].strip("-")
             slug = alt if alt not in taken else f"{slug}-{len(taken)}"
+            avant = slug          # collision : pas de redirection à promettre
         taken[slug] = key
         movie_urls[key] = f"/film/{slug}/"
+        if avant and avant != slug:
+            REDIRECTIONS_SLUG[f"/film/{avant}/"] = movie_urls[key]
 
     if SITE.exists():
         shutil.rmtree(SITE)
@@ -1179,6 +1223,7 @@ def main() -> int:
     if static_dir.exists():
         for f in static_dir.iterdir():
             shutil.copy(f, SITE / f.name)
+    write_redirects()
 
     # ----- Une passe de génération complète par langue -----
     # Tout ce qui précède (fusion, index de séances, slugs) est calculé UNE
@@ -1263,6 +1308,35 @@ changes every day, and a film's page disappears when it stops showing.
     return 0
 
 
+def write_redirects() -> None:
+    """Ajoute au `_redirects` de Cloudflare les URLs changées par le dépliage
+    des ligatures (`/film/curs/` → `/film/coeurs/`).
+
+    Écrit APRÈS la copie de `static/`, donc à la suite de la règle de
+    validation Search Console — Cloudflare applique la PREMIÈRE règle qui
+    correspond, et la nôtre ne peut pas la concurrencer (chemins disjoints).
+
+    301 et non 200 : ici on veut bel et bien dire « cette page a déménagé »,
+    contrairement à la règle `/google*.html` qui doit RÉÉCRIRE. Les deux
+    langues sont couvertes (`/en/film/…` existe aussi).
+
+    Les règles sont RECALCULÉES à chaque build depuis les données, jamais
+    tenues à la main : une URL qui n'a jamais existé se contente de rediriger
+    un 404 vers la bonne page, ce qui ne coûte rien."""
+    if not REDIRECTIONS_SLUG:
+        return
+    lignes = ["", "# --- Ligatures dépliées (voir LIGATURES dans build_site.py) ---",
+              "# « Cœurs » s'écrivait /film/curs/ avant le 2026-08-30 : le œ était",
+              "# jeté au lieu d'être déplié en « oe ». Les anciennes URLs ont pu",
+              "# être indexées ou partagées, elles doivent mener quelque part."]
+    for avant, apres in sorted(REDIRECTIONS_SLUG.items()):
+        for prefixe in ("", "/en"):
+            lignes.append(f"{BASE_PATH}{prefixe}{avant}  {BASE_PATH}{prefixe}{apres}  301")
+    cible = SITE / "_redirects"
+    existant = cible.read_text(encoding="utf-8") if cible.exists() else ""
+    cible.write_text(existant + "\n".join(lignes) + "\n", encoding="utf-8")
+
+
 def build_lang(today, today_iso, cinemas, movies, showtimes, cities,
                by_cinema, by_movie, cinema_urls, movie_urls) -> list[str]:
     """Génère le site entier dans la langue courante (`i18n.LANG`).
@@ -1276,6 +1350,11 @@ def build_lang(today, today_iso, cinemas, movies, showtimes, cities,
     """
     urls: list[str] = []
 
+    def groupe_ville(cslug: str) -> str:
+        """Slug sous lequel une commune est REGROUPÉE : sa ville-centre si elle
+        est de banlieue, elle-même sinon (voir `sources._apply_agglos`)."""
+        return (cities.get(cslug) or {}).get("metro_of") or cslug
+
     # ----- Pages cinéma -----
     for cid, cinema in cinemas.items():
         path = cinema_urls[cid]
@@ -1288,7 +1367,8 @@ def build_lang(today, today_iso, cinemas, movies, showtimes, cities,
         for day in sorted(by_day):
             d = date.fromisoformat(day)
             films_html = "".join(
-                movie_card(movies[mk], movie_urls, showtime_pills(ss))
+                movie_card(movies[mk], movie_urls, showtime_pills(ss),
+                           ancre_ville=groupe_ville(cinema["city_slug"]))
                 for mk, ss in sorted(by_day[day].items(),
                                      key=lambda kv: kv[1][0]["start"])
             )
@@ -1334,7 +1414,18 @@ def build_lang(today, today_iso, cinemas, movies, showtimes, cities,
         horizon = (today + timedelta(days=CITY_WINDOW_DAYS)).isoformat()
         blocks = []
         city_movie_keys: set[str] = set()
-        sorted_cids = sorted(city["cinemas"], key=lambda c: cinemas[c]["name"])
+        # Les salles de la commune D'ABORD, puis celles de l'agglomération.
+        # L'ordre n'est pas cosmétique : quelqu'un qui ouvre /ville/lyon/ veut
+        # voir Lyon en premier. Mais il ne veut pas pour autant ignorer le
+        # Pathé Carré de Soie ni le Ciné Toboggan, à un tram de là — voir
+        # `sources._apply_agglos()` pour le pourquoi de ce regroupement.
+        # Toutes les cartes de cette page mènent au bon bloc de la fiche film.
+        ancre = groupe_ville(slug)
+        own_cids = sorted(city["cinemas"], key=lambda c: cinemas[c]["name"])
+        metro_cids = sorted(
+            (cid for m in city.get("metro", ()) for cid in cities[m]["cinemas"]),
+            key=lambda c: (cinemas[c]["city_slug"], cinemas[c]["name"]))
+        sorted_cids = own_cids + metro_cids
         # Versions disponibles DANS CETTE VILLE par film : le filtre langue de la
         # page ville doit refléter les séances locales, pas la moyenne nationale
         # (un film en VF ici peut être en VO ailleurs).
@@ -1347,6 +1438,13 @@ def build_lang(today, today_iso, cinemas, movies, showtimes, cities,
                     elif s["version"] in ("VO", "VOST"):
                         city_versions[s["movie"]].add("vo")
         for cid in sorted_cids:
+            # Intertitre juste avant la PREMIÈRE salle d'agglomération : le
+            # lecteur doit voir où finit la commune et où commence l'alentour.
+            if metro_cids and cid == metro_cids[0]:
+                blocks.append(f"""<h2 class="agglo-titre" id="agglo">{
+tf("Autour de {ville}", ville=esc(city["name"]))}</h2>
+<p class="meta">{tf("{n} salle{s} des communes voisines, à portée de soirée.",
+n=len(metro_cids), s=plural(len(metro_cids)))}</p>""")
             cinema = cinemas[cid]
             shows = [s for s in by_cinema[cid] if s["start"][:10] <= horizon]
             films = defaultdict(list)
@@ -1361,12 +1459,13 @@ def build_lang(today, today_iso, cinemas, movies, showtimes, cities,
                 if todays:
                     films_today.append(movie_card(movies[mk], movie_urls,
                                                   showtime_pills(todays),
-                                                  versions=city_versions[mk]))
+                                                  versions=city_versions[mk],
+                                                  ancre_ville=ancre))
                 else:
                     films_later.append(movie_card(
                         movies[mk], movie_urls,
                         f'<p class="meta">{tf("prochaine séance : {jour}", jour=date_label(date.fromisoformat(ss[0]["start"][:10]), today))}</p>',
-                        versions=city_versions[mk]))
+                        versions=city_versions[mk], ancre_ville=ancre))
             today_html = f'<div class="films">{"".join(films_today)}</div>' if films_today else ""
             later_html = ""
             if films_later:
@@ -1382,19 +1481,37 @@ def build_lang(today, today_iso, cinemas, movies, showtimes, cities,
                     today_html = (f'<p class="meta">'
                                   f'{t("Pas de séance aujourd\'hui. Prochaines dates :")}</p>')
                     later_html = f'<div class="films">{"".join(films_later)}</div>'
+            # Une salle de l'agglomération porte SA commune, en lien : sans ça
+            # la page dirait « Cinémas à Lyon » au-dessus d'une salle de
+            # Vaulx-en-Velin, ce qui serait faux. On regroupe l'offre, on ne
+            # déménage pas les cinémas.
+            commune = ""
+            if cinema["city_slug"] != slug:
+                commune = (f' <a href="/ville/{cinema["city_slug"]}/">'
+                           f'{esc(cinema["city"])}</a>.')
             blocks.append(f"""<section class="cinema-block" id="c-{cid}"{carte_attr(cinema)}>
 <h2><a href="{cinema_urls[cid]}">{esc(cinema["name"])}</a>{chain_badge(cinema)}{carte_badges(cinema)}</h2>
-<p class="meta">{esc(cinema["address"])}. <a href="{cinema_urls[cid]}">{t("Programme complet")}</a></p>
+<p class="meta">{esc(cinema["address"])}.{commune} <a href="{cinema_urls[cid]}">{t("Programme complet")}</a></p>
 {(today_html + later_html) or f'<p>{t("Aucune séance cette semaine.")}</p>'}</section>""")
         # Sommaire ancré : au-delà de 2 cinémas, l'accès direct évite de
         # scroller toute la page pour atteindre SA salle (Lyon = 17 écrans).
         toc = ""
         if len(sorted_cids) > 2:
-            toc_links = " ".join(f'<a href="#c-{cid}">{esc(cinemas[cid]["name"])}</a>'
-                                 for cid in sorted_cids)
+            def toc_lien(cid: str) -> str:
+                return f'<a href="#c-{cid}">{esc(cinemas[cid]["name"])}</a>'
+            toc_links = " ".join(toc_lien(cid) for cid in own_cids)
+            # Les salles de l'alentour dans un second groupe, précédé de son
+            # propre saut : un sommaire à plat mélangerait 7 salles lyonnaises
+            # et 5 salles de banlieue sans dire lesquelles sont lesquelles.
+            if metro_cids:
+                toc_links += (f'<a class="saut-agglo" href="#agglo">'
+                              + tf("Autour de {ville}", ville=esc(city["name"]))
+                              + "</a> " + " ".join(toc_lien(c) for c in metro_cids))
             toc = f'<nav class="city-jump">{toc_links}</nav>'
-        n_cine = len(city["cinemas"])
-        n_chain = sum(1 for cid in city["cinemas"] if cinemas[cid].get("chain"))
+        # Compté sur `sorted_cids`, donc agglomération comprise : annoncer
+        # « 7 cinémas » au-dessus de 12 sections serait un mensonge visible.
+        n_cine = len(sorted_cids)
+        n_chain = sum(1 for cid in sorted_cids if cinemas[cid].get("chain"))
         n_inde = n_cine - n_chain
         parts = []
         if n_inde:
@@ -1415,18 +1532,36 @@ def build_lang(today, today_iso, cinemas, movies, showtimes, cities,
         tools = ville_tools() if len(city_movie_keys) >= 5 else ""
         filtre_cartes = cartes_filtre(sorted_cids, cinemas)
         # « X et Y » / « X and Y » : le connecteur lui-même change de langue.
-        inventaire = tf("{inventaire} à {ville}.",
-                        inventaire=f' {t("et")} '.join(parts), ville=esc(city["name"]))
+        # « à Lyon et dans sa métropole » quand la page couvre l'agglomération :
+        # la phrase doit couvrir ce que la page montre VRAIMENT.
+        liste = f' {t("et")} '.join(parts)
+        inventaire = (
+            tf("{inventaire} à {ville} et dans sa métropole.",
+               inventaire=liste, ville=esc(city["name"])) if metro_cids
+            else tf("{inventaire} à {ville}.",
+                    inventaire=liste, ville=esc(city["name"])))
+        # Une page de banlieue renvoie vers l'agglomération, en tête : c'est là
+        # qu'un habitant de Décines trouvera aussi le Carré de Soie et Bellecour.
+        coeur = city.get("metro_of")
+        vers_agglo = (f'<p class="vers-agglo"><a href="/ville/{coeur}/">'
+                      + tf("Voir aussi tous les cinémas de {ville} et sa métropole →",
+                           ville=esc(cities[coeur]["name"]))
+                      + "</a></p>") if coeur in cities else ""
         body = f"""<p class="lead">{inventaire}
-{t("Les séances d'aujourd'hui d'abord, puis celles des jours suivants.")}{classics_bit}</p>{bridge}{toc}{filtre_cartes}{tools}{"".join(blocks)}
+{t("Les séances d'aujourd'hui d'abord, puis celles des jours suivants.")}{classics_bit}</p>{vers_agglo}{bridge}{toc}{filtre_cartes}{tools}{"".join(blocks)}
 {abonnement_bloc(slug, city["name"])}"""
+        # Le titre et le H1 disent « et sa métropole » dès qu'il y a des salles
+        # d'alentour : c'est aussi la requête réelle (« cinéma Lyon » vaut pour
+        # l'agglomération dans la tête de qui la tape).
+        titre_ville = (tf("{ville} et sa métropole", ville=city["name"])
+                       if metro_cids else city["name"])
         write(path, page(
             tf("Cinéma à {ville} : séances et horaires — {site}",
-               ville=city["name"], site=SITE_NAME),
+               ville=titre_ville, site=SITE_NAME),
             tf("Quel film voir à {ville} ? Séances et horaires des {n} cinéma(s) "
                "de la ville : programme du jour et de la semaine.",
-               ville=city["name"], n=n_cine),
-            body, path, h1=tf("Cinémas à {ville}", ville=city["name"]), top_link=True,
+               ville=titre_ville, n=n_cine),
+            body, path, h1=tf("Cinémas à {ville}", ville=titre_ville), top_link=True,
             # Découverte standard d'un flux : c'est ce que lisent les lecteurs
             # RSS et les extensions de navigateur pour proposer l'abonnement.
             # href écrit SANS préfixe : _prefix_links() s'en charge, comme pour
@@ -1504,7 +1639,7 @@ def build_lang(today, today_iso, cinemas, movies, showtimes, cities,
     realisateur_urls: dict[str, str] = {}
     _pris: set[str] = set()
     for nom in realisateurs:
-        slug = slugify(nom)[:60].strip("-") or "realisateur"
+        slug = slug_url(nom)[0][:60].strip("-") or "realisateur"
         if slug in _pris:  # homonymes après slugification
             slug = f"{slug}-{len(_pris)}"
         _pris.add(slug)
@@ -1532,9 +1667,16 @@ def build_lang(today, today_iso, cinemas, movies, showtimes, cities,
         shows = by_movie[key]
         # Séances groupées par ville puis par cinéma : le lecteur cherche
         # d'abord SA ville, pas une liste plate de toute la France.
+        #
+        # « Sa ville », c'est son AGGLOMÉRATION : une commune de banlieue est
+        # rangée sous sa ville-centre (sources._apply_agglos). Sans ça, un
+        # habitant de Décines-Charpieu qui choisissait « Lyon » sur une fiche
+        # film ne voyait ni le Ciné Toboggan ni le Pathé Carré de Soie, et le
+        # film lui semblait ne pas passer près de chez lui.
         by_city = defaultdict(lambda: defaultdict(list))
         for s in shows:
-            by_city[cinemas[s["cinema"]]["city_slug"]][s["cinema"]].append(s)
+            cslug = cinemas[s["cinema"]]["city_slug"]
+            by_city[groupe_ville(cslug)][s["cinema"]].append(s)
 
         def city_name(cslug: str) -> str:
             if cslug in cities:
@@ -1542,7 +1684,7 @@ def build_lang(today, today_iso, cinemas, movies, showtimes, cities,
             any_cid = next(iter(by_city[cslug]))
             return cinemas[any_cid]["city"]
 
-        city_slugs = sorted(by_city, key=lambda c: city_name(c))
+        city_slugs = sorted(by_city, key=lambda c: _fold_title(city_name(c)))
         # Au-delà de quelques villes, la page n'affiche AUCUNE ville tant que le
         # visiteur n'a pas choisi la sienne (recherche ou pastille) : même
         # repliée, la liste des 234 villes rallongeait la page pour rien.
@@ -1551,8 +1693,12 @@ def build_lang(today, today_iso, cinemas, movies, showtimes, cities,
         rows = []
         for cslug in city_slugs:
             blocks = []
+            # Salles de la ville-centre d'abord, puis l'alentour commune par
+            # commune : le même ordre que sur la page ville.
             for cid, ss in sorted(by_city[cslug].items(),
-                                  key=lambda kv: cinemas[kv[0]]["name"]):
+                                  key=lambda kv: (cinemas[kv[0]]["city_slug"] != cslug,
+                                                  cinemas[kv[0]]["city_slug"],
+                                                  cinemas[kv[0]]["name"])):
                 cinema = cinemas[cid]
                 nxt = sorted(ss, key=lambda s: s["start"])[:8]
                 days = defaultdict(list)
@@ -1561,12 +1707,21 @@ def build_lang(today, today_iso, cinemas, movies, showtimes, cities,
                 per_day = " ".join(
                     f'<span class="day">{date_label(date.fromisoformat(d), today)}</span>{showtime_pills(v)}'
                     for d, v in sorted(days.items()))
+                # La commune, quand ce n'est pas celle du titre du groupe : le
+                # lecteur doit savoir qu'il traverse le périphérique.
+                lieu = (f'<span class="agglo-commune">{esc(cinema["city"])}</span>'
+                        if cinema["city_slug"] != cslug else "")
                 blocks.append(f"""<section class="cinema-block">
-<h4><a href="{cinema_urls[cid]}">{esc(cinema["name"])}</a>{chain_badge(cinema)}</h4>
+<h4><a href="{cinema_urls[cid]}">{esc(cinema["name"])}</a>{chain_badge(cinema)}{lieu}</h4>
 {per_day}</section>""")
             n = len(blocks)
+            # Le titre ne promet « et sa métropole » que si des salles de
+            # l'alentour sont VRAIMENT dans le groupe pour CE film.
+            communes = {cinemas[cid]["city_slug"] for cid in by_city[cslug]}
+            titre_groupe = (tf("{ville} et sa métropole", ville=city_name(cslug))
+                            if communes - {cslug} else city_name(cslug))
             rows.append(f"""<section class="city-group" id="v-{cslug}">
-<h3>{esc(city_name(cslug))} <span class="meta">{tf("{n} cinéma{s}", n=n, s=plural(n))}</span></h3>
+<h3>{esc(titre_groupe)} <span class="meta">{tf("{n} cinéma{s}", n=n, s=plural(n))}</span></h3>
 <p class="meta"><a href="/ville/{cslug}/">{tf("Tous les cinémas de {ville} →", ville=esc(city_name(cslug)))}</a></p>
 {"".join(blocks)}</section>""")
         # Sommaire des villes : les plus grandes villes en accès direct,
@@ -1576,15 +1731,28 @@ def build_lang(today, today_iso, cinemas, movies, showtimes, cities,
         if filtered:
             majors = [c for c in BIG_CITY_SLUGS if c in by_city]
             pills = " ".join(f'<a href="#v-{c}">{esc(city_name(c))}</a>' for c in majors)
+            # Chaque commune, banlieue comprise, mène à l'ancre de SON groupe :
+            # taper « Décines » doit ouvrir le bloc « Lyon et sa métropole »,
+            # sans quoi le regroupement rendrait la commune introuvable — on
+            # aurait remplacé un manque par un autre.
             cmap = {city_name(c): f"v-{c}" for c in city_slugs}
+            for c in city_slugs:
+                for cid in by_city[c]:
+                    cmap.setdefault(cinemas[cid]["city"], f"v-{c}")
             # Suggestions maison (pas de <datalist> : elle déroule tout au clic ;
             # ici rien ne s'ouvre avant 2 lettres tapées — voir film.js)
-            city_jump = city_search_nav(pills, cmap, len(city_slugs))
+            # `cmap` porte une entrée par COMMUNE (banlieues comprises) :
+            # c'est bien le nombre de noms que la recherche accepte.
+            city_jump = city_search_nav(pills, cmap, len(cmap))
             n_cine_total = len({s["cinema"] for s in shows})
+            # On compte les COMMUNES, pas les groupes : « 40 villes » reste
+            # vrai après le regroupement, « 32 villes » deviendrait faux pour
+            # le lecteur qui cherche la sienne dans la liste.
+            n_villes = len({cinemas[s["cinema"]]["city_slug"] for s in shows})
             prompt = (f'<p class="city-prompt" id="city-prompt">'
                       + tf("À l'affiche dans {n} cinéma{s} de {v} villes. "
                            "Choisissez la vôtre pour voir les horaires.",
-                           n=n_cine_total, s=plural(n_cine_total), v=len(city_slugs))
+                           n=n_cine_total, s=plural(n_cine_total), v=n_villes)
                       + '</p>')
         # Crédits assemblés en HTML DÉJÀ ÉCHAPPÉ (et non en texte brut échappé
         # à l'insertion) : le nom du réalisateur doit pouvoir devenir un lien
@@ -2000,7 +2168,7 @@ def build_lang(today, today_iso, cinemas, movies, showtimes, cities,
     cycle_urls: dict[str, str] = {}
     taken_cycles: dict[str, str] = {}
     for c in rep_cycles:
-        slug = slugify(c["director"])[:60].strip("-") or "cycle"
+        slug = slug_url(c["director"])[0][:60].strip("-") or "cycle"
         if slug in taken_cycles:
             slug = f"{slug}-{len(taken_cycles)}"
         taken_cycles[slug] = c["key"]
@@ -2647,7 +2815,13 @@ aria-label="{esc(t("Chercher une ville"))}">
 """
 
     for slug, city in cities.items():
-        seances = rep_par_ville.get(slug, [])
+        # Le flux d'une ville-centre couvre son agglomération, comme sa page :
+        # un abonné lyonnais qui voit le Ciné Toboggan sur /ville/lyon/ mais
+        # jamais dans son agenda aurait un flux qui ment sur son propre titre.
+        seances = list(rep_par_ville.get(slug, []))
+        for banlieue in city.get("metro", ()):
+            seances += rep_par_ville.get(banlieue, [])
+        seances.sort(key=lambda s: s["start"])
         write_raw(f"/ville/{slug}/repertoire.ics", ics_ville(city["name"], seances))
         write_raw(f"/ville/{slug}/repertoire.xml", rss_ville(slug, city["name"], seances))
 
@@ -2759,7 +2933,8 @@ aria-label="{esc(t("Chercher une ville"))}">
                     f'<span class="day">{date_label(date.fromisoformat(d), today)}</span>{showtime_pills(v)}'
                     for d, v in sorted(jours.items()))
                 cartes.append(movie_card(movies[mk], movie_urls, horaires,
-                                         show_classic=False))
+                                         show_classic=False,
+                                         ancre_ville=groupe_ville(cinema["city_slug"])))
             blocs.append(f"""<section class="cinema-block">
 <h2><a href="{cinema_urls[cid]}">{esc(cinema["name"])}</a>{chain_badge(cinema)}</h2>
 <p class="meta"><a href="/ville/{cinema["city_slug"]}/">{esc(cinema["city"])}</a>,

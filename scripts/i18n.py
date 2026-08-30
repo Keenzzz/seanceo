@@ -376,6 +376,17 @@ EN: dict[str, str] = {
     "{n} cinéma{s} indépendant{s}": "{n} independent cinema{s}",
     "{n} cinéma{s} de chaîne": "{n} chain cinema{s}",
     "{inventaire} à {ville}.": "{inventaire} in {ville}.",
+    # Agglomérations : une page de ville-centre couvre aussi les communes
+    # voisines. « metropolitan area » plutôt que « suburbs » — un anglophone
+    # de passage cherche l'aire urbaine, pas un jugement sur la banlieue.
+    "{inventaire} à {ville} et dans sa métropole.":
+        "{inventaire} in {ville} and its metropolitan area.",
+    "{ville} et sa métropole": "{ville} and its metropolitan area",
+    "Autour de {ville}": "Around {ville}",
+    "{n} salle{s} des communes voisines, à portée de soirée.":
+        "{n} screen{s} in neighbouring towns, close enough for an evening out.",
+    "Voir aussi tous les cinémas de {ville} et sa métropole →":
+        "See all cinemas in {ville} and its metropolitan area →",
     # Connecteur d'énumération, isolé parce qu'il est assemblé au code plutôt
     # qu'écrit dans une phrase (« 3 indés ET 2 cinémas de chaîne »).
     "et": "and",
