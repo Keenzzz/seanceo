@@ -108,6 +108,12 @@ I18N_JS = '<script src="/assets/i18n.js" defer></script>'
 # doit l'autoriser en `connect-src`, sans quoi la watchlist par pseudo échoue.
 WORKER_ORIGIN = "https://seanceo-watchlist.keenzzz.workers.dev"
 
+# Liste Letterboxd proposée par défaut sur /ma-watchlist/, onglet « liste ».
+# Le Top 500 officiel : publique, stable, 500 titres presque tous de
+# répertoire — donc un croisement qui donne toujours des séances, quelle que
+# soit la semaine. C'est la réponse au visiteur qui n'a pas d'URL sous la main.
+LB_LISTE_EXEMPLE = "https://letterboxd.com/official/list/letterboxds-top-500-films/"
+
 # Cloudflare Web Analytics (activé le 2026-08-25). Cloudflare Pages injecte
 # lui-même `<script src=".../beacon.min.js">` dans chaque réponse HTML : le
 # script n'est donc NULLE PART dans ce dépôt, mais la CSP doit quand même
@@ -3173,7 +3179,7 @@ aria-label="{esc(t("Ton pseudo Letterboxd"))}">
        "nécessaire : la liste n'a même pas besoin d'être la tienne.",
        site=SITE_NAME)}</p>
 
-<form class="lb-connect" id="list-form" data-agenda="{BASE_PATH}{lang_prefix()}/agenda-index.json" data-wl="{BASE_PATH}{lang_prefix()}/watchlist-index.json">
+<form class="lb-connect" id="list-form" data-agenda="{BASE_PATH}{lang_prefix()}/agenda-index.json" data-wl="{BASE_PATH}{lang_prefix()}/watchlist-index.json" data-default="{LB_LISTE_EXEMPLE}">
 <label for="list-url">{t("URL de la liste Letterboxd")}</label>
 <div class="lb-field">
 <input class="lb-input" id="list-url" type="url" autocomplete="off" autocapitalize="none"
@@ -3182,6 +3188,13 @@ aria-label="{esc(t("URL de la liste Letterboxd"))}">
 <button class="bouton bouton-lb" type="submit">{t("Chercher les séances")}</button>
 </div>
 </form>
+<!-- Liste par défaut : sans elle, un visiteur qui n'a PAS d'URL sous la main
+     bute sur un champ vide et repart. Le champ laissé vide part donc sur le
+     Top 500 Letterboxd (lb-listes.js lit `data-default`), et la pastille
+     ci-dessous rend ce raccourci visible plutôt que devinable. -->
+<p class="list-suggest">{t("Pas d'idée de liste ?")}
+<button type="button" class="cine-chip list-example">{t("Essayer le Top 500 Letterboxd")}</button>
+<span>{t("les 500 films les mieux notés du site — c'est aussi ce que donne le champ laissé vide.")}</span></p>
 <p class="lb-connect-note">{t("On lit seulement une liste <strong>publique</strong>. Rien "
                               "n'est stocké côté serveur, et ta géolocalisation (pour trier "
                               "par proximité) reste sur ton appareil.")}</p>

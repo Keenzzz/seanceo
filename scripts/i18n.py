@@ -773,6 +773,11 @@ EN: dict[str, str] = {
         "No account needed: the list does not even have to be yours.",
     "URL de la liste Letterboxd": "Letterboxd list URL",
     "Chercher les séances": "Find screenings",
+    "Pas d'idée de liste ?": "No list in mind?",
+    "Essayer le Top 500 Letterboxd": "Try the Letterboxd Top 500",
+    "les 500 films les mieux notés du site — c'est aussi ce que donne le champ laissé vide.":
+        "the 500 highest-rated films on the site — also what you get by "
+        "leaving the field empty.",
     "On lit seulement une liste <strong>publique</strong>. Rien n'est stocké côté serveur, et ta géolocalisation (pour trier par proximité) reste sur ton appareil.":
         "We only read a <strong>public</strong> list. Nothing is stored "
         "server-side, and your location (used to sort by distance) stays on your "

@@ -730,6 +730,22 @@ html:not(.js) .film-tools { display: none; }
 }
 .lb-secondary:hover { color: var(--accent); }
 
+/* Liste par défaut proposée sous le champ « URL de la liste » (/ma-watchlist/,
+   onglet liste). La pastille réutilise .cine-chip : c'est déjà le geste
+   « suggestion cliquable » du site, inutile d'inventer un deuxième style. */
+.list-suggest {
+  color: var(--muted);
+  font-size: .85rem;
+  margin: 10px 0 14px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  text-wrap: pretty;
+}
+.list-suggest .cine-chip { font-size: .85rem; padding: 6px 12px; }
+.list-suggest span { flex: 1 1 220px; min-width: 0; }
+
 /* Favoris à revoir : section mise en avant (accent Letterboxd + étoile). On
    reste dans la palette « vert = Letterboxd », pas de nouvelle couleur. */
 .lb-favs {

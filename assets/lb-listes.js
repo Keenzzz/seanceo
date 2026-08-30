@@ -61,6 +61,11 @@
   var results = document.getElementById("list-results");
   var agendaUrl = form.dataset.agenda;
   var wlUrl = form.dataset.wl;
+  // Liste proposée par défaut (posée par le build, cf. LB_LISTE_EXEMPLE) : le
+  // champ laissé vide part dessus plutôt que de ne rien faire. Un visiteur qui
+  // découvre l'onglet n'a pas forcément une URL de liste sous la main ; lui
+  // renvoyer un formulaire muet, c'est le perdre là.
+  var defaultUrl = form.dataset.default || "";
 
   // Passer à true pour tester le rendu sans déployer le Worker : la liste
   // factice pointe des slugs qui EXISTENT dans l'agenda (donc de vrais matchs).
@@ -482,7 +487,24 @@
 
   form.addEventListener("submit", function (e) {
     e.preventDefault();
-    var raw = input.value.trim();
+    var raw = input.value.trim() || defaultUrl;
+    // On RECOPIE l'URL par défaut dans le champ : sans ça les résultats
+    // tombaient d'un formulaire vide, sans que rien ne dise d'où ils venaient
+    // ni comment les remplacer par sa propre liste.
+    if (raw && !input.value.trim()) input.value = raw;
     if (raw) search(raw);
   });
+
+  // Pastille « Essayer le Top 500 Letterboxd » : même chemin que le champ
+  // vide, mais visible. `requestSubmit` plutôt qu'un appel direct à search()
+  // pour ne garder qu'un seul point d'entrée (validation du champ comprise) ;
+  // repli sur search() pour les navigateurs qui ne le connaissent pas.
+  var example = document.querySelector(".list-example");
+  if (example && defaultUrl) {
+    example.addEventListener("click", function () {
+      input.value = defaultUrl;
+      if (form.requestSubmit) form.requestSubmit();
+      else search(defaultUrl);
+    });
+  }
 })();
