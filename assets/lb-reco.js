@@ -135,11 +135,22 @@
     return (h % 12 || 12) + ":" + mm + (h < 12 ? " am" : " pm");
   }
 
+  // Lien vers une fiche film, cadré sur la ville de la séance affichée.
+  // `s[6]` est le slug de regroupement posé par le build (agenda-index) :
+  // cliquer « Fjord — Ciné Toboggan, Décines-Charpieu » doit mener aux séances
+  // de l'agglomération lyonnaise, et pas au sommaire « Où voir X ? », où
+  // toutes les villes sont masquées tant qu'on n'en a pas choisi une.
+  // Absent d'un index plus ancien resté en cache → lien nu, comme avant.
+  function filmHref(film, s) {
+    return (s && s[6]) ? film.u + "#v-" + s[6] : film.u;
+  }
+
   function card(film) {
     var seances = film.s.slice().sort(function (a, b) {
       return a[0] < b[0] ? -1 : a[0] > b[0] ? 1 : 0;
     });
     var s = seances[0];
+    var href = filmHref(film, s);
     var villes = {};
     seances.forEach(function (x) { if (x[2]) villes[x[2]] = 1; });
     var nV = Object.keys(villes).length;
@@ -147,7 +158,7 @@
     var art = document.createElement("article");
     art.className = "movie-card";
     var a = document.createElement("a");
-    a.href = film.u;
+    a.href = href;
     if (film.p) {
       var img = document.createElement("img");
       img.src = film.p; img.alt = ""; img.loading = "lazy";
@@ -163,7 +174,7 @@
     info.className = "movie-info";
     var h = document.createElement("h4");
     var ha = document.createElement("a");
-    ha.href = film.u; ha.textContent = film.t;
+    ha.href = href; ha.textContent = film.t;
     h.appendChild(ha);
     info.appendChild(h);
 

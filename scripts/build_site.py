@@ -1909,6 +1909,15 @@ n=len(metro_cids), s=plural(len(metro_cids)))}</p>""")
                 ville,
                 round(lat, 4) if lat is not None else None,
                 round(lon, 4) if lon is not None else None,
+                # 4e champ : le slug de REGROUPEMENT de la ville, c'est-à-dire
+                # l'ancre `#v-…` de la fiche film. Sans lui, une carte de
+                # watchlist menait à la fiche nue, où toutes les villes sont
+                # masquées tant qu'on n'en a pas choisi une — le visiteur
+                # cadré sur Décines-Charpieu arrivait donc sur une page sans
+                # une seule séance, alors qu'il venait de cliquer une séance.
+                # Les cartes rendues en JS ne passent PAS par movie_card() :
+                # elles ne pouvaient pas hériter de son `ancre_ville`.
+                groupe_ville(c.get("city_slug") or ""),
             ])
         salle_idx[cinema_id] = len(salles)
         salles.append([c["name"], ville_idx[ville], ""])
@@ -2050,6 +2059,15 @@ n=len(metro_cids), s=plural(len(metro_cids)))}</p>""")
                 round(lat, 4) if lat is not None else None,
                 round(lon, 4) if lon is not None else None,
                 s.get("booking") or "",
+                # 7e champ : slug de REGROUPEMENT de la ville, soit l'ancre
+                # `#v-…` de la fiche film. Même raison que dans `_v` de
+                # watchlist-index : les cartes rendues en JavaScript ne passent
+                # pas par `movie_card()` et n'héritaient donc pas de son
+                # `ancre_ville`. Ajouté en QUEUE : les lecteurs indexent par
+                # position, un champ de plus ne dérange personne, et un index
+                # plus ancien resté en cache navigateur rend simplement
+                # `undefined` — le lien nu d'avant.
+                groupe_ville(cin.get("city_slug") or ""),
             ])
         if not seances:
             continue

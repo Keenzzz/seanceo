@@ -175,13 +175,28 @@
       });
   }
 
-  // Salle par index → { nom, ville, lat, lon }. `null` si l'index est hors table
-  // (fichier d'une version antérieure resté en cache, par exemple).
+  // Salle par index → { nom, ville, lat, lon, agglo }. `null` si l'index est
+  // hors table (fichier d'une version antérieure resté en cache, par exemple).
+  //
+  // `agglo` est le slug de regroupement de la ville — l'ancre `#v-…` d'une
+  // fiche film. Il peut manquer (index d'avant le 2026-08-30 encore en cache
+  // navigateur) : `filmHref` retombe alors sur le lien nu, exactement le
+  // comportement d'avant. Un index périmé doit dégrader, pas casser.
   function salleInfo(i) {
     var s = _salles[i];
     if (!s) return null;
-    var v = _villes[s[1]] || ["", null, null];
-    return { nom: s[0], ville: v[0], lat: v[1], lon: v[2] };
+    var v = _villes[s[1]] || ["", null, null, ""];
+    return { nom: s[0], ville: v[0], lat: v[1], lon: v[2], agglo: v[3] || "" };
+  }
+
+  // Lien vers une fiche film, cadré sur la ville de la séance qu'on affiche.
+  //
+  // ⚠️ NE JAMAIS écrire l'ancre dans `f.u` : cette URL est la CLÉ de jointure
+  // avec agenda-index (`ag[f.u]`), la modifier ferait rater tous les
+  // appariements. L'ancre ne vit que dans le href.
+  function filmHref(f, pick) {
+    var agglo = pick && pick.salle && pick.salle.agglo;
+    return agglo ? f.u + "#v-" + agglo : f.u;
   }
 
   // Lien de billetterie d'une séance : le préfixe commun de la salle (`_s[i][2]`)
@@ -486,9 +501,13 @@
 
     var art = document.createElement("article");
     art.className = "movie-card";
+    // Cadré sur la ville de la séance affichée : cliquer « Fjord, Ciné
+    // Toboggan, Décines-Charpieu » doit mener aux séances de Décines, pas au
+    // sommaire « Où voir Fjord ? ».
+    var href = filmHref(f, pick);
     var poster = f.p
-      ? '<a href="' + f.u + '"><img src="' + f.p + '" alt="" loading="lazy"></a>'
-      : '<a href="' + f.u + '"><span class="noposter">🎞️</span></a>';
+      ? '<a href="' + href + '"><img src="' + f.p + '" alt="" loading="lazy"></a>'
+      : '<a href="' + href + '"><span class="noposter">🎞️</span></a>';
     var note = f.r ? '<span class="note-lb">' + f.r + '<span class="sur">/5</span></span> · ' : "";
     var quand = TF("prochaine séance {jour}", { jour: frDate(jour) })
       + (heure ? " " + TF("à {heure}", { heure: heure }) : "");
@@ -502,7 +521,7 @@
     art.innerHTML =
       poster +
       '<div class="movie-info">' +
-      '<h3><a href="' + f.u + '"></a></h3>' +
+      '<h3><a href="' + href + '"></a></h3>' +
       '<p class="meta">' + note + quand + '</p>' +
       unique +
       "</div>";

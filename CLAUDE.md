@@ -342,6 +342,21 @@ Signalé en même temps : depuis une page ville ou cinéma, cliquer un film mena
 - **Rien de neuf côté navigateur** : `assets/film.js` ouvrait déjà la ville d'une ancre
   `#v-…` (`openHash()`), c'était le LIEN qui ne la portait pas. L'ancre doit être celle du
   GROUPE (`v-lyon`), pas de la commune — c'est l'id de section que la fiche film écrit.
+- **⚠️ LES CARTES RENDUES EN JAVASCRIPT NE PASSENT PAS PAR `movie_card()`** et n'héritaient
+  donc de rien. C'est ce qui a fait revenir le bug le 2026-08-30 depuis la watchlist
+  (« Fjord » et « Soudain » cadrés sur Décines-Charpieu menaient toujours à une fiche sans
+  la moindre séance). Quatre fichiers construisent leurs propres liens film :
+  `letterboxd.js` (watchlist), `lb-listes.js`, `lb-reco.js`, `cinematheque.js`. Chacun a
+  désormais un `filmHref()`. **Toute nouvelle surface qui liste des films en JS doit y
+  penser** — la fiche masque TOUTES ses villes tant qu'aucune n'est choisie, donc un lien
+  nu depuis un contexte géographique donne une page vide, ce qui est pire que pas de lien.
+- Les deux index portent le slug de regroupement, **ajouté EN QUEUE de tuple** pour ne rien
+  casser : `watchlist-index.json` → 4e champ de `_v`, `agenda-index.json` → 7e champ d'une
+  séance. Absent d'un index plus ancien en cache → lien nu, comme avant. Aucun risque de
+  cache long : `sw.js` n'intercepte AUCUNE requête (choix documenté en tête du fichier) et
+  Cloudflare sert ces JSON en `max-age=0, must-revalidate`.
+- ⚠️ **Ne jamais écrire l'ancre dans `f.u`** : cette URL est la clé de jointure entre
+  watchlist-index et agenda-index (`ag[f.u]`). L'ancre ne vit que dans le `href`.
 
 ### Cartes d'abonnement illimité (UGC Illimité / CinéPass Pathé)
 
