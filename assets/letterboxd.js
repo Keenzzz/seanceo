@@ -369,9 +369,19 @@
   // `heure`/`booking` viennent des positions 2 et 3 des entrées de `k` ; un
   // index d'une version antérieure (resté en cache) n'en a pas, d'où les
   // valeurs par défaut vides plutôt qu'un accès direct.
+  // Une entrée de `k` (`[salle, jour, heure, billetterie]`) déjà commencée. Le
+  // site est statique et lu toute la journée : à 19 h 30 il ne doit plus
+  // proposer la séance de 19 h (voir assets/passe.js). Sans heure — un index
+  // d'avant 2026-07-27 resté en cache — on retient la fin de journée, faute de
+  // quoi on ferait disparaître des séances dont on ignore l'horaire.
+  function ksPassee(ks) {
+    return !!(window.PASSE && window.PASSE.est(ks[1] + "T" + (ks[2] || "23:59")));
+  }
+
   function pickSalle(f, cityKey) {
     var ks = f.k || [], choisi = null, n = 0;
     for (var i = 0; i < ks.length; i++) {
+      if (ksPassee(ks[i])) continue;
       var inf = salleInfo(ks[i][0]);
       if (!inf) continue;
       if (cityKey && empreinte(inf.ville) !== cityKey) continue;
@@ -415,7 +425,11 @@
       var m = index[empreinte(f.slug)]
            || index[empreinte(f.name) + (f.year || "")]
            || index[empreinte(f.name)];
-      if (m && !seen[m.u]) { seen[m.u] = 1; hits.push(m); }
+      // `pickSalle` sans cadrage = « il reste au moins une séance à venir ».
+      // Un film dont la dernière séance de la journée est passée doit sortir
+      // du COMPTE aussi, pas seulement de la grille : « 32 films à l'affiche »
+      // au-dessus de 31 cartes est le genre d'écart qu'on remarque tout de suite.
+      if (m && !seen[m.u] && pickSalle(m, "")) { seen[m.u] = 1; hits.push(m); }
     });
     // Prochaine séance d'abord (ce qu'on peut voir le plus tôt), mieux notés à
     // date égale — même tri que l'import CSV.
@@ -576,6 +590,7 @@
     var best = null;
     hits.forEach(function (f) {
       (f.k || []).forEach(function (ks) {
+        if (ksPassee(ks)) return;
         var inf = salleInfo(ks[0]);
         if (!inf || !inf.ville || inf.lat == null) return;
         var key = empreinte(inf.ville);

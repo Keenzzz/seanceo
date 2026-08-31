@@ -100,10 +100,17 @@
     Object.keys(_agenda).forEach(function (k) {
       var e = _agenda[k];
       if ((e.dk || []).indexOf(key) < 0 || byU[e.u]) return;
+      // Les séances déjà commencées sortent dès le rassemblement : la
+      // rétrospective composée ici est un PARCOURS à venir, et son export .ics
+      // ne doit pas poser dans l'agenda du visiteur une séance de ce matin.
+      var futures = window.PASSE
+        ? window.PASSE.futures(e.s, function (x) { return x[0]; })
+        : e.s;
+      if (!futures.length) return;
       var meta = _wl[k] || {};
       byU[e.u] = {
         t: e.t, u: e.u, p: meta.p || "", r: meta.r || 0,
-        seances: e.s.slice().sort(byStart)
+        seances: futures.slice().sort(byStart)
       };
     });
     return Object.keys(byU).map(function (u) { return byU[u]; });
@@ -345,8 +352,30 @@
     statusEl.querySelector("p").textContent = text;
   }
 
+  /* Le compte de chaque pastille (« Akira Kurosawa 6 ») est écrit au build sur
+     TOUTE la fenêtre. `gather()` écarte désormais les films dont la dernière
+     séance de la journée est passée (voir assets/passe.js) : sans ce recompte,
+     cliquer « Kurosawa 6 » ouvrait une rétrospective de 5 films, le démenti
+     étant à deux lignes d'écart. On ne le fait qu'une fois, et seulement après
+     le chargement des index — les télécharger d'emblée pour six nombres
+     coûterait plus cher que ce qu'ils rapportent. */
+  var pastillesRecomptees = false;
+  function majPastilles() {
+    if (pastillesRecomptees) return;
+    pastillesRecomptees = true;
+    [].slice.call(document.querySelectorAll(".cine-chip[data-dir]")).forEach(function (chip) {
+      var dir = _dirByKey[LB.empreinte(chip.dataset.dir)];
+      var n = dir ? gather(dir.key).length : 0;
+      // Plus un seul film à venir : la pastille ne mène plus nulle part.
+      if (!n) { chip.parentNode.removeChild(chip); return; }
+      var badge = chip.querySelector("span");
+      if (badge) badge.textContent = n;
+    });
+  }
+
   function assemble(query) {
     loadIndexes().then(function () {
+      majPastilles();
       var key = LB.empreinte(query);
       var dir = _dirByKey[key];
       if (!dir) {

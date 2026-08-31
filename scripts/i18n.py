@@ -453,6 +453,10 @@ EN: dict[str, str] = {
         "shows you which of those films are back in cinemas, with the screening "
         "and the booking link.",
     "Explorer une liste": "Explore a list",
+    # Nom propre d'une liste Letterboxd : identique dans les deux langues.
+    # Entrée d'identité, gardée pour que le rapport de chaînes manquantes ne
+    # la signale pas à chaque build.
+    "Top 500 Letterboxd": "Letterboxd Top 500",
     "À ne pas rater": "Don't miss",
     "Des séances qui ne repassent nulle part ailleurs en France cette semaine.":
         "Screenings that play nowhere else in France this week.",

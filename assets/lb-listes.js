@@ -45,7 +45,10 @@
     // listes doit être celui qu'on trouve ouvert. Sans ça l'ancre amenait le
     // visiteur sur une barre d'onglets où « Ma watchlist » restait actif —
     // exactement l'inverse de ce qu'il venait de cliquer.
-    if (location.hash === "#liste") {
+    // `#top500` fait la même chose et LANCE en plus le Top 500 (voir plus
+    // bas) : c'est l'exemple proposé depuis l'accueil, il doit donner un
+    // résultat sans que le visiteur ait à cliquer une seconde fois.
+    if (location.hash === "#liste" || location.hash === "#top500") {
       var t = document.getElementById("liste");
       if (t) activer(t);
     }
@@ -125,9 +128,17 @@
       var kName = LB.empreinte(f.name);
       var a = _agenda[kSlug] || _agenda[kName + (f.year || "")] || _agenda[kName];
       if (!a || seen[a.u]) return;
+      // Les séances déjà commencées sont écartées ICI, une fois pour toutes :
+      // tout ce qui suit (choix de la séance affichée, liste des villes du
+      // filtre, compte « N films de cette liste repassent ») lit `s`, et un
+      // film dont il ne reste rien aujourd'hui ne doit apparaître nulle part.
+      var futures = window.PASSE
+        ? window.PASSE.futures(a.s, function (x) { return x[0]; })
+        : a.s;
+      if (!futures.length) return;
       seen[a.u] = 1;
       var meta = _wl[kSlug] || _wl[kName + (f.year || "")] || _wl[kName] || {};
-      out.push({ t: a.t, u: a.u, p: meta.p || "", r: meta.r || 0, s: a.s });
+      out.push({ t: a.t, u: a.u, p: meta.p || "", r: meta.r || 0, s: futures });
     });
     return out;
   }
@@ -338,92 +349,54 @@
     results.appendChild(grid);
   }
 
-  // Construit la barre de contrôles (champ de ville + bouton géoloc) une fois
-  // qu'on a des résultats.
-  function buildControls() {
-    controls.hidden = false;
-    controls.textContent = "";
+  /* Cadrage géographique des résultats.
 
-    // Villes distinctes présentes parmi les séances des films croisés.
-    var cityMap = {};
-    matched.forEach(function (film) {
-      film.s.forEach(function (s) {
-        if (s[2]) cityMap[empreinteCity(s[2])] = s[2];
-      });
-    });
-    var cities = Object.keys(cityMap).sort(function (a, b) {
-      return cityMap[a].localeCompare(cityMap[b], "fr");
-    });
-    var noms = cities.map(function (k) { return cityMap[k]; });
+     C'est EXACTEMENT le champ de ville de l'onglet « Ma watchlist »
+     (`.lb-city-edit` puis `.lb-city-bar`, voir lb-watchlist.js) : même
+     question posée, même encadré ambre, même bascule vers une barre compacte
+     une fois la ville choisie. Les deux onglets répondent à la même question —
+     « et près de chez moi ? » — et un visiteur qui passe de l'un à l'autre ne
+     devrait pas avoir à réapprendre le geste. Cet onglet proposait jusqu'ici
+     une barre de filtre d'un autre dessin, ce qui faisait deux vocabulaires
+     pour une seule idée.
 
-    var label = document.createElement("label");
-    label.className = "list-city-label";
-    label.setAttribute("for", "list-city");
-    label.textContent = T("Ville");
+     Une différence de FOND est conservée : les suggestions ne portent que les
+     villes de la liste affichée, pas les 257 du site (d'où `min: 0` et
+     `surFocus`, licites ici et pas dans le portail). Proposer une ville où
+     aucun film de la liste ne repasse ferait cliquer dans le vide. */
 
-    // Un CHAMP DE SAISIE, pas un <select>. Une liste croisée couvre couramment
-    // trente ou quarante villes : les faire défiler pour trouver la sienne
-    // coûtait plusieurs secondes, alors que trois lettres suffisent à la
-    // désigner. Le menu reste atteignable — la liste se déroule au focus, sans
-    // rien taper — mais ce n'est plus le seul chemin.
-    // `min: 0` + `surFocus` sont licites ICI et pas dans le champ de ville du
-    // portail : on ne propose que les villes de la liste affichée, pas les 257
-    // du site.
-    var input = document.createElement("input");
-    input.type = "text";
-    input.id = "list-city";
-    input.className = "lb-input list-city";
-    input.setAttribute("aria-label", T("Ville"));
-    controls.appendChild(label);
-    // autoVille insère un conteneur AUTOUR du champ : il doit déjà être dans
-    // le document (sinon `input.parentNode` est nul).
-    controls.appendChild(input);
-    LB.autoVille(input, function (nom) {
-      currentCity = empreinteCity(nom);
-      majReset();
-      renderResults();
-    }, {
-      noms: noms, min: 0, surFocus: true,
-      placeholder: TF("Tapez une ville ({n})", { n: cities.length })
-    });
+  var villesListe = [];   // noms des villes présentes dans la liste croisée
+  var villeNom = "";      // ville cadrée, telle qu'on l'affiche
 
-    // Champ vidé à la main = retour à toutes les villes, sans avoir à viser le
-    // bouton. On ne filtre PAS sur une saisie partielle : « Bo » n'est pas une
-    // ville, et filtrer à chaque touche ferait clignoter la grille.
-    input.addEventListener("input", function () {
-      if (!input.value.trim() && currentCity) {
-        currentCity = "";
-        majReset();
-        renderResults();
-      }
-    });
+  function lienSecondaire(texte, onClick) {
+    var b = document.createElement("button");
+    b.type = "button";
+    b.className = "lb-secondary";
+    b.textContent = texte;
+    b.addEventListener("click", onClick);
+    return b;
+  }
 
-    var reset = document.createElement("button");
-    reset.type = "button";
-    reset.className = "lb-secondary list-city-reset";
-    reset.textContent = TF("Toutes les villes ({n})", { n: cities.length });
-    reset.hidden = true;
-    reset.addEventListener("click", function () {
-      input.value = "";
-      currentCity = "";
-      majReset();
-      renderResults();
-    });
-    controls.appendChild(reset);
-
-    function majReset() { reset.hidden = !currentCity; }
-
+  // Le bouton de géolocalisation, partagé par les deux états. Il ne cadre pas
+  // sur une ville : il TRIE du plus proche au plus loin, ce qui reste utile
+  // même sans savoir nommer la commune où l'on cherche. La position est lue
+  // dans le navigateur, rien n'est envoyé au site.
+  function boutonGeo(msg) {
     var geo = document.createElement("button");
     geo.type = "button";
-    geo.className = "lb-secondary list-geo";
-    geo.textContent = T("📍 autour de moi");
+    geo.className = "lb-secondary";
+    geo.textContent = near ? T("🌍 revenir au national") : T("📍 autour de moi");
     geo.addEventListener("click", function () {
       if (near) {
-        near = null; geo.textContent = T("📍 autour de moi");
-        renderResults(); return;
+        near = null;
+        geo.textContent = T("📍 autour de moi");
+        renderResults();
+        return;
       }
       if (!navigator.geolocation) {
-        geo.textContent = T("Géolocalisation indisponible"); return;
+        if (msg) msg.textContent = T("Géolocalisation indisponible.");
+        else geo.textContent = T("Géolocalisation indisponible");
+        return;
       }
       geo.textContent = T("…localisation");
       navigator.geolocation.getCurrentPosition(
@@ -432,11 +405,128 @@
           geo.textContent = T("🌍 revenir au national");
           renderResults();
         },
-        function () { geo.textContent = T("📍 autour de moi"); }
+        function () {
+          geo.textContent = T("📍 autour de moi");
+          if (msg) msg.textContent = T("Localisation refusée. Tape ta ville.");
+        }
       );
     });
+    return geo;
+  }
 
-    controls.appendChild(geo);
+  // État « une ville est cadrée » : barre compacte, comme sur la watchlist.
+  function barreVille() {
+    controls.textContent = "";
+    var ligne = document.createElement("p");
+    ligne.className = "lb-city-bar";
+    var quoi = document.createElement("span");
+    quoi.className = "lb-city-on";
+    quoi.textContent = "📍 " + villeNom;
+    ligne.appendChild(document.createTextNode(T("Résultats cadrés sur") + " "));
+    ligne.appendChild(quoi);
+    ligne.appendChild(document.createTextNode(" "));
+    var chg = document.createElement("button");
+    chg.type = "button";
+    chg.className = "lb-city-chg";
+    chg.textContent = T("Changer de ville");
+    chg.addEventListener("click", function () { editeurVille(villeNom); });
+    ligne.appendChild(chg);
+    ligne.appendChild(document.createTextNode(" · "));
+    ligne.appendChild(lienSecondaire(
+      TF("Toutes les villes ({n})", { n: villesListe.length }),
+      function () { cadrer(""); }));
+    ligne.appendChild(document.createTextNode(" · "));
+    ligne.appendChild(boutonGeo(null));
+    controls.appendChild(ligne);
+  }
+
+  // État « aucune ville cadrée », et retour au champ depuis la barre.
+  function editeurVille(valeur) {
+    controls.textContent = "";
+    var form = document.createElement("form");
+    form.className = "lb-city-edit";
+    form.innerHTML =
+      '<label for="list-city">' + T("📍 Dans quelle ville cherches-tu ?") + "</label>" +
+      '<span class="lb-field">' +
+        // Placeholder posé par LB.autoVille (il connaît le nombre de villes).
+        '<input class="lb-input" id="list-city" type="text" ' +
+          'autocomplete="off" spellcheck="false" aria-label="' + T("Ta ville") + '">' +
+        '<button class="bouton bouton-lb" type="submit">' + T("Cadrer") + "</button>" +
+      "</span>" +
+      '<span class="lb-city-actions"></span>' +
+      '<span class="lb-city-msg" role="status"></span>';
+    controls.appendChild(form);
+
+    var champ = form.querySelector("#list-city");
+    champ.value = valeur || "";
+    var msg = form.querySelector(".lb-city-msg");
+    var actions = form.querySelector(".lb-city-actions");
+    actions.appendChild(boutonGeo(msg));
+    // « Annuler » n'a de sens que pour REVENIR à une ville déjà cadrée. Sans
+    // ville, le champ n'est pas une parenthèse qu'on referme : c'est l'état
+    // normal de l'écran, et les résultats nationaux sont déjà dessous.
+    if (valeur) {
+      actions.appendChild(document.createTextNode(" · "));
+      actions.appendChild(lienSecondaire(T("Annuler"), function () { barreVille(); }));
+    }
+
+    function valider(nom) {
+      nom = (nom || "").trim();
+      if (!nom) { cadrer(""); return; }
+      var k = empreinteCity(nom);
+      var trouve = null;
+      for (var i = 0; i < villesListe.length; i++) {
+        if (empreinteCity(villesListe[i]) === k) { trouve = villesListe[i]; break; }
+      }
+      // Message distinct de celui du portail : ici la ville peut très bien
+      // exister sur le site, c'est CETTE LISTE qui n'y repasse pas.
+      if (!trouve) {
+        msg.textContent = TF("Aucun film de cette liste ne repasse à « {ville} ».",
+                             { ville: nom });
+        return;
+      }
+      cadrer(trouve);
+    }
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      valider(champ.value);
+    });
+    // Cliquer une suggestion cadre tout de suite : la ville ne fait plus de
+    // doute. `min: 0` + `surFocus` : les villes de CETTE liste tiennent dans un
+    // menu qu'on déroule, contrairement aux 257 du site.
+    LB.autoVille(champ, valider, {
+      noms: villesListe, min: 0, surFocus: true,
+      placeholder: TF("Tapez une ville ({n})", { n: villesListe.length })
+    });
+    // Focus seulement quand le visiteur a DEMANDÉ à changer de ville. Le champ
+    // s'affiche aussi tout seul au premier rendu : y voler le focus ferait
+    // sauter la page vers lui et ouvrirait le clavier sur mobile.
+    if (valeur) champ.focus();
+  }
+
+  function cadrer(nom) {
+    villeNom = nom || "";
+    currentCity = nom ? empreinteCity(nom) : "";
+    if (villeNom) barreVille(); else editeurVille("");
+    renderResults();
+  }
+
+  // Appelé une fois par liste croisée, dès qu'il y a des résultats.
+  function buildControls() {
+    controls.hidden = false;
+    // Villes distinctes présentes parmi les séances des films croisés.
+    var cityMap = {};
+    matched.forEach(function (film) {
+      film.s.forEach(function (s) {
+        if (s[2]) cityMap[empreinteCity(s[2])] = s[2];
+      });
+    });
+    villesListe = Object.keys(cityMap)
+      .map(function (k) { return cityMap[k]; })
+      .sort(function (a, b) { return a.localeCompare(b, "fr"); });
+    villeNom = "";
+    editeurVille("");
   }
 
   // —— Statut / erreurs ——————————————————————————————————————————————————————
@@ -511,11 +601,18 @@
   // pour ne garder qu'un seul point d'entrée (validation du champ comprise) ;
   // repli sur search() pour les navigateurs qui ne le connaissent pas.
   var example = document.querySelector(".list-example");
-  if (example && defaultUrl) {
-    example.addEventListener("click", function () {
-      input.value = defaultUrl;
-      if (form.requestSubmit) form.requestSubmit();
-      else search(defaultUrl);
-    });
+  function lancerExemple() {
+    input.value = defaultUrl;
+    if (form.requestSubmit) form.requestSubmit();
+    else search(defaultUrl);
   }
+  if (example && defaultUrl) {
+    example.addEventListener("click", lancerExemple);
+  }
+
+  // Arrivée sur /ma-watchlist/#top500 (bouton d'exemple de l'accueil) : on
+  // déroule le Top 500 tout de suite. Le visiteur a cliqué « Top 500
+  // Letterboxd », pas « ouvre-moi un formulaire » — lui redemander de valider
+  // ferait de l'exemple un détour de plus.
+  if (defaultUrl && location.hash === "#top500") lancerExemple();
 })();

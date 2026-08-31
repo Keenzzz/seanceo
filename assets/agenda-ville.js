@@ -32,7 +32,14 @@
   var boutons = [].slice.call(groupe.querySelectorAll("button[data-city]"));
   var lignes = [].slice.call(bloc.querySelectorAll(".seance[data-city]"));
   var jours = [].slice.call(bloc.querySelectorAll(".jour"));
-  if (!boutons.length || !lignes.length) return;
+  if (!boutons.length) return;
+  // Plus une seule séance à venir dans la sélection (assets/passe.js les a
+  // toutes retirées) : une barre de filtre au-dessus du vide n'a plus d'objet.
+  if (!lignes.length) {
+    var vide = groupe.closest(".agenda-tools");
+    if (vide) vide.parentNode.removeChild(vide);
+    return;
+  }
 
   // La ville active est portée par `aria-pressed` et NON par une variable à
   // part : l'état lisible par un lecteur d'écran et l'état interne sont ainsi
@@ -69,6 +76,46 @@
     }
   }
 
+  /* Chaque bouton porte un compte de séances écrit AU BUILD. assets/passe.js
+     vient d'en retirer celles qui ont commencé : on recompte sur ce qui reste,
+     et une ville dont il ne reste rien perd son bouton (il ne rendrait qu'une
+     liste vide). Le libellé se recompose depuis `data-city` et, pour
+     « Toutes », depuis le gabarit déjà traduit posé par le build — rien n'est
+     réécrit en dur ici, la page anglaise doit rester anglaise. */
+  (function recompter() {
+    var restants = boutons.filter(function (btn) {
+      var ville = btn.dataset.city;
+      if (!ville) return true; // « Toutes » : traité juste après
+      var n = 0;
+      for (var i = 0; i < lignes.length; i++) {
+        if (lignes[i].dataset.city === ville) n++;
+      }
+      if (!n) { btn.parentNode.removeChild(btn); return false; }
+      btn.textContent = ville + " (" + n + ")";
+      return true;
+    });
+    var tout = boutons[0];
+    if (tout && !tout.dataset.city && tout.dataset.tpl) {
+      tout.textContent = tout.dataset.tpl.replace("{n}", lignes.length);
+    }
+    // Le compteur porte lui aussi un nombre écrit au build. On ne l'écrivait
+    // pas au chargement (le HTML servi était déjà l'état « toutes villes ») ;
+    // depuis que passe.js retire des séances, ce n'est plus vrai.
+    if (compte) {
+      compte.textContent = window.TF("{n} séance{s} en France",
+                                     { n: lignes.length, s: window.PL(lignes.length) });
+    }
+    boutons = restants;
+    // Une seule ville restante : le filtre n'offre plus de choix réel, et le
+    // groupe de boutons ne ferait qu'occuper la place. Même règle qu'au build
+    // (`if len(home_villes) > 1`), appliquée à ce qu'il reste.
+    if (boutons.length < 3) {
+      var barre = groupe.closest(".agenda-tools");
+      if (barre) barre.parentNode.removeChild(barre);
+      return;
+    }
+  })();
+
   // Un seul écouteur sur le groupe plutôt qu'un par bouton : le nombre de
   // villes change à chaque build, autant ne pas en dépendre.
   groupe.addEventListener("click", function (e) {
@@ -83,6 +130,8 @@
     }
     appliquer();
   });
-  // Pas d'appel au chargement : le HTML servi est déjà l'état « toutes villes »,
-  // et le rejouer ferait clignoter la liste pour rien.
+  // Pas d'appel à `appliquer()` au chargement : le HTML servi est déjà l'état
+  // « toutes villes », et le rejouer ferait clignoter la liste pour rien. Les
+  // compteurs, eux, sont remis à jour juste au-dessus — passe.js a pu retirer
+  // des séances commencées entre le build et la lecture de la page.
 })();

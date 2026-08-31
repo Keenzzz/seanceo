@@ -664,6 +664,34 @@ html:not(.js) .film-tools { display: none; }
    ne se distinguait pas des boutons secondaires ambrés qui l'entourent. */
 .bouton.bouton-lb { background: var(--lb); border-color: var(--lb); color: #06130c; }
 .bouton.bouton-lb:hover { background: #7bf0ad; border-color: #7bf0ad; color: #06130c; }
+
+/* Bouton DORÉ : l'ambre du site, mais plein. Pas une nouvelle couleur — c'est
+   `--accent` (la lumière du projecteur), donc la règle « une couleur, un sens »
+   tient. Il sert aux raccourcis qu'on veut voir avant de les chercher :
+   « Essayer le Top 500 Letterboxd », qui est le second chemin d'entrée de
+   l'onglet liste. Le dégradé et l'ombre sont là pour qu'il pèse plus qu'un
+   `.bouton` bordé, sans changer de teinte. */
+.bouton.bouton-or {
+  background: linear-gradient(180deg, #eebc5f, var(--accent));
+  border-color: #eebc5f;
+  color: #24190a;
+  font-weight: 700;
+  box-shadow: 0 2px 14px #d9a4413d;
+  cursor: pointer;
+}
+.bouton.bouton-or:hover {
+  background: linear-gradient(180deg, #f6cf83, #e5b455);
+  border-color: #f6cf83;
+  color: #24190a;
+}
+/* Variante réduite : le même bouton en rôle d'ILLUSTRATION à côté d'une action
+   principale (l'exemple « Top 500 Letterboxd » de l'accueil). Il doit se voir
+   sans se disputer la place avec « Explorer une liste ». */
+.bouton.bouton-mini {
+  font-size: .8rem;
+  padding: 8px 13px;
+  box-shadow: none;
+}
 .wl-cta { border-color: #24402f; }
 .wl-cta[hidden] { display: none; }  /* .passerelle est en display:flex : garde anti-piège */
 
@@ -775,20 +803,27 @@ html:not(.js) .film-tools { display: none; }
 .lb-secondary:hover { color: var(--accent); }
 
 /* Liste par défaut proposée sous le champ « URL de la liste » (/ma-watchlist/,
-   onglet liste). La pastille réutilise .cine-chip : c'est déjà le geste
-   « suggestion cliquable » du site, inutile d'inventer un deuxième style. */
+   onglet liste). Ce n'est plus une pastille discrète mais un ENCADRÉ centré
+   autour d'un bouton doré : coller son URL suppose d'avoir une liste en tête,
+   ce qui n'est pas le cas du visiteur qui découvre l'onglet. Le Top 500 est
+   pour lui le vrai point d'entrée, il doit se voir comme tel. */
 .list-suggest {
-  color: var(--muted);
-  font-size: .85rem;
-  margin: 10px 0 14px;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 8px;
+  margin: 14px 0 18px;
+  padding: 16px 18px;
+  text-align: center;
+  background: var(--panel);
+  border: 1px solid var(--accent-deep);
+  border-radius: var(--radius);
   text-wrap: pretty;
 }
-.list-suggest .cine-chip { font-size: .85rem; padding: 6px 12px; }
-.list-suggest span { flex: 1 1 220px; min-width: 0; }
+.list-suggest-q {
+  margin: 0 0 10px;
+  font-family: var(--display);
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+.list-suggest .bouton-or { font-size: 1rem; padding: 13px 22px; }
+.list-suggest-note { margin: 10px 0 0; color: var(--muted); font-size: .85rem; }
 
 /* Favoris à revoir : section mise en avant (accent Letterboxd + étoile). On
    reste dans la palette « vert = Letterboxd », pas de nouvelle couleur. */
@@ -938,28 +973,13 @@ html:not(.js) .wl-tabs { display: none; }
 .wl-tab.is-active { color: var(--accent); border-bottom-color: var(--accent); }
 .wl-pane[hidden] { display: none; }
 
-/* Barre de filtre (menu des villes + « autour de moi »). display:flex, donc la
-   règle [hidden] est indispensable (sinon le masquage serait sans effet). */
-.list-controls {
-  display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: center;
-  margin: 18px 0 6px; padding: 12px 16px;
-  background: var(--panel); border: 1px solid var(--rule); border-radius: var(--radius);
-}
+/* Cadrage par ville de l'onglet liste. Le conteneur n'est plus qu'une boîte :
+   ce qu'il reçoit est le champ `.lb-city-edit` de la watchlist, ou la barre
+   compacte `.lb-city-bar` une fois la ville choisie (voir lb-listes.js). Les
+   deux onglets posent la même question, ils la posent donc pareil, et il n'y a
+   plus de style de filtre propre à cet onglet à maintenir à côté. */
 .list-controls[hidden] { display: none; }
-.list-city-label { font-weight: 600; color: var(--muted); }
-/* Le champ de ville est enveloppé par autoVille dans un `.lb-suggest-wrap`
-   (positionnement du menu de suggestions) : c'est LUI qui porte la largeur
-   dans la barre de filtre, le champ ne fait que le remplir. */
-.list-controls .lb-suggest-wrap { flex: 0 1 240px; }
-.list-city {
-  background: var(--sunk); color: var(--text);
-  border: 1px solid var(--rule); border-radius: 8px;
-  padding: 9px 12px; font: inherit;
-}
-.list-city:focus { outline: none; border-color: var(--accent); }
-.list-city-reset { font-size: .88rem; }
-.list-city-reset[hidden] { display: none; }
-.list-geo { margin-left: auto; }
+.list-controls .lb-city-edit { margin-top: 6px; }
 
 /* Séance unique : le film ne passe qu'une fois dans toute la France sur la
    fenêtre (6 films de répertoire sur 10). En AMBRE, comme tout ce qui demande

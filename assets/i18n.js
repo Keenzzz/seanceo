@@ -44,6 +44,11 @@ window.I18N = {
   "VF": "French dub",
   "VO / VOST": "Original / subtitled",
 
+  /* —— Séances déjà commencées (passe.js) ———————————————————————————————— */
+  // Recompte le nombre de salles d'un groupe de villes sur une fiche film,
+  // après le retrait des blocs dont toutes les séances ont commencé.
+  "{n} cinéma{s}": "{n} cinema{s}",
+
   /* —— Tri et filtres (tri.js, ville.js) ————————————————————————————————— */
   "Aucun film ne correspond à ces filtres": "No film matches these filters",
   "{n} film{s}": "{n} film{s}",
@@ -269,6 +274,11 @@ window.I18N = {
     "No film from this list is back in cinemas right now. Programmes change "
     + "often, come back and take another look.",
   "Cette liste": "This list",
+  // Message du champ de ville de l'onglet liste : distinct de celui du
+  // portail, où la ville est introuvable SUR LE SITE. Ici elle existe
+  // peut-être très bien, c'est cette liste-là qui n'y repasse pas.
+  "Aucun film de cette liste ne repasse à « {ville} ».":
+    "No film from this list is back in “{ville}”.",
   "{liste} — {total} films dans la liste, {trouves} repassent en salle.":
     "{liste} — {total} films in the list, {trouves} back in cinemas.",
 

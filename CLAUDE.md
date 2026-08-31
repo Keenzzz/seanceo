@@ -545,6 +545,19 @@ indexable, et les deux se déclarent l'une l'autre en `hreflang` (`alternates()`
       de films d'un coup. Écarté pour l'instant — élargir la recherche, c'est augmenter le risque
       de faux positifs sur 1 879 films pour en gagner quelques-uns, alors qu'un override est
       explicite et vérifié. À reconsidérer si le cas devient fréquent.
+- **Le Top 500 Letterboxd est le point d'entrée mis en avant de l'onglet « liste »**
+  (`LB_LISTE_EXEMPLE`, 2026-08-31, demande utilisateur). Coller l'URL d'une liste suppose d'en
+  avoir une en tête ; le visiteur qui découvre l'onglet n'en a pas. Trois chemins, du plus
+  discret au plus voyant : le champ laissé vide (`data-default`, lu par `lb-listes.js`), le
+  **bouton doré** `.bouton-or` de `/ma-watchlist/` (« Essayer le Top 500 Letterboxd », dans un
+  encadré `.list-suggest` centré — c'était une pastille `.cine-chip` qui se lisait comme une
+  note de bas de page), et un **exemple depuis l'accueil** : `.bouton-or.bouton-mini` à côté
+  d'« Explorer une liste », volontairement plus petit puisqu'il illustre l'action au lieu de
+  l'être. Il pointe `/ma-watchlist/#top500`, une ancre qui ouvre l'onglet ET lance la liste —
+  `#liste` se contente d'ouvrir l'onglet.
+  - **`.bouton-or` n'est PAS une couleur de plus** : c'est `--accent` (l'ambre du projecteur)
+    en aplat plutôt qu'en bordure. La règle « une couleur, un sens » tient.
+
 - **POSITIONNEMENT : le site est un agenda du RÉPERTOIRE.** L'accueil ne montre plus les sorties
   récentes mais les films anciens qui repassent. `scripts/repertoire.py` porte toute la détection :
   reprise = `year < REPERTOIRE_BEFORE` (2020) ; séance unique = le film ne passe qu'une fois en
@@ -908,6 +921,13 @@ indexable, et les deux se déclarent l'une l'autre en `hreflang` (`alternates()`
       cliquer d'abord (`/ma-watchlist/`, encadré `.lb-city-edit` avec l'accent ambre). C'est
       l'action principale de l'écran : la cacher derrière un clic la faisait manquer. Une fois
       la ville cadrée, la barre redevient compacte avec un bouton « Changer de ville ».
+    - **L'onglet « liste » pose la MÊME question avec le MÊME dessin** (2026-08-31) : il avait
+      sa propre barre de filtre (`.list-controls` en flex, libellé « Ville », bouton
+      « Toutes les villes »), soit deux vocabulaires pour une seule idée. `lb-listes.js` rend
+      désormais `.lb-city-edit` puis `.lb-city-bar`, comme la watchlist. **Différence de fond
+      conservée** : les suggestions ne portent que les villes de la LISTE affichée (d'où
+      `min: 0` + `surFocus`, licites ici et pas dans le portail, et un message d'échec distinct
+      — la ville existe peut-être très bien, c'est cette liste-là qui n'y repasse pas).
     - **Suggestions maison, jamais de `<datalist>`** (`LB.autoVille`, partagé par le portail et
       la page) : un datalist déroule les 257 villes dès le clic dans le champ, ce qui invite à
       PARCOURIR une liste alors que la bonne action est de TAPER. Rien ne s'affiche avant
@@ -993,8 +1013,54 @@ indexable, et les deux se déclarent l'une l'autre en `hreflang` (`alternates()`
   (`_select`). Rendu : `marathon_card(idea, show_city=)` choisit le texte selon `kind`
   (🍿 même salle / 🚶 voisin), badge `.badge-cult`, bordure `.marathon-cult`. Un même marathon
   culte peut apparaître dans la section nationale ET dans sa ville — assumé (une + rubrique).
-- **Aucune page ne montre de séance passée** : `build_site.py` filtre `showtimes` sur `>= today`
-  dès le chargement. Indispensable car les snapshots de chaînes ont souvent un jour de retard.
+- **Aucune page ne montre de séance passée**, à la JOURNÉE puis à l'HEURE. Deux étages
+  complémentaires, ne pas confondre :
+  - **Au build** : `build_site.py` filtre `showtimes` sur `>= today` dès le chargement.
+    Indispensable car les snapshots de chaînes ont souvent un jour de retard.
+  - **Dans le navigateur** : `assets/passe.js`, chargé sur toutes les pages. Le site est
+    reconstruit une fois par jour mais LU toute la journée : à 19 h 30 la page du matin
+    proposait encore la séance de 19 h. Le build ne peut rien y faire, il ignore l'heure de
+    lecture — c'est donc le navigateur qui tranche, au chargement.
+
+- **`assets/passe.js` — les séances déjà commencées** (2026-08-31, demande utilisateur) :
+  - **Il RETIRE du DOM, il ne masque pas.** Deux raisons : `.seance`/`.jour` portent une règle
+    `display:` (le piège CSS récurrent), et surtout `chance.js` et `agenda-ville.js` réécrivent
+    `li.hidden` à chaque filtre — une séance masquée ici réapparaîtrait au premier clic sur une
+    ville. Retirée, elle ne revient pas, et les compteurs de ces scripts redeviennent justes.
+  - **Il doit rester le PREMIER script différé du `<head>`** (`PASSE_JS`, juste après `T_HELPER`) :
+    tous les scripts du site sont `defer`, donc exécutés dans l'ordre du document, et ceux qui
+    lisent l'agenda doivent le lire déjà nettoyé. Ne pas le déplacer plus bas.
+  - **`GRACE_MIN = 0`** : une séance de 19 h disparaît à 19 h pile. Passer la constante à 15
+    laisserait le temps des bandes-annonces — c'est un arbitrage éditorial, un seul chiffre.
+  - **Les heures sont locales et sans fuseau** (« 2026-08-31T19:00 ») : `debut()` les reconstruit
+    composant par composant, jamais `new Date(iso)` dont l'interprétation locale/UTC a varié
+    d'un navigateur à l'autre.
+  - **Il expose `window.PASSE`** (`est`, `futures`) pour les rendus JavaScript, qui ne nettoient
+    pas du DOM mais filtrent leurs DONNÉES en amont, au point de croisement : `pickSalle` et
+    `cross` (letterboxd.js — le compte « 32 films à l'affiche » doit tomber avec la grille),
+    `crossList` (lb-listes.js), `gather` (cinematheque.js), `screeningByDir` (lb-reco.js).
+  - ⚠️ **Ce que le build doit poser pour que le nettoyage soit propre.** Retirer une séance ne
+    suffit pas : il reste des titres orphelins et des nombres faux. D'où, dans `build_site.py` :
+    `data-start` sur chaque pastille de `showtime_pills()` et sur `.marathon` ; les classes
+    `jour-cine` (une journée d'une fiche cinéma) et `marathon-ville` ; un repli MASQUÉ
+    `.seances-finies` (« prochaine séance : jeudi ») sur les cartes des pages ville, qui
+    n'affichent que les horaires du JOUR — sans lui, un film qui repasse jeudi disparaissait de
+    la page avec ses pastilles ; et `.jour-fini` (« Pas de séance aujourd'hui. Prochaines
+    dates : »), qui redonne au bloc cinéma la forme exacte que le build écrit quand une salle
+    n'a rien le jour même. **Ces phrases viennent du build, jamais du JavaScript** : c'est la
+    seule façon d'être sûr qu'elles sont dans la bonne langue sur `/en/`.
+  - ⚠️ **Ne jamais juger « vide » un conteneur sans savoir ce qu'il contenait.** `blocsSeances`
+    et `cartesHoraires` sont relevés AVANT le nettoyage : un cinéma en relâche (« Aucune séance
+    cette semaine ») et une carte « prochaine séance : jeudi » n'ont pas d'horaires et n'en ont
+    jamais eu — les purger après coup les ferait disparaître alors qu'ils disent vrai.
+  - **Les compteurs écrits au build sont recomptés côté client** là où ils touchent la liste
+    filtrée : options de `chance.js` (via `data-tpl`, le gabarit déjà traduit), boutons et
+    compteur de `agenda-ville.js`, « {n} cinémas » d'un groupe de villes sur une fiche film,
+    pastilles de `cinematheque.js` (après chargement des index). Les agrégats de la SEMAINE
+    (compteurs de l'accueil, phrase d'intro de « Dernière chance ») ne le sont pas : ils ne
+    parlent pas de la journée en cours.
+  - Les sommaires ancrés (`.city-jump`) et l'index `#city-map` sont élagués des cibles
+    disparues : un lien qui saute dans le vide est pire qu'un lien en trop.
 - Piloter l'API GitHub (pas de `gh` CLI installé) : token via `git credential fill` (compte Keenzzz).
 - Chaînes NON intégrées (plateformes de billetterie verrouillées auth/CORS/bot) : Mégarama
   (ticketingcine/IMS), MK2, Kinepolis, Cineville. Piste propre à terme = agrégateur payant.

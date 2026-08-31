@@ -103,6 +103,13 @@ T_HELPER = ('<script>window.T=function(s){var d=window.I18N;'
             '(n===1?"":"s")}</script>')
 I18N_JS = '<script src="/assets/i18n.js" defer></script>'
 
+# Retrait des séances déjà commencées, au chargement de chaque page. EN PREMIER
+# des scripts différés (ils s'exécutent dans l'ordre du document) : chance.js et
+# agenda-ville.js réécrivent `li.hidden` à chaque filtre, ils doivent donc
+# travailler sur un agenda dont les séances passées ont DÉJÀ disparu du DOM.
+# Voir assets/passe.js.
+PASSE_JS = '<script src="/assets/passe.js" defer></script>'
+
 # Origine du Worker watchlist. Répétée dans assets/letterboxd.js et static/sw.js
 # (ni l'un ni l'autre ne passe par le gabarit) ; elle est ici parce que la CSP
 # doit l'autoriser en `connect-src`, sans quoi la watchlist par pseudo échoue.
@@ -499,6 +506,7 @@ def page(title: str, description: str, body: str, path: str,
 {JS_FLAG}
 {T_HELPER}
 {dico}
+{PASSE_JS}
 <script src="/assets/nav.js" defer></script>
 <script id="lb-core" src="/assets/letterboxd.js" data-index="{BASE_PATH}{lang_prefix()}/watchlist-index.json" defer></script>
 {head_extra}
@@ -773,7 +781,12 @@ def showtime_pills(shows: list[dict]) -> str:
     lien de billetterie devient cliquable et mène directement à la réservation ;
     les autres restent des chips informatives. Les deux styles se distinguent
     (`.reservable`) : promettre un clic qui n'existe pas est le défaut qu'on
-    avait justement corrigé en neutralisant ces pastilles."""
+    avait justement corrigé en neutralisant ces pastilles.
+
+    Chaque pastille porte son `data-start` : c'est ce qui permet à
+    assets/passe.js de retirer, dans le navigateur, les séances déjà commencées
+    au moment où la page est LUE — le build, lui, ne sait pas à quelle heure on
+    le lira."""
     pills = []
     for s in sorted(shows, key=lambda x: x["start"]):
         # `hh` et pas `t` : `t` est la fonction de traduction importée depuis
@@ -788,11 +801,12 @@ def showtime_pills(shows: list[dict]) -> str:
             titre = tf("Réserver la séance de {heure} sur la billetterie du cinéma"
                        " (nouvel onglet)", heure=hh)
             pills.append(
-                f'<li class="reservable"><a href="{esc(url)}" target="_blank"'
+                f'<li class="reservable" data-start="{s["start"][:16]}">'
+                f'<a href="{esc(url)}" target="_blank"'
                 f' rel="noopener noreferrer"'
                 f' title="{esc(titre)}">{hh}{v}</a></li>')
         else:
-            pills.append(f'<li>{hh}{v}</li>')
+            pills.append(f'<li data-start="{s["start"][:16]}">{hh}{v}</li>')
     return f'<ul class="showtimes">{"".join(pills)}</ul>'
 
 
@@ -1372,7 +1386,11 @@ def build_lang(today, today_iso, cinemas, movies, showtimes, cities,
                 for mk, ss in sorted(by_day[day].items(),
                                      key=lambda kv: kv[1][0]["start"])
             )
-            sections.append(f'<section><h2>{date_label(d, today)}</h2>{films_html}</section>')
+            # `jour-cine` : assets/passe.js retire la section entière quand
+            # toutes les séances du jour sont passées, plutôt que de laisser
+            # « Aujourd'hui » suivi de rien.
+            sections.append(f'<section class="jour-cine">'
+                            f'<h2>{date_label(d, today)}</h2>{films_html}</section>')
         # Passerelle vers le site frère, sur les fiches des cinémas parisiens.
         bridge = paris_cine_bridge() if cinema["city_slug"] == "paris" else ""
         nature = cinema_kind_label(cinema.get("chain"))
@@ -1453,18 +1471,37 @@ n=len(metro_cids), s=plural(len(metro_cids)))}</p>""")
             # Le visiteur type cherche une séance CE SOIR : les films du jour
             # d'abord, ceux qui ne repassent que plus tard repliés en dessous.
             films_today, films_later = [], []
+            def prochaine(shows: list, secours: bool = False) -> str:
+                """« prochaine séance : jeudi », pour un film sans horaire du
+                jour à montrer. `secours` : la même ligne, mais masquée, tenue
+                en réserve pour assets/passe.js."""
+                d = date.fromisoformat(shows[0]["start"][:10])
+                attrs = ' class="meta seances-finies" hidden' if secours else ' class="meta"'
+                return (f'<p{attrs}>'
+                        + tf("prochaine séance : {jour}", jour=date_label(d, today))
+                        + '</p>')
+
             for mk, ss in sorted(films.items(), key=lambda kv: kv[1][0]["start"]):
                 city_movie_keys.add(mk)
                 todays = [s for s in ss if s["start"][:10] == today_iso]
                 if todays:
+                    # Cette carte ne montre QUE les horaires du jour. Quand la
+                    # dernière séance de ce soir est passée, assets/passe.js
+                    # retire les pastilles — et le film disparaîtrait de la
+                    # page alors qu'il repasse jeudi, puisqu'il n'est pas non
+                    # plus dans le repli « plus tard cette semaine ». D'où ce
+                    # secours écrit dès le build, masqué, que passe.js révèle
+                    # à la place des horaires. Écrit ici plutôt qu'en
+                    # JavaScript pour qu'il soit traduit comme le reste.
+                    suite = [s for s in ss if s["start"][:10] != today_iso]
+                    secours = prochaine(suite, secours=True) if suite else ""
                     films_today.append(movie_card(movies[mk], movie_urls,
-                                                  showtime_pills(todays),
+                                                  showtime_pills(todays) + secours,
                                                   versions=city_versions[mk],
                                                   ancre_ville=ancre))
                 else:
                     films_later.append(movie_card(
-                        movies[mk], movie_urls,
-                        f'<p class="meta">{tf("prochaine séance : {jour}", jour=date_label(date.fromisoformat(ss[0]["start"][:10]), today))}</p>',
+                        movies[mk], movie_urls, prochaine(ss),
                         versions=city_versions[mk], ancre_ville=ancre))
             today_html = f'<div class="films">{"".join(films_today)}</div>' if films_today else ""
             later_html = ""
@@ -1473,7 +1510,15 @@ n=len(metro_cids), s=plural(len(metro_cids)))}</p>""")
                     n_later = len(films_later)
                     resume = tf("+ {n} autre{s} film{s2} plus tard cette semaine",
                                 n=n_later, s=plural(n_later), s2=plural(n_later))
-                    later_html = (f'<details class="more-films"><summary>{esc(resume)}'
+                    # La phrase masquée est celle de la branche « rien
+                    # aujourd'hui » ci-dessous : quand toutes les séances du
+                    # soir sont passées, passe.js vide le bloc du jour, révèle
+                    # cette ligne et déplie le repli — le bloc prend alors
+                    # exactement la forme que le build aurait écrite s'il avait
+                    # su l'heure.
+                    later_html = (f'<p class="meta jour-fini" hidden>'
+                                  f'{t("Pas de séance aujourd'hui. Prochaines dates :")}</p>'
+                                  f'<details class="more-films"><summary>{esc(resume)}'
                                   f'</summary>'
                                   f'<div class="films">{"".join(films_later)}</div></details>')
                 else:
@@ -2378,7 +2423,7 @@ n=len(metro_cids), s=plural(len(metro_cids)))}</p>""")
     home_ville_tools = (f"""<div class="agenda-tools">
 <span class="tri-filtre-nom">{t("Ville")}</span>
 <span class="agenda-villes" role="group" aria-label="{esc(t("Filtrer par ville"))}">
-<button type="button" data-city="" aria-pressed="true">{tf(
+<button type="button" data-city="" aria-pressed="true" data-tpl="{esc(t("Toutes ({n})"))}">{tf(
     "Toutes ({n})", n=len(rep_uniques))}</button>
 {home_ville_btns}</span>
 <p class="tri-compte" id="agenda-compte" role="status">{tf(
@@ -2570,7 +2615,13 @@ aria-label="{esc(t("Chercher une ville"))}">
                        "d'un ami — et {site} vous montre lesquels de ces films repassent en "
                        "salle, avec la séance et la réservation.", site=SITE_NAME)}</span></p>
 <p class="lb-offre-go">
-<a class="bouton bouton-lb" href="/ma-watchlist/#liste">{t("Explorer une liste")}</a></p>
+<a class="bouton bouton-lb" href="/ma-watchlist/#liste">{t("Explorer une liste")}</a>
+<!-- Un EXEMPLE cliquable à côté de l'action principale : « n'importe quelle
+     liste publique » reste abstrait tant qu'on n'en a pas vu une. L'ancre
+     #top500 ouvre l'onglet liste ET lance le Top 500 (lb-listes.js), sans
+     que le visiteur ait à trouver une URL. Volontairement plus petit que
+     « Explorer une liste » : c'est une illustration, pas le chemin nominal. -->
+<a class="bouton bouton-or bouton-mini" href="/ma-watchlist/#top500">{t("Top 500 Letterboxd")}</a></p>
 </div>
 </div>
 
@@ -2663,6 +2714,14 @@ aria-label="{esc(t("Chercher une ville"))}">
     chance_opts = "".join(
         f'<option value="{esc(v)}">{esc(v)} ({n})</option>'
         for v, n in sorted(chance_villes.items(), key=lambda kv: _fold_title(kv[0])))
+    # `data-tpl` : le libellé des options « tout », déjà TRADUIT mais pas encore
+    # rempli. assets/chance.js recompte les séances après le retrait de celles
+    # qui ont commencé (assets/passe.js) et réécrit ces libellés ; il doit donc
+    # disposer du gabarit dans la langue de la page, sans le redupliquer côté
+    # JavaScript. Les autres options se recomposent depuis leur `value` ou leur
+    # `data-label`.
+    tpl_villes = esc(t("Toutes les villes ({n})"))
+    tpl_jours = esc(t("Tous les jours ({n})"))
     n_chance_villes = len(chance_villes)
     chance_jours = Counter(s["start"][:10] for s in chance_shows)
     # `data-label` porte le libellé SANS son compte : c'est lui que chance.js
@@ -2682,11 +2741,11 @@ aria-label="{esc(t("Chercher une ville"))}">
 <div class="chance-tools">
 <label class="tri-filtre"><span class="tri-filtre-nom">{t("Ville")}</span>
 <select id="chance-ville">
-<option value="">{tf("Toutes les villes ({n})", n=n_chance_villes)}</option>
+<option value="" data-tpl="{tpl_villes}">{tf("Toutes les villes ({n})", n=n_chance_villes)}</option>
 {chance_opts}</select></label>
 <label class="tri-filtre"><span class="tri-filtre-nom">{t("Jour")}</span>
 <select id="chance-jour">
-<option value="">{tf("Tous les jours ({n})", n=len(chance_jours))}</option>
+<option value="" data-tpl="{tpl_jours}">{tf("Tous les jours ({n})", n=len(chance_jours))}</option>
 {chance_jours_opts}</select></label>
 <label class="tri-filtre"><span class="tri-filtre-nom">{t("Ordre")}</span>
 <select id="chance-tri">
@@ -3245,7 +3304,11 @@ aria-label="{esc(t("Chercher une ville"))}">
                           km=decimal(idea["distance_km"]), marche=idea["walk_min"],
                           gap=idea["gap_min"])
         cls = " marathon-cult" if idea["is_cult"] else ""
-        return f"""<article class="marathon{cls}">
+        # `data-start` = début du PREMIER film : une idée de marathon dont la
+        # première séance a commencé n'est plus enchaînable, assets/passe.js la
+        # retire de la page (le calcul d'entracte qu'elle affiche est faux dès
+        # cet instant).
+        return f"""<article class="marathon{cls}" data-start="{first["start"][:16]}">
 <h3>{tf("{jour}{lieu} · marathon {genre}", jour=day_html, lieu=lieu, genre=esc(genre))}{cult}</h3>
 <div class="grid marathon-films">{leg(first)}{leg(second)}</div>
 <p class="marathon-transfer">{transfer}</p>
@@ -3264,7 +3327,7 @@ aria-label="{esc(t("Chercher une ville"))}">
         jump = (f'<a href="#m-cultes">{t("🏛️ Cultes")}</a> ' if cult_ideas else "") + " ".join(
             f'<a href="#m-{s}">{esc(cities[s]["name"])}</a>' for s in marathon_cities)
         sections = "".join(
-            f'<section id="m-{s}"><h2>{esc(cities[s]["name"])}</h2>'
+            f'<section class="marathon-ville" id="m-{s}"><h2>{esc(cities[s]["name"])}</h2>'
             f'<p class="meta"><a href="/ville/{s}/">'
             + tf("Toutes les séances à {ville} →", ville=esc(cities[s]["name"]))
             + '</a></p>'
@@ -3383,11 +3446,16 @@ aria-label="{esc(t("URL de la liste Letterboxd"))}">
 </form>
 <!-- Liste par défaut : sans elle, un visiteur qui n'a PAS d'URL sous la main
      bute sur un champ vide et repart. Le champ laissé vide part donc sur le
-     Top 500 Letterboxd (lb-listes.js lit `data-default`), et la pastille
-     ci-dessous rend ce raccourci visible plutôt que devinable. -->
-<p class="list-suggest">{t("Pas d'idée de liste ?")}
-<button type="button" class="cine-chip list-example">{t("Essayer le Top 500 Letterboxd")}</button>
-<span>{t("les 500 films les mieux notés du site — c'est aussi ce que donne le champ laissé vide.")}</span></p>
+     Top 500 Letterboxd (lb-listes.js lit `data-default`), et le bouton
+     ci-dessous rend ce raccourci visible plutôt que devinable.
+     C'est le SECOND chemin d'entrée de l'onglet, à égalité avec le champ :
+     il a donc la taille d'un bouton d'action et non d'une pastille
+     discrète (`.bouton-or`, ambre plein — voir style.css). -->
+<div class="list-suggest">
+<p class="list-suggest-q">{t("Pas d'idée de liste ?")}</p>
+<button type="button" class="bouton bouton-or list-example">{t("Essayer le Top 500 Letterboxd")}</button>
+<p class="list-suggest-note">{t("les 500 films les mieux notés du site — c'est aussi ce que donne le champ laissé vide.")}</p>
+</div>
 <p class="lb-connect-note">{t("On lit seulement une liste <strong>publique</strong>. Rien "
                               "n'est stocké côté serveur, et ta géolocalisation (pour trier "
                               "par proximité) reste sur ton appareil.")}</p>

@@ -88,8 +88,15 @@
       var e = _agenda[k];
       if (seenU[e.u]) return;
       seenU[e.u] = 1;
+      // Les séances déjà commencées sortent avant tout classement : la carte
+      // annonce « prochaine séance {jour} à {heure} », or c'est justement
+      // l'heure qui vient de devenir fausse (voir assets/passe.js).
+      var futures = window.PASSE
+        ? window.PASSE.futures(e.s, function (x) { return x[0]; })
+        : e.s;
+      if (!futures.length) return;
       var meta = _wl[k] || {};
-      var film = { key: k, t: e.t, u: e.u, s: e.s, p: meta.p || "", r: meta.r || 0 };
+      var film = { key: k, t: e.t, u: e.u, s: futures, p: meta.p || "", r: meta.r || 0 };
       (e.dk || []).forEach(function (dk) {
         (byDir[dk] = byDir[dk] || []).push(film);
       });

@@ -110,6 +110,38 @@
     }
   }
 
+  /* Les libellés des deux menus portent un compte écrit AU BUILD (« Nancy (7) »,
+     « Jeudi 21 août (12) »). assets/passe.js vient d'en retirer les séances
+     commencées : ces nombres sont donc périmés, et une ville dont la dernière
+     séance est passée est devenue une option qui ne rend rien. On recompte sur
+     ce qui reste, et on retire les options vides.
+
+     Le libellé se recompose depuis les données de l'option elle-même — sa
+     `value` pour une ville, son `data-label` pour un jour, son `data-tpl`
+     (gabarit déjà traduit) pour l'option « tout ». Rien n'est réécrit en dur
+     ici : la page anglaise doit rester anglaise. */
+  function rafraichirOptions(sel, cleDe) {
+    if (!sel) return;
+    var opts = [].slice.call(sel.options);
+    opts.forEach(function (opt) {
+      if (!opt.value) return; // l'option « tout » se compte à part, plus bas
+      var n = 0;
+      lignes.forEach(function (li) { if (cleDe(li) === opt.value) n++; });
+      if (!n) { opt.parentNode.removeChild(opt); return; }
+      var nom = opt.dataset.label || opt.value;
+      opt.textContent = nom + " (" + n + ")";
+    });
+    var tout = sel.options[0];
+    if (tout && !tout.value && tout.dataset.tpl) {
+      // Le compte de l'option « tout » n'est pas un nombre de séances mais le
+      // nombre de CHOIX restants — « Toutes les villes (34) ».
+      tout.textContent = tout.dataset.tpl.replace("{n}", sel.options.length - 1);
+    }
+  }
+
+  rafraichirOptions(selVille, function (li) { return li.dataset.city; });
+  rafraichirOptions(selJour, jourDe);
+
   [selVille, selJour, selTri].forEach(function (sel) {
     if (sel) sel.addEventListener("change", appliquer);
   });
