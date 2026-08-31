@@ -7,7 +7,7 @@
    "salles-brady",
    "salles-filmotheque"
   ],
-  "showtime_count": 118
+  "showtime_count": 277
  },
  "lyon": {
   "slug": "lyon",
@@ -18,7 +18,7 @@
    "salles-lumiere-bellecour",
    "salles-lumiere-fourmi"
   ],
-  "showtime_count": 191
+  "showtime_count": 556
  },
  "villeurbanne": {
   "slug": "villeurbanne",
@@ -26,6 +26,6 @@
   "cinemas": [
    "salles-zola"
   ],
-  "showtime_count": 27
+  "showtime_count": 28
  }
 }

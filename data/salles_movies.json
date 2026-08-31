@@ -1,16 +1,4 @@
 {
- "panda-petit-panda|isao-takahata": {
-  "key": "panda-petit-panda|isao-takahata",
-  "title": "Panda Petit Panda",
-  "director": "Isao Takahata",
-  "cast": "",
-  "genre": "Animation",
-  "country": "",
-  "duration_min": 71,
-  "poster": "https://all.web.img.acsta.net/medias/nmedia/18/71/42/66/19139380.jpg",
-  "trailer": "",
-  "storyline": ""
- },
  "fjord|cristian-mungiu": {
   "key": "fjord|cristian-mungiu",
   "title": "Fjord",
@@ -23,6 +11,30 @@
   "trailer": "",
   "storyline": ""
  },
+ "wives|anja-breien": {
+  "key": "wives|anja-breien",
+  "title": "Wives",
+  "director": "Anja Breien",
+  "cast": "",
+  "genre": "Comédie dramatique",
+  "country": "",
+  "duration_min": 84,
+  "poster": "",
+  "trailer": "",
+  "storyline": ""
+ },
+ "chien-pourri-la-vie-a-paris|davy-durand": {
+  "key": "chien-pourri-la-vie-a-paris|davy-durand",
+  "title": "Chien Pourri, la vie à Paris !",
+  "director": "Davy Durand",
+  "cast": "",
+  "genre": "Animation",
+  "country": "",
+  "duration_min": 60,
+  "poster": "https://all.web.img.acsta.net/pictures/20/03/31/16/01/2707380.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
  "l-inconnue|arthur-harari": {
   "key": "l-inconnue|arthur-harari",
   "title": "L'Inconnue",
@@ -32,6 +44,18 @@
   "country": "",
   "duration_min": 140,
   "poster": "https://all.web.img.acsta.net/img/d0/20/d020c09c557ed15cce1979d015e96ff6.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "salvation|emin-alper": {
+  "key": "salvation|emin-alper",
+  "title": "Salvation",
+  "director": "Emin Alper",
+  "cast": "",
+  "genre": "Drame",
+  "country": "",
+  "duration_min": 120,
+  "poster": "https://all.web.img.acsta.net/img/d6/03/d6032067a0b7296bca4ef20ec5ff7695.jpg",
   "trailer": "",
   "storyline": ""
  },
@@ -92,6 +116,18 @@
   "country": "",
   "duration_min": 92,
   "poster": "https://all.web.img.acsta.net/medias/nmedia/18/36/01/55/18445363.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "jour-de-fete|jacques-tati": {
+  "key": "jour-de-fete|jacques-tati",
+  "title": "Jour de fête",
+  "director": "Jacques Tati",
+  "cast": "",
+  "genre": "Comédie",
+  "country": "",
+  "duration_min": 76,
+  "poster": "https://all.web.img.acsta.net/medias/nmedia/00/02/48/75/ph2.jpg",
   "trailer": "",
   "storyline": ""
  },
@@ -227,18 +263,6 @@
   "trailer": "",
   "storyline": ""
  },
- "un-petit-air-de-famille|": {
-  "key": "un-petit-air-de-famille|",
-  "title": "Un petit air de famille",
-  "director": "",
-  "cast": "",
-  "genre": "Animation",
-  "country": "",
-  "duration_min": 43,
-  "poster": "https://all.web.img.acsta.net/pictures/19/07/01/09/57/2715753.jpg",
-  "trailer": "",
-  "storyline": ""
- },
  "in-waves|phuong-mai-nguyen": {
   "key": "in-waves|phuong-mai-nguyen",
   "title": "In Waves",
@@ -299,15 +323,15 @@
   "trailer": "",
   "storyline": ""
  },
- "disclosure-day|steven-spielberg": {
-  "key": "disclosure-day|steven-spielberg",
-  "title": "Disclosure Day",
-  "director": "Steven Spielberg",
+ "lydia-et-le-vaisseau-des-tempetes|nancy-florence-savard": {
+  "key": "lydia-et-le-vaisseau-des-tempetes|nancy-florence-savard",
+  "title": "Lydia et le vaisseau des tempêtes",
+  "director": "Nancy Florence Savard",
   "cast": "",
-  "genre": "Science fiction",
+  "genre": "Animation",
   "country": "",
-  "duration_min": 145,
-  "poster": "https://all.web.img.acsta.net/img/ba/fc/bafc41e8f31fdc8fe419d04ea84b6798.jpg",
+  "duration_min": 85,
+  "poster": "https://all.web.img.acsta.net/img/a5/1d/a51df318dbb3460e399acd1bd30f2d26.jpg",
   "trailer": "",
   "storyline": ""
  },
@@ -371,6 +395,18 @@
   "trailer": "",
   "storyline": ""
  },
+ "les-silences-de-riyad|haifaa-al-mansour": {
+  "key": "les-silences-de-riyad|haifaa-al-mansour",
+  "title": "Les Silences de Riyad",
+  "director": "Haifaa Al Mansour",
+  "cast": "",
+  "genre": "Thriller",
+  "country": "",
+  "duration_min": 99,
+  "poster": "https://all.web.img.acsta.net/img/5f/ec/5fec4467f65eb4a553dc23a193b06909.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
  "shana|lila-pinell": {
   "key": "shana|lila-pinell",
   "title": "Shana",
@@ -415,7 +451,7 @@
   "genre": "Drame",
   "country": "",
   "duration_min": 100,
-  "poster": "https://all.web.img.acsta.net/img/00/16/001659e57cf2a5014087a70ce417f864.jpg",
+  "poster": "https://all.web.img.acsta.net/img/7b/d2/7bd2f50f0fa1923427035c22eb384c5b.jpg",
   "trailer": "",
   "storyline": ""
  },
@@ -431,6 +467,90 @@
   "trailer": "",
   "storyline": ""
  },
+ "a-scene-at-the-sea|takeshi-kitano": {
+  "key": "a-scene-at-the-sea|takeshi-kitano",
+  "title": "A  SCENE  AT  THE  SEA",
+  "director": "Takeshi Kitano",
+  "cast": "Kurodo Maki, Hiroko Oshima, Sabu Kawahara",
+  "genre": "",
+  "country": "",
+  "duration_min": 100,
+  "poster": "",
+  "trailer": "",
+  "storyline": "Un éboueur et sa petite amie, tous deux sourds-muets de naissance, s’aiment de façon indéfectible. Un matin, en ramassant les poubelles, il trouve une planche de surf abîmée. Décidé à devenir un champion, il entame un rude apprentissage."
+ },
+ "alien-le-huitieme-passager|ridley-scott": {
+  "key": "alien-le-huitieme-passager|ridley-scott",
+  "title": "Alien, le huitième passager",
+  "director": "Ridley Scott",
+  "cast": "Sigourney Weaver, Tom Skerritt, Veronica Cartwright, John Hurt",
+  "genre": "",
+  "country": "",
+  "duration_min": 117,
+  "poster": "",
+  "trailer": "",
+  "storyline": "Une créature extraterrestre infiltrée à bord du \"Nostromo\", un vaisseau spatial en route pour la Terre, s'attaque aux sept membres de l'équipage, un par un. Le lieutenant Ellen Ripley va affronter cet indésirable huitième passager."
+ },
+ "allo-brigade-speciale|blake-edwards": {
+  "key": "allo-brigade-speciale|blake-edwards",
+  "title": "Allô, brigade spéciale",
+  "director": "Blake Edwards",
+  "cast": "Lee Remick, Glenn Ford, Stefanie Powers",
+  "genre": "",
+  "country": "",
+  "duration_min": 113,
+  "poster": "",
+  "trailer": "",
+  "storyline": "Un psychopathe harcèle une employée de banque. Il ne lui laissera la vie sauve qu'à la condition qu'elle détourne une forte somme d'argent à son profit. La victime fait appel à la police."
+ },
+ "ascenseur-pour-lechafaud|louis-malle": {
+  "key": "ascenseur-pour-lechafaud|louis-malle",
+  "title": "Ascenseur pour l’échafaud",
+  "director": "Louis Malle",
+  "cast": "Jeanne Moreau, Maurice Ronet, Georges Poujouly, Lino Ventura, Jean-Claude Brialy",
+  "genre": "",
+  "country": "",
+  "duration_min": 93,
+  "poster": "",
+  "trailer": "",
+  "storyline": "Une femme et son amant, ont décidé de tuer le mari de celle-ci à son bureau et de simuler un suicide. Mais en revenant sur les lieux du crime pour effacer un indice compromettant, l’amant se retrouve bloqué dans l'ascenseur."
+ },
+ "assurance-sur-la-mort|billy-wilder": {
+  "key": "assurance-sur-la-mort|billy-wilder",
+  "title": "Assurance sur la mort",
+  "director": "Billy Wilder",
+  "cast": "D'après James Cain, Avec Fred MacMurray, Barbara Stanwyck, Edward G. Robinson",
+  "genre": "",
+  "country": "",
+  "duration_min": 107,
+  "poster": "",
+  "trailer": "",
+  "storyline": "Un vendeur d'assurances se laisse entraîner par une femme au foyer séduisante dans un stratagème frauduleux de meurtre et d'assurance qui éveille la suspicion d'un enquêteur."
+ },
+ "blade-runner|ridley-scott": {
+  "key": "blade-runner|ridley-scott",
+  "title": "Blade Runner",
+  "director": "Ridley Scott",
+  "cast": "Harrison Ford, Rutger Hauer, Sean Young, Edward James Olmos, M. Emmet Walsh, Darryl Hannah, Joanna Cassidy",
+  "genre": "",
+  "country": "",
+  "duration_min": 117,
+  "poster": "",
+  "trailer": "",
+  "storyline": "Dans les dernières années du XXème siècle, des milliers d'hommes et de femmes partent à la conquête de l'espace, fuyant les mégalopoles devenues insalubres. Sur les colonies, une nouvelle race d'esclaves voit le jour : les répliquants, des androïdes que rien ne peut distinguer de l'être humain. Los Angeles, 2019. Après avoir massacré un équipage et pris le contrôle d'un vaisseau, les répliquants de type Nexus 6, le modèle le plus perfectionné, sont désormais déclarés \"hors la loi\". Quatre d'entre eux parviennent cependant à s'échapper et à s'introduire dans Los Angeles. Un agent d'une unité spéciale, un blade runner, est chargé de les éliminer. Selon la terminologie officielle, on ne parle pas d'exécution, mais de retrait..."
+ },
+ "blue-velvet|david-lynch": {
+  "key": "blue-velvet|david-lynch",
+  "title": "BLUE VELVET",
+  "director": "David Lynch",
+  "cast": "Kyle MacLachlan, Isabella Rossellini, Dennis Hopper, Laura Dern, Dean Stockwell, Brad Dourif, Hope Lange",
+  "genre": "",
+  "country": "",
+  "duration_min": 120,
+  "poster": "",
+  "trailer": "",
+  "storyline": "Lancé sur la piste d’une oreille coupée et d’une belle chanteuse, un apprenti détective traverse le miroir d’une petite ville. Derrière les façades coquettes et les massifs de fleurs, le feu et la folie s’embrasent…"
+ },
  "bob-le-flambeur|jean-pierre-melville": {
   "key": "bob-le-flambeur|jean-pierre-melville",
   "title": "Bob le flambeur",
@@ -443,17 +563,65 @@
   "trailer": "",
   "storyline": "Il y a longtemps que Bob s'est retiré des \"affaires\". Il se consacre maintenant à son unique passion, le jeu. Il a aussi un grand coeur et héberge Anne, une jeune fille fauchée prête à sombrer dans la prostitution. Anne tombe amoureuse de Paulo, un des fans de Bob. Après de grosses pertes au jeu, Bob décide de monter un coup pour se refaire... A gangster with a big heart retired from \"business\", Bob now devotes himself to his only passion, gambling. After big losses, he decides to stage a plan to rebuild his life..."
  },
- "bunny-lake-a-disparu|otto-preminger": {
-  "key": "bunny-lake-a-disparu|otto-preminger",
-  "title": "Bunny Lake a disparu",
-  "director": "Otto Preminger",
-  "cast": "Laurence Olivier, Carol Linley, Keir Dullea, Martita Hunt",
+ "bullitt|peter-yates": {
+  "key": "bullitt|peter-yates",
+  "title": "BULLITT",
+  "director": "Peter Yates",
+  "cast": "Steve McQueen, Jacqueline Bisset, Robert Vaughn, Don Gordon, Robert Duvall",
   "genre": "",
   "country": "",
-  "duration_min": 107,
+  "duration_min": 113,
   "poster": "",
   "trailer": "",
-  "storyline": "Une jeune mère va chercher à l'école sa fille Bunny. Mais cette dernière est introuvable et personne ne semble se souvenir d'elle."
+  "storyline": "Un lieutenant de police est chargé de protéger un gangster qui doit être entendu comme témoin dans un procès important. L’homme est malgré tout abattu. Le policier décide alors de mener sa propre enquête…"
+ },
+ "casablanca|michael-curtiz": {
+  "key": "casablanca|michael-curtiz",
+  "title": "Casablanca",
+  "director": "Michael Curtiz",
+  "cast": "Humphrey Bogart, Ingrid Bergman, Paul Henreid, Claude Rains, Conrad Veidt, Sydney Greenstreet, Peter Lorre, Marcel Dalio",
+  "genre": "",
+  "country": "",
+  "duration_min": 102,
+  "poster": "",
+  "trailer": "",
+  "storyline": "A Casablanca, en 1943, un Américain en exil tient le night club le plus couru de la ville, sous la surveillance du capitaine Renault, de la police de Vichy, et des Allemands. Il doit aider un Résistant tchèque en fuite, mais l’homme est accompagné par la femme qu’il a toujours aimée, ce qui l’enferme dans un dilemme."
+ },
+ "casino|martin-scorsese": {
+  "key": "casino|martin-scorsese",
+  "title": "CASINO",
+  "director": "Martin Scorsese",
+  "cast": "Robert De Niro, Joe Pesci, Sharon Stone, James Woods",
+  "genre": "",
+  "country": "",
+  "duration_min": 178,
+  "poster": "",
+  "trailer": "",
+  "storyline": "Un bookmaker est chargé par le syndicat des camionneurs de diriger un casino à Las Vegas. Son ascension rapide lui fait croire qu’il peut être l’égal de ses patrons. C’est le début de la chute."
+ },
+ "ce-vieux-reve-qui-bouge|": {
+  "key": "ce-vieux-reve-qui-bouge|",
+  "title": "Ce vieux rêve qui bouge",
+  "director": "",
+  "cast": "",
+  "genre": "",
+  "country": "",
+  "duration_min": null,
+  "poster": "",
+  "trailer": "",
+  "storyline": ""
+ },
+ "chinatown|roman-polanski": {
+  "key": "chinatown|roman-polanski",
+  "title": "Chinatown",
+  "director": "Roman Polanski",
+  "cast": "Jack Nicholson, Faye Dunaway, John Huston",
+  "genre": "",
+  "country": "",
+  "duration_min": 130,
+  "poster": "",
+  "trailer": "",
+  "storyline": "Int. - 12 ans A Los Angeles, un détective privé engagé pour confondre l'auteur d'un adultère, se retrouve pris dans un tissu de mensonges, de corruption et de meurtre, à l'échelle de la ville entière."
  },
  "chungking-express|wong-kar-wai": {
   "key": "chungking-express|wong-kar-wai",
@@ -491,17 +659,77 @@
   "trailer": "",
   "storyline": "Un jeune agent métis travaillant au FBI est chargé de faire équipe avec un vieil enquêteur cynique pour résoudre un meurtre dans une réserve de Sioux frappée par la pauvreté."
  },
- "cutters-way|ivan-passer": {
-  "key": "cutters-way|ivan-passer",
-  "title": "CUTTER’S WAY",
-  "director": "Ivan Passer",
-  "cast": "Jeff Bridges, John Heard, Lisa Eichhorn, Stephen Elliott",
+ "donnie-brasco|mike-newell": {
+  "key": "donnie-brasco|mike-newell",
+  "title": "DONNIE BRASCO",
+  "director": "Mike Newell",
+  "cast": "Al Pacino, Johnny Depp, Michael Madsen, James Russo",
   "genre": "",
   "country": "",
-  "duration_min": 109,
+  "duration_min": 125,
   "poster": "",
   "trailer": "",
-  "storyline": "Un vétéran du Vietnam, à la vie professionnelle et affective abîmée, enquête sur un meurtre dont l’un de ses amis croit avoir identifié l’auteur en la personne d’un potentat local."
+  "storyline": "En 1978 à York, un agent spécial du FBI chargé d'infiltrer un clan mafieux, abuse un modeste porte-flingue de l'organisation, auprès duquel il se fait passer pour un spécialiste en joaillerie."
+ },
+ "ecrit-sur-du-vent|douglas-sirk": {
+  "key": "ecrit-sur-du-vent|douglas-sirk",
+  "title": "Ecrit sur du vent",
+  "director": "Douglas Sirk",
+  "cast": "Rock Hudson, Lauren Bacall, Robert Stack, Dorothy Malone, Robert Keith",
+  "genre": "",
+  "country": "",
+  "duration_min": 99,
+  "poster": "",
+  "trailer": "",
+  "storyline": "Fils d'un roi du pétrole texan, Kyle Hadley a versé dans l'ivrognerie. Un jour, il tombe amoureux de Lucie Moore, que lui présente le géologue Mitch Wayne, son meilleur ami. Avec l'espoir de le guérir de son vice, Lucie accepte d'épouser Kyle, ce qui navre Mitch, également amoureux d'elle. Entre Kyle et Lucie, tout se passe bien dans un premier temps. Mais Kyle apprend par le médecin de famille qu'il ne pourra jamais avoir d'enfant. Or Lucie est enceinte."
+ },
+ "goodbye-dragon-inn|tsai-ming-liang": {
+  "key": "goodbye-dragon-inn|tsai-ming-liang",
+  "title": "Goodbye, Dragon Inn",
+  "director": "Tsai Ming-Liang",
+  "cast": "Miao Tien, Lee Kang-sheng, Chun Shih",
+  "genre": "",
+  "country": "",
+  "duration_min": 82,
+  "poster": "",
+  "trailer": "",
+  "storyline": "À Taïpei, un cinéma ferme ses portes, mais pas avant d'avoir joué un dernier film, qui s'avère être une source de nostalgie pour ceux qui fréquentent le lieu et pour les employés du vieil immeuble décrépit et hanté."
+ },
+ "happiness|todd-solondz": {
+  "key": "happiness|todd-solondz",
+  "title": "Happiness",
+  "director": "Todd Solondz",
+  "cast": "Jane Adams, Jon Lovitz, Philip Seymour Hoffman",
+  "genre": "",
+  "country": "",
+  "duration_min": 134,
+  "poster": "",
+  "trailer": "",
+  "storyline": "Interdit aux moins de 12 ans Les soeurs Jordan mènent la vie d'une famille américaine typique de la banlieue chic du New Jersey et cherchent toujours le bonheur. Joy n'a pas encore rencontré l'homme parfait, Trish, son aînée, est persuadée de l'avoir trouvé. Quant à Hélène, auteur à succès, elle est peu à peu envahie d'une sourde angoisse. Les zones d'ombre de leur vie vont refaire surface et, peu à peu, les secrets les plus intolérables vont éclater au grand jour."
+ },
+ "heat|michael-mann": {
+  "key": "heat|michael-mann",
+  "title": "Heat",
+  "director": "Michael Mann",
+  "cast": "Al Pacino, Robert De Niro, Val Kilmer, Jon Voight, Tom Sizemore, Diane Venora, Ashley Judd, Natalie Portman",
+  "genre": "",
+  "country": "",
+  "duration_min": 170,
+  "poster": "",
+  "trailer": "",
+  "storyline": "Int. -12 ans A Los Angeles, l’affrontement sans merci d’un braqueur et d’un policier, chacun expert en son domaine."
+ },
+ "in-the-mood-for-love|wong-kar-wai": {
+  "key": "in-the-mood-for-love|wong-kar-wai",
+  "title": "In The Mood For Love",
+  "director": "Wong Kar-wai",
+  "cast": "Tony Leung Chiu Wai, Maggie Cheung, Rebecca Pan",
+  "genre": "",
+  "country": "",
+  "duration_min": 98,
+  "poster": "",
+  "trailer": "",
+  "storyline": "Hong Kong, 1962. Mme Chan loue une chambre chez Mme Suen. Le même jour et sur le même palier, s’installe M. Chow. Leurs conjoints sont souvent absents. Un jour, M. Chow et Mme Chan découvrent que leurs époux sont amants. Blessés, ils se fréquentent alors de plus en plus et développent eux aussi une liaison…"
  },
  "inherent-vice|paul-thomas-anderson": {
   "key": "inherent-vice|paul-thomas-anderson",
@@ -515,41 +743,197 @@
   "trailer": "",
   "storyline": "L'ex-petite amie du détective privé Doc Sportello surgit un beau jour, en lui racontant qu'elle est tombée amoureuse d'un promoteur immobilier milliardaire : elle craint que l'épouse de ce dernier et son amant ne conspirent tous les deux pour faire interner le milliardaire… Mais ce n'est pas si simple… C'est la toute fin des psychédéliques années 60, et la paranoïa règne en maître. Doc sait bien que, tout comme \"trip\" ou \"démentiel\", \"amour\" est l'un de ces mots galvaudés à force d'être utilisés – sauf que celui-là n'attire que les ennuis."
  },
- "le-baiser-du-tueur|stanley-kubrick": {
-  "key": "le-baiser-du-tueur|stanley-kubrick",
-  "title": "Le Baiser du tueur",
-  "director": "Stanley Kubrick",
-  "cast": "Frank Silvera, Jamie Smith, Irene Kane",
+ "l-ami-americain|": {
+  "key": "l-ami-americain|",
+  "title": "L'Ami américain",
+  "director": "",
+  "cast": "",
   "genre": "",
   "country": "",
-  "duration_min": 67,
+  "duration_min": null,
   "poster": "",
   "trailer": "",
-  "storyline": "Un boxeur qui vient de perdre un match défend une entraîneuse de dancing malmenée par son patron. Les deux jeunes gens vont s‘éprendre l’un de l’autre. mais l'homme jaloux veut la reconquérir par tous les moyens..."
+  "storyline": ""
  },
- "le-doulos|jean-pierre-melville": {
-  "key": "le-doulos|jean-pierre-melville",
-  "title": "Le Doulos",
-  "director": "Jean-Pierre Melville",
-  "cast": "Jean-Paul Belmondo, Serge Reggiani, Jean Desailly, Fabienne Dali, Michel Piccoli, Philippe Nahon",
+ "lemprise-du-crime|lewis-milestone": {
+  "key": "lemprise-du-crime|lewis-milestone",
+  "title": "L’EMPRISE DU CRIME",
+  "director": "Lewis Milestone",
+  "cast": "Barbara Stanwyck, Van Heflin, Lizabeth Scott, Kirk Douglas",
+  "genre": "",
+  "country": "",
+  "duration_min": 120,
+  "poster": "",
+  "trailer": "",
+  "storyline": "Un détective privé retourne dans la petite ville de son enfance. Il y retrouve ses amis de jeunesse, devenus mari et femme. Mais ceux-ci pensent qu’il est venu les faire chanter au sujet d’un meurtre commis dix-huit ans auparavant."
+ },
+ "letrange-monsieur-victor|jean-gremillon": {
+  "key": "letrange-monsieur-victor|jean-gremillon",
+  "title": "L’Étrange Monsieur Victor",
+  "director": "Jean Grémillon",
+  "cast": "Raimu, Pierre Blanchar, Madeleine Renaud, Viviane Romance, Andrex, Georges Flamand, Maupi",
+  "genre": "",
+  "country": "",
+  "duration_min": 103,
+  "poster": "",
+  "trailer": "",
+  "storyline": "Derrière la façade d’un honorable commerçant toulonnais, Monsieur Victor cache des activités criminelles. Il fait porter le chapeau d’un meurtre à un innocent qui est envoyé au bagne. Sept ans plus tard, l’homme s’évade…"
+ },
+ "limpasse|brian-de-palma": {
+  "key": "limpasse|brian-de-palma",
+  "title": "L’Impasse",
+  "director": "Brian De Palma",
+  "cast": "Al Pacino, Sean Penn, Penelope Ann Miller, John Leguizamo, Luis Guzman, Viggo Mortensen",
+  "genre": "",
+  "country": "",
+  "duration_min": 144,
+  "poster": "",
+  "trailer": "",
+  "storyline": "Int.- 12 ans. New-York, 1975. Libéré après 5 années de prison grâce à son avocat véreux, Carlito Brigante, ancienne figure du milieu, rentre chez lui dans le quartier espagnol de Harlem. Il souhaite se réinsérer dans la vie et monter aux Bahamas une affaire honnête avec la femme de sa vie. Mais son passé le rattrape…"
+ },
+ "l-inconnu-du-lac|": {
+  "key": "l-inconnu-du-lac|",
+  "title": "L'inconnu du lac",
+  "director": "",
+  "cast": "",
+  "genre": "",
+  "country": "",
+  "duration_min": null,
+  "poster": "",
+  "trailer": "",
+  "storyline": ""
+ },
+ "la-nuit|": {
+  "key": "la-nuit|",
+  "title": "La Nuit",
+  "director": "",
+  "cast": "",
+  "genre": "",
+  "country": "",
+  "duration_min": null,
+  "poster": "",
+  "trailer": "",
+  "storyline": ""
+ },
+ "la-nuit-du-chasseur|charles-laughton": {
+  "key": "la-nuit-du-chasseur|charles-laughton",
+  "title": "La Nuit du chasseur",
+  "director": "Charles Laughton",
+  "cast": "Robert Mitchum, Lillian Gish, Shelley Winters",
+  "genre": "",
+  "country": "",
+  "duration_min": 93,
+  "poster": "",
+  "trailer": "",
+  "storyline": "En prison, un criminel psychopathe est averti de la présence d’un magot dans la famille de son co-détenu. Sitôt sorti de prison, se faisant passer pour un pasteur, il épouse sa femme et tente de faire parler ses enfants qui s’enfuient sur la rivière."
+ },
+ "la-ronde-de-laube|douglas-sirk": {
+  "key": "la-ronde-de-laube|douglas-sirk",
+  "title": "La Ronde de l’aube",
+  "director": "Douglas Sirk",
+  "cast": "Rock Hudson, Robert Stack, Dorothy Malone",
+  "genre": "",
+  "country": "",
+  "duration_min": 91,
+  "poster": "https://lafilmotheque.fr/v4/content/uploads/2022/10/18958191.jpg-c_310_420_x-f_jpg-q_x-xxyxx.jpg",
+  "trailer": "",
+  "storyline": "Pendant la Dépression, en plein carnaval de la Nouvelle-Orléans, un journaliste s'immisce dans la vie d'un couple d'aviateurs acrobates."
+ },
+ "la-tete-dun-homme|julien-duvivier": {
+  "key": "la-tete-dun-homme|julien-duvivier",
+  "title": "La tête d’un homme",
+  "director": "Julien Duvivier",
+  "cast": "Harry Baur, Valery Inkijinoff, Gina Manès",
+  "genre": "",
+  "country": "",
+  "duration_min": 100,
+  "poster": "",
+  "trailer": "",
+  "storyline": "Dans le Paris des années 30, alors qu'un simple d'esprit est le principal suspect d'un meurtre, le commissaire Maigret, sceptique, poursuit ses investigations, au grand dam de ses supérieurs."
+ },
+ "last-seduction|john-dahl": {
+  "key": "last-seduction|john-dahl",
+  "title": "Last Seduction",
+  "director": "John Dahl",
+  "cast": "Linda Fiorentino, Peter Berg, Bill Pullman",
   "genre": "",
   "country": "",
   "duration_min": 110,
   "poster": "",
   "trailer": "",
-  "storyline": "Un « doulos » (indicateur de police) est écartelé entre ses deux amis, un truand et un flic. Sans illusion sur les suites, il tente l’impossible « pour l’honneur »."
+  "storyline": "Une femme fatale, s'enfuit avec un million de dollars que son mari vient d'obtenir en vendant des drogues volées à l’hôpital où il travaille, et qui était destiné à rembourser des usuriers."
  },
- "les-anges-dechus|wong-kar-wai": {
-  "key": "les-anges-dechus|wong-kar-wai",
-  "title": "Les Anges déchus",
-  "director": "Wong Kar-wai",
-  "cast": "Leon Lai Ming, Takeshi Taneshiro, Charlie Young, Michele Reis, Karen Mok",
+ "le-demon-des-armes|nicholas-ray": {
+  "key": "le-demon-des-armes|nicholas-ray",
+  "title": "Le démon des armes",
+  "director": "Nicholas Ray",
+  "cast": "Christopher Plummer, Burl Ives, Chana Eden, Gypsy Rose Lee, Tony Galento, Sammy Renick, Pat Henning",
+  "genre": "",
+  "country": "",
+  "duration_min": 93,
+  "poster": "",
+  "trailer": "",
+  "storyline": "Un professeur d'histoire naturelle entreprend de s'opposer aux activités d'une bande de hors-la-loi qui massacrent les oiseaux dans les marais des Everglades et font le trafic de leurs plumes pour alimenter le marche du chapeau."
+ },
+ "le-faucon-maltais|john-huston": {
+  "key": "le-faucon-maltais|john-huston",
+  "title": "Le Faucon maltais",
+  "director": "John Huston",
+  "cast": "Humphrey Bogart, Mary Astor, Gladys George, Peter Lorre, Sydney Greenstreet, Elisha Cook Jr, Ward Bond, Walter Huston",
+  "genre": "",
+  "country": "",
+  "duration_min": 100,
+  "poster": "",
+  "trailer": "",
+  "storyline": "Fou de rage après le meurtre de son associé, Sam Spade se lance à la recherche du coupable, dans un monde de faux-semblants peuplé de louches personnages. Ses recherches le conduiront à une mystérieuse statuette, « de l’étoffe dont sont faits les rêves »…"
+ },
+ "le-ministere-de-la-peur|fritz-lang": {
+  "key": "le-ministere-de-la-peur|fritz-lang",
+  "title": "Le Ministère de la Peur",
+  "director": "Fritz Lang",
+  "cast": "Ray Milland, Marjorie Reynolds, Alan Napier",
+  "genre": "",
+  "country": "",
+  "duration_min": 86,
+  "poster": "",
+  "trailer": "",
+  "storyline": "Après deux ans passés dans un asile de fou, un homme retrouve une Angleterre bombardée, sous la menace nazie. En gagnant un gâteau lors d’une vente de charité, il va devenir sans le vouloir le protagoniste principal d’une rocambolesque affaire d’espionnage…"
+ },
+ "le-roi-de-levasion|alain-guiraudie": {
+  "key": "le-roi-de-levasion|alain-guiraudie",
+  "title": "Le roi de l’évasion",
+  "director": "Alain Guiraudie",
+  "cast": "Ludovic Berthillot, Hafsia Herzi, Pierre Laur, Luc Palun.",
   "genre": "",
   "country": "",
   "duration_min": 99,
   "poster": "",
   "trailer": "",
-  "storyline": "À Hongkong, Ming est un tueur à gages qui commence à regretter de s'être associé à une femme qui lui passe des commandes sanguinaires. Un jour, Ming décide de tout quitter et de s'installer chez Punkie, une jeune Chinoise rencontrée dans un bar."
+  "storyline": "Une fille qui n'a pas froid aux yeux tombe folle amoureuse d'un représentant en tracteurs, homosexuel, corpulent, en pleine crise de la quarantaine. Chez Guiraudie, les couples les plus inattendus se forment, goûtent aux racines aphrodisiaques et bravent tous les dangers, dans une comédie rurale, libertaire, aussi sensuelle que tordante."
+ },
+ "le-samourai|jean-pierre-melville": {
+  "key": "le-samourai|jean-pierre-melville",
+  "title": "LE SAMOURAÏ",
+  "director": "Jean-Pierre Melville",
+  "cast": "Alain Delon, François Périer, Nathalie Delon, Cathy Rosier",
+  "genre": "",
+  "country": "",
+  "duration_min": 105,
+  "poster": "",
+  "trailer": "",
+  "storyline": "En sortant du bureau où gît le cadavre de sa dernière cible, un tueur à gages, surnommé le Samouraï, la pianiste du club. Lors de l’enquête de police, la jeune femme feint ne pas le reconnaître. Relâché, il cherche à comprendre pourquoi elle a agi de la sorte. A hitman, nicknamed \"the Samurai,\" encounters a pianist while leaving a crime scene. When questioned by the police, she pretends not to recognize him. After being released, he seeks to understand why the young woman acted this way."
+ },
+ "le-silence-des-agneaux|jonathan-demme": {
+  "key": "le-silence-des-agneaux|jonathan-demme",
+  "title": "LE SILENCE DES AGNEAUX",
+  "director": "Jonathan Demme",
+  "cast": "Jodie Foster, Anthony Hopkins, Scott Glenn, Ted Levin, Anthony Heald, Brooke Smith, Diane Baker",
+  "genre": "",
+  "country": "",
+  "duration_min": 118,
+  "poster": "",
+  "trailer": "",
+  "storyline": "Int. 16ans Afin d’arrêter un psychopathe qui sème la terreur dans le Middle West en assassinant des femmes, une jeune enquêtrice du FBI sollicite l’aide d’un autre tueur en série incarcéré, l’ex-psychiatre Hannibal Lecter, redoutablement intelligent et porté sur le cannibalisme."
  },
  "duellistes|ridley-scott": {
   "key": "duellistes|ridley-scott",
@@ -575,6 +959,18 @@
   "trailer": "",
   "storyline": "Un père de famille rejoint la police de Los Angeles pour arrondir ses fins de mois tout en terminant ses études de droit. Sous la houlette d’un vétéran, il prend goût à son métier, au risque de délaisser sa vie privée."
  },
+ "les-forbans-de-la-nuit|jules-dassin": {
+  "key": "les-forbans-de-la-nuit|jules-dassin",
+  "title": "LES FORBANS DE LA NUIT",
+  "director": "Jules Dassin",
+  "cast": "Richard Widmark, Gene Tierney, Googie Withers, Hugh Marlowe",
+  "genre": "",
+  "country": "",
+  "duration_min": 91,
+  "poster": "",
+  "trailer": "",
+  "storyline": "Un minable rabatteur de boîte dévoré par l'ambition gagne la confiance d'un vieux champion de lutte gréco-romaine, afin d'organiser des combats. Mais il est pris dans un engrenage tragique qui va le mener à sa perte."
+ },
  "les-hommes-du-president|alan-j-pakula": {
   "key": "les-hommes-du-president|alan-j-pakula",
   "title": "LES HOMMES DU PRESIDENT",
@@ -586,6 +982,30 @@
   "poster": "",
   "trailer": "",
   "storyline": "En 1972, cinq hommes sont arrêtés pour avoir pénétré par effraction dans l'immeuble du Watergate où se situent les bureaux du parti Démocrate. Alors que l'affaire est présentée comme un simple fait divers, deux journalistes du Washington Post, Carl Bernstein et Bob Woodward, décident de mener l'enquête qui les mènera vers les plus hautes sphères du gouvernement."
+ },
+ "lost-highway|david-lynch": {
+  "key": "lost-highway|david-lynch",
+  "title": "Lost Highway",
+  "director": "David Lynch",
+  "cast": "Bill Pullman, Patricia Arquette, Balthazar Getty, Robert Blake, Robert Loggia",
+  "genre": "",
+  "country": "",
+  "duration_min": 135,
+  "poster": "",
+  "trailer": "",
+  "storyline": "Un saxophoniste qui a tué sa femme est envoyé en prison. Dans sa cellule, il est remplacé par un autre homme…"
+ },
+ "lost-in-translation|sofia-coppola": {
+  "key": "lost-in-translation|sofia-coppola",
+  "title": "Lost in translation",
+  "director": "Sofia Coppola",
+  "cast": "Bill Murray, Scarlett Johansson, Giovanni Ribisi",
+  "genre": "",
+  "country": "",
+  "duration_min": 104,
+  "poster": "",
+  "trailer": "",
+  "storyline": "Une vedette d’Hollywood sur le retour, venue tourner une publicité à Tokyo, lie connaissance avec une jeune mariée qui a comme lui le vague à l’âme."
  },
  "love-streams|john-cassavetes": {
   "key": "love-streams|john-cassavetes",
@@ -623,6 +1043,186 @@
   "trailer": "",
   "storyline": "Andrei est accompagné par une interprète d'une grande beauté, Eugenia. Il pourrait vivre avec elle une grande histoire d'amour, mais le souvenir de sa femme le hante. Il rencontre Domenico, un fou qui prêche la paix et lui demande d'accomplir un petit geste, afin de sauver, du moins le prétend-il, le monde."
  },
+ "possession|andrzej-zulawski": {
+  "key": "possession|andrzej-zulawski",
+  "title": "POSSESSION",
+  "director": "Andrzej Zulawski",
+  "cast": "Isabelle Adjani, Sam Neill, Margit Carstensen, Heinz Bennent",
+  "genre": "",
+  "country": "",
+  "duration_min": 123,
+  "poster": "",
+  "trailer": "",
+  "storyline": "Rentrant d'un long voyage, Marc retrouve sa femme Anna et son fils Bob. Il s'aperçoit rapidement que le comportement de sa femme a changé. Prise de violentes crises, elle quitte le domicile. Marc engage un détective qui retrouve bientôt Anna, réfugiée dans une étrange demeure, où semble se cacher une créature surgie des ténèbres."
+ },
+ "psychose|alfred-hitchcock": {
+  "key": "psychose|alfred-hitchcock",
+  "title": "Psychose",
+  "director": "Alfred Hitchcock",
+  "cast": "Anthony Perkins, Janet Leigh, Vera, Miles, John Gavin, Martin Balsam",
+  "genre": "",
+  "country": "",
+  "duration_min": 110,
+  "poster": "",
+  "trailer": "",
+  "storyline": "Une employée vole son patron et prend la route. Elle s’arrête dans un motel tenu par un jeune homme timide et mystérieux, qui vit dans l’ombre de sa mère…. Interdit -12 ans."
+ },
+ "que-dios-nos-perdone|rodrigo-sorogoyen": {
+  "key": "que-dios-nos-perdone|rodrigo-sorogoyen",
+  "title": "Que dios nos perdone",
+  "director": "Rodrigo Sorogoyen",
+  "cast": "Antonio de la Torre, Roberto Álamo, Javier Pereira",
+  "genre": "",
+  "country": "",
+  "duration_min": 126,
+  "poster": "",
+  "trailer": "",
+  "storyline": "Été 2011. Alors que Madrid est le cœur du mouvement des Indignés et s'apprête à recevoir la visite de Benoît XVI à l'occasion des Journées mondiales de la jeunesse, deux inspecteurs de police, l’un impulsif et violent, l’autre bègue et pointilleux, traquent un tueur en série."
+ },
+ "rendez-vous-avec-la-peur|jacques-tourneur": {
+  "key": "rendez-vous-avec-la-peur|jacques-tourneur",
+  "title": "Rendez-vous avec la peur",
+  "director": "Jacques Tourneur",
+  "cast": "Dana Andrews, Peggy Cummins, Niall MacGinnis",
+  "genre": "",
+  "country": "",
+  "duration_min": 95,
+  "poster": "",
+  "trailer": "",
+  "storyline": "Le docteur John Holden, un savant américain, se rend à Londres afin de mener son enquête sur la mort de son collègue, le professeur Harrington. Ce dernier avait fait part de ses soupçons sur le Dr Karswell qu'il pensait lié à des forces démoniaques. Holden se rend vite compte que ces doutes n'étaient pas anodins."
+ },
+ "rester-vertical|alain-guiraudie": {
+  "key": "rester-vertical|alain-guiraudie",
+  "title": "Rester vertical",
+  "director": "Alain Guiraudie",
+  "cast": "Damien Bonnard, India Hair, Raphaël Thiery.",
+  "genre": "",
+  "country": "",
+  "duration_min": 100,
+  "poster": "",
+  "trailer": "",
+  "storyline": "Interdit aux moins de 12 ans Léo, scénariste fauché à court d'idées, chasse un loup sur un causse en Lozère. Il y rencontre une bergère, Marie, dont il s'éprend. Ensemble, ils ont un enfant, mais Marie, dépressive et lassée de l'incertitude de Léo, décide de partir seule."
+ },
+ "rosemarys-baby|roman-polanski": {
+  "key": "rosemarys-baby|roman-polanski",
+  "title": "Rosemary’s baby",
+  "director": "Roman Polanski",
+  "cast": "Mia Farrow, John Cassavetes, Ruth Gordon",
+  "genre": "",
+  "country": "",
+  "duration_min": 136,
+  "poster": "",
+  "trailer": "",
+  "storyline": "Malgré les conseils de leur vieil ami Hutch, Guy Woodhouse et sa jeune femme, enceinte, s'installent dans un immeuble new-yorkais vétuste, considéré par leur ami comme une demeure maléfique. Aussitôt, leurs voisins, Minnie et Roman Castevet, vieux couple d'Europe centrale, imposent leur amitié et leurs services. Si Guy accepte facilement ce voisinage, Rosemary s'en inquiète..."
+ },
+ "seven|david-fincher": {
+  "key": "seven|david-fincher",
+  "title": "SEVEN",
+  "director": "David Fincher",
+  "cast": "Brad Pitt, Morgan Freeman, Gwyneth Paltrow, Kevin Spacey",
+  "genre": "",
+  "country": "",
+  "duration_min": 130,
+  "poster": "",
+  "trailer": "",
+  "storyline": "Int. - 12 ans Deux détectives, une recrue et un enquêteur chevronné, chassent un tueur en série qui utilise les sept péchés capitaux comme motif pour tuer."
+ },
+ "shutter-island|martin-scorsese": {
+  "key": "shutter-island|martin-scorsese",
+  "title": "Shutter Island",
+  "director": "Martin Scorsese",
+  "cast": "Leonardo DiCaprio, Mark Ruffalo, Ben Kingsley, Max von Sydow",
+  "genre": "",
+  "country": "",
+  "duration_min": 137,
+  "poster": "",
+  "trailer": "",
+  "storyline": "En 1954, un marshal et son coéquipier sont envoyés sur l'île de Shutter Island, dans un hôpital psychiatrique où sont internés de dangereux criminels, pour enquêter sur la disparition mystérieuse d'une détenue."
+ },
+ "sueurs-froides|alfred-hitchcock": {
+  "key": "sueurs-froides|alfred-hitchcock",
+  "title": "SUEURS FROIDES",
+  "director": "Alfred Hitchcock",
+  "cast": "D'après le roman D'entre les morts de Boileau-Narcejac. Avec James Stewart, Kim Novak, Barbara Bel Geddes.",
+  "genre": "",
+  "country": "",
+  "duration_min": 126,
+  "poster": "",
+  "trailer": "",
+  "storyline": "À San Francisco, un ancien policier souffrant d'acrophobie, est engagé pour surveiller la femme d'un ami persuadée d'être la réincarnation d'une morte."
+ },
+ "the-king-of-new-york|abel-ferrara": {
+  "key": "the-king-of-new-york|abel-ferrara",
+  "title": "The King of New York",
+  "director": "Abel Ferrara",
+  "cast": "Christopher Walken, David Caruso, Laurence Fishburne, Victor Argo, Wesley Snipes, Steve Buscemi",
+  "genre": "",
+  "country": "",
+  "duration_min": 100,
+  "poster": "",
+  "trailer": "",
+  "storyline": "Int. - 16 ans Un gangster à peine sorti de prison désire reconquérir par tous les moyens son territoire, mais aussi construire un hôpital."
+ },
+ "the-offence|sidney-lumet": {
+  "key": "the-offence|sidney-lumet",
+  "title": "THE OFFENCE",
+  "director": "Sidney Lumet",
+  "cast": "Sean Connery, Trevor Howard, Ian Bannen, Vivien Merchant, Peter Bowles",
+  "genre": "",
+  "country": "",
+  "duration_min": 116,
+  "poster": "",
+  "trailer": "",
+  "storyline": "Int. -12 ans. La douleur intérieure d’un inspecteur britannique, marqué par vingt ans d’enquêtes et de meurtres, resurgit au grand jour lorsqu’il met la main sur un homme qu’il croit être l’auteur d’une série d’agressions sur des petites filles."
+ },
+ "thelma-et-louise|ridley-scott": {
+  "key": "thelma-et-louise|ridley-scott",
+  "title": "THELMA ET LOUISE",
+  "director": "Ridley Scott",
+  "cast": "Susan Sarandon, Geena Davis, Harvey Keitel, Michael Madsen, Christopher McDonald, Stephen Tobolowsky, Brad Pitt",
+  "genre": "",
+  "country": "",
+  "duration_min": 129,
+  "poster": "",
+  "trailer": "",
+  "storyline": "Deux meilleures amies, Thelma et Louise, décident de s'offrir un week-end sur les routes magnifiques de l'Arkansas. Premier arrêt, premier saloon, premiers ennuis et tout bascule. Elles partent en cavale, pourchassées par la police..."
+ },
+ "theoreme|pier-paolo-pasolini": {
+  "key": "theoreme|pier-paolo-pasolini",
+  "title": "THEOREME",
+  "director": "Pier Paolo Pasolini",
+  "cast": "Terence Stamp, Silvana Mangano, Massimo Girotti, Laura Betti",
+  "genre": "",
+  "country": "",
+  "duration_min": 98,
+  "poster": "",
+  "trailer": "",
+  "storyline": "Une famille bourgeoise à Milan en 1968. Le père est un riche industriel, qui vit, avec sa famille, dans l’aisance. Un jeune et séduisant inconnu s’installe et va nouer avec tous les membres de la famille, les parents, les deux enfants et même la servante, des relations charnelles et passionnelles qui bouleversent chacun de ses partenaires au plus profond de son être. A son départ, la famille se désagrège."
+ },
+ "tout-ce-que-le-ciel-permet|douglas-sirk": {
+  "key": "tout-ce-que-le-ciel-permet|douglas-sirk",
+  "title": "Tout ce que le ciel permet",
+  "director": "Douglas Sirk",
+  "cast": "Jane Wyman, Rock Hudson, Agnes Moorehead, Conrad Nagel, Virginia Grey, Gloria Talbott, William Reynolds",
+  "genre": "",
+  "country": "",
+  "duration_min": 89,
+  "poster": "",
+  "trailer": "",
+  "storyline": "Une veuve d’âge mûr mène une vie terne dans une petite localité de la Nouvelle-Angleterre. Alors que ses enfants et sa meilleure amie la poussent à se remarier avec un rassurant quinquagénaire, elle est séduite par son jeune jardinier. Celui-ci partage ses sentiments mais leur liaison ne tarde pas à être décriée, voire combattue…"
+ },
+ "un-homme-qui-dort|georges-perec": {
+  "key": "un-homme-qui-dort|georges-perec",
+  "title": "UN HOMME QUI DORT",
+  "director": "Georges Perec",
+  "cast": "avec Jacques Spiesser, Ludmila Mikaël",
+  "genre": "",
+  "country": "",
+  "duration_min": 82,
+  "poster": "",
+  "trailer": "",
+  "storyline": "À la fin de ses études, un étudiant décide de rompre avec toutes ses activités et de mener une vie végétative: manger, dormir, lire le journal et se promener dans la ville. Vivant tout d'abord dans un parfait équilibre, il est peu a peu atteint par l'angoisse et l'inquiétude de cette vie neutre. At the end of his studies, a student decides to break away from all activities and lead a vegetative life: eating, sleeping, reading the newspaper, and strolling through the city. Gradually, he is consumed by anxiety and unease about this neutral existence."
+ },
  "venise-la-lune-et-toi|dino-risi": {
   "key": "venise-la-lune-et-toi|dino-risi",
   "title": "Venise, la Lune et toi",
@@ -647,6 +1247,18 @@
   "trailer": "",
   "storyline": ""
  },
+ "ariol-prend-lavion-et-autres-tetes-en-lair|amandine-fredon": {
+  "key": "ariol-prend-lavion-et-autres-tetes-en-lair|amandine-fredon",
+  "title": "Ariol prend l’avion (et autres têtes en l’air)",
+  "director": "Amandine Fredon",
+  "cast": "",
+  "genre": "Animation",
+  "country": "",
+  "duration_min": 47,
+  "poster": "https://all.web.img.acsta.net/pictures/18/12/10/17/58/3402817.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
  "la-bataille-de-gaulle-partie-1-l-age-de-fer|antonin-baudry": {
   "key": "la-bataille-de-gaulle-partie-1-l-age-de-fer|antonin-baudry",
   "title": "La Bataille de Gaulle - partie 1 : L'Âge de Fer",
@@ -668,6 +1280,18 @@
   "country": "",
   "duration_min": 160,
   "poster": "https://all.web.img.acsta.net/img/75/da/75da06789966503000d90f15af6dacb6.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "la-frappe|julien-gaspar-oliveri": {
+  "key": "la-frappe|julien-gaspar-oliveri",
+  "title": "La Frappe",
+  "director": "Julien Gaspar-Oliveri",
+  "cast": "",
+  "genre": "Drame",
+  "country": "",
+  "duration_min": 106,
+  "poster": "https://all.web.img.acsta.net/img/59/cf/59cf7b2013d1711d12fdb5545822ce48.jpg",
   "trailer": "",
   "storyline": ""
  },
@@ -731,6 +1355,18 @@
   "trailer": "",
   "storyline": ""
  },
+ "trois-adieux|isabel-coixet": {
+  "key": "trois-adieux|isabel-coixet",
+  "title": "Trois adieux",
+  "director": "Isabel Coixet",
+  "cast": "",
+  "genre": "Drame",
+  "country": "",
+  "duration_min": 120,
+  "poster": "https://all.web.img.acsta.net/img/de/5e/de5ec06af18d2e569922a2259707a545.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
  "de-la-comedie-francaise|martin-darondeau": {
   "key": "de-la-comedie-francaise|martin-darondeau",
   "title": "De la Comédie-Française",
@@ -767,18 +1403,6 @@
   "trailer": "",
   "storyline": ""
  },
- "un-amour-depouvantail|samantha-cutler": {
-  "key": "un-amour-depouvantail|samantha-cutler",
-  "title": "Un amour d’épouvantail",
-  "director": "Samantha Cutler",
-  "cast": "",
-  "genre": "Animation",
-  "country": "",
-  "duration_min": 44,
-  "poster": "https://all.web.img.acsta.net/img/6f/8a/6f8a8922ac1f1323d4becc8ce77da9bb.png",
-  "trailer": "",
-  "storyline": ""
- },
  "histoires-de-la-nuit|lea-mysius": {
   "key": "histoires-de-la-nuit|lea-mysius",
   "title": "Histoires de la nuit",
@@ -790,6 +1414,18 @@
   "poster": "https://www.cinemas-lumiere.com/cache/data/files/cinemas/movie/poster/4969/e4057c680c238cc18211ffc8140eed28/s,490,650-q,90-4be576.jpg",
   "trailer": "",
   "storyline": "Nora, Thomas et leur fille Ida vivent dans une ferme isolée avec pour seule voisine, Cristina, une peintre italienne. Alors que tout le monde prépare une soirée d'anniversaire surprise pour Nora, trois hommes rôdent autour de la maison et s'invitent à la fête, faisant surgir des secrets bien gardés... Sortie en salle le 16 septembre 2026 Remerciements à Le Pacte"
+ },
+ "l-invitation|olivia-wilde": {
+  "key": "l-invitation|olivia-wilde",
+  "title": "L'Invitation",
+  "director": "Olivia Wilde",
+  "cast": "S. Rogen, O. Wilde, P. Cruz",
+  "genre": "",
+  "country": "",
+  "duration_min": 107,
+  "poster": "https://www.cinemas-lumiere.com/cache/data/files/cinemas/movie/poster/5044/31b1faa3ca361d78ca82078f8accda1e/s,490,650-q,90-99d938.jpg",
+  "trailer": "",
+  "storyline": "Angela et Joe invitent leurs mystérieux nouveaux voisins du dessus à dîner. La soirée va alors rapidement faire voler en éclats toutes leurs certitudes. Sortie en salle le 16 septembre 2026 Remerciements à Maverick Distribution"
  },
  "la-bataille-de-gaulle-partie-2-j-ecris-ton-nom|antonin-baudry": {
   "key": "la-bataille-de-gaulle-partie-2-j-ecris-ton-nom|antonin-baudry",
@@ -839,17 +1475,17 @@
   "trailer": "",
   "storyline": "Au Ghana, Kojo, adolescent marqué par la disparition de son père en mer, se rapproche des gangs de rue sans parvenir à combler le vide qu'il ressent. Pendant ce temps, au Québec, Tony, en quête de repères, s'interroge sur l'homme dont sa mère est amoureuse et qui pourrait être le père qu'il n'a jamais connu... Entre la lente déchéance de l'un et la recherche d'identité de l'autre, un lien insoupçonné se tisse, unissant les destins croisés de ces deux jeunes hommes que tout semble séparer."
  },
- "sanjuro|akira-kurosawa": {
-  "key": "sanjuro|akira-kurosawa",
-  "title": "Sanjuro",
-  "director": "Akira Kurosawa",
-  "cast": "T. Mifune, T. Nakadai, Y. Kayama",
+ "the-good-sister|sarah-miro-fischer": {
+  "key": "the-good-sister|sarah-miro-fischer",
+  "title": "The Good Sister",
+  "director": "Sarah Miro Fischer",
+  "cast": "M. Bloching, A. Weil, P. Madani",
   "genre": "",
   "country": "",
   "duration_min": 96,
-  "poster": "https://www.cinemas-lumiere.com/cache/data/files/cinemas/movie/poster/5025/074367/s,490,650-q,90-d9626f.jpg",
+  "poster": "https://www.cinemas-lumiere.com/cache/data/files/cinemas/movie/poster/5046/cc6c24e65760cf3da4cd7820a9ea4303/s,490,650-q,90-c33c2f.jpg",
   "trailer": "",
-  "storyline": "Le samouraï rônin Sanjuro Tsubaki prend sous son aile une bande de jeunes guerriers inexpérimentés et les aide à déjouer un complot contre le chambellan. Jouant de ruse avec les conspirateurs, Sanjuro se révélera un tacticien hors pair, avant de se confronter avec le redoutable Muroto, bras droit du chef des comploteurs."
+  "storyline": "Rose est très proche de son frère aîné Sam, qu'elle adore. Lorsqu'une femme accuse Sam de viol, Rose est appelée à témoigner dans le cadre d'une enquête menée à son encontre."
  },
  "un-grand-raccourci|armand-foex-clement-devilliers": {
   "key": "un-grand-raccourci|armand-foex-clement-devilliers",
@@ -862,6 +1498,18 @@
   "poster": "https://www.cinemas-lumiere.com/cache/data/files/cinemas/movie/poster/5026/0bba7c07804e33c96916e23ba1ee7ec2/s,490,650-q,90-da4d4e.jpg",
   "trailer": "",
   "storyline": "Quand le restaurant familial menace de fermer, deux cousins bretons relâchent des rats pour s'improviser dératiseurs. Le même été, deux jeunes femmes trafiquent le concours de beauté local pour promouvoir leurs bijoux. Embarqués dans leurs stratagèmes chaotiques, ces quatre débrouillards en quête d'avenir finissent par se percuter."
+ },
+ "a-swedish-love-story|roy-andersson": {
+  "key": "a-swedish-love-story|roy-andersson",
+  "title": "A Swedish Love Story",
+  "director": "Roy Andersson",
+  "cast": "A. Kylin, R. Sohlman, B. Andrésen",
+  "genre": "",
+  "country": "",
+  "duration_min": 119,
+  "poster": "https://www.cinemas-lumiere.com/cache/data/files/cinemas/movie/poster/5047/ef73c0003d3ed94f0dbdf60d62de0c3c/s,490,650-q,90-163700.jpg",
+  "trailer": "",
+  "storyline": "Pär et Annika se croisent dans le parc d'un hôpital où leurs familles respectives viennent visiter l'un des leurs. Avec l'ingénuité et la fraîcheur de leurs 15 ans, c'est le coup de foudre immédiat. Mais entre les adultes prisonniers de leurs conventions et de leurs frustrations, et leur bande de potes où l'amour est une émotion peu commune, il n'est pas facile de construire une relation. Malgré tout, dans la beauté d'un été suédois, leur idylle va tenter de s'épanouir, à l'encontre de l'adversité qui les entoure..."
  },
  "chicas-tristes|fernanda-tovar": {
   "key": "chicas-tristes|fernanda-tovar",
@@ -886,6 +1534,18 @@
   "poster": "https://www.cinemas-lumiere.com/cache/data/files/cinemas/movie/poster/4989/9c4daa6e94f7107c83f7d732700c44a0/s,490,650-q,90-553a1d.jpg",
   "trailer": "",
   "storyline": "Dans 3 heures, Nina dévoile sa première mise en scène à la Comédie-Française. Mais dans l'agitation des dernières répétitions, rien ne se passe comme prévu : retards, coups de stress, problèmes techniques et problèmes d'égo secouent la troupe. Pourtant, Nina n'a pas d'autre choix que d'aller jusqu'au bout car s'il y a bien une règle d'or à la Comédie-Française, c'est qu'on n'annule pas. Commence alors une course contre la montre pour sauver la représentation."
+ },
+ "face-a-la-mer|helen-walsh": {
+  "key": "face-a-la-mer|helen-walsh",
+  "title": "Face à la mer",
+  "director": "Helen Walsh",
+  "cast": "B. Ward, L. Macfadyen, L. White",
+  "genre": "",
+  "country": "",
+  "duration_min": 116,
+  "poster": "https://www.cinemas-lumiere.com/cache/data/files/cinemas/movie/poster/5048/c9da24b174d4021a4092ec4755906a1f/s,490,650-q,90-f39f50.jpg",
+  "trailer": "",
+  "storyline": "Jack est marié à Maggie depuis plus de la moitié de sa vie. Il travaille comme ramasseur de moules dans les bancs du nord du Pays de Galles avec son jeune frère, Dyfan, et ses trois fils. Jack a toujours pensé que son fils, Tom, rejoindrait l'entreprise familiale à la fin de ses études, mais la réticence de Tom à suivre ses traces provoque des tensions familiales. Celles-ci sont encore exacerbées par l'arrivée d'un matelot itinérant, Daniel, qui avoue ses sentiments à Jack. Dans cette communauté rurale isolée où la vie tourne autour de l'Église et de la pêche, Jack est confronté à un dilemme insurmontable."
  },
  "fight-club|david-fincher": {
   "key": "fight-club|david-fincher",
@@ -958,6 +1618,18 @@
   "poster": "https://www.cinemas-lumiere.com/cache/data/files/cinemas/movie/poster/5041/18966124/s,490,650-q,90-05e508.jpg",
   "trailer": "",
   "storyline": "Les aventures de la petite taupe continuent avec cinq nouveaux courts métrages : La Petite taupe et le hérisson (1970), La Petite taupe et le téléphone (1974), La Petite taupe et les allumettes (id.), La Petite taupe et l'automobile (1963) et La Petite taupe et la musique (1974). 5€ pour tous"
+ },
+ "lydia-et-le-vaisseau-des-tempetes|divers-cineastes": {
+  "key": "lydia-et-le-vaisseau-des-tempetes|divers-cineastes",
+  "title": "Lydia et le vaisseau des tempêtes",
+  "director": "divers cinéastes",
+  "cast": "voix de S. Nélisse, L. Dantiste, E. Gélinas",
+  "genre": "",
+  "country": "",
+  "duration_min": 85,
+  "poster": "https://www.cinemas-lumiere.com/cache/data/files/cinemas/movie/poster/5049/lydia/s,490,650-q,90-86d2b8.jpg",
+  "trailer": "",
+  "storyline": "Lorsque son frère aîné Thaddeus est mystérieusement enlevé par l'Envoûteur, Lydia, 11 ans, part à sa recherche dans la Mer de Brume. Recueillie par l'équipage du Dauphin, un navire volant, elle devient l'apprentie de l'astromagicienne Ambrosia. Celle-ci cherche d'autres enfants disparus, dont son propre fils. Bien décidée à résoudre ce mystère, Lydia devra apprendre l'astromagie et ainsi affronter l'Envoûteur. 5€ pour les - 14 ans"
  },
  "marius-et-le-royaume-des-mers|endre-skandfer": {
   "key": "marius-et-le-royaume-des-mers|endre-skandfer",
@@ -1042,5 +1714,17 @@
   "poster": "https://images.monnaie-services.com/movie_poster/120/FRQ9VQ7/L5IMJJTK.jpg",
   "trailer": "https://trailers.imscine.com/ld/bbbc1d2ef825d640d3c9fb8e5ccdf25ee46ea496e94096e97502beee4d387acfc55da8b14ea493dbe09b0ae2d0a8f2.mp4",
   "storyline": "Clara est une doula quechua qui chante pour apaiser la douleur des femmes enceintes. Sa mère Ana, sage-femme chevronnée, considère ce don comme un miracle. Influencée par une amie, et après une dispute avec sa mère, la jeune femme décide de partir pour la grande ville. Depuis la communauté subit la mort mystérieuse d'animaux et des récoltes, les villageois attribuent cette punition au départ de Clara. Sa mère décide de la retrouver."
+ },
+ "2026-09-coup-de-coeur-surprise-afcae-4|": {
+  "key": "2026-09-coup-de-coeur-surprise-afcae-4|",
+  "title": "2026 09 COUP DE COEUR SURPRISE AFCAE 4",
+  "director": "",
+  "cast": "",
+  "genre": "",
+  "country": "",
+  "duration_min": 95,
+  "poster": "https://images.monnaie-services.com/movie_poster/120/FRWSHDT/QGJP780D.jpg",
+  "trailer": "https://trailers.imscine.com/ld/bbbc1d2ef825d655d4c5fe9245cbe94ae46ea496e94096e97502beee4d387acfbd75a8b141a69e96c1a05ecfdca8f2.mp4",
+  "storyline": "Nous vous proposons chaque mois un film en Avant-Première, dont le titre et le sujet vous sont inconnus jusqu'aux premières images ... Ce film a fait l'objet dune présélection par l'Association Française des Cinémas Art et Essai (AFCAE). Quatre ou cinq films sont proposés, l'équipe de programmation en a choisi un pour vous.  Le film peut être en VF ou en VOST, cette mention est précisée. Laissez-vous surprendre ..."
  }
 }

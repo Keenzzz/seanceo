@@ -5,7 +5,7 @@
   "cinemas": [
    "pathe-cinema-pathe-angers"
   ],
-  "showtime_count": 175
+  "showtime_count": 289
  },
  "grenoble": {
   "slug": "grenoble",
@@ -13,7 +13,7 @@
   "cinemas": [
    "pathe-cinema-pathe-grenoble"
   ],
-  "showtime_count": 153
+  "showtime_count": 270
  },
  "lyon": {
   "slug": "lyon",
@@ -22,7 +22,7 @@
    "pathe-cinema-pathe-vaise",
    "pathe-cinema-pathe-bellecour"
   ],
-  "showtime_count": 362
+  "showtime_count": 647
  },
  "rennes": {
   "slug": "rennes",
@@ -30,7 +30,7 @@
   "cinemas": [
    "pathe-cinema-pathe-rennes"
   ],
-  "showtime_count": 181
+  "showtime_count": 308
  },
  "vaulx-en-velin": {
   "slug": "vaulx-en-velin",
@@ -38,7 +38,7 @@
   "cinemas": [
    "pathe-cinema-pathe-carre-de-soie"
   ],
-  "showtime_count": 250
+  "showtime_count": 438
  },
  "rouen": {
   "slug": "rouen",
@@ -46,7 +46,7 @@
   "cinemas": [
    "pathe-cinema-pathe-docks-76"
   ],
-  "showtime_count": 237
+  "showtime_count": 428
  },
  "le-havre": {
   "slug": "le-havre",
@@ -54,7 +54,7 @@
   "cinemas": [
    "pathe-cinema-pathe-docks-vauban"
   ],
-  "showtime_count": 174
+  "showtime_count": 298
  },
  "evreux": {
   "slug": "evreux",
@@ -62,7 +62,7 @@
   "cinemas": [
    "pathe-cinema-pathe-evreux"
   ],
-  "showtime_count": 153
+  "showtime_count": 262
  },
  "dammarie-les-lys": {
   "slug": "dammarie-les-lys",
@@ -70,7 +70,7 @@
   "cinemas": [
    "pathe-cinema-pathe-dammarie"
   ],
-  "showtime_count": 145
+  "showtime_count": 92
  },
  "saran": {
   "slug": "saran",
@@ -78,7 +78,7 @@
   "cinemas": [
    "pathe-cinema-pathe-saran"
   ],
-  "showtime_count": 159
+  "showtime_count": 273
  },
  "chambery": {
   "slug": "chambery",
@@ -86,7 +86,7 @@
   "cinemas": [
    "pathe-cinema-pathe-chambery"
   ],
-  "showtime_count": 157
+  "showtime_count": 264
  },
  "archamps": {
   "slug": "archamps",
@@ -94,7 +94,7 @@
   "cinemas": [
    "pathe-cinema-pathe-archamps"
   ],
-  "showtime_count": 200
+  "showtime_count": 176
  },
  "avignon": {
   "slug": "avignon",
@@ -102,7 +102,7 @@
   "cinemas": [
    "pathe-cinema-pathe-cap-sud"
   ],
-  "showtime_count": 237
+  "showtime_count": 385
  },
  "coquelles": {
   "slug": "coquelles",
@@ -110,7 +110,7 @@
   "cinemas": [
    "pathe-cinema-pathe-cite-europe"
   ],
-  "showtime_count": 199
+  "showtime_count": 334
  },
  "conflans-sainte-honorine": {
   "slug": "conflans-sainte-honorine",
@@ -118,7 +118,7 @@
   "cinemas": [
    "pathe-cinema-pathe-conflans"
   ],
-  "showtime_count": 230
+  "showtime_count": 93
  },
  "echirolles": {
   "slug": "echirolles",
@@ -126,7 +126,7 @@
   "cinemas": [
    "pathe-cinema-pathe-echirolles"
   ],
-  "showtime_count": 189
+  "showtime_count": 312
  },
  "lievin": {
   "slug": "lievin",
@@ -134,7 +134,7 @@
   "cinemas": [
    "pathe-cinema-pathe-lievin"
   ],
-  "showtime_count": 245
+  "showtime_count": 419
  },
  "marseille": {
   "slug": "marseille",
@@ -145,7 +145,7 @@
    "pathe-cinema-les-3-palmes",
    "pathe-cinema-pathe-la-joliette"
   ],
-  "showtime_count": 803
+  "showtime_count": 1401
  },
  "montataire": {
   "slug": "montataire",
@@ -153,7 +153,7 @@
   "cinemas": [
    "pathe-cinema-pathe-montataire"
   ],
-  "showtime_count": 229
+  "showtime_count": 388
  },
  "montpellier": {
   "slug": "montpellier",
@@ -162,7 +162,7 @@
    "pathe-cinema-pathe-odysseum",
    "pathe-cinema-pathe-comedie"
   ],
-  "showtime_count": 426
+  "showtime_count": 702
  },
  "nantes": {
   "slug": "nantes",
@@ -170,7 +170,7 @@
   "cinemas": [
    "pathe-cinema-pathe-nantes"
   ],
-  "showtime_count": 173
+  "showtime_count": 309
  },
  "nantes-saint-herblain": {
   "slug": "nantes-saint-herblain",
@@ -178,7 +178,7 @@
   "cinemas": [
    "pathe-cinema-pathe-atlantis"
   ],
-  "showtime_count": 218
+  "showtime_count": 376
  },
  "nice": {
   "slug": "nice",
@@ -188,7 +188,7 @@
    "pathe-cinema-pathe-massena",
    "pathe-cinema-pathe-gare-du-sud"
   ],
-  "showtime_count": 455
+  "showtime_count": 811
  },
  "paris": {
   "slug": "paris",
@@ -208,7 +208,7 @@
    "pathe-cinema-pathe-palace",
    "pathe-cinema-la-geode"
   ],
-  "showtime_count": 1885
+  "showtime_count": 2681
  },
  "marne-la-vallee": {
   "slug": "marne-la-vallee",
@@ -216,7 +216,7 @@
   "cinemas": [
    "pathe-cinema-gaumont-disney-village"
   ],
-  "showtime_count": 257
+  "showtime_count": 427
  },
  "saint-denis": {
   "slug": "saint-denis",
@@ -224,7 +224,7 @@
   "cinemas": [
    "pathe-cinema-pathe-saint-denis"
   ],
-  "showtime_count": 115
+  "showtime_count": 212
  },
  "thiais": {
   "slug": "thiais",
@@ -232,7 +232,7 @@
   "cinemas": [
    "pathe-cinema-pathe-belle-epine"
   ],
-  "showtime_count": 303
+  "showtime_count": 543
  },
  "boulogne-billancourt": {
   "slug": "boulogne-billancourt",
@@ -241,7 +241,7 @@
    "pathe-cinema-pathe-boulogne",
    "pathe-cinema-pathe-ile-seguin"
   ],
-  "showtime_count": 215
+  "showtime_count": 405
  },
  "ivry-sur-seine": {
   "slug": "ivry-sur-seine",
@@ -249,7 +249,7 @@
   "cinemas": [
    "pathe-cinema-pathe-quai-d-ivry"
   ],
-  "showtime_count": 239
+  "showtime_count": 403
  },
  "thillois": {
   "slug": "thillois",
@@ -257,7 +257,7 @@
   "cinemas": [
    "pathe-cinema-pathe-thillois"
   ],
-  "showtime_count": 219
+  "showtime_count": 363
  },
  "grand-quevilly": {
   "slug": "grand-quevilly",
@@ -265,7 +265,7 @@
   "cinemas": [
    "pathe-cinema-pathe-grand-quevilly"
   ],
-  "showtime_count": 296
+  "showtime_count": 486
  },
  "brumath": {
   "slug": "brumath",
@@ -273,7 +273,7 @@
   "cinemas": [
    "pathe-cinema-pathe-brumath"
   ],
-  "showtime_count": 219
+  "showtime_count": 363
  },
  "labege": {
   "slug": "labege",
@@ -281,7 +281,7 @@
   "cinemas": [
    "pathe-cinema-pathe-labege"
   ],
-  "showtime_count": 266
+  "showtime_count": 458
  },
  "valence": {
   "slug": "valence",
@@ -289,7 +289,7 @@
   "cinemas": [
    "pathe-cinema-pathe-valence"
   ],
-  "showtime_count": 187
+  "showtime_count": 316
  },
  "valenciennes": {
   "slug": "valenciennes",
@@ -297,7 +297,7 @@
   "cinemas": [
    "pathe-cinema-pathe-valenciennes"
   ],
-  "showtime_count": 227
+  "showtime_count": 391
  },
  "lieusaint": {
   "slug": "lieusaint",
@@ -305,7 +305,7 @@
   "cinemas": [
    "pathe-cinema-pathe-carre-senart"
   ],
-  "showtime_count": 319
+  "showtime_count": 557
  },
  "orleans": {
   "slug": "orleans",
@@ -313,7 +313,7 @@
   "cinemas": [
    "pathe-cinema-pathe-orleans"
   ],
-  "showtime_count": 174
+  "showtime_count": 316
  },
  "toulouse": {
   "slug": "toulouse",
@@ -321,7 +321,7 @@
   "cinemas": [
    "pathe-cinema-pathe-wilson"
   ],
-  "showtime_count": 235
+  "showtime_count": 94
  },
  "toulon": {
   "slug": "toulon",
@@ -329,7 +329,7 @@
   "cinemas": [
    "pathe-cinema-pathe-toulon"
   ],
-  "showtime_count": 149
+  "showtime_count": 277
  },
  "amiens": {
   "slug": "amiens",
@@ -337,7 +337,7 @@
   "cinemas": [
    "pathe-cinema-pathe-amiens"
   ],
-  "showtime_count": 193
+  "showtime_count": 76
  },
  "caen": {
   "slug": "caen",
@@ -345,7 +345,7 @@
   "cinemas": [
    "pathe-cinema-pathe-les-rives-de-l-orne"
   ],
-  "showtime_count": 167
+  "showtime_count": 66
  },
  "annecy": {
   "slug": "annecy",
@@ -353,7 +353,7 @@
   "cinemas": [
    "pathe-cinema-pathe-annecy"
   ],
-  "showtime_count": 156
+  "showtime_count": 274
  },
  "levallois": {
   "slug": "levallois",
@@ -361,7 +361,7 @@
   "cinemas": [
    "pathe-cinema-pathe-levallois"
   ],
-  "showtime_count": 125
+  "showtime_count": 228
  },
  "le-mans": {
   "slug": "le-mans",
@@ -369,7 +369,7 @@
   "cinemas": [
    "pathe-cinema-pathe-le-mans"
   ],
-  "showtime_count": 143
+  "showtime_count": 50
  },
  "la-valette-du-var": {
   "slug": "la-valette-du-var",
@@ -377,7 +377,7 @@
   "cinemas": [
    "pathe-cinema-pathe-la-valette"
   ],
-  "showtime_count": 288
+  "showtime_count": 519
  },
  "roissy-en-france": {
   "slug": "roissy-en-france",
@@ -385,7 +385,7 @@
   "cinemas": [
    "pathe-cinema-pathe-aeroville"
   ],
-  "showtime_count": 213
+  "showtime_count": 82
  },
  "massy": {
   "slug": "massy",
@@ -393,7 +393,7 @@
   "cinemas": [
    "pathe-cinema-pathe-massy"
   ],
-  "showtime_count": 145
+  "showtime_count": 239
  },
  "quetigny": {
   "slug": "quetigny",
@@ -401,7 +401,7 @@
   "cinemas": [
    "pathe-cinema-cine-cap-vert"
   ],
-  "showtime_count": 189
+  "showtime_count": 317
  },
  "aubiere": {
   "slug": "aubiere",
@@ -409,7 +409,7 @@
   "cinemas": [
    "pathe-cinema-pathe-aubiere"
   ],
-  "showtime_count": 238
+  "showtime_count": 400
  },
  "macon": {
   "slug": "macon",
@@ -417,7 +417,7 @@
   "cinemas": [
    "pathe-cinema-pathe-macon"
   ],
-  "showtime_count": 174
+  "showtime_count": 290
  },
  "brest": {
   "slug": "brest",
@@ -426,7 +426,7 @@
    "pathe-cinema-multiplexe-liberte",
    "pathe-cinema-pathe-capucins"
   ],
-  "showtime_count": 284
+  "showtime_count": 476
  },
  "tours": {
   "slug": "tours",
@@ -434,7 +434,7 @@
   "cinemas": [
    "pathe-cinema-pathe-tours"
   ],
-  "showtime_count": 141
+  "showtime_count": 55
  },
  "dijon": {
   "slug": "dijon",
@@ -442,7 +442,7 @@
   "cinemas": [
    "pathe-cinema-pathe-dijon"
   ],
-  "showtime_count": 123
+  "showtime_count": 230
  },
  "clermont-ferrand": {
   "slug": "clermont-ferrand",
@@ -450,7 +450,7 @@
   "cinemas": [
    "pathe-cinema-cine-capitole"
   ],
-  "showtime_count": 68
+  "showtime_count": 137
  },
  "aix-en-provence": {
   "slug": "aix-en-provence",
@@ -459,6 +459,6 @@
    "pathe-cinema-le-mazarin",
    "pathe-cinema-le-renoir"
   ],
-  "showtime_count": 69
+  "showtime_count": 128
  }
 }
