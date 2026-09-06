@@ -98,6 +98,17 @@
   "lon": 1.2847103,
   "chain": "Grand Écran"
  },
+ "grandecran-p0169": {
+  "id": "grandecran-p0169",
+  "name": "Limoges - Le Lido",
+  "address": "3 Av. du Général de Gaulle",
+  "postcode": "87000",
+  "city": "Limoges",
+  "city_slug": "limoges",
+  "lat": 45.8333,
+  "lon": 1.265,
+  "chain": "Grand Écran"
+ },
  "grandecran-w8560": {
   "id": "grandecran-w8560",
   "name": "Montaigu-Vendée",
