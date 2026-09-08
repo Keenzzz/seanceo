@@ -5,7 +5,7 @@
   "cinemas": [
    "grandecran-p9488"
   ],
-  "showtime_count": 28
+  "showtime_count": 57
  },
  "bergerac": {
   "slug": "bergerac",
@@ -13,7 +13,7 @@
   "cinemas": [
    "grandecran-p7645"
   ],
-  "showtime_count": 89
+  "showtime_count": 212
  },
  "fontenay-le-comte": {
   "slug": "fontenay-le-comte",
@@ -21,7 +21,7 @@
   "cinemas": [
    "grandecran-g034g"
   ],
-  "showtime_count": 61
+  "showtime_count": 133
  },
  "la-chapelle-sur-erdre": {
   "slug": "la-chapelle-sur-erdre",
@@ -29,7 +29,7 @@
   "cinemas": [
    "grandecran-w4424"
   ],
-  "showtime_count": 69
+  "showtime_count": 154
  },
  "la-teste-de-buch": {
   "slug": "la-teste-de-buch",
@@ -37,7 +37,7 @@
   "cinemas": [
    "grandecran-p0764"
   ],
-  "showtime_count": 115
+  "showtime_count": 266
  },
  "langon": {
   "slug": "langon",
@@ -45,7 +45,7 @@
   "cinemas": [
    "grandecran-w3321"
   ],
-  "showtime_count": 76
+  "showtime_count": 171
  },
  "libourne": {
   "slug": "libourne",
@@ -53,7 +53,7 @@
   "cinemas": [
    "grandecran-p2129"
   ],
-  "showtime_count": 107
+  "showtime_count": 246
  },
  "limoges": {
   "slug": "limoges",
@@ -63,7 +63,7 @@
    "grandecran-p8001",
    "grandecran-p0169"
   ],
-  "showtime_count": 336
+  "showtime_count": 771
  },
  "montaigu-vendee": {
   "slug": "montaigu-vendee",
@@ -71,7 +71,7 @@
   "cinemas": [
    "grandecran-w8560"
   ],
-  "showtime_count": 70
+  "showtime_count": 156
  },
  "sainte-eulalie": {
   "slug": "sainte-eulalie",
@@ -79,7 +79,7 @@
   "cinemas": [
    "grandecran-w3356"
   ],
-  "showtime_count": 90
+  "showtime_count": 196
  },
  "vichy": {
   "slug": "vichy",
@@ -87,7 +87,7 @@
   "cinemas": [
    "grandecran-g028p"
   ],
-  "showtime_count": 85
+  "showtime_count": 197
  },
  "villeneuve-sur-lot": {
   "slug": "villeneuve-sur-lot",
@@ -95,6 +95,6 @@
   "cinemas": [
    "grandecran-w4730"
   ],
-  "showtime_count": 60
+  "showtime_count": 134
  }
 }
