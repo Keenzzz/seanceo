@@ -83,6 +83,18 @@
   "trailer": "",
   "storyline": ""
  },
+ "mauvaise-etoile|lola-cambourieu": {
+  "key": "mauvaise-etoile|lola-cambourieu",
+  "title": "Mauvaise étoile",
+  "director": "Lola Cambourieu",
+  "cast": "",
+  "genre": "Drame",
+  "country": "",
+  "duration_min": 132,
+  "poster": "https://all.web.img.acsta.net/img/54/10/5410433358ff5c611f9a34810463affa.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
  "salvation|emin-alper": {
   "key": "salvation|emin-alper",
   "title": "Salvation",
@@ -119,27 +131,27 @@
   "trailer": "",
   "storyline": ""
  },
- "parade|jacques-tati": {
-  "key": "parade|jacques-tati",
-  "title": "Parade",
-  "director": "Jacques Tati",
+ "blaise|dimitri-planchon": {
+  "key": "blaise|dimitri-planchon",
+  "title": "Blaise",
+  "director": "Dimitri Planchon",
   "cast": "",
-  "genre": "Comédie",
+  "genre": "Animation",
   "country": "",
-  "duration_min": 84,
-  "poster": "https://all.web.img.acsta.net/medias/nmedia/18/60/01/45/18602482.jpg",
+  "duration_min": 82,
+  "poster": "https://all.web.img.acsta.net/img/29/77/297766b452381fe148d15c77dc4d61f3.jpg",
   "trailer": "",
   "storyline": ""
  },
- "playtime|jacques-tati": {
-  "key": "playtime|jacques-tati",
-  "title": "Playtime",
-  "director": "Jacques Tati",
+ "promised-spaces|ivan-markovic": {
+  "key": "promised-spaces|ivan-markovic",
+  "title": "Promised Spaces",
+  "director": "Ivan Markovic",
   "cast": "",
-  "genre": "Comédie",
+  "genre": "Drame",
   "country": "",
-  "duration_min": 124,
-  "poster": "",
+  "duration_min": 76,
+  "poster": "https://all.web.img.acsta.net/img/72/95/72953a553a0a38c397abe5e8a14fe56e.jpg",
   "trailer": "",
   "storyline": ""
  },
@@ -407,6 +419,18 @@
   "trailer": "",
   "storyline": ""
  },
+ "des-cris-dechirent-le-silence-cine-club-centre-simone-de-beauvoir|natacha-thiery": {
+  "key": "des-cris-dechirent-le-silence-cine-club-centre-simone-de-beauvoir|natacha-thiery",
+  "title": "Des cris déchirent le silence • Ciné-club Centre Simone de Beauvoir",
+  "director": "Natacha Thiéry",
+  "cast": "",
+  "genre": "Documentaire",
+  "country": "",
+  "duration_min": 54,
+  "poster": "",
+  "trailer": "",
+  "storyline": ""
+ },
  "maspalomas|aitor-arregi": {
   "key": "maspalomas|aitor-arregi",
   "title": "Maspalomas",
@@ -539,18 +563,6 @@
   "trailer": "",
   "storyline": "Trente ans après la première aventure, la société est fragilisée par les nombreuses tensions entre les humains et leurs esclaves créés par bioingénierie. Lorsqu’il découvre un secret enfoui depuis longtemps et capable de changer le monde, l’officier K, un Blade Runner, devient la proie d’une traque."
  },
- "bob-le-flambeur|jean-pierre-melville": {
-  "key": "bob-le-flambeur|jean-pierre-melville",
-  "title": "Bob le flambeur",
-  "director": "Jean-Pierre Melville",
-  "cast": "Roger Duchesne, Isabelle Corey, Daniel Cauchy",
-  "genre": "",
-  "country": "",
-  "duration_min": 98,
-  "poster": "",
-  "trailer": "",
-  "storyline": "Il y a longtemps que Bob s'est retiré des \"affaires\". Il se consacre maintenant à son unique passion, le jeu. Il a aussi un grand coeur et héberge Anne, une jeune fille fauchée prête à sombrer dans la prostitution. Anne tombe amoureuse de Paulo, un des fans de Bob. Après de grosses pertes au jeu, Bob décide de monter un coup pour se refaire... A gangster with a big heart retired from \"business\", Bob now devotes himself to his only passion, gambling. After big losses, he decides to stage a plan to rebuild his life..."
- },
  "body-double|brian-de-palma": {
   "key": "body-double|brian-de-palma",
   "title": "Body Double",
@@ -586,18 +598,6 @@
   "poster": "https://lafilmotheque.fr/v4/content/uploads/2022/03/1934766.jpg-c_310_420_x-f_jpg-q_x-xxyxx.jpg",
   "trailer": "",
   "storyline": "Int. - 16 ans En 1996, à l'appel d'une chorégraphe de renom, un groupe de danseurs urbains se retrouve coupé du monde dans un local de répétition en bordure d'une forêt enneigée. Pendant une fête, une substance illicite est versée dans la sangria qu'ils boivent, les entraînant vers une spirale de démence et d'horreur."
- },
- "conversation-secrete|francis-ford-coppola": {
-  "key": "conversation-secrete|francis-ford-coppola",
-  "title": "Conversation secrète",
-  "director": "Francis Ford Coppola",
-  "cast": "Gene Hackman, John Cazale, Allen Garfield, Harrison Ford",
-  "genre": "",
-  "country": "",
-  "duration_min": 113,
-  "poster": "",
-  "trailer": "",
-  "storyline": "Chargé d’enregistrer les échanges d’un couple dans les rues de San Francisco pour le compte des services secrets, un spécialiste reconnu de la surveillance découvre à l’écoute des bandes que les deux amants pourraient être en danger…"
  },
  "fargo|joel-et-ethan-coen": {
   "key": "fargo|joel-et-ethan-coen",
@@ -647,42 +647,6 @@
   "trailer": "",
   "storyline": "Une comédienne vient participer à un film sur la paix à Hiroshima. Elle y aime un Japonais. Cet amour passionné lui rappelle celui qu’elle a vécu à Nevers, pendant la guerre, avec un jeune Allemand qui fut tué sous ses yeux…"
  },
- "the-hot-spot|dennis-hopper": {
-  "key": "the-hot-spot|dennis-hopper",
-  "title": "THE HOT SPOT",
-  "director": "Dennis Hopper",
-  "cast": "Don Johnson, Jennifer Connelly, Virginia Madsen, Charles Martin Smith",
-  "genre": "",
-  "country": "",
-  "duration_min": 130,
-  "poster": "",
-  "trailer": "",
-  "storyline": "À son arrivée dans une petite ville, un vagabond a rapidement des ennuis avec les autorités (et les femmes) locales, après avoir volé une banque."
- },
- "il-etait-une-fois|george-cukor": {
-  "key": "il-etait-une-fois|george-cukor",
-  "title": "Il était une fois",
-  "director": "George Cukor",
-  "cast": "Joan Crawford, Melvyn Douglas, Conrad Veidt",
-  "genre": "",
-  "country": "",
-  "duration_min": 106,
-  "poster": "",
-  "trailer": "",
-  "storyline": "Quand un chirurgien esthétique rend un visage normal à une femme défigurée dans son enfance, celle-ci devient tiraillée entre l'espoir de pouvoir commencer une nouvelle vie et les tentations des obscurités de sa vie passée…"
- },
- "in-the-mood-for-love|wong-kar-wai": {
-  "key": "in-the-mood-for-love|wong-kar-wai",
-  "title": "In The Mood For Love",
-  "director": "Wong Kar-wai",
-  "cast": "Tony Leung Chiu Wai, Maggie Cheung, Rebecca Pan",
-  "genre": "",
-  "country": "",
-  "duration_min": 98,
-  "poster": "",
-  "trailer": "",
-  "storyline": "Hong Kong, 1962. Mme Chan loue une chambre chez Mme Suen. Le même jour et sur le même palier, s’installe M. Chow. Leurs conjoints sont souvent absents. Un jour, M. Chow et Mme Chan découvrent que leurs époux sont amants. Blessés, ils se fréquentent alors de plus en plus et développent eux aussi une liaison…"
- },
  "irreversible|gaspar-noe": {
   "key": "irreversible|gaspar-noe",
   "title": "Irréversible",
@@ -694,18 +658,6 @@
   "poster": "https://lafilmotheque.fr/v4/content/uploads/2022/03/19112837.jpg-c_310_420_x-f_jpg-q_x-xxyxx.jpg",
   "trailer": "",
   "storyline": "Interdit -16 ans Une jeune femme, se fait violer par un inconnu dans un tunnel. Son compagnon et son ex-petit ami décident de faire justice eux-mêmes."
- },
- "jai-rencontre-le-diable|kim-jee-wong": {
-  "key": "jai-rencontre-le-diable|kim-jee-wong",
-  "title": "J’ai rencontré le diable",
-  "director": "Kim Jee-Wong",
-  "cast": "Lee Byung-Hun, Choi Min-sik, Oh San-ha",
-  "genre": "",
-  "country": "",
-  "duration_min": 142,
-  "poster": "",
-  "trailer": "",
-  "storyline": "Un agent secret recherche le serial killer qui a tué sa fiancée, avec en tête un plan de vengeance aussi diabolique que l'est le criminel avec ses victimes."
  },
  "larmee-des-ombres|jean-pierre-melville": {
   "key": "larmee-des-ombres|jean-pierre-melville",
@@ -730,18 +682,6 @@
   "poster": "",
   "trailer": "",
   "storyline": "Un avocat ambitieux au service d’un gangster échafaude une vaste machination afin de réunir sous sa coupe les différentes branches de la pègre. Mais son opération met en péril son propre frère, un petit malfrat."
- },
- "levangile-selon-saint-matthieu|pier-paolo-pasolini": {
-  "key": "levangile-selon-saint-matthieu|pier-paolo-pasolini",
-  "title": "L’Evangile selon Saint Matthieu",
-  "director": "Pier Paolo Pasolini",
-  "cast": "Enrique Irazoqui, Margherita Caruso, Susana Pasolini, Marcello Morante",
-  "genre": "",
-  "country": "",
-  "duration_min": 137,
-  "poster": "",
-  "trailer": "",
-  "storyline": "La vie du Christ selon Saint-Matthieu."
  },
  "la-marque-du-tueur|seijun-suzuki": {
   "key": "la-marque-du-tueur|seijun-suzuki",
@@ -815,54 +755,6 @@
   "trailer": "",
   "storyline": ""
  },
- "le-plongeon|": {
-  "key": "le-plongeon|",
-  "title": "Le Plongeon",
-  "director": "",
-  "cast": "",
-  "genre": "",
-  "country": "",
-  "duration_min": null,
-  "poster": "",
-  "trailer": "",
-  "storyline": ""
- },
- "le-point-de-non-retour|john-boorman": {
-  "key": "le-point-de-non-retour|john-boorman",
-  "title": "Le Point de non-retour",
-  "director": "John Boorman",
-  "cast": "Lee Marvin, Angie Dickinson, Keenan Wynn, Carroll O'Connor, Lloyd Bochner, Michael Strong, John Vernon",
-  "genre": "",
-  "country": "",
-  "duration_min": 92,
-  "poster": "",
-  "trailer": "",
-  "storyline": "Après un hold-up, un truand est trahi par son complice et par sa opropre femme qui le laissent pour mort dans la prison désaffectée d'Alcatraz. Quelques mois plus tard, il recherche l’homme pour se venger et doit affronter une mystérieuse et toute-puissante organisation."
- },
- "le-roman-de-mildred-pierce|michael-curtiz": {
-  "key": "le-roman-de-mildred-pierce|michael-curtiz",
-  "title": "Le roman de Mildred Pierce",
-  "director": "Michael Curtiz",
-  "cast": "Joan Crawford, Jack Carson, Zachary Scott, Ann Blyth, Eve Arden",
-  "genre": "",
-  "country": "",
-  "duration_min": 111,
-  "poster": "",
-  "trailer": "",
-  "storyline": "Mildred Pierce est interrogée par la police après la mort de son second mari. Elle revient alors sur sa vie, de son premier mariage à ses efforts pour satisfaire les besoins de sa fille."
- },
- "le-secret-magnifique|douglas-sirk": {
-  "key": "le-secret-magnifique|douglas-sirk",
-  "title": "Le Secret magnifique",
-  "director": "Douglas Sirk",
-  "cast": "Jane Wyman, Rock Hudson, Barbara Rush, Agnes Moorehead, Gregg Palmer, Otto Kruger, Paul Cavanagh",
-  "genre": "",
-  "country": "",
-  "duration_min": 108,
-  "poster": "",
-  "trailer": "",
-  "storyline": "Un jeune milliardaire est victime d'un accident. Sa vie est sauvée au détriment de celle d'un éminent docteur. Dès lors, rongé par la culpabilité, il va tout faire pour se racheter auprès de la femme de ce dernier."
- },
  "les-anges-dechus|wong-kar-wai": {
   "key": "les-anges-dechus|wong-kar-wai",
   "title": "Les Anges déchus",
@@ -875,18 +767,6 @@
   "trailer": "",
   "storyline": "À Hongkong, Ming est un tueur à gages qui commence à regretter de s'être associé à une femme qui lui passe des commandes sanguinaires. Un jour, Ming décide de tout quitter et de s'installer chez Punkie, une jeune Chinoise rencontrée dans un bar."
  },
- "duellistes|ridley-scott": {
-  "key": "duellistes|ridley-scott",
-  "title": "Duellistes",
-  "director": "Ridley Scott",
-  "cast": "Harvey Keitel, Keith Carradine, Albert Finney, Cristina Raines, Edward Fox, Robert Stephens, Tom Conti",
-  "genre": "",
-  "country": "",
-  "duration_min": 100,
-  "poster": "",
-  "trailer": "",
-  "storyline": "Un soldat querelleur de l’armée napoléonienne provoque en duel le lieutenant chargé de mettre aux arrêts. Battu, il n’a de cesse d’obtenir réparation et poursuit son rival de sa haine farouche pendant quinze ans à travers toute l'Europe."
- },
  "les-hommes-du-president|alan-j-pakula": {
   "key": "les-hommes-du-president|alan-j-pakula",
   "title": "LES HOMMES DU PRESIDENT",
@@ -898,18 +778,6 @@
   "poster": "",
   "trailer": "",
   "storyline": "En 1972, cinq hommes sont arrêtés pour avoir pénétré par effraction dans l'immeuble du Watergate où se situent les bureaux du parti Démocrate. Alors que l'affaire est présentée comme un simple fait divers, deux journalistes du Washington Post, Carl Bernstein et Bob Woodward, décident de mener l'enquête qui les mènera vers les plus hautes sphères du gouvernement."
- },
- "les-pirates-du-metro|john-sargent": {
-  "key": "les-pirates-du-metro|john-sargent",
-  "title": "Les Pirates du Métro",
-  "director": "John Sargent",
-  "cast": "Walter Matthau, Robert Shaw, Martin Balsam, Hector Elizondo, Earl Hindman",
-  "genre": "",
-  "country": "",
-  "duration_min": 104,
-  "poster": "",
-  "trailer": "",
-  "storyline": "Int. - 12 ans À New York, quatre hommes armés (utilisant des couleurs comme noms de code) prennent en otage une rame de métro et demandent une rançon d'un million de dollars dans l’heure, faute de quoi ils commenceront à exécuter les passagers."
  },
  "les-tueurs|robert-siodmak": {
   "key": "les-tueurs|robert-siodmak",
@@ -934,18 +802,6 @@
   "poster": "",
   "trailer": "",
   "storyline": "Une vedette d’Hollywood sur le retour, venue tourner une publicité à Tokyo, lie connaissance avec une jeune mariée qui a comme lui le vague à l’âme."
- },
- "magnolia|paul-thomas-anderson": {
-  "key": "magnolia|paul-thomas-anderson",
-  "title": "Magnolia",
-  "director": "Paul Thomas Anderson",
-  "cast": "Tom Cruise, Melinda Dillon, Julianne Moore, Philip Seymour Hoffman, William H. Macy, John C. Reilly, Philip Baker Hall, Jason Robards",
-  "genre": "",
-  "country": "",
-  "duration_min": 184,
-  "poster": "",
-  "trailer": "",
-  "storyline": "Un homme âgé et malade, veut retrouver avant de mourir le fils qu'il a jadis abandonné. Sa jeune épouse, qui convoitait sa fortune, devrait se réjouir mais n'y parvient pas. Un jeune gourou cathodique de la séduction masculine, s'est construit un passé et une vie. Mais combien de temps le masque peut-il résister? Toutes ces vies s'entrecroisent le temps d'une journée comme les autres sous le soleil de la Californie."
  },
  "memories-of-murder|joon-ho-bong": {
   "key": "memories-of-murder|joon-ho-bong",
@@ -995,18 +851,6 @@
   "trailer": "",
   "storyline": "Andrei est accompagné par une interprète d'une grande beauté, Eugenia. Il pourrait vivre avec elle une grande histoire d'amour, mais le souvenir de sa femme le hante. Il rencontre Domenico, un fou qui prêche la paix et lui demande d'accomplir un petit geste, afin de sauver, du moins le prétend-il, le monde."
  },
- "police-python-357|alain-corneau": {
-  "key": "police-python-357|alain-corneau",
-  "title": "Police python 357",
-  "director": "Alain Corneau",
-  "cast": "Yves Montand, François Périer, Simone Signoret, Stefania Sandrelli, Mathieu Carrière",
-  "genre": "",
-  "country": "",
-  "duration_min": 125,
-  "poster": "",
-  "trailer": "",
-  "storyline": "Orléans. Meurtrier de sa maîtresse après qu'il ait appris sa liaison avec l'inspecteur Ferrot, le commissaire Ganay confie l'enquête à ce dernier. Tous les indices se retournent bientôt contre l'inspecteur Ferrot…"
- },
  "possession|andrzej-zulawski": {
   "key": "possession|andrzej-zulawski",
   "title": "POSSESSION",
@@ -1055,18 +899,6 @@
   "trailer": "",
   "storyline": "À peine remis d'un infarctus, un ténor du barreau accepte de prendre la défense d’un homme accusé de meurtre. L'affaire se complique encore lorsque l'épouse du prévenu, devient l'un des témoins capitaux de l'accusation..."
  },
- "the-chaser|na-hong-jin": {
-  "key": "the-chaser|na-hong-jin",
-  "title": "The chaser",
-  "director": "Na Hong-jin",
-  "cast": "Kim Yun-seok, Ha Jung-woo, Seo Yeong-hie",
-  "genre": "",
-  "country": "",
-  "duration_min": 123,
-  "poster": "",
-  "trailer": "",
-  "storyline": "Un ancien flic devenu proxénète, reprend du service lorsqu'il se rend compte que ses filles disparaissent les unes après les autres. Très vite, il réalise qu'elles avaient toutes rencontré le même client et se lance alors dans une chasse à l'homme."
- },
  "thelma-et-louise|ridley-scott": {
   "key": "thelma-et-louise|ridley-scott",
   "title": "THELMA ET LOUISE",
@@ -1078,30 +910,6 @@
   "poster": "",
   "trailer": "",
   "storyline": "Deux meilleures amies, Thelma et Louise, décident de s'offrir un week-end sur les routes magnifiques de l'Arkansas. Premier arrêt, premier saloon, premiers ennuis et tout bascule. Elles partent en cavale, pourchassées par la police..."
- },
- "tout-ce-que-le-ciel-permet|douglas-sirk": {
-  "key": "tout-ce-que-le-ciel-permet|douglas-sirk",
-  "title": "Tout ce que le ciel permet",
-  "director": "Douglas Sirk",
-  "cast": "Jane Wyman, Rock Hudson, Agnes Moorehead, Conrad Nagel, Virginia Grey, Gloria Talbott, William Reynolds",
-  "genre": "",
-  "country": "",
-  "duration_min": 89,
-  "poster": "",
-  "trailer": "",
-  "storyline": "Une veuve d’âge mûr mène une vie terne dans une petite localité de la Nouvelle-Angleterre. Alors que ses enfants et sa meilleure amie la poussent à se remarier avec un rassurant quinquagénaire, elle est séduite par son jeune jardinier. Celui-ci partage ses sentiments mais leur liaison ne tarde pas à être décriée, voire combattue…"
- },
- "traitre-sur-commande|": {
-  "key": "traitre-sur-commande|",
-  "title": "Traître sur commande",
-  "director": "",
-  "cast": "",
-  "genre": "",
-  "country": "",
-  "duration_min": null,
-  "poster": "",
-  "trailer": "",
-  "storyline": ""
  },
  "un-crime-dans-la-tete|john-frankenheimer": {
   "key": "un-crime-dans-la-tete|john-frankenheimer",
@@ -1174,18 +982,6 @@
   "poster": "",
   "trailer": "",
   "storyline": "Int. - 16 ans. Trois amis vivent de petits coups, qui leur permettent de prendre du bon temps. Rejoints par une serveuse de bar, ils basculent dans le grand banditisme."
- },
- "witness|peter-weir": {
-  "key": "witness|peter-weir",
-  "title": "Witness",
-  "director": "Peter Weir",
-  "cast": "Harrison Ford, Kelly McGillis, Josef Sommer, Danny Glover, Viggo Mortensen",
-  "genre": "",
-  "country": "",
-  "duration_min": 112,
-  "poster": "",
-  "trailer": "",
-  "storyline": "Un jeune garçon amish est l'unique témoin d'un meurtre. Un policier va devoir agir souterrainement en terre amish afin de le protéger jusqu'au procès."
  },
  "les-glaneurs-et-la-glaneuse|agnes-varda": {
   "key": "les-glaneurs-et-la-glaneuse|agnes-varda",
@@ -1343,30 +1139,6 @@
   "trailer": "",
   "storyline": ""
  },
- "oasis-don-t-look-back-in-anger|dylan-southern": {
-  "key": "oasis-don-t-look-back-in-anger|dylan-southern",
-  "title": "Oasis: Don't Look Back In Anger",
-  "director": "Dylan Southern",
-  "cast": "",
-  "genre": "Documentaire",
-  "country": "",
-  "duration_min": 128,
-  "poster": "https://all.web.img.acsta.net/img/b6/04/b604e6a351b0525bca2490424fcfe4fb.jpg",
-  "trailer": "",
-  "storyline": ""
- },
- "ni-vue-ni-connue|marc-fitoussi": {
-  "key": "ni-vue-ni-connue|marc-fitoussi",
-  "title": "Ni vue, ni connue",
-  "director": "Marc Fitoussi",
-  "cast": "",
-  "genre": "Comédie",
-  "country": "",
-  "duration_min": 115,
-  "poster": "https://all.web.img.acsta.net/img/ef/54/ef54068375f49310f494b2aeacb6c754.jpg",
-  "trailer": "",
-  "storyline": ""
- },
  "de-la-comedie-francaise|martin-darondeau": {
   "key": "de-la-comedie-francaise|martin-darondeau",
   "title": "De la Comédie-Française",
@@ -1391,6 +1163,30 @@
   "trailer": "",
   "storyline": ""
  },
+ "akira|katsuhiro-otomo": {
+  "key": "akira|katsuhiro-otomo",
+  "title": "Akira",
+  "director": "Katsuhiro Otomo",
+  "cast": "M. Iwata, N. Sasaki, M. Koyama",
+  "genre": "",
+  "country": "",
+  "duration_min": 124,
+  "poster": "https://www.cinemas-lumiere.com/cache/data/files/cinemas/movie/poster/5000/15bf220d29691722e98298080cccdfb7/s,490,650-q,90-b20a01.jpg",
+  "trailer": "",
+  "storyline": "Juillet 1988. L'utilisation d'une nouvelle arme de destruction massive dans la région du Kanto, au Japon, déclenche la Troisième Guerre mondiale. 2019, trente et un ans plus tard. Alors que les préparatifs des Jeux olympiques de l'année suivante ravivent le souvenir de la grandeur passée de Neo-Tokyo, mégalopole bâtie sur la baie de Tokyo, Kaneda, chef d'un gang de bosozoku justiciers, sillonne à moto les rues dévastées de la ville et sème le chaos. Une nuit, Tetsuo, membre du gang, croise la route d'un étrange garçon lié à un programme expérimental du gouvernement. Sous les yeux médusés de Kaneda et de sa bande, Tetsuo et le mystérieux garçon sont emmenés dans un laboratoire militaire. Déterminé à sauver son ami, Kaneda s'infiltre dans l'installation, où il découvre que Tetsuo a développé des pouvoirs surnaturels. Pendant ce temps, l'un des enfants du laboratoire prédit le réveil d'AKIRA, le secret le mieux gardé du gouvernement. En quête de réponses sur ses nouveaux pouvoirs, Tetsuo descend dans les profondeurs de Neo-Tokyo, où AKIRA est endormi depuis des années. Séance précédée de Cowboy Bebop Samedi 19 septembre à 20h au Lumière Terreaux"
+ },
+ "cowboy-bebop|shin-ichiro-watanabe": {
+  "key": "cowboy-bebop|shin-ichiro-watanabe",
+  "title": "Cowboy Bebop",
+  "director": "Shin'ichirô Watanabe",
+  "cast": "K. Yamadera, U. Ishizuka, M. Hayashibara",
+  "genre": "",
+  "country": "",
+  "duration_min": 111,
+  "poster": "https://www.cinemas-lumiere.com/cache/data/files/cinemas/movie/poster/5001/a3467c668b02d6ae8d458f353ff78e31/s,490,650-q,90-fc8728.jpg",
+  "trailer": "",
+  "storyline": "À la suite de l'explosion d'un camion-citerne sur Mars, l'équipage du vaisseau spatial Bebop mène l'enquête pour retrouver le mystérieux auteur d'une attaque bactériologique. Séance suivie de Akira Samedi 19 septembre à 22h30 au Lumière Terreaux"
+ },
  "les-elephants-dans-la-brume|abinash-bikram-shah": {
   "key": "les-elephants-dans-la-brume|abinash-bikram-shah",
   "title": "Les Elephants dans la brume",
@@ -1402,6 +1198,18 @@
   "poster": "https://www.cinemas-lumiere.com/cache/data/files/cinemas/movie/poster/5054/c68b734900692f28587dbb78cb8c7d31/s,490,650-q,90-2b21e3.jpg",
   "trailer": "",
   "storyline": "Dans un village népalais niché au coeur d'une forêt peuplée d'éléphants sauvages vit une communauté kinnar aussi vénérée que crainte pour ses pouvoirs de bénédiction et de malédiction. Pirati, l'une des mères de la communauté, rêve de s'échapper avec l'homme qu'elle aime. Mais lorsqu'une de ses filles disparaît, elle se doit mener l'enquête et choisir entre son désir de liberté et ses responsabilités envers sa communauté. Sortie en salle le 23 septembre 2026 Remerciements à Arizona Distribution"
+ },
+ "midnight-movie-soiree-anime|": {
+  "key": "midnight-movie-soiree-anime|",
+  "title": "MIDNIGHT MOVIE : SOIRÉE ANIMÉ",
+  "director": "",
+  "cast": "",
+  "genre": "",
+  "country": "",
+  "duration_min": null,
+  "poster": "",
+  "trailer": "",
+  "storyline": ""
  },
  "teenage-sex-and-death-at-camp-miasma|jane-schoenbrun": {
   "key": "teenage-sex-and-death-at-camp-miasma|jane-schoenbrun",
@@ -1438,6 +1246,18 @@
   "poster": "https://www.cinemas-lumiere.com/cache/data/files/cinemas/movie/poster/5043/3d1c834b2dfa29e4ac131563769755ff/s,490,650-q,90-6f3ce8.jpg",
   "trailer": "",
   "storyline": "Figure majeure de la littérature contemporaine et première écrivaine française à recevoir le Nobel, Annie Ernaux incarne pour beaucoup l'émancipation individuelle et collective, mêlant l'intime à l'universel. Claire Simon lui consacre un portrait détourné en donnant la parole aux élèves, à une jeunesse des quatre coins de la France, de Cayenne à Sarcelles. Comment la jeunesse d'aujourd'hui, d'ici et d'ailleurs, s'empare-t-elle des écrits d'Annie Ernaux. Qu'est-ce que cette jeunesse a à nous dire en retour de son propre vécu ? Sortie en salle le 23 septembre 2026 - Remerciements à Survivance"
+ },
+ "fini-de-rire|mateo-larroque-clara-menais-mila-branco": {
+  "key": "fini-de-rire|mateo-larroque-clara-menais-mila-branco",
+  "title": "Fini de rire !",
+  "director": "Matéo Larroque, Clara Menais & Mila Branco",
+  "cast": "G. Meurice, L. Dutemple, S. Alexi",
+  "genre": "",
+  "country": "",
+  "duration_min": 97,
+  "poster": "https://www.cinemas-lumiere.com/cache/data/files/cinemas/movie/poster/5012/e5a1946e5fd253382f636dc7a26252db/s,490,650-q,90-895f37.jpg",
+  "trailer": "",
+  "storyline": "En France, rire des puissants est devenu un sport à risque. En trente ans, les humoristes les plus libres de la télévision et de la radio ont été méthodiquement neutralisés, marginalisés, censurés, voire virés. Dans l'audiovisuel public comme dans les médias privés, le même mécanisme se répète : on tolère la satire tant qu'elle ne mord pas. Dès qu'elle touche au pouvoir, on coupe le micro. Des plateaux de Canal+ aux studios de France Inter en passant par les couloirs de France Télévisions, du règne de Nicolas Sarkozy à celui d'Emmanuel Macron, ce documentaire retrace la mécanique d'une mise au silence qui en dit long sur l'état réel de la liberté d'expression dans l'audiovisuel français."
  },
  "sorda|eva-libertad-garcia": {
   "key": "sorda|eva-libertad-garcia",
@@ -1511,6 +1331,18 @@
   "trailer": "",
   "storyline": "Une plume magique qui rend réel tout ce qu’elle écrit vient bouleverser la vie de Providence, 11 ans, et de son cochon d’Inde Airbag. Dotés de cet immense pouvoir, ils s’envolent pour un incroyable voyage… 5€ pour les - 14 ans"
  },
+ "la-maison-des-egarees|shin-ya-kawatsura": {
+  "key": "la-maison-des-egarees|shin-ya-kawatsura",
+  "title": "La Maison des égarées",
+  "director": "Shin'ya Kawatsura",
+  "cast": "",
+  "genre": "",
+  "country": "",
+  "duration_min": 105,
+  "poster": "https://www.cinemas-lumiere.com/cache/data/files/cinemas/movie/poster/5057/1813622/s,490,650-q,90-3c93f8.jpg",
+  "trailer": "",
+  "storyline": "Deux jeunes filles se retrouvent séparées de leur famille à la suite d’un cataclysme. Elles qui ne se connaissaient pas, se retrouvent perdues et sans toit. Elles rencontrent une vieille dame qui offre de les recueillir dans sa maison à l’écart du village. Cette opportunité de repartir à zéro est d’un grand soulagement, jusqu’au jour où d’étranges phénomènes commencent à apparaître… 5€ pour les - 14 ans"
+ },
  "le-voyage-de-chihiro|hayao-miyazaki": {
   "key": "le-voyage-de-chihiro|hayao-miyazaki",
   "title": "Le Voyage de Chihiro",
@@ -1559,17 +1391,29 @@
   "trailer": "",
   "storyline": "Quand le restaurant familial menace de fermer, deux cousins bretons relâchent des rats pour s'improviser dératiseurs. Le même été, deux jeunes femmes trafiquent le concours de beauté local pour promouvoir leurs bijoux. Embarqués dans leurs stratagèmes chaotiques, ces quatre débrouillards en quête d'avenir finissent par se percuter."
  },
- "vol-au-dessus-d-un-nid-de-coucou|milos-forman": {
-  "key": "vol-au-dessus-d-un-nid-de-coucou|milos-forman",
-  "title": "Vol au-dessus d'un nid de coucou",
-  "director": "Milos Forman",
-  "cast": "J. Nicholson, L. Fletcher, W. Sampson",
-  "genre": "",
+ "didy|gael-kamilindi-francois-xavier-destors": {
+  "key": "didy|gael-kamilindi-francois-xavier-destors",
+  "title": "Didy",
+  "director": "Gaël Kamilindi, François-Xavier Destors",
+  "cast": "Kayije Kagame",
+  "genre": "Documentaire",
   "country": "",
-  "duration_min": 133,
-  "poster": "https://www.cinemas-lumiere.com/cache/data/files/cinemas/movie/poster/4519/vol au dessus d'un nid de coucou/s,490,650-q,90-75aa69.jpeg",
-  "trailer": "",
-  "storyline": "Régulièrement incarcéré pour comportement violent, McMurphy (Jack Nicholson) est orienté par l'administration pénitentiaire vers un hôpital psychiatrique, afin de tester l'efficacité d'un traitement. Il découvre, au-delà de leur folie, des êtres fragiles et attachants, soumis à l'autorité oppressive de l'infirmière Miss Ratched (Louise Fletcher)."
+  "duration_min": 85,
+  "poster": "https://images.monnaie-services.com/movie_poster/120/FRE3DPQ/W3Z7LXO4.jpg",
+  "trailer": "https://trailers.imscine.com/ld/bbbc1d2ef825d640d3c9fb8e5ccdf25ee46ea496e94096e97502beee4d387acfa072a8b172b6b6ede5a967fb8fa8f2.mp4",
+  "storyline": "Trente ans après la mort de sa mère, didy lors du génocide rwandais, Gaël recompose peu à peu son histoire familiale."
+ },
+ "entre-ciel-et-terre|adrian-jaffe-ruslan-sinkevich-cho-su-a-nam-seung-min-cheon-ye-rim-ju-seo-eun-park-saeyeon-kim-manri": {
+  "key": "entre-ciel-et-terre|adrian-jaffe-ruslan-sinkevich-cho-su-a-nam-seung-min-cheon-ye-rim-ju-seo-eun-park-saeyeon-kim-manri",
+  "title": "Entre ciel et terre",
+  "director": "Adrián Jaffé, Ruslan Sinkevich, Cho Su-a, Nam Seung-min, Cheon Ye-rim, Ju Seo-eun, Park Saeyeon, KIM Manri, Мария Румянцева, Михаил Алдашин",
+  "cast": "",
+  "genre": "Animation, Familial",
+  "country": "",
+  "duration_min": 33,
+  "poster": "https://images.monnaie-services.com/movie_poster/120/FR566HY/DHBCE8ZP.jpg",
+  "trailer": "https://trailers.imscine.com/ld/bbbc1d2ef825d640d3c9fb8e5ccdf25ee46ea496e94096e97502beee4d387acfaa20a8b16c9fab9bc89142c28fa8f2.mp4",
+  "storyline": "Un oisillon se lance dans les airs. Un petit chiot découvre la matière. Un enfant savoure une soupe cosmique. Une chouette au sommeil chaotique. Une souris veut voir le soleil. Et une autre renvoie les étoiles dans le ciel. Sept histoires vues de la Terre comme du Ciel."
  },
  "hair-paper-water|nicolas-graux-truong-minh-quy": {
   "key": "hair-paper-water|nicolas-graux-truong-minh-quy",
@@ -1595,30 +1439,6 @@
   "trailer": "https://trailers.imscine.com/ld/bbbc1d2ef825d640d3c9fb8e5ccdf25ee46ea496e94096e97502beee4d387acfbb5ba8b1679790c3cfa660ccfaa8f2.mp4",
   "storyline": "Au cours du tournage d'une adaptation de Médée au Sénégal. Sur le plateau, Maja trouve du réconfort auprès de son partenaire, Nourou. Quelques mois plus tard, ils se retrouvent à la première du film à Berlin. Les sentiments refont surface, mais un incident raciste vient troubler leurs retrouvailles."
  },
- "didy|gael-kamilindi-francois-xavier-destors": {
-  "key": "didy|gael-kamilindi-francois-xavier-destors",
-  "title": "Didy",
-  "director": "Gaël Kamilindi, François-Xavier Destors",
-  "cast": "Kayije Kagame",
-  "genre": "Documentaire",
-  "country": "",
-  "duration_min": 85,
-  "poster": "https://images.monnaie-services.com/movie_poster/120/FRE3DPQ/W3Z7LXO4.jpg",
-  "trailer": "https://trailers.imscine.com/ld/bbbc1d2ef825d640d3c9fb8e5ccdf25ee46ea496e94096e97502beee4d387acfa072a8b172b6b6ede5a967fb8fa8f2.mp4",
-  "storyline": "Trente ans après la mort de sa mère, didy lors du génocide rwandais, Gaël recompose peu à peu son histoire familiale."
- },
- "entre-ciel-et-terre|adrian-jaffe-ruslan-sinkevich-cho-su-a-nam-seung-min-cheon-ye-rim-ju-seo-eun-park-saeyeon-kim-manri": {
-  "key": "entre-ciel-et-terre|adrian-jaffe-ruslan-sinkevich-cho-su-a-nam-seung-min-cheon-ye-rim-ju-seo-eun-park-saeyeon-kim-manri",
-  "title": "Entre ciel et terre",
-  "director": "Adrián Jaffé, Ruslan Sinkevich, Cho Su-a, Nam Seung-min, Cheon Ye-rim, Ju Seo-eun, Park Saeyeon, KIM Manri, Мария Румянцева, Михаил Алдашин",
-  "cast": "",
-  "genre": "Animation, Familial",
-  "country": "",
-  "duration_min": 33,
-  "poster": "https://images.monnaie-services.com/movie_poster/120/FR566HY/DHBCE8ZP.jpg",
-  "trailer": "https://trailers.imscine.com/ld/bbbc1d2ef825d640d3c9fb8e5ccdf25ee46ea496e94096e97502beee4d387acfaa20a8b16c9fab9bc89142c28fa8f2.mp4",
-  "storyline": "Un oisillon se lance dans les airs. Un petit chiot découvre la matière. Un enfant savoure une soupe cosmique. Une chouette au sommeil chaotique. Une souris veut voir le soleil. Et une autre renvoie les étoiles dans le ciel. Sept histoires vues de la Terre comme du Ciel."
- },
  "les-survivants-du-che|christophe-dimitri-reveille": {
   "key": "les-survivants-du-che|christophe-dimitri-reveille",
   "title": "Les Survivants du Che",
@@ -1642,5 +1462,17 @@
   "poster": "https://images.monnaie-services.com/movie_poster/120/FR6VV6X/JCKLGN5C.jpg",
   "trailer": "https://trailers.imscine.com/ld/bbbc1d2ef825d640d3c9fb8e5ccdf25ee46ea496e94096e97502beee4d387acf8c7ca8b162b89ae2b3b67f8af6a8f2.mp4",
   "storyline": "En 2021, un McDonald's occupé devient l'Après M, plateforme de solidarité dans les Quartiers Nord de Marseille. Le collectif négocie sa survie entre menace d'expulsion et rêve de propriété collective. Un an d'immersion dans une lutte locale devenue symbole mondial."
+ },
+ "fini-de-rire-l-humour-politique-au-garde-a-vous|mateo-larroque-clara-menais-mila-branco": {
+  "key": "fini-de-rire-l-humour-politique-au-garde-a-vous|mateo-larroque-clara-menais-mila-branco",
+  "title": "Fini de rire ! L'humour politique au garde-à-vous ?",
+  "director": "Matéo Larroque, Clara Menais, Mila Branco",
+  "cast": "Guillaume Meurice, Lionel Dutemple, Sandrine Alexi, Yves Le Rolland, Audrey Vernon, Thomas VDB, Edgar-Yves Jr., Bruno Gaccio, Akim Omiri, Florence Mendez, Daniel Herzog, Jean-Pierre Canet",
+  "genre": "Documentaire",
+  "country": "",
+  "duration_min": 97,
+  "poster": "https://images.monnaie-services.com/movie_poster/120/FRU22DQ/RQSOYAMM.jpg",
+  "trailer": "https://trailers.imscine.com/ld/bbbc1d2ef825d640d3c9fb8e5ccdf25ee46ea496e94096e97502beee4d387acfb953a8b15a86a1eafdbc5bf1eea8f2.mp4",
+  "storyline": "En France, rire des puissants est devenu un sport à risque. En trente ans, les humoristes les plus libres de la télévision et de la radio ont été méthodiquement neutralisés, marginalisés, censurés, voire virés. Dans l'audiovisuel public comme dans les médias privés, le même mécanisme se répète : on tolère la satire tant qu'elle ne mord pas. Dès qu'elle touche au pouvoir, on coupe le micro. Des plateaux de Canal+ aux studios de France Inter en passant par les couloirs de France Télévisions, du règne de Nicolas Sarkozy à celui d'Emmanuel Macron, ce documentaire retrace la mécanique d'une mise au silence qui en dit long sur l'état réel de la liberté d'expression dans l'audiovisuel français."
  }
 }
