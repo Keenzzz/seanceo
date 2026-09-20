@@ -167,6 +167,18 @@
   "trailer": "",
   "storyline": ""
  },
+ "amelie-et-la-metaphysique-des-tubes|mailys-vallade": {
+  "key": "amelie-et-la-metaphysique-des-tubes|mailys-vallade",
+  "title": "Amélie et la métaphysique des tubes",
+  "director": "Mailys Vallade",
+  "cast": "",
+  "genre": "Animation",
+  "country": "",
+  "duration_min": 78,
+  "poster": "https://all.web.img.acsta.net/img/e1/6d/e16d85c33f3d307789d565f332859828.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
  "la-pat-patrouille-le-film-mission-dino|cal-brunker": {
   "key": "la-pat-patrouille-le-film-mission-dino|cal-brunker",
   "title": "La Pat' Patrouille : Le film mission Dino",
@@ -224,18 +236,6 @@
   "country": "",
   "duration_min": 101,
   "poster": "https://all.web.img.acsta.net/img/ae/96/ae96724b63e32a49dd1ca69d0464682d.jpg",
-  "trailer": "",
-  "storyline": ""
- },
- "the-dog-stars|ridley-scott": {
-  "key": "the-dog-stars|ridley-scott",
-  "title": "The Dog Stars",
-  "director": "Ridley Scott",
-  "cast": "",
-  "genre": "Aventure",
-  "country": "",
-  "duration_min": 119,
-  "poster": "https://all.web.img.acsta.net/img/e4/f3/e4f3a979ce129a4628d76d415c5f90ef.jpg",
   "trailer": "",
   "storyline": ""
  },
@@ -347,15 +347,27 @@
   "trailer": "",
   "storyline": ""
  },
- "brazil|terry-gilliam": {
-  "key": "brazil|terry-gilliam",
-  "title": "Brazil",
-  "director": "Terry Gilliam",
+ "metropolis|fritz-lang": {
+  "key": "metropolis|fritz-lang",
+  "title": "Metropolis",
+  "director": "Fritz Lang",
   "cast": "",
   "genre": "Science fiction",
   "country": "",
-  "duration_min": 143,
-  "poster": "https://all.web.img.acsta.net/pictures/15/11/10/15/52/396645.jpg",
+  "duration_min": 153,
+  "poster": "https://all.web.img.acsta.net/medias/nmedia/18/87/10/42/19890932.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "terminator|james-cameron": {
+  "key": "terminator|james-cameron",
+  "title": "Terminator",
+  "director": "James Cameron",
+  "cast": "",
+  "genre": "Science fiction",
+  "country": "",
+  "duration_min": 107,
+  "poster": "https://all.web.img.acsta.net/medias/nmedia/18/35/91/09/18933054.jpg",
   "trailer": "",
   "storyline": ""
  },
@@ -368,6 +380,30 @@
   "country": "",
   "duration_min": 135,
   "poster": "https://all.web.img.acsta.net/medias/nmedia/18/87/08/55/19889352.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "retour-vers-le-futur|robert-zemeckis": {
+  "key": "retour-vers-le-futur|robert-zemeckis",
+  "title": "Retour vers le futur",
+  "director": "Robert Zemeckis",
+  "cast": "",
+  "genre": "Aventure",
+  "country": "",
+  "duration_min": 116,
+  "poster": "https://all.web.img.acsta.net/pictures/22/07/22/15/09/2465821.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "rendez-vous|ernst-lubitsch": {
+  "key": "rendez-vous|ernst-lubitsch",
+  "title": "Rendez-vous",
+  "director": "Ernst Lubitsch",
+  "cast": "",
+  "genre": "Comédie",
+  "country": "",
+  "duration_min": 97,
+  "poster": "https://all.web.img.acsta.net/medias/nmedia/18/87/81/81/19969774.jpg",
   "trailer": "",
   "storyline": ""
  },
@@ -467,6 +503,18 @@
   "trailer": "",
   "storyline": ""
  },
+ "retour-vers-le-futur-ii|robert-zemeckis": {
+  "key": "retour-vers-le-futur-ii|robert-zemeckis",
+  "title": "Retour vers le futur II",
+  "director": "Robert Zemeckis",
+  "cast": "",
+  "genre": "Science fiction",
+  "country": "",
+  "duration_min": 108,
+  "poster": "https://all.web.img.acsta.net/pictures/22/07/22/15/28/2706181.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
  "frankenstein|james-whale": {
   "key": "frankenstein|james-whale",
   "title": "Frankenstein",
@@ -503,6 +551,18 @@
   "trailer": "",
   "storyline": ""
  },
+ "terminator-2-le-jugement-dernier|james-cameron": {
+  "key": "terminator-2-le-jugement-dernier|james-cameron",
+  "title": "Terminator 2 : le Jugement Dernier",
+  "director": "James Cameron",
+  "cast": "",
+  "genre": "Science fiction",
+  "country": "",
+  "duration_min": 136,
+  "poster": "https://all.web.img.acsta.net/pictures/17/02/10/11/57/588931.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
  "james-et-la-peche-geante|henry-selick": {
   "key": "james-et-la-peche-geante|henry-selick",
   "title": "James et la pêche géante",
@@ -512,6 +572,18 @@
   "country": "",
   "duration_min": 80,
   "poster": "https://all.web.img.acsta.net/medias/nmedia/18/36/15/04/18455987.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "le-cinquieme-element|luc-besson": {
+  "key": "le-cinquieme-element|luc-besson",
+  "title": "Le Cinquième élément",
+  "director": "Luc Besson",
+  "cast": "",
+  "genre": "Action",
+  "country": "",
+  "duration_min": 126,
+  "poster": "https://all.web.img.acsta.net/pictures/17/07/13/09/33/376262.jpg",
   "trailer": "",
   "storyline": ""
  },
@@ -527,6 +599,18 @@
   "trailer": "",
   "storyline": ""
  },
+ "memento|christopher-nolan": {
+  "key": "memento|christopher-nolan",
+  "title": "Memento",
+  "director": "Christopher Nolan",
+  "cast": "",
+  "genre": "Thriller",
+  "country": "",
+  "duration_min": 116,
+  "poster": "https://all.web.img.acsta.net/medias/nmedia/18/87/11/89/19892208.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
  "2046|wong-kar-wai": {
   "key": "2046|wong-kar-wai",
   "title": "2046",
@@ -536,6 +620,30 @@
   "country": "",
   "duration_min": 129,
   "poster": "https://all.web.img.acsta.net/medias/nmedia/18/86/98/31/19879926.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "8-femmes|francois-ozon": {
+  "key": "8-femmes|francois-ozon",
+  "title": "8 femmes",
+  "director": "François Ozon",
+  "cast": "",
+  "genre": "Policier",
+  "country": "",
+  "duration_min": 111,
+  "poster": "https://all.web.img.acsta.net/medias/nmedia/18/86/95/68/19877413.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "nausicaa-de-la-vallee-du-vent|hayao-miyazaki": {
+  "key": "nausicaa-de-la-vallee-du-vent|hayao-miyazaki",
+  "title": "Nausicaä de la vallée du vent",
+  "director": "Hayao Miyazaki",
+  "cast": "",
+  "genre": "Animation",
+  "country": "",
+  "duration_min": 117,
+  "poster": "https://all.web.img.acsta.net/pictures/20/03/19/16/29/1695315.jpg",
   "trailer": "",
   "storyline": ""
  },
@@ -551,6 +659,42 @@
   "trailer": "",
   "storyline": ""
  },
+ "eternal-sunshine-of-the-spotless-mind|michel-gondry": {
+  "key": "eternal-sunshine-of-the-spotless-mind|michel-gondry",
+  "title": "Eternal Sunshine of the Spotless Mind",
+  "director": "Michel Gondry",
+  "cast": "",
+  "genre": "Science fiction",
+  "country": "",
+  "duration_min": 108,
+  "poster": "https://all.web.img.acsta.net/pictures/14/02/07/09/58/227560.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "metropolis|rintaro": {
+  "key": "metropolis|rintaro",
+  "title": "Metropolis",
+  "director": "Rintaro",
+  "cast": "",
+  "genre": "Animation",
+  "country": "",
+  "duration_min": 112,
+  "poster": "https://all.web.img.acsta.net/medias/nmedia/18/65/53/31/18868332.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "oss-117-le-caire-nid-d-espions|michel-hazanavicius": {
+  "key": "oss-117-le-caire-nid-d-espions|michel-hazanavicius",
+  "title": "OSS 117, Le Caire nid d'espions",
+  "director": "Michel Hazanavicius",
+  "cast": "",
+  "genre": "Comédie",
+  "country": "",
+  "duration_min": 99,
+  "poster": "https://all.web.img.acsta.net/medias/nmedia/18/87/75/29/19963620.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
  "melancholia|lars-von-trier": {
   "key": "melancholia|lars-von-trier",
   "title": "Melancholia",
@@ -563,18 +707,6 @@
   "trailer": "",
   "storyline": ""
  },
- "fjord|cristian-mungiu": {
-  "key": "fjord|cristian-mungiu",
-  "title": "Fjord",
-  "director": "Cristian Mungiu",
-  "cast": "",
-  "genre": "Drame",
-  "country": "",
-  "duration_min": 146,
-  "poster": "https://all.web.img.acsta.net/img/21/b5/21b5a3e94ef46f0d7f60adabcf6d26eb.jpg",
-  "trailer": "",
-  "storyline": ""
- },
  "her|spike-jonze": {
   "key": "her|spike-jonze",
   "title": "Her",
@@ -584,6 +716,18 @@
   "country": "",
   "duration_min": 126,
   "poster": "https://all.web.img.acsta.net/pictures/210/508/21050894_2013101815532149.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "saint-laurent|bertrand-bonello": {
+  "key": "saint-laurent|bertrand-bonello",
+  "title": "Saint Laurent",
+  "director": "Bertrand Bonello",
+  "cast": "",
+  "genre": "Biopic",
+  "country": "",
+  "duration_min": 157,
+  "poster": "https://all.web.img.acsta.net/pictures/14/04/25/11/13/580470.jpg",
   "trailer": "",
   "storyline": ""
  },
@@ -623,6 +767,18 @@
   "trailer": "",
   "storyline": ""
  },
+ "grace-a-dieu|francois-ozon": {
+  "key": "grace-a-dieu|francois-ozon",
+  "title": "Grâce à Dieu",
+  "director": "François Ozon",
+  "cast": "",
+  "genre": "Drame",
+  "country": "",
+  "duration_min": 138,
+  "poster": "https://all.web.img.acsta.net/pictures/19/05/15/11/46/4477643.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
  "planetes|momoko-seto": {
   "key": "planetes|momoko-seto",
   "title": "Planètes",
@@ -659,15 +815,15 @@
   "trailer": "",
   "storyline": ""
  },
- "amelie-et-la-metaphysique-des-tubes|mailys-vallade": {
-  "key": "amelie-et-la-metaphysique-des-tubes|mailys-vallade",
-  "title": "Amélie et la métaphysique des tubes",
-  "director": "Mailys Vallade",
+ "du-fioul-dans-les-arteres|pierre-le-gall": {
+  "key": "du-fioul-dans-les-arteres|pierre-le-gall",
+  "title": "Du fioul dans les artères",
+  "director": "Pierre Le Gall",
   "cast": "",
-  "genre": "Animation",
+  "genre": "Drame",
   "country": "",
-  "duration_min": 78,
-  "poster": "https://all.web.img.acsta.net/img/e1/6d/e16d85c33f3d307789d565f332859828.jpg",
+  "duration_min": 91,
+  "poster": "https://all.web.img.acsta.net/img/6a/fd/6afd0a9db506c3f83fcd3c9fff4d18dd.jpg",
   "trailer": "",
   "storyline": ""
  },
@@ -695,6 +851,42 @@
   "trailer": "",
   "storyline": ""
  },
+ "les-enfants-de-la-resistance|christophe-barratier": {
+  "key": "les-enfants-de-la-resistance|christophe-barratier",
+  "title": "Les Enfants de la Résistance",
+  "director": "Christophe Barratier",
+  "cast": "",
+  "genre": "Drame",
+  "country": "",
+  "duration_min": 101,
+  "poster": "https://all.web.img.acsta.net/img/1a/c1/1ac144fe2f6c4df6d2656c9998eab111.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "voila-cest-fini|gustave-kervern": {
+  "key": "voila-cest-fini|gustave-kervern",
+  "title": "Voilà, c’est fini",
+  "director": "Gustave Kervern",
+  "cast": "",
+  "genre": "Comédie dramatique",
+  "country": "",
+  "duration_min": 101,
+  "poster": "https://all.web.img.acsta.net/img/e4/6b/e46b2bcb87e8f19cd4e93a06d8ae26ef.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "jupiter|alexandre-smia": {
+  "key": "jupiter|alexandre-smia",
+  "title": "Jupiter",
+  "director": "Alexandre Smia",
+  "cast": "",
+  "genre": "Thriller",
+  "country": "",
+  "duration_min": 87,
+  "poster": "https://all.web.img.acsta.net/img/6a/4e/6a4e999cc30aa66d0af1294d3d53a5e6.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
  "dans-la-tete-de-godard-et-de-beauregard|de-hind-r-boukli": {
   "key": "dans-la-tete-de-godard-et-de-beauregard|de-hind-r-boukli",
   "title": "Dans la tête de Godard et de Beauregard",
@@ -707,15 +899,27 @@
   "trailer": "",
   "storyline": ""
  },
- "garance|jeanne-herry": {
-  "key": "garance|jeanne-herry",
-  "title": "Garance",
-  "director": "Jeanne Herry",
+ "la-maison-de-nos-reves|claude-zidi-jr": {
+  "key": "la-maison-de-nos-reves|claude-zidi-jr",
+  "title": "La Maison de nos rêves",
+  "director": "Claude Zidi Jr.",
   "cast": "",
-  "genre": "Drame",
+  "genre": "Comédie",
+  "country": "",
+  "duration_min": null,
+  "poster": "",
+  "trailer": "",
+  "storyline": ""
+ },
+ "mariage-au-gout-d-orange|christophe-honore": {
+  "key": "mariage-au-gout-d-orange|christophe-honore",
+  "title": "Mariage au goût d'orange",
+  "director": "Christophe Honoré",
+  "cast": "",
+  "genre": "Comédie dramatique",
   "country": "",
   "duration_min": 115,
-  "poster": "https://all.web.img.acsta.net/img/97/3e/973eb7c4dfd3f17134a292cff2d1a90d.jpg",
+  "poster": "https://all.web.img.acsta.net/img/5c/44/5c444833205506188da08371f76e7a0c.jpg",
   "trailer": "",
   "storyline": ""
  },
@@ -779,6 +983,30 @@
   "trailer": "",
   "storyline": ""
  },
+ "le-monde-a-l-envers|arnaud-demuynck": {
+  "key": "le-monde-a-l-envers|arnaud-demuynck",
+  "title": "Le Monde à l'envers",
+  "director": "Arnaud Demuynck",
+  "cast": "",
+  "genre": "Animation",
+  "country": "",
+  "duration_min": 45,
+  "poster": "https://all.web.img.acsta.net/img/31/9f/319f3d6b88de3f1a691794557e6c8659.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "fjord|cristian-mungiu": {
+  "key": "fjord|cristian-mungiu",
+  "title": "Fjord",
+  "director": "Cristian Mungiu",
+  "cast": "",
+  "genre": "Drame",
+  "country": "",
+  "duration_min": 146,
+  "poster": "https://all.web.img.acsta.net/img/21/b5/21b5a3e94ef46f0d7f60adabcf6d26eb.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
  "tad-l-explorateur-et-la-lampe-magique|enrique-gato": {
   "key": "tad-l-explorateur-et-la-lampe-magique|enrique-gato",
   "title": "Tad l'explorateur et la lampe magique",
@@ -827,6 +1055,18 @@
   "trailer": "",
   "storyline": ""
  },
+ "the-dog-stars|ridley-scott": {
+  "key": "the-dog-stars|ridley-scott",
+  "title": "The Dog Stars",
+  "director": "Ridley Scott",
+  "cast": "",
+  "genre": "Aventure",
+  "country": "",
+  "duration_min": 119,
+  "poster": "https://all.web.img.acsta.net/img/e4/f3/e4f3a979ce129a4628d76d415c5f90ef.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
  "salvation|emin-alper": {
   "key": "salvation|emin-alper",
   "title": "Salvation",
@@ -863,30 +1103,6 @@
   "trailer": "",
   "storyline": ""
  },
- "alice-au-pays-des-colons|yanis-mhamdi": {
-  "key": "alice-au-pays-des-colons|yanis-mhamdi",
-  "title": "Alice au pays des colons",
-  "director": "Yanis Mhamdi",
-  "cast": "",
-  "genre": "Documentaire",
-  "country": "",
-  "duration_min": 105,
-  "poster": "",
-  "trailer": "",
-  "storyline": ""
- },
- "la-femme-au-tableau|simon-curtis": {
-  "key": "la-femme-au-tableau|simon-curtis",
-  "title": "La femme au tableau",
-  "director": "Simon Curtis",
-  "cast": "",
-  "genre": "Drame",
-  "country": "",
-  "duration_min": 110,
-  "poster": "https://all.web.img.acsta.net/pictures/15/03/04/11/01/489786.jpg",
-  "trailer": "",
-  "storyline": ""
- },
  "ni-vue-ni-connue|marc-fitoussi": {
   "key": "ni-vue-ni-connue|marc-fitoussi",
   "title": "Ni vue, ni connue",
@@ -899,27 +1115,15 @@
   "trailer": "",
   "storyline": ""
  },
- "fini-de-rire-l-humour-politique-au-garde-a-vous|mateo-larroque": {
-  "key": "fini-de-rire-l-humour-politique-au-garde-a-vous|mateo-larroque",
-  "title": "Fini de rire ! L'humour politique au garde-à-vous ?",
-  "director": "Matéo Larroque",
+ "didier-moi-et-les-autres-les-enfants-du-silence|nicolas-bourgouin": {
+  "key": "didier-moi-et-les-autres-les-enfants-du-silence|nicolas-bourgouin",
+  "title": "DIDIER MOI ET LES AUTRES LES ENFANTS DU SILENCE",
+  "director": "Nicolas BOURGOUIN",
   "cast": "",
-  "genre": "Documentaire",
+  "genre": "",
   "country": "",
-  "duration_min": 97,
-  "poster": "https://all.web.img.acsta.net/img/f3/43/f343eb5d22c124bb07e977943fa44d22.jpg",
-  "trailer": "",
-  "storyline": ""
- },
- "lawrence-d-arabie|david-lean": {
-  "key": "lawrence-d-arabie|david-lean",
-  "title": "Lawrence d'Arabie",
-  "director": "David Lean",
-  "cast": "",
-  "genre": "Aventure",
-  "country": "",
-  "duration_min": 226,
-  "poster": "https://all.web.img.acsta.net/medias/nmedia/18/87/27/13/19905611.jpg",
+  "duration_min": 53,
+  "poster": "",
   "trailer": "",
   "storyline": ""
  },
@@ -1091,6 +1295,18 @@
   "trailer": "",
   "storyline": ""
  },
+ "kill-bill-the-whole-bloody-affair|quentin-tarantino": {
+  "key": "kill-bill-the-whole-bloody-affair|quentin-tarantino",
+  "title": "Kill Bill: The Whole Bloody Affair",
+  "director": "Quentin Tarantino",
+  "cast": "",
+  "genre": "Action",
+  "country": "",
+  "duration_min": 275,
+  "poster": "https://all.web.img.acsta.net/img/0a/bc/0abca8aa13d6c7472f51e524a376c73d.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
  "cristeros|dean-wright": {
   "key": "cristeros|dean-wright",
   "title": "Cristeros",
@@ -1115,30 +1331,6 @@
   "trailer": "",
   "storyline": ""
  },
- "jesus-l-enquete|jon-gunn": {
-  "key": "jesus-l-enquete|jon-gunn",
-  "title": "Jésus, l'enquête",
-  "director": "Jon Gunn",
-  "cast": "",
-  "genre": "Biopic",
-  "country": "",
-  "duration_min": 112,
-  "poster": "https://all.web.img.acsta.net/pictures/17/04/11/15/31/002494.jpg",
-  "trailer": "",
-  "storyline": ""
- },
- "le-roi-des-rois|seong-ho-jang": {
-  "key": "le-roi-des-rois|seong-ho-jang",
-  "title": "Le Roi des rois",
-  "director": "Seong-ho Jang",
-  "cast": "",
-  "genre": "Animation",
-  "country": "",
-  "duration_min": 103,
-  "poster": "https://all.web.img.acsta.net/img/b3/ef/b3efa1a5ce2c27e068f37e3143a84eb9.JPG",
-  "trailer": "",
-  "storyline": ""
- },
  "nous-voila-grands|stina-wirsen": {
   "key": "nous-voila-grands|stina-wirsen",
   "title": "Nous voilà grands !",
@@ -1151,50 +1343,26 @@
   "trailer": "",
   "storyline": ""
  },
- "baroudeurs-du-christ|damien-boyer": {
-  "key": "baroudeurs-du-christ|damien-boyer",
-  "title": "Baroudeurs du Christ",
-  "director": "Damien Boyer",
+ "ressacs-une-histoire-touaregue|intagrist-el-ansari": {
+  "key": "ressacs-une-histoire-touaregue|intagrist-el-ansari",
+  "title": "Ressacs, une histoire touarègue",
+  "director": "Intagrist el Ansari",
   "cast": "",
   "genre": "Documentaire",
   "country": "",
-  "duration_min": 84,
-  "poster": "https://all.web.img.acsta.net/img/ce/f3/cef3f0f1c706a5c9e4f1a0d1a11df18a.jpg",
+  "duration_min": 120,
+  "poster": "",
   "trailer": "",
   "storyline": ""
  },
- "amore|roberto-rossellini": {
-  "key": "amore|roberto-rossellini",
-  "title": "Amore",
-  "director": "Roberto Rossellini",
+ "nouvelle-caledonie-un-caillou-dans-la-chaussure|mehdi-lallaoui": {
+  "key": "nouvelle-caledonie-un-caillou-dans-la-chaussure|mehdi-lallaoui",
+  "title": "NOUVELLE CALEDONIE UN CAILLOU DANS LA CHAUSSURE",
+  "director": "MEHDI LALLAOUI",
   "cast": "",
-  "genre": "Drame",
+  "genre": "Documentaire",
   "country": "",
-  "duration_min": 80,
-  "poster": "https://all.web.img.acsta.net/medias/nmedia/18/65/85/81/18893907.jpg",
-  "trailer": "",
-  "storyline": ""
- },
- "le-tombeau-des-lucioles|isao-takahata": {
-  "key": "le-tombeau-des-lucioles|isao-takahata",
-  "title": "Le Tombeau des lucioles",
-  "director": "Isao Takahata",
-  "cast": "",
-  "genre": "Animation",
-  "country": "",
-  "duration_min": 90,
-  "poster": "https://all.web.img.acsta.net/medias/nmedia/18/96/09/08/20444733.jpg",
-  "trailer": "",
-  "storyline": ""
- },
- "illusion-story|stephane-arnow": {
-  "key": "illusion-story|stephane-arnow",
-  "title": "Illusion Story",
-  "director": "Stéphane Arnow",
-  "cast": "",
-  "genre": "Spectacle",
-  "country": "",
-  "duration_min": 90,
+  "duration_min": 75,
   "poster": "",
   "trailer": "",
   "storyline": ""

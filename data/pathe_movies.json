@@ -1,4 +1,16 @@
 {
+ "les-vendredis-de-l-horreur-kraken|theo-jourdain-mohamed-chabane": {
+  "key": "les-vendredis-de-l-horreur-kraken|theo-jourdain-mohamed-chabane",
+  "title": "Les Vendredis de l'Horreur : Kraken",
+  "director": "Théo Jourdain, Mohamed Chabane",
+  "cast": "",
+  "genre": "Epouvante-horreur",
+  "country": "",
+  "duration_min": 95,
+  "poster": "https://media.pathe.fr/movie/alex/HO00011737/poster/lg/4/movie&uuid=B59F4996-A6AC-4DA7-8B90-1896A083B388",
+  "trailer": "",
+  "storyline": ""
+ },
  "artus-le-show-xxl-au-cinema|julien-faustino-artus": {
   "key": "artus-le-show-xxl-au-cinema|julien-faustino-artus",
   "title": "Artus - Le show XXL au cinéma",
@@ -59,18 +71,6 @@
   "trailer": "",
   "storyline": ""
  },
- "les-contrebandiers|padraic-mckinley": {
-  "key": "les-contrebandiers|padraic-mckinley",
-  "title": "Les Contrebandiers",
-  "director": "Padraic McKinley",
-  "cast": "",
-  "genre": "Action",
-  "country": "",
-  "duration_min": 107,
-  "poster": "https://media.pathe.fr/movie/alex/HO00011460/poster/lg/3/movie&uuid=3B035E2B-3AE6-4849-9B06-3EF6F9451DEB",
-  "trailer": "",
-  "storyline": ""
- },
  "l-invitation|olivia-wilde": {
   "key": "l-invitation|olivia-wilde",
   "title": "L'Invitation",
@@ -83,15 +83,15 @@
   "trailer": "",
   "storyline": ""
  },
- "pressure|anthony-maras": {
-  "key": "pressure|anthony-maras",
-  "title": "Pressure",
-  "director": "Anthony Maras",
+ "les-contrebandiers|padraic-mckinley": {
+  "key": "les-contrebandiers|padraic-mckinley",
+  "title": "Les Contrebandiers",
+  "director": "Padraic McKinley",
   "cast": "",
-  "genre": "Guerre",
+  "genre": "Action",
   "country": "",
-  "duration_min": 100,
-  "poster": "https://media.pathe.fr/movie/alex/HO00010866/poster/lg/6/movie&uuid=CBD7AC6D-AEEE-40EE-9B49-8ACBF75A0809",
+  "duration_min": 113,
+  "poster": "https://media.pathe.fr/movie/alex/HO00011460/poster/lg/3/movie&uuid=3B035E2B-3AE6-4849-9B06-3EF6F9451DEB",
   "trailer": "",
   "storyline": ""
  },
@@ -104,6 +104,18 @@
   "country": "",
   "duration_min": 98,
   "poster": "https://media.pathe.fr/movie/alex/HO00008721/poster/lg/3/movie&uuid=83E93218-8BC5-4262-AF45-CDEB7422E591",
+  "trailer": "",
+  "storyline": ""
+ },
+ "pressure|anthony-maras": {
+  "key": "pressure|anthony-maras",
+  "title": "Pressure",
+  "director": "Anthony Maras",
+  "cast": "",
+  "genre": "Guerre",
+  "country": "",
+  "duration_min": 100,
+  "poster": "https://media.pathe.fr/movie/alex/HO00010866/poster/lg/6/movie&uuid=CBD7AC6D-AEEE-40EE-9B49-8ACBF75A0809",
   "trailer": "",
   "storyline": ""
  },
@@ -164,18 +176,6 @@
   "country": "",
   "duration_min": 95,
   "poster": "https://media.pathe.fr/movie/alex/HO00009245/poster/lg/1/movie&uuid=0EF7691D-C3E8-4860-81C5-C8CF14877BC6",
-  "trailer": "",
-  "storyline": ""
- },
- "insidious-l-invasion-du-lointain|jacob-chase": {
-  "key": "insidious-l-invasion-du-lointain|jacob-chase",
-  "title": "Insidious : L'Invasion du Lointain",
-  "director": "Jacob Chase",
-  "cast": "",
-  "genre": "Epouvante-horreur",
-  "country": "",
-  "duration_min": 106,
-  "poster": "https://media.pathe.fr/movie/alex/HO00009038/poster/lg/2/movie&uuid=E3730AAF-7A34-4847-B9C3-37594E083AA7",
   "trailer": "",
   "storyline": ""
  },
@@ -335,6 +335,18 @@
   "trailer": "",
   "storyline": ""
  },
+ "insidious-l-invasion-du-lointain|jacob-chase": {
+  "key": "insidious-l-invasion-du-lointain|jacob-chase",
+  "title": "Insidious : L'Invasion du Lointain",
+  "director": "Jacob Chase",
+  "cast": "",
+  "genre": "Epouvante-horreur",
+  "country": "",
+  "duration_min": 106,
+  "poster": "https://media.pathe.fr/movie/alex/HO00009038/poster/lg/2/movie&uuid=E3730AAF-7A34-4847-B9C3-37594E083AA7",
+  "trailer": "",
+  "storyline": ""
+ },
  "romeo-juliette|baz-luhrmann": {
   "key": "romeo-juliette|baz-luhrmann",
   "title": "Roméo + Juliette",
@@ -356,6 +368,18 @@
   "country": "",
   "duration_min": 153,
   "poster": "https://media.pathe.fr/movie/9202500/poster/lg/4/film_925989.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "the-paradise-version-telougou|": {
+  "key": "the-paradise-version-telougou|",
+  "title": "The Paradise (Version Télougou)",
+  "director": "",
+  "cast": "",
+  "genre": "Action",
+  "country": "",
+  "duration_min": 150,
+  "poster": "https://media.pathe.fr/movie/alex/HO00011834/poster/lg/1/movie&uuid=B7644DD7-D0C1-4E56-83BF-17D234DF62DE",
   "trailer": "",
   "storyline": ""
  },
@@ -383,18 +407,6 @@
   "trailer": "",
   "storyline": ""
  },
- "akira|katsuhiro-otomo": {
-  "key": "akira|katsuhiro-otomo",
-  "title": "Akira",
-  "director": "Katsuhiro Otomo",
-  "cast": "",
-  "genre": "Action",
-  "country": "",
-  "duration_min": 124,
-  "poster": "https://media.pathe.fr/movie/alex/HO00002696/poster/lg/103/movie&uuid=827D5B98-DD50-4AEE-9FD4-859AAF68AE12",
-  "trailer": "",
-  "storyline": ""
- },
  "de-la-comedie-francaise|bertrand-usclat-martin-darondeau": {
   "key": "de-la-comedie-francaise|bertrand-usclat-martin-darondeau",
   "title": "De la Comédie-Française",
@@ -404,6 +416,30 @@
   "country": "",
   "duration_min": 75,
   "poster": "https://media.pathe.fr/movie/alex/HO00010761/poster/lg/3/movie&uuid=0A1A98AF-4495-4124-B077-2207AFE04865",
+  "trailer": "",
+  "storyline": ""
+ },
+ "karma|guillaume-canet": {
+  "key": "karma|guillaume-canet",
+  "title": "Karma",
+  "director": "Guillaume Canet",
+  "cast": "",
+  "genre": "Drame",
+  "country": "",
+  "duration_min": 140,
+  "poster": "https://media.pathe.fr/movie/alex/HO00010209/poster/lg/1/movie&uuid=F331EB6D-7CC6-4CB8-94CD-E6610C9A34C2",
+  "trailer": "",
+  "storyline": ""
+ },
+ "akira|katsuhiro-otomo": {
+  "key": "akira|katsuhiro-otomo",
+  "title": "Akira",
+  "director": "Katsuhiro Otomo",
+  "cast": "",
+  "genre": "Action",
+  "country": "",
+  "duration_min": 124,
+  "poster": "https://media.pathe.fr/movie/alex/HO00002696/poster/lg/103/movie&uuid=827D5B98-DD50-4AEE-9FD4-859AAF68AE12",
   "trailer": "",
   "storyline": ""
  },
@@ -503,6 +539,18 @@
   "trailer": "",
   "storyline": ""
  },
+ "ma-mini-seance-la-baleine-et-l-escargote|daniel-snaddon-filip-diviak-max-lang": {
+  "key": "ma-mini-seance-la-baleine-et-l-escargote|daniel-snaddon-filip-diviak-max-lang",
+  "title": "Ma Mini-Séance :  La Baleine et l'Escargote",
+  "director": "Daniel Snaddon, Filip Diviak, Max Lang",
+  "cast": "",
+  "genre": "Animation",
+  "country": "",
+  "duration_min": 40,
+  "poster": "https://media.pathe.fr/movie/alex/HO00003037/poster/lg/2/movie&uuid=80E6A493-9149-46EA-B75B-C5E87D47FEB8",
+  "trailer": "",
+  "storyline": ""
+ },
  "la-dame-de-shanghai|orson-welles": {
   "key": "la-dame-de-shanghai|orson-welles",
   "title": "La Dame de Shanghaï",
@@ -563,18 +611,6 @@
   "trailer": "",
   "storyline": ""
  },
- "the-rocky-horror-picture-show|jim-sharman": {
-  "key": "the-rocky-horror-picture-show|jim-sharman",
-  "title": "The Rocky Horror Picture Show",
-  "director": "Jim Sharman",
-  "cast": "",
-  "genre": "Comédie",
-  "country": "",
-  "duration_min": 100,
-  "poster": "https://media.pathe.fr/movie/alex/HO00001673/poster/lg/138/movie&uuid=73534B34-3AC6-47A3-9B4A-26F2F2A96422",
-  "trailer": "",
-  "storyline": ""
- },
  "vol-au-dessus-d-un-nid-de-coucou|milos-forman": {
   "key": "vol-au-dessus-d-un-nid-de-coucou|milos-forman",
   "title": "Vol au-dessus d'un nid de coucou",
@@ -623,6 +659,30 @@
   "trailer": "",
   "storyline": ""
  },
+ "demain-je-tombe-amoureux|martin-provost": {
+  "key": "demain-je-tombe-amoureux|martin-provost",
+  "title": "Demain je tombe amoureux",
+  "director": "Martin Provost",
+  "cast": "",
+  "genre": "Comédie",
+  "country": "",
+  "duration_min": 107,
+  "poster": "https://media.pathe.fr/movie/alex/HO00011105/poster/lg/2/movie&uuid=8416AA04-BDE4-4E49-B090-7739C76D0D4E",
+  "trailer": "",
+  "storyline": ""
+ },
+ "memoire-de-fille|judith-godreche": {
+  "key": "memoire-de-fille|judith-godreche",
+  "title": "Mémoire de fille",
+  "director": "Judith Godrèche",
+  "cast": "",
+  "genre": "Drame",
+  "country": "",
+  "duration_min": 117,
+  "poster": "https://media.pathe.fr/movie/alex/HO00011275/poster/lg/4/movie&uuid=9D4CD700-F657-4D2B-804F-68C3184EFCF8",
+  "trailer": "",
+  "storyline": ""
+ },
  "soudain|ryusuke-hamaguchi": {
   "key": "soudain|ryusuke-hamaguchi",
   "title": "Soudain",
@@ -647,18 +707,6 @@
   "trailer": "",
   "storyline": ""
  },
- "nofx-40-years-of-fuckin-up|james-buddy-day": {
-  "key": "nofx-40-years-of-fuckin-up|james-buddy-day",
-  "title": "NOFX - 40 YEARS OF FUCKIN'UP",
-  "director": "James Buddy Day",
-  "cast": "",
-  "genre": "Documentaire",
-  "country": "",
-  "duration_min": 120,
-  "poster": "https://media.pathe.fr/movie/alex/HO00011645/poster/lg/1/movie&uuid=BACF61FA-0FAE-435D-B386-6682780D9C38",
-  "trailer": "",
-  "storyline": ""
- },
  "la-nirvana|hakim-bougheraba": {
   "key": "la-nirvana|hakim-bougheraba",
   "title": "La Nirvana",
@@ -671,6 +719,30 @@
   "trailer": "",
   "storyline": ""
  },
+ "justin-le-juste|eric-barbier": {
+  "key": "justin-le-juste|eric-barbier",
+  "title": "Justin le Juste",
+  "director": "Eric Barbier",
+  "cast": "",
+  "genre": "Guerre",
+  "country": "",
+  "duration_min": 110,
+  "poster": "https://media.pathe.fr/movie/alex/HO00011461/poster/lg/3/movie&uuid=F54CFD1F-706E-491D-90A1-93576B01432D",
+  "trailer": "",
+  "storyline": ""
+ },
+ "garance|jeanne-herry": {
+  "key": "garance|jeanne-herry",
+  "title": "Garance",
+  "director": "Jeanne Herry",
+  "cast": "",
+  "genre": "Drame",
+  "country": "",
+  "duration_min": 116,
+  "poster": "https://media.pathe.fr/movie/alex/HO00011252/poster/lg/3/movie&uuid=CEDE2F13-950B-497D-A6BC-05021D24EFE5",
+  "trailer": "",
+  "storyline": ""
+ },
  "le-chat-potte|chris-miller-lx": {
   "key": "le-chat-potte|chris-miller-lx",
   "title": "Le Chat Potté",
@@ -680,6 +752,18 @@
   "country": "",
   "duration_min": 90,
   "poster": "https://media.pathe.fr/movie/904589/poster/lg/6/film_13149.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "nofx-40-years-of-fuckin-up|james-buddy-day": {
+  "key": "nofx-40-years-of-fuckin-up|james-buddy-day",
+  "title": "NOFX - 40 YEARS OF FUCKIN'UP",
+  "director": "James Buddy Day",
+  "cast": "",
+  "genre": "Documentaire",
+  "country": "",
+  "duration_min": 120,
+  "poster": "https://media.pathe.fr/movie/alex/HO00011645/poster/lg/1/movie&uuid=BACF61FA-0FAE-435D-B386-6682780D9C38",
   "trailer": "",
   "storyline": ""
  },
@@ -731,18 +815,6 @@
   "trailer": "",
   "storyline": ""
  },
- "porco-rosso|hayao-miyazaki": {
-  "key": "porco-rosso|hayao-miyazaki",
-  "title": "Porco Rosso",
-  "director": "Hayao Miyazaki",
-  "cast": "",
-  "genre": "Animation",
-  "country": "",
-  "duration_min": 94,
-  "poster": "https://media.pathe.fr/movie/alex/HO00002070/poster/lg/36/movie&uuid=9371618D-1CD5-43ED-88DE-37B873A9E7AE",
-  "trailer": "",
-  "storyline": ""
- },
  "brice-de-nice|james-huth": {
   "key": "brice-de-nice|james-huth",
   "title": "Brice de Nice",
@@ -767,18 +839,6 @@
   "trailer": "",
   "storyline": ""
  },
- "la-cite-de-la-peur|alain-berberian-alain-chabat": {
-  "key": "la-cite-de-la-peur|alain-berberian-alain-chabat",
-  "title": "La cité de la peur",
-  "director": "Alain Berbérian, Alain Chabat",
-  "cast": "",
-  "genre": "Comédie",
-  "country": "",
-  "duration_min": 100,
-  "poster": "https://media.pathe.fr/movie/alex/HO00000619/poster/lg/64/movie&uuid=76D1FBBF-54AE-4715-8ED6-7E94D7A578DE",
-  "trailer": "",
-  "storyline": ""
- },
  "plein-soleil|rene-clement": {
   "key": "plein-soleil|rene-clement",
   "title": "Plein Soleil",
@@ -788,18 +848,6 @@
   "country": "",
   "duration_min": 121,
   "poster": "https://media.pathe.fr/movie/alex/HO00004923/poster/lg/67/movie&uuid=ECB5A28E-277D-431F-9244-234E6A7EC79D",
-  "trailer": "",
-  "storyline": ""
- },
- "bound|": {
-  "key": "bound|",
-  "title": "Bound",
-  "director": "",
-  "cast": "",
-  "genre": "Drame",
-  "country": "",
-  "duration_min": 108,
-  "poster": "https://media.pathe.fr/movie/alex/HO00011781/poster/lg/1/movie&uuid=93231522-E505-4813-B619-41C13170DC90",
   "trailer": "",
   "storyline": ""
  },
@@ -887,6 +935,30 @@
   "trailer": "",
   "storyline": ""
  },
+ "concert-d-animes-japonais|": {
+  "key": "concert-d-animes-japonais|",
+  "title": "Concert d'Animés Japonais",
+  "director": "",
+  "cast": "",
+  "genre": "Concert",
+  "country": "",
+  "duration_min": 90,
+  "poster": "https://media.pathe.fr/movie/alex/HO00011671/poster/lg/1/movie&uuid=9D95125E-4B50-4DC3-9D70-D440F74C8BDA",
+  "trailer": "",
+  "storyline": ""
+ },
+ "maman-deteste-ma-belle-mere|oumar-dagnon": {
+  "key": "maman-deteste-ma-belle-mere|oumar-dagnon",
+  "title": "Maman déteste ma belle-mère",
+  "director": "Oumar Dagnon",
+  "cast": "",
+  "genre": "Comédie dramatique",
+  "country": "",
+  "duration_min": 100,
+  "poster": "https://media.pathe.fr/movie/alex/HO00011664/poster/lg/2/movie&uuid=4C33F427-18BF-4F56-B98F-00C26AC4A724",
+  "trailer": "",
+  "storyline": ""
+ },
  "kaithi-version-tamoule|lokesh-kanagaraj": {
   "key": "kaithi-version-tamoule|lokesh-kanagaraj",
   "title": "Kaithi (Version Tamoule)",
@@ -920,6 +992,30 @@
   "country": "",
   "duration_min": 90,
   "poster": "https://media.pathe.fr/movie/alex/HO00009360/poster/lg/2/movie&uuid=E27495B7-B06A-4122-8EB7-808A37E51124",
+  "trailer": "",
+  "storyline": ""
+ },
+ "coming-of-age-2026-seance-2|": {
+  "key": "coming-of-age-2026-seance-2|",
+  "title": "Coming of Age 2026 - Séance 2",
+  "director": "",
+  "cast": "",
+  "genre": "Courts-Métrages",
+  "country": "",
+  "duration_min": 76,
+  "poster": "https://media.pathe.fr/movie/alex/HO00011849/poster/lg/1/movie&uuid=DB75E2DE-7463-435A-B50E-B27AF74E48D0",
+  "trailer": "",
+  "storyline": ""
+ },
+ "coming-of-age-2026-seance-1|": {
+  "key": "coming-of-age-2026-seance-1|",
+  "title": "Coming of Age 2026 - Séance 1",
+  "director": "",
+  "cast": "",
+  "genre": "Courts-Métrages",
+  "country": "",
+  "duration_min": 74,
+  "poster": "https://media.pathe.fr/movie/alex/HO00011848/poster/lg/1/movie&uuid=213A4282-8FB0-4314-A831-19266989A64A",
   "trailer": "",
   "storyline": ""
  },
@@ -1043,6 +1139,18 @@
   "trailer": "",
   "storyline": ""
  },
+ "ni-vue-ni-connue|marc-fitoussi": {
+  "key": "ni-vue-ni-connue|marc-fitoussi",
+  "title": "Ni vue, ni connue",
+  "director": "Marc Fitoussi",
+  "cast": "",
+  "genre": "Comédie",
+  "country": "",
+  "duration_min": 113,
+  "poster": "https://media.pathe.fr/movie/alex/HO00011086/poster/lg/3/movie&uuid=5DBB10D4-1957-46FC-9524-0030C499D0AD",
+  "trailer": "",
+  "storyline": ""
+ },
  "le-noel-d-ernest-et-celestine|aurelie-raphael": {
   "key": "le-noel-d-ernest-et-celestine|aurelie-raphael",
   "title": "Le Noël d'Ernest et Célestine",
@@ -1055,18 +1163,6 @@
   "trailer": "",
   "storyline": ""
  },
- "karma|guillaume-canet": {
-  "key": "karma|guillaume-canet",
-  "title": "Karma",
-  "director": "Guillaume Canet",
-  "cast": "",
-  "genre": "Drame",
-  "country": "",
-  "duration_min": 140,
-  "poster": "https://media.pathe.fr/movie/alex/HO00010209/poster/lg/1/movie&uuid=F331EB6D-7CC6-4CB8-94CD-E6610C9A34C2",
-  "trailer": "",
-  "storyline": ""
- },
  "le-roi-du-game|eric-judor": {
   "key": "le-roi-du-game|eric-judor",
   "title": "Le roi du game",
@@ -1076,18 +1172,6 @@
   "country": "",
   "duration_min": 89,
   "poster": "https://media.pathe.fr/movie/alex/HO00011283/poster/lg/3/movie&uuid=560AF57F-49CD-4814-8A05-5BD69D9FCDF7",
-  "trailer": "",
-  "storyline": ""
- },
- "ni-vue-ni-connue|marc-fitoussi": {
-  "key": "ni-vue-ni-connue|marc-fitoussi",
-  "title": "Ni vue, ni connue",
-  "director": "Marc Fitoussi",
-  "cast": "",
-  "genre": "Comédie",
-  "country": "",
-  "duration_min": 113,
-  "poster": "https://media.pathe.fr/movie/alex/HO00011086/poster/lg/3/movie&uuid=5DBB10D4-1957-46FC-9524-0030C499D0AD",
   "trailer": "",
   "storyline": ""
  },
@@ -1127,15 +1211,303 @@
   "trailer": "",
   "storyline": ""
  },
- "garance|jeanne-herry": {
-  "key": "garance|jeanne-herry",
-  "title": "Garance",
-  "director": "Jeanne Herry",
+ "les-excites|": {
+  "key": "les-excites|",
+  "title": "Les Excités",
+  "director": "",
+  "cast": "",
+  "genre": "Divers",
+  "country": "",
+  "duration_min": 90,
+  "poster": "https://media.pathe.fr/movie/alex/HO00011774/poster/lg/1/movie&uuid=87D44D31-9BFC-49C6-AF43-21D0D8F80066",
+  "trailer": "",
+  "storyline": ""
+ },
+ "clap-comedy-club|": {
+  "key": "clap-comedy-club|",
+  "title": "Clap Comedy Club",
+  "director": "",
+  "cast": "",
+  "genre": "Divers",
+  "country": "",
+  "duration_min": 90,
+  "poster": "https://media.pathe.fr/movie/alex/HO00007324/poster/lg/67/movie&uuid=F4AFD7C4-38D5-454B-A61D-2AB020D411A3",
+  "trailer": "",
+  "storyline": ""
+ },
+ "la-petite-classe|laetitia-carton": {
+  "key": "la-petite-classe|laetitia-carton",
+  "title": "La petite classe",
+  "director": "Laetitia Carton",
+  "cast": "",
+  "genre": "Documentaire",
+  "country": "",
+  "duration_min": 102,
+  "poster": "https://media.pathe.fr/movie/alex/HO00011578/poster/lg/2/movie&uuid=E561051A-7D5C-45BE-BE40-758CD117258A",
+  "trailer": "",
+  "storyline": ""
+ },
+ "carmen-l-oiseau-rebelle|sebastien-laudenbach": {
+  "key": "carmen-l-oiseau-rebelle|sebastien-laudenbach",
+  "title": "Carmen l'oiseau rebelle",
+  "director": "Sebastien Laudenbach",
+  "cast": "",
+  "genre": "Animation",
+  "country": "",
+  "duration_min": 90,
+  "poster": "https://media.pathe.fr/movie/alex/HO00010490/poster/lg/2/movie&uuid=D48CB2E5-8097-4C07-BF70-1F9911B5DC48",
+  "trailer": "",
+  "storyline": ""
+ },
+ "mon-fils-president|mathias-mlekuz": {
+  "key": "mon-fils-president|mathias-mlekuz",
+  "title": "Mon fils président",
+  "director": "Mathias Mlekuz",
+  "cast": "",
+  "genre": "Comédie",
+  "country": "",
+  "duration_min": 79,
+  "poster": "https://media.pathe.fr/movie/alex/HO00011251/poster/lg/1/movie&uuid=24FF96ED-963D-4140-8E12-688C503E9A79",
+  "trailer": "",
+  "storyline": ""
+ },
+ "le-merveilleux-hiver-de-tom-le-chat|joost-van-den-bosch-erik-verkerk": {
+  "key": "le-merveilleux-hiver-de-tom-le-chat|joost-van-den-bosch-erik-verkerk",
+  "title": "Le merveilleux hiver de Tom le chat",
+  "director": "Joost van den Bosch, Erik Verkerk",
+  "cast": "",
+  "genre": "Animation",
+  "country": "",
+  "duration_min": 62,
+  "poster": "https://media.pathe.fr/movie/alex/HO00010427/poster/lg/2/movie&uuid=DF69C9F7-3088-4C24-8DFE-C511186CF497",
+  "trailer": "",
+  "storyline": ""
+ },
+ "l-affaire-marie-claire|lauriane-escaffre": {
+  "key": "l-affaire-marie-claire|lauriane-escaffre",
+  "title": "L'affaire Marie-Claire",
+  "director": "Lauriane Escaffre",
+  "cast": "",
+  "genre": "Biopic",
+  "country": "",
+  "duration_min": 102,
+  "poster": "https://media.pathe.fr/movie/alex/HO00010870/poster/lg/1/movie&uuid=4C74E8B1-3905-4584-A1AF-49CE26A3CD9A",
+  "trailer": "",
+  "storyline": ""
+ },
+ "le-mystere-lucy-lost|olivier-clert": {
+  "key": "le-mystere-lucy-lost|olivier-clert",
+  "title": "Le Mystère Lucy Lost",
+  "director": "Olivier Clert",
+  "cast": "",
+  "genre": "Animation",
+  "country": "",
+  "duration_min": 89,
+  "poster": "https://media.pathe.fr/movie/alex/HO00011241/poster/lg/3/movie&uuid=3444CEC8-7248-4FF1-8064-9ED3C3A66C54",
+  "trailer": "",
+  "storyline": ""
+ },
+ "une-femme-aujourd-hui|robert-guediguian": {
+  "key": "une-femme-aujourd-hui|robert-guediguian",
+  "title": "Une femme aujourd'hui",
+  "director": "Robert Guédiguian",
+  "cast": "",
+  "genre": "Comédie",
+  "country": "",
+  "duration_min": 123,
+  "poster": "https://media.pathe.fr/movie/alex/HO00011544/poster/lg/3/movie&uuid=2E373E0D-4C80-4110-B747-0C1FF83E1835",
+  "trailer": "",
+  "storyline": ""
+ },
+ "butterfly-jam|kantemir-balagov": {
+  "key": "butterfly-jam|kantemir-balagov",
+  "title": "Butterfly Jam",
+  "director": "Kantemir Balagov",
   "cast": "",
   "genre": "Drame",
   "country": "",
-  "duration_min": 116,
-  "poster": "https://media.pathe.fr/movie/alex/HO00011252/poster/lg/3/movie&uuid=CEDE2F13-950B-497D-A6BC-05021D24EFE5",
+  "duration_min": 102,
+  "poster": "https://media.pathe.fr/movie/alex/HO00011406/poster/lg/2/movie&uuid=2FC9BE36-37DD-4BEE-889B-022789A617DB",
+  "trailer": "",
+  "storyline": ""
+ },
+ "le-chant-des-oliviers|alex-camilleri": {
+  "key": "le-chant-des-oliviers|alex-camilleri",
+  "title": "Le chant des oliviers",
+  "director": "Alex Camilleri",
+  "cast": "",
+  "genre": "Drame",
+  "country": "",
+  "duration_min": 108,
+  "poster": "https://media.pathe.fr/movie/alex/HO00011524/poster/lg/2/movie&uuid=3F3BFBD5-3A71-48E9-A410-A7B2C44DD38B",
+  "trailer": "",
+  "storyline": ""
+ },
+ "raison-et-sentiments|georgia-oakley": {
+  "key": "raison-et-sentiments|georgia-oakley",
+  "title": "Raison et sentiments",
+  "director": "Georgia Oakley",
+  "cast": "",
+  "genre": "Drame",
+  "country": "",
+  "duration_min": 132,
+  "poster": "https://media.pathe.fr/movie/alex/HO00010569/poster/lg/3/movie&uuid=229225B3-C7AC-490F-A415-719AE8333121",
+  "trailer": "",
+  "storyline": ""
+ },
+ "nous-l-orchestre|philippe-beziat": {
+  "key": "nous-l-orchestre|philippe-beziat",
+  "title": "Nous l'orchestre",
+  "director": "Philippe Béziat",
+  "cast": "",
+  "genre": "Documentaire",
+  "country": "",
+  "duration_min": 90,
+  "poster": "https://media.pathe.fr/movie/alex/HO00010082/poster/lg/2/movie&uuid=E796118B-D58A-4DFD-9DB4-EC272CC5996A",
+  "trailer": "",
+  "storyline": ""
+ },
+ "rien-a-perdre|delphine-deloget": {
+  "key": "rien-a-perdre|delphine-deloget",
+  "title": "Rien à perdre",
+  "director": "Delphine Deloget",
+  "cast": "",
+  "genre": "Drame",
+  "country": "",
+  "duration_min": 112,
+  "poster": "https://media.pathe.fr/movie/alex/HO00006228/poster/lg/17/movie&uuid=14CDF1D7-9847-4E9D-BF26-6C16E50CDBD3",
+  "trailer": "",
+  "storyline": ""
+ },
+ "le-livre-des-solutions|michel-gondry": {
+  "key": "le-livre-des-solutions|michel-gondry",
+  "title": "Le Livre des solutions",
+  "director": "Michel Gondry",
+  "cast": "",
+  "genre": "Comédie dramatique",
+  "country": "",
+  "duration_min": 102,
+  "poster": "https://media.pathe.fr/movie/alex/HO00006307/poster/lg/60/movie&uuid=8D4AAFD8-405C-4D1F-B314-B862133C1450",
+  "trailer": "",
+  "storyline": ""
+ },
+ "trous-de-memoire|paul-vecchiali": {
+  "key": "trous-de-memoire|paul-vecchiali",
+  "title": "Trous de mémoire",
+  "director": "Paul Vecchiali",
+  "cast": "",
+  "genre": "Drame",
+  "country": "",
+  "duration_min": 80,
+  "poster": "https://media.pathe.fr/movie/alex/HO00011883/poster/lg/1/movie&uuid=48D328E1-C395-44FA-A308-C9FE7DC534A5",
+  "trailer": "",
+  "storyline": ""
+ },
+ "la-passagere|heloise-pelloquet": {
+  "key": "la-passagere|heloise-pelloquet",
+  "title": "La Passagère",
+  "director": "Héloïse Pelloquet",
+  "cast": "",
+  "genre": "Drame",
+  "country": "",
+  "duration_min": 95,
+  "poster": "https://media.pathe.fr/movie/alex/HO00004593/poster/lg/109/movie&uuid=B7DD7466-5F40-4480-BDC0-895A87666901",
+  "trailer": "",
+  "storyline": ""
+ },
+ "vortex|gaspar-noe": {
+  "key": "vortex|gaspar-noe",
+  "title": "VORTEX",
+  "director": "Gaspar Noé",
+  "cast": "",
+  "genre": "Drame",
+  "country": "",
+  "duration_min": 141,
+  "poster": "https://media.pathe.fr/movie/9205265/poster/1649688746395/lg/207/film_927582.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "ete-85|francois-ozon": {
+  "key": "ete-85|francois-ozon",
+  "title": "ETE 85",
+  "director": "François Ozon",
+  "cast": "",
+  "genre": "Comédie",
+  "country": "",
+  "duration_min": 101,
+  "poster": "https://media.pathe.fr/movie/9203763/poster/1655308346600/lg/69/film_926574.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "holy-motors|": {
+  "key": "holy-motors|",
+  "title": "Holy Motors",
+  "director": "",
+  "cast": "",
+  "genre": "Drame",
+  "country": "",
+  "duration_min": 115,
+  "poster": "https://media.pathe.fr/movie/alex/HO00011882/poster/lg/1/movie&uuid=7D9E3070-8C61-4340-9469-0B8F6B9D6AA6",
+  "trailer": "",
+  "storyline": ""
+ },
+ "le-concert|": {
+  "key": "le-concert|",
+  "title": "Le Concert",
+  "director": "",
+  "cast": "",
+  "genre": "Comédie dramatique",
+  "country": "",
+  "duration_min": 120,
+  "poster": "",
+  "trailer": "",
+  "storyline": ""
+ },
+ "pelleas-et-melisande-le-chant-des-aveugles|": {
+  "key": "pelleas-et-melisande-le-chant-des-aveugles|",
+  "title": "Pelléas et Melisande, le chant des aveugles",
+  "director": "",
+  "cast": "",
+  "genre": "Opera",
+  "country": "",
+  "duration_min": 108,
+  "poster": "",
+  "trailer": "",
+  "storyline": ""
+ },
+ "quelqu-un-de-bien|": {
+  "key": "quelqu-un-de-bien|",
+  "title": "Quelqu'un de bien",
+  "director": "",
+  "cast": "",
+  "genre": "Comédie",
+  "country": "",
+  "duration_min": 100,
+  "poster": "",
+  "trailer": "",
+  "storyline": ""
+ },
+ "le-cousin|": {
+  "key": "le-cousin|",
+  "title": "Le Cousin",
+  "director": "",
+  "cast": "",
+  "genre": "Policier",
+  "country": "",
+  "duration_min": 114,
+  "poster": "https://media.pathe.fr/movie/alex/HO00011811/poster/lg/1/movie&uuid=86D0E62E-62A9-4CE5-B759-A2732A47138B",
+  "trailer": "",
+  "storyline": ""
+ },
+ "pedale-douce|gabriel-aghion": {
+  "key": "pedale-douce|gabriel-aghion",
+  "title": "Pédale douce",
+  "director": "Gabriel Aghion",
+  "cast": "",
+  "genre": "Comédie",
+  "country": "",
+  "duration_min": 100,
+  "poster": "https://media.pathe.fr/movie/900056/poster/1663260746432/lg/28/film_9705.jpg",
   "trailer": "",
   "storyline": ""
  },
@@ -1151,78 +1523,6 @@
   "trailer": "",
   "storyline": ""
  },
- "la-quadrature-des-autres|": {
-  "key": "la-quadrature-des-autres|",
-  "title": "La Quadrature des autres",
-  "director": "",
-  "cast": "",
-  "genre": "Comédie",
-  "country": "",
-  "duration_min": 96,
-  "poster": "https://media.pathe.fr/movie/alex/HO00011768/poster/lg/1/movie&uuid=F7CADF19-0787-4821-BE3B-4351F087107C",
-  "trailer": "",
-  "storyline": ""
- },
- "blaise|dimitri-planchon": {
-  "key": "blaise|dimitri-planchon",
-  "title": "Blaise",
-  "director": "Dimitri Planchon",
-  "cast": "",
-  "genre": "Animation",
-  "country": "",
-  "duration_min": 82,
-  "poster": "https://media.pathe.fr/movie/alex/HO00011434/poster/lg/1/movie&uuid=C70DC80D-2CD0-419B-9273-C0DFB80124D6",
-  "trailer": "",
-  "storyline": ""
- },
- "chat-chat-show|xavier-tesson": {
-  "key": "chat-chat-show|xavier-tesson",
-  "title": "Chat Chat Show",
-  "director": "Xavier Tesson",
-  "cast": "",
-  "genre": "Horreur / Épouvante",
-  "country": "",
-  "duration_min": 84,
-  "poster": "https://media.pathe.fr/movie/alex/HO00011794/poster/lg/1/movie&uuid=ED883E20-B7E0-4F20-BF2E-762ED4A475A1",
-  "trailer": "",
-  "storyline": ""
- },
- "focus-quentin-papapietro|quentin-papapietro": {
-  "key": "focus-quentin-papapietro|quentin-papapietro",
-  "title": "Focus Quentin Papapietro",
-  "director": "Quentin Papapietro",
-  "cast": "",
-  "genre": "Courts-Métrages",
-  "country": "",
-  "duration_min": 84,
-  "poster": "https://media.pathe.fr/movie/alex/HO00011795/poster/lg/1/movie&uuid=290ED17E-050C-4281-8A03-117EA04C319F",
-  "trailer": "",
-  "storyline": ""
- },
- "best-of-robert-morgan|robert-morgan": {
-  "key": "best-of-robert-morgan|robert-morgan",
-  "title": "Best Of Robert Morgan",
-  "director": "Robert Morgan",
-  "cast": "",
-  "genre": "Courts-Métrages",
-  "country": "",
-  "duration_min": 90,
-  "poster": "https://media.pathe.fr/movie/alex/HO00011796/poster/lg/1/movie&uuid=4EE280AB-BA79-4CC9-AF2B-49D9E2CB3444",
-  "trailer": "",
-  "storyline": ""
- },
- "heureux-comme-lazzaro|": {
-  "key": "heureux-comme-lazzaro|",
-  "title": "Heureux comme Lazzaro",
-  "director": "",
-  "cast": "",
-  "genre": "Drame",
-  "country": "",
-  "duration_min": 127,
-  "poster": "https://media.pathe.fr/movie/alex/HO00011793/poster/lg/1/movie&uuid=C42FDBFE-7322-4699-83A8-D3C96574D6EB",
-  "trailer": "",
-  "storyline": ""
- },
  "donnie-darko-version-directors-cut|richard-kelly": {
   "key": "donnie-darko-version-directors-cut|richard-kelly",
   "title": "Donnie Darko (version Director’s Cut)",
@@ -1231,18 +1531,6 @@
   "genre": "Drame",
   "country": "",
   "duration_min": 134,
-  "poster": "",
-  "trailer": "",
-  "storyline": ""
- },
- "compet-grocourt-1|": {
-  "key": "compet-grocourt-1|",
-  "title": "Compet Grocourt 1",
-  "director": "",
-  "cast": "",
-  "genre": "Courts-Métrages",
-  "country": "",
-  "duration_min": 100,
   "poster": "",
   "trailer": "",
   "storyline": ""
@@ -1259,18 +1547,6 @@
   "trailer": "",
   "storyline": ""
  },
- "sorella-di-clausura|ivana-mladenovic": {
-  "key": "sorella-di-clausura|ivana-mladenovic",
-  "title": "Sorella di Clausura",
-  "director": "Ivana Mladenović",
-  "cast": "",
-  "genre": "Comédie",
-  "country": "",
-  "duration_min": 107,
-  "poster": "",
-  "trailer": "",
-  "storyline": ""
- },
  "flush|gregory-morin": {
   "key": "flush|gregory-morin",
   "title": "Flush",
@@ -1283,27 +1559,27 @@
   "trailer": "",
   "storyline": ""
  },
- "cinema-paradiso|tornatore-jr-joseph": {
-  "key": "cinema-paradiso|tornatore-jr-joseph",
-  "title": "CINEMA PARADISO",
-  "director": " TORNATORE Jr joseph",
+ "miss-mermaid|pauline-brunner": {
+  "key": "miss-mermaid|pauline-brunner",
+  "title": "Miss Mermaid",
+  "director": "Pauline Brunner",
   "cast": "",
   "genre": "Comédie dramatique",
   "country": "",
-  "duration_min": 125,
-  "poster": "https://media.pathe.fr/movie/9101592/poster/1631094746756/lg/8/film_922485.jpg",
+  "duration_min": 92,
+  "poster": "https://media.pathe.fr/movie/alex/HO00010423/poster/lg/2/movie&uuid=670D7CB4-F0EE-497C-857F-E9DD4DB376EA",
   "trailer": "",
   "storyline": ""
  },
- "lawrence-d-arabie|david-lean": {
-  "key": "lawrence-d-arabie|david-lean",
-  "title": "Lawrence d'Arabie",
-  "director": "David Lean",
+ "primetime|lance-oppenheim": {
+  "key": "primetime|lance-oppenheim",
+  "title": "Primetime",
+  "director": "Lance Oppenheim",
   "cast": "",
-  "genre": "Aventure",
+  "genre": "Biopic",
   "country": "",
-  "duration_min": 226,
-  "poster": "https://media.pathe.fr/movie/alex/HO00001209/poster/lg/13/movie&uuid=3E18F494-C506-4FEC-88D3-DC52AC96BAD6",
+  "duration_min": 109,
+  "poster": "https://media.pathe.fr/movie/alex/HO00011676/poster/lg/2/movie&uuid=B91EEA63-53B5-42C2-B97A-CE5892912454",
   "trailer": "",
   "storyline": ""
  },
@@ -1331,6 +1607,30 @@
   "trailer": "",
   "storyline": ""
  },
+ "cine-brunch-du-pathe-la-joliette|": {
+  "key": "cine-brunch-du-pathe-la-joliette|",
+  "title": "Ciné-brunch du Pathé la Joliette",
+  "director": "",
+  "cast": "",
+  "genre": "Drame",
+  "country": "",
+  "duration_min": 120,
+  "poster": "https://media.pathe.fr/movie/alex/HO00005467/poster/lg/150/movie&uuid=DB85357F-6A63-46E5-AE47-8515D0981989",
+  "trailer": "",
+  "storyline": ""
+ },
+ "porco-rosso|hayao-miyazaki": {
+  "key": "porco-rosso|hayao-miyazaki",
+  "title": "Porco Rosso",
+  "director": "Hayao Miyazaki",
+  "cast": "",
+  "genre": "Animation",
+  "country": "",
+  "duration_min": 94,
+  "poster": "https://media.pathe.fr/movie/alex/HO00002070/poster/lg/36/movie&uuid=9371618D-1CD5-43ED-88DE-37B873A9E7AE",
+  "trailer": "",
+  "storyline": ""
+ },
  "le-grand-bleu|luc-besson": {
   "key": "le-grand-bleu|luc-besson",
   "title": "Le Grand Bleu",
@@ -1343,15 +1643,15 @@
   "trailer": "",
   "storyline": ""
  },
- "cine-brunch-du-pathe-la-joliette|": {
-  "key": "cine-brunch-du-pathe-la-joliette|",
-  "title": "Ciné-brunch du Pathé la Joliette",
-  "director": "",
+ "notre-salut|emmanuel-marre": {
+  "key": "notre-salut|emmanuel-marre",
+  "title": "Notre salut",
+  "director": "Emmanuel Marre",
   "cast": "",
-  "genre": "Drame",
+  "genre": "Comédie",
   "country": "",
-  "duration_min": 120,
-  "poster": "https://media.pathe.fr/movie/alex/HO00005467/poster/lg/150/movie&uuid=DB85357F-6A63-46E5-AE47-8515D0981989",
+  "duration_min": 155,
+  "poster": "https://media.pathe.fr/movie/alex/HO00011284/poster/lg/2/movie&uuid=8581AF5B-4D5E-4DB5-ACCB-10E76492C19F",
   "trailer": "",
   "storyline": ""
  },
@@ -1403,18 +1703,6 @@
   "trailer": "",
   "storyline": ""
  },
- "tout-va-bien|thomas-ellis": {
-  "key": "tout-va-bien|thomas-ellis",
-  "title": "Tout va bien",
-  "director": "Thomas Ellis",
-  "cast": "",
-  "genre": "Documentaire",
-  "country": "",
-  "duration_min": 86,
-  "poster": "https://media.pathe.fr/movie/alex/HO00009889/poster/lg/4/movie&uuid=74210B42-A346-4A65-A540-CAF91760B0C1",
-  "trailer": "",
-  "storyline": ""
- },
  "erin-brockovich-seule-contre-tous|steven-soderbergh": {
   "key": "erin-brockovich-seule-contre-tous|steven-soderbergh",
   "title": "Erin Brockovich, seule contre tous",
@@ -1439,6 +1727,18 @@
   "trailer": "",
   "storyline": ""
  },
+ "kwaidan|": {
+  "key": "kwaidan|",
+  "title": "Kwaidan",
+  "director": "",
+  "cast": "",
+  "genre": "Drame",
+  "country": "",
+  "duration_min": 162,
+  "poster": "https://media.pathe.fr/movie/alex/HO00011777/poster/lg/2/movie&uuid=07D58A42-894A-425D-810D-4811A02CECF3",
+  "trailer": "",
+  "storyline": ""
+ },
  "baby-driver|edgar-wright": {
   "key": "baby-driver|edgar-wright",
   "title": "BABY DRIVER",
@@ -1448,18 +1748,6 @@
   "country": "",
   "duration_min": 113,
   "poster": "https://media.pathe.fr/movie/9100675/poster/lg/4/film_921568.jpg",
-  "trailer": "",
-  "storyline": ""
- },
- "constancia|alexis-horani": {
-  "key": "constancia|alexis-horani",
-  "title": "Constancia",
-  "director": "Alexis Horani",
-  "cast": "",
-  "genre": "Fantastique",
-  "country": "",
-  "duration_min": 33,
-  "poster": "https://media.pathe.fr/movie/alex/HO00011171/poster/lg/1/movie&uuid=182865CE-F2B5-4D2C-B697-2EC5BD51DFEC",
   "trailer": "",
   "storyline": ""
  },
@@ -1511,22 +1799,22 @@
   "trailer": "",
   "storyline": ""
  },
- "la-bola-negra|javier-ambrossi-javier-calvo": {
-  "key": "la-bola-negra|javier-ambrossi-javier-calvo",
-  "title": "La Bola Negra",
-  "director": "Javier Ambrossi, Javier Calvo",
+ "un-amour-d-epouvantail|jeroen-jaspaert-samantha-cutler": {
+  "key": "un-amour-d-epouvantail|jeroen-jaspaert-samantha-cutler",
+  "title": "Un amour d'épouvantail",
+  "director": "Jeroen Jaspaert, Samantha Cutler",
   "cast": "",
-  "genre": "Drame",
+  "genre": "Animation",
   "country": "",
-  "duration_min": 155,
-  "poster": "https://media.pathe.fr/movie/alex/HO00011410/poster/lg/1/movie&uuid=71FFD86E-5580-40C8-94AC-966579456FD7",
+  "duration_min": 44,
+  "poster": "https://media.pathe.fr/movie/alex/HO00010887/poster/lg/2/movie&uuid=9077EF7C-2168-4F6E-B2F8-C083999BF67C",
   "trailer": "",
   "storyline": ""
  },
- "le-cygne-et-l-enfant|": {
-  "key": "le-cygne-et-l-enfant|",
+ "le-cygne-et-l-enfant|miyoung-baek": {
+  "key": "le-cygne-et-l-enfant|miyoung-baek",
   "title": "Le cygne et l'enfant",
-  "director": "",
+  "director": "Miyoung Baek",
   "cast": "",
   "genre": "Animation",
   "country": "",
@@ -1688,18 +1976,6 @@
   "country": "",
   "duration_min": 94,
   "poster": "https://media.pathe.fr/movie/alex/HO00011220/poster/lg/3/movie&uuid=87B9E603-F1CE-4005-92FD-9C2CFAA03444",
-  "trailer": "",
-  "storyline": ""
- },
- "salvation|emin-alper": {
-  "key": "salvation|emin-alper",
-  "title": "Salvation",
-  "director": "Emin Alper",
-  "cast": "",
-  "genre": "Drame",
-  "country": "",
-  "duration_min": 120,
-  "poster": "https://media.pathe.fr/movie/alex/HO00010964/poster/lg/3/movie&uuid=C94B5FC7-09FB-498B-914B-ACC50AF0DA4C",
   "trailer": "",
   "storyline": ""
  }
