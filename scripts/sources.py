@@ -615,9 +615,16 @@ def _apply_abonnements(cinemas: dict, ab: dict) -> None:
 def load_merged(data_dir: Path) -> tuple[dict, dict, list, dict]:
     """Renvoie (cinemas, movies, showtimes, cities) fusionnés et prêts à bâtir."""
     ci, mo, sh, ct = (_load(data_dir, n) for n in INDE)
+    # Les indés sont la raison d'être du site, mais leur absence ne doit plus
+    # tuer le build : depuis que le snapshot SCARE est versionné (cf. la note
+    # dans .gitignore), on n'arrive ici les mains vides que sur un dépôt neuf
+    # jamais collecté. Mieux vaut alors bâtir le site des seules chaînes que ne
+    # rien déployer du tout — et si les chaînes manquent aussi, on échoue
+    # franchement quelques lignes plus bas plutôt que de publier un site vide.
     if ci is None:
-        raise FileNotFoundError(
-            "Sources indés absentes : lance d'abord `python scripts/fetch_data.py`")
+        print("ATTENTION : aucune source indé, ni collecte ni snapshot — "
+              "le site sera bâti sur les seules chaînes.")
+        ci, mo, sh, ct = {}, {}, [], {}
     cinemas, movies, showtimes, cities = ci, mo, sh, dict(ct)
 
     merged_any = False
@@ -632,6 +639,14 @@ def load_merged(data_dir: Path) -> tuple[dict, dict, list, dict]:
         merged_any = True
     if merged_any:
         showtimes.sort(key=lambda s: s["start"])
+
+    # Dernier rempart : un site sans le moindre cinéma n'est pas un site
+    # dégradé, c'est 365 pages qui deviennent des 404 d'un coup. On refuse de
+    # le construire plutôt que de le déployer.
+    if not cinemas:
+        raise FileNotFoundError(
+            "Aucune source exploitable, ni indés ni chaînes : lance d'abord "
+            "`python scripts/fetch_data.py`")
 
     # Cartes d'abonnement illimité : après la fusion des chaînes, pour que les
     # salles Pathé/UGC/Grand Écran soient déjà là quand on les décore.

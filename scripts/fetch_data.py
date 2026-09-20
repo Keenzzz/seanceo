@@ -63,10 +63,10 @@ def lire_page(url: str, essais: int = 4) -> dict:
     échec mérité. C'est ce qui distingue une reprise utile d'une boucle qui
     masque un vrai problème.
 
-    Volontairement PAS de garde-fou best-effort ici, contrairement aux
-    connecteurs de chaînes : le SCARE est la source principale (les indés
-    sont la raison d'être du site), déployer sans elle n'aurait pas de sens.
-    On insiste, puis on échoue franchement.
+    On insiste, puis on échoue franchement : le garde-fou best-effort n'est
+    pas ici mais dans `main()`, qui rattrape l'échec et conserve le snapshot
+    versionné. Séparer les deux garde cette fonction sur un seul sujet — lire
+    une page, ou dire pourquoi elle n'a pas pu.
     """
     for n in range(essais):
         try:
@@ -323,11 +323,78 @@ def build(rows: list[dict], today: date) -> dict[str, object]:
     }
 
 
+def snapshot_present() -> bool:
+    """Le dépôt contient-il une photo exploitable de la dernière collecte ?"""
+    return all((DATA_DIR / n).exists() for n in
+               ("cinemas.json", "movies.json", "showtimes.json", "cities.json"))
+
+
+def marquer_snapshot_perime(raison: str) -> None:
+    """Note dans `meta.json` que ce build tourne sur la photo précédente.
+
+    On réécrit UNIQUEMENT meta.json : les quatre fichiers de données gardent
+    intact leur contenu de la dernière collecte réussie. `generated_at` reste
+    l'heure de CE build — c'est lui qui alimente le `lastmod` du sitemap, et le
+    site a bel et bien été régénéré aujourd'hui — tandis que `scare_perime` et
+    `scare_photo_du` disent la vérité sur l'âge des séances indés. Mentir sur
+    l'un ou l'autre ferait passer une panne pour une journée normale.
+    """
+    path = DATA_DIR / "meta.json"
+    meta = json.loads(path.read_text(encoding="utf-8")) if path.exists() else {}
+    meta.update({
+        "generated_at": datetime.now().isoformat(timespec="seconds"),
+        "scare_perime": True,
+        "scare_photo_du": meta.get("since", "?"),
+        "scare_raison": raison,
+    })
+    DATA_DIR.mkdir(exist_ok=True)
+    path.write_text(json.dumps(meta, ensure_ascii=False, indent=1), encoding="utf-8")
+
+
 def main() -> int:
     today = date.today()
     print(f"Récupération des séances depuis le {today.isoformat()}…")
-    rows = fetch_all_showtimes(today)
+
+    # GARDE-FOU. Le 2026-09-18, l'API du SCARE est tombée en marche : un jeu
+    # enfant supprimé sans être détaché du jeu virtuel, et data-fair a répondu
+    # 501 à toute requête pendant des jours. Le build mourait ici, donc les
+    # snapshots frais des chaînes ne partaient plus non plus — la panne d'un
+    # tiers gelait le site entier. Désormais on fait comme les connecteurs de
+    # chaînes : on conserve la photo versionnée et on sort en erreur (l'étape
+    # s'affiche en rouge dans Actions, `continue-on-error` laisse le
+    # déploiement aller au bout).
+    #
+    # `OSError` couvre à lui seul HTTPError, URLError, TimeoutError et
+    # ConnectionError, qui en dérivent tous ; `HTTPException` attrape les
+    # coupures de transport que `lire_page` a fini par abandonner, et
+    # `JSONDecodeError` le cas d'un corps tronqué ou d'une page HTML d'erreur
+    # servie à la place du JSON.
+    try:
+        rows = fetch_all_showtimes(today)
+    except (OSError, http.client.HTTPException, json.JSONDecodeError) as err:
+        raison = f"{type(err).__name__}: {err}"
+        if not snapshot_present():
+            print()
+            print(f"API SCARE injoignable ({raison}) et AUCUN snapshot de "
+                  f"repli dans data/ : rien à bâtir côté indés.")
+            return 1
+        print()
+        print(f"API SCARE injoignable ({raison}) — snapshot précédent "
+              f"CONSERVÉ, rien n'est réécrit. Les séances indés de ce build "
+              f"seront celles de la dernière collecte réussie.")
+        marquer_snapshot_perime(raison)
+        return 1
+
     print(f"  {len(rows)} lignes reçues de l'API")
+
+    # Une réponse vide n'est pas une panne franche, mais elle aurait le même
+    # effet : écraser la photo par du vide et faire disparaître tous les indés.
+    # Même traitement que chez Pathé — on préfère la photo d'hier au néant.
+    if not rows and snapshot_present():
+        print()
+        print("L'API n'a renvoyé aucune séance — snapshot précédent CONSERVÉ.")
+        marquer_snapshot_perime("réponse vide")
+        return 1
 
     result = build(rows, today)
     DATA_DIR.mkdir(exist_ok=True)

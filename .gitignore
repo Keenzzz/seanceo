@@ -26,6 +26,19 @@ data/*
 !data/salles_showtimes.json
 !data/salles_cities.json
 !data/tmdb.json
+# Snapshot SCARE (fetch_data.py) — les séances des cinémas indépendants.
+# Le CI le régénère à chaque build ; s'il est versionné, c'est pour la panne
+# du 2026-09-18 : un des 70 jeux enfants du jeu VIRTUEL « programmation-cinemas »
+# a été supprimé côté SCARE sans être détaché, data-fair a répondu 501 à TOUTE
+# requête, et le déploiement est mort avec la source — emportant au passage les
+# snapshots frais des chaînes, qui n'avaient rien demandé. Même remède que pour
+# les chaînes : on garde la dernière photo valide. Une panne de source gèle les
+# séances indés au lieu de faire disparaître 145 cinémas du site.
+!data/cinemas.json
+!data/movies.json
+!data/showtimes.json
+!data/cities.json
+!data/meta.json
 # Cartes d'abonnement illimité : collectées par fetch_abonnements.py (2 requêtes,
 # sources qui ne bougent que 2-3 fois par an) + corrections manuelles relues.
 !data/abonnements.json

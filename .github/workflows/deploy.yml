@@ -27,6 +27,16 @@ jobs:
         with:
           python-version: "3.12"
       - name: Récupérer les séances indés (API SCARE)
+        # Longtemps la seule étape bloquante, au motif que le SCARE est la
+        # source principale. Le 2026-09-18 a montré le défaut du raisonnement :
+        # l'API a rendu 501 pendant des jours (un jeu enfant supprimé sans être
+        # détaché du jeu virtuel), et parce que cette étape tombait en premier,
+        # AUCUNE des suivantes ne tournait — le site est resté figé trois jours
+        # alors que les snapshots frais des chaînes attendaient d'être publiés.
+        # Le connecteur conserve désormais son snapshot versionné et sort en
+        # erreur : l'étape passe au rouge, mais le déploiement va au bout avec
+        # les séances indés de la dernière collecte réussie.
+        continue-on-error: true
         run: python scripts/fetch_data.py
       - name: Récupérer les séances Pathé (best-effort)
         # continue-on-error : si l'API Pathé bloque l'IP du runner ou tombe,

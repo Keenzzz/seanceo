@@ -1165,7 +1165,12 @@ def ville_tools() -> str:
 def main() -> int:
     today = date.today()
     cinemas, movies, showtimes, cities = load_merged(DATA)
-    meta = load("meta.json")
+    # `meta.json` peut manquer sur un dépôt neuf jamais collecté ; le site se
+    # bâtit quand même, il perd seulement la date de génération.
+    meta = load("meta.json") if (DATA / "meta.json").exists() else {}
+    if meta.get("scare_perime"):
+        print(f"ATTENTION : séances indés périmées (photo du "
+              f"{meta.get('scare_photo_du')}) — {meta.get('scare_raison')}")
 
     # Les snapshots de chaînes sont collectés en local et peuvent avoir un jour
     # de retard : sans ce filtre, une fiche film affiche « Dimanche 19 juillet »
@@ -1256,7 +1261,7 @@ def main() -> int:
     # sa traduction est porté par les balises `hreflang` du <head> (voir
     # alternates()), pas ici — les répéter en `xhtml:link` doublerait le poids
     # du fichier pour une information que Google a déjà lue sur la page.
-    lastmod = meta["generated_at"][:10]
+    lastmod = meta.get("generated_at", today.isoformat())[:10]
     entries = "".join(
         f"<url><loc>{BASE_URL}{lang_prefix(lang)}{u}</loc>"
         f"<lastmod>{lastmod}</lastmod></url>"

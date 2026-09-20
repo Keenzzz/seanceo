@@ -1,0 +1,1078 @@
+{
+ "tours": {
+  "slug": "tours",
+  "name": "Tours",
+  "cinemas": [
+   "3431732"
+  ],
+  "showtime_count": 977
+ },
+ "plessis-robinson": {
+  "slug": "plessis-robinson",
+  "name": "Plessis Robinson",
+  "cinemas": [
+   "2314413"
+  ],
+  "showtime_count": 422
+ },
+ "paris": {
+  "slug": "paris",
+  "name": "Paris",
+  "cinemas": [
+   "1008531",
+   "1008451",
+   "1008422",
+   "1000751",
+   "1000483",
+   "1000035"
+  ],
+  "showtime_count": 402
+ },
+ "saint-gratien": {
+  "slug": "saint-gratien",
+  "name": "Saint-Gratien",
+  "cinemas": [
+   "2390452"
+  ],
+  "showtime_count": 399
+ },
+ "vitry-sur-seine": {
+  "slug": "vitry-sur-seine",
+  "name": "Vitry-sur-Seine",
+  "cinemas": [
+   "2463931"
+  ],
+  "showtime_count": 384
+ },
+ "dunkerque": {
+  "slug": "dunkerque",
+  "name": "Dunkerque",
+  "cinemas": [
+   "5143731"
+  ],
+  "showtime_count": 383
+ },
+ "tremblay-en-france": {
+  "slug": "tremblay-en-france",
+  "name": "Tremblay-en-France",
+  "cinemas": [
+   "2433972"
+  ],
+  "showtime_count": 382
+ },
+ "toulouse": {
+  "slug": "toulouse",
+  "name": "Toulouse",
+  "cinemas": [
+   "4430261",
+   "4430222"
+  ],
+  "showtime_count": 335
+ },
+ "pantin": {
+  "slug": "pantin",
+  "name": "Pantin",
+  "cinemas": [
+   "2303281"
+  ],
+  "showtime_count": 324
+ },
+ "montreuil": {
+  "slug": "montreuil",
+  "name": "Montreuil",
+  "cinemas": [
+   "2276086"
+  ],
+  "showtime_count": 324
+ },
+ "massy": {
+  "slug": "massy",
+  "name": "Massy",
+  "cinemas": [
+   "2252134"
+  ],
+  "showtime_count": 312
+ },
+ "montmorency": {
+  "slug": "montmorency",
+  "name": "Montmorency",
+  "cinemas": [
+   "2274702"
+  ],
+  "showtime_count": 308
+ },
+ "bayonne": {
+  "slug": "bayonne",
+  "name": "Bayonne",
+  "cinemas": [
+   "4042717"
+  ],
+  "showtime_count": 307
+ },
+ "agen": {
+  "slug": "agen",
+  "name": "Agen",
+  "cinemas": [
+   "4721602"
+  ],
+  "showtime_count": 288
+ },
+ "chilly-mazarin": {
+  "slug": "chilly-mazarin",
+  "name": "Chilly-Mazarin",
+  "cinemas": [
+   "2111583"
+  ],
+  "showtime_count": 262
+ },
+ "marseille": {
+  "slug": "marseille",
+  "name": "Marseille",
+  "cinemas": [
+   "7723560",
+   "7249791"
+  ],
+  "showtime_count": 259
+ },
+ "chartres": {
+  "slug": "chartres",
+  "name": "Chartres",
+  "cinemas": [
+   "3103166"
+  ],
+  "showtime_count": 255
+ },
+ "saint-denis": {
+  "slug": "saint-denis",
+  "name": "Saint-Denis",
+  "cinemas": [
+   "2381912"
+  ],
+  "showtime_count": 254
+ },
+ "chatenay-malabry": {
+  "slug": "chatenay-malabry",
+  "name": "Châtenay-Malabry",
+  "cinemas": [
+   "2105652"
+  ],
+  "showtime_count": 237
+ },
+ "fontainebleau": {
+  "slug": "fontainebleau",
+  "name": "Fontainebleau",
+  "cinemas": [
+   "2162844",
+   "2162853"
+  ],
+  "showtime_count": 235
+ },
+ "saint-ouen-l-aumone": {
+  "slug": "saint-ouen-l-aumone",
+  "name": "Saint-Ouen-l'Aumône",
+  "cinemas": [
+   "2408323"
+  ],
+  "showtime_count": 232
+ },
+ "angouleme": {
+  "slug": "angouleme",
+  "name": "Angoulême",
+  "cinemas": [
+   "4019464"
+  ],
+  "showtime_count": 204
+ },
+ "sainte-foy-les-lyon": {
+  "slug": "sainte-foy-les-lyon",
+  "name": "Sainte-Foy-lès-Lyon",
+  "cinemas": [
+   "6385823"
+  ],
+  "showtime_count": 198
+ },
+ "la-rochelle": {
+  "slug": "la-rochelle",
+  "name": "La Rochelle",
+  "cinemas": [
+   "4339852"
+  ],
+  "showtime_count": 192
+ },
+ "cachan": {
+  "slug": "cachan",
+  "name": "Cachan",
+  "cinemas": [
+   "2081101"
+  ],
+  "showtime_count": 192
+ },
+ "epinal": {
+  "slug": "epinal",
+  "name": "Épinal",
+  "cinemas": [
+   "9148227"
+  ],
+  "showtime_count": 191
+ },
+ "blanquefort": {
+  "slug": "blanquefort",
+  "name": "Blanquefort",
+  "cinemas": [
+   "4057821"
+  ],
+  "showtime_count": 187
+ },
+ "verrieres-le-buisson": {
+  "slug": "verrieres-le-buisson",
+  "name": "Verrières-le-Buisson",
+  "cinemas": [
+   "2449542"
+  ],
+  "showtime_count": 178
+ },
+ "nancy": {
+  "slug": "nancy",
+  "name": "Nancy",
+  "cinemas": [
+   "9284113",
+   "9284121"
+  ],
+  "showtime_count": 178
+ },
+ "alencon": {
+  "slug": "alencon",
+  "name": "Alençon",
+  "cinemas": [
+   "3014445"
+  ],
+  "showtime_count": 165
+ },
+ "arcueil": {
+  "slug": "arcueil",
+  "name": "Arcueil",
+  "cinemas": [
+   "2022634"
+  ],
+  "showtime_count": 161
+ },
+ "gennevilliers": {
+  "slug": "gennevilliers",
+  "name": "Gennevilliers",
+  "cinemas": [
+   "2175513"
+  ],
+  "showtime_count": 159
+ },
+ "ivry-sur-seine": {
+  "slug": "ivry-sur-seine",
+  "name": "Ivry-sur-Seine",
+  "cinemas": [
+   "2202551"
+  ],
+  "showtime_count": 154
+ },
+ "bagnolet": {
+  "slug": "bagnolet",
+  "name": "Bagnolet",
+  "cinemas": [
+   "2036013"
+  ],
+  "showtime_count": 149
+ },
+ "nantes": {
+  "slug": "nantes",
+  "name": "Nantes",
+  "cinemas": [
+   "3284662",
+   "3284747"
+  ],
+  "showtime_count": 148
+ },
+ "heric": {
+  "slug": "heric",
+  "name": "Héric",
+  "cinemas": [
+   "3195211"
+  ],
+  "showtime_count": 147
+ },
+ "hauteville-sur-mer": {
+  "slug": "hauteville-sur-mer",
+  "name": "Hauteville-sur-Mer",
+  "cinemas": [
+   "3192961"
+  ],
+  "showtime_count": 147
+ },
+ "martigues": {
+  "slug": "martigues",
+  "name": "Martigues",
+  "cinemas": [
+   "7720261"
+  ],
+  "showtime_count": 146
+ },
+ "bourges": {
+  "slug": "bourges",
+  "name": "Bourges",
+  "cinemas": [
+   "3068061"
+  ],
+  "showtime_count": 140
+ },
+ "redon": {
+  "slug": "redon",
+  "name": "Redon",
+  "cinemas": [
+   "3333304"
+  ],
+  "showtime_count": 139
+ },
+ "romainville": {
+  "slug": "romainville",
+  "name": "Romainville",
+  "cinemas": [
+   "2341652"
+  ],
+  "showtime_count": 135
+ },
+ "saintes": {
+  "slug": "saintes",
+  "name": "Saintes",
+  "cinemas": [
+   "4349492"
+  ],
+  "showtime_count": 134
+ },
+ "clermont-l-herault": {
+  "slug": "clermont-l-herault",
+  "name": "Clermont-l'Hérault",
+  "cinemas": [
+   "7114564"
+  ],
+  "showtime_count": 131
+ },
+ "brest": {
+  "slug": "brest",
+  "name": "Brest",
+  "cinemas": [
+   "3073099"
+  ],
+  "showtime_count": 131
+ },
+ "begles": {
+  "slug": "begles",
+  "name": "Bègles",
+  "cinemas": [
+   "4046862"
+  ],
+  "showtime_count": 125
+ },
+ "strasbourg": {
+  "slug": "strasbourg",
+  "name": "Strasbourg",
+  "cinemas": [
+   "8368801"
+  ],
+  "showtime_count": 122
+ },
+ "barbezieux-saint-hilaire": {
+  "slug": "barbezieux-saint-hilaire",
+  "name": "Barbezieux-Saint-Hilaire",
+  "cinemas": [
+   "4038772"
+  ],
+  "showtime_count": 122
+ },
+ "gonesse": {
+  "slug": "gonesse",
+  "name": "Gonesse",
+  "cinemas": [
+   "2179852"
+  ],
+  "showtime_count": 119
+ },
+ "mulhouse": {
+  "slug": "mulhouse",
+  "name": "Mulhouse",
+  "cinemas": [
+   "8282583"
+  ],
+  "showtime_count": 119
+ },
+ "bobigny": {
+  "slug": "bobigny",
+  "name": "Bobigny",
+  "cinemas": [
+   "2059034"
+  ],
+  "showtime_count": 118
+ },
+ "six-fours-les-plages": {
+  "slug": "six-fours-les-plages",
+  "name": "Six-Fours-les-Plages",
+  "cinemas": [
+   "7364205"
+  ],
+  "showtime_count": 115
+ },
+ "saint-etienne": {
+  "slug": "saint-etienne",
+  "name": "Saint-Etienne",
+  "cinemas": [
+   "6383261",
+   "6383585"
+  ],
+  "showtime_count": 114
+ },
+ "trappes": {
+  "slug": "trappes",
+  "name": "Trappes",
+  "cinemas": [
+   "2432832"
+  ],
+  "showtime_count": 114
+ },
+ "rennes": {
+  "slug": "rennes",
+  "name": "Rennes",
+  "cinemas": [
+   "3335121"
+  ],
+  "showtime_count": 112
+ },
+ "bondy": {
+  "slug": "bondy",
+  "name": "Bondy",
+  "cinemas": [
+   "2061504"
+  ],
+  "showtime_count": 112
+ },
+ "canet-en-roussillon": {
+  "slug": "canet-en-roussillon",
+  "name": "Canet-en-Roussillon",
+  "cinemas": [
+   "7084556"
+  ],
+  "showtime_count": 109
+ },
+ "seynod": {
+  "slug": "seynod",
+  "name": "Seynod",
+  "cinemas": [
+   "6362651"
+  ],
+  "showtime_count": 109
+ },
+ "clichy": {
+  "slug": "clichy",
+  "name": "Clichy",
+  "cinemas": [
+   "2115104"
+  ],
+  "showtime_count": 103
+ },
+ "salies-de-bearn": {
+  "slug": "salies-de-bearn",
+  "name": "Salies-de-Béarn",
+  "cinemas": [
+   "4350169"
+  ],
+  "showtime_count": 102
+ },
+ "amiens": {
+  "slug": "amiens",
+  "name": "Amiens",
+  "cinemas": [
+   "3017325"
+  ],
+  "showtime_count": 102
+ },
+ "roanne": {
+  "slug": "roanne",
+  "name": "Roanne",
+  "cinemas": [
+   "6338953"
+  ],
+  "showtime_count": 101
+ },
+ "fougeres": {
+  "slug": "fougeres",
+  "name": "Fougères",
+  "cinemas": [
+   "3166434"
+  ],
+  "showtime_count": 99
+ },
+ "la-roche-sur-yon": {
+  "slug": "la-roche-sur-yon",
+  "name": "La-Roche-Sur-Yon",
+  "cinemas": [
+   "4718210"
+  ],
+  "showtime_count": 96
+ },
+ "creteil": {
+  "slug": "creteil",
+  "name": "Créteil",
+  "cinemas": [
+   "2128535",
+   "2128541"
+  ],
+  "showtime_count": 96
+ },
+ "le-mans": {
+  "slug": "le-mans",
+  "name": "Le Mans",
+  "cinemas": [
+   "3244492"
+  ],
+  "showtime_count": 93
+ },
+ "montpellier": {
+  "slug": "montpellier",
+  "name": "Montpellier",
+  "cinemas": [
+   "7275334"
+  ],
+  "showtime_count": 89
+ },
+ "chalons-en-champagne": {
+  "slug": "chalons-en-champagne",
+  "name": "Châlons en Champagne",
+  "cinemas": [
+   "3095006"
+  ],
+  "showtime_count": 88
+ },
+ "caen": {
+  "slug": "caen",
+  "name": "Caen",
+  "cinemas": [
+   "3081451"
+  ],
+  "showtime_count": 88
+ },
+ "lyon": {
+  "slug": "lyon",
+  "name": "Lyon",
+  "cinemas": [
+   "6238013"
+  ],
+  "showtime_count": 86
+ },
+ "albertville": {
+  "slug": "albertville",
+  "name": "Albertville",
+  "cinemas": [
+   "6014073"
+  ],
+  "showtime_count": 86
+ },
+ "ugine": {
+  "slug": "ugine",
+  "name": "Ugine",
+  "cinemas": [
+   "6437401"
+  ],
+  "showtime_count": 85
+ },
+ "decines-charpieu": {
+  "slug": "decines-charpieu",
+  "name": "Décines-Charpieu",
+  "cinemas": [
+   "6136753"
+  ],
+  "showtime_count": 83
+ },
+ "gap": {
+  "slug": "gap",
+  "name": "Gap",
+  "cinemas": [
+   "7172744"
+  ],
+  "showtime_count": 81
+ },
+ "carmaux": {
+  "slug": "carmaux",
+  "name": "Carmaux",
+  "cinemas": [
+   "4086544"
+  ],
+  "showtime_count": 78
+ },
+ "thouars": {
+  "slug": "thouars",
+  "name": "Thouars",
+  "cinemas": [
+   "4427365"
+  ],
+  "showtime_count": 71
+ },
+ "dijon": {
+  "slug": "dijon",
+  "name": "Dijon",
+  "cinemas": [
+   "6138741"
+  ],
+  "showtime_count": 71
+ },
+ "aiguillon": {
+  "slug": "aiguillon",
+  "name": "Aiguillon",
+  "cinemas": [
+   "4012562"
+  ],
+  "showtime_count": 70
+ },
+ "beaumont-sur-oise": {
+  "slug": "beaumont-sur-oise",
+  "name": "Beaumont-sur-Oise",
+  "cinemas": [
+   "2045132"
+  ],
+  "showtime_count": 70
+ },
+ "port-leucate": {
+  "slug": "port-leucate",
+  "name": "Port Leucate",
+  "cinemas": [
+   "7224165"
+  ],
+  "showtime_count": 70
+ },
+ "mayenne": {
+  "slug": "mayenne",
+  "name": "Mayenne",
+  "cinemas": [
+   "3253763"
+  ],
+  "showtime_count": 70
+ },
+ "villard-bonnot": {
+  "slug": "villard-bonnot",
+  "name": "Villard-Bonnot",
+  "cinemas": [
+   "6454504"
+  ],
+  "showtime_count": 66
+ },
+ "saverne": {
+  "slug": "saverne",
+  "name": "Saverne",
+  "cinemas": [
+   "8356024"
+  ],
+  "showtime_count": 62
+ },
+ "marly": {
+  "slug": "marly",
+  "name": "Marly",
+  "cinemas": [
+   "8248151"
+  ],
+  "showtime_count": 61
+ },
+ "flers": {
+  "slug": "flers",
+  "name": "Flers",
+  "cinemas": [
+   "3160923"
+  ],
+  "showtime_count": 60
+ },
+ "poitiers": {
+  "slug": "poitiers",
+  "name": "Poitiers",
+  "cinemas": [
+   "4317345"
+  ],
+  "showtime_count": 58
+ },
+ "chateau-renault": {
+  "slug": "chateau-renault",
+  "name": "Château-Renault",
+  "cinemas": [
+   "3104851"
+  ],
+  "showtime_count": 58
+ },
+ "benfeld": {
+  "slug": "benfeld",
+  "name": "Benfeld",
+  "cinemas": [
+   "8049522"
+  ],
+  "showtime_count": 58
+ },
+ "clermont-ferrand": {
+  "slug": "clermont-ferrand",
+  "name": "Clermont-Ferrand",
+  "cinemas": [
+   "6114664"
+  ],
+  "showtime_count": 56
+ },
+ "toulon": {
+  "slug": "toulon",
+  "name": "Toulon",
+  "cinemas": [
+   "7429951"
+  ],
+  "showtime_count": 55
+ },
+ "nemours": {
+  "slug": "nemours",
+  "name": "Nemours",
+  "cinemas": [
+   "2286831"
+  ],
+  "showtime_count": 54
+ },
+ "les-ulis": {
+  "slug": "les-ulis",
+  "name": "Les Ulis",
+  "cinemas": [
+   "2437561"
+  ],
+  "showtime_count": 52
+ },
+ "wittenheim": {
+  "slug": "wittenheim",
+  "name": "Wittenheim",
+  "cinemas": [
+   "8468533"
+  ],
+  "showtime_count": 52
+ },
+ "bailleul": {
+  "slug": "bailleul",
+  "name": "Bailleul",
+  "cinemas": [
+   "5036352"
+  ],
+  "showtime_count": 51
+ },
+ "le-pouliguen": {
+  "slug": "le-pouliguen",
+  "name": "Le Pouliguen",
+  "cinemas": [
+   "3322952"
+  ],
+  "showtime_count": 49
+ },
+ "combourg": {
+  "slug": "combourg",
+  "name": "Combourg",
+  "cinemas": [
+   "3117742"
+  ],
+  "showtime_count": 48
+ },
+ "pornichet": {
+  "slug": "pornichet",
+  "name": "Pornichet",
+  "cinemas": [
+   "3321146"
+  ],
+  "showtime_count": 48
+ },
+ "beynes": {
+  "slug": "beynes",
+  "name": "Beynes",
+  "cinemas": [
+   "2054292"
+  ],
+  "showtime_count": 48
+ },
+ "garlin": {
+  "slug": "garlin",
+  "name": "Garlin",
+  "cinemas": [
+   "4173432"
+  ],
+  "showtime_count": 45
+ },
+ "choisy-le-roi": {
+  "slug": "choisy-le-roi",
+  "name": "Choisy-le-Roi",
+  "cinemas": [
+   "2112014"
+  ],
+  "showtime_count": 45
+ },
+ "argentan": {
+  "slug": "argentan",
+  "name": "Argentan",
+  "cinemas": [
+   "3023241"
+  ],
+  "showtime_count": 44
+ },
+ "questembert": {
+  "slug": "questembert",
+  "name": "Questembert",
+  "cinemas": [
+   "3329501"
+  ],
+  "showtime_count": 43
+ },
+ "langres": {
+  "slug": "langres",
+  "name": "Langres",
+  "cinemas": [
+   "3215723"
+  ],
+  "showtime_count": 42
+ },
+ "brides-les-bains": {
+  "slug": "brides-les-bains",
+  "name": "Brides-les-Bains",
+  "cinemas": [
+   "6074553"
+  ],
+  "showtime_count": 40
+ },
+ "la-mure": {
+  "slug": "la-mure",
+  "name": "La Mure",
+  "cinemas": [
+   "6283051"
+  ],
+  "showtime_count": 38
+ },
+ "saint-max": {
+  "slug": "saint-max",
+  "name": "Saint-Max",
+  "cinemas": [
+   "9405441"
+  ],
+  "showtime_count": 38
+ },
+ "pelussin": {
+  "slug": "pelussin",
+  "name": "Pélussin",
+  "cinemas": [
+   "6306243"
+  ],
+  "showtime_count": 37
+ },
+ "bron": {
+  "slug": "bron",
+  "name": "Bron",
+  "cinemas": [
+   "6076073"
+  ],
+  "showtime_count": 36
+ },
+ "gerardmer": {
+  "slug": "gerardmer",
+  "name": "Gérardmer",
+  "cinemas": [
+   "9175924"
+  ],
+  "showtime_count": 36
+ },
+ "maisons-laffitte": {
+  "slug": "maisons-laffitte",
+  "name": "Maisons-Laffitte",
+  "cinemas": [
+   "2242003"
+  ],
+  "showtime_count": 34
+ },
+ "cucuron": {
+  "slug": "cucuron",
+  "name": "Cucuron",
+  "cinemas": [
+   "7131031"
+  ],
+  "showtime_count": 33
+ },
+ "senlis": {
+  "slug": "senlis",
+  "name": "Senlis",
+  "cinemas": [
+   "3359462"
+  ],
+  "showtime_count": 30
+ },
+ "rosny-sous-bois": {
+  "slug": "rosny-sous-bois",
+  "name": "Rosny-sous-Bois",
+  "cinemas": [
+   "2343762"
+  ],
+  "showtime_count": 30
+ },
+ "valbonne": {
+  "slug": "valbonne",
+  "name": "Valbonne",
+  "cinemas": [
+   "7439503"
+  ],
+  "showtime_count": 27
+ },
+ "vizille": {
+  "slug": "vizille",
+  "name": "Vizille",
+  "cinemas": [
+   "6464453"
+  ],
+  "showtime_count": 26
+ },
+ "matour": {
+  "slug": "matour",
+  "name": "Matour",
+  "cinemas": [
+   "6252342"
+  ],
+  "showtime_count": 26
+ },
+ "chatou": {
+  "slug": "chatou",
+  "name": "Chatou",
+  "cinemas": [
+   "2106262"
+  ],
+  "showtime_count": 22
+ },
+ "saint-maur-des-fosses": {
+  "slug": "saint-maur-des-fosses",
+  "name": "Saint-Maur-des-Fossés",
+  "cinemas": [
+   "2404603"
+  ],
+  "showtime_count": 19
+ },
+ "moutiers": {
+  "slug": "moutiers",
+  "name": "Moutiers",
+  "cinemas": [
+   "6281723"
+  ],
+  "showtime_count": 18
+ },
+ "chatellerault": {
+  "slug": "chatellerault",
+  "name": "Châtellerault",
+  "cinemas": [
+   "4105375"
+  ],
+  "showtime_count": 16
+ },
+ "annecy": {
+  "slug": "annecy",
+  "name": "Annecy",
+  "cinemas": [
+   "6019945"
+  ],
+  "showtime_count": 15
+ },
+ "villard-de-lans": {
+  "slug": "villard-de-lans",
+  "name": "Villard-de-Lans",
+  "cinemas": [
+   "6454531"
+  ],
+  "showtime_count": 14
+ },
+ "barjols": {
+  "slug": "barjols",
+  "name": "Barjols",
+  "cinemas": [
+   "7039442"
+  ],
+  "showtime_count": 14
+ },
+ "foix": {
+  "slug": "foix",
+  "name": "Foix",
+  "cinemas": [
+   "4162213"
+  ],
+  "showtime_count": 13
+ },
+ "chelles": {
+  "slug": "chelles",
+  "name": "Chelles",
+  "cinemas": [
+   "2108774"
+  ],
+  "showtime_count": 13
+ },
+ "bischwiller": {
+  "slug": "bischwiller",
+  "name": "Bischwiller",
+  "cinemas": [
+   "8056558"
+  ],
+  "showtime_count": 13
+ },
+ "rixheim": {
+  "slug": "rixheim",
+  "name": "Rixheim",
+  "cinemas": [
+   "8338902"
+  ],
+  "showtime_count": 11
+ },
+ "saint-renan": {
+  "slug": "saint-renan",
+  "name": "Saint-Renan",
+  "cinemas": [
+   "3414352"
+  ],
+  "showtime_count": 10
+ },
+ "reichshoffen": {
+  "slug": "reichshoffen",
+  "name": "Reichshoffen",
+  "cinemas": [
+   "8333683"
+  ],
+  "showtime_count": 9
+ },
+ "trevoux": {
+  "slug": "trevoux",
+  "name": "Trévoux",
+  "cinemas": [
+   "6700250"
+  ],
+  "showtime_count": 8
+ },
+ "saint-georges-de-didonne": {
+  "slug": "saint-georges-de-didonne",
+  "name": "Saint-Georges-de-Didonne",
+  "cinemas": [
+   "4387501"
+  ],
+  "showtime_count": 7
+ },
+ "la-roche-sur-foron": {
+  "slug": "la-roche-sur-foron",
+  "name": "La Roche-sur-Foron",
+  "cinemas": [
+   "6339254"
+  ],
+  "showtime_count": 6
+ },
+ "autrans": {
+  "slug": "autrans",
+  "name": "Autrans",
+  "cinemas": [
+   "6032092"
+  ],
+  "showtime_count": 6
+ },
+ "saint-louis": {
+  "slug": "saint-louis",
+  "name": "Saint-Louis",
+  "cinemas": [
+   "8398731"
+  ],
+  "showtime_count": 4
+ }
+}

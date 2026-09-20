@@ -1,0 +1,8 @@
+{
+ "generated_at": "2026-09-20T11:53:50",
+ "since": "2026-08-28",
+ "skipped_rows": 82,
+ "scare_perime": true,
+ "scare_photo_du": "2026-08-28",
+ "scare_raison": "HTTPError: HTTP Error 501: Not Implemented"
+}
