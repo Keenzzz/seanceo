@@ -229,12 +229,54 @@ VERSION_MAP = {
 }
 
 
+# Mentions qui occupent la place d'un nom sans en être un. Les caisses les
+# emploient quand l'information n'existe pas — une séance surprise n'a pas de
+# réalisateur à annoncer, c'est tout l'intérêt.
+#
+# ⚠️ CETTE LISTE EST LA SEULE. `sources.py` l'importe et en dérive sa propre
+# forme normalisée (`_PLACEHOLDER_PEOPLE`) pour le casting. Deux listes
+# divergeraient au premier ajout.
+#
+# Portée VOULUE : uniquement les mentions qu'AUCUNE personne ne porte comme
+# nom. On ne met pas ici un vrai nom générique (« Anonyme » signe des films),
+# et on n'invente pas d'heuristique (tout ce qui commence par « in- »…) : les
+# cas se comptent sur les doigts, on préfère les nommer.
+MENTIONS_CREUSES = (
+    "acteurs inconnus", "acteur inconnu", "distribution inconnue",
+    "inconnu", "inconnue", "inconnus", "inconnues", "collectif", "divers",
+    # Relevés le 2026-09-30 sur l'open data du SCARE, sur les avant-premières
+    # « Coup de cœur surprise AFCAE » — dont le film n'est PAS annoncé, c'est
+    # le principe. La même séance y était créditée tantôt « UNDEFINED »,
+    # tantôt « Mystère », tantôt rien : trois graphies du même vide, donc
+    # trois clés, donc trois fiches film pour un seul film.
+    "undefined", "mystère",
+)
+
+_CREUX = {slugify(m) for m in MENTIONS_CREUSES}
+
+
 def movie_key(title: str, director: str) -> str:
     """Clé de déduplication d'un film.
 
     `filmid` n'est PAS global : chaque logiciel de caisse a sa propre
     numérotation, donc deux cinémas donnent des ids différents au même film.
-    On dédoublonne par (titre, réalisateur) normalisés."""
+    On dédoublonne par (titre, réalisateur) normalisés.
+
+    ⚠️ Une mention creuse vaut PAS DE RÉALISATEUR, et doit donc produire la
+    même clé qu'un champ vide. Sans ça « UNDEFINED » devenait un réalisateur
+    comme un autre : il entrait dans la clé, donc dans l'URL de la fiche
+    (`/film/…-afcae-4-undefined/`), il séparait en trois fiches distinctes ce
+    qui était un seul film, et comme quatre films le partageaient il franchissait
+    le seuil des pages réalisateur — le site publiait `/realisateur/undefined/`,
+    en français et en anglais, sitemap compris.
+
+    C'est le bon endroit pour corriger : la clé est calculée par CHAQUE
+    connecteur via cette fonction, donc une caisse qui inventerait demain la
+    même mention creuse est déjà couverte. Le champ `director` affiché, lui,
+    est nettoyé par `sources._canonical_people()` — les deux sont nécessaires,
+    la clé ne porte pas le texte de la fiche."""
+    if slugify(director) in _CREUX:
+        director = ""
     return f"{slugify(title)}|{slugify(director)}"
 
 

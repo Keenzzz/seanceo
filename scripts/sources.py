@@ -18,6 +18,8 @@ import unicodedata
 from collections import Counter, defaultdict
 from pathlib import Path
 
+from fetch_data import MENTIONS_CREUSES
+
 # Quatre fichiers par source, dans l'ordre cinemas/movies/showtimes/cities.
 KINDS = ("cinemas", "movies", "showtimes", "cities")
 INDE = tuple(f"{k}.json" for k in KINDS)
@@ -209,10 +211,6 @@ _PLACEHOLDER_DIRECTORS = {"collectif", "divers"}
 # Mentions creuses rencontrées dans le champ `cast` : elles occupent la place
 # d'une vraie distribution sans rien apprendre, on les retire. Clés déjà
 # repliées par _fold_person() (donc en minuscules et à mots TRIÉS).
-_PLACEHOLDER_PEOPLE = {
-    "acteurs inconnus", "acteur inconnu", "distribution inconnue",
-    "inconnu", "inconnue", "inconnus", "inconnues", "collectif", "divers",
-}
 
 
 def _fold_title(t: str) -> str:
@@ -233,6 +231,13 @@ def _fold_person(name: str) -> str:
     même clé. On trie les mots — contrairement à `_fold_title()`, où l'ordre
     porte du sens (« Les Dents de la mer » n'est pas « La mer des dents »)."""
     return " ".join(sorted(_fold_title(name).split()))
+
+
+# Dérivé de l'UNIQUE liste, tenue dans fetch_data.py : là-bas elle sert à la
+# clé des films (forme slug), ici au texte affiché (forme repliée, ordre des
+# mots neutralisé par `_fold_person`). Une seule liste, deux formes — la
+# recopier ici la ferait diverger au premier ajout.
+_PLACEHOLDER_PEOPLE = {_fold_person(m) for m in MENTIONS_CREUSES}
 
 
 def _capitalize(word: str) -> str:
@@ -368,6 +373,15 @@ def _canonical_people(movies: dict) -> tuple[int, int]:
     reals = castings = 0
     for m in movies.values():
         d = (m.get("director") or "").strip()
+        # ⚠️ Une mention creuse se retire du RÉALISATEUR comme du casting. Elle
+        # ne l'était pas : la fiche d'une avant-première surprise annonçait
+        # « De Undefined ». `movie_key()` neutralise déjà ces mentions dans la
+        # clé, mais la clé ne porte pas le texte affiché — il faut les deux.
+        if _fold_person(d) in _PLACEHOLDER_PEOPLE:
+            d = ""
+            if m.get("director"):
+                m["director"] = ""
+                reals += 1
         if d:
             retenu = entiers[_fold_person(d)]
             if retenu != m["director"]:
