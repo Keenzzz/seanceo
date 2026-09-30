@@ -16,19 +16,44 @@
 
   var cinemas = JSON.parse(raw.textContent);
 
+  // Attribution exigée par Esri pour l'usage de ses fonds de carte.
+  var TUILES_ATTRIB = 'Fonds de carte &copy; <a href="https://www.esri.com/">Esri</a>' +
+    ' — Esri, HERE, Garmin, &copy; OpenStreetMap contributors';
+
   var map = L.map(el, { scrollWheelZoom: true, zoomControl: true })
     .setView([46.6, 2.4], 6); // centre de la France métropolitaine
 
-  // Fond CartoDB Positron (light_all) : clair et sobre, labels de villes qui
-  // apparaissent progressivement au zoom (grosses villes dézoomé, plus petites
-  // en zoomant). Remplace l'ancien dark_nolabels qui n'affichait aucun nom :
-  // impossible de se repérer. Mêmes serveurs de tuiles, aucune dépendance de plus.
-  L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
-    attribution:
-      '© OpenStreetMap contributors © <a href="https://carto.com/attributions">CARTO</a>',
-    subdomains: "abcd",
-    maxZoom: 19,
-  }).addTo(map);
+  // Fond Esri « Light Gray Canvas » : clair et sobre, dans le même esprit que
+  // le CartoDB Positron qu'il remplace (2026-09-30).
+  //
+  // ⚠️ POURQUOI ON A QUITTÉ CARTO : leur CDN de fonds de carte exige désormais
+  // une clé. Il ne renvoie PAS d'erreur — il sert un 200, un vrai PNG, de la
+  // bonne taille, portant le filigrane « API KEY REQUIRED ». La carte gardait
+  // donc ses marqueurs, ses clusters et ses popups : rien dans la console, rien
+  // dans les tests de lien, seul l'œil voyait la panne. Signe qui ne trompe pas
+  // et qui sert de test : deux tuiles de coordonnées très éloignées revenaient
+  // OCTET POUR OCTET identiques (Paris et le milieu de l'Atlantique, md5
+  // 502fc5f6…). Un fond de carte qui rend la même image partout est mort.
+  //
+  // ⚠️ LES LABELS SONT UNE COUCHE À PART chez Esri, et ils ne sont pas
+  // optionnels : le fond seul n'affiche AUCUN nom de ville. C'est exactement le
+  // défaut de l'ancien dark_nolabels, qui rendait la carte impossible à lire.
+  // Ne pas retirer la couche « Reference » en croyant économiser des requêtes.
+  //
+  // ⚠️ `maxNativeZoom` N'EST PAS DÉCORATIF. Esri s'arrête au zoom 16 ; au-delà
+  // il sert une tuile « données indisponibles » (2 521 octets, la même à toutes
+  // les coordonnées — le même piège que CARTO). Avec maxNativeZoom, Leaflet
+  // agrandit la tuile 16 au lieu d'aller la chercher : c'est flou passé ce
+  // niveau, mais on voit la rue. Sans, la carte devient blanche quand on zoome
+  // sur une salle, ce qui est le geste le plus courant.
+  //
+  // Ni `{s}` ni `{r}` ici : Esri n'a pas de sous-domaines ni de tuiles retina.
+  var ESRI_CANVAS = "https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/";
+  var fondOpts = { attribution: TUILES_ATTRIB, maxNativeZoom: 16, maxZoom: 19 };
+  L.tileLayer(ESRI_CANVAS + "World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}", fondOpts)
+    .addTo(map);
+  L.tileLayer(ESRI_CANVAS + "World_Light_Gray_Reference/MapServer/tile/{z}/{y}/{x}",
+              { maxNativeZoom: 16, maxZoom: 19 }).addTo(map);
 
   var clusters = L.markerClusterGroup({
     showCoverageOnHover: false,
