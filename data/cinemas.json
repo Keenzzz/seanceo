@@ -1,23 +1,63 @@
 {
- "1008531": {
-  "id": "1008531",
-  "name": "Le Grand Action",
-  "address": "5 rue des Ecoles",
+ "4063411": {
+  "id": "4063411",
+  "name": "Utopia Bordeaux",
+  "address": "5 Pl. Camille Jullian",
+  "postcode": "33000",
+  "city": "Bordeaux",
+  "city_slug": "bordeaux",
+  "lat": 44.839034,
+  "lon": -0.57232
+ },
+ "2060942": {
+  "id": "2060942",
+  "name": "Le Forum",
+  "address": "1 Place du Forum",
+  "postcode": "94470",
+  "city": "Boissy-Saint-Léger",
+  "city_slug": "boissy-saint-leger",
+  "lat": 48.753957,
+  "lon": 2.501952
+ },
+ "3095006": {
+  "id": "3095006",
+  "name": "La Comète",
+  "address": "5 rue des Fripiers",
+  "postcode": "51000",
+  "city": "Châlons en Champagne",
+  "city_slug": "chalons-en-champagne",
+  "lat": 48.95623,
+  "lon": 4.363915
+ },
+ "3724360": {
+  "id": "3724360",
+  "name": "Utopia Pont-Sainte-Marie",
+  "address": "11 Rue du Moulinet",
+  "postcode": "10150",
+  "city": "Pont-Sainte-Marie",
+  "city_slug": "pont-sainte-marie",
+  "lat": 48.316957,
+  "lon": 4.106024
+ },
+ "1008451": {
+  "id": "1008451",
+  "name": "Studio des Ursulines",
+  "address": "10 rue des Ursulines",
   "postcode": "75005",
   "city": "Paris",
   "city_slug": "paris",
-  "lat": 48.848781,
-  "lon": 2.348293
+  "lat": 48.842615,
+  "lon": 2.342102
  },
- "4162213": {
-  "id": "4162213",
-  "name": "L'Estive",
-  "address": "20 avenue du Général de Gaulle",
-  "postcode": "09000",
-  "city": "Foix",
-  "city_slug": "foix",
-  "lat": 42.959018,
-  "lon": 1.610247
+ "4431352": {
+  "id": "4431352",
+  "name": "Utopia Tournefeuille",
+  "address": "Impasse du Château",
+  "postcode": "31170",
+  "city": "Tournefeuille",
+  "city_slug": "tournefeuille",
+  "lat": 43.581452,
+  "lon": 1.345947
  },
  "6339254": {
   "id": "6339254",
@@ -29,55 +69,55 @@
   "lat": 46.066138,
   "lon": 6.314399
  },
- "4173432": {
-  "id": "4173432",
-  "name": "Ciné Garlin",
-  "address": "13 cours de la République",
-  "postcode": "64330",
-  "city": "Garlin",
-  "city_slug": "garlin",
-  "lat": 43.560549,
-  "lon": -0.271893
+ "7033791": {
+  "id": "7033791",
+  "name": "Utopia Avignon - Manutention",
+  "address": "4 Rue des Esc. Sainte-Anne",
+  "postcode": "84000",
+  "city": "Avignon",
+  "city_slug": "avignon",
+  "lat": 43.951642,
+  "lon": 4.809105
  },
- "3117742": {
-  "id": "3117742",
-  "name": "Le Chateaubriand",
-  "address": "12 rue Malouas",
-  "postcode": "35270",
-  "city": "Combourg",
-  "city_slug": "combourg",
-  "lat": 48.412734,
-  "lon": -1.750495
+ "7033772": {
+  "id": "7033772",
+  "name": "Utopia Avignon",
+  "address": "5 Rue Figuière",
+  "postcode": "84000",
+  "city": "Avignon",
+  "city_slug": "avignon",
+  "lat": 43.947189,
+  "lon": 4.806829
  },
- "2437561": {
-  "id": "2437561",
-  "name": "Cinéma Jacques Prévert",
-  "address": "12 avenue du Berry",
-  "postcode": "91940",
-  "city": "Les Ulis",
-  "city_slug": "les-ulis",
-  "lat": 48.682542,
-  "lon": 2.169937
+ "4430455": {
+  "id": "4430455",
+  "name": "Utopia Borderouge",
+  "address": "59 Avenue Maurice Bourgès-Maunoury",
+  "postcode": "31200",
+  "city": "Toulouse",
+  "city_slug": "toulouse",
+  "lat": 43.634012,
+  "lon": 1.451637
  },
- "4350169": {
-  "id": "4350169",
-  "name": "Le Saleys",
-  "address": "Rue Maréchal Leclerc",
-  "postcode": "64270",
-  "city": "Salies-de-Béarn",
-  "city_slug": "salies-de-bearn",
-  "lat": 43.471503,
-  "lon": -0.928887
+ "7235561": {
+  "id": "7235561",
+  "name": "Le Cinéma",
+  "address": "11 rue de la République",
+  "postcode": "83340",
+  "city": "Le Luc en Provence",
+  "city_slug": "le-luc-en-provence",
+  "lat": 43.394915,
+  "lon": 6.312522
  },
- "3329501": {
-  "id": "3329501",
-  "name": "Iris Cinéma",
-  "address": "2 bd Saint-Pierre",
-  "postcode": "56230",
-  "city": "Questembert",
-  "city_slug": "questembert",
-  "lat": 47.664399,
-  "lon": -2.451715
+ "3065861": {
+  "id": "3065861",
+  "name": "Le Beaulieu",
+  "address": "26 Rue de Beaulieu",
+  "postcode": "44340",
+  "city": "Bouguenais",
+  "city_slug": "bouguenais",
+  "lat": 47.178037,
+  "lon": -1.624774
  },
  "3414352": {
   "id": "3414352",
@@ -89,165 +129,35 @@
   "lat": 48.430693,
   "lon": -4.623627
  },
- "2303281": {
-  "id": "2303281",
-  "name": "Ciné 104",
-  "address": "104 avenue Jean Lolive",
-  "postcode": "93500",
-  "city": "Pantin",
-  "city_slug": "pantin",
-  "lat": 48.892859,
-  "lon": 2.411428
+ "4173432": {
+  "id": "4173432",
+  "name": "Ciné Garlin",
+  "address": "13 cours de la République",
+  "postcode": "64330",
+  "city": "Garlin",
+  "city_slug": "garlin",
+  "lat": 43.560549,
+  "lon": -0.271893
  },
- "2433972": {
-  "id": "2433972",
-  "name": "Cinéma Jacques Tati",
-  "address": "29B avenue du Général de Gaulle",
-  "postcode": "93290",
-  "city": "Tremblay-en-France",
-  "city_slug": "tremblay-en-france",
-  "lat": 48.941517,
-  "lon": 2.570061
+ "3329501": {
+  "id": "3329501",
+  "name": "Iris Cinéma",
+  "address": "2 bd Saint-Pierre",
+  "postcode": "56230",
+  "city": "Questembert",
+  "city_slug": "questembert",
+  "lat": 47.664399,
+  "lon": -2.451715
  },
- "3195211": {
-  "id": "3195211",
-  "name": "Gen'éric",
-  "address": "Rue de l'Océan",
-  "postcode": "44810",
-  "city": "Héric",
-  "city_slug": "heric",
-  "lat": 47.415119,
-  "lon": -1.657848
- },
- "4339852": {
-  "id": "4339852",
-  "name": "La Coursive",
-  "address": "4 rue Saint-Jean-du-Pérot",
-  "postcode": "17000",
-  "city": "La Rochelle",
-  "city_slug": "la-rochelle",
-  "lat": 46.156212,
-  "lon": -1.155865
- },
- "2036013": {
-  "id": "2036013",
-  "name": "Le Cin'Hoche",
-  "address": "6 rue Hoche",
-  "postcode": "93170",
-  "city": "Bagnolet",
-  "city_slug": "bagnolet",
-  "lat": 48.869732,
-  "lon": 2.415897
- },
- "4012562": {
-  "id": "4012562",
-  "name": "Le Confluent",
-  "address": "1 Rue Thiers",
-  "postcode": "47190",
-  "city": "Aiguillon",
-  "city_slug": "aiguillon",
-  "lat": 44.301684,
-  "lon": 0.338455
- },
- "3017325": {
-  "id": "3017325",
-  "name": "Ciné St-Leu",
-  "address": "33 rue Vanmarcke",
-  "postcode": "80000",
-  "city": "Amiens",
-  "city_slug": "amiens",
-  "lat": 49.896347,
-  "lon": 2.302407
- },
- "7723560": {
-  "id": "7723560",
-  "name": "La Baleine",
-  "address": "59 cours Julien",
-  "postcode": "13006",
-  "city": "Marseille",
-  "city_slug": "marseille",
-  "lat": 43.294165,
-  "lon": 5.383061
- },
- "4427365": {
-  "id": "4427365",
-  "name": "Le Kiosque",
-  "address": "5 bd Adrien Morin",
-  "postcode": "79100",
-  "city": "Thouars",
-  "city_slug": "thouars",
-  "lat": 46.979652,
-  "lon": -0.2169
- },
- "2081101": {
-  "id": "2081101",
-  "name": "La Pléiade",
-  "address": "12 avenue Cousin de Méricourt",
-  "postcode": "94230",
-  "city": "Cachan",
-  "city_slug": "cachan",
-  "lat": 48.797204,
-  "lon": 2.33383
- },
- "2276086": {
-  "id": "2276086",
-  "name": "Le Méliès",
-  "address": "12 place Jean Jaurès",
-  "postcode": "93100",
-  "city": "Montreuil",
-  "city_slug": "montreuil",
-  "lat": 48.862179,
-  "lon": 2.442757
- },
- "3166434": {
-  "id": "3166434",
-  "name": "Le Club",
-  "address": "1 Esplanade des Chaussonières",
-  "postcode": "35300",
-  "city": "Fougères",
-  "city_slug": "fougeres",
-  "lat": 48.350545,
-  "lon": -1.194647
- },
- "5143731": {
-  "id": "5143731",
-  "name": "Studio 43",
-  "address": "9 Rue des Fusiliers Marins",
-  "postcode": "59140",
-  "city": "Dunkerque",
-  "city_slug": "dunkerque",
-  "lat": 51.033863,
-  "lon": 2.372477
- },
- "4317345": {
-  "id": "4317345",
-  "name": "TAP Cinéma",
-  "address": "1 place du Maréchal Leclerc",
-  "postcode": "86000",
-  "city": "Poitiers",
-  "city_slug": "poitiers",
-  "lat": 46.580545,
-  "lon": 0.340063
- },
- "3284662": {
-  "id": "3284662",
-  "name": "Le Concorde",
-  "address": "79 bd de l'Égalité",
-  "postcode": "44100",
-  "city": "Nantes",
-  "city_slug": "nantes",
-  "lat": 47.210487,
-  "lon": -1.586776
- },
- "4046862": {
-  "id": "4046862",
-  "name": "La Lanterne",
-  "address": "151 bd Albert 1er",
-  "postcode": "33130",
-  "city": "Bègles",
-  "city_slug": "begles",
-  "lat": 44.813146,
-  "lon": -0.564039
+ "6102173": {
+  "id": "6102173",
+  "name": "Cinéma Crystal Palace",
+  "address": "14 rue de Bourgogne",
+  "postcode": "58400",
+  "city": "La-Charité-sur-Loire",
+  "city_slug": "la-charite-sur-loire",
+  "lat": 47.176563,
+  "lon": 3.022173
  },
  "8368801": {
   "id": "8368801",
@@ -259,25 +169,125 @@
   "lat": 48.583588,
   "lon": 7.742245
  },
- "3335121": {
-  "id": "3335121",
-  "name": "Cinéma Arvor",
-  "address": "11 rue de Châtillon",
-  "postcode": "35000",
-  "city": "Rennes",
-  "city_slug": "rennes",
-  "lat": 48.095324,
-  "lon": -1.671326
+ "2081101": {
+  "id": "2081101",
+  "name": "La Pléiade",
+  "address": "12 avenue Cousin de Méricourt",
+  "postcode": "94230",
+  "city": "Cachan",
+  "city_slug": "cachan",
+  "lat": 48.797204,
+  "lon": 2.33383
  },
- "3333304": {
-  "id": "3333304",
-  "name": "Ciné Manivel",
-  "address": "12 quai Jean Bart",
-  "postcode": "35600",
-  "city": "Redon",
-  "city_slug": "redon",
-  "lat": 47.646283,
-  "lon": -2.08797
+ "2437561": {
+  "id": "2437561",
+  "name": "Cinéma Jacques Prévert",
+  "address": "12 avenue du Berry",
+  "postcode": "91940",
+  "city": "Les Ulis",
+  "city_slug": "les-ulis",
+  "lat": 48.682542,
+  "lon": 2.169937
+ },
+ "3357904": {
+  "id": "3357904",
+  "name": "Le Maingué",
+  "address": "Esplanade Antoine Glémain",
+  "postcode": "49500",
+  "city": "Segré-en-Anjou",
+  "city_slug": "segre-en-anjou",
+  "lat": 47.685689,
+  "lon": -0.867677
+ },
+ "4162213": {
+  "id": "4162213",
+  "name": "L'Estive",
+  "address": "20 avenue du Général de Gaulle",
+  "postcode": "09000",
+  "city": "Foix",
+  "city_slug": "foix",
+  "lat": 42.959016,
+  "lon": 1.610248
+ },
+ "3321132": {
+  "id": "3321132",
+  "name": "Ciné Toiles de Retz",
+  "address": "1 rue du Chaudron",
+  "postcode": "44210",
+  "city": "Pornic",
+  "city_slug": "pornic",
+  "lat": 47.111972,
+  "lon": -2.073377
+ },
+ "2061504": {
+  "id": "2061504",
+  "name": "Ciné Malraux",
+  "address": "25 cours de la République",
+  "postcode": "93140",
+  "city": "Bondy",
+  "city_slug": "bondy",
+  "lat": 48.901528,
+  "lon": 2.479991
+ },
+ "2276086": {
+  "id": "2276086",
+  "name": "Le Méliès",
+  "address": "12 place Jean Jaurès",
+  "postcode": "93100",
+  "city": "Montreuil",
+  "city_slug": "montreuil",
+  "lat": 48.862179,
+  "lon": 2.442757
+ },
+ "2059034": {
+  "id": "2059034",
+  "name": "Alice Guy",
+  "address": "24 Rue Aretha Franklin",
+  "postcode": "93000",
+  "city": "Bobigny",
+  "city_slug": "bobigny",
+  "lat": 48.905925,
+  "lon": 2.447318
+ },
+ "4046862": {
+  "id": "4046862",
+  "name": "La Lanterne",
+  "address": "151 bd Albert 1er",
+  "postcode": "33130",
+  "city": "Bègles",
+  "city_slug": "begles",
+  "lat": 44.813146,
+  "lon": -0.564039
+ },
+ "6238013": {
+  "id": "6238013",
+  "name": "CinéDuchère",
+  "address": "308 avenue Andrei Sakharov",
+  "postcode": "69009",
+  "city": "Lyon",
+  "city_slug": "lyon",
+  "lat": 45.787429,
+  "lon": 4.799621
+ },
+ "2408323": {
+  "id": "2408323",
+  "name": "Utopia",
+  "address": "1 place Mendes France",
+  "postcode": "95310",
+  "city": "Saint-Ouen-l'Aumône",
+  "city_slug": "saint-ouen-l-aumone",
+  "lat": 49.044368,
+  "lon": 2.10725
+ },
+ "4718210": {
+  "id": "4718210",
+  "name": "Le Concorde",
+  "address": "2d Rue du Maréchal Foch",
+  "postcode": "85000",
+  "city": "La-Roche-Sur-Yon",
+  "city_slug": "la-roche-sur-yon",
+  "lat": 46.673231,
+  "lon": -1.427973
  },
  "2314413": {
   "id": "2314413",
@@ -288,16 +298,6 @@
   "city_slug": "plessis-robinson",
   "lat": 48.77729,
   "lon": 2.254768
- },
- "1008451": {
-  "id": "1008451",
-  "name": "Studio des Ursulines",
-  "address": "10 rue des Ursulines",
-  "postcode": "75005",
-  "city": "Paris",
-  "city_slug": "paris",
-  "lat": 48.842615,
-  "lon": 2.342102
  },
  "3068061": {
   "id": "3068061",
@@ -319,135 +319,25 @@
   "lat": 48.98893,
   "lon": 2.316273
  },
- "2059034": {
-  "id": "2059034",
-  "name": "Alice Guy",
-  "address": "24 Rue Aretha Franklin",
-  "postcode": "93000",
-  "city": "Bobigny",
-  "city_slug": "bobigny",
-  "lat": 48.905925,
-  "lon": 2.447318
+ "2303281": {
+  "id": "2303281",
+  "name": "Ciné 104",
+  "address": "104 avenue Jean Lolive",
+  "postcode": "93500",
+  "city": "Pantin",
+  "city_slug": "pantin",
+  "lat": 48.892859,
+  "lon": 2.411428
  },
- "6238013": {
-  "id": "6238013",
-  "name": "CinéDuchère",
-  "address": "308 avenue Andrei Sakharov",
-  "postcode": "69009",
-  "city": "Lyon",
-  "city_slug": "lyon",
-  "lat": 45.787429,
-  "lon": 4.799621
- },
- "2045132": {
-  "id": "2045132",
-  "name": "Beaumont Palace",
-  "address": "6 avenue Anatole France",
-  "postcode": "65260",
-  "city": "Beaumont-sur-Oise",
-  "city_slug": "beaumont-sur-oise",
-  "lat": 42.958545,
-  "lon": -0.076263
- },
- "2115104": {
-  "id": "2115104",
-  "name": "Cinéma Rutebeuf",
-  "address": "16 Allée Léon Gambetta",
-  "postcode": "92110",
-  "city": "Clichy",
-  "city_slug": "clichy",
-  "lat": 48.902609,
-  "lon": 2.309516
- },
- "7172744": {
-  "id": "7172744",
-  "name": "Le Club",
-  "address": "7 rue du Forest d'Entrais",
-  "postcode": "05000",
-  "city": "Gap",
-  "city_slug": "gap",
-  "lat": 44.566618,
-  "lon": 6.086153
- },
- "1008422": {
-  "id": "1008422",
-  "name": "Le Champo",
-  "address": "51 rue des Ecoles",
-  "postcode": "75005",
-  "city": "Paris",
-  "city_slug": "paris",
-  "lat": 48.848781,
-  "lon": 2.348293
- },
- "1000751": {
-  "id": "1000751",
-  "name": "Saint-André des Arts",
-  "address": "30 rue Saint-André des Arts",
-  "postcode": "75006",
-  "city": "Paris",
-  "city_slug": "paris",
-  "lat": 48.853452,
-  "lon": 2.340567
- },
- "2061504": {
-  "id": "2061504",
-  "name": "Ciné Malraux",
-  "address": "25 cours de la République",
-  "postcode": "93140",
-  "city": "Bondy",
-  "city_slug": "bondy",
-  "lat": 48.901528,
-  "lon": 2.479991
- },
- "3284747": {
-  "id": "3284747",
-  "name": "Le Cinématographe",
-  "address": "12 bis rue des Carmélites",
-  "postcode": "44000",
-  "city": "Nantes",
-  "city_slug": "nantes",
-  "lat": 47.216994,
-  "lon": -1.551559
- },
- "3321146": {
-  "id": "3321146",
-  "name": "La Toile de Mer",
-  "address": "2 place Gambetta",
-  "postcode": "44380",
-  "city": "Pornichet",
-  "city_slug": "pornichet",
-  "lat": 47.260623,
-  "lon": -2.337158
- },
- "2463931": {
-  "id": "2463931",
-  "name": "Les 3 Robespierre",
-  "address": "19 avenue Maximilien Robespierre",
-  "postcode": "94400",
-  "city": "Vitry-sur-Seine",
-  "city_slug": "vitry-sur-seine",
-  "lat": 48.790764,
-  "lon": 2.388081
- },
- "7720261": {
-  "id": "7720261",
-  "name": "La Cascade",
-  "address": "35 cours du 4 Septembre",
-  "postcode": "13500",
-  "city": "Martigues",
-  "city_slug": "martigues",
-  "lat": 43.402536,
-  "lon": 5.055219
- },
- "2179852": {
-  "id": "2179852",
-  "name": "Cinéma Jacques Prévert",
-  "address": "1 Place Aimé Césaire",
-  "postcode": "95500",
-  "city": "Gonesse",
-  "city_slug": "gonesse",
-  "lat": 49.002782,
-  "lon": 2.422905
+ "3333304": {
+  "id": "3333304",
+  "name": "Ciné Manivel",
+  "address": "12 quai Jean Bart",
+  "postcode": "35600",
+  "city": "Redon",
+  "city_slug": "redon",
+  "lat": 47.646283,
+  "lon": -2.08797
  },
  "3322952": {
   "id": "3322952",
@@ -459,6 +349,46 @@
   "lat": 47.275469,
   "lon": -2.430268
  },
+ "3017325": {
+  "id": "3017325",
+  "name": "Ciné St-Leu",
+  "address": "33 rue Vanmarcke",
+  "postcode": "80000",
+  "city": "Amiens",
+  "city_slug": "amiens",
+  "lat": 49.896347,
+  "lon": 2.302407
+ },
+ "1000751": {
+  "id": "1000751",
+  "name": "Saint-André des Arts",
+  "address": "30 rue Saint-André des Arts",
+  "postcode": "75006",
+  "city": "Paris",
+  "city_slug": "paris",
+  "lat": 48.853452,
+  "lon": 2.340567
+ },
+ "5143731": {
+  "id": "5143731",
+  "name": "Studio 43",
+  "address": "9 Rue des Fusiliers Marins",
+  "postcode": "59140",
+  "city": "Dunkerque",
+  "city_slug": "dunkerque",
+  "lat": 51.033863,
+  "lon": 2.372477
+ },
+ "7720261": {
+  "id": "7720261",
+  "name": "La Cascade",
+  "address": "35 cours du 4 Septembre",
+  "postcode": "13500",
+  "city": "Martigues",
+  "city_slug": "martigues",
+  "lat": 43.402536,
+  "lon": 5.055219
+ },
  "2341652": {
   "id": "2341652",
   "name": "Le Trianon",
@@ -469,35 +399,35 @@
   "lat": 48.883789,
   "lon": 2.440755
  },
- "8356024": {
-  "id": "8356024",
-  "name": "Ciné Cubic",
-  "address": "133 Grand Rue",
-  "postcode": "67700",
-  "city": "Saverne",
-  "city_slug": "saverne",
-  "lat": 48.741469,
-  "lon": 7.362317
+ "2179852": {
+  "id": "2179852",
+  "name": "Cinéma Jacques Prévert",
+  "address": "1 Place Aimé Césaire",
+  "postcode": "95500",
+  "city": "Gonesse",
+  "city_slug": "gonesse",
+  "lat": 49.002782,
+  "lon": 2.422905
  },
- "4718210": {
-  "id": "4718210",
-  "name": "Le Concorde",
-  "address": "2d Rue du Maréchal Foch",
-  "postcode": "85000",
-  "city": "La-Roche-Sur-Yon",
-  "city_slug": "la-roche-sur-yon",
-  "lat": 46.673231,
-  "lon": -1.427973
+ "7172744": {
+  "id": "7172744",
+  "name": "Le Club",
+  "address": "7 rue du Forest d'Entrais",
+  "postcode": "05000",
+  "city": "Gap",
+  "city_slug": "gap",
+  "lat": 44.566618,
+  "lon": 6.086153
  },
- "2408323": {
-  "id": "2408323",
-  "name": "Utopia",
-  "address": "1 place Mendes France",
-  "postcode": "95310",
-  "city": "Saint-Ouen-l'Aumône",
-  "city_slug": "saint-ouen-l-aumone",
-  "lat": 49.044368,
-  "lon": 2.10725
+ "2433972": {
+  "id": "2433972",
+  "name": "Cinéma Jacques Tati",
+  "address": "29B avenue du Général de Gaulle",
+  "postcode": "93290",
+  "city": "Tremblay-en-France",
+  "city_slug": "tremblay-en-france",
+  "lat": 48.941517,
+  "lon": 2.570061
  },
  "4430261": {
   "id": "4430261",
@@ -509,15 +439,115 @@
   "lat": 43.592406,
   "lon": 1.438723
  },
- "3095006": {
-  "id": "3095006",
-  "name": "La Comète",
-  "address": "5 rue des Fripiers",
-  "postcode": "51000",
-  "city": "Châlons en Champagne",
-  "city_slug": "chalons-en-champagne",
-  "lat": 48.95623,
-  "lon": 4.363915
+ "3284662": {
+  "id": "3284662",
+  "name": "Le Concorde",
+  "address": "79 bd de l'Égalité",
+  "postcode": "44100",
+  "city": "Nantes",
+  "city_slug": "nantes",
+  "lat": 47.210487,
+  "lon": -1.586776
+ },
+ "4427365": {
+  "id": "4427365",
+  "name": "Le Kiosque",
+  "address": "5 bd Adrien Morin",
+  "postcode": "79100",
+  "city": "Thouars",
+  "city_slug": "thouars",
+  "lat": 46.979652,
+  "lon": -0.2169
+ },
+ "1008531": {
+  "id": "1008531",
+  "name": "Le Grand Action",
+  "address": "5 rue des Ecoles",
+  "postcode": "75005",
+  "city": "Paris",
+  "city_slug": "paris",
+  "lat": 48.848781,
+  "lon": 2.348293
+ },
+ "3335121": {
+  "id": "3335121",
+  "name": "Cinéma Arvor",
+  "address": "11 rue de Châtillon",
+  "postcode": "35000",
+  "city": "Rennes",
+  "city_slug": "rennes",
+  "lat": 48.095324,
+  "lon": -1.671326
+ },
+ "4317345": {
+  "id": "4317345",
+  "name": "TAP Cinéma",
+  "address": "1 place du Maréchal Leclerc",
+  "postcode": "86000",
+  "city": "Poitiers",
+  "city_slug": "poitiers",
+  "lat": 46.580545,
+  "lon": 0.340063
+ },
+ "1008422": {
+  "id": "1008422",
+  "name": "Le Champo",
+  "address": "51 rue des Ecoles",
+  "postcode": "75005",
+  "city": "Paris",
+  "city_slug": "paris",
+  "lat": 48.848781,
+  "lon": 2.348293
+ },
+ "7723560": {
+  "id": "7723560",
+  "name": "La Baleine",
+  "address": "59 cours Julien",
+  "postcode": "13006",
+  "city": "Marseille",
+  "city_slug": "marseille",
+  "lat": 43.294165,
+  "lon": 5.383061
+ },
+ "2036013": {
+  "id": "2036013",
+  "name": "Le Cin'Hoche",
+  "address": "6 rue Hoche",
+  "postcode": "93170",
+  "city": "Bagnolet",
+  "city_slug": "bagnolet",
+  "lat": 48.869732,
+  "lon": 2.415897
+ },
+ "3166434": {
+  "id": "3166434",
+  "name": "Le Club",
+  "address": "1 Esplanade des Chaussonières",
+  "postcode": "35300",
+  "city": "Fougères",
+  "city_slug": "fougeres",
+  "lat": 48.350545,
+  "lon": -1.194647
+ },
+ "2463931": {
+  "id": "2463931",
+  "name": "Les 3 Robespierre",
+  "address": "19 avenue Maximilien Robespierre",
+  "postcode": "94400",
+  "city": "Vitry-sur-Seine",
+  "city_slug": "vitry-sur-seine",
+  "lat": 48.790764,
+  "lon": 2.388081
+ },
+ "2115104": {
+  "id": "2115104",
+  "name": "Cinéma Rutebeuf",
+  "address": "16 Allée Léon Gambetta",
+  "postcode": "92110",
+  "city": "Clichy",
+  "city_slug": "clichy",
+  "lat": 48.902609,
+  "lon": 2.309516
  },
  "7439503": {
   "id": "7439503",
@@ -566,8 +596,8 @@
   "postcode": "11370",
   "city": "Port Leucate",
   "city_slug": "port-leucate",
-  "lat": 42.840899,
-  "lon": 3.040731
+  "lat": 42.841361,
+  "lon": 3.038173
  },
  "7114564": {
   "id": "7114564",
@@ -586,8 +616,8 @@
   "postcode": "94000",
   "city": "Créteil",
   "city_slug": "creteil",
-  "lat": 48.780051,
-  "lon": 2.465513
+  "lat": 48.780054,
+  "lon": 2.465511
  },
  "6019945": {
   "id": "6019945",
@@ -679,6 +709,16 @@
   "lat": 48.786532,
   "lon": 2.445173
  },
+ "2193442": {
+  "id": "2193442",
+  "name": "La Tournelle",
+  "address": "14, rue Dispan",
+  "postcode": "94240",
+  "city": "L' Hay-les-Roses",
+  "city_slug": "l-hay-les-roses",
+  "lat": 48.779349,
+  "lon": 2.338786
+ },
  "4721602": {
   "id": "4721602",
   "name": "Les montreurs d'images",
@@ -698,6 +738,16 @@
   "city_slug": "hauteville-sur-mer",
   "lat": 48.977994,
   "lon": -1.554573
+ },
+ "6019983": {
+  "id": "6019983",
+  "name": "MJC Cine Actuel",
+  "address": "MJC Centre - 3 rue du 8 mai",
+  "postcode": "74100",
+  "city": "Annemasse",
+  "city_slug": "annemasse",
+  "lat": 46.191486,
+  "lon": 6.232926
  },
  "8282583": {
   "id": "8282583",
@@ -809,6 +859,16 @@
   "lat": 48.833849,
   "lon": 2.316554
  },
+ "3329792": {
+  "id": "3329792",
+  "name": "le PARADIS",
+  "address": "rue du Phare",
+  "postcode": "56170",
+  "city": "Quiberon",
+  "city_slug": "quiberon",
+  "lat": 47.479838,
+  "lon": -3.123911
+ },
  "9405441": {
   "id": "9405441",
   "name": "Royal",
@@ -829,6 +889,16 @@
   "lat": 49.208089,
   "lon": 2.585912
  },
+ "7463723": {
+  "id": "7463723",
+  "name": "Les Lumières",
+  "address": "Arcades des Citeaux - Centre Urbain",
+  "postcode": "13127",
+  "city": "Vitrolles",
+  "city_slug": "vitrolles",
+  "lat": 43.447256,
+  "lon": 5.250053
+ },
  "8468533": {
   "id": "8468533",
   "name": "Cinéma Gérard Philipe",
@@ -838,6 +908,16 @@
   "city_slug": "wittenheim",
   "lat": 47.824149,
   "lon": 7.337263
+ },
+ "7164831": {
+  "id": "7164831",
+  "name": "Le Bourguet",
+  "address": "place du Bourguet",
+  "postcode": "04300",
+  "city": "Forcalquier",
+  "city_slug": "forcalquier",
+  "lat": 43.959629,
+  "lon": 5.781054
  },
  "2432832": {
   "id": "2432832",
@@ -856,8 +936,8 @@
   "postcode": "63100",
   "city": "Clermont-Ferrand",
   "city_slug": "clermont-ferrand",
-  "lat": 45.798618,
-  "lon": 3.105001
+  "lat": 45.798837,
+  "lon": 3.105084
  },
  "6014073": {
   "id": "6014073",
@@ -886,8 +966,8 @@
   "postcode": "64100",
   "city": "Bayonne",
   "city_slug": "bayonne",
-  "lat": 43.495402,
-  "lon": -1.471251
+  "lat": 43.495399,
+  "lon": -1.471245
  },
  "4057821": {
   "id": "4057821",
@@ -918,6 +998,16 @@
   "city_slug": "brest",
   "lat": 48.396736,
   "lon": -4.476108
+ },
+ "2073423": {
+  "id": "2073423",
+  "name": "Ciné 220",
+  "address": "rue Anatole-France",
+  "postcode": "91220",
+  "city": "Brétigny-sur-Orge",
+  "city_slug": "bretigny-sur-orge",
+  "lat": 48.608547,
+  "lon": 2.303922
  },
  "6076073": {
   "id": "6076073",
@@ -1039,6 +1129,16 @@
   "lat": 48.004562,
   "lon": 0.20064
  },
+ "3233722": {
+  "id": "3233722",
+  "name": "Quai des Images",
+  "address": "9, boulevard Victor Etienne",
+  "postcode": "22600",
+  "city": "Loudéac",
+  "city_slug": "loudeac",
+  "lat": 48.172859,
+  "lon": -2.751305
+ },
  "2242003": {
   "id": "2242003",
   "name": "L'Atalante",
@@ -1139,6 +1239,26 @@
   "lat": 45.754144,
   "lon": 6.418233
  },
+ "6014071": {
+  "id": "6014071",
+  "name": "Le Dôme Gambetta",
+  "address": "12, rue Gambetta",
+  "postcode": "73200",
+  "city": "Albertville",
+  "city_slug": "albertville",
+  "lat": 45.677218,
+  "lon": 6.392201
+ },
+ "6232584": {
+  "id": "6232584",
+  "name": "Centre Culturel Communautaire des Cordeliers",
+  "address": "7 rue des Cordeliers",
+  "postcode": "39000",
+  "city": "Lons-le-Saunier",
+  "city_slug": "lons-le-saunier",
+  "lat": 46.674101,
+  "lon": 5.554975
+ },
  "7364205": {
   "id": "7364205",
   "name": "Six n'Etoiles",
@@ -1158,16 +1278,6 @@
   "city_slug": "sainte-foy-les-lyon",
   "lat": 45.736385,
   "lon": 4.800204
- },
- "3103166": {
-  "id": "3103166",
-  "name": "Les Enfants du Paradis",
-  "address": "13 place de la porte Saint Michel (centre ville)",
-  "postcode": "28000",
-  "city": "Chartres",
-  "city_slug": "chartres",
-  "lat": 48.442405,
-  "lon": 1.489121
  },
  "6252342": {
   "id": "6252342",
@@ -1218,16 +1328,6 @@
   "city_slug": "verrieres-le-buisson",
   "lat": 48.754463,
   "lon": 2.269736
- },
- "6032092": {
-  "id": "6032092",
-  "name": "Le Clos",
-  "address": "Le Clos",
-  "postcode": "38880",
-  "city": "Autrans",
-  "city_slug": "autrans",
-  "lat": 45.174878,
-  "lon": 5.540341
  },
  "7249791": {
   "id": "7249791",
@@ -1369,6 +1469,16 @@
   "lat": 45.653299,
   "lon": 0.148452
  },
+ "6460784": {
+  "id": "6460784",
+  "name": "Le Zola",
+  "address": "117, cours Emile-Zola",
+  "postcode": "69100",
+  "city": "Villeurbanne",
+  "city_slug": "villeurbanne",
+  "lat": 45.7676,
+  "lon": 4.88995
+ },
  "2106262": {
   "id": "2106262",
   "name": "Louis Jouvet",
@@ -1378,6 +1488,36 @@
   "city_slug": "chatou",
   "lat": 48.886211,
   "lon": 2.155333
+ },
+ "7084774": {
+  "id": "7084774",
+  "name": "Prosper Merimée",
+  "address": "25 Avenue Francis Tonner",
+  "postcode": "06150",
+  "city": "Cannes",
+  "city_slug": "cannes",
+  "lat": 43.549597,
+  "lon": 6.974423
+ },
+ "7084781": {
+  "id": "7084781",
+  "name": "Miramar",
+  "address": "35 rue Pasteur",
+  "postcode": "06400",
+  "city": "Cannes",
+  "city_slug": "cannes",
+  "lat": 43.549979,
+  "lon": 7.029165
+ },
+ "7084782": {
+  "id": "7084782",
+  "name": "Alexandre III",
+  "address": "19 Boulevard Alexandre III",
+  "postcode": "06400",
+  "city": "Cannes",
+  "city_slug": "cannes",
+  "lat": 43.547961,
+  "lon": 7.029829
  },
  "6362651": {
   "id": "6362651",
@@ -1409,16 +1549,6 @@
   "lat": 48.873456,
   "lon": 2.482587
  },
- "8333683": {
-  "id": "8333683",
-  "name": "La castine",
-  "address": "12, rue du Général Koenig",
-  "postcode": "67110",
-  "city": "Reichshoffen",
-  "city_slug": "reichshoffen",
-  "lat": 48.931501,
-  "lon": 7.660884
- },
  "8056558": {
   "id": "8056558",
   "name": "Relais Culturel",
@@ -1426,8 +1556,18 @@
   "postcode": "67240",
   "city": "Bischwiller",
   "city_slug": "bischwiller",
-  "lat": 48.768757,
-  "lon": 7.852086
+  "lat": 48.767936,
+  "lon": 7.852241
+ },
+ "3033122": {
+  "id": "3033122",
+  "name": "Cinéma Vauban",
+  "address": "1, rue du Maréchal Foch",
+  "postcode": "89200",
+  "city": "Avallon",
+  "city_slug": "avallon",
+  "lat": 47.491045,
+  "lon": 3.90927
  },
  "7039442": {
   "id": "7039442",
@@ -1438,6 +1578,16 @@
   "city_slug": "barjols",
   "lat": 43.558222,
   "lon": 6.006595
+ },
+ "6067904": {
+  "id": "6067904",
+  "name": "Ecrins",
+  "address": "Av. Jean Baptiste Gauthier",
+  "postcode": "38520",
+  "city": "Bourg-d'Oisans",
+  "city_slug": "bourg-d-oisans",
+  "lat": 45.056394,
+  "lon": 6.028514
  },
  "6454504": {
   "id": "6454504",
