@@ -4,10 +4,14 @@
 refresh_chains.py — Rafraîchit les snapshots des chaînes qui bloquent le CI.
 
 Pathé, CGR et Grand Écran répondent **403 aux IP de datacenter** : leur collecte
-ne peut PAS tourner sur les serveurs GitHub (comme UGC et les indés le font). Elle
-doit partir d'une IP **résidentielle**. Ce script est donc lancé DEPUIS LA MACHINE
-de l'utilisateur (Planificateur de tâches Windows ou runner self-hosted), jamais
-dans le CI cloud.
+ne peut PAS tourner sur les serveurs GitHub (contrairement à UGC et aux indés).
+Elle doit partir d'une IP **résidentielle**. Ce script est donc lancé DEPUIS LA
+MACHINE de l'utilisateur (Planificateur de tâches Windows ou runner self-hosted),
+jamais dans le CI cloud.
+
+S'y ajoutent des sources que le CI SAIT collecter (UGC, salles hors SCARE) mais
+dont le snapshot est versionné : les rafraîchir ici garde le filet de sécurité
+utilisable. Cf. le commentaire de `CHAINS`.
 
 Ce qu'il fait, dans l'ordre :
   1. mémorise le volume actuel de chaque snapshot (avant collecte) ;
@@ -69,6 +73,14 @@ CHAINS = {
     # (fetch_salles.py). Elles sont ici parce que leur snapshot est versionné
     # comme celui des chaînes, et bénéficie donc du même garde-fou de volume.
     "salles":     [PY, "scripts/fetch_salles.py", "--days", "7"],
+    # UGC passe très bien depuis le CI (API mobile backend.ugc.fr, pas de filtre
+    # sur l'IP) : il n'est donc PAS ici par nécessité, mais parce que son
+    # snapshot versionné sert de repli quand une collecte CI échoue. Laissé de
+    # côté jusqu'au 2026-09-30, ce repli avait pourri sur place — figé au
+    # 2026-08-11, il ne couvrait plus une seule date à venir, et un échec du
+    # connecteur aurait fait disparaître les 48 salles UGC du site sans bruit.
+    # Un snapshot de secours ne vaut que s'il est aussi frais que les autres.
+    "ugc":        [PY, "scripts/fetch_ugc.py", "--cinemas", "0", "--days", "7"],
 }
 
 
@@ -151,7 +163,9 @@ def healthy(chain, before, after, min_ratio):
 
 
 def main():
-    ap = argparse.ArgumentParser(description="Rafraîchit les snapshots Pathé/CGR/Grand Écran.")
+    ap = argparse.ArgumentParser(
+        description="Rafraîchit les snapshots de chaînes versionnés (Pathé, CGR, "
+                    "Grand Écran, salles hors SCARE, UGC).")
     ap.add_argument("--dry-run", action="store_true",
                     help="collecte + garde-fou mais n'écrit rien dans git")
     ap.add_argument("--no-push", action="store_true",

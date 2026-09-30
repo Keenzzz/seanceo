@@ -32,7 +32,7 @@ avec mise en avant des salles Art & Essai. Objectif : trafic monétisable via SE
 | Source | Licence / accès | Rafraîchissement |
 |---|---|---|
 | **Indés** (SCARE, `datacinesindes.fr`) | Open data, Licence Ouverte 2.0 (attribution obligatoire) | Auto en CI (chaque jour) |
-| **UGC** (`backend.ugc.fr`, API mobile) | API interne ouverte | **Auto en CI** (non bloquée) |
+| **UGC** (`backend.ugc.fr`, API mobile) | API interne ouverte | **Auto en CI** (non bloquée) + snapshot local de repli |
 | **Pathé / CGR / Grand Écran** | APIs internes | **Snapshot local** (voir ci-dessous) |
 | **Salles indés hors SCARE** (`fetch_salles.py`) | Sites/billetteries des salles | **Snapshot local** + tentative CI |
 | **Cartes d'abonnement** (page UGC + PDF Pathé) | Pages publiques | **Auto en CI**, best-effort |
@@ -68,7 +68,17 @@ et la mention TMDB (« ce produit utilise l'API TMDB mais n'est ni approuvé ni 
 - **Rafraîchir Pathé/CGR/Grand Écran** = relancer en local `--days 7` **sans limite** puis commit.
 - **PIÈGE : `--theaters N` / `--cinemas N` (options de test) ÉCRASENT le snapshot complet.** Après un
   test, TOUJOURS re-collecter en entier (`--days 7` sans `--theaters/--cinemas`) avant de committer.
-- UGC s'auto-rafraîchit en CI (son API n'est pas bloquée) — pas besoin de le refaire en local.
+- **UGC s'auto-rafraîchit en CI** (son API n'est pas bloquée) : la collecte locale n'est donc pas
+  nécessaire pour que le site soit à jour. Elle l'est en revanche pour que le **snapshot de repli
+  reste utilisable** — d'où l'ajout d'UGC à `refresh_chains.py` le 2026-09-30. Laissé de côté
+  jusque-là, `data/ugc_*.json` était figé au 2026-08-11 et ne couvrait plus une seule date à
+  venir : un échec du connecteur en CI aurait fait disparaître les 48 salles UGC du site sans le
+  moindre signal. **Un snapshot de secours ne vaut que s'il est aussi frais que les autres.**
+- **Le snapshot SCARE est versionné lui aussi depuis la panne du 2026-09-18** et suit la même
+  règle, mais il n'est PAS dans `refresh_chains.py` : `fetch_data.py` n'a pas de garde-fou
+  best-effort (voir plus haut, c'est assumé). Le recollecter à la main quand l'API sort d'une
+  panne, sinon le repli vieillit en silence — au 2026-09-30 il datait du 28/08 et ne portait plus
+  que 81 des 1 292 séances indés du jour.
 
 ### Clé TMDB — SECRET, jamais dans le dépôt
 - La clé se lit dans la variable d'env `TMDB_API_KEY`, **jamais écrite dans le code ni un fichier commité**.
