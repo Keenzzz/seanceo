@@ -66,7 +66,7 @@
   "cast": "",
   "genre": "Drame",
   "country": "",
-  "duration_min": 179,
+  "duration_min": 176,
   "poster": "https://all.web.img.acsta.net/img/88/be/88be80df88492a191087bc0d2b84c7fc.jpg",
   "trailer": "",
   "storyline": ""
@@ -239,6 +239,18 @@
   "trailer": "",
   "storyline": ""
  },
+ "l-odyssee-de-celeste|kid-koala": {
+  "key": "l-odyssee-de-celeste|kid-koala",
+  "title": "L'Odyssée de Céleste",
+  "director": "Kid Koala",
+  "cast": "",
+  "genre": "Animation",
+  "country": "",
+  "duration_min": 86,
+  "poster": "https://all.web.img.acsta.net/img/80/99/8099caaf5722581d1213939f804abec5.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
  "les-contrebandiers|padraic-mckinley": {
   "key": "les-contrebandiers|padraic-mckinley",
   "title": "Les Contrebandiers",
@@ -311,6 +323,18 @@
   "trailer": "",
   "storyline": ""
  },
+ "queen-budapest|janos-zsombolyai": {
+  "key": "queen-budapest|janos-zsombolyai",
+  "title": "Queen Budapest",
+  "director": "János Zsombolyai",
+  "cast": "",
+  "genre": "Concert",
+  "country": "",
+  "duration_min": 92,
+  "poster": "https://all.web.img.acsta.net/img/7b/fa/7bfa5e5d3bfc750055bd47d9c73da7e3.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
  "cleo-de-5-a-7|agnes-varda": {
   "key": "cleo-de-5-a-7|agnes-varda",
   "title": "Cléo De 5 À 7",
@@ -323,15 +347,15 @@
   "trailer": "",
   "storyline": ""
  },
- "tampopo|juzo-itami": {
-  "key": "tampopo|juzo-itami",
-  "title": "Tampopo",
-  "director": "Jûzô Itami",
+ "prince-des-tenebres|john-carpenter": {
+  "key": "prince-des-tenebres|john-carpenter",
+  "title": "Prince des ténèbres",
+  "director": "John Carpenter",
   "cast": "",
-  "genre": "Comédie",
+  "genre": "Épouvante-horreur",
   "country": "",
-  "duration_min": 114,
-  "poster": "https://all.web.img.acsta.net/medias/nmedia/18/96/28/58/20457447.jpg",
+  "duration_min": 102,
+  "poster": "https://all.web.img.acsta.net/medias/nmedia/18/60/08/52/18959059.jpg",
   "trailer": "",
   "storyline": ""
  },
@@ -392,18 +416,6 @@
   "country": "",
   "duration_min": 159,
   "poster": "https://all.web.img.acsta.net/img/02/c3/02c3e1e7589257736f49747d2864e619.jpg",
-  "trailer": "",
-  "storyline": ""
- },
- "le-berger-et-les-ours|max-keegan": {
-  "key": "le-berger-et-les-ours|max-keegan",
-  "title": "Le Berger et les ours",
-  "director": "Max Keegan",
-  "cast": "",
-  "genre": "Documentaire",
-  "country": "",
-  "duration_min": 101,
-  "poster": "https://all.web.img.acsta.net/img/6e/b0/6eb047065bb2d94dfa07c653e0a94fe8.jpg",
   "trailer": "",
   "storyline": ""
  },
@@ -515,18 +527,6 @@
   "trailer": "",
   "storyline": ""
  },
- "la-derniere-patiente|remi-bassaler": {
-  "key": "la-derniere-patiente|remi-bassaler",
-  "title": "La Dernière patiente",
-  "director": "Rémi Bassaler",
-  "cast": "",
-  "genre": "Drame",
-  "country": "",
-  "duration_min": 80,
-  "poster": "https://all.web.img.acsta.net/img/7c/a1/7ca1f529f684824b29ff0a9d2be1cc54.jpeg",
-  "trailer": "",
-  "storyline": ""
- },
  "primetime|lance-oppenheim": {
   "key": "primetime|lance-oppenheim",
   "title": "Primetime",
@@ -587,6 +587,18 @@
   "trailer": "",
   "storyline": ""
  },
+ "cotton-queen|suzannah-mirghani": {
+  "key": "cotton-queen|suzannah-mirghani",
+  "title": "Cotton Queen",
+  "director": "Suzannah Mirghani",
+  "cast": "",
+  "genre": "Drame",
+  "country": "",
+  "duration_min": 93,
+  "poster": "https://all.web.img.acsta.net/img/03/3e/033e05692e7cdcfb140566062fe57919.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
  "the-last-viking|anders-thomas-jensen": {
   "key": "the-last-viking|anders-thomas-jensen",
   "title": "The Last Viking",
@@ -608,6 +620,18 @@
   "country": "",
   "duration_min": 87,
   "poster": "https://all.web.img.acsta.net/img/5f/e0/5fe054af92daeec8f979251b47cc4cdf.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "la-maison-de-nos-reves|claude-zidi-jr": {
+  "key": "la-maison-de-nos-reves|claude-zidi-jr",
+  "title": "La Maison de nos rêves",
+  "director": "Claude Zidi Jr.",
+  "cast": "",
+  "genre": "Comédie",
+  "country": "",
+  "duration_min": 90,
+  "poster": "",
   "trailer": "",
   "storyline": ""
  },
@@ -635,6 +659,18 @@
   "trailer": "",
   "storyline": ""
  },
+ "hunger-games|gary-ross": {
+  "key": "hunger-games|gary-ross",
+  "title": "Hunger Games",
+  "director": "Gary Ross",
+  "cast": "",
+  "genre": "Action",
+  "country": "",
+  "duration_min": 142,
+  "poster": "https://all.web.img.acsta.net/medias/nmedia/18/85/92/87/20058179.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
  "delivre-nous-du-mal|valeria-baldan": {
   "key": "delivre-nous-du-mal|valeria-baldan",
   "title": "Délivre-nous du Mal",
@@ -659,6 +695,18 @@
   "trailer": "",
   "storyline": ""
  },
+ "al-atlas-les-disparus-dun-royaume|thomas-julienne": {
+  "key": "al-atlas-les-disparus-dun-royaume|thomas-julienne",
+  "title": "Al Atlas, Les Disparus d’un Royaume",
+  "director": "Thomas Julienne",
+  "cast": "",
+  "genre": "Documentaire",
+  "country": "",
+  "duration_min": 57,
+  "poster": "",
+  "trailer": "",
+  "storyline": ""
+ },
  "miracle-a-milan|vittorio-de-sica": {
   "key": "miracle-a-milan|vittorio-de-sica",
   "title": "Miracle à Milan",
@@ -668,18 +716,6 @@
   "country": "",
   "duration_min": 100,
   "poster": "https://all.web.img.acsta.net/medias/nmedia/18/64/04/19/18870025.jpg",
-  "trailer": "",
-  "storyline": ""
- },
- "le-dejeuner-du-15-aout|gianni-di-gregorio": {
-  "key": "le-dejeuner-du-15-aout|gianni-di-gregorio",
-  "title": "Le Déjeuner du 15 août",
-  "director": "Gianni Di Gregorio",
-  "cast": "",
-  "genre": "Comédie",
-  "country": "",
-  "duration_min": 76,
-  "poster": "https://all.web.img.acsta.net/medias/nmedia/18/87/90/01/19978809.jpg",
   "trailer": "",
   "storyline": ""
  },
@@ -791,6 +827,18 @@
   "trailer": "",
   "storyline": ""
  },
+ "jupiter|alexandre-smia": {
+  "key": "jupiter|alexandre-smia",
+  "title": "Jupiter",
+  "director": "Alexandre Smia",
+  "cast": "",
+  "genre": "Thriller",
+  "country": "",
+  "duration_min": 87,
+  "poster": "https://all.web.img.acsta.net/img/6a/4e/6a4e999cc30aa66d0af1294d3d53a5e6.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
  "toy-story-5|andrew-stanton": {
   "key": "toy-story-5|andrew-stanton",
   "title": "Toy Story 5",
@@ -800,6 +848,18 @@
   "country": "",
   "duration_min": 102,
   "poster": "https://all.web.img.acsta.net/img/77/3d/773d1cbfbfaf5e010f9acaad9641ebc3.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "l-ame-l-au-dela-et-l-invisible|valerie-seguin": {
+  "key": "l-ame-l-au-dela-et-l-invisible|valerie-seguin",
+  "title": "L'Ame : l'Au-delà et l'Invisible",
+  "director": "Valérie Seguin",
+  "cast": "",
+  "genre": "Documentaire",
+  "country": "",
+  "duration_min": 65,
+  "poster": "",
   "trailer": "",
   "storyline": ""
  },
@@ -836,18 +896,6 @@
   "country": "",
   "duration_min": 135,
   "poster": "https://all.web.img.acsta.net/pictures/14/05/12/13/19/472029.jpg",
-  "trailer": "",
-  "storyline": ""
- },
- "a-lombre-des-filles|etienne-comar": {
-  "key": "a-lombre-des-filles|etienne-comar",
-  "title": "A l’ombre des filles",
-  "director": "Etienne Comar",
-  "cast": "",
-  "genre": "Comédie",
-  "country": "",
-  "duration_min": 106,
-  "poster": "https://all.web.img.acsta.net/pictures/21/11/19/13/29/5243585.jpg",
   "trailer": "",
   "storyline": ""
  },
@@ -911,6 +959,18 @@
   "trailer": "",
   "storyline": ""
  },
+ "the-truman-show|peter-weir": {
+  "key": "the-truman-show|peter-weir",
+  "title": "The Truman Show",
+  "director": "Peter Weir",
+  "cast": "",
+  "genre": "Drame",
+  "country": "",
+  "duration_min": 103,
+  "poster": "https://all.web.img.acsta.net/medias/nmedia/18/87/17/52/19897044.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
  "sauver-ou-perir|frederic-tellier": {
   "key": "sauver-ou-perir|frederic-tellier",
   "title": "Sauver ou périr",
@@ -947,30 +1007,6 @@
   "trailer": "",
   "storyline": ""
  },
- "ducobu-et-le-fantome-de-saint-potache|elie-semoun": {
-  "key": "ducobu-et-le-fantome-de-saint-potache|elie-semoun",
-  "title": "Ducobu et le fantôme de Saint-Potache",
-  "director": "Elie Semoun",
-  "cast": "",
-  "genre": "Comédie",
-  "country": "",
-  "duration_min": 90,
-  "poster": "https://all.web.img.acsta.net/img/b6/b4/b6b4ed053dd6f0da4e2fec384982eb2a.jpg",
-  "trailer": "",
-  "storyline": ""
- },
- "la-maison-de-nos-reves|claude-zidi-jr": {
-  "key": "la-maison-de-nos-reves|claude-zidi-jr",
-  "title": "La Maison de nos rêves",
-  "director": "Claude Zidi Jr.",
-  "cast": "",
-  "genre": "Comédie",
-  "country": "",
-  "duration_min": 90,
-  "poster": "",
-  "trailer": "",
-  "storyline": ""
- },
  "lecologie-des-sentiments|alexandre-steiger": {
   "key": "lecologie-des-sentiments|alexandre-steiger",
   "title": "L’Écologie des sentiments",
@@ -980,18 +1016,6 @@
   "country": "",
   "duration_min": 84,
   "poster": "https://all.web.img.acsta.net/img/15/51/1551e0205b8136280d0e06c22328e4ae.jpg",
-  "trailer": "",
-  "storyline": ""
- },
- "gros-corps-en-melees|nicolas-berges": {
-  "key": "gros-corps-en-melees|nicolas-berges",
-  "title": "Gros, corps en mêlées",
-  "director": "Nicolas Bergès",
-  "cast": "",
-  "genre": "Documentaire",
-  "country": "",
-  "duration_min": 55,
-  "poster": "https://all.web.img.acsta.net/img/24/89/24892959d15fdd1e761b553ebaf3efac.jpeg",
   "trailer": "",
   "storyline": ""
  },
@@ -1031,6 +1055,18 @@
   "trailer": "",
   "storyline": ""
  },
+ "la-feline|jacques-tourneur": {
+  "key": "la-feline|jacques-tourneur",
+  "title": "La Féline",
+  "director": "Jacques Tourneur",
+  "cast": "",
+  "genre": "Épouvante-horreur",
+  "country": "",
+  "duration_min": 71,
+  "poster": "https://all.web.img.acsta.net/medias/nmedia/18/35/19/35/18889522.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
  "les-petites-victoires|melanie-auffret": {
   "key": "les-petites-victoires|melanie-auffret",
   "title": "Les Petites victoires",
@@ -1052,6 +1088,18 @@
   "country": "",
   "duration_min": 103,
   "poster": "https://all.web.img.acsta.net/pictures/23/06/01/17/22/1444331.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "feles|christophe-duthuron": {
+  "key": "feles|christophe-duthuron",
+  "title": "Fêlés",
+  "director": "Christophe Duthuron",
+  "cast": "",
+  "genre": "Comédie dramatique",
+  "country": "",
+  "duration_min": 91,
+  "poster": "https://all.web.img.acsta.net/img/d5/6d/d56dd223a1fa9270dd3a3f74c936a82f.jpg",
   "trailer": "",
   "storyline": ""
  },
@@ -1079,6 +1127,42 @@
   "trailer": "",
   "storyline": ""
  },
+ "le-monde-a-l-envers|arnaud-demuynck": {
+  "key": "le-monde-a-l-envers|arnaud-demuynck",
+  "title": "Le Monde à l'envers",
+  "director": "Arnaud Demuynck",
+  "cast": "",
+  "genre": "Animation",
+  "country": "",
+  "duration_min": 45,
+  "poster": "https://all.web.img.acsta.net/img/31/9f/319f3d6b88de3f1a691794557e6c8659.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "suzume|makoto-shinkai": {
+  "key": "suzume|makoto-shinkai",
+  "title": "Suzume",
+  "director": "Makoto Shinkai",
+  "cast": "",
+  "genre": "Animation",
+  "country": "",
+  "duration_min": 122,
+  "poster": "https://all.web.img.acsta.net/pictures/23/02/08/11/07/3435594.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "altair-conferences-nouvelle-zelande-joyau-des-antipodes|alain-basset": {
+  "key": "altair-conferences-nouvelle-zelande-joyau-des-antipodes|alain-basset",
+  "title": "ALTAÏR conférences - Nouvelle-Zélande, Joyau des Antipodes",
+  "director": "Alain Basset",
+  "cast": "",
+  "genre": "Documentaire",
+  "country": "",
+  "duration_min": 120,
+  "poster": "https://all.web.img.acsta.net/img/fc/e1/fce196b9df483139f3dbecc7c48fce20.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
  "thelma-et-louise|ridley-scott": {
   "key": "thelma-et-louise|ridley-scott",
   "title": "Thelma et Louise",
@@ -1088,6 +1172,18 @@
   "country": "",
   "duration_min": 129,
   "poster": "https://all.web.img.acsta.net/medias/nmedia/18/87/88/57/19976070.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "loin-du-paradis|todd-haynes": {
+  "key": "loin-du-paradis|todd-haynes",
+  "title": "Loin du paradis",
+  "director": "Todd Haynes",
+  "cast": "",
+  "genre": "Drame",
+  "country": "",
+  "duration_min": 107,
+  "poster": "https://all.web.img.acsta.net/medias/nmedia/18/87/13/38/19893499.jpg",
   "trailer": "",
   "storyline": ""
  },
@@ -1112,6 +1208,18 @@
   "country": "",
   "duration_min": 80,
   "poster": "https://all.web.img.acsta.net/img/66/87/668719d57b83ff54f83189285adaf824.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "to-be-or-not-to-be|ernst-lubitsch": {
+  "key": "to-be-or-not-to-be|ernst-lubitsch",
+  "title": "To Be or not to Be",
+  "director": "Ernst Lubitsch",
+  "cast": "",
+  "genre": "Comédie",
+  "country": "",
+  "duration_min": 99,
+  "poster": "https://all.web.img.acsta.net/medias/nmedia/18/35/91/11/18925737.jpg",
   "trailer": "",
   "storyline": ""
  },
@@ -1235,18 +1343,6 @@
   "trailer": "",
   "storyline": ""
  },
- "la-ligne-bleue|marie-dumora": {
-  "key": "la-ligne-bleue|marie-dumora",
-  "title": "La Ligne bleue",
-  "director": "Marie Dumora",
-  "cast": "",
-  "genre": "Documentaire",
-  "country": "",
-  "duration_min": 124,
-  "poster": "https://all.web.img.acsta.net/img/dd/9f/dd9f8cfb69579bb7ab374ed67a9ca6c2.jpg",
-  "trailer": "",
-  "storyline": ""
- },
  "organes-d-etat|raymond-zhang": {
   "key": "organes-d-etat|raymond-zhang",
   "title": "Organes d'État",
@@ -1271,6 +1367,18 @@
   "trailer": "",
   "storyline": ""
  },
+ "coutures|alice-winocour": {
+  "key": "coutures|alice-winocour",
+  "title": "Coutures",
+  "director": "Alice Winocour",
+  "cast": "",
+  "genre": "Drame",
+  "country": "",
+  "duration_min": 104,
+  "poster": "https://all.web.img.acsta.net/img/46/d4/46d4fb614854a9ba8365ebaa1ecf5fcd.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
  "du-fioul-dans-les-arteres|pierre-le-gall": {
   "key": "du-fioul-dans-les-arteres|pierre-le-gall",
   "title": "Du fioul dans les artères",
@@ -1280,6 +1388,30 @@
   "country": "",
   "duration_min": 91,
   "poster": "https://all.web.img.acsta.net/img/6a/fd/6afd0a9db506c3f83fcd3c9fff4d18dd.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "le-berger-et-les-ours|max-keegan": {
+  "key": "le-berger-et-les-ours|max-keegan",
+  "title": "Le Berger et les ours",
+  "director": "Max Keegan",
+  "cast": "",
+  "genre": "Documentaire",
+  "country": "",
+  "duration_min": 101,
+  "poster": "https://all.web.img.acsta.net/img/6e/b0/6eb047065bb2d94dfa07c653e0a94fe8.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "l-espece-explosive|sarah-arnold": {
+  "key": "l-espece-explosive|sarah-arnold",
+  "title": "L'Espèce explosive",
+  "director": "Sarah Arnold",
+  "cast": "",
+  "genre": "Comédie",
+  "country": "",
+  "duration_min": 95,
+  "poster": "https://all.web.img.acsta.net/img/3e/43/3e43dde377b4ef6a3e35ab6106244ca0.jpg",
   "trailer": "",
   "storyline": ""
  },
@@ -1295,6 +1427,102 @@
   "trailer": "",
   "storyline": ""
  },
+ "chercheurs|aurelien-peilloux": {
+  "key": "chercheurs|aurelien-peilloux",
+  "title": "Chercheurs",
+  "director": "Aurélien Peilloux",
+  "cast": "",
+  "genre": "Drame",
+  "country": "",
+  "duration_min": null,
+  "poster": "https://all.web.img.acsta.net/img/1a/bf/1abf2118b81ee996cdd4866fd58870c8.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "les-femmes-de-la-station|sara-ishaq": {
+  "key": "les-femmes-de-la-station|sara-ishaq",
+  "title": "Les femmes de la station",
+  "director": "Sara Ishaq",
+  "cast": "",
+  "genre": "Drame",
+  "country": "",
+  "duration_min": 112,
+  "poster": "https://all.web.img.acsta.net/img/30/e7/30e795d38c6da78d3fb4ced68dfaaaf0.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "miss-mermaid|pauline-brunner": {
+  "key": "miss-mermaid|pauline-brunner",
+  "title": "Miss Mermaid",
+  "director": "Pauline Brunner",
+  "cast": "",
+  "genre": "Comédie dramatique",
+  "country": "",
+  "duration_min": 92,
+  "poster": "https://all.web.img.acsta.net/img/b8/92/b892d95f6d84357609258601c16cd546.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "lune-des-leurs|marie-rosselet-ruiz": {
+  "key": "lune-des-leurs|marie-rosselet-ruiz",
+  "title": "L’une des leurs",
+  "director": "Marie Rosselet-Ruiz",
+  "cast": "",
+  "genre": "Drame",
+  "country": "",
+  "duration_min": null,
+  "poster": "",
+  "trailer": "",
+  "storyline": ""
+ },
+ "en-haut-de-la-pile|louis-julien-petit": {
+  "key": "en-haut-de-la-pile|louis-julien-petit",
+  "title": "En haut de la pile",
+  "director": "Louis-Julien Petit",
+  "cast": "",
+  "genre": "Comédie dramatique",
+  "country": "",
+  "duration_min": null,
+  "poster": "https://all.web.img.acsta.net/img/83/77/8377e79a2a6676be4d2aa2d0aa447970.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "programme-a-de-la-competition-de-court-metrages-du-festival-jean-carmet-2026|": {
+  "key": "programme-a-de-la-competition-de-court-metrages-du-festival-jean-carmet-2026|",
+  "title": "Programme A de la compétition de court-métrages du Festival Jean Carmet 2026",
+  "director": "",
+  "cast": "",
+  "genre": "Divers",
+  "country": "",
+  "duration_min": 92,
+  "poster": "",
+  "trailer": "",
+  "storyline": ""
+ },
+ "programme-c-de-la-competition-de-court-metrages-du-festival-jean-carmet-2026|": {
+  "key": "programme-c-de-la-competition-de-court-metrages-du-festival-jean-carmet-2026|",
+  "title": "Programme C de la compétition de court-métrages du Festival Jean Carmet 2026",
+  "director": "",
+  "cast": "",
+  "genre": "Divers",
+  "country": "",
+  "duration_min": 90,
+  "poster": "",
+  "trailer": "",
+  "storyline": ""
+ },
+ "quelques-mots-d-amour|rudi-rosenberg": {
+  "key": "quelques-mots-d-amour|rudi-rosenberg",
+  "title": "Quelques mots d'amour",
+  "director": "Rudi Rosenberg",
+  "cast": "",
+  "genre": "Comédie dramatique",
+  "country": "",
+  "duration_min": 97,
+  "poster": "https://all.web.img.acsta.net/img/65/44/654492a6a2e060b5618af12221946790.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
  "degel|manuela-martelli": {
   "key": "degel|manuela-martelli",
   "title": "Dégel",
@@ -1307,6 +1535,18 @@
   "trailer": "",
   "storyline": ""
  },
+ "les-filles-d-abraham|hanael-el-yousfi": {
+  "key": "les-filles-d-abraham|hanael-el-yousfi",
+  "title": "Les Filles d'Abraham",
+  "director": "Hanaël El Yousfi",
+  "cast": "",
+  "genre": "Drame",
+  "country": "",
+  "duration_min": 93,
+  "poster": "https://all.web.img.acsta.net/img/1e/0d/1e0d28e96ffd29a0481b251dee566bff.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
  "le-cercle-des-poetes-disparus|peter-weir": {
   "key": "le-cercle-des-poetes-disparus|peter-weir",
   "title": "Le Cercle des poètes disparus",
@@ -1316,6 +1556,18 @@
   "country": "",
   "duration_min": 128,
   "poster": "https://all.web.img.acsta.net/pictures/14/03/25/12/45/430929.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "entre-le-ciel-et-l-enfer|akira-kurosawa": {
+  "key": "entre-le-ciel-et-l-enfer|akira-kurosawa",
+  "title": "Entre le ciel et l'enfer",
+  "director": "Akira Kurosawa",
+  "cast": "",
+  "genre": "Drame",
+  "country": "",
+  "duration_min": 143,
+  "poster": "https://all.web.img.acsta.net/medias/nmedia/18/35/31/27/19642371.jpg",
   "trailer": "",
   "storyline": ""
  },
@@ -1340,6 +1592,18 @@
   "country": "",
   "duration_min": 75,
   "poster": "https://all.web.img.acsta.net/img/6b/d7/6bd780e94b8b1a5a8e9e58b402daf4c6.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "madame-hofmann|sebastien-lifshitz": {
+  "key": "madame-hofmann|sebastien-lifshitz",
+  "title": "Madame Hofmann",
+  "director": "Sébastien Lifshitz",
+  "cast": "",
+  "genre": "Documentaire",
+  "country": "",
+  "duration_min": 104,
+  "poster": "https://all.web.img.acsta.net/pictures/23/07/27/14/08/4319830.jpg",
   "trailer": "",
   "storyline": ""
  },
@@ -1376,6 +1640,42 @@
   "country": "",
   "duration_min": 108,
   "poster": "https://all.web.img.acsta.net/medias/nmedia/18/86/99/38/19880986.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "soyez-sympas-rembobinez|michel-gondry": {
+  "key": "soyez-sympas-rembobinez|michel-gondry",
+  "title": "Soyez sympas, rembobinez",
+  "director": "Michel Gondry",
+  "cast": "",
+  "genre": "Comédie",
+  "country": "",
+  "duration_min": 94,
+  "poster": "https://all.web.img.acsta.net/medias/nmedia/18/87/17/21/19896768.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "lee-miller|ellen-kuras": {
+  "key": "lee-miller|ellen-kuras",
+  "title": "Lee Miller",
+  "director": "Ellen Kuras",
+  "cast": "",
+  "genre": "Biopic",
+  "country": "",
+  "duration_min": 117,
+  "poster": "https://all.web.img.acsta.net/pictures/24/02/16/09/54/2305876.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "la-derniere-patiente|remi-bassaler": {
+  "key": "la-derniere-patiente|remi-bassaler",
+  "title": "La Dernière patiente",
+  "director": "Rémi Bassaler",
+  "cast": "",
+  "genre": "Drame",
+  "country": "",
+  "duration_min": 80,
+  "poster": "https://all.web.img.acsta.net/img/7c/a1/7ca1f529f684824b29ff0a9d2be1cc54.jpeg",
   "trailer": "",
   "storyline": ""
  },
@@ -1451,6 +1751,18 @@
   "trailer": "",
   "storyline": ""
  },
+ "fini-de-rire-l-humour-politique-au-garde-a-vous|mateo-larroque": {
+  "key": "fini-de-rire-l-humour-politique-au-garde-a-vous|mateo-larroque",
+  "title": "Fini de rire ! L'humour politique au garde-à-vous ?",
+  "director": "Matéo Larroque",
+  "cast": "",
+  "genre": "Documentaire",
+  "country": "",
+  "duration_min": 97,
+  "poster": "https://all.web.img.acsta.net/img/f3/43/f343eb5d22c124bb07e977943fa44d22.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
  "la-nirvana|hakim-bougheraba": {
   "key": "la-nirvana|hakim-bougheraba",
   "title": "La Nirvana",
@@ -1472,6 +1784,18 @@
   "country": "",
   "duration_min": 124,
   "poster": "",
+  "trailer": "",
+  "storyline": ""
+ },
+ "dune|david-lynch": {
+  "key": "dune|david-lynch",
+  "title": "Dune",
+  "director": "David Lynch",
+  "cast": "",
+  "genre": "Fantastique",
+  "country": "",
+  "duration_min": 137,
+  "poster": "https://all.web.img.acsta.net/medias/nmedia/18/87/02/34/19883521.jpg",
   "trailer": "",
   "storyline": ""
  },
@@ -1499,6 +1823,18 @@
   "trailer": "",
   "storyline": ""
  },
+ "un-monde|laura-wandel": {
+  "key": "un-monde|laura-wandel",
+  "title": "Un monde",
+  "director": "Laura Wandel",
+  "cast": "",
+  "genre": "Drame",
+  "country": "",
+  "duration_min": 75,
+  "poster": "https://all.web.img.acsta.net/pictures/21/06/02/17/31/1033345.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
  "je-le-jure|samuel-theis": {
   "key": "je-le-jure|samuel-theis",
   "title": "Je le jure",
@@ -1508,6 +1844,18 @@
   "country": "",
   "duration_min": 110,
   "poster": "https://all.web.img.acsta.net/img/b8/b5/b8b566a8b23aa21c06a5704fb60d772d.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "julie-se-tait|leonardo-van-dijl": {
+  "key": "julie-se-tait|leonardo-van-dijl",
+  "title": "Julie se tait",
+  "director": "Leonardo Van Dijl",
+  "cast": "",
+  "genre": "Drame",
+  "country": "",
+  "duration_min": 97,
+  "poster": "https://all.web.img.acsta.net/img/cb/1f/cb1fb976f149ce2e3401ce5841db0d15.jpg",
   "trailer": "",
   "storyline": ""
  },
@@ -1535,6 +1883,18 @@
   "trailer": "",
   "storyline": ""
  },
+ "ducobu-et-le-fantome-de-saint-potache|elie-semoun": {
+  "key": "ducobu-et-le-fantome-de-saint-potache|elie-semoun",
+  "title": "Ducobu et le fantôme de Saint-Potache",
+  "director": "Elie Semoun",
+  "cast": "",
+  "genre": "Comédie",
+  "country": "",
+  "duration_min": 90,
+  "poster": "https://all.web.img.acsta.net/img/b6/b4/b6b4ed053dd6f0da4e2fec384982eb2a.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
  "vol-au-dessus-d-un-nid-de-coucou|milos-forman": {
   "key": "vol-au-dessus-d-un-nid-de-coucou|milos-forman",
   "title": "Vol au-dessus d'un nid de coucou",
@@ -1547,15 +1907,15 @@
   "trailer": "",
   "storyline": ""
  },
- "etre-avec-les-abeilles|perinne-bertrand": {
-  "key": "etre-avec-les-abeilles|perinne-bertrand",
-  "title": "Être avec les Abeilles",
-  "director": "Perinne Bertrand",
+ "permaculture-la-voie-de-l-autonomie|carinne-coisman": {
+  "key": "permaculture-la-voie-de-l-autonomie|carinne-coisman",
+  "title": "Permaculture, la voie de l'Autonomie",
+  "director": "Carinne Coisman",
   "cast": "",
   "genre": "Documentaire",
   "country": "",
-  "duration_min": 75,
-  "poster": "https://all.web.img.acsta.net/pictures/21/05/07/12/40/2558403.jpg",
+  "duration_min": 68,
+  "poster": "https://all.web.img.acsta.net/pictures/19/04/09/14/50/3475400.jpg",
   "trailer": "",
   "storyline": ""
  },
