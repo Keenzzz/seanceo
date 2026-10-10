@@ -47,18 +47,6 @@
   "trailer": "",
   "storyline": ""
  },
- "plus-que-jamais|emily-atef": {
-  "key": "plus-que-jamais|emily-atef",
-  "title": "Plus que jamais",
-  "director": "Emily Atef",
-  "cast": "",
-  "genre": "Drame",
-  "country": "",
-  "duration_min": 123,
-  "poster": "https://all.web.img.acsta.net/pictures/22/09/05/15/44/1148359.jpg",
-  "trailer": "",
-  "storyline": ""
- },
  "les-survivants-du-che|christophe-reveille": {
   "key": "les-survivants-du-che|christophe-reveille",
   "title": "Les Survivants du Che",
@@ -623,18 +611,6 @@
   "trailer": "",
   "storyline": "Alors qu’il conduisait une voiture volée, un petit voyou a tué un motard lors d’un contrôle routier. Traqué par la police, il se lance dans Paris à la recherche d’un débiteur pour tenter de récupérer l’argent qui lui permettrait de quitter la France… While driving a stolen car, a small-time crook killed a motorcyclist during a traffic stop. Hunted by the police, he embarks on a chase through Paris, searching for a debtor in an attempt to recover the money that would allow him to leave France..."
  },
- "apocalypse-now-final-cut|francis-ford-coppola": {
-  "key": "apocalypse-now-final-cut|francis-ford-coppola",
-  "title": "Apocalypse Now final cut",
-  "director": "Francis Ford Coppola",
-  "cast": "Martin Sheen, Marlon Brando, Robert Duvall, Albert Hall, Sam Bottoms, Laurence Fishburne, Dennis Hopper, Harrison Ford, Scott Glenn.",
-  "genre": "",
-  "country": "",
-  "duration_min": 182,
-  "poster": "",
-  "trailer": "",
-  "storyline": "Interdit - 12 ans Pendant la guerre du Viêt Nam, les services secrets américains confient au Capitaine Willard la mission de retrouver et d’exécuter le colonel Kurtz dont les méthodes sont jugées « malsaines ». Celui-ci, établi au-delà de la frontière avec le Cambodge, a pris la tête d’un groupe d’indigènes et mène des opérations contre l’ennemi avec une sauvagerie terrifiante. Au moyen d’un patrouilleur et d’un équipage mis à sa disposition, Willard doit remonter le fleuve au plus profond de la jungle pour éliminer l’officier. Pendant son voyage il découvre en étudiant le dossier de Kurtz un homme très différent de l’idée qu’il s’en faisait."
- },
  "assurance-sur-la-mort|billy-wilder": {
   "key": "assurance-sur-la-mort|billy-wilder",
   "title": "Assurance sur la mort",
@@ -658,18 +634,6 @@
   "poster": "",
   "trailer": "",
   "storyline": "BIG EYES raconte la scandaleuse histoire vraie de l’une des plus grandes impostures de l’histoire de l’art. À la fin des années 50 et au début des années 60, le peintre Walter Keane a connu un succès phénoménal et révolutionné le commerce de l’art grâce à ses énigmatiques tableaux représentant des enfants malheureux aux yeux immenses. La surprenante et choquante vérité a cependant fini par éclater : ces toiles n’avaient pas été peintes par Walter mais par sa femme, Margaret. L’extraordinaire mensonge des Keane a réussi à duper le monde entier. Le film se concentre sur l’éveil artistique de Margaret, le succès phénoménal de ses tableaux et sa relation tumultueuse avec son mari, qui a connu la gloire en s’attribuant tout le mérite de son travail."
- },
- "bird|clint-eastwood": {
-  "key": "bird|clint-eastwood",
-  "title": "BIRD",
-  "director": "Clint Eastwood",
-  "cast": "Forest Whitaker, Diane Venora, Michael Zelniker",
-  "genre": "",
-  "country": "",
-  "duration_min": 160,
-  "poster": "",
-  "trailer": "",
-  "storyline": "Bird est une interprétation cinématographique de la vie de Charlie \"Yardbird\" Parker, jazzman visionnaire et musicien accompli qui éleva le saxophone à un niveau d'expression inédit. Le film dépeint alternativement la jeunesse et la maturité de cet homme et de ce créateur de génie, sa carrière et ses drames personnels. Charlie Parker fut une énigme. La puissance et la beauté de son style firent de lui un précurseur, mais sa vie privée fut un enfer. Ce film tente d'éclairer le penchant de Parker pour la drogue, l'alcool et les femmes, de comprendre la nature de sa passion pour Chan Richardson, la complexité de sa vision et, surtout, sa musique."
  },
  "birdman|alejandro-gonzalez-inarritu": {
   "key": "birdman|alejandro-gonzalez-inarritu",
@@ -706,42 +670,6 @@
   "poster": "",
   "trailer": "",
   "storyline": ""
- },
- "breve-rencontre|david-lean": {
-  "key": "breve-rencontre|david-lean",
-  "title": "Brève rencontre",
-  "director": "David Lean",
-  "cast": "Celia Johnson, Trevor Howard, Stanley Holloway",
-  "genre": "",
-  "country": "",
-  "duration_min": 86,
-  "poster": "",
-  "trailer": "",
-  "storyline": "Sur le quai de la gare, une mère de famille, qui a une escarbille dans l'oeil, est secourue par un médecin de passage qui la soulage de sa douleur. Entre eux, c'est le coup de foudre. Sans réfléchir un instant, ils se revoient et, très vite, deviennent amants. Mais leur amour devient rapidement source de torture. En effet, l'un et l'autre sont mariés et parents. Déchirés entre passion et devoir, ils ne savent que choisir..."
- },
- "casablanca|michael-curtiz": {
-  "key": "casablanca|michael-curtiz",
-  "title": "Casablanca",
-  "director": "Michael Curtiz",
-  "cast": "Humphrey Bogart, Ingrid Bergman, Paul Henreid, Claude Rains, Conrad Veidt, Sydney Greenstreet, Peter Lorre, Marcel Dalio",
-  "genre": "",
-  "country": "",
-  "duration_min": 102,
-  "poster": "",
-  "trailer": "",
-  "storyline": "A Casablanca, en 1943, un Américain en exil tient le night club le plus couru de la ville, sous la surveillance du capitaine Renault, de la police de Vichy, et des Allemands. Il doit aider un Résistant tchèque en fuite, mais l’homme est accompagné par la femme qu’il a toujours aimée, ce qui l’enferme dans un dilemme."
- },
- "chungking-express|wong-kar-wai": {
-  "key": "chungking-express|wong-kar-wai",
-  "title": "Chungking express",
-  "director": "Wong Kar-wai",
-  "cast": "Brigitte Lin Chin Hsia, Takeshi Kaneshiro, Tony Leung Chiu Wai, Faye Wang,Valerie Chow",
-  "genre": "",
-  "country": "",
-  "duration_min": 103,
-  "poster": "",
-  "trailer": "",
-  "storyline": "Deux flics sont lâchés par leur petite amie. L’un se promet de tomber amoureux de la première femme qui entrera dans un bar a Chungking House, où il noie son chagrin. L’autre, passe chaque soir au Midnight Express, un fast-food du quartier acheter à la jolie serveuse Faye une \"Chef Salad\" qu'il destine à son amour idyllique, une hôtesse de l'air."
  },
  "close-up|abbas-kiarostami": {
   "key": "close-up|abbas-kiarostami",
@@ -791,18 +719,6 @@
   "trailer": "",
   "storyline": "Un garçon qui a quitté le collège trouve un emploi dans un établissement de bains londonien. Son homologue féminin arrondit ses fins de mois en proposant ses charmes à la clientèle masculine. Amoureux jaloux de la jeune femme, il devient encombrant."
  },
- "deux-ou-trois-choses-que-je-sais-delle|jean-luc-godard": {
-  "key": "deux-ou-trois-choses-que-je-sais-delle|jean-luc-godard",
-  "title": "DEUX OU TROIS CHOSES QUE JE SAIS D’ELLE",
-  "director": "Jean-Luc Godard",
-  "cast": "Marina Vlady, Anny Duperey, Roger Montsoret, Raoul Lévy, Jean Narboni",
-  "genre": "",
-  "country": "",
-  "duration_min": 90,
-  "poster": "",
-  "trailer": "",
-  "storyline": "Les trajectoires parallèles de la transformation d’une ville et de celle d’une jeune femme devenue prostituée."
- },
  "dossier-secret-mr-arkadin|": {
   "key": "dossier-secret-mr-arkadin|",
   "title": "Dossier secret (Mr Arkadin)",
@@ -814,18 +730,6 @@
   "poster": "",
   "trailer": "",
   "storyline": ""
- },
- "drive|nicolas-winding-refn": {
-  "key": "drive|nicolas-winding-refn",
-  "title": "Drive",
-  "director": "Nicolas Winding Refn",
-  "cast": "Ryan Gosling, Carey Mulligan, Bryan Cranston",
-  "genre": "",
-  "country": "",
-  "duration_min": 100,
-  "poster": "https://lafilmotheque.fr/v4/content/uploads/2022/10/19803697.jpg-c_310_420_x-f_jpg-q_x-xxyxx.jpg",
-  "trailer": "",
-  "storyline": "Interdit - 12 ans Un jeune homme solitaire, The Driver, conduit le jour à Hollywood pour le cinéma en tant que cascadeur et la nuit pour des truands. Jamais il n'a pris part aux crimes de ses employeurs autrement qu'en conduisant — et au volant, il est le meilleur !"
  },
  "elles-deux|": {
   "key": "elles-deux|",
@@ -875,18 +779,6 @@
   "trailer": "",
   "storyline": "Un reporter-photographe immobilisé à la suite d’un accident, se met, tant par réflexe professionnel que par désœuvrement, à observer ses voisins. Ayant acquis la conviction qu’un homme a assassiné son épouse, il implique dans son enquête sa gouvernante et sa petite amie..."
  },
- "french-connection|william-friedkin": {
-  "key": "french-connection|william-friedkin",
-  "title": "French Connection",
-  "director": "William Friedkin",
-  "cast": "Gene Hackman, Fernando Rey, Roy Scheider, Tony Lo Bianco, Marcel Bozzuffi, Frédéric de Pasquale",
-  "genre": "",
-  "country": "",
-  "duration_min": 104,
-  "poster": "",
-  "trailer": "",
-  "storyline": "Interdit -12 ans Alors qu’une importante livraison de drogue en provenance de Marseille doit être acheminée vers le port de New York, deux policiers de choc de la brigade des stupéfiants mènent les recherches, bien décidés à réussir là où leurs prédécesseurs ont échoué et à démanteler le réseau."
- },
  "goodbye-dragon-inn|tsai-ming-liang": {
   "key": "goodbye-dragon-inn|tsai-ming-liang",
   "title": "Goodbye, Dragon Inn",
@@ -898,30 +790,6 @@
   "poster": "",
   "trailer": "",
   "storyline": "À Taïpei, un cinéma ferme ses portes, mais pas avant d'avoir joué un dernier film, qui s'avère être une source de nostalgie pour ceux qui fréquentent le lieu et pour les employés du vieil immeuble décrépit et hanté."
- },
- "hantise|george-cukor": {
-  "key": "hantise|george-cukor",
-  "title": "Hantise",
-  "director": "George Cukor",
-  "cast": "Charles Boyer, Ingrid Bergman, Joseph Cotten, Dame May Whitty, Angela Lansbury",
-  "genre": "",
-  "country": "",
-  "duration_min": 114,
-  "poster": "",
-  "trailer": "",
-  "storyline": "Un pianiste romantique rencontre en Italie une jeune Anglaise et l’épouse. Il lui propose d’aller habiter à Londres la maison qui lui a été léguée par sa tante, mystérieusement assassinée. Après l’emménagement, les relations du couple se détériorent et la jeune femme se sent bientôt menacée…"
- },
- "il-etait-une-fois|george-cukor": {
-  "key": "il-etait-une-fois|george-cukor",
-  "title": "Il était une fois",
-  "director": "George Cukor",
-  "cast": "Joan Crawford, Melvyn Douglas, Conrad Veidt",
-  "genre": "",
-  "country": "",
-  "duration_min": 106,
-  "poster": "",
-  "trailer": "",
-  "storyline": "Quand un chirurgien esthétique rend un visage normal à une femme défigurée dans son enfance, celle-ci devient tiraillée entre l'espoir de pouvoir commencer une nouvelle vie et les tentations des obscurités de sa vie passée…"
  },
  "illusions-perdues|xavier-giannoli": {
   "key": "illusions-perdues|xavier-giannoli",
@@ -947,18 +815,6 @@
   "trailer": "",
   "storyline": "Hong Kong, 1962. Mme Chan loue une chambre chez Mme Suen. Le même jour et sur le même palier, s’installe M. Chow. Leurs conjoints sont souvent absents. Un jour, M. Chow et Mme Chan découvrent que leurs époux sont amants. Blessés, ils se fréquentent alors de plus en plus et développent eux aussi une liaison…"
  },
- "jours-damour|giuseppe-de-santis": {
-  "key": "jours-damour|giuseppe-de-santis",
-  "title": "JOURS D’AMOUR",
-  "director": "Giuseppe De Santis",
-  "cast": "Marcello Mastroianni, Marina Vlady, Lucien Gallas, Giulio Calì",
-  "genre": "",
-  "country": "",
-  "duration_min": 103,
-  "poster": "",
-  "trailer": "",
-  "storyline": "Angela et Pasquale ont grandi ensemble dans une petite ville d’Italie et sont tombés amoureux. Ils aimeraient pouvoir se marier mais leurs familles respectives, de modestes paysans, n’ont pas assez d’argent pour organiser la noce. Face au désarroi de leurs enfants, ils trouvent bientôt un stratagème qui devrait leur éviter trop de dépenses inutiles : Pasquale va « enlever » Angela et rester seul avec elle pendant quelques jours. À leur retour, il ne restera plus qu’à les marier sans cérémonie officielle, donc sans frais…"
- },
  "lamour-lapres-midi|eric-rohmer": {
   "key": "lamour-lapres-midi|eric-rohmer",
   "title": "L’amour l’après-midi",
@@ -970,18 +826,6 @@
   "poster": "",
   "trailer": "",
   "storyline": "Un jeune PDG dont la vie est réglée comme du papier à musique rencontre un jour dans les rues de Paris une ancienne camarade, libre, fantasque, révoltée... Désarçonné par l’anticonformisme de son amie, il en tombe amoureux. Mais leurs mondes sont trop différents…"
- },
- "lannee-du-dragon|michael-cimino": {
-  "key": "lannee-du-dragon|michael-cimino",
-  "title": "L’Année du dragon",
-  "director": "Michael Cimino",
-  "cast": "Mickey Rourke, Ariane, John Lone",
-  "genre": "",
-  "country": "",
-  "duration_min": 134,
-  "poster": "",
-  "trailer": "",
-  "storyline": "Interdit - 12 ans Un policier, ancien du Vietnam, a décidé de nettoyer Chinatown. Face à lui, un jeune chinois, homme d'affaires ambitieux, vient juste d'enlever aux Italiens le marché de l'héroïne. Leur lutte sans merci trouvera son apogée pendant les fêtes du Nouvel An chinois."
  },
  "letrange-monsieur-victor|jean-gremillon": {
   "key": "letrange-monsieur-victor|jean-gremillon",
@@ -1006,18 +850,6 @@
   "poster": "",
   "trailer": "",
   "storyline": "La vie du Christ selon Saint-Matthieu."
- },
- "lultime-razzia|stanley-kubrick": {
-  "key": "lultime-razzia|stanley-kubrick",
-  "title": "L’Ultime razzia",
-  "director": "Stanley Kubrick",
-  "cast": "Sterling Hayden, Coleen Gray, Vince Edwards, Jay C. Flippen, Ted de Corsia, Elisha Cook Jr., Marie Windsor",
-  "genre": "",
-  "country": "",
-  "duration_min": 80,
-  "poster": "",
-  "trailer": "",
-  "storyline": "Un gangster récemment sorti de prison et ses complices organisent le hold-up des paris d’un champ de course. Le coup réussi, personne ne veut plus partager le butin."
  },
  "la-grande-bellezza|paolo-sorrentino": {
   "key": "la-grande-bellezza|paolo-sorrentino",
@@ -1055,30 +887,6 @@
   "trailer": "",
   "storyline": "C’est l’histoire d’un chef d’entreprise qui rencontre une actrice qui est amie avec une serveuse qui rencontre un garde du corps qui travaille avec un chauffeur qui conduit une décoratrice qui est la femme du chef d’entreprise qui voudrait être ami avec des artistes qui… C’est l’histoire des goûts des uns et des couleurs des autres. C’est l’histoire de personnages et de milieux qui n’auraient pas dû se rencontrer car on ne bouscule pas les cadres de références et les barrières culturelles sans faire d’histoires."
  },
- "le-lit-conjugal|marco-ferreri": {
-  "key": "le-lit-conjugal|marco-ferreri",
-  "title": "Le lit conjugal",
-  "director": "Marco Ferreri",
-  "cast": "Walter Giller, Ugo Tognazzi, Marina Vlady",
-  "genre": "",
-  "country": "",
-  "duration_min": 83,
-  "poster": "",
-  "trailer": "",
-  "storyline": "Alfonso, la quarantaine, épouse Regina, une jeune fille catholique et vierge afin de l’initier au devoir conjugal selon ses désirs. Mais Regina va vite s’avérer insatiable et l’épuiser jusqu’à ce qu’elle soit fécondée, tout comme la reine des abeilles..."
- },
- "le-million|rene-clair": {
-  "key": "le-million|rene-clair",
-  "title": "Le million",
-  "director": "René Clair",
-  "cast": "Annabella, René Lefèvre, Paul Ollivier, Constantin Stroesco",
-  "genre": "",
-  "country": "",
-  "duration_min": 83,
-  "poster": "",
-  "trailer": "",
-  "storyline": "Michel, un jeune homme criblé de dettes, apprend qu’il a gagné la loterie. Tous ses créanciers vont enfin cesser de le harceler. Malheureusement, sa fiancée a donné la veste qui contenait le billet gagnant à un étrange vagabond. Une folle chasse au trésor commence,"
- },
  "le-parrain|francis-ford-coppola": {
   "key": "le-parrain|francis-ford-coppola",
   "title": "Le Parrain",
@@ -1114,18 +922,6 @@
   "poster": "",
   "trailer": "",
   "storyline": "Fasciné par le monde de la pègre, un jeune gangster s’associe avec un dangereux paranoïaque. Pris au piège, il devra livrer ses amis pour sauver sa peau."
- },
- "les-bas-fonds-new-yorkais|samuel-fuller": {
-  "key": "les-bas-fonds-new-yorkais|samuel-fuller",
-  "title": "Les Bas-fonds new-yorkais",
-  "director": "Samuel Fuller",
-  "cast": "Cliff Robertson, Dolores Dorn, Beatrice Kay, Larry Gates",
-  "genre": "",
-  "country": "",
-  "duration_min": 99,
-  "poster": "",
-  "trailer": "",
-  "storyline": "Un adolescent voit son père se faire tabasser à mort par les membres d'un gang de délinquants. Devenu adulte, il prépare sa vengeance envers les assassins de son père, désormais au sommet de la pègre new-yorkaise..."
  },
  "lost-in-translation|sofia-coppola": {
   "key": "lost-in-translation|sofia-coppola",
@@ -1163,18 +959,6 @@
   "trailer": "",
   "storyline": "Interdit - 12 ans En 1986, dans une province coréenne, une unité spéciale de la police est créée afin de retrouver un serial killer qui sème la terreur. Elle est placée sous les ordres d'un policier local et d'un détective spécialement envoyé de Séoul à sa demande. Devant l'absence de preuves concrètes, les deux hommes sombrent peu à peu dans le doute…"
  },
- "nowhere|gregg-araki": {
-  "key": "nowhere|gregg-araki",
-  "title": "Nowhere",
-  "director": "Gregg Araki",
-  "cast": "James Duval, Debi Mazar, Rachel True",
-  "genre": "",
-  "country": "",
-  "duration_min": 82,
-  "poster": "",
-  "trailer": "",
-  "storyline": "Interdit - 12 ans L'histoire d'un voyage en apnée dans la journée banale d'un adolescent de Los Angeles âgé de dix-huit ans, Dark Smith, hanté par la fin du monde et la quête de l'amour pur."
- },
  "old-boy|park-chan-wook": {
   "key": "old-boy|park-chan-wook",
   "title": "OLD BOY",
@@ -1186,30 +970,6 @@
   "poster": "",
   "trailer": "",
   "storyline": "Interdit - 12 ans Dae-Soo, père de famille sans histoire, est enlevé un jour devant chez lui. Séquestré pendant plusieurs années dans une cellule privée, son seul lien avec l'extérieur est une télévision. Par le biais de cette télévision, il apprend le meurtre de sa femme, meurtre dont il est le principal suspect. Au désespoir d'être séquestré sans raison apparente succède alors chez le héros une rage intérieure vengeresse qui lui permet de survivre. Il est relâché 15 ans plus tard, toujours sans explication. ​Grand prix Festival de Cannes - 2004"
- },
- "pickpocket|robert-bresson": {
-  "key": "pickpocket|robert-bresson",
-  "title": "Pickpocket",
-  "director": "Robert Bresson",
-  "cast": "Martin LaSalle, Marika Green, Agnès Delahaie, Dolly Scal",
-  "genre": "",
-  "country": "",
-  "duration_min": 75,
-  "poster": "",
-  "trailer": "",
-  "storyline": "Michel, un jeune homme solitaire, trouve une profonde fascination dans le vol, le considérant comme un art à part entière. Il croit fermement que certains individus d'exception devraient être affranchis des lois et se trouve des complices afin de rendre son activité de plus en plus efficace."
- },
- "poursuites-dans-la-nuit|jacques-tourneur": {
-  "key": "poursuites-dans-la-nuit|jacques-tourneur",
-  "title": "Poursuites dans la nuit",
-  "director": "Jacques Tourneur",
-  "cast": "Aldo Ray, Brian Keith, Anne Bancroft",
-  "genre": "",
-  "country": "",
-  "duration_min": 78,
-  "poster": "",
-  "trailer": "",
-  "storyline": "La vie d'une jeune mannequin bascule lorsqu'elle rencontre dans un bar de Los Angeles un fugitif traqué à la fois par deux voyous et un enquêteur des assurances."
  },
  "que-la-fete-commence|bertrand-tavernier": {
   "key": "que-la-fete-commence|bertrand-tavernier",
@@ -1223,6 +983,18 @@
   "trailer": "",
   "storyline": "A la mort de Louis XIX, le neveu de ce dernier, le duc Philippe d’Orléans, assure la régence, jusqu’à la majoritié de Louis XV. Toutefois, le duc est un homme des plus débauchés qui se laisse influencer par les mauvais conseils."
  },
+ "rendez-vous-de-juillet|jacques-becker": {
+  "key": "rendez-vous-de-juillet|jacques-becker",
+  "title": "Rendez-vous de juillet",
+  "director": "Jacques Becker",
+  "cast": "Daniel Gélin, Nicole Courcel, Brigitte Auber, Bernard Lajarrige, Maurice Ronet, Pierre Trabaud, Louis Seigner, Philippe Mareuil, Gaston Modot, Francis Mazières et l’orchestre de Claude Luter",
+  "genre": "",
+  "country": "",
+  "duration_min": 112,
+  "poster": "",
+  "trailer": "",
+  "storyline": "Dans le Paris de l’après-guerre, pendant un été, les espoirs, amours, relations familiales et ambitions professionnelles d’une bande d’amis réunis par la passion du jazz, dans les caves de Saint-Germain-des-Prés, les répétitions théâtrales et le désir d’entreprendre une expédition en Afrique. During a summer in post-war Paris, the hopes, loves, family relationships of a group of friends brought together by the passion for jazz, in the underground bars of Saint-Germain-des-Prés, theater rehearsals and desire to undertake an expedition to Africa."
+ },
  "soigne-ta-droite|jean-luc-godard": {
   "key": "soigne-ta-droite|jean-luc-godard",
   "title": "Soigne ta droite",
@@ -1234,18 +1006,6 @@
   "poster": "",
   "trailer": "",
   "storyline": "Les Rita Mitsouko répètent en studio. L'« Idiot », un cinéaste perfectionniste, cherche à vendre son nouveau projet de film."
- },
- "splendor|ettore-scola": {
-  "key": "splendor|ettore-scola",
-  "title": "SPLENDOR",
-  "director": "Ettore Scola",
-  "cast": "Marcello Mastroianni, Massimo Troisi, Marina Vlady",
-  "genre": "",
-  "country": "",
-  "duration_min": 110,
-  "poster": "",
-  "trailer": "",
-  "storyline": "Criblé de dettes, le propriétaire du cinéma \"Le Splendor\" doit vendre son bien à un riche industriel. Alors que l'on démonte la salle, il se remémore son histoire : ses débuts avec le cinéma, hérité de son père, l'arrivée de la belle ouvreuse française qui attirait à elle seule le public, son jeune projectionniste passionné, les émeutes lors des « premières »…"
  },
  "sueurs-froides|alfred-hitchcock": {
   "key": "sueurs-froides|alfred-hitchcock",
@@ -1271,18 +1031,6 @@
   "trailer": "",
   "storyline": "Interdit - 12 ans Jordan et Amy, un couple d'adolescents, croise la route de Xavier, un homme mi-ange, mi-démon, qui les entraîne dans un cauchemar psychédelique, surréaliste et comique."
  },
- "the-revenant|alejandro-gonzalez-inarritu": {
-  "key": "the-revenant|alejandro-gonzalez-inarritu",
-  "title": "THE REVENANT",
-  "director": "Alejandro González Iñarritu",
-  "cast": "Leonardo DiCaprion, Tom Hardy, Domhnall Gleeson, Will Poulter, Lukas Haas, Forrest Goodluck",
-  "genre": "",
-  "country": "",
-  "duration_min": 156,
-  "poster": "",
-  "trailer": "",
-  "storyline": "Interd -12 ans Dans une Amérique profondément sauvage, Hugh Glass, un trappeur, est attaqué par un ours et grièvement blessé. Abandonné par ses équipiers, il est laissé pour mort. Mais Glass refuse de mourir. Seul, armé de sa volonté et porté par l’amour qu’il voue à sa femme et à leur fils, Glass entreprend un voyage de plus de 300 km dans un environnement hostile, sur la piste de l’homme qui l’a trahi. Sa soif de vengeance va se transformer en une lutte héroïque pour braver tous les obstacles, revenir chez lui et trouver la rédemption."
- },
  "thelma-et-louise|ridley-scott": {
   "key": "thelma-et-louise|ridley-scott",
   "title": "THELMA ET LOUISE",
@@ -1294,18 +1042,6 @@
   "poster": "",
   "trailer": "",
   "storyline": "Int. -12 ans Deux meilleures amies, Thelma et Louise, décident de s'offrir un week-end sur les routes magnifiques de l'Arkansas. Premier arrêt, premier saloon, premiers ennuis et tout bascule. Elles partent en cavale, pourchassées par la police..."
- },
- "un-flic-sur-le-toit|bo-widerberg": {
-  "key": "un-flic-sur-le-toit|bo-widerberg",
-  "title": "Un flic sur le toit",
-  "director": "Bo Widerberg",
-  "cast": "Carl-Gustaf Lindstedt, Sven Wollter, Eva Remaeus,Thomas Hellberg, Hakan Serner, Birgitta Valber",
-  "genre": "",
-  "country": "",
-  "duration_min": 107,
-  "poster": "",
-  "trailer": "",
-  "storyline": "Int. - 12 ans Suède, années 70. Menant l'enquête sur l'assassinat d'un policier controversé, un commissaire découvre la part sombre des activités de son collègue."
  },
  "vivre-sa-vie-film-en-douze-tableaux|": {
   "key": "vivre-sa-vie-film-en-douze-tableaux|",
@@ -1376,18 +1112,6 @@
   "country": "",
   "duration_min": 105,
   "poster": "https://all.web.img.acsta.net/img/8a/8e/8a8efa9aa0e829f588d885b7c964055a.jpg",
-  "trailer": "",
-  "storyline": ""
- },
- "rose|markus-schleinzer": {
-  "key": "rose|markus-schleinzer",
-  "title": "Rose",
-  "director": "Markus Schleinzer",
-  "cast": "",
-  "genre": "Drame",
-  "country": "",
-  "duration_min": 94,
-  "poster": "https://all.web.img.acsta.net/img/a7/19/a71922c7b64c5deed39bc559e1786aa2.jpg",
   "trailer": "",
   "storyline": ""
  },
@@ -1583,18 +1307,6 @@
   "trailer": "",
   "storyline": "En France, rire des puissants est devenu un sport à risque. En trente ans, les humoristes les plus libres de la télévision et de la radio ont été méthodiquement neutralisés, marginalisés, censurés, voire virés. Dans l'audiovisuel public comme dans les médias privés, le même mécanisme se répète : on tolère la satire tant qu'elle ne mord pas. Dès qu'elle touche au pouvoir, on coupe le micro. Des plateaux de Canal+ aux studios de France Inter en passant par les couloirs de France Télévisions, du règne de Nicolas Sarkozy à celui d'Emmanuel Macron, ce documentaire retrace la mécanique d'une mise au silence qui en dit long sur l'état réel de la liberté d'expression dans l'audiovisuel français."
  },
- "hier-aujourd-hui-et-demain|vittorio-de-sica": {
-  "key": "hier-aujourd-hui-et-demain|vittorio-de-sica",
-  "title": "Hier, aujourd'hui et demain",
-  "director": "Vittorio De Sica",
-  "cast": "S. Loren, M. Mastroianni, A. Giuffre",
-  "genre": "",
-  "country": "",
-  "duration_min": 118,
-  "poster": "https://www.cinemas-lumiere.com/cache/data/files/cinemas/movie/poster/5129/2636928/s,490,650-q,90-e56c21.jpg",
-  "trailer": "",
-  "storyline": "Trois villes, trois récits sur le couple, la sexualité et le pouvoir. A Naples, Adelina vend des cigarettes au marché noir car son mari est au chômage. Mais elle se fait arrêter par la police... À Milan, Anna, une riche femme, s'ennuie et parle de s'enfuir avec son amant, un écrivain. Jusqu'au jour où il a un accident avec la voiture de celle-ci... A Rome, Mara, une call-girl, fait tourner la tête d'un jeune séminariste..."
- },
  "l-odyssee|christopher-nolan": {
   "key": "l-odyssee|christopher-nolan",
   "title": "L'Odyssée",
@@ -1655,6 +1367,18 @@
   "trailer": "",
   "storyline": "Les blessures de l'enfance ne s'effacent pas, elles se réparent.Muriel Salmona, psychiatre de renom et spécialiste des violences sexuelles, consacre sa vie à soigner celles et ceux que l'enfance a brisés.Incarnée à l'écran par Sandrine Bonnaire, Marianne Denicourt et Isild Le Besco, elle accompagne des patients qui affrontent leur passé et ouvrent, pas à pas, le chemin de la réparation."
  },
+ "le-monde-a-l-envers|divers-cineastes": {
+  "key": "le-monde-a-l-envers|divers-cineastes",
+  "title": "Le Monde à l'envers",
+  "director": "divers cinéastes",
+  "cast": "",
+  "genre": "",
+  "country": "",
+  "duration_min": 45,
+  "poster": "https://www.cinemas-lumiere.com/cache/data/files/cinemas/movie/poster/4930/695460e78e996175a81de234a0603f87/s,490,650-q,90-2aac50.jpg",
+  "trailer": "",
+  "storyline": "Plongez dans un univers où la différence devient poésie à travers six récits touchants. De Rémi, le souriceau vivant la tête en bas, à Sacha et son parcours inclusif à l’école, de Lina qui s'envole avec un pull, à Lily qui fait éternuer la lune... Ce programme explore avec tendresse les perceptions singulières de l’enfance. Entre tricot de nuages, cités sous-marines et métamorphoses fantastiques du quotidien, ces films nous invitent à voir le monde avec les yeux de ceux et celles qui rêvent et vivent à un rythme différent, parfois juste « en décalé ». 5€ pour tous"
+ },
  "soudain|ryusuke-hamaguchi": {
   "key": "soudain|ryusuke-hamaguchi",
   "title": "Soudain",
@@ -1679,18 +1403,6 @@
   "trailer": "",
   "storyline": "Entre Paris et Istanbul, Margarita, Yuri et leurs amis, un groupe de jeunes exilés russes, cherchent leur place dans un monde qui ne semble plus être le leur."
  },
- "tous-empoisonnes-le-fleau-des-pfas|stenka-quillet-quentin-noirfalisse": {
-  "key": "tous-empoisonnes-le-fleau-des-pfas|stenka-quillet-quentin-noirfalisse",
-  "title": "Tous empoisonnés : Le fléau des PFAS",
-  "director": "Stenka Quillet, Quentin Noirfalisse",
-  "cast": "",
-  "genre": "Documentaire",
-  "country": "",
-  "duration_min": 89,
-  "poster": "https://images.monnaie-services.com/movie_poster/120/FRWTGG8/AQ4PDCJT.jpg",
-  "trailer": "",
-  "storyline": "À part les industriels qui les produisent, tout le monde l’admet : les PFAS sont un désastre sanitaire et environnemental. Ces molécules, surnommées polluants éternels, ont changé nos vies, mais en les menaçant. Elles empêchent certes nos poêles de coller mais certains PFAS sont aussi cancérogènes et désormais omniprésents dans la nature. Ce film va à la rencontre de leurs victimes et de ceux qui luttent pour que cesse la production de PFAS. Des avancées législatives, pénales ou scientifiques font naître l’espoir que l’industrie chimique arrêtera un jour de produire ces poisons. Mais ceux qui nous polluent déjà sont là pour toujours."
- },
  "chien-bleu-et-autres-belles-histoires-de-l-ecole-des-loisirs|dominique-pochat-jean-christophe-ribot-benoit-laborde-sylvain-van-eeckhout": {
   "key": "chien-bleu-et-autres-belles-histoires-de-l-ecole-des-loisirs|dominique-pochat-jean-christophe-ribot-benoit-laborde-sylvain-van-eeckhout",
   "title": "Chien bleu et autres belles histoires de l'école des loisirs",
@@ -1702,5 +1414,17 @@
   "poster": "https://images.monnaie-services.com/movie_poster/120/FRIQ769/4SUTHMMM.jpg",
   "trailer": "https://trailers.imscine.com/ld/bbbc1d2ef825d640d3c9fb8e5ccdf25ee46ea496e94096e97502beee4d387acfa45fa8b17ab6a2ccb6a80b89d8a8f2.mp4",
   "storyline": "Il était une fois une petite oie à la recherche d'une chaussette verte, un ourson qui avait trouvé un bonnet, un étrange chien au pelage bleu, deux voisins lapins fâchés… et une lérote qui rêvait de neige plutôt que d'hiberner. Ouvrez la malle aux trésors de l'école des loisirs et découvrez Chien Bleu et quatre autres histoires comme vous ne les avez encore jamais vues ni entendues !"
+ },
+ "qui-vit-encore|nicolas-wadimoff": {
+  "key": "qui-vit-encore|nicolas-wadimoff",
+  "title": "Qui vit encore",
+  "director": "Nicolas Wadimoff",
+  "cast": "Jawdat Khoudary, Mahmoud Jouda, Adel Altaweel, Haneen Harara, Malak Khadra, Hana Eleiwa, Feras Elshrafi, Eman Shannan, Ghada Alabadla",
+  "genre": "Documentaire",
+  "country": "",
+  "duration_min": 114,
+  "poster": "https://images.monnaie-services.com/movie_poster/120/FRQWSIL/WTSS4ILS.jpg",
+  "trailer": "https://trailers.imscine.com/ld/bbbc1d2ef825d640d3c9fb8e5ccdf25ee46ea496e94096e97502beee4d387acfb142a8b1138babc7ce9600cddca8f2.mp4",
+  "storyline": "Une carte de Gaza, ses villes, camps et quartiers. Peinture blanche sur un sol noir. Dans les contours tracés sommairement, neuf réfugiés qui ont pu échapper à l'enfer, racontent. Leurs vies d'avant, la perte des êtres chers. Des existences oppressées, mais pas encore réduites en cendres. En partageant leurs récits, les protagonistes tentent de se reconnecter à eux-mêmes, de cesser d'être des fantômes. De revenir, peut-être, à la vie."
  }
 }

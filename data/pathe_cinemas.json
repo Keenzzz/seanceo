@@ -681,9 +681,9 @@
   "lon": 5.3675641,
   "chain": "Pathé"
  },
- "pathe-cinema-cine-cap-vert": {
-  "id": "pathe-cinema-cine-cap-vert",
-  "name": "Ciné Cap Vert",
+ "pathe-cinema-pathe-cap-vert": {
+  "id": "pathe-cinema-pathe-cap-vert",
+  "name": "Pathé Cap Vert",
   "address": "1 rue du Cap Vert",
   "postcode": "21800",
   "city": "Quetigny",
