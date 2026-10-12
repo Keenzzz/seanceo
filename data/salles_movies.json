@@ -1,25 +1,13 @@
 {
- "mauvaise-graine|billy-wilder": {
-  "key": "mauvaise-graine|billy-wilder",
-  "title": "Mauvaise graine",
+ "assurance-sur-la-mort|billy-wilder": {
+  "key": "assurance-sur-la-mort|billy-wilder",
+  "title": "Assurance sur la mort",
   "director": "Billy Wilder",
   "cast": "",
   "genre": "Policier",
   "country": "",
-  "duration_min": 86,
-  "poster": "https://all.web.img.acsta.net/medias/nmedia/18/65/52/54/18867554.jpg",
-  "trailer": "",
-  "storyline": ""
- },
- "muriel-ou-le-temps-d-un-retour|alain-resnais": {
-  "key": "muriel-ou-le-temps-d-un-retour|alain-resnais",
-  "title": "Muriel ou le temps d'un retour",
-  "director": "Alain Resnais",
-  "cast": "",
-  "genre": "Drame",
-  "country": "",
-  "duration_min": 117,
-  "poster": "https://all.web.img.acsta.net/medias/nmedia/18/94/06/45/20300709.jpg",
+  "duration_min": 107,
+  "poster": "https://all.web.img.acsta.net/pictures/18/01/03/14/16/1297292.jpg",
   "trailer": "",
   "storyline": ""
  },
@@ -32,18 +20,6 @@
   "country": "",
   "duration_min": 146,
   "poster": "https://all.web.img.acsta.net/img/21/b5/21b5a3e94ef46f0d7f60adabcf6d26eb.jpg",
-  "trailer": "",
-  "storyline": ""
- },
- "rien-a-foutre|emmanuel-marre": {
-  "key": "rien-a-foutre|emmanuel-marre",
-  "title": "Rien à foutre",
-  "director": "Emmanuel Marre",
-  "cast": "",
-  "genre": "Comédie dramatique",
-  "country": "",
-  "duration_min": 115,
-  "poster": "https://all.web.img.acsta.net/pictures/21/06/07/18/04/3196498.jpg",
   "trailer": "",
   "storyline": ""
  },
@@ -68,18 +44,6 @@
   "country": "",
   "duration_min": 90,
   "poster": "https://all.web.img.acsta.net/img/15/74/157421b63ba06daddcc91d030777255b.jpg",
-  "trailer": "",
-  "storyline": ""
- },
- "histoires-de-la-nuit|lea-mysius": {
-  "key": "histoires-de-la-nuit|lea-mysius",
-  "title": "Histoires De La Nuit",
-  "director": "Léa Mysius",
-  "cast": "",
-  "genre": "Thriller",
-  "country": "",
-  "duration_min": 114,
-  "poster": "https://all.web.img.acsta.net/img/19/09/1909e9c54c476076e4a485531de407d5.jpg",
   "trailer": "",
   "storyline": ""
  },
@@ -131,18 +95,6 @@
   "trailer": "",
   "storyline": ""
  },
- "entre-ciel-et-terre|adrian-jaffe": {
-  "key": "entre-ciel-et-terre|adrian-jaffe",
-  "title": "Entre ciel et terre",
-  "director": "Adrián Jaffé",
-  "cast": "",
-  "genre": "Animation",
-  "country": "",
-  "duration_min": 33,
-  "poster": "https://all.web.img.acsta.net/img/aa/17/aa1716c859789c063723c966d8dd4a8c.jpg",
-  "trailer": "",
-  "storyline": ""
- },
  "fini-de-rire-l-humour-politique-au-garde-a-vous|mateo-larroque": {
   "key": "fini-de-rire-l-humour-politique-au-garde-a-vous|mateo-larroque",
   "title": "Fini de rire ! L'humour politique au garde-à-vous ?",
@@ -191,18 +143,6 @@
   "trailer": "",
   "storyline": ""
  },
- "hidden-soiree-speciale-jumpscare-en-presence-du-realisateur|jack-sholder": {
-  "key": "hidden-soiree-speciale-jumpscare-en-presence-du-realisateur|jack-sholder",
-  "title": "Hidden • Soirée spéciale Jumpscare (en présence du réalisateur)",
-  "director": "Jack Sholder",
-  "cast": "",
-  "genre": "Épouvante-horreur",
-  "country": "",
-  "duration_min": 100,
-  "poster": "https://all.web.img.acsta.net/medias/nmedia/18/65/12/96/18831084.jpg",
-  "trailer": "",
-  "storyline": ""
- },
  "akira|katsuhiro-otomo": {
   "key": "akira|katsuhiro-otomo",
   "title": "Akira",
@@ -212,18 +152,6 @@
   "country": "",
   "duration_min": 124,
   "poster": "https://all.web.img.acsta.net/pictures/20/08/10/09/15/4173807.jpg",
-  "trailer": "",
-  "storyline": ""
- },
- "le-tombeau-des-lucioles|isao-takahata": {
-  "key": "le-tombeau-des-lucioles|isao-takahata",
-  "title": "Le Tombeau des lucioles",
-  "director": "Isao Takahata",
-  "cast": "",
-  "genre": "Animation",
-  "country": "",
-  "duration_min": 90,
-  "poster": "https://all.web.img.acsta.net/medias/nmedia/18/96/09/08/20444733.jpg",
   "trailer": "",
   "storyline": ""
  },
@@ -239,18 +167,6 @@
   "trailer": "",
   "storyline": ""
  },
- "ghost-in-the-shell|mamoru-oshii": {
-  "key": "ghost-in-the-shell|mamoru-oshii",
-  "title": "Ghost in the Shell",
-  "director": "Mamoru Oshii",
-  "cast": "",
-  "genre": "Action",
-  "country": "",
-  "duration_min": 83,
-  "poster": "https://all.web.img.acsta.net/pictures/17/02/13/16/44/595862.jpg",
-  "trailer": "",
-  "storyline": ""
- },
  "boogie-nights|paul-thomas-anderson": {
   "key": "boogie-nights|paul-thomas-anderson",
   "title": "Boogie Nights",
@@ -260,6 +176,54 @@
   "country": "",
   "duration_min": 153,
   "poster": "https://all.web.img.acsta.net/pictures/15/09/17/12/48/411410.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "shrek-marathon-shrek|andrew-adamson": {
+  "key": "shrek-marathon-shrek|andrew-adamson",
+  "title": "Shrek • Marathon Shrek",
+  "director": "Andrew Adamson",
+  "cast": "",
+  "genre": "Animation",
+  "country": "",
+  "duration_min": 89,
+  "poster": "https://all.web.img.acsta.net/pictures/14/03/06/10/13/595503.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "shrek-2-marathon-shrek|andrew-adamson": {
+  "key": "shrek-2-marathon-shrek|andrew-adamson",
+  "title": "Shrek 2 • Marathon Shrek",
+  "director": "Andrew Adamson",
+  "cast": "",
+  "genre": "Animation",
+  "country": "",
+  "duration_min": 90,
+  "poster": "https://all.web.img.acsta.net/medias/nmedia/18/87/85/47/19972971.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "shrek-le-troisieme-marathon-shrek|chris-miller-ii": {
+  "key": "shrek-le-troisieme-marathon-shrek|chris-miller-ii",
+  "title": "Shrek le troisième • Marathon Shrek",
+  "director": "Chris Miller (II)",
+  "cast": "",
+  "genre": "Animation",
+  "country": "",
+  "duration_min": 93,
+  "poster": "https://all.web.img.acsta.net/medias/nmedia/18/87/83/84/19971620.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "en-promenade|siri-melchior": {
+  "key": "en-promenade|siri-melchior",
+  "title": "En promenade...",
+  "director": "Siri Melchior",
+  "cast": "",
+  "genre": "Animation",
+  "country": "",
+  "duration_min": 36,
+  "poster": "",
   "trailer": "",
   "storyline": ""
  },
@@ -275,18 +239,6 @@
   "trailer": "",
   "storyline": ""
  },
- "le-grand-mechant-renard-et-autres-contes|benjamin-renner": {
-  "key": "le-grand-mechant-renard-et-autres-contes|benjamin-renner",
-  "title": "Le Grand Méchant Renard et autres contes",
-  "director": "Benjamin Renner",
-  "cast": "",
-  "genre": "Animation",
-  "country": "",
-  "duration_min": 80,
-  "poster": "https://all.web.img.acsta.net/pictures/16/12/12/12/53/251843.jpg",
-  "trailer": "",
-  "storyline": ""
- },
  "ailleurs|gints-zilbalodis": {
   "key": "ailleurs|gints-zilbalodis",
   "title": "Ailleurs",
@@ -296,42 +248,6 @@
   "country": "",
   "duration_min": 75,
   "poster": "https://all.web.img.acsta.net/pictures/19/04/16/14/13/0142083.jpg",
-  "trailer": "",
-  "storyline": ""
- },
- "linda-veut-du-poulet|chiara-malta": {
-  "key": "linda-veut-du-poulet|chiara-malta",
-  "title": "Linda veut du poulet !",
-  "director": "Chiara Malta",
-  "cast": "",
-  "genre": "Animation",
-  "country": "",
-  "duration_min": 76,
-  "poster": "https://all.web.img.acsta.net/pictures/23/03/23/12/55/3368927.jpg",
-  "trailer": "",
-  "storyline": ""
- },
- "in-waves|phuong-mai-nguyen": {
-  "key": "in-waves|phuong-mai-nguyen",
-  "title": "In Waves",
-  "director": "Phuong Mai Nguyen",
-  "cast": "",
-  "genre": "Animation",
-  "country": "",
-  "duration_min": 91,
-  "poster": "https://all.web.img.acsta.net/img/c6/42/c642ec874e1436d97cbe8db24005e5c8.jpg",
-  "trailer": "",
-  "storyline": ""
- },
- "joyeuse-jungle|edmunds-jansons": {
-  "key": "joyeuse-jungle|edmunds-jansons",
-  "title": "Joyeuse Jungle !",
-  "director": "Edmunds Jansons",
-  "cast": "",
-  "genre": "Animation",
-  "country": "",
-  "duration_min": 76,
-  "poster": "https://all.web.img.acsta.net/img/a9/e6/a9e60e9936119b7c3986285d9289bdd5.jpg",
   "trailer": "",
   "storyline": ""
  },
@@ -503,66 +419,6 @@
   "trailer": "",
   "storyline": ""
  },
- "ma-famille-de-samourais|celia-catunda": {
-  "key": "ma-famille-de-samourais|celia-catunda",
-  "title": "Ma famille de samouraïs",
-  "director": "Célia Catunda",
-  "cast": "",
-  "genre": "Animation",
-  "country": "",
-  "duration_min": 82,
-  "poster": "https://all.web.img.acsta.net/img/7d/ae/7daec6746739f746d4597ec6509d5378.jpg",
-  "trailer": "",
-  "storyline": ""
- },
- "face-a-la-mer|helen-walsh": {
-  "key": "face-a-la-mer|helen-walsh",
-  "title": "Face à la mer",
-  "director": "Helen Walsh",
-  "cast": "",
-  "genre": "Drame",
-  "country": "",
-  "duration_min": 116,
-  "poster": "https://all.web.img.acsta.net/img/58/b8/58b8cfa71c4b49f85c1d2ffdd3961929.jpg",
-  "trailer": "",
-  "storyline": ""
- },
- "une-affaire-turque|huseyin-aydin-gursoy": {
-  "key": "une-affaire-turque|huseyin-aydin-gursoy",
-  "title": "Une affaire turque",
-  "director": "Hüseyin Aydin Gürsoy",
-  "cast": "",
-  "genre": "Thriller",
-  "country": "",
-  "duration_min": 92,
-  "poster": "https://all.web.img.acsta.net/img/fd/b2/fdb2bdac11f279d0b926666a2c964fd5.jpg",
-  "trailer": "",
-  "storyline": ""
- },
- "chien-bleu-et-autres-belles-histoires-de-l-ecole-des-loisirs|dominique-pochat": {
-  "key": "chien-bleu-et-autres-belles-histoires-de-l-ecole-des-loisirs|dominique-pochat",
-  "title": "Chien bleu et autres belles histoires de l'école des loisirs",
-  "director": "Dominique Pochat",
-  "cast": "",
-  "genre": "Animation",
-  "country": "",
-  "duration_min": 33,
-  "poster": "https://all.web.img.acsta.net/img/4b/fa/4bfa84f320d090f7dde421ecdf74e324.jpg",
-  "trailer": "",
-  "storyline": ""
- },
- "un-amour-depouvantail|samantha-cutler": {
-  "key": "un-amour-depouvantail|samantha-cutler",
-  "title": "Un amour d’épouvantail",
-  "director": "Samantha Cutler",
-  "cast": "",
-  "genre": "Animation",
-  "country": "",
-  "duration_min": 44,
-  "poster": "https://all.web.img.acsta.net/img/6f/8a/6f8a8922ac1f1323d4becc8ce77da9bb.png",
-  "trailer": "",
-  "storyline": ""
- },
  "petite-casbah|antoine-colomb": {
   "key": "petite-casbah|antoine-colomb",
   "title": "Petite Casbah",
@@ -575,26 +431,14 @@
   "trailer": "",
   "storyline": ""
  },
- "matloob-aelian-vost-anglais-uniquement|moataz-el-tony": {
-  "key": "matloob-aelian-vost-anglais-uniquement|moataz-el-tony",
-  "title": "Matloob Aelian (VOST anglais uniquement)",
-  "director": "Moataz El Tony",
-  "cast": "",
-  "genre": "Comédie",
-  "country": "",
-  "duration_min": 93,
-  "poster": "",
-  "trailer": "",
-  "storyline": ""
- },
- "12-hommes-en-colere|sidney-lumet": {
-  "key": "12-hommes-en-colere|sidney-lumet",
-  "title": "12 hommes en colère",
-  "director": "Sidney Lumet",
+ "marathon-shrek|": {
+  "key": "marathon-shrek|",
+  "title": "Marathon Shrek",
+  "director": "",
   "cast": "",
   "genre": "",
   "country": "",
-  "duration_min": null,
+  "duration_min": 300,
   "poster": "",
   "trailer": "",
   "storyline": ""
@@ -610,18 +454,6 @@
   "poster": "",
   "trailer": "",
   "storyline": "Alors qu’il conduisait une voiture volée, un petit voyou a tué un motard lors d’un contrôle routier. Traqué par la police, il se lance dans Paris à la recherche d’un débiteur pour tenter de récupérer l’argent qui lui permettrait de quitter la France… While driving a stolen car, a small-time crook killed a motorcyclist during a traffic stop. Hunted by the police, he embarks on a chase through Paris, searching for a debtor in an attempt to recover the money that would allow him to leave France..."
- },
- "assurance-sur-la-mort|billy-wilder": {
-  "key": "assurance-sur-la-mort|billy-wilder",
-  "title": "Assurance sur la mort",
-  "director": "Billy Wilder",
-  "cast": "D'après James Cain, Avec Fred MacMurray, Barbara Stanwyck, Edward G. Robinson",
-  "genre": "",
-  "country": "",
-  "duration_min": 107,
-  "poster": "",
-  "trailer": "",
-  "storyline": "Un vendeur d'assurances se laisse entraîner par une femme au foyer séduisante dans un stratagème frauduleux de meurtre et d'assurance qui éveille la suspicion d'un enquêteur."
  },
  "big-eyes|tim-burton": {
   "key": "big-eyes|tim-burton",
@@ -646,30 +478,6 @@
   "poster": "",
   "trailer": "",
   "storyline": "Interdit - 12 ans À l’époque où il incarnait un célèbre super-héros, Riggan Thomson était mondialement connu. Mais de cette célébrité il ne reste plus grand-chose, et il tente aujourd’hui de monter une pièce de théâtre à Broadway dans l’espoir de renouer avec sa gloire perdue. Durant les quelques jours qui précèdent la première, il va devoir tout affronter : sa famille et ses proches, son passé, ses rêves et son ego… S’il s’en sort, le rideau a une chance de s’ouvrir..."
- },
- "blow-up|michelangelo-antonioni": {
-  "key": "blow-up|michelangelo-antonioni",
-  "title": "Blow Up",
-  "director": "Michelangelo Antonioni",
-  "cast": "David Hemmings, Vanessa Redgrave, Sarah Miles, Peter Bowles, Jane Birkin",
-  "genre": "",
-  "country": "",
-  "duration_min": 111,
-  "poster": "",
-  "trailer": "",
-  "storyline": "À Londres, un photographe de mode prend dans un parc un cliché d'un couple d'amoureux. Mais la femme veut récupérer la pellicule. Le photographe lui substitue le rouleau, et découvre en développant et en agrandissant les photos, une forme abstraite qui pourrait être un cadavre…"
- },
- "boulevard-du-crepuscule|": {
-  "key": "boulevard-du-crepuscule|",
-  "title": "Boulevard du crépuscule",
-  "director": "",
-  "cast": "",
-  "genre": "",
-  "country": "",
-  "duration_min": null,
-  "poster": "",
-  "trailer": "",
-  "storyline": ""
  },
  "close-up|abbas-kiarostami": {
   "key": "close-up|abbas-kiarostami",
@@ -767,30 +575,6 @@
   "trailer": "",
   "storyline": "Int. - 12 ans. Un vendeur de voitures d’occasion fait enlever sa femme afin de toucher la rançon qui sera versée par son richissime beau-père. Mais le plan ne va pas résister longtemps à l’épreuve des faits ni au flair d’une policière enceinte…"
  },
- "fenetre-sur-cour|alfred-hitchcock": {
-  "key": "fenetre-sur-cour|alfred-hitchcock",
-  "title": "Fenêtre sur cour",
-  "director": "Alfred Hitchcock",
-  "cast": "James Stewart, Grace Kelly, Wendell Corey, Thelma Ritter, Raymond Burr",
-  "genre": "",
-  "country": "",
-  "duration_min": 110,
-  "poster": "",
-  "trailer": "",
-  "storyline": "Un reporter-photographe immobilisé à la suite d’un accident, se met, tant par réflexe professionnel que par désœuvrement, à observer ses voisins. Ayant acquis la conviction qu’un homme a assassiné son épouse, il implique dans son enquête sa gouvernante et sa petite amie..."
- },
- "goodbye-dragon-inn|tsai-ming-liang": {
-  "key": "goodbye-dragon-inn|tsai-ming-liang",
-  "title": "Goodbye, Dragon Inn",
-  "director": "Tsai Ming-Liang",
-  "cast": "Miao Tien, Lee Kang-sheng, Chun Shih",
-  "genre": "",
-  "country": "",
-  "duration_min": 82,
-  "poster": "",
-  "trailer": "",
-  "storyline": "À Taïpei, un cinéma ferme ses portes, mais pas avant d'avoir joué un dernier film, qui s'avère être une source de nostalgie pour ceux qui fréquentent le lieu et pour les employés du vieil immeuble décrépit et hanté."
- },
  "illusions-perdues|xavier-giannoli": {
   "key": "illusions-perdues|xavier-giannoli",
   "title": "Illusions perdues",
@@ -802,30 +586,6 @@
   "poster": "",
   "trailer": "",
   "storyline": "Lucien est un jeune poète inconnu dans la France du XIXème siècle. Il a de grandes espérances et veut se forger un destin. Il quitte l’imprimerie familiale de sa province natale pour tenter sa chance à Paris, au bras de sa protectrice. Bientôt livré à lui-même dans la ville fabuleuse, le jeune homme va découvrir les coulisses d’un monde voué à la loi du profit et des faux-semblants. Une comédie humaine où tout s’achète et se vend, la littérature comme la presse, la politique comme les sentiments, les réputations comme les âmes. Il va aimer, il va souffrir, et survivre à ses illusions."
- },
- "in-the-mood-for-love|wong-kar-wai": {
-  "key": "in-the-mood-for-love|wong-kar-wai",
-  "title": "In The Mood For Love",
-  "director": "Wong Kar-wai",
-  "cast": "Tony Leung Chiu Wai, Maggie Cheung, Rebecca Pan",
-  "genre": "",
-  "country": "",
-  "duration_min": 98,
-  "poster": "",
-  "trailer": "",
-  "storyline": "Hong Kong, 1962. Mme Chan loue une chambre chez Mme Suen. Le même jour et sur le même palier, s’installe M. Chow. Leurs conjoints sont souvent absents. Un jour, M. Chow et Mme Chan découvrent que leurs époux sont amants. Blessés, ils se fréquentent alors de plus en plus et développent eux aussi une liaison…"
- },
- "lamour-lapres-midi|eric-rohmer": {
-  "key": "lamour-lapres-midi|eric-rohmer",
-  "title": "L’amour l’après-midi",
-  "director": "Eric Rohmer",
-  "cast": "Bernard Verley, Zouzou, Françoise Verley, Daniel Ceccaldi.",
-  "genre": "",
-  "country": "",
-  "duration_min": 90,
-  "poster": "",
-  "trailer": "",
-  "storyline": "Un jeune PDG dont la vie est réglée comme du papier à musique rencontre un jour dans les rues de Paris une ancienne camarade, libre, fantasque, révoltée... Désarçonné par l’anticonformisme de son amie, il en tombe amoureux. Mais leurs mondes sont trop différents…"
  },
  "letrange-monsieur-victor|jean-gremillon": {
   "key": "letrange-monsieur-victor|jean-gremillon",
@@ -887,30 +647,6 @@
   "trailer": "",
   "storyline": "C’est l’histoire d’un chef d’entreprise qui rencontre une actrice qui est amie avec une serveuse qui rencontre un garde du corps qui travaille avec un chauffeur qui conduit une décoratrice qui est la femme du chef d’entreprise qui voudrait être ami avec des artistes qui… C’est l’histoire des goûts des uns et des couleurs des autres. C’est l’histoire de personnages et de milieux qui n’auraient pas dû se rencontrer car on ne bouscule pas les cadres de références et les barrières culturelles sans faire d’histoires."
  },
- "le-parrain|francis-ford-coppola": {
-  "key": "le-parrain|francis-ford-coppola",
-  "title": "Le Parrain",
-  "director": "Francis Ford Coppola",
-  "cast": "Marlon Brando, Al Pacino, James Caan, Robert Duvall, Sterling Hayden, Diane Keaton",
-  "genre": "",
-  "country": "",
-  "duration_min": 175,
-  "poster": "",
-  "trailer": "",
-  "storyline": "Int. - 12 ans Le patriarche vieillissant d'une dynastie de la mafia new-yorkaise passe le flambeau de son empire clandestin à son fils."
- },
- "le-parrain-2e-partie|": {
-  "key": "le-parrain-2e-partie|",
-  "title": "Le Parrain, 2e partie",
-  "director": "",
-  "cast": "",
-  "genre": "",
-  "country": "",
-  "duration_min": null,
-  "poster": "",
-  "trailer": "",
-  "storyline": ""
- },
  "les-affranchis|martin-scorsese": {
   "key": "les-affranchis|martin-scorsese",
   "title": "Les Affranchis",
@@ -923,18 +659,6 @@
   "trailer": "",
   "storyline": "Fasciné par le monde de la pègre, un jeune gangster s’associe avec un dangereux paranoïaque. Pris au piège, il devra livrer ses amis pour sauver sa peau."
  },
- "lost-in-translation|sofia-coppola": {
-  "key": "lost-in-translation|sofia-coppola",
-  "title": "Lost in translation",
-  "director": "Sofia Coppola",
-  "cast": "Bill Murray, Scarlett Johansson, Giovanni Ribisi",
-  "genre": "",
-  "country": "",
-  "duration_min": 104,
-  "poster": "",
-  "trailer": "",
-  "storyline": "Une vedette d’Hollywood sur le retour, venue tourner une publicité à Tokyo, lie connaissance avec une jeune mariée qui a comme lui le vague à l’âme."
- },
  "memento|christopher-nolan": {
   "key": "memento|christopher-nolan",
   "title": "Memento",
@@ -946,42 +670,6 @@
   "poster": "",
   "trailer": "",
   "storyline": "Un homme souffrant d’une amnésie antérograde à la suite d'un traumatisme crânien, part à la recherche du meurtrier supposé de sa femme. Qaund il croit avoir retrouvé sa trace, il décide de se venger en le tuant. Mais l’assassin n’est pas celui qu’il croit."
- },
- "memories-of-murder|joon-ho-bong": {
-  "key": "memories-of-murder|joon-ho-bong",
-  "title": "Memories of Murder",
-  "director": "Joon-ho Bong",
-  "cast": "Song Kang-ho, Kim Sang-kyung, Byeon Hee-bong, Song Jae-ho, Ko Seo-hie, Jeon Mi-seon",
-  "genre": "",
-  "country": "",
-  "duration_min": 132,
-  "poster": "",
-  "trailer": "",
-  "storyline": "Interdit - 12 ans En 1986, dans une province coréenne, une unité spéciale de la police est créée afin de retrouver un serial killer qui sème la terreur. Elle est placée sous les ordres d'un policier local et d'un détective spécialement envoyé de Séoul à sa demande. Devant l'absence de preuves concrètes, les deux hommes sombrent peu à peu dans le doute…"
- },
- "old-boy|park-chan-wook": {
-  "key": "old-boy|park-chan-wook",
-  "title": "OLD BOY",
-  "director": "Park Chan-Wook",
-  "cast": ": Min-sik CHOI, Yoo JI-TAE, Kang HYE-JEONG",
-  "genre": "",
-  "country": "",
-  "duration_min": 119,
-  "poster": "",
-  "trailer": "",
-  "storyline": "Interdit - 12 ans Dae-Soo, père de famille sans histoire, est enlevé un jour devant chez lui. Séquestré pendant plusieurs années dans une cellule privée, son seul lien avec l'extérieur est une télévision. Par le biais de cette télévision, il apprend le meurtre de sa femme, meurtre dont il est le principal suspect. Au désespoir d'être séquestré sans raison apparente succède alors chez le héros une rage intérieure vengeresse qui lui permet de survivre. Il est relâché 15 ans plus tard, toujours sans explication. ​Grand prix Festival de Cannes - 2004"
- },
- "que-la-fete-commence|bertrand-tavernier": {
-  "key": "que-la-fete-commence|bertrand-tavernier",
-  "title": "Que la fête commence",
-  "director": "Bertrand Tavernier",
-  "cast": "Philippe Noiret, Jean Rochefort, Jean-Pierre Marielle, Marina Vlady, Christine Pascal, Alfred Adam, Nicole Garcia, Jean-Roger Caussimon,",
-  "genre": "",
-  "country": "",
-  "duration_min": 120,
-  "poster": "",
-  "trailer": "",
-  "storyline": "A la mort de Louis XIX, le neveu de ce dernier, le duc Philippe d’Orléans, assure la régence, jusqu’à la majoritié de Louis XV. Toutefois, le duc est un homme des plus débauchés qui se laisse influencer par les mauvais conseils."
  },
  "rendez-vous-de-juillet|jacques-becker": {
   "key": "rendez-vous-de-juillet|jacques-becker",
@@ -1007,18 +695,6 @@
   "trailer": "",
   "storyline": "Les Rita Mitsouko répètent en studio. L'« Idiot », un cinéaste perfectionniste, cherche à vendre son nouveau projet de film."
  },
- "sueurs-froides|alfred-hitchcock": {
-  "key": "sueurs-froides|alfred-hitchcock",
-  "title": "SUEURS FROIDES",
-  "director": "Alfred Hitchcock",
-  "cast": "D'après le roman D'entre les morts de Boileau-Narcejac. Avec James Stewart, Kim Novak, Barbara Bel Geddes.",
-  "genre": "",
-  "country": "",
-  "duration_min": 126,
-  "poster": "",
-  "trailer": "",
-  "storyline": "À San Francisco, un ancien policier souffrant d'acrophobie, est engagé pour surveiller la femme d'un ami persuadée d'être la réincarnation d'une morte."
- },
  "the-doom-generation|gregg-araki": {
   "key": "the-doom-generation|gregg-araki",
   "title": "The Doom Generation",
@@ -1030,30 +706,6 @@
   "poster": "",
   "trailer": "",
   "storyline": "Interdit - 12 ans Jordan et Amy, un couple d'adolescents, croise la route de Xavier, un homme mi-ange, mi-démon, qui les entraîne dans un cauchemar psychédelique, surréaliste et comique."
- },
- "thelma-et-louise|ridley-scott": {
-  "key": "thelma-et-louise|ridley-scott",
-  "title": "THELMA ET LOUISE",
-  "director": "Ridley Scott",
-  "cast": "Susan Sarandon, Geena Davis, Harvey Keitel, Michael Madsen, Christopher McDonald, Stephen Tobolowsky, Brad Pitt",
-  "genre": "",
-  "country": "",
-  "duration_min": 129,
-  "poster": "",
-  "trailer": "",
-  "storyline": "Int. -12 ans Deux meilleures amies, Thelma et Louise, décident de s'offrir un week-end sur les routes magnifiques de l'Arkansas. Premier arrêt, premier saloon, premiers ennuis et tout bascule. Elles partent en cavale, pourchassées par la police..."
- },
- "vivre-sa-vie-film-en-douze-tableaux|": {
-  "key": "vivre-sa-vie-film-en-douze-tableaux|",
-  "title": "Vivre sa vie: Film en douze tableaux",
-  "director": "",
-  "cast": "",
-  "genre": "",
-  "country": "",
-  "duration_min": null,
-  "poster": "",
-  "trailer": "",
-  "storyline": ""
  },
  "whiplash|damien-chazelle": {
   "key": "whiplash|damien-chazelle",
@@ -1076,30 +728,6 @@
   "country": "",
   "duration_min": 95,
   "poster": "https://all.web.img.acsta.net/img/3e/43/3e43dde377b4ef6a3e35ab6106244ca0.jpg",
-  "trailer": "",
-  "storyline": ""
- },
- "la-bataille-de-gaulle-partie-1-l-age-de-fer|antonin-baudry": {
-  "key": "la-bataille-de-gaulle-partie-1-l-age-de-fer|antonin-baudry",
-  "title": "La Bataille de Gaulle - partie 1 : L'Âge de Fer",
-  "director": "Antonin Baudry",
-  "cast": "",
-  "genre": "Thriller",
-  "country": "",
-  "duration_min": 160,
-  "poster": "https://all.web.img.acsta.net/img/ab/ab/ababe8e671849300cbf221a224f5f844.jpg",
-  "trailer": "",
-  "storyline": ""
- },
- "la-bataille-de-gaulle-partie-2-jecris-ton-nom|antonin-baudry": {
-  "key": "la-bataille-de-gaulle-partie-2-jecris-ton-nom|antonin-baudry",
-  "title": "La Bataille de Gaulle - Partie 2 : J’écris ton nom",
-  "director": "Antonin Baudry",
-  "cast": "",
-  "genre": "Thriller",
-  "country": "",
-  "duration_min": 160,
-  "poster": "https://all.web.img.acsta.net/img/75/da/75da06789966503000d90f15af6dacb6.jpg",
   "trailer": "",
   "storyline": ""
  },
@@ -1223,18 +851,6 @@
   "trailer": "",
   "storyline": ""
  },
- "le-monde-a-l-envers|arnaud-demuynck": {
-  "key": "le-monde-a-l-envers|arnaud-demuynck",
-  "title": "Le Monde à l'envers",
-  "director": "Arnaud Demuynck",
-  "cast": "",
-  "genre": "Animation",
-  "country": "",
-  "duration_min": 45,
-  "poster": "https://all.web.img.acsta.net/img/31/9f/319f3d6b88de3f1a691794557e6c8659.jpg",
-  "trailer": "",
-  "storyline": ""
- },
  "butterfly-jam|kantemir-balagov": {
   "key": "butterfly-jam|kantemir-balagov",
   "title": "Butterfly Jam",
@@ -1307,6 +923,18 @@
   "trailer": "",
   "storyline": "En France, rire des puissants est devenu un sport à risque. En trente ans, les humoristes les plus libres de la télévision et de la radio ont été méthodiquement neutralisés, marginalisés, censurés, voire virés. Dans l'audiovisuel public comme dans les médias privés, le même mécanisme se répète : on tolère la satire tant qu'elle ne mord pas. Dès qu'elle touche au pouvoir, on coupe le micro. Des plateaux de Canal+ aux studios de France Inter en passant par les couloirs de France Télévisions, du règne de Nicolas Sarkozy à celui d'Emmanuel Macron, ce documentaire retrace la mécanique d'une mise au silence qui en dit long sur l'état réel de la liberté d'expression dans l'audiovisuel français."
  },
+ "histoires-de-la-nuit|lea-mysius": {
+  "key": "histoires-de-la-nuit|lea-mysius",
+  "title": "Histoires de la nuit",
+  "director": "Léa Mysius",
+  "cast": "H. Herzi, B. Magimel, B. Bouillon",
+  "genre": "",
+  "country": "",
+  "duration_min": 114,
+  "poster": "https://www.cinemas-lumiere.com/cache/data/files/cinemas/movie/poster/4969/e4057c680c238cc18211ffc8140eed28/s,490,650-q,90-4be576.jpg",
+  "trailer": "",
+  "storyline": "Nora, Thomas et leur fille Ida vivent dans une ferme isolée avec pour seule voisine, Cristina, une peintre italienne. Alors que tout le monde prépare une soirée d'anniversaire surprise pour Nora, trois hommes rôdent autour de la maison et s'invitent à la fête, faisant surgir des secrets bien gardés..."
+ },
  "l-odyssee|christopher-nolan": {
   "key": "l-odyssee|christopher-nolan",
   "title": "L'Odyssée",
@@ -1318,6 +946,18 @@
   "poster": "https://www.cinemas-lumiere.com/cache/data/files/cinemas/movie/poster/4977/a770a3822c90a655af05961cda53f3a1/s,490,650-q,90-f7efcc.jpg",
   "trailer": "",
   "storyline": "L'Odyssée est une épopée mythique tournée à travers le monde qui suit le retour d'Ulysse vers Ithaque. Pour la première fois, la saga fondatrice d'Homère est portée sur les écrans de manière spectaculaire avec la toute dernière technologie IMAX."
+ },
+ "la-bataille-de-gaulle-partie-1-l-age-de-fer|antonin-baudry": {
+  "key": "la-bataille-de-gaulle-partie-1-l-age-de-fer|antonin-baudry",
+  "title": "La Bataille de Gaulle - partie 1 : L'Âge de Fer",
+  "director": "Antonin Baudry",
+  "cast": "S. Abkarian, S. Russell Beale, F. Lesieur",
+  "genre": "",
+  "country": "",
+  "duration_min": 160,
+  "poster": "https://www.cinemas-lumiere.com/cache/data/files/cinemas/movie/poster/4970/la-bataille-de-gaullle-partie-1-affiche/s,490,650-q,90-a8f733.jpg",
+  "trailer": "",
+  "storyline": "Juin 1940. La France s'effondre et signe l'armistice. Au milieu du chaos, un homme refuse de céder. Seul contre tous, ce général inconnu s'échappe vers Londres pour sauver ce qu'il reste d'un rêve : la liberté. Sans armée, sans appui, sans espoir. Mais avec une folle conviction : la France, sa France, n'a pas déposé les armes. Il tente un ultime pari : convaincre le monde que la bataille de France n'est ni terminée, ni perdue. La réalité est têtue, et lui donne tort. Mais peu à peu se lèvent autour de lui en Angleterre, en France et en Afrique des résistants de l'ombre, des lycéens révoltés, des soldats déterminés. Leur foi, leur audace, leur rage de liberté défient l'Histoire qui semblait pourtant écrite d'avance."
  },
  "la-bataille-de-gaulle-partie-2-j-ecris-ton-nom|antonin-baudry": {
   "key": "la-bataille-de-gaulle-partie-2-j-ecris-ton-nom|antonin-baudry",
@@ -1342,18 +982,6 @@
   "poster": "https://www.cinemas-lumiere.com/cache/data/files/cinemas/movie/poster/5113/b9ddaa36d65452afbc94547d8202dc92/s,490,650-q,90-b3bf2f.jpg",
   "trailer": "",
   "storyline": "Ce programme de trois courts métrages de la réalisatrice sud-coréenne Miyoung Baek nous invite à plonger dans son univers poétique et onirique. Les objets du quotidien emportent-ils une part de nous-mêmes ? Peut-on remonter le temps pour écrire une autre histoire ? Et où peut bien se cacher la Lune perdue ? Tels sont les enjeux de ces films qui nous enveloppent dans la douceur et la sensibilité d'un merveilleux voyage imaginaire. 5€ pour tous"
- },
- "le-garcon-et-le-monde|ale-abreu": {
-  "key": "le-garcon-et-le-monde|ale-abreu",
-  "title": "Le Garçon et le Monde",
-  "director": "Alê Abreu",
-  "cast": "",
-  "genre": "",
-  "country": "",
-  "duration_min": 82,
-  "poster": "https://www.cinemas-lumiere.com/cache/data/files/cinemas/movie/poster/5011/182930/s,490,650-q,90-42765c.jpg",
-  "trailer": "",
-  "storyline": "À la recherche de son père, un garçon quitte son village et découvre un monde fantastique dominé par des animaux-machines et des êtres étranges. 5€ pour les - 14 ans"
  },
  "le-monde-a-l-endroit|sylvie-meyer": {
   "key": "le-monde-a-l-endroit|sylvie-meyer",
@@ -1391,6 +1019,18 @@
   "trailer": "",
   "storyline": "Directrice d'un établissement pour personnes âgées, Marie-Lou tente d'y instaurer une philosophie de soins innovante basée sur l'écoute et la dignité des résidents, malgré la réticence d'une partie de ses équipes. Sa rencontre avec Mari, une metteuse en scène japonaise qui se bat contre un cancer, va bouleverser sa trajectoire. En nouant une amitié profonde, les deux femmes engagent ensemble un combat pour \"rendre possible l'impossible\". Sortie en salle le 12 août 2026 Remerciements à Diaphana Distribution"
  },
+ "un-amour-d-epouvantail|samantha-cutler-jeroen-jaspaert": {
+  "key": "un-amour-d-epouvantail|samantha-cutler-jeroen-jaspaert",
+  "title": "Un amour d'épouvantail",
+  "director": "Samantha Cutler & Jeroen Jaspaert",
+  "cast": "",
+  "genre": "",
+  "country": "",
+  "duration_min": 44,
+  "poster": "https://www.cinemas-lumiere.com/cache/data/files/cinemas/movie/poster/4890/6917a9ac903b1fbbc9bfa78aca1d257c/s,490,650-q,90-5e6f88.png",
+  "trailer": "",
+  "storyline": "Un programme champêtre qui anime la ferme de mille et une aventures ! D’après l’album illustré de Julia Donaldson et Axel Scheffler. Betty Delorge et Harry Fortepaille, deux épouvantails très amoureux, rêvent d’un mariage inoubliable. Tout semble prêt pour le grand jour… jusqu’à ce que Harry parte chercher une dernière chose indispensable à la célébration : des fleurs roses. Pendant son absence, Réginald Dufoin, un épouvantail malin et un peu trop sûr de lui, arrive avec des idées qui pourraient bien gâcher la fête. 5€ pour tous"
+ },
  "un-hiver-russe|patric-chiha": {
   "key": "un-hiver-russe|patric-chiha",
   "title": "Un hiver russe",
@@ -1402,6 +1042,42 @@
   "poster": "https://www.cinemas-lumiere.com/cache/data/files/cinemas/movie/poster/5122/ca5828b0f6411d701a32919bd73e3c8d/s,490,650-q,90-4fe2a7.jpg",
   "trailer": "",
   "storyline": "Entre Paris et Istanbul, Margarita, Yuri et leurs amis, un groupe de jeunes exilés russes, cherchent leur place dans un monde qui ne semble plus être le leur."
+ },
+ "wallace-et-gromit-le-mystere-du-lapin-garou|nick-park-steve-box": {
+  "key": "wallace-et-gromit-le-mystere-du-lapin-garou|nick-park-steve-box",
+  "title": "Wallace et Gromit : le Mystère du lapin-garou",
+  "director": "Nick Park & Steve Box",
+  "cast": "",
+  "genre": "",
+  "country": "",
+  "duration_min": 85,
+  "poster": "https://www.cinemas-lumiere.com/cache/data/files/cinemas/movie/poster/5114/141713/s,490,650-q,90-c6598c.jpg",
+  "trailer": "",
+  "storyline": "Une \"fièvre végétarienne\" intense règne dans la petite ville de Wallace et Gromit, et l'ingénieux duo a mis à profit cet engouement en inventant un produit anti-nuisibles humain et écolo, qui épargne la vie des lapins. L'astuce consiste simplement à capturer, à la main, un maximum de ces rongeurs et à les mettre en cage. A quelques jours du Grand Concours Annuel de Légumes, les affaires de Wallace et Gromit n'ont jamais été aussi florissantes, et tout irait pour le mieux dans le meilleur des mondes, si un lapin-garou géant ne venait soudain s'attaquer aux sacro-saints potagers de la ville. Pour faire face à ce péril inédit, l'organisatrice du concours, Lady Tottington, se tourne vers nos deux \"spécialistes\" et leur demande d'appréhender le monstre. 5€ pour les -14 ans"
+ },
+ "joyeuse-jungle|edmunds-jansons": {
+  "key": "joyeuse-jungle|edmunds-jansons",
+  "title": "Joyeuse Jungle !",
+  "director": "Edmunds Jansons",
+  "cast": "Anabella Jasmīna Gerinoviča, Matīss Budovskis, Madara Botmane-Vāgentroca, Jānis Kronis, Toms Liepājnieks, Pauls Briedis, Jonass Jansons",
+  "genre": "Animation, Familial, Aventure",
+  "country": "",
+  "duration_min": 70,
+  "poster": "https://images.monnaie-services.com/movie_poster/120/FRFGMJQ/7KWP7SBN.jpg",
+  "trailer": "https://trailers.imscine.com/ld/bbbc1d2ef825d640d3c9fb8e5ccdf25ee46ea496e94096e97502beee4d387acf9e7da8b16e97bcfbb480438ee2a8f2.mp4",
+  "storyline": "Pendant les vacances scolaires, Ilze, neuf ans, rejoint sa famille dans la forêt tropicale où ils vivent avec la tribu Pemón, près de la montagne du Diable. Lorsqu'à la suite d'un accident, maman doit emmener papa à l'hôpital, Ilze se porte volontaire pour s'occuper de son frère Alex, âgé de trois ans. Cependant, au lieu de faire attention à son frère, Ilze a le nez plongé dans un livre. Lorsqu'Ilze lève enfin les yeux, elle découvre qu'Alex a disparu. Tout indique qu'il s'est égaré dans la jungle. Ilze doit le ramener à la maison avant le retour de leurs parents..."
+ },
+ "qui-vit-encore|nicolas-wadimoff": {
+  "key": "qui-vit-encore|nicolas-wadimoff",
+  "title": "Qui vit encore",
+  "director": "Nicolas Wadimoff",
+  "cast": "Jawdat Khoudary, Mahmoud Jouda, Adel Altaweel, Haneen Harara, Malak Khadra, Hana Eleiwa, Feras Elshrafi, Eman Shannan, Ghada Alabadla",
+  "genre": "Documentaire",
+  "country": "",
+  "duration_min": 114,
+  "poster": "https://images.monnaie-services.com/movie_poster/120/FRQWSIL/WTSS4ILS.jpg",
+  "trailer": "https://trailers.imscine.com/ld/bbbc1d2ef825d640d3c9fb8e5ccdf25ee46ea496e94096e97502beee4d387acfb142a8b1138babc7ce9600cddca8f2.mp4",
+  "storyline": "Une carte de Gaza, ses villes, camps et quartiers. Peinture blanche sur un sol noir. Dans les contours tracés sommairement, neuf réfugiés qui ont pu échapper à l'enfer, racontent. Leurs vies d'avant, la perte des êtres chers. Des existences oppressées, mais pas encore réduites en cendres. En partageant leurs récits, les protagonistes tentent de se reconnecter à eux-mêmes, de cesser d'être des fantômes. De revenir, peut-être, à la vie."
  },
  "chien-bleu-et-autres-belles-histoires-de-l-ecole-des-loisirs|dominique-pochat-jean-christophe-ribot-benoit-laborde-sylvain-van-eeckhout": {
   "key": "chien-bleu-et-autres-belles-histoires-de-l-ecole-des-loisirs|dominique-pochat-jean-christophe-ribot-benoit-laborde-sylvain-van-eeckhout",
@@ -1415,16 +1091,28 @@
   "trailer": "https://trailers.imscine.com/ld/bbbc1d2ef825d640d3c9fb8e5ccdf25ee46ea496e94096e97502beee4d387acfa45fa8b17ab6a2ccb6a80b89d8a8f2.mp4",
   "storyline": "Il était une fois une petite oie à la recherche d'une chaussette verte, un ourson qui avait trouvé un bonnet, un étrange chien au pelage bleu, deux voisins lapins fâchés… et une lérote qui rêvait de neige plutôt que d'hiberner. Ouvrez la malle aux trésors de l'école des loisirs et découvrez Chien Bleu et quatre autres histoires comme vous ne les avez encore jamais vues ni entendues !"
  },
- "qui-vit-encore|nicolas-wadimoff": {
-  "key": "qui-vit-encore|nicolas-wadimoff",
-  "title": "Qui vit encore",
-  "director": "Nicolas Wadimoff",
-  "cast": "Jawdat Khoudary, Mahmoud Jouda, Adel Altaweel, Haneen Harara, Malak Khadra, Hana Eleiwa, Feras Elshrafi, Eman Shannan, Ghada Alabadla",
-  "genre": "Documentaire",
+ "ma-famille-de-samourais|celia-catunda": {
+  "key": "ma-famille-de-samourais|celia-catunda",
+  "title": "Ma famille de samouraïs",
+  "director": "Celia Catunda",
+  "cast": "Ken Kaneko, Pietro Takeda, Kazue Akisue, Edson Kameda, Fabio Matsuoka, Li Martins, Luiza Porto, Pedro Galvão, Alice Barion",
+  "genre": "Animation, Drame, Histoire",
   "country": "",
-  "duration_min": 114,
-  "poster": "https://images.monnaie-services.com/movie_poster/120/FRQWSIL/WTSS4ILS.jpg",
-  "trailer": "https://trailers.imscine.com/ld/bbbc1d2ef825d640d3c9fb8e5ccdf25ee46ea496e94096e97502beee4d387acfb142a8b1138babc7ce9600cddca8f2.mp4",
-  "storyline": "Une carte de Gaza, ses villes, camps et quartiers. Peinture blanche sur un sol noir. Dans les contours tracés sommairement, neuf réfugiés qui ont pu échapper à l'enfer, racontent. Leurs vies d'avant, la perte des êtres chers. Des existences oppressées, mais pas encore réduites en cendres. En partageant leurs récits, les protagonistes tentent de se reconnecter à eux-mêmes, de cesser d'être des fantômes. De revenir, peut-être, à la vie."
+  "duration_min": 82,
+  "poster": "https://images.monnaie-services.com/movie_poster/120/FRCFPG9/A46402W0.jpg",
+  "trailer": "https://trailers.imscine.com/ld/bbbc1d2ef825d640d3c9fb8e5ccdf25ee46ea496e94096e97502beee4d387acfcd5aa8b177b7b8cac0fc4ae2cca8f2.mp4",
+  "storyline": "Sao Paulo, années 1980… Noboru doit préparer pour l’école un exposé sur ses origines japonaises qu’il a toujours cherché à gommer. Il doit alors se tourner vers son grand-père grincheux, Hideo, pour apprendre à connaître en profondeur sa famille et l’histoire de l’arrivée de ce dernier au Brésil en 1920, quand il était encore un jeune homme. Ayant toujours voulu éviter d’évoquer son passé et son déracinement, poussé par son épouse, adorable grand-mère, Hideo accepte à contre-cœur de raconter à Noboru son histoire et son installation en Amérique du Sud. Au fur et à mesure que ce dernier plonge dans le récit de l’exil de ses ancêtres, le jeune écolier se plaira à s’approprier cette culture de l’autre bout du monde et découvrira même l’existence d’un oncle inconnu…"
+ },
+ "15-18|cedric-kahn": {
+  "key": "15-18|cedric-kahn",
+  "title": "15/18",
+  "director": "Cédric Kahn",
+  "cast": "Malou Khebizi, Zoé monpart, Kenji Peyran, Raphaël Besson, Patience Munchenbach",
+  "genre": "Drame",
+  "country": "",
+  "duration_min": 104,
+  "poster": "https://images.monnaie-services.com/movie_poster/120/FRITK1Q/EXF8BN5C.jpg",
+  "trailer": "https://trailers.imscine.com/ld/bbbc1d2ef825d640d3c9fb8e5ccdf25ee46ea496e94096e97502beee4d387acf8d71a8b161bbbad6f48c44f9f2a8f2.mp4",
+  "storyline": "Lucia, 17 ans, est amenée par la police dans une unité de soins pédopsychiatriques de l’hôpital public. Ici tous les patients ont entre 15 et 18 ans. Lucia connaît l’endroit, elle y a fait de nombreux séjours. Elle retrouve son amie Eloïse, en hospitalisation longue durée, mais aussi Yasmine, Camilia, Ulysse, André… tous ont des pathologies et des parcours différents. Les médecins les soignent, les écoutent, reçoivent leurs parents, tout en gérant un service en surchauffe. Mais un jour, l’arrivée du mystérieux Enzo menace de tout bouleverser."
  }
 }
