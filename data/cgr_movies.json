@@ -215,6 +215,18 @@
   "trailer": "",
   "storyline": ""
  },
+ "mon-petit-halloween|jorge-turell": {
+  "key": "mon-petit-halloween|jorge-turell",
+  "title": "Mon petit Halloween",
+  "director": "Jorge Turell",
+  "cast": "",
+  "genre": "Animation",
+  "country": "",
+  "duration_min": 43,
+  "poster": "https://all.web.img.acsta.net/img/66/9f/669f5b3dd1c505e894813a4a0df096fb.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
  "l-odyssee-de-celeste|kid-koala": {
   "key": "l-odyssee-de-celeste|kid-koala",
   "title": "L'Odyssée de Céleste",
@@ -299,18 +311,6 @@
   "trailer": "",
   "storyline": ""
  },
- "connaissance-du-monde-la-patagonie-a-la-lisiere-du-monde|florent-de-la-tullaye": {
-  "key": "connaissance-du-monde-la-patagonie-a-la-lisiere-du-monde|florent-de-la-tullaye",
-  "title": "Connaissance du monde : La Patagonie A la lisière du monde",
-  "director": "Florent de La Tullaye",
-  "cast": "",
-  "genre": "Documentaire",
-  "country": "",
-  "duration_min": 90,
-  "poster": "https://all.web.img.acsta.net/pictures/22/10/11/14/05/3334269.jpg",
-  "trailer": "",
-  "storyline": ""
- },
  "butterfly-jam|kantemir-balagov": {
   "key": "butterfly-jam|kantemir-balagov",
   "title": "Butterfly Jam",
@@ -383,6 +383,18 @@
   "trailer": "",
   "storyline": ""
  },
+ "mon-fils-president|mathias-mlekuz": {
+  "key": "mon-fils-president|mathias-mlekuz",
+  "title": "Mon fils président",
+  "director": "Mathias Mlekuz",
+  "cast": "",
+  "genre": "Comédie",
+  "country": "",
+  "duration_min": 79,
+  "poster": "https://all.web.img.acsta.net/img/b3/1e/b31eccf5c5d1e745e83b65da5132d3cb.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
  "tad-l-explorateur-et-la-lampe-magique|enrique-gato": {
   "key": "tad-l-explorateur-et-la-lampe-magique|enrique-gato",
   "title": "Tad l'explorateur et la lampe magique",
@@ -395,15 +407,27 @@
   "trailer": "",
   "storyline": ""
  },
- "lawrence-d-arabie|david-lean": {
-  "key": "lawrence-d-arabie|david-lean",
-  "title": "Lawrence d'Arabie",
-  "director": "David Lean",
+ "le-garcon-et-le-heron|hayao-miyazaki": {
+  "key": "le-garcon-et-le-heron|hayao-miyazaki",
+  "title": "Le Garçon et le Héron",
+  "director": "Hayao Miyazaki",
   "cast": "",
-  "genre": "Aventure",
+  "genre": "Animation",
   "country": "",
-  "duration_min": 226,
-  "poster": "https://all.web.img.acsta.net/medias/nmedia/18/87/27/13/19905611.jpg",
+  "duration_min": 123,
+  "poster": "https://all.web.img.acsta.net/pictures/23/08/18/10/36/3482305.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "la-vie-pure|jeremy-banster": {
+  "key": "la-vie-pure|jeremy-banster",
+  "title": "La Vie Pure",
+  "director": "Jérémy Banster",
+  "cast": "",
+  "genre": "Biopic",
+  "country": "",
+  "duration_min": 93,
+  "poster": "https://all.web.img.acsta.net/pictures/15/09/15/17/32/066687.jpg",
   "trailer": "",
   "storyline": ""
  },
@@ -515,6 +539,18 @@
   "trailer": "",
   "storyline": ""
  },
+ "hunger-games-la-revolte-partie-1|francis-lawrence": {
+  "key": "hunger-games-la-revolte-partie-1|francis-lawrence",
+  "title": "Hunger Games - La Révolte : Partie 1",
+  "director": "Francis Lawrence",
+  "cast": "",
+  "genre": "Action",
+  "country": "",
+  "duration_min": 123,
+  "poster": "https://all.web.img.acsta.net/pictures/14/12/05/17/09/561135.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
  "la-bataille-de-gaulle-partie-1-l-age-de-fer|antonin-baudry": {
   "key": "la-bataille-de-gaulle-partie-1-l-age-de-fer|antonin-baudry",
   "title": "La Bataille de Gaulle - partie 1 : L'Âge de Fer",
@@ -584,6 +620,18 @@
   "country": "",
   "duration_min": 98,
   "poster": "https://all.web.img.acsta.net/img/b8/1d/b81d5eb81fb2544cfa765d7649d0ec7f.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "the-truman-show|peter-weir": {
+  "key": "the-truman-show|peter-weir",
+  "title": "The Truman Show",
+  "director": "Peter Weir",
+  "cast": "",
+  "genre": "Drame",
+  "country": "",
+  "duration_min": 103,
+  "poster": "https://all.web.img.acsta.net/medias/nmedia/18/87/17/52/19897044.jpg",
   "trailer": "",
   "storyline": ""
  },
@@ -659,6 +707,42 @@
   "trailer": "",
   "storyline": ""
  },
+ "karma|guillaume-canet": {
+  "key": "karma|guillaume-canet",
+  "title": "Karma",
+  "director": "Guillaume Canet",
+  "cast": "",
+  "genre": "Thriller",
+  "country": "",
+  "duration_min": 140,
+  "poster": "https://all.web.img.acsta.net/img/0d/3c/0d3ca8ee6f891a65a20a7846e51d5288.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "alien-le-huitieme-passager|ridley-scott": {
+  "key": "alien-le-huitieme-passager|ridley-scott",
+  "title": "Alien, le huitième passager",
+  "director": "Ridley Scott",
+  "cast": "",
+  "genre": "Science fiction",
+  "country": "",
+  "duration_min": 116,
+  "poster": "https://all.web.img.acsta.net/medias/nmedia/18/35/14/60/18892763.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "la-mouche|david-cronenberg": {
+  "key": "la-mouche|david-cronenberg",
+  "title": "La Mouche",
+  "director": "David Cronenberg",
+  "cast": "",
+  "genre": "Épouvante-horreur",
+  "country": "",
+  "duration_min": 96,
+  "poster": "https://all.web.img.acsta.net/medias/nmedia/18/65/16/97/18952926.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
  "les-heros-du-louvre|elie-chouraqui": {
   "key": "les-heros-du-louvre|elie-chouraqui",
   "title": "Les Héros du Louvre",
@@ -704,18 +788,6 @@
   "country": "",
   "duration_min": 94,
   "poster": "https://all.web.img.acsta.net/img/f4/63/f4638a43202b1ba1e3bc5cd4a26b9a8e.jpg",
-  "trailer": "",
-  "storyline": ""
- },
- "le-monde-a-l-endroit|sylvie-meyer": {
-  "key": "le-monde-a-l-endroit|sylvie-meyer",
-  "title": "Le Monde à l'endroit",
-  "director": "Sylvie Meyer",
-  "cast": "",
-  "genre": "Documentaire",
-  "country": "",
-  "duration_min": 89,
-  "poster": "https://all.web.img.acsta.net/img/98/30/98304b7beb5162346c3d16c5a5e4db79.jpg",
   "trailer": "",
   "storyline": ""
  },
@@ -779,6 +851,18 @@
   "trailer": "",
   "storyline": ""
  },
+ "le-temps-des-animaux|vincent-chabloz": {
+  "key": "le-temps-des-animaux|vincent-chabloz",
+  "title": "Le Temps des animaux",
+  "director": "Vincent Chabloz",
+  "cast": "",
+  "genre": "Documentaire",
+  "country": "",
+  "duration_min": 84,
+  "poster": "https://all.web.img.acsta.net/img/5f/c5/5fc5c7965eb1dcf38ebff86180df0df9.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
  "doraemon-et-le-chateau-sous-marin|tetsuo-yajima": {
   "key": "doraemon-et-le-chateau-sous-marin|tetsuo-yajima",
   "title": "Doraemon et le Château sous-marin",
@@ -803,18 +887,6 @@
   "trailer": "",
   "storyline": ""
  },
- "main-basse-sur-la-ville|francesco-rosi": {
-  "key": "main-basse-sur-la-ville|francesco-rosi",
-  "title": "Main basse sur la ville",
-  "director": "Francesco Rosi",
-  "cast": "",
-  "genre": "Drame",
-  "country": "",
-  "duration_min": 101,
-  "poster": "https://all.web.img.acsta.net/medias/nmedia/18/94/22/69/20311566.jpg",
-  "trailer": "",
-  "storyline": ""
- },
  "low-expectations|eivind-landsvik": {
   "key": "low-expectations|eivind-landsvik",
   "title": "Low Expectations",
@@ -827,18 +899,6 @@
   "trailer": "",
   "storyline": ""
  },
- "que-ton-regne-vienne-une-histoire-du-satanisme-en-france|mathias-averty": {
-  "key": "que-ton-regne-vienne-une-histoire-du-satanisme-en-france|mathias-averty",
-  "title": "Que Ton Règne Vienne - Une histoire du satanisme en France",
-  "director": "Mathias Averty",
-  "cast": "",
-  "genre": "Documentaire",
-  "country": "",
-  "duration_min": 90,
-  "poster": "https://all.web.img.acsta.net/img/c5/5e/c55e450d36a0feefd24682036e4921ff.jpg",
-  "trailer": "",
-  "storyline": ""
- },
  "retour-au-college|antoine-fromental": {
   "key": "retour-au-college|antoine-fromental",
   "title": "Retour au collège",
@@ -848,18 +908,6 @@
   "country": "",
   "duration_min": 85,
   "poster": "https://all.web.img.acsta.net/img/70/d7/70d7835d2c9d548258a26285a2860ef0.jpg",
-  "trailer": "",
-  "storyline": ""
- },
- "planetes|momoko-seto": {
-  "key": "planetes|momoko-seto",
-  "title": "Planètes",
-  "director": "Momoko Seto",
-  "cast": "",
-  "genre": "Animation",
-  "country": "",
-  "duration_min": 75,
-  "poster": "https://all.web.img.acsta.net/img/6b/d7/6bd780e94b8b1a5a8e9e58b402daf4c6.jpg",
   "trailer": "",
   "storyline": ""
  },
@@ -923,18 +971,6 @@
   "trailer": "",
   "storyline": ""
  },
- "mon-petit-halloween|jorge-turell": {
-  "key": "mon-petit-halloween|jorge-turell",
-  "title": "Mon petit Halloween",
-  "director": "Jorge Turell",
-  "cast": "",
-  "genre": "Animation",
-  "country": "",
-  "duration_min": 43,
-  "poster": "https://all.web.img.acsta.net/img/66/9f/669f5b3dd1c505e894813a4a0df096fb.jpg",
-  "trailer": "",
-  "storyline": ""
- },
  "bienvenue-a-gattaca|andrew-niccol": {
   "key": "bienvenue-a-gattaca|andrew-niccol",
   "title": "Bienvenue à Gattaca",
@@ -944,18 +980,6 @@
   "country": "",
   "duration_min": 106,
   "poster": "https://all.web.img.acsta.net/medias/nmedia/18/87/26/66/19905264.jpg",
-  "trailer": "",
-  "storyline": ""
- },
- "labandon|vincent-garenq": {
-  "key": "labandon|vincent-garenq",
-  "title": "L’Abandon",
-  "director": "Vincent Garenq",
-  "cast": "",
-  "genre": "Drame",
-  "country": "",
-  "duration_min": 100,
-  "poster": "https://all.web.img.acsta.net/img/7b/d2/7bd2f50f0fa1923427035c22eb384c5b.jpg",
   "trailer": "",
   "storyline": ""
  },
@@ -995,15 +1019,51 @@
   "trailer": "",
   "storyline": ""
  },
- "la-guerre-des-prix|anthony-dechaux": {
-  "key": "la-guerre-des-prix|anthony-dechaux",
-  "title": "La Guerre des prix",
-  "director": "Anthony Dechaux",
+ "clayface|james-watkins": {
+  "key": "clayface|james-watkins",
+  "title": "Clayface",
+  "director": "James Watkins",
   "cast": "",
-  "genre": "Thriller",
+  "genre": "Épouvante-horreur",
   "country": "",
-  "duration_min": 96,
-  "poster": "https://all.web.img.acsta.net/img/a4/9f/a49f5f02a8156d22c91c28d14c9a2d3f.jpg",
+  "duration_min": 109,
+  "poster": "https://all.web.img.acsta.net/img/bb/fa/bbfac4212235b9d35055d6abdd4d4e61.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "welcome-to-europe|": {
+  "key": "welcome-to-europe|",
+  "title": "Welcome to Europe",
+  "director": "",
+  "cast": "",
+  "genre": "Documentaire",
+  "country": "",
+  "duration_min": 120,
+  "poster": "https://all.web.img.acsta.net/img/3e/e0/3ee008c2dba9c895aa7f77295d9a4e9c.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "les-chaillees-de-l-enfer|leo-boudet": {
+  "key": "les-chaillees-de-l-enfer|leo-boudet",
+  "title": "Les Chaillées de l'enfer",
+  "director": "Léo Boudet",
+  "cast": "",
+  "genre": "Documentaire",
+  "country": "",
+  "duration_min": 102,
+  "poster": "https://all.web.img.acsta.net/img/1d/f2/1df20ac2dfd186ad1b17958757b9847b.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "labandon|vincent-garenq": {
+  "key": "labandon|vincent-garenq",
+  "title": "L’Abandon",
+  "director": "Vincent Garenq",
+  "cast": "",
+  "genre": "Drame",
+  "country": "",
+  "duration_min": 100,
+  "poster": "https://all.web.img.acsta.net/img/7b/d2/7bd2f50f0fa1923427035c22eb384c5b.jpg",
   "trailer": "",
   "storyline": ""
  },
@@ -1028,6 +1088,30 @@
   "country": "",
   "duration_min": null,
   "poster": "",
+  "trailer": "",
+  "storyline": ""
+ },
+ "camembert|matthieu-rumani": {
+  "key": "camembert|matthieu-rumani",
+  "title": "Camembert",
+  "director": "Matthieu Rumani",
+  "cast": "",
+  "genre": "Comédie",
+  "country": "",
+  "duration_min": null,
+  "poster": "https://all.web.img.acsta.net/img/c7/d2/c7d206b882059b84b961723aff13a212.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "gatsby-le-magnifique|baz-luhrmann": {
+  "key": "gatsby-le-magnifique|baz-luhrmann",
+  "title": "Gatsby le Magnifique",
+  "director": "Baz Luhrmann",
+  "cast": "",
+  "genre": "Drame",
+  "country": "",
+  "duration_min": 142,
+  "poster": "https://all.web.img.acsta.net/pictures/14/06/04/13/10/066547.jpg",
   "trailer": "",
   "storyline": ""
  },
@@ -1079,6 +1163,18 @@
   "trailer": "",
   "storyline": ""
  },
+ "il-faut-bruler-maman|albert-dupontel": {
+  "key": "il-faut-bruler-maman|albert-dupontel",
+  "title": "Il faut brûler Maman",
+  "director": "Albert Dupontel",
+  "cast": "",
+  "genre": "Comédie",
+  "country": "",
+  "duration_min": null,
+  "poster": "",
+  "trailer": "",
+  "storyline": ""
+ },
  "princesse-mononoke|hayao-miyazaki": {
   "key": "princesse-mononoke|hayao-miyazaki",
   "title": "Princesse Mononoké",
@@ -1088,6 +1184,66 @@
   "country": "",
   "duration_min": 135,
   "poster": "https://all.web.img.acsta.net/pictures/24/02/21/11/33/4521429.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "all-you-need-is-kill|kenichiro-akimoto": {
+  "key": "all-you-need-is-kill|kenichiro-akimoto",
+  "title": "All You Need Is Kill",
+  "director": "Kenichiro Akimoto",
+  "cast": "",
+  "genre": "Animation",
+  "country": "",
+  "duration_min": 86,
+  "poster": "https://all.web.img.acsta.net/img/21/a6/21a6e8e165ddf1e0c9e92f785906f3e5.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "anesthesia|damien-boyer": {
+  "key": "anesthesia|damien-boyer",
+  "title": "Anesthesia",
+  "director": "Damien Boyer",
+  "cast": "",
+  "genre": "Documentaire",
+  "country": "",
+  "duration_min": 102,
+  "poster": "https://all.web.img.acsta.net/img/16/20/162005242c0e71013a021517bb274646.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "suspiria|dario-argento": {
+  "key": "suspiria|dario-argento",
+  "title": "Suspiria",
+  "director": "Dario Argento",
+  "cast": "",
+  "genre": "Épouvante-horreur",
+  "country": "",
+  "duration_min": 95,
+  "poster": "https://all.web.img.acsta.net/pictures/18/06/26/14/35/0140909.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "degel|manuela-martelli": {
+  "key": "degel|manuela-martelli",
+  "title": "Dégel",
+  "director": "Manuela Martelli",
+  "cast": "",
+  "genre": "Drame",
+  "country": "",
+  "duration_min": 108,
+  "poster": "https://all.web.img.acsta.net/img/19/f3/19f31991ed82e3ff679db5c4737f0c9f.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "zebulon-le-dragon|max-lang": {
+  "key": "zebulon-le-dragon|max-lang",
+  "title": "Zébulon, le dragon",
+  "director": "Max Lang",
+  "cast": "",
+  "genre": "Animation",
+  "country": "",
+  "duration_min": 26,
+  "poster": "https://all.web.img.acsta.net/pictures/19/05/06/16/14/2323627.jpg",
   "trailer": "",
   "storyline": ""
  },
@@ -1115,18 +1271,6 @@
   "trailer": "",
   "storyline": ""
  },
- "raison-et-sentiments|ang-lee": {
-  "key": "raison-et-sentiments|ang-lee",
-  "title": "Raison et sentiments",
-  "director": "Ang Lee",
-  "cast": "",
-  "genre": "Drame",
-  "country": "",
-  "duration_min": 135,
-  "poster": "https://all.web.img.acsta.net/pictures/14/05/12/13/19/472029.jpg",
-  "trailer": "",
-  "storyline": ""
- },
  "les-toutes-petites-creatures-2|lucy-izzard": {
   "key": "les-toutes-petites-creatures-2|lucy-izzard",
   "title": "Les Toutes Petites Créatures 2",
@@ -1136,18 +1280,6 @@
   "country": "",
   "duration_min": 38,
   "poster": "https://all.web.img.acsta.net/img/51/08/5108a7f9bd7a372c10b97486344b08c4.jpg",
-  "trailer": "",
-  "storyline": ""
- },
- "shining|stanley-kubrick": {
-  "key": "shining|stanley-kubrick",
-  "title": "Shining",
-  "director": "Stanley Kubrick",
-  "cast": "",
-  "genre": "Épouvante-horreur",
-  "country": "",
-  "duration_min": 143,
-  "poster": "https://all.web.img.acsta.net/medias/nmedia/18/87/08/06/19888870.jpg",
   "trailer": "",
   "storyline": ""
  },
@@ -1175,6 +1307,42 @@
   "trailer": "",
   "storyline": ""
  },
+ "m-le-maudit|fritz-lang": {
+  "key": "m-le-maudit|fritz-lang",
+  "title": "M le Maudit",
+  "director": "Fritz Lang",
+  "cast": "",
+  "genre": "Policier",
+  "country": "",
+  "duration_min": 112,
+  "poster": "https://all.web.img.acsta.net/medias/nmedia/18/65/40/99/19307779.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "connaissance-du-monde-la-patagonie-a-la-lisiere-du-monde|florent-de-la-tullaye": {
+  "key": "connaissance-du-monde-la-patagonie-a-la-lisiere-du-monde|florent-de-la-tullaye",
+  "title": "Connaissance du monde : La Patagonie A la lisière du monde",
+  "director": "Florent de La Tullaye",
+  "cast": "",
+  "genre": "Documentaire",
+  "country": "",
+  "duration_min": 90,
+  "poster": "https://all.web.img.acsta.net/pictures/22/10/11/14/05/3334269.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "animo-rigolo|philip-watts": {
+  "key": "animo-rigolo|philip-watts",
+  "title": "Animo rigolo",
+  "director": "Philip Watts",
+  "cast": "",
+  "genre": "Animation",
+  "country": "",
+  "duration_min": 40,
+  "poster": "https://all.web.img.acsta.net/img/8c/cd/8ccd79b094b0d3d47302fef3f67d9227.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
  "dune|david-lynch": {
   "key": "dune|david-lynch",
   "title": "Dune",
@@ -1184,18 +1352,6 @@
   "country": "",
   "duration_min": 137,
   "poster": "https://all.web.img.acsta.net/medias/nmedia/18/87/02/34/19883521.jpg",
-  "trailer": "",
-  "storyline": ""
- },
- "quelques-mots-d-amour|rudi-rosenberg": {
-  "key": "quelques-mots-d-amour|rudi-rosenberg",
-  "title": "Quelques mots d'amour",
-  "director": "Rudi Rosenberg",
-  "cast": "",
-  "genre": "Comédie dramatique",
-  "country": "",
-  "duration_min": 97,
-  "poster": "https://all.web.img.acsta.net/img/65/44/654492a6a2e060b5618af12221946790.jpg",
   "trailer": "",
   "storyline": ""
  },
@@ -1235,30 +1391,6 @@
   "trailer": "",
   "storyline": ""
  },
- "west-side-story|robert-wise": {
-  "key": "west-side-story|robert-wise",
-  "title": "West Side Story",
-  "director": "Robert Wise",
-  "cast": "",
-  "genre": "Comédie musicale",
-  "country": "",
-  "duration_min": 153,
-  "poster": "https://all.web.img.acsta.net/medias/nmedia/18/36/35/66/18477264.jpg",
-  "trailer": "",
-  "storyline": ""
- },
- "toucher-terre|jeremie-basset": {
-  "key": "toucher-terre|jeremie-basset",
-  "title": "Toucher terre",
-  "director": "Jérémie Basset",
-  "cast": "",
-  "genre": "Documentaire",
-  "country": "",
-  "duration_min": 68,
-  "poster": "",
-  "trailer": "",
-  "storyline": ""
- },
  "les-contes-du-pommier|patrik-pass-jr": {
   "key": "les-contes-du-pommier|patrik-pass-jr",
   "title": "Les Contes du pommier",
@@ -1268,6 +1400,18 @@
   "country": "",
   "duration_min": 70,
   "poster": "",
+  "trailer": "",
+  "storyline": ""
+ },
+ "ma-vie-de-courgette|claude-barras": {
+  "key": "ma-vie-de-courgette|claude-barras",
+  "title": "Ma Vie De Courgette",
+  "director": "Claude Barras",
+  "cast": "",
+  "genre": "Animation",
+  "country": "",
+  "duration_min": 66,
+  "poster": "https://all.web.img.acsta.net/pictures/16/04/20/11/20/009267.jpg",
   "trailer": "",
   "storyline": ""
  }
