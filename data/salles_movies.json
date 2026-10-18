@@ -23,15 +23,27 @@
   "trailer": "",
   "storyline": ""
  },
- "mauvaise-graine|billy-wilder": {
-  "key": "mauvaise-graine|billy-wilder",
-  "title": "Mauvaise graine",
-  "director": "Billy Wilder",
+ "cleo-de-5-a-7|agnes-varda": {
+  "key": "cleo-de-5-a-7|agnes-varda",
+  "title": "Cléo De 5 À 7",
+  "director": "Agnès Varda",
   "cast": "",
-  "genre": "Policier",
+  "genre": "Drame",
   "country": "",
-  "duration_min": 86,
-  "poster": "https://all.web.img.acsta.net/medias/nmedia/18/65/52/54/18867554.jpg",
+  "duration_min": 90,
+  "poster": "https://all.web.img.acsta.net/pictures/19/10/16/00/15/0330436.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "persepolis|marjane-satrapi": {
+  "key": "persepolis|marjane-satrapi",
+  "title": "Persepolis",
+  "director": "Marjane Satrapi",
+  "cast": "",
+  "genre": "Animation",
+  "country": "",
+  "duration_min": 95,
+  "poster": "https://all.web.img.acsta.net/medias/nmedia/18/87/85/34/19972851.jpg",
   "trailer": "",
   "storyline": ""
  },
@@ -44,6 +56,18 @@
   "country": "",
   "duration_min": 146,
   "poster": "https://all.web.img.acsta.net/img/21/b5/21b5a3e94ef46f0d7f60adabcf6d26eb.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "poupi|zdenek-miler": {
+  "key": "poupi|zdenek-miler",
+  "title": "Poupi",
+  "director": "Zdeněk Miler",
+  "cast": "",
+  "genre": "Animation",
+  "country": "",
+  "duration_min": 35,
+  "poster": "https://all.web.img.acsta.net/pictures/210/074/21007466_20130522114542133.jpg",
   "trailer": "",
   "storyline": ""
  },
@@ -227,42 +251,6 @@
   "trailer": "",
   "storyline": ""
  },
- "shrek-marathon-shrek|andrew-adamson": {
-  "key": "shrek-marathon-shrek|andrew-adamson",
-  "title": "Shrek • Marathon Shrek",
-  "director": "Andrew Adamson",
-  "cast": "",
-  "genre": "Animation",
-  "country": "",
-  "duration_min": 89,
-  "poster": "https://all.web.img.acsta.net/pictures/14/03/06/10/13/595503.jpg",
-  "trailer": "",
-  "storyline": ""
- },
- "shrek-2-marathon-shrek|andrew-adamson": {
-  "key": "shrek-2-marathon-shrek|andrew-adamson",
-  "title": "Shrek 2 • Marathon Shrek",
-  "director": "Andrew Adamson",
-  "cast": "",
-  "genre": "Animation",
-  "country": "",
-  "duration_min": 90,
-  "poster": "https://all.web.img.acsta.net/medias/nmedia/18/87/85/47/19972971.jpg",
-  "trailer": "",
-  "storyline": ""
- },
- "shrek-le-troisieme-marathon-shrek|chris-miller-ii": {
-  "key": "shrek-le-troisieme-marathon-shrek|chris-miller-ii",
-  "title": "Shrek le troisième • Marathon Shrek",
-  "director": "Chris Miller (II)",
-  "cast": "",
-  "genre": "Animation",
-  "country": "",
-  "duration_min": 93,
-  "poster": "https://all.web.img.acsta.net/medias/nmedia/18/87/83/84/19971620.jpg",
-  "trailer": "",
-  "storyline": ""
- },
  "melancholia-cine-club-le-club-des-chialeuses|lars-von-trier": {
   "key": "melancholia-cine-club-le-club-des-chialeuses|lars-von-trier",
   "title": "Melancholia • Ciné-club Le club des chialeuses",
@@ -383,18 +371,6 @@
   "trailer": "",
   "storyline": ""
  },
- "the-last-viking|anders-thomas-jensen": {
-  "key": "the-last-viking|anders-thomas-jensen",
-  "title": "The Last Viking",
-  "director": "Anders Thomas Jensen",
-  "cast": "",
-  "genre": "Comédie",
-  "country": "",
-  "duration_min": 116,
-  "poster": "https://all.web.img.acsta.net/img/03/74/0374a45b5fa44930e288bc58bafd9613.jpg",
-  "trailer": "",
-  "storyline": ""
- },
  "rose|markus-schleinzer": {
   "key": "rose|markus-schleinzer",
   "title": "Rose",
@@ -440,18 +416,6 @@
   "country": "",
   "duration_min": 93,
   "poster": "https://all.web.img.acsta.net/img/d9/9e/d99e678492b6f9824548bf2b16ecc8cc.jpg",
-  "trailer": "",
-  "storyline": ""
- },
- "sham|takashi-miike": {
-  "key": "sham|takashi-miike",
-  "title": "Sham",
-  "director": "Takashi Miike",
-  "cast": "",
-  "genre": "Thriller",
-  "country": "",
-  "duration_min": 129,
-  "poster": "https://all.web.img.acsta.net/img/d1/58/d158c09c1ec7a38b67b2ee81c2e4ec4e.jpg",
   "trailer": "",
   "storyline": ""
  },
@@ -587,18 +551,6 @@
   "trailer": "",
   "storyline": ""
  },
- "marathon-shrek|": {
-  "key": "marathon-shrek|",
-  "title": "Marathon Shrek",
-  "director": "",
-  "cast": "",
-  "genre": "",
-  "country": "",
-  "duration_min": 300,
-  "poster": "",
-  "trailer": "",
-  "storyline": ""
- },
  "12-hommes-en-colere|sidney-lumet": {
   "key": "12-hommes-en-colere|sidney-lumet",
   "title": "12 hommes en colère",
@@ -610,18 +562,6 @@
   "poster": "",
   "trailer": "",
   "storyline": ""
- },
- "2001-lodyssee-de-lespace|stanley-kubrick": {
-  "key": "2001-lodyssee-de-lespace|stanley-kubrick",
-  "title": "2001, l’odyssée de l’espace",
-  "director": "Stanley Kubrick",
-  "cast": "Keir Dullea, Gary Lockwood",
-  "genre": "",
-  "country": "",
-  "duration_min": 149,
-  "poster": "",
-  "trailer": "",
-  "storyline": "En 1999, on découvre sur la Lune un monolithe noir enterré il y a quatre millions d’années et dégageant un puissant champ magnétique. Dans le plus grand secret, une réunion de savants du monde entier décide de l’envoi d’une mission d’exploration vers Jupiter. En 2001, le vaisseau Discovery fait route vers la planète, dirigé par l’ordinateur ultra-sophistiqué Hal 9000, et emportant à son bord deux astronautes et trois savants en hibernation. Mais Hal va tenter de prendre le pouvoir…"
  },
  "bande-a-part|jean-luc-godard": {
   "key": "bande-a-part|jean-luc-godard",
@@ -646,18 +586,6 @@
   "poster": "",
   "trailer": "",
   "storyline": "À Londres, un photographe de mode prend dans un parc un cliché d'un couple d'amoureux. Mais la femme veut récupérer la pellicule. Le photographe lui substitue le rouleau, et découvre en développant et en agrandissant les photos, une forme abstraite qui pourrait être un cadavre…"
- },
- "blue-velvet|david-lynch": {
-  "key": "blue-velvet|david-lynch",
-  "title": "BLUE VELVET",
-  "director": "David Lynch",
-  "cast": "Kyle MacLachlan, Isabella Rossellini, Dennis Hopper, Laura Dern, Dean Stockwell, Brad Dourif, Hope Lange",
-  "genre": "",
-  "country": "",
-  "duration_min": 120,
-  "poster": "",
-  "trailer": "",
-  "storyline": "Int. 12 ans Lancé sur la piste d’une oreille coupée et d’une belle chanteuse, un apprenti détective traverse le miroir d’une petite ville. Derrière les façades coquettes et les massifs de fleurs, le feu et la folie s’embrasent…"
  },
  "chungking-express|wong-kar-wai": {
   "key": "chungking-express|wong-kar-wai",
@@ -694,18 +622,6 @@
   "poster": "",
   "trailer": "",
   "storyline": "Int. -12 ans Un chauffeur de taxi est menacé par un client qui le force à devenir son acolyte lors d'une nuit de crimes, dont son véhicule est le trait d’union."
- },
- "conversation-secrete|francis-ford-coppola": {
-  "key": "conversation-secrete|francis-ford-coppola",
-  "title": "Conversation secrète",
-  "director": "Francis Ford Coppola",
-  "cast": "Gene Hackman, John Cazale, Allen Garfield, Harrison Ford",
-  "genre": "",
-  "country": "",
-  "duration_min": 113,
-  "poster": "",
-  "trailer": "",
-  "storyline": "Chargé d’enregistrer les échanges d’un couple dans les rues de San Francisco pour le compte des services secrets, un spécialiste reconnu de la surveillance découvre à l’écoute des bandes que les deux amants pourraient être en danger…"
  },
  "cutters-way|ivan-passer": {
   "key": "cutters-way|ivan-passer",
@@ -755,30 +671,6 @@
   "trailer": "",
   "storyline": "Elena et Vladimir forment un couple d’un certain âge. Ils sont issus de milieux sociaux différents. Vladimir est un homme riche et froid, Elena une femme modeste et docile. Ils se sont rencontrés tard dans la vie et chacun a un enfant d’un précédent mariage. Le fils d’Elena, au chômage, ne parvient pas à subvenir aux besoins de sa propre famille et demande sans cesse de l’argent à sa mère. La fille de Vladimir est une jeune femme négligente, un peu bohème, qui maintient son père à distance. Suite à un malaise cardiaque, Vladimir est hospitalisé. A la clinique, il réalise qu’il pourrait mourir prochainement. Un moment bref mais tendre, partagé avec sa fille le conduit à une décision importante : c’est elle qui héritera de toute sa fortune. De retour à la maison, Vladimir l’annonce à Elena. Celle-ci voit soudain s’effondrer tout espoir d’aider financièrement son fils. La femme au foyer timide et soumise élabore alors un plan pour offrir à son fils et ses petits-enfants une vraie chance dans la vie."
  },
- "en-quatrieme-vitesse|robert-aldrich": {
-  "key": "en-quatrieme-vitesse|robert-aldrich",
-  "title": "En quatrième vitesse",
-  "director": "Robert Aldrich",
-  "cast": "Ralph Meeker, Maxine Cooper, Nick Dennis, Gaby Rodgers, Paul Stewart, Albert Dekker, Jack Elam",
-  "genre": "",
-  "country": "",
-  "duration_min": 106,
-  "poster": "",
-  "trailer": "",
-  "storyline": "Mike Hammer, détective privé, recueille en pleine nuit dans sa voiture une inconnue affolée. Ils tombent dans une embuscade dont la jeune femme ne réchappe pas. Lorsqu'il sort du coma, Mike décide de mener l'enquête, contre l'avis de son ami policier."
- },
- "faute-damour|andrei-zviaguintsev": {
-  "key": "faute-damour|andrei-zviaguintsev",
-  "title": "Faute d’amour",
-  "director": "Andreï Zviaguintsev",
-  "cast": "Maryana Spivak, Aleksey Rozin, Matvey Novikov",
-  "genre": "",
-  "country": "",
-  "duration_min": 127,
-  "poster": "",
-  "trailer": "",
-  "storyline": "Boris et Genia sont en train de divorcer. Ils se disputent sans cesse et enchaînent les visites de leur appartement en vue de le vendre. Ils préparent déjà leur avenir respectif : Boris est en couple avec une jeune femme enceinte et Genia fréquente un homme aisé qui semble prêt à l’épouser... Aucun des deux ne semble avoir d'intérêt pour Aliocha, leur fils de 12 ans. Jusqu'à ce qu'il disparaisse."
- },
  "goodbye-dragon-inn|tsai-ming-liang": {
   "key": "goodbye-dragon-inn|tsai-ming-liang",
   "title": "Goodbye, Dragon Inn",
@@ -790,18 +682,6 @@
   "poster": "",
   "trailer": "",
   "storyline": "À Taïpei, un cinéma ferme ses portes, mais pas avant d'avoir joué un dernier film, qui s'avère être une source de nostalgie pour ceux qui fréquentent le lieu et pour les employés du vieil immeuble décrépit et hanté."
- },
- "in-the-mood-for-love|wong-kar-wai": {
-  "key": "in-the-mood-for-love|wong-kar-wai",
-  "title": "In The Mood For Love",
-  "director": "Wong Kar-wai",
-  "cast": "Tony Leung Chiu Wai, Maggie Cheung, Rebecca Pan",
-  "genre": "",
-  "country": "",
-  "duration_min": 98,
-  "poster": "",
-  "trailer": "",
-  "storyline": "Hong Kong, 1962. Mme Chan loue une chambre chez Mme Suen. Le même jour et sur le même palier, s’installe M. Chow. Leurs conjoints sont souvent absents. Un jour, M. Chow et Mme Chan découvrent que leurs époux sont amants. Blessés, ils se fréquentent alors de plus en plus et développent eux aussi une liaison…"
  },
  "jai-rencontre-le-diable|kim-jee-wong": {
   "key": "jai-rencontre-le-diable|kim-jee-wong",
@@ -838,18 +718,6 @@
   "poster": "",
   "trailer": "",
   "storyline": "Int.- 12 ans. New-York, 1975. Libéré après 5 années de prison grâce à son avocat véreux, Carlito Brigante, ancienne figure du milieu, rentre chez lui dans le quartier espagnol de Harlem. Il souhaite se réinsérer dans la vie et monter aux Bahamas une affaire honnête avec la femme de sa vie. Mais son passé le rattrape…"
- },
- "la-chinoise|jean-luc-godard": {
-  "key": "la-chinoise|jean-luc-godard",
-  "title": "LA CHINOISE",
-  "director": "Jean-Luc Godard",
-  "cast": "Anne Wiazemsky, Jean-Pierre Léaud, Juliet Berto, Michel Semeniako.",
-  "genre": "",
-  "country": "",
-  "duration_min": 99,
-  "poster": "",
-  "trailer": "",
-  "storyline": "Cinq jeunes gens dans un appartement parisien fondent une cellule marxiste-léniniste, lisent Mao, écoutent Radio Pékin et discutent de politique."
  },
  "la-cite-des-dangers|robert-aldrich": {
   "key": "la-cite-des-dangers|robert-aldrich",
@@ -899,30 +767,6 @@
   "trailer": "",
   "storyline": "Deux jeunes hommes découvrent que les portes d'un temple local sont des antiquités précieuses. Séduits par la tentation de l'argent facile, ils commettent un vol audacieux. Mais la situation dérape lorsqu'ils se retrouvent impliqués dans une série d'événements violents, avec la police à leurs trousses."
  },
- "the-kid|charles-chaplin": {
-  "key": "the-kid|charles-chaplin",
-  "title": "THE KID",
-  "director": "Charles Chaplin",
-  "cast": "Charles Chaplin, Jackie Coogan, Edna Purviance, Carl Miller",
-  "genre": "",
-  "country": "",
-  "duration_min": 52,
-  "poster": "",
-  "trailer": "",
-  "storyline": "Lâchée par son amant, une jeune femme abandonne son enfant. Charlot le vagabond le recueille. Mais les services sociaux s’en mêlent..."
- },
- "le-ministere-de-la-peur|fritz-lang": {
-  "key": "le-ministere-de-la-peur|fritz-lang",
-  "title": "Le Ministère de la Peur",
-  "director": "Fritz Lang",
-  "cast": "Ray Milland, Marjorie Reynolds, Alan Napier",
-  "genre": "",
-  "country": "",
-  "duration_min": 86,
-  "poster": "",
-  "trailer": "",
-  "storyline": "Après deux ans passés dans un asile de fou, un homme retrouve une Angleterre bombardée, sous la menace nazie. En gagnant un gâteau lors d’une vente de charité, il va devenir sans le vouloir le protagoniste principal d’une rocambolesque affaire d’espionnage…"
- },
  "le-retour|andrei-zviaguintsev": {
   "key": "le-retour|andrei-zviaguintsev",
   "title": "Le Retour",
@@ -959,18 +803,6 @@
   "trailer": "",
   "storyline": "À Hongkong, Ming est un tueur à gages qui commence à regretter de s'être associé à une femme qui lui passe des commandes sanguinaires. Un jour, Ming décide de tout quitter et de s'installer chez Punkie, une jeune Chinoise rencontrée dans un bar."
  },
- "leviathan|andrei-zviaguintsev": {
-  "key": "leviathan|andrei-zviaguintsev",
-  "title": "Léviathan",
-  "director": "Andreï Zviaguintsev",
-  "cast": "Alexeï Serebriakov, Vladimir Vdovitchenkov, Alexeï Rozine, Elena Lyadova",
-  "genre": "",
-  "country": "",
-  "duration_min": 141,
-  "poster": "",
-  "trailer": "",
-  "storyline": "Kolia habite une petite ville au bord de la mer de Barents, au nord de la Russie. Il tient un garage qui jouxte la maison où il vit avec sa jeune femme Lylia et son fils Roma qu’il a eu d’un précédent mariage. Vadim Cheleviat, le Maire de la ville, souhaite s’approprier le terrain de Kolia, sa maison et son garage. Il a des projets. Il tente d’abord de l’acheter mais Kolia ne peut pas supporter l’idée de perdre tout ce qu’il possède, non seulement le terrain mais aussi la beauté qui l’entoure depuis sa naissance. Alors Vadim Cheleviat devient plus agressif..."
- },
  "mark-dixon-detective|otto-preminger": {
   "key": "mark-dixon-detective|otto-preminger",
   "title": "Mark Dixon détective",
@@ -983,18 +815,6 @@
   "trailer": "",
   "storyline": "Un policier inflexible qui n'hésite pas à user de violence pour faire aboutir ses enquêtes, tue accidentellement le suspect d'un meurtre. Tout en menant l'enquête, il tente d'effacer toutes les preuves qui l'incriminent."
  },
- "melodie-en-sous-sol|henri-verneuil": {
-  "key": "melodie-en-sous-sol|henri-verneuil",
-  "title": "MELODIE EN SOUS SOL",
-  "director": "Henri Verneuil",
-  "cast": "Jean Gabin, Alain Delon, Viviane Romance, Maurice Biraud, Dominique Davray, Henri Virlogeux",
-  "genre": "",
-  "country": "",
-  "duration_min": 117,
-  "poster": "",
-  "trailer": "",
-  "storyline": "A sa sortie de prison, un vieux malfrat décide d'un dernier coup magistral sur la côte d'Azur : braquer le casino de Cannes. La préparation du casse est minutieuse et l'opération se déroule on ne peut mieux. Mais un détail vient enrayer cette belle organisation..."
- },
  "meurtres-en-cascade|jonathan-demme": {
   "key": "meurtres-en-cascade|jonathan-demme",
   "title": "Meurtres en cascade",
@@ -1006,30 +826,6 @@
   "poster": "",
   "trailer": "",
   "storyline": "Après l'assassinat de sa femme, un agent de la CIA sujet à des dépressions nerveuses, se persuade que quelqu'un cherche à l'éliminer. Il rencontre une jeune étudiante, mais cette dernière est loin d'être l'ange qu'il attendait.."
- },
- "millenium-les-hommes-qui-naimaient-pas-les-femmes|david-fincher": {
-  "key": "millenium-les-hommes-qui-naimaient-pas-les-femmes|david-fincher",
-  "title": "Millenium : les hommes qui n’aimaient pas les femmes",
-  "director": "David Fincher",
-  "cast": "Daniel Craig, Rooney Mara, Robin Wright, Stellan Skarsgard, Christopher Plummer",
-  "genre": "",
-  "country": "",
-  "duration_min": 158,
-  "poster": "",
-  "trailer": "",
-  "storyline": "Un journaliste d’investigation est engagé par un des plus puissants industriels de Suède pour enquêter sur la disparition de sa nièce, survenue des années auparavant. L’industriel est convaincu qu'elle a été assassinée par un membre de sa propre famille."
- },
- "mouchette|robert-bresson": {
-  "key": "mouchette|robert-bresson",
-  "title": "Mouchette",
-  "director": "Robert Bresson",
-  "cast": "Nadine Nortier, Jean-Claude Guilbert, Marie Cardinal, Paul Hébert, Jean Vimenet",
-  "genre": "",
-  "country": "",
-  "duration_min": 81,
-  "poster": "",
-  "trailer": "",
-  "storyline": "Mouchette est une jeune fille taciturne issue d'une famille perturbée. Lors d'une nuit de tempête, elle trouve refuge chez un braconnier, qui finit par la violer. En retournant chez elle, Mouchette est témoin du décès de sa mère, sans avoir eu l'occasion de se confier à elle..."
  },
  "mulholland-drive|david-lynch": {
   "key": "mulholland-drive|david-lynch",
@@ -1079,42 +875,6 @@
   "trailer": "",
   "storyline": "À Toonville, où se cotoient humains et personnages animés, le lapin Roger, qui soupçonne sa magnifique femme Jessica d’adultère, engage un détective. Associant animation et prises de vues réelles, techniquement révolutionnaire à sa sortie, un hommage jubilatoire au cartoon et au film noir."
  },
- "rendez-vous-de-juillet|jacques-becker": {
-  "key": "rendez-vous-de-juillet|jacques-becker",
-  "title": "Rendez-vous de juillet",
-  "director": "Jacques Becker",
-  "cast": "Daniel Gélin, Nicole Courcel, Brigitte Auber, Bernard Lajarrige, Maurice Ronet, Pierre Trabaud, Louis Seigner, Philippe Mareuil, Gaston Modot, Francis Mazières et l’orchestre de Claude Luter",
-  "genre": "",
-  "country": "",
-  "duration_min": 112,
-  "poster": "",
-  "trailer": "",
-  "storyline": "Dans le Paris de l’après-guerre, pendant un été, les espoirs, amours, relations familiales et ambitions professionnelles d’une bande d’amis réunis par la passion du jazz, dans les caves de Saint-Germain-des-Prés, les répétitions théâtrales et le désir d’entreprendre une expédition en Afrique. During a summer in post-war Paris, the hopes, loves, family relationships of a group of friends brought together by the passion for jazz, in the underground bars of Saint-Germain-des-Prés, theater rehearsals and desire to undertake an expedition to Africa."
- },
- "sailor-et-lula|david-lynch": {
-  "key": "sailor-et-lula|david-lynch",
-  "title": "Sailor et Lula",
-  "director": "David Lynch",
-  "cast": "Nicolas Cage / Laura Dern / Diane Ladd / Willem Dafoe / Isabella Rossellini / Harry Dean Stanton",
-  "genre": "",
-  "country": "",
-  "duration_min": 127,
-  "poster": "",
-  "trailer": "",
-  "storyline": "Une jeune fille fait une fugue avec son amant. Sa mère lance à leur poursuite des gangsters. Les amants maudits survivent grâce à des braquages…"
- },
- "seven|david-fincher": {
-  "key": "seven|david-fincher",
-  "title": "SEVEN",
-  "director": "David Fincher",
-  "cast": "Brad Pitt, Morgan Freeman, Gwyneth Paltrow, Kevin Spacey",
-  "genre": "",
-  "country": "",
-  "duration_min": 130,
-  "poster": "",
-  "trailer": "",
-  "storyline": "Int. - 12 ans Deux détectives, une recrue et un enquêteur chevronné, chassent un tueur en série qui utilise les sept péchés capitaux comme motif pour tuer."
- },
  "sueurs-froides|alfred-hitchcock": {
   "key": "sueurs-froides|alfred-hitchcock",
   "title": "SUEURS FROIDES",
@@ -1139,18 +899,6 @@
   "trailer": "",
   "storyline": "Int. -12 ans Deux meilleures amies, Thelma et Louise, décident de s'offrir un week-end sur les routes magnifiques de l'Arkansas. Premier arrêt, premier saloon, premiers ennuis et tout bascule. Elles partent en cavale, pourchassées par la police..."
  },
- "un-apres-midi-de-chien|sidney-lumet": {
-  "key": "un-apres-midi-de-chien|sidney-lumet",
-  "title": "Un après-midi de chien",
-  "director": "Sidney Lumet",
-  "cast": "Al Pacino, John Cazale, Sully Boyar, Charles Durning",
-  "genre": "",
-  "country": "",
-  "duration_min": 130,
-  "poster": "",
-  "trailer": "",
-  "storyline": "Par un chaud après-midi d'août 1972, des hommes armés se lancent à l'assaut d'une banque de Brooklyn. Ils parviennent à se faire ouvrir le coffre qui est quasiment vide. La police ayant encerclé les lieux, ils n'ont d'autre choix que de maintenir le siège de la banque... Attica, Attica!"
- },
  "une-femme-est-une-femme|jean-luc-godard": {
   "key": "une-femme-est-une-femme|jean-luc-godard",
   "title": "Une femme est une femme",
@@ -1162,18 +910,6 @@
   "poster": "",
   "trailer": "",
   "storyline": "Une ravissante strip-teaseuse a pour amant un jeune libraire. Elle lui demande de l'épouser car elle désire un enfant. Pour le rendre jaloux, elle feint d'être séduite par leur voisin, un photographe."
- },
- "une-nuit-a-lopera|edmund-goulding-sam-wood": {
-  "key": "une-nuit-a-lopera|edmund-goulding-sam-wood",
-  "title": "UNE NUIT A L’OPERA",
-  "director": "Edmund Goulding Sam Wood",
-  "cast": "Groucho Marx, Harpo Marx, Chico Marx, Margaret Dumont.",
-  "genre": "",
-  "country": "",
-  "duration_min": 92,
-  "poster": "",
-  "trailer": "",
-  "storyline": "Le charme de Driftwood opère sur la très riche Mrs Claypool qui rêve d'évoluer avec aisance dans le petit monde de la culture. Pour ce faire elle consent à faire don d'une grosse somme à l'opéra de New York. Cet argent doit servir à engager un grand ténor italien: Rodolfo Lasspari. Seulement Driftwood et le directeur du théâtre ne sont pas d'accord sur le choix du ténor. S'ensuit un des films les plus burlesques des Marx avec la célèbre scène de la cabine de bateau."
  },
  "vivre-sa-vie-film-en-douze-tableaux|": {
   "key": "vivre-sa-vie-film-en-douze-tableaux|",
@@ -1187,15 +923,15 @@
   "trailer": "",
   "storyline": ""
  },
- "persepolis|marjane-satrapi": {
-  "key": "persepolis|marjane-satrapi",
-  "title": "Persepolis",
-  "director": "Marjane Satrapi",
+ "edward-aux-mains-d-argent|tim-burton": {
+  "key": "edward-aux-mains-d-argent|tim-burton",
+  "title": "Edward aux mains d'argent",
+  "director": "Tim Burton",
   "cast": "",
-  "genre": "Animation",
+  "genre": "Fantastique",
   "country": "",
-  "duration_min": 95,
-  "poster": "https://all.web.img.acsta.net/medias/nmedia/18/87/85/34/19972851.jpg",
+  "duration_min": 105,
+  "poster": "https://all.web.img.acsta.net/pictures/17/08/14/20/27/283906.png",
   "trailer": "",
   "storyline": ""
  },
@@ -1295,18 +1031,6 @@
   "trailer": "",
   "storyline": ""
  },
- "si-tu-penses-bien|geraldine-nakache": {
-  "key": "si-tu-penses-bien|geraldine-nakache",
-  "title": "Si tu penses bien",
-  "director": "Géraldine Nakache",
-  "cast": "",
-  "genre": "Drame",
-  "country": "",
-  "duration_min": 94,
-  "poster": "https://all.web.img.acsta.net/img/d2/fd/d2fd6346b8e6ef171348f00654e6ff40.jpg",
-  "trailer": "",
-  "storyline": ""
- },
  "le-monde-a-l-envers|arnaud-demuynck": {
   "key": "le-monde-a-l-envers|arnaud-demuynck",
   "title": "Le Monde à l'envers",
@@ -1330,6 +1054,54 @@
   "poster": "https://all.web.img.acsta.net/img/9a/7b/9a7bc47ae7965be02edadbc371a79ca7.jpg",
   "trailer": "",
   "storyline": ""
+ },
+ "midnight-movie-soiree-na-hong-jin|": {
+  "key": "midnight-movie-soiree-na-hong-jin|",
+  "title": "MIDNIGHT MOVIE : SOIRÉE NA HONG-JIN",
+  "director": "",
+  "cast": "",
+  "genre": "",
+  "country": "",
+  "duration_min": null,
+  "poster": "https://www.cinemas-lumiere.com/cache/data/files/cinemas/movie/poster/5095/3054_638234_sb_20070_1789469612/s,490,650-q,90-d4731a.JPG",
+  "trailer": "",
+  "storyline": "Samedi 24 octobre à 19h30 au Lumière Terreaux Soirée animée par Hiba Ziane The Strangers de Na Hong-jin Corée du Sud | 2016 | 2h36 | VOSTF | Int. -12 ans avec Do-Won K., H. Jeong-min, J. Kunimura Sélection officielle - Cannes 2016 La vie d’un village de montagne est bouleversée par une série de meurtres, aussi sauvages qu’inexpliqués. L’enquête de police piétine alors qu’une épidémie de fièvre se propage et mène à la folie meurtrière les habitants de la petite communauté. Sans explication rationnelle à ce phénomène, les soupçons se portent sur un vieil étranger qui vit en ermite dans les bois attisant rumeurs et superstitions. Exceptionnellement, cette séance aura lieu à 19h30 et non 20h. Achat conseillé des places à l’avance, aux accueils ou Film seul Super billet : double séance à 12€ Suivi de Samedi 19 septembre à 22h30 au Lumière Terreaux Soirée animée par Hiba Ziane The Chaser de Na Hong-jin Corée du Sud | 2009 | 2h03 | VOSTF | Int. -12 ans avec Yun-seok K., Jung-woo H., Yeong-hie S. Sélection officielle - Cannes 2008 Lotus Action Asia – Festival du Film Asiatique de Deauville 2009 Joong-ho, ancien flic devenu proxénète, reprend du service lorsqu'il se rend compte que ses filles disparaissent les unes après les autres. Très vite, il réalise qu'elles avaient toutes rencontré le même client, identifié par les derniers chiffres de son numéro de portable. Joong-ho se lance alors dans une chasse à l'homme, persuadé qu'il peut encore sauver Mi-jin, la dernière victime du tueur. Achat conseillé des places à l’avance, aux accueils ou Film seul Super billet : double séance à 12€"
+ },
+ "moulin|laszlo-nemes": {
+  "key": "moulin|laszlo-nemes",
+  "title": "Moulin",
+  "director": "Laszlo Nemes",
+  "cast": "G. Lellouche, L. Eidinger, L. Bourgoin",
+  "genre": "",
+  "country": "",
+  "duration_min": 134,
+  "poster": "https://www.cinemas-lumiere.com/cache/data/files/cinemas/movie/poster/5130/0f7fb216155bf7bcf7bb69d9e2f65310/s,490,650-q,90-eb1c28.jpg",
+  "trailer": "",
+  "storyline": "Juin 1943, Jean Moulin, chef de la Résistance, est arrêté alors qu'il tente de réunifier les forces de l'Armée Secrète. Interrogé par Klaus Barbie, le chef de la Gestapo de Lyon, Moulin est entraîné dans une confrontation implacable. Son ultime combat face à la manipulation et la brutalité commence. Le destin de la France libre en dépend. Sortie en salle le 28 octobre 2026 Remerciements à Studio TF1"
+ },
+ "the-chaser|na-hong-jin": {
+  "key": "the-chaser|na-hong-jin",
+  "title": "The Chaser",
+  "director": "Na Hong-jin",
+  "cast": "Yun-seok K., Jung-woo H., Yeong-hie S.",
+  "genre": "",
+  "country": "",
+  "duration_min": 123,
+  "poster": "https://www.cinemas-lumiere.com/cache/data/files/cinemas/movie/poster/5094/19031357/s,490,650-q,90-cfc47b.jpg",
+  "trailer": "",
+  "storyline": "Joong-ho, ancien flic devenu proxénète, reprend du service lorsqu'il se rend compte que ses filles disparaissent les unes après les autres. Très vite, il réalise qu'elles avaient toutes rencontré le même client, identifié par les derniers chiffres de son numéro de portable. Joong-ho se lance alors dans une chasse à l'homme, persuadé qu'il peut encore sauver Mi-jin, la dernière victime du tueur. Séance précédée de The Strangers Samedi 24 octobre à 19h30 au Lumière Terreaux"
+ },
+ "the-strangers|na-hong-jin": {
+  "key": "the-strangers|na-hong-jin",
+  "title": "The Strangers",
+  "director": "Na Hong-jin",
+  "cast": "Do-Won K., H. Jeong-min, J. Kunimura",
+  "genre": "",
+  "country": "",
+  "duration_min": 156,
+  "poster": "https://www.cinemas-lumiere.com/cache/data/files/cinemas/movie/poster/5093/265733/s,490,650-q,90-826c03.jpg",
+  "trailer": "",
+  "storyline": "La vie d'un village de montagne est bouleversée par une série de meurtres, aussi sauvages qu'inexpliqués. L'enquête de police piétine alors qu'une épidémie de fièvre se propage et mène à la folie meurtrière les habitants de la petite communauté. Sans explication rationnelle à ce phénomène, les soupçons se portent sur un vieil étranger qui vit en ermite dans les bois attisant rumeurs et superstitions. Exceptionnellement, cette séance aura lieu à 19h30 et non 20h. Séance suivie de The Chaser Samedi 19 septembre à 22h30 au Lumière Terreaux"
  },
  "une-femme-aujourd-hui|robert-guediguian": {
   "key": "une-femme-aujourd-hui|robert-guediguian",
@@ -1403,6 +1175,18 @@
   "trailer": "",
   "storyline": "Dans le New Jersey, un adolescent de 16 ans surnommé « Pyteh » partage son temps entre les tapis de lutte et le petit restaurant tcherkesse de sa famille, au bord de la faillite. Mais une décision impulsive de son père, éternel opportuniste, vient bouleverser sa trajectoire -- façonnant peu à peu un récit de fierté, d'héritage et de masculinité."
  },
+ "carmen-l-oiseau-rebelle|sebastien-laudenbach": {
+  "key": "carmen-l-oiseau-rebelle|sebastien-laudenbach",
+  "title": "Carmen, l'oiseau rebelle",
+  "director": "Sébastien Laudenbach",
+  "cast": "les voix de C. Jordana, M. Machado-Graner, S. Bocoum",
+  "genre": "",
+  "country": "",
+  "duration_min": 86,
+  "poster": "https://www.cinemas-lumiere.com/cache/data/files/cinemas/movie/poster/5115/82969ffb61835e6d309161ec46daf0b9/s,490,650-q,90-e4e333.jpg",
+  "trailer": "",
+  "storyline": "Dans les ruelles de Séville, Salva, Belén et leur bande de gamins des rues vont affronter tous les dangers pour éloigner la menace qui plane sur Carmen, jeune femme libre et flamboyante. Le destin de Carmen, oiseau rebelle, est entre leurs mains. 5€ pour les - 14 ans Sortie nationale le 16 décembre 2026 Remerciements aux Haut & Court"
+ },
  "de-la-comedie-francaise|martin-darondeau-bertrand-usclat": {
   "key": "de-la-comedie-francaise|martin-darondeau-bertrand-usclat",
   "title": "De la Comédie-Française",
@@ -1438,6 +1222,18 @@
   "poster": "https://www.cinemas-lumiere.com/cache/data/files/cinemas/movie/poster/5109/18429500/s,490,650-q,90-e83668.jpg",
   "trailer": "",
   "storyline": "Maître Martinaud, riche notaire de province, passe la nuit de la Saint-Sylvestre en garde à vue pour répondre à l'inspecteur Gallien et à son adjoint Belmont de l'accusation de viol et de meurtre de deux fillettes. Sa personnalité troublante, le secret intime qu'il cache, le témoignage à charge de sa propre épouse en font-ils pour autant le coupable idéal ?"
+ },
+ "gruffalo-de-pere-en-fils|divers-cineastes": {
+  "key": "gruffalo-de-pere-en-fils|divers-cineastes",
+  "title": "Gruffalo, de père en fils",
+  "director": "divers cinéastes",
+  "cast": "",
+  "genre": "",
+  "country": "",
+  "duration_min": 53,
+  "poster": "https://www.cinemas-lumiere.com/cache/data/files/cinemas/movie/poster/5117/8476e2ac768c5221cd67cda165f5e31e/s,490,650-q,90-ea2ef8.jpg",
+  "trailer": "",
+  "storyline": "Il n’est jamais très bon qu’un Gruffalo, père ou fils, se montre dans le grand bois profond. Il pourrait être poursuivi par la Grande Méchante Souris. Mais entre un Gruffalo et une souris, lequel des deux est le plus effrayant ? 5€ pour tous Sortie nationale le 25 novembre 2026 Remerciements aux Films du Préau"
  },
  "histoires-de-la-nuit|lea-mysius": {
   "key": "histoires-de-la-nuit|lea-mysius",
@@ -1535,6 +1331,18 @@
   "trailer": "",
   "storyline": "Un programme champêtre qui anime la ferme de mille et une aventures ! D’après l’album illustré de Julia Donaldson et Axel Scheffler. Betty Delorge et Harry Fortepaille, deux épouvantails très amoureux, rêvent d’un mariage inoubliable. Tout semble prêt pour le grand jour… jusqu’à ce que Harry parte chercher une dernière chose indispensable à la célébration : des fleurs roses. Pendant son absence, Réginald Dufoin, un épouvantail malin et un peu trop sûr de lui, arrive avec des idées qui pourraient bien gâcher la fête. 5€ pour tous"
  },
+ "wallace-gromit-les-inventuriers|nick-park": {
+  "key": "wallace-gromit-les-inventuriers|nick-park",
+  "title": "Wallace & Gromit : Les Inventuriers",
+  "director": "Nick Park",
+  "cast": "",
+  "genre": "",
+  "country": "",
+  "duration_min": 54,
+  "poster": "https://www.cinemas-lumiere.com/cache/data/files/cinemas/movie/poster/4362/325069/s,490,650-q,90-76418d.jpg",
+  "trailer": "",
+  "storyline": "Wallace, inventeur farfelu, et son flegmatique chien Gromit, enchainent les aventures rocambolesques et les rencontres improbables. D'un voyage sur la Lune dans Une grande excursion à l'hébergement d'un locataire peu recommandable dans Un mauvais pantalon, redécouvrez les deux premiers volets de leurs folles péripéties. 5€ pour tous"
+ },
  "wallace-et-gromit-le-mystere-du-lapin-garou|nick-park-steve-box": {
   "key": "wallace-et-gromit-le-mystere-du-lapin-garou|nick-park-steve-box",
   "title": "Wallace et Gromit : le Mystère du lapin-garou",
@@ -1546,18 +1354,6 @@
   "poster": "https://www.cinemas-lumiere.com/cache/data/files/cinemas/movie/poster/5114/141713/s,490,650-q,90-c6598c.jpg",
   "trailer": "",
   "storyline": "Une \"fièvre végétarienne\" intense règne dans la petite ville de Wallace et Gromit, et l'ingénieux duo a mis à profit cet engouement en inventant un produit anti-nuisibles humain et écolo, qui épargne la vie des lapins. L'astuce consiste simplement à capturer, à la main, un maximum de ces rongeurs et à les mettre en cage. A quelques jours du Grand Concours Annuel de Légumes, les affaires de Wallace et Gromit n'ont jamais été aussi florissantes, et tout irait pour le mieux dans le meilleur des mondes, si un lapin-garou géant ne venait soudain s'attaquer aux sacro-saints potagers de la ville. Pour faire face à ce péril inédit, l'organisatrice du concours, Lady Tottington, se tourne vers nos deux \"spécialistes\" et leur demande d'appréhender le monstre. 5€ pour les -14 ans"
- },
- "un-hiver-russe|patric-chiha": {
-  "key": "un-hiver-russe|patric-chiha",
-  "title": "Un hiver russe",
-  "director": "Patric Chiha",
-  "cast": "",
-  "genre": "Documentaire",
-  "country": "",
-  "duration_min": 86,
-  "poster": "https://images.monnaie-services.com/movie_poster/120/FRRTQ0T/I4MMELSL.jpg",
-  "trailer": "https://trailers.imscine.com/ld/bbbc1d2ef825d640d3c9fb8e5ccdf25ee46ea496e94096e97502beee4d387acfc442a8b153a09ec8c29c72d4eaa8f2.mp4",
-  "storyline": "Entre Paris et Istanbul, Margarita, Yuri et leurs amis, un groupe de jeunes exilés russes, cherchent leur place dans un monde qui ne semble plus être le leur."
  },
  "qui-vit-encore|nicolas-wadimoff": {
   "key": "qui-vit-encore|nicolas-wadimoff",
@@ -1600,7 +1396,7 @@
   "title": "Digger",
   "director": "Alejandro G. Iñárritu",
   "cast": "Tom Cruise, Riz Ahmed, John Goodman, Sandra Hüller, Michael Stuhlbarg",
-  "genre": "Comédie, Action, Drame",
+  "genre": "Comédie, Drame, Action",
   "country": "",
   "duration_min": 129,
   "poster": "https://images.monnaie-services.com/movie_poster/120/FRTEUUP/NNSYKDV7.jpg",

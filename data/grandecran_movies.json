@@ -95,18 +95,6 @@
   "trailer": "",
   "storyline": ""
  },
- "japanese-avant-garde-pioneers|amelie-ravalec": {
-  "key": "japanese-avant-garde-pioneers|amelie-ravalec",
-  "title": "JAPANESE AVANT GARDE PIONEERS",
-  "director": "Amélie Ravalec",
-  "cast": "",
-  "genre": "Documentaire",
-  "country": "",
-  "duration_min": 100,
-  "poster": "",
-  "trailer": "",
-  "storyline": ""
- },
  "hunger-games-l-embrasement|francis-lawrence": {
   "key": "hunger-games-l-embrasement|francis-lawrence",
   "title": "Hunger Games - L'embrasement",
@@ -116,6 +104,18 @@
   "country": "",
   "duration_min": 146,
   "poster": "https://all.web.img.acsta.net/medias/nmedia/18/89/66/59/20537505.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "hunger-games-la-revolte-partie-1|francis-lawrence": {
+  "key": "hunger-games-la-revolte-partie-1|francis-lawrence",
+  "title": "Hunger Games - La Révolte : Partie 1",
+  "director": "Francis Lawrence",
+  "cast": "",
+  "genre": "Action",
+  "country": "",
+  "duration_min": 123,
+  "poster": "https://all.web.img.acsta.net/pictures/14/12/05/17/09/561135.jpg",
   "trailer": "",
   "storyline": ""
  },
@@ -275,18 +275,6 @@
   "trailer": "",
   "storyline": ""
  },
- "mais-qui-a-tue-marcel-un-ete-76|jean-marc-merlent": {
-  "key": "mais-qui-a-tue-marcel-un-ete-76|jean-marc-merlent",
-  "title": "Mais qui a tué Marcel ? Un été 76",
-  "director": "Jean-Marc Merlent",
-  "cast": "",
-  "genre": "",
-  "country": "",
-  "duration_min": 117,
-  "poster": "https://all.web.img.acsta.net/img/37/db/37db3309b5a6e8e9107c734f41d53314.jpg",
-  "trailer": "",
-  "storyline": ""
- },
  "10-11-12-pougne-le-herisson|iouri-tcherenkov": {
   "key": "10-11-12-pougne-le-herisson|iouri-tcherenkov",
   "title": "10, 11, 12... Pougne le hérisson",
@@ -407,30 +395,6 @@
   "trailer": "",
   "storyline": ""
  },
- "cowboy-bebop|shin-ichiro-watanabe": {
-  "key": "cowboy-bebop|shin-ichiro-watanabe",
-  "title": "Cowboy Bebop",
-  "director": "Shin'ichirô Watanabe",
-  "cast": "",
-  "genre": "Animation",
-  "country": "",
-  "duration_min": 111,
-  "poster": "https://all.web.img.acsta.net/medias/nmedia/18/87/79/88/19967850.jpg",
-  "trailer": "",
-  "storyline": ""
- },
- "hunger-games-la-revolte-partie-1|francis-lawrence": {
-  "key": "hunger-games-la-revolte-partie-1|francis-lawrence",
-  "title": "Hunger Games - La Révolte : Partie 1",
-  "director": "Francis Lawrence",
-  "cast": "",
-  "genre": "Action",
-  "country": "",
-  "duration_min": 123,
-  "poster": "https://all.web.img.acsta.net/pictures/14/12/05/17/09/561135.jpg",
-  "trailer": "",
-  "storyline": ""
- },
  "tombe-du-ciel|mohamed-hamidi": {
   "key": "tombe-du-ciel|mohamed-hamidi",
   "title": "Tombé du ciel",
@@ -443,6 +407,30 @@
   "trailer": "",
   "storyline": ""
  },
+ "amadou-et-mariam-sons-du-mali|ryan-marley": {
+  "key": "amadou-et-mariam-sons-du-mali|ryan-marley",
+  "title": "Amadou et Mariam : Sons du Mali",
+  "director": "Ryan Marley",
+  "cast": "",
+  "genre": "Documentaire",
+  "country": "",
+  "duration_min": 88,
+  "poster": "https://all.web.img.acsta.net/img/d5/a3/d5a38ac40911d1b1a9933b4ce1eac2df.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "i-was-a-teenage-sex-pistol|andre-relis": {
+  "key": "i-was-a-teenage-sex-pistol|andre-relis",
+  "title": "I Was a Teenage Sex Pistol",
+  "director": "Andre Relis",
+  "cast": "",
+  "genre": "Documentaire",
+  "country": "",
+  "duration_min": 102,
+  "poster": "",
+  "trailer": "",
+  "storyline": ""
+ },
  "ma-toute-petite-ecole|pascal-plisson": {
   "key": "ma-toute-petite-ecole|pascal-plisson",
   "title": "Ma toute petite école",
@@ -452,6 +440,18 @@
   "country": "",
   "duration_min": 88,
   "poster": "https://all.web.img.acsta.net/img/69/9e/699e5af46d30c85ccf9d9fc46b6d79b7.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "its-never-over-jeff-buckley|amy-berg": {
+  "key": "its-never-over-jeff-buckley|amy-berg",
+  "title": "It’s Never Over, Jeff Buckley",
+  "director": "Amy Berg",
+  "cast": "",
+  "genre": "Documentaire",
+  "country": "",
+  "duration_min": 110,
+  "poster": "https://all.web.img.acsta.net/img/e4/29/e429eba6a5ac8f214c62e81c7d2bdfb6.jpg",
   "trailer": "",
   "storyline": ""
  },
@@ -623,38 +623,14 @@
   "trailer": "",
   "storyline": ""
  },
- "organes-d-etat|raymond-zhang": {
-  "key": "organes-d-etat|raymond-zhang",
-  "title": "Organes d'État",
-  "director": "Raymond Zhang",
+ "les-habites-saison-2026-2027|les-habites": {
+  "key": "les-habites-saison-2026-2027|les-habites",
+  "title": "Les Habités Saison 2026 - 2027",
+  "director": "Les Habités",
   "cast": "",
-  "genre": "Documentaire",
+  "genre": "Spectacle",
   "country": "",
-  "duration_min": 76,
-  "poster": "",
-  "trailer": "",
-  "storyline": ""
- },
- "detective-conan-l-ange-dechu-de-l-asphalte|takahiro-hasui": {
-  "key": "detective-conan-l-ange-dechu-de-l-asphalte|takahiro-hasui",
-  "title": "Détective Conan : L'Ange déchu de l'asphalte",
-  "director": "Takahiro Hasui",
-  "cast": "",
-  "genre": "Animation",
-  "country": "",
-  "duration_min": 110,
-  "poster": "https://all.web.img.acsta.net/img/dc/17/dc175fbc6d0a8a66b483a8742527ca77.jpg",
-  "trailer": "",
-  "storyline": ""
- },
- "femmes-des-terres|pyrene-van-den-steendam": {
-  "key": "femmes-des-terres|pyrene-van-den-steendam",
-  "title": "Femmes des Terres",
-  "director": "Pyrène VAN DEN STEENDAM",
-  "cast": "",
-  "genre": "Documentaire",
-  "country": "",
-  "duration_min": 54,
+  "duration_min": 90,
   "poster": "",
   "trailer": "",
   "storyline": ""

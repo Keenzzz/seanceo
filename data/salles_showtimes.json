@@ -1,2475 +1,5 @@
 [
  {
-  "id": "salles-lumiere-terreaux-592170-1792138500/VFST/263894",
-  "movie": "le-corset|louis-clichy",
-  "cinema": "salles-lumiere-terreaux",
-  "start": "2026-10-16T10:15:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://cinema-lumiere-terreaux-vad.cotecine.fr/reserver/?modresa_film=592170&modresa_jour=2026-10-16"
- },
- {
-  "id": "salles-lumiere-terreaux-626415-1792138500/VO/263884",
-  "movie": "minotaure|andrei-zviaguintsev",
-  "cinema": "salles-lumiere-terreaux",
-  "start": "2026-10-16T10:15:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://cinema-lumiere-terreaux-vad.cotecine.fr/reserver/?modresa_film=626415&modresa_jour=2026-10-16"
- },
- {
-  "id": "salles-lumiere-terreaux-608708-1792138500/VF/263874",
-  "movie": "notre-salut|emmanuel-marre",
-  "cinema": "salles-lumiere-terreaux",
-  "start": "2026-10-16T10:15:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://cinema-lumiere-terreaux-vad.cotecine.fr/reserver/?modresa_film=608708&modresa_jour=2026-10-16"
- },
- {
-  "id": "salles-comoedia-285141-2026-10-16T10:45:00",
-  "movie": "l-espece-explosive|sarah-arnold",
-  "cinema": "salles-comoedia",
-  "start": "2026-10-16T10:45:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/337809"
- },
- {
-  "id": "salles-comoedia-1000026039-2026-10-16T10:45:00",
-  "movie": "garance|jeanne-herry",
-  "cinema": "salles-comoedia",
-  "start": "2026-10-16T10:45:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/337586"
- },
- {
-  "id": "salles-comoedia-1000007388-2026-10-16T10:50:00",
-  "movie": "notre-salut|emmanuel-marre",
-  "cinema": "salles-comoedia",
-  "start": "2026-10-16T10:50:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/337517"
- },
- {
-  "id": "salles-comoedia-1000022205-2026-10-16T10:50:00",
-  "movie": "minotaure|andrei-zviaguintsev",
-  "cinema": "salles-comoedia",
-  "start": "2026-10-16T10:50:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/337744"
- },
- {
-  "id": "salles-comoedia-299748-2026-10-16T11:00:00",
-  "movie": "ton-animal-maternel|valentina-maurel",
-  "cinema": "salles-comoedia",
-  "start": "2026-10-16T11:00:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/337801"
- },
- {
-  "id": "salles-comoedia-321790-2026-10-16T11:05:00",
-  "movie": "le-corset|louis-clichy",
-  "cinema": "salles-comoedia",
-  "start": "2026-10-16T11:05:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/337592"
- },
- {
-  "id": "salles-comoedia-1000048319-2026-10-16T11:15:00",
-  "movie": "fini-de-rire-l-humour-politique-au-garde-a-vous|mateo-larroque",
-  "cinema": "salles-comoedia",
-  "start": "2026-10-16T11:15:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/337656"
- },
- {
-  "id": "salles-brady-293636-2026-10-16T11:20:00",
-  "movie": "in-waves|phuong-mai-nguyen",
-  "cinema": "salles-brady",
-  "start": "2026-10-16T11:20:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://achat.lebrady.fr/r/65488"
- },
- {
-  "id": "salles-brady-316460-2026-10-16T11:40:00",
-  "movie": "the-last-viking|anders-thomas-jensen",
-  "cinema": "salles-brady",
-  "start": "2026-10-16T11:40:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://achat.lebrady.fr/r/65490"
- },
- {
-  "id": "salles-brady-1000019852-2026-10-16T11:40:00",
-  "movie": "trois-adieux|isabel-coixet",
-  "cinema": "salles-brady",
-  "start": "2026-10-16T11:40:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://achat.lebrady.fr/r/65489"
- },
- {
-  "id": "salles-lumiere-terreaux-627998-1792146600/VF/263894",
-  "movie": "garance|jeanne-herry",
-  "cinema": "salles-lumiere-terreaux",
-  "start": "2026-10-16T12:30:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://cinema-lumiere-terreaux-vad.cotecine.fr/reserver/?modresa_film=627998&modresa_jour=2026-10-16"
- },
- {
-  "id": "salles-brady-1000037046-2026-10-16T13:00:00",
-  "movie": "de-la-comedie-francaise|martin-darondeau",
-  "cinema": "salles-brady",
-  "start": "2026-10-16T13:00:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://achat.lebrady.fr/r/65401"
- },
- {
-  "id": "salles-comoedia-327174-2026-10-16T13:00:00",
-  "movie": "digger|alejandro-gonzalez-inarritu",
-  "cinema": "salles-comoedia",
-  "start": "2026-10-16T13:00:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/337709"
- },
- {
-  "id": "salles-comoedia-1000026039-2026-10-16T13:05:00",
-  "movie": "garance|jeanne-herry",
-  "cinema": "salles-comoedia",
-  "start": "2026-10-16T13:05:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/337582"
- },
- {
-  "id": "salles-comoedia-1000026296-2026-10-16T13:10:00",
-  "movie": "memoire-de-fille|judith-godreche",
-  "cinema": "salles-comoedia",
-  "start": "2026-10-16T13:10:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/337800"
- },
- {
-  "id": "salles-louxor-1000007388-2026-10-16T13:30:00",
-  "movie": "notre-salut|emmanuel-marre",
-  "cinema": "salles-louxor",
-  "start": "2026-10-16T13:30:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://www.louxor-reserver.cotecine.fr/r/252901"
- },
- {
-  "id": "salles-filmotheque-50830-1792150200/VF/270671",
-  "movie": "mouchette|robert-bresson",
-  "cinema": "salles-filmotheque",
-  "start": "2026-10-16T13:30:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=50830&modresa_jour=2026-10-16"
- },
- {
-  "id": "salles-filmotheque-4901-1792150200/VO/270673",
-  "movie": "une-nuit-a-lopera|edmund-goulding-sam-wood",
-  "cinema": "salles-filmotheque",
-  "start": "2026-10-16T13:30:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=4901&modresa_jour=2026-10-16"
- },
- {
-  "id": "salles-comoedia-1000007388-2026-10-16T13:30:00",
-  "movie": "notre-salut|emmanuel-marre",
-  "cinema": "salles-comoedia",
-  "start": "2026-10-16T13:30:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/337598"
- },
- {
-  "id": "salles-comoedia-1000023992-2026-10-16T13:30:00",
-  "movie": "ni-vue-ni-connue|marc-fitoussi",
-  "cinema": "salles-comoedia",
-  "start": "2026-10-16T13:30:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/337650"
- },
- {
-  "id": "salles-comoedia-1000043221-2026-10-16T13:30:00",
-  "movie": "si-tu-penses-bien|geraldine-nakache",
-  "cinema": "salles-comoedia",
-  "start": "2026-10-16T13:30:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/337807"
- },
- {
-  "id": "salles-lumiere-terreaux-626415-1792150200/VO/263874",
-  "movie": "minotaure|andrei-zviaguintsev",
-  "cinema": "salles-lumiere-terreaux",
-  "start": "2026-10-16T13:30:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://cinema-lumiere-terreaux-vad.cotecine.fr/reserver/?modresa_film=626415&modresa_jour=2026-10-16"
- },
- {
-  "id": "salles-lumiere-fourmi-620410-1792150800/VF/263844",
-  "movie": "histoires-de-la-nuit|lea-mysius",
-  "cinema": "salles-lumiere-fourmi",
-  "start": "2026-10-16T13:40:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://cinema-lumiere-fourmi-vad.cotecine.fr/reserver/?modresa_film=620410&modresa_jour=2026-10-16"
- },
- {
-  "id": "salles-louxor-1000022205-2026-10-16T13:45:00",
-  "movie": "minotaure|andrei-zviaguintsev",
-  "cinema": "salles-louxor",
-  "start": "2026-10-16T13:45:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://www.louxor-reserver.cotecine.fr/r/252898"
- },
- {
-  "id": "salles-lumiere-fourmi-637159-1792151100/VF/263824",
-  "movie": "fini-de-rire|mateo-larroque-clara-menais-mila-branco",
-  "cinema": "salles-lumiere-fourmi",
-  "start": "2026-10-16T13:45:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://cinema-lumiere-fourmi-vad.cotecine.fr/reserver/?modresa_film=637159&modresa_jour=2026-10-16"
- },
- {
-  "id": "salles-brady-1000012310-2026-10-16T13:50:00",
-  "movie": "adieu-monde-cruel|felix-de-givry",
-  "cinema": "salles-brady",
-  "start": "2026-10-16T13:50:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://achat.lebrady.fr/r/65405"
- },
- {
-  "id": "salles-lumiere-bellecour-631242-1792151400/VF/262704",
-  "movie": "memoire-de-fille|judith-godreche",
-  "cinema": "salles-lumiere-bellecour",
-  "start": "2026-10-16T13:50:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://cinema-lumiere-bellecour-vad.cotecine.fr/reserver/?modresa_film=631242&modresa_jour=2026-10-16"
- },
- {
-  "id": "salles-lumiere-fourmi-586484-1792151400/VO/263834",
-  "movie": "l-invitation|olivia-wilde",
-  "cinema": "salles-lumiere-fourmi",
-  "start": "2026-10-16T13:50:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://cinema-lumiere-fourmi-vad.cotecine.fr/reserver/?modresa_film=586484&modresa_jour=2026-10-16"
- },
- {
-  "id": "salles-lumiere-terreaux-592170-1792151700/VF/263884",
-  "movie": "le-corset|louis-clichy",
-  "cinema": "salles-lumiere-terreaux",
-  "start": "2026-10-16T13:55:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://cinema-lumiere-terreaux-vad.cotecine.fr/reserver/?modresa_film=592170&modresa_jour=2026-10-16"
- },
- {
-  "id": "salles-lumiere-bellecour-633972-1792151700/VO/263814",
-  "movie": "le-jour-de-son-retour|hong-sangsoo",
-  "cinema": "salles-lumiere-bellecour",
-  "start": "2026-10-16T13:55:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://cinema-lumiere-bellecour-vad.cotecine.fr/reserver/?modresa_film=633972&modresa_jour=2026-10-16"
- },
- {
-  "id": "salles-louxor-321790-2026-10-16T14:00:00",
-  "movie": "le-corset|louis-clichy",
-  "cinema": "salles-louxor",
-  "start": "2026-10-16T14:00:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://www.louxor-reserver.cotecine.fr/r/252908"
- },
- {
-  "id": "salles-brady-1000038237-2026-10-16T14:00:00",
-  "movie": "le-chant-des-oliviers|alex-camilleri",
-  "cinema": "salles-brady",
-  "start": "2026-10-16T14:00:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://achat.lebrady.fr/r/65410"
- },
- {
-  "id": "salles-comoedia-321790-2026-10-16T14:00:00",
-  "movie": "le-corset|louis-clichy",
-  "cinema": "salles-comoedia",
-  "start": "2026-10-16T14:00:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/337523"
- },
- {
-  "id": "salles-comoedia-1000022205-2026-10-16T14:00:00",
-  "movie": "minotaure|andrei-zviaguintsev",
-  "cinema": "salles-comoedia",
-  "start": "2026-10-16T14:00:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/337620"
- },
- {
-  "id": "salles-lumiere-bellecour-624520-1792152600/VO/263804",
-  "movie": "low-expectations|eivind-landsvik",
-  "cinema": "salles-lumiere-bellecour",
-  "start": "2026-10-16T14:10:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://cinema-lumiere-bellecour-vad.cotecine.fr/reserver/?modresa_film=624520&modresa_jour=2026-10-16"
- },
- {
-  "id": "salles-brady-14788-2026-10-16T14:20:00",
-  "movie": "trainspotting|danny-boyle",
-  "cinema": "salles-brady",
-  "start": "2026-10-16T14:20:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://achat.lebrady.fr/r/65402"
- },
- {
-  "id": "salles-lumiere-terreaux-608708-1792154700/VF/263894",
-  "movie": "notre-salut|emmanuel-marre",
-  "cinema": "salles-lumiere-terreaux",
-  "start": "2026-10-16T14:45:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://cinema-lumiere-terreaux-vad.cotecine.fr/reserver/?modresa_film=608708&modresa_jour=2026-10-16"
- },
- {
-  "id": "salles-filmotheque-209924-1792155600/VO/270671",
-  "movie": "faute-damour|andrei-zviaguintsev",
-  "cinema": "salles-filmotheque",
-  "start": "2026-10-16T15:00:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=209924&modresa_jour=2026-10-16"
- },
- {
-  "id": "salles-filmotheque-50422-1792156800/VF/270673",
-  "movie": "la-chinoise|jean-luc-godard",
-  "cinema": "salles-filmotheque",
-  "start": "2026-10-16T15:20:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=50422&modresa_jour=2026-10-16"
- },
- {
-  "id": "salles-comoedia-1000026039-2026-10-16T15:30:00",
-  "movie": "garance|jeanne-herry",
-  "cinema": "salles-comoedia",
-  "start": "2026-10-16T15:30:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/337583"
- },
- {
-  "id": "salles-brady-1000004458-2026-10-16T15:35:00",
-  "movie": "pressure|anthony-maras",
-  "cinema": "salles-brady",
-  "start": "2026-10-16T15:35:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://achat.lebrady.fr/r/65406"
- },
- {
-  "id": "salles-comoedia-285141-2026-10-16T15:35:00",
-  "movie": "l-espece-explosive|sarah-arnold",
-  "cinema": "salles-comoedia",
-  "start": "2026-10-16T15:35:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/337691"
- },
- {
-  "id": "salles-comoedia-1000023992-2026-10-16T15:40:00",
-  "movie": "ni-vue-ni-connue|marc-fitoussi",
-  "cinema": "salles-comoedia",
-  "start": "2026-10-16T15:40:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/337726"
- },
- {
-  "id": "salles-lumiere-bellecour-611574-1792158300/VO/263814",
-  "movie": "digger|alejandro-gonzalez-inarritu",
-  "cinema": "salles-lumiere-bellecour",
-  "start": "2026-10-16T15:45:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://cinema-lumiere-bellecour-vad.cotecine.fr/reserver/?modresa_film=611574&modresa_jour=2026-10-16"
- },
- {
-  "id": "salles-lumiere-fourmi-633174-1792158300/VF/263824",
-  "movie": "de-la-comedie-francaise|martin-darondeau-bertrand-usclat",
-  "cinema": "salles-lumiere-fourmi",
-  "start": "2026-10-16T15:45:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://cinema-lumiere-fourmi-vad.cotecine.fr/reserver/?modresa_film=633174&modresa_jour=2026-10-16"
- },
- {
-  "id": "salles-comoedia-327174-2026-10-16T15:50:00",
-  "movie": "digger|alejandro-gonzalez-inarritu",
-  "cinema": "salles-comoedia",
-  "start": "2026-10-16T15:50:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/337755"
- },
- {
-  "id": "salles-lumiere-terreaux-592170-1792158600/VF/263884",
-  "movie": "le-corset|louis-clichy",
-  "cinema": "salles-lumiere-terreaux",
-  "start": "2026-10-16T15:50:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://cinema-lumiere-terreaux-vad.cotecine.fr/reserver/?modresa_film=592170&modresa_jour=2026-10-16"
- },
- {
-  "id": "salles-lumiere-fourmi-573592-1792158900/VO/263844",
-  "movie": "butterfly-jam|kantemir-balagov",
-  "cinema": "salles-lumiere-fourmi",
-  "start": "2026-10-16T15:55:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://cinema-lumiere-fourmi-vad.cotecine.fr/reserver/?modresa_film=573592&modresa_jour=2026-10-16"
- },
- {
-  "id": "salles-louxor-321790-2026-10-16T16:00:00",
-  "movie": "le-corset|louis-clichy",
-  "cinema": "salles-louxor",
-  "start": "2026-10-16T16:00:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://www.louxor-reserver.cotecine.fr/r/252907"
- },
- {
-  "id": "salles-brady-310112-2026-10-16T16:00:00",
-  "movie": "jim-queen|marco-nguyen",
-  "cinema": "salles-brady",
-  "start": "2026-10-16T16:00:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://achat.lebrady.fr/r/65403"
- },
- {
-  "id": "salles-brady-1000026296-2026-10-16T16:00:00",
-  "movie": "memoire-de-fille|judith-godreche",
-  "cinema": "salles-brady",
-  "start": "2026-10-16T16:00:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://achat.lebrady.fr/r/65411"
- },
- {
-  "id": "salles-comoedia-1000026622-2026-10-16T16:00:00",
-  "movie": "raison-et-sentiments|georgia-oakley",
-  "cinema": "salles-comoedia",
-  "start": "2026-10-16T16:00:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/337668"
- },
- {
-  "id": "salles-zola-9113",
-  "movie": "un-hiver-russe|patric-chiha",
-  "cinema": "salles-zola",
-  "start": "2026-10-16T16:00:00",
-  "end": "",
-  "version": "VOST",
-  "auditorium": "1",
-  "booking": "https://www.ticketingcine.fr/index.php?lang=fr&nc=1217&ids=9113"
- },
- {
-  "id": "salles-lumiere-fourmi-378032-1792159500/VF/263834",
-  "movie": "la-bataille-de-gaulle-partie-1-l-age-de-fer|antonin-baudry",
-  "cinema": "salles-lumiere-fourmi",
-  "start": "2026-10-16T16:05:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://cinema-lumiere-fourmi-vad.cotecine.fr/reserver/?modresa_film=378032&modresa_jour=2026-10-16"
- },
- {
-  "id": "salles-lumiere-terreaux-627998-1792159800/VF/263874",
-  "movie": "garance|jeanne-herry",
-  "cinema": "salles-lumiere-terreaux",
-  "start": "2026-10-16T16:10:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://cinema-lumiere-terreaux-vad.cotecine.fr/reserver/?modresa_film=627998&modresa_jour=2026-10-16"
- },
- {
-  "id": "salles-comoedia-321790-2026-10-16T16:15:00",
-  "movie": "le-corset|louis-clichy",
-  "cinema": "salles-comoedia",
-  "start": "2026-10-16T16:15:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/337529"
- },
- {
-  "id": "salles-lumiere-bellecour-636569-1792160100/VO/262704",
-  "movie": "les-elephants-dans-la-brume|abinash-bikram-shah",
-  "cinema": "salles-lumiere-bellecour",
-  "start": "2026-10-16T16:15:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://cinema-lumiere-bellecour-vad.cotecine.fr/reserver/?modresa_film=636569&modresa_jour=2026-10-16"
- },
- {
-  "id": "salles-lumiere-bellecour-367154-1792160400/VF/263804",
-  "movie": "l-espece-explosive|sarah-arnold",
-  "cinema": "salles-lumiere-bellecour",
-  "start": "2026-10-16T16:20:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://cinema-lumiere-bellecour-vad.cotecine.fr/reserver/?modresa_film=367154&modresa_jour=2026-10-16"
- },
- {
-  "id": "salles-louxor-1000007388-2026-10-16T16:30:00",
-  "movie": "notre-salut|emmanuel-marre",
-  "cinema": "salles-louxor",
-  "start": "2026-10-16T16:30:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://www.louxor-reserver.cotecine.fr/r/252902"
- },
- {
-  "id": "salles-comoedia-1000007388-2026-10-16T16:35:00",
-  "movie": "notre-salut|emmanuel-marre",
-  "cinema": "salles-comoedia",
-  "start": "2026-10-16T16:35:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/337604"
- },
- {
-  "id": "salles-louxor-1000022205-2026-10-16T17:00:00",
-  "movie": "minotaure|andrei-zviaguintsev",
-  "cinema": "salles-louxor",
-  "start": "2026-10-16T17:00:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://www.louxor-reserver.cotecine.fr/r/252899"
- },
- {
-  "id": "salles-comoedia-1000022205-2026-10-16T17:00:00",
-  "movie": "minotaure|andrei-zviaguintsev",
-  "cinema": "salles-comoedia",
-  "start": "2026-10-16T17:00:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/337626"
- },
- {
-  "id": "salles-filmotheque-637425-1792163400/VO/270673",
-  "movie": "la-porte-des-dieux|wang-toon",
-  "cinema": "salles-filmotheque",
-  "start": "2026-10-16T17:10:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=637425&modresa_jour=2026-10-16"
- },
- {
-  "id": "salles-filmotheque-49458-1792164000/VO/270671",
-  "movie": "le-ministere-de-la-peur|fritz-lang",
-  "cinema": "salles-filmotheque",
-  "start": "2026-10-16T17:20:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=49458&modresa_jour=2026-10-16"
- },
- {
-  "id": "salles-lumiere-fourmi-449360-1792164000/VO/263824",
-  "movie": "fjord|cristian-mungiu",
-  "cinema": "salles-lumiere-fourmi",
-  "start": "2026-10-16T17:20:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://cinema-lumiere-fourmi-vad.cotecine.fr/reserver/?modresa_film=449360&modresa_jour=2026-10-16"
- },
- {
-  "id": "salles-brady-327941-2026-10-16T17:25:00",
-  "movie": "la-vie-d-une-femme|charline-bourgeois-tacquet",
-  "cinema": "salles-brady",
-  "start": "2026-10-16T17:25:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://achat.lebrady.fr/r/65407"
- },
- {
-  "id": "salles-brady-1000037846-2026-10-16T17:35:00",
-  "movie": "detective-conan-l-ange-dechu-de-l-asphalte|takahiro-hasui",
-  "cinema": "salles-brady",
-  "start": "2026-10-16T17:35:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://achat.lebrady.fr/r/65400"
- },
- {
-  "id": "salles-comoedia-1000013908-2026-10-16T17:40:00",
-  "movie": "primetime|lance-oppenheim",
-  "cinema": "salles-comoedia",
-  "start": "2026-10-16T17:40:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/337685"
- },
- {
-  "id": "salles-lumiere-terreaux-608708-1792165500/VF/263894",
-  "movie": "notre-salut|emmanuel-marre",
-  "cinema": "salles-lumiere-terreaux",
-  "start": "2026-10-16T17:45:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://cinema-lumiere-terreaux-vad.cotecine.fr/reserver/?modresa_film=608708&modresa_jour=2026-10-16"
- },
- {
-  "id": "salles-louxor-321790-2026-10-16T17:50:00",
-  "movie": "le-corset|louis-clichy",
-  "cinema": "salles-louxor",
-  "start": "2026-10-16T17:50:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://www.louxor-reserver.cotecine.fr/r/252906"
- },
- {
-  "id": "salles-zola-9100",
-  "movie": "garance|jeanne-herry",
-  "cinema": "salles-zola",
-  "start": "2026-10-16T17:50:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "1",
-  "booking": "https://www.ticketingcine.fr/index.php?lang=fr&nc=1217&ids=9100"
- },
- {
-  "id": "salles-comoedia-1000026039-2026-10-16T18:00:00",
-  "movie": "garance|jeanne-herry",
-  "cinema": "salles-comoedia",
-  "start": "2026-10-16T18:00:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/337584"
- },
- {
-  "id": "salles-lumiere-terreaux-626415-1792166400/VO/263884",
-  "movie": "minotaure|andrei-zviaguintsev",
-  "cinema": "salles-lumiere-terreaux",
-  "start": "2026-10-16T18:00:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://cinema-lumiere-terreaux-vad.cotecine.fr/reserver/?modresa_film=626415&modresa_jour=2026-10-16"
- },
- {
-  "id": "salles-lumiere-fourmi-615318-1792166400/VO/263844",
-  "movie": "l-odyssee|christopher-nolan",
-  "cinema": "salles-lumiere-fourmi",
-  "start": "2026-10-16T18:00:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://cinema-lumiere-fourmi-vad.cotecine.fr/reserver/?modresa_film=615318&modresa_jour=2026-10-16"
- },
- {
-  "id": "salles-brady-318226-2026-10-16T18:10:00",
-  "movie": "les-survivants-du-che|christophe-reveille",
-  "cinema": "salles-brady",
-  "start": "2026-10-16T18:10:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://achat.lebrady.fr/r/65412"
- },
- {
-  "id": "salles-comoedia-1000023992-2026-10-16T18:10:00",
-  "movie": "ni-vue-ni-connue|marc-fitoussi",
-  "cinema": "salles-comoedia",
-  "start": "2026-10-16T18:10:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/337732"
- },
- {
-  "id": "salles-comoedia-321790-2026-10-16T18:15:00",
-  "movie": "le-corset|louis-clichy",
-  "cinema": "salles-comoedia",
-  "start": "2026-10-16T18:15:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/337535"
- },
- {
-  "id": "salles-lumiere-bellecour-633972-1792167600/VO/263814",
-  "movie": "le-jour-de-son-retour|hong-sangsoo",
-  "cinema": "salles-lumiere-bellecour",
-  "start": "2026-10-16T18:20:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://cinema-lumiere-bellecour-vad.cotecine.fr/reserver/?modresa_film=633972&modresa_jour=2026-10-16"
- },
- {
-  "id": "salles-lumiere-bellecour-624520-1792167600/VO/263804",
-  "movie": "low-expectations|eivind-landsvik",
-  "cinema": "salles-lumiere-bellecour",
-  "start": "2026-10-16T18:20:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://cinema-lumiere-bellecour-vad.cotecine.fr/reserver/?modresa_film=624520&modresa_jour=2026-10-16"
- },
- {
-  "id": "salles-comoedia-327174-2026-10-16T18:25:00",
-  "movie": "digger|alejandro-gonzalez-inarritu",
-  "cinema": "salles-comoedia",
-  "start": "2026-10-16T18:25:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/337761"
- },
- {
-  "id": "salles-lumiere-terreaux-627998-1792168200/VF/263874",
-  "movie": "garance|jeanne-herry",
-  "cinema": "salles-lumiere-terreaux",
-  "start": "2026-10-16T18:30:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://cinema-lumiere-terreaux-vad.cotecine.fr/reserver/?modresa_film=627998&modresa_jour=2026-10-16"
- },
- {
-  "id": "salles-lumiere-bellecour-631242-1792168200/VF/262704",
-  "movie": "memoire-de-fille|judith-godreche",
-  "cinema": "salles-lumiere-bellecour",
-  "start": "2026-10-16T18:30:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://cinema-lumiere-bellecour-vad.cotecine.fr/reserver/?modresa_film=631242&modresa_jour=2026-10-16"
- },
- {
-  "id": "salles-comoedia-1000026622-2026-10-16T18:40:00",
-  "movie": "raison-et-sentiments|georgia-oakley",
-  "cinema": "salles-comoedia",
-  "start": "2026-10-16T18:40:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/337674"
- },
- {
-  "id": "salles-filmotheque-8251-1792170000/VO/270671",
-  "movie": "millenium-les-hommes-qui-naimaient-pas-les-femmes|david-fincher",
-  "cinema": "salles-filmotheque",
-  "start": "2026-10-16T19:00:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=8251&modresa_jour=2026-10-16"
- },
- {
-  "id": "salles-lumiere-fourmi-627218-1792170600/VO/263834",
-  "movie": "soudain|ryusuke-hamaguchi",
-  "cinema": "salles-lumiere-fourmi",
-  "start": "2026-10-16T19:10:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://cinema-lumiere-fourmi-vad.cotecine.fr/reserver/?modresa_film=627218&modresa_jour=2026-10-16"
- },
- {
-  "id": "salles-brady-1000026296-2026-10-16T19:15:00",
-  "movie": "memoire-de-fille|judith-godreche",
-  "cinema": "salles-brady",
-  "start": "2026-10-16T19:15:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://achat.lebrady.fr/r/65408"
- },
- {
-  "id": "salles-filmotheque-49807-1792171800/VF/270673",
-  "movie": "rendez-vous-de-juillet|jacques-becker",
-  "cinema": "salles-filmotheque",
-  "start": "2026-10-16T19:30:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=49807&modresa_jour=2026-10-16"
- },
- {
-  "id": "salles-louxor-321790-2026-10-16T19:40:00",
-  "movie": "le-corset|louis-clichy",
-  "cinema": "salles-louxor",
-  "start": "2026-10-16T19:40:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://www.louxor-reserver.cotecine.fr/r/252905"
- },
- {
-  "id": "salles-louxor-1000022205-2026-10-16T19:45:00",
-  "movie": "minotaure|andrei-zviaguintsev",
-  "cinema": "salles-louxor",
-  "start": "2026-10-16T19:45:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://www.louxor-reserver.cotecine.fr/r/252900"
- },
- {
-  "id": "salles-brady-319893-2026-10-16T20:00:00",
-  "movie": "rose|markus-schleinzer",
-  "cinema": "salles-brady",
-  "start": "2026-10-16T20:00:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://achat.lebrady.fr/r/65413"
- },
- {
-  "id": "salles-zola-9109",
-  "movie": "qui-vit-encore|nicolas-wadimoff",
-  "cinema": "salles-zola",
-  "start": "2026-10-16T20:00:00",
-  "end": "",
-  "version": "VOST",
-  "auditorium": "1",
-  "booking": "https://www.ticketingcine.fr/index.php?lang=fr&nc=1217&ids=9109"
- },
- {
-  "id": "salles-lumiere-fourmi-378034-1792174200/VF/263824",
-  "movie": "la-bataille-de-gaulle-partie-2-j-ecris-ton-nom|antonin-baudry",
-  "cinema": "salles-lumiere-fourmi",
-  "start": "2026-10-16T20:10:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://cinema-lumiere-fourmi-vad.cotecine.fr/reserver/?modresa_film=378034&modresa_jour=2026-10-16"
- },
- {
-  "id": "salles-louxor-1000007388-2026-10-16T20:15:00",
-  "movie": "notre-salut|emmanuel-marre",
-  "cinema": "salles-louxor",
-  "start": "2026-10-16T20:15:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://www.louxor-reserver.cotecine.fr/r/252903"
- },
- {
-  "id": "salles-comoedia-285141-2026-10-16T20:15:00",
-  "movie": "l-espece-explosive|sarah-arnold",
-  "cinema": "salles-comoedia",
-  "start": "2026-10-16T20:15:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/337697"
- },
- {
-  "id": "salles-lumiere-bellecour-611574-1792174500/VO/263814",
-  "movie": "digger|alejandro-gonzalez-inarritu",
-  "cinema": "salles-lumiere-bellecour",
-  "start": "2026-10-16T20:15:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://cinema-lumiere-bellecour-vad.cotecine.fr/reserver/?modresa_film=611574&modresa_jour=2026-10-16"
- },
- {
-  "id": "salles-comoedia-1000007388-2026-10-16T20:20:00",
-  "movie": "notre-salut|emmanuel-marre",
-  "cinema": "salles-comoedia",
-  "start": "2026-10-16T20:20:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/337610"
- },
- {
-  "id": "salles-comoedia-1000022205-2026-10-16T20:30:00",
-  "movie": "minotaure|andrei-zviaguintsev",
-  "cinema": "salles-comoedia",
-  "start": "2026-10-16T20:30:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/337632"
- },
- {
-  "id": "salles-lumiere-bellecour-616348-1792175400/VO/263804",
-  "movie": "primetime|lance-oppenheim",
-  "cinema": "salles-lumiere-bellecour",
-  "start": "2026-10-16T20:30:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://cinema-lumiere-bellecour-vad.cotecine.fr/reserver/?modresa_film=616348&modresa_jour=2026-10-16"
- },
- {
-  "id": "salles-comoedia-321790-2026-10-16T20:35:00",
-  "movie": "le-corset|louis-clichy",
-  "cinema": "salles-comoedia",
-  "start": "2026-10-16T20:35:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/337541"
- },
- {
-  "id": "salles-comoedia-1000023992-2026-10-16T20:40:00",
-  "movie": "ni-vue-ni-connue|marc-fitoussi",
-  "cinema": "salles-comoedia",
-  "start": "2026-10-16T20:40:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/337738"
- },
- {
-  "id": "salles-comoedia-1000026039-2026-10-16T20:45:00",
-  "movie": "garance|jeanne-herry",
-  "cinema": "salles-comoedia",
-  "start": "2026-10-16T20:45:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/337585"
- },
- {
-  "id": "salles-lumiere-terreaux-592170-1792176300/VF/263874",
-  "movie": "le-corset|louis-clichy",
-  "cinema": "salles-lumiere-terreaux",
-  "start": "2026-10-16T20:45:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://cinema-lumiere-terreaux-vad.cotecine.fr/reserver/?modresa_film=592170&modresa_jour=2026-10-16"
- },
- {
-  "id": "salles-lumiere-terreaux-626415-1792176300/VO/263884",
-  "movie": "minotaure|andrei-zviaguintsev",
-  "cinema": "salles-lumiere-terreaux",
-  "start": "2026-10-16T20:45:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://cinema-lumiere-terreaux-vad.cotecine.fr/reserver/?modresa_film=626415&modresa_jour=2026-10-16"
- },
- {
-  "id": "salles-lumiere-terreaux-608708-1792176300/VF/263894",
-  "movie": "notre-salut|emmanuel-marre",
-  "cinema": "salles-lumiere-terreaux",
-  "start": "2026-10-16T20:45:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://cinema-lumiere-terreaux-vad.cotecine.fr/reserver/?modresa_film=608708&modresa_jour=2026-10-16"
- },
- {
-  "id": "salles-lumiere-bellecour-636569-1792176900/VO/262704",
-  "movie": "les-elephants-dans-la-brume|abinash-bikram-shah",
-  "cinema": "salles-lumiere-bellecour",
-  "start": "2026-10-16T20:55:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://cinema-lumiere-bellecour-vad.cotecine.fr/reserver/?modresa_film=636569&modresa_jour=2026-10-16"
- },
- {
-  "id": "salles-comoedia-327174-2026-10-16T21:00:00",
-  "movie": "digger|alejandro-gonzalez-inarritu",
-  "cinema": "salles-comoedia",
-  "start": "2026-10-16T21:00:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/337767"
- },
- {
-  "id": "salles-comoedia-1000048319-2026-10-16T21:15:00",
-  "movie": "fini-de-rire-l-humour-politique-au-garde-a-vous|mateo-larroque",
-  "cinema": "salles-comoedia",
-  "start": "2026-10-16T21:15:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/337662"
- },
- {
-  "id": "salles-lumiere-fourmi-616684-1792178100/VF/263844",
-  "movie": "la-vie-d-une-femme|charline-bourgeois-tacquet",
-  "cinema": "salles-lumiere-fourmi",
-  "start": "2026-10-16T21:15:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://cinema-lumiere-fourmi-vad.cotecine.fr/reserver/?modresa_film=616684&modresa_jour=2026-10-16"
- },
- {
-  "id": "salles-brady-314290-2026-10-16T21:25:00",
-  "movie": "la-frappe|julien-gaspar-oliveri",
-  "cinema": "salles-brady",
-  "start": "2026-10-16T21:25:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://achat.lebrady.fr/r/65409"
- },
- {
-  "id": "salles-louxor-1000013908-2026-10-16T21:30:00",
-  "movie": "primetime|lance-oppenheim",
-  "cinema": "salles-louxor",
-  "start": "2026-10-16T21:30:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://www.louxor-reserver.cotecine.fr/r/252904"
- },
- {
-  "id": "salles-brady-6429-2026-10-16T21:35:00",
-  "movie": "akira|katsuhiro-otomo",
-  "cinema": "salles-brady",
-  "start": "2026-10-16T21:35:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://achat.lebrady.fr/r/65404"
- },
- {
-  "id": "salles-brady-14788-2026-10-16T21:45:00",
-  "movie": "trainspotting|danny-boyle",
-  "cinema": "salles-brady",
-  "start": "2026-10-16T21:45:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://achat.lebrady.fr/r/65414"
- },
- {
-  "id": "salles-filmotheque-28266-1792180200/VO/270671",
-  "movie": "seven|david-fincher",
-  "cinema": "salles-filmotheque",
-  "start": "2026-10-16T21:50:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=28266&modresa_jour=2026-10-16"
- },
- {
-  "id": "salles-filmotheque-8896-1792180500/VO/270673",
-  "movie": "sailor-et-lula|david-lynch",
-  "cinema": "salles-filmotheque",
-  "start": "2026-10-16T21:55:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=8896&modresa_jour=2026-10-16"
- },
- {
-  "id": "salles-brady-302738-2026-10-17T10:00:00",
-  "movie": "joyeuse-jungle|edmunds-jansons",
-  "cinema": "salles-brady",
-  "start": "2026-10-17T10:00:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://achat.lebrady.fr/r/65423"
- },
- {
-  "id": "salles-brady-1000045286-2026-10-17T10:00:00",
-  "movie": "un-amour-depouvantail|samantha-cutler",
-  "cinema": "salles-brady",
-  "start": "2026-10-17T10:00:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://achat.lebrady.fr/r/65415"
- },
- {
-  "id": "salles-louxor-1000045286-2026-10-17T10:15:00",
-  "movie": "un-amour-depouvantail|samantha-cutler",
-  "cinema": "salles-louxor",
-  "start": "2026-10-17T10:15:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://www.louxor-reserver.cotecine.fr/r/252911"
- },
- {
-  "id": "salles-brady-222799-2026-10-17T10:15:00",
-  "movie": "la-sorciere-dans-les-airs|max-lang",
-  "cinema": "salles-brady",
-  "start": "2026-10-17T10:15:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://achat.lebrady.fr/r/64757"
- },
- {
-  "id": "salles-lumiere-terreaux-592170-1792224900/VF/263894",
-  "movie": "le-corset|louis-clichy",
-  "cinema": "salles-lumiere-terreaux",
-  "start": "2026-10-17T10:15:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://cinema-lumiere-terreaux-vad.cotecine.fr/reserver/?modresa_film=592170&modresa_jour=2026-10-17"
- },
- {
-  "id": "salles-lumiere-terreaux-626415-1792224900/VO/263884",
-  "movie": "minotaure|andrei-zviaguintsev",
-  "cinema": "salles-lumiere-terreaux",
-  "start": "2026-10-17T10:15:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://cinema-lumiere-terreaux-vad.cotecine.fr/reserver/?modresa_film=626415&modresa_jour=2026-10-17"
- },
- {
-  "id": "salles-lumiere-terreaux-608708-1792224900/VF/263874",
-  "movie": "notre-salut|emmanuel-marre",
-  "cinema": "salles-lumiere-terreaux",
-  "start": "2026-10-17T10:15:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://cinema-lumiere-terreaux-vad.cotecine.fr/reserver/?modresa_film=608708&modresa_jour=2026-10-17"
- },
- {
-  "id": "salles-lumiere-fourmi-620410-1792224900/VF/263844",
-  "movie": "histoires-de-la-nuit|lea-mysius",
-  "cinema": "salles-lumiere-fourmi",
-  "start": "2026-10-17T10:15:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://cinema-lumiere-fourmi-vad.cotecine.fr/reserver/?modresa_film=620410&modresa_jour=2026-10-17"
- },
- {
-  "id": "salles-lumiere-fourmi-378032-1792224900/VFST/263834",
-  "movie": "la-bataille-de-gaulle-partie-1-l-age-de-fer|antonin-baudry",
-  "cinema": "salles-lumiere-fourmi",
-  "start": "2026-10-17T10:15:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://cinema-lumiere-fourmi-vad.cotecine.fr/reserver/?modresa_film=378032&modresa_jour=2026-10-17"
- },
- {
-  "id": "salles-lumiere-fourmi-449360-1792225200/VO/263824",
-  "movie": "fjord|cristian-mungiu",
-  "cinema": "salles-lumiere-fourmi",
-  "start": "2026-10-17T10:20:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://cinema-lumiere-fourmi-vad.cotecine.fr/reserver/?modresa_film=449360&modresa_jour=2026-10-17"
- },
- {
-  "id": "salles-louxor-1000007388-2026-10-17T10:30:00",
-  "movie": "notre-salut|emmanuel-marre",
-  "cinema": "salles-louxor",
-  "start": "2026-10-17T10:30:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://www.louxor-reserver.cotecine.fr/r/252910"
- },
- {
-  "id": "salles-comoedia-1000045582-2026-10-17T10:45:00",
-  "movie": "le-monde-a-l-envers|arnaud-demuynck",
-  "cinema": "salles-comoedia",
-  "start": "2026-10-17T10:45:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/337577"
- },
- {
-  "id": "salles-brady-1000041095-2026-10-17T10:50:00",
-  "movie": "chien-bleu-et-autres-belles-histoires-de-l-ecole-des-loisirs|dominique-pochat",
-  "cinema": "salles-brady",
-  "start": "2026-10-17T10:50:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://achat.lebrady.fr/r/65416"
- },
- {
-  "id": "salles-comoedia-1000007388-2026-10-17T10:50:00",
-  "movie": "notre-salut|emmanuel-marre",
-  "cinema": "salles-comoedia",
-  "start": "2026-10-17T10:50:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/337518"
- },
- {
-  "id": "salles-comoedia-1000022205-2026-10-17T10:50:00",
-  "movie": "minotaure|andrei-zviaguintsev",
-  "cinema": "salles-comoedia",
-  "start": "2026-10-17T10:50:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/337745"
- },
- {
-  "id": "salles-comoedia-1000047512-2026-10-17T10:55:00",
-  "movie": "petite-casbah|antoine-colomb",
-  "cinema": "salles-comoedia",
-  "start": "2026-10-17T10:55:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/337774"
- },
- {
-  "id": "salles-louxor-321790-2026-10-17T11:00:00",
-  "movie": "le-corset|louis-clichy",
-  "cinema": "salles-louxor",
-  "start": "2026-10-17T11:00:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://www.louxor-reserver.cotecine.fr/r/252909"
- },
- {
-  "id": "salles-comoedia-321790-2026-10-17T11:05:00",
-  "movie": "le-corset|louis-clichy",
-  "cinema": "salles-comoedia",
-  "start": "2026-10-17T11:05:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/337593"
- },
- {
-  "id": "salles-comoedia-302738-2026-10-17T11:10:00",
-  "movie": "joyeuse-jungle|edmunds-jansons",
-  "cinema": "salles-comoedia",
-  "start": "2026-10-17T11:10:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/337704"
- },
- {
-  "id": "salles-brady-1000014638-2026-10-17T11:15:00",
-  "movie": "sham|takashi-miike",
-  "cinema": "salles-brady",
-  "start": "2026-10-17T11:15:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://achat.lebrady.fr/r/65491"
- },
- {
-  "id": "salles-comoedia-1000048319-2026-10-17T11:15:00",
-  "movie": "fini-de-rire-l-humour-politique-au-garde-a-vous|mateo-larroque",
-  "cinema": "salles-comoedia",
-  "start": "2026-10-17T11:15:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/337657"
- },
- {
-  "id": "salles-brady-10251-2026-10-17T11:25:00",
-  "movie": "le-tombeau-des-lucioles|isao-takahata",
-  "cinema": "salles-brady",
-  "start": "2026-10-17T11:25:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://achat.lebrady.fr/r/65492"
- },
- {
-  "id": "salles-louxor-40895-2026-10-17T11:30:00",
-  "movie": "mauvaise-graine|billy-wilder",
-  "cinema": "salles-louxor",
-  "start": "2026-10-17T11:30:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://www.louxor-reserver.cotecine.fr/r/252915"
- },
- {
-  "id": "salles-lumiere-terreaux-627998-1792233000/VF/263894",
-  "movie": "garance|jeanne-herry",
-  "cinema": "salles-lumiere-terreaux",
-  "start": "2026-10-17T12:30:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://cinema-lumiere-terreaux-vad.cotecine.fr/reserver/?modresa_film=627998&modresa_jour=2026-10-17"
- },
- {
-  "id": "salles-lumiere-fourmi-573592-1792233600/VO/263844",
-  "movie": "butterfly-jam|kantemir-balagov",
-  "cinema": "salles-lumiere-fourmi",
-  "start": "2026-10-17T12:40:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://cinema-lumiere-fourmi-vad.cotecine.fr/reserver/?modresa_film=573592&modresa_jour=2026-10-17"
- },
- {
-  "id": "salles-brady-327941-2026-10-17T13:00:00",
-  "movie": "la-vie-d-une-femme|charline-bourgeois-tacquet",
-  "cinema": "salles-brady",
-  "start": "2026-10-17T13:00:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://achat.lebrady.fr/r/65424"
- },
- {
-  "id": "salles-comoedia-327174-2026-10-17T13:00:00",
-  "movie": "digger|alejandro-gonzalez-inarritu",
-  "cinema": "salles-comoedia",
-  "start": "2026-10-17T13:00:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/337710"
- },
- {
-  "id": "salles-comoedia-1000026039-2026-10-17T13:05:00",
-  "movie": "garance|jeanne-herry",
-  "cinema": "salles-comoedia",
-  "start": "2026-10-17T13:05:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/337553"
- },
- {
-  "id": "salles-brady-27415-2026-10-17T13:20:00",
-  "movie": "shrek-marathon-shrek|andrew-adamson",
-  "cinema": "salles-brady",
-  "start": "2026-10-17T13:20:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://achat.lebrady.fr/r/64904"
- },
- {
-  "id": "salles-brady-c2253-2026-10-17T13:20:00",
-  "movie": "marathon-shrek|",
-  "cinema": "salles-brady",
-  "start": "2026-10-17T13:20:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://achat.lebrady.fr/r/64907"
- },
- {
-  "id": "salles-lumiere-fourmi-586484-1792236300/VO/263834",
-  "movie": "l-invitation|olivia-wilde",
-  "cinema": "salles-lumiere-fourmi",
-  "start": "2026-10-17T13:25:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://cinema-lumiere-fourmi-vad.cotecine.fr/reserver/?modresa_film=586484&modresa_jour=2026-10-17"
- },
- {
-  "id": "salles-filmotheque-51213-1792236600/VF/270671",
-  "movie": "melodie-en-sous-sol|henri-verneuil",
-  "cinema": "salles-filmotheque",
-  "start": "2026-10-17T13:30:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=51213&modresa_jour=2026-10-17"
- },
- {
-  "id": "salles-comoedia-1000007388-2026-10-17T13:30:00",
-  "movie": "notre-salut|emmanuel-marre",
-  "cinema": "salles-comoedia",
-  "start": "2026-10-17T13:30:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/337599"
- },
- {
-  "id": "salles-comoedia-1000023992-2026-10-17T13:30:00",
-  "movie": "ni-vue-ni-connue|marc-fitoussi",
-  "cinema": "salles-comoedia",
-  "start": "2026-10-17T13:30:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/337651"
- },
- {
-  "id": "salles-lumiere-terreaux-626415-1792236600/VO/263874",
-  "movie": "minotaure|andrei-zviaguintsev",
-  "cinema": "salles-lumiere-terreaux",
-  "start": "2026-10-17T13:30:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://cinema-lumiere-terreaux-vad.cotecine.fr/reserver/?modresa_film=626415&modresa_jour=2026-10-17"
- },
- {
-  "id": "salles-brady-319893-2026-10-17T13:35:00",
-  "movie": "rose|markus-schleinzer",
-  "cinema": "salles-brady",
-  "start": "2026-10-17T13:35:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://achat.lebrady.fr/r/65418"
- },
- {
-  "id": "salles-filmotheque-13936-1792236900/VO/270673",
-  "movie": "the-kid|charles-chaplin",
-  "cinema": "salles-filmotheque",
-  "start": "2026-10-17T13:35:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=13936&modresa_jour=2026-10-17"
- },
- {
-  "id": "salles-lumiere-bellecour-616348-1792237200/VO/262704",
-  "movie": "primetime|lance-oppenheim",
-  "cinema": "salles-lumiere-bellecour",
-  "start": "2026-10-17T13:40:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://cinema-lumiere-bellecour-vad.cotecine.fr/reserver/?modresa_film=616348&modresa_jour=2026-10-17"
- },
- {
-  "id": "salles-louxor-1000007388-2026-10-17T13:45:00",
-  "movie": "notre-salut|emmanuel-marre",
-  "cinema": "salles-louxor",
-  "start": "2026-10-17T13:45:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://www.louxor-reserver.cotecine.fr/r/252919"
- },
- {
-  "id": "salles-louxor-1000022205-2026-10-17T13:45:00",
-  "movie": "minotaure|andrei-zviaguintsev",
-  "cinema": "salles-louxor",
-  "start": "2026-10-17T13:45:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://www.louxor-reserver.cotecine.fr/r/252916"
- },
- {
-  "id": "salles-comoedia-302738-2026-10-17T13:45:00",
-  "movie": "joyeuse-jungle|edmunds-jansons",
-  "cinema": "salles-comoedia",
-  "start": "2026-10-17T13:45:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/337721"
- },
- {
-  "id": "salles-lumiere-bellecour-636569-1792237800/VO/263814",
-  "movie": "les-elephants-dans-la-brume|abinash-bikram-shah",
-  "cinema": "salles-lumiere-bellecour",
-  "start": "2026-10-17T13:50:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://cinema-lumiere-bellecour-vad.cotecine.fr/reserver/?modresa_film=636569&modresa_jour=2026-10-17"
- },
- {
-  "id": "salles-lumiere-terreaux-592170-1792238100/VF/263884",
-  "movie": "le-corset|louis-clichy",
-  "cinema": "salles-lumiere-terreaux",
-  "start": "2026-10-17T13:55:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://cinema-lumiere-terreaux-vad.cotecine.fr/reserver/?modresa_film=592170&modresa_jour=2026-10-17"
- },
- {
-  "id": "salles-lumiere-bellecour-611574-1792238100/VO/263804",
-  "movie": "digger|alejandro-gonzalez-inarritu",
-  "cinema": "salles-lumiere-bellecour",
-  "start": "2026-10-17T13:55:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://cinema-lumiere-bellecour-vad.cotecine.fr/reserver/?modresa_film=611574&modresa_jour=2026-10-17"
- },
- {
-  "id": "salles-louxor-321790-2026-10-17T14:00:00",
-  "movie": "le-corset|louis-clichy",
-  "cinema": "salles-louxor",
-  "start": "2026-10-17T14:00:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://www.louxor-reserver.cotecine.fr/r/252923"
- },
- {
-  "id": "salles-comoedia-321790-2026-10-17T14:00:00",
-  "movie": "le-corset|louis-clichy",
-  "cinema": "salles-comoedia",
-  "start": "2026-10-17T14:00:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/337524"
- },
- {
-  "id": "salles-comoedia-1000022205-2026-10-17T14:00:00",
-  "movie": "minotaure|andrei-zviaguintsev",
-  "cinema": "salles-comoedia",
-  "start": "2026-10-17T14:00:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/337621"
- },
- {
-  "id": "salles-comoedia-1000047512-2026-10-17T14:00:00",
-  "movie": "petite-casbah|antoine-colomb",
-  "cinema": "salles-comoedia",
-  "start": "2026-10-17T14:00:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/337780"
- },
- {
-  "id": "salles-lumiere-fourmi-592170-1792238400/VF/263824",
-  "movie": "le-corset|louis-clichy",
-  "cinema": "salles-lumiere-fourmi",
-  "start": "2026-10-17T14:00:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://cinema-lumiere-fourmi-vad.cotecine.fr/reserver/?modresa_film=592170&modresa_jour=2026-10-17"
- },
- {
-  "id": "salles-zola-9093",
-  "movie": "joyeuse-jungle|edmunds-jansons",
-  "cinema": "salles-zola",
-  "start": "2026-10-17T14:30:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "1",
-  "booking": "https://www.ticketingcine.fr/index.php?lang=fr&nc=1217&ids=9093"
- },
- {
-  "id": "salles-filmotheque-637425-1792240800/VO/270673",
-  "movie": "la-porte-des-dieux|wang-toon",
-  "cinema": "salles-filmotheque",
-  "start": "2026-10-17T14:40:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=637425&modresa_jour=2026-10-17"
- },
- {
-  "id": "salles-lumiere-terreaux-608708-1792241100/VF/263894",
-  "movie": "notre-salut|emmanuel-marre",
-  "cinema": "salles-lumiere-terreaux",
-  "start": "2026-10-17T14:45:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://cinema-lumiere-terreaux-vad.cotecine.fr/reserver/?modresa_film=608708&modresa_jour=2026-10-17"
- },
- {
-  "id": "salles-lumiere-fourmi-636246-1792241100/VF/263844",
-  "movie": "un-amour-d-epouvantail|samantha-cutler-jeroen-jaspaert",
-  "cinema": "salles-lumiere-fourmi",
-  "start": "2026-10-17T14:45:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://cinema-lumiere-fourmi-vad.cotecine.fr/reserver/?modresa_film=636246&modresa_jour=2026-10-17"
- },
- {
-  "id": "salles-brady-1000047512-2026-10-17T14:50:00",
-  "movie": "petite-casbah|antoine-colomb",
-  "cinema": "salles-brady",
-  "start": "2026-10-17T14:50:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://achat.lebrady.fr/r/65425"
- },
- {
-  "id": "salles-brady-40619-2026-10-17T15:00:00",
-  "movie": "shrek-2-marathon-shrek|andrew-adamson",
-  "cinema": "salles-brady",
-  "start": "2026-10-17T15:00:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://achat.lebrady.fr/r/64905"
- },
- {
-  "id": "salles-brady-314290-2026-10-17T15:10:00",
-  "movie": "la-frappe|julien-gaspar-oliveri",
-  "cinema": "salles-brady",
-  "start": "2026-10-17T15:10:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://achat.lebrady.fr/r/65419"
- },
- {
-  "id": "salles-comoedia-1000026039-2026-10-17T15:30:00",
-  "movie": "garance|jeanne-herry",
-  "cinema": "salles-comoedia",
-  "start": "2026-10-17T15:30:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/337559"
- },
- {
-  "id": "salles-comoedia-285141-2026-10-17T15:35:00",
-  "movie": "l-espece-explosive|sarah-arnold",
-  "cinema": "salles-comoedia",
-  "start": "2026-10-17T15:35:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/337692"
- },
- {
-  "id": "salles-filmotheque-51582-1792244400/VO/270671",
-  "movie": "en-quatrieme-vitesse|robert-aldrich",
-  "cinema": "salles-filmotheque",
-  "start": "2026-10-17T15:40:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=51582&modresa_jour=2026-10-17"
- },
- {
-  "id": "salles-comoedia-1000023992-2026-10-17T15:40:00",
-  "movie": "ni-vue-ni-connue|marc-fitoussi",
-  "cinema": "salles-comoedia",
-  "start": "2026-10-17T15:40:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/337727"
- },
- {
-  "id": "salles-lumiere-fourmi-636561-1792244700/VF/263834",
-  "movie": "le-monde-a-l-envers|divers-cineastes",
-  "cinema": "salles-lumiere-fourmi",
-  "start": "2026-10-17T15:45:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://cinema-lumiere-fourmi-vad.cotecine.fr/reserver/?modresa_film=636561&modresa_jour=2026-10-17"
- },
- {
-  "id": "salles-comoedia-327174-2026-10-17T15:50:00",
-  "movie": "digger|alejandro-gonzalez-inarritu",
-  "cinema": "salles-comoedia",
-  "start": "2026-10-17T15:50:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/337756"
- },
- {
-  "id": "salles-lumiere-terreaux-592170-1792245000/VF/263884",
-  "movie": "le-corset|louis-clichy",
-  "cinema": "salles-lumiere-terreaux",
-  "start": "2026-10-17T15:50:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://cinema-lumiere-terreaux-vad.cotecine.fr/reserver/?modresa_film=592170&modresa_jour=2026-10-17"
- },
- {
-  "id": "salles-lumiere-bellecour-624520-1792245000/VO/262704",
-  "movie": "low-expectations|eivind-landsvik",
-  "cinema": "salles-lumiere-bellecour",
-  "start": "2026-10-17T15:50:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://cinema-lumiere-bellecour-vad.cotecine.fr/reserver/?modresa_film=624520&modresa_jour=2026-10-17"
- },
- {
-  "id": "salles-lumiere-fourmi-633174-1792245300/VF/263844",
-  "movie": "de-la-comedie-francaise|martin-darondeau-bertrand-usclat",
-  "cinema": "salles-lumiere-fourmi",
-  "start": "2026-10-17T15:55:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://cinema-lumiere-fourmi-vad.cotecine.fr/reserver/?modresa_film=633174&modresa_jour=2026-10-17"
- },
- {
-  "id": "salles-lumiere-fourmi-378034-1792245300/VF/263824",
-  "movie": "la-bataille-de-gaulle-partie-2-j-ecris-ton-nom|antonin-baudry",
-  "cinema": "salles-lumiere-fourmi",
-  "start": "2026-10-17T15:55:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://cinema-lumiere-fourmi-vad.cotecine.fr/reserver/?modresa_film=378034&modresa_jour=2026-10-17"
- },
- {
-  "id": "salles-louxor-321790-2026-10-17T16:00:00",
-  "movie": "le-corset|louis-clichy",
-  "cinema": "salles-louxor",
-  "start": "2026-10-17T16:00:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://www.louxor-reserver.cotecine.fr/r/252924"
- },
- {
-  "id": "salles-comoedia-1000026622-2026-10-17T16:00:00",
-  "movie": "raison-et-sentiments|georgia-oakley",
-  "cinema": "salles-comoedia",
-  "start": "2026-10-17T16:00:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/337669"
- },
- {
-  "id": "salles-zola-9114",
-  "movie": "un-hiver-russe|patric-chiha",
-  "cinema": "salles-zola",
-  "start": "2026-10-17T16:00:00",
-  "end": "",
-  "version": "VOST",
-  "auditorium": "1",
-  "booking": "https://www.ticketingcine.fr/index.php?lang=fr&nc=1217&ids=9114"
- },
- {
-  "id": "salles-lumiere-bellecour-631242-1792245900/VFST/263814",
-  "movie": "memoire-de-fille|judith-godreche",
-  "cinema": "salles-lumiere-bellecour",
-  "start": "2026-10-17T16:05:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://cinema-lumiere-bellecour-vad.cotecine.fr/reserver/?modresa_film=631242&modresa_jour=2026-10-17"
- },
- {
-  "id": "salles-lumiere-terreaux-627998-1792246200/VF/263874",
-  "movie": "garance|jeanne-herry",
-  "cinema": "salles-lumiere-terreaux",
-  "start": "2026-10-17T16:10:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://cinema-lumiere-terreaux-vad.cotecine.fr/reserver/?modresa_film=627998&modresa_jour=2026-10-17"
- },
- {
-  "id": "salles-comoedia-321790-2026-10-17T16:15:00",
-  "movie": "le-corset|louis-clichy",
-  "cinema": "salles-comoedia",
-  "start": "2026-10-17T16:15:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/337530"
- },
- {
-  "id": "salles-brady-1000037846-2026-10-17T16:25:00",
-  "movie": "detective-conan-l-ange-dechu-de-l-asphalte|takahiro-hasui",
-  "cinema": "salles-brady",
-  "start": "2026-10-17T16:25:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://achat.lebrady.fr/r/65426"
- },
- {
-  "id": "salles-louxor-1000007388-2026-10-17T16:30:00",
-  "movie": "notre-salut|emmanuel-marre",
-  "cinema": "salles-louxor",
-  "start": "2026-10-17T16:30:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://www.louxor-reserver.cotecine.fr/r/252920"
- },
- {
-  "id": "salles-lumiere-bellecour-633972-1792247400/VO/263804",
-  "movie": "le-jour-de-son-retour|hong-sangsoo",
-  "cinema": "salles-lumiere-bellecour",
-  "start": "2026-10-17T16:30:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://cinema-lumiere-bellecour-vad.cotecine.fr/reserver/?modresa_film=633972&modresa_jour=2026-10-17"
- },
- {
-  "id": "salles-comoedia-1000007388-2026-10-17T16:35:00",
-  "movie": "notre-salut|emmanuel-marre",
-  "cinema": "salles-comoedia",
-  "start": "2026-10-17T16:35:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/337605"
- },
- {
-  "id": "salles-brady-55718-2026-10-17T16:45:00",
-  "movie": "shrek-le-troisieme-marathon-shrek|chris-miller-ii",
-  "cinema": "salles-brady",
-  "start": "2026-10-17T16:45:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://achat.lebrady.fr/r/64906"
- },
- {
-  "id": "salles-lumiere-fourmi-627218-1792248900/VO/263834",
-  "movie": "soudain|ryusuke-hamaguchi",
-  "cinema": "salles-lumiere-fourmi",
-  "start": "2026-10-17T16:55:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://cinema-lumiere-fourmi-vad.cotecine.fr/reserver/?modresa_film=627218&modresa_jour=2026-10-17"
- },
- {
-  "id": "salles-louxor-1000022205-2026-10-17T17:00:00",
-  "movie": "minotaure|andrei-zviaguintsev",
-  "cinema": "salles-louxor",
-  "start": "2026-10-17T17:00:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://www.louxor-reserver.cotecine.fr/r/252917"
- },
- {
-  "id": "salles-filmotheque-54793-1792249200/VO/270673",
-  "movie": "leviathan|andrei-zviaguintsev",
-  "cinema": "salles-filmotheque",
-  "start": "2026-10-17T17:00:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=54793&modresa_jour=2026-10-17"
- },
- {
-  "id": "salles-comoedia-1000022205-2026-10-17T17:00:00",
-  "movie": "minotaure|andrei-zviaguintsev",
-  "cinema": "salles-comoedia",
-  "start": "2026-10-17T17:00:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/337627"
- },
- {
-  "id": "salles-brady-1000038237-2026-10-17T17:05:00",
-  "movie": "le-chant-des-oliviers|alex-camilleri",
-  "cinema": "salles-brady",
-  "start": "2026-10-17T17:05:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://achat.lebrady.fr/r/65420"
- },
- {
-  "id": "salles-lumiere-fourmi-615318-1792251300/VO/263844",
-  "movie": "l-odyssee|christopher-nolan",
-  "cinema": "salles-lumiere-fourmi",
-  "start": "2026-10-17T17:35:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://cinema-lumiere-fourmi-vad.cotecine.fr/reserver/?modresa_film=615318&modresa_jour=2026-10-17"
- },
- {
-  "id": "salles-filmotheque-14259-1792251600/VO/270671",
-  "movie": "un-apres-midi-de-chien|sidney-lumet",
-  "cinema": "salles-filmotheque",
-  "start": "2026-10-17T17:40:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=14259&modresa_jour=2026-10-17"
- },
- {
-  "id": "salles-comoedia-1000013908-2026-10-17T17:40:00",
-  "movie": "primetime|lance-oppenheim",
-  "cinema": "salles-comoedia",
-  "start": "2026-10-17T17:40:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/337686"
- },
- {
-  "id": "salles-lumiere-terreaux-608708-1792251900/VF/263894",
-  "movie": "notre-salut|emmanuel-marre",
-  "cinema": "salles-lumiere-terreaux",
-  "start": "2026-10-17T17:45:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://cinema-lumiere-terreaux-vad.cotecine.fr/reserver/?modresa_film=608708&modresa_jour=2026-10-17"
- },
- {
-  "id": "salles-louxor-321790-2026-10-17T17:50:00",
-  "movie": "le-corset|louis-clichy",
-  "cinema": "salles-louxor",
-  "start": "2026-10-17T17:50:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://www.louxor-reserver.cotecine.fr/r/252925"
- },
- {
-  "id": "salles-lumiere-bellecour-367154-1792252200/VF/262704",
-  "movie": "l-espece-explosive|sarah-arnold",
-  "cinema": "salles-lumiere-bellecour",
-  "start": "2026-10-17T17:50:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://cinema-lumiere-bellecour-vad.cotecine.fr/reserver/?modresa_film=367154&modresa_jour=2026-10-17"
- },
- {
-  "id": "salles-comoedia-1000026039-2026-10-17T18:00:00",
-  "movie": "garance|jeanne-herry",
-  "cinema": "salles-comoedia",
-  "start": "2026-10-17T18:00:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/337565"
- },
- {
-  "id": "salles-lumiere-terreaux-626415-1792252800/VO/263884",
-  "movie": "minotaure|andrei-zviaguintsev",
-  "cinema": "salles-lumiere-terreaux",
-  "start": "2026-10-17T18:00:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://cinema-lumiere-terreaux-vad.cotecine.fr/reserver/?modresa_film=626415&modresa_jour=2026-10-17"
- },
- {
-  "id": "salles-zola-9107",
-  "movie": "ton-animal-maternel|valentina-maurel",
-  "cinema": "salles-zola",
-  "start": "2026-10-17T18:00:00",
-  "end": "",
-  "version": "VOST",
-  "auditorium": "1",
-  "booking": "https://www.ticketingcine.fr/index.php?lang=fr&nc=1217&ids=9107"
- },
- {
-  "id": "salles-comoedia-1000023992-2026-10-17T18:10:00",
-  "movie": "ni-vue-ni-connue|marc-fitoussi",
-  "cinema": "salles-comoedia",
-  "start": "2026-10-17T18:10:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/337733"
- },
- {
-  "id": "salles-comoedia-321790-2026-10-17T18:15:00",
-  "movie": "le-corset|louis-clichy",
-  "cinema": "salles-comoedia",
-  "start": "2026-10-17T18:15:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/337536"
- },
- {
-  "id": "salles-lumiere-bellecour-611574-1792254000/VO/263804",
-  "movie": "digger|alejandro-gonzalez-inarritu",
-  "cinema": "salles-lumiere-bellecour",
-  "start": "2026-10-17T18:20:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://cinema-lumiere-bellecour-vad.cotecine.fr/reserver/?modresa_film=611574&modresa_jour=2026-10-17"
- },
- {
-  "id": "salles-brady-310112-2026-10-17T18:25:00",
-  "movie": "jim-queen|marco-nguyen",
-  "cinema": "salles-brady",
-  "start": "2026-10-17T18:25:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://achat.lebrady.fr/r/65427"
- },
- {
-  "id": "salles-comoedia-327174-2026-10-17T18:25:00",
-  "movie": "digger|alejandro-gonzalez-inarritu",
-  "cinema": "salles-comoedia",
-  "start": "2026-10-17T18:25:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/337762"
- },
- {
-  "id": "salles-lumiere-terreaux-627998-1792254600/VF/263874",
-  "movie": "garance|jeanne-herry",
-  "cinema": "salles-lumiere-terreaux",
-  "start": "2026-10-17T18:30:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://cinema-lumiere-terreaux-vad.cotecine.fr/reserver/?modresa_film=627998&modresa_jour=2026-10-17"
- },
- {
-  "id": "salles-lumiere-bellecour-636569-1792254600/VO/263814",
-  "movie": "les-elephants-dans-la-brume|abinash-bikram-shah",
-  "cinema": "salles-lumiere-bellecour",
-  "start": "2026-10-17T18:30:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://cinema-lumiere-bellecour-vad.cotecine.fr/reserver/?modresa_film=636569&modresa_jour=2026-10-17"
- },
- {
-  "id": "salles-comoedia-1000026622-2026-10-17T18:40:00",
-  "movie": "raison-et-sentiments|georgia-oakley",
-  "cinema": "salles-comoedia",
-  "start": "2026-10-17T18:40:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/337675"
- },
- {
-  "id": "salles-lumiere-fourmi-637159-1792256100/VF/263824",
-  "movie": "fini-de-rire|mateo-larroque-clara-menais-mila-branco",
-  "cinema": "salles-lumiere-fourmi",
-  "start": "2026-10-17T18:55:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://cinema-lumiere-fourmi-vad.cotecine.fr/reserver/?modresa_film=637159&modresa_jour=2026-10-17"
- },
- {
-  "id": "salles-brady-1000026296-2026-10-17T19:05:00",
-  "movie": "memoire-de-fille|judith-godreche",
-  "cinema": "salles-brady",
-  "start": "2026-10-17T19:05:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://achat.lebrady.fr/r/65421"
- },
- {
-  "id": "salles-filmotheque-47655-1792258200/VO/270673",
-  "movie": "conversation-secrete|francis-ford-coppola",
-  "cinema": "salles-filmotheque",
-  "start": "2026-10-17T19:30:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=47655&modresa_jour=2026-10-17"
- },
- {
-  "id": "salles-louxor-321790-2026-10-17T19:40:00",
-  "movie": "le-corset|louis-clichy",
-  "cinema": "salles-louxor",
-  "start": "2026-10-17T19:40:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://www.louxor-reserver.cotecine.fr/r/252926"
- },
- {
-  "id": "salles-louxor-1000022205-2026-10-17T19:45:00",
-  "movie": "minotaure|andrei-zviaguintsev",
-  "cinema": "salles-louxor",
-  "start": "2026-10-17T19:45:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://www.louxor-reserver.cotecine.fr/r/252918"
- },
- {
-  "id": "salles-brady-1000037046-2026-10-17T20:00:00",
-  "movie": "de-la-comedie-francaise|martin-darondeau",
-  "cinema": "salles-brady",
-  "start": "2026-10-17T20:00:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://achat.lebrady.fr/r/65428"
- },
- {
-  "id": "salles-zola-9244",
-  "movie": "notre-salut|emmanuel-marre",
-  "cinema": "salles-zola",
-  "start": "2026-10-17T20:10:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "1",
-  "booking": "https://www.ticketingcine.fr/index.php?lang=fr&nc=1217&ids=9244"
- },
- {
-  "id": "salles-louxor-1000007388-2026-10-17T20:15:00",
-  "movie": "notre-salut|emmanuel-marre",
-  "cinema": "salles-louxor",
-  "start": "2026-10-17T20:15:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://www.louxor-reserver.cotecine.fr/r/252921"
- },
- {
-  "id": "salles-filmotheque-1242-1792260900/VO/270671",
-  "movie": "in-the-mood-for-love|wong-kar-wai",
-  "cinema": "salles-filmotheque",
-  "start": "2026-10-17T20:15:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=1242&modresa_jour=2026-10-17"
- },
- {
-  "id": "salles-comoedia-285141-2026-10-17T20:15:00",
-  "movie": "l-espece-explosive|sarah-arnold",
-  "cinema": "salles-comoedia",
-  "start": "2026-10-17T20:15:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/337698"
- },
- {
-  "id": "salles-comoedia-1000007388-2026-10-17T20:20:00",
-  "movie": "notre-salut|emmanuel-marre",
-  "cinema": "salles-comoedia",
-  "start": "2026-10-17T20:20:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/337611"
- },
- {
-  "id": "salles-comoedia-1000022205-2026-10-17T20:30:00",
-  "movie": "minotaure|andrei-zviaguintsev",
-  "cinema": "salles-comoedia",
-  "start": "2026-10-17T20:30:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/337633"
- },
- {
-  "id": "salles-lumiere-fourmi-449360-1792261800/VO/263834",
-  "movie": "fjord|cristian-mungiu",
-  "cinema": "salles-lumiere-fourmi",
-  "start": "2026-10-17T20:30:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://cinema-lumiere-fourmi-vad.cotecine.fr/reserver/?modresa_film=449360&modresa_jour=2026-10-17"
- },
- {
-  "id": "salles-comoedia-321790-2026-10-17T20:35:00",
-  "movie": "le-corset|louis-clichy",
-  "cinema": "salles-comoedia",
-  "start": "2026-10-17T20:35:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/337542"
- },
- {
-  "id": "salles-comoedia-1000023992-2026-10-17T20:40:00",
-  "movie": "ni-vue-ni-connue|marc-fitoussi",
-  "cinema": "salles-comoedia",
-  "start": "2026-10-17T20:40:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/337739"
- },
- {
-  "id": "salles-comoedia-1000026039-2026-10-17T20:45:00",
-  "movie": "garance|jeanne-herry",
-  "cinema": "salles-comoedia",
-  "start": "2026-10-17T20:45:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/337571"
- },
- {
-  "id": "salles-lumiere-terreaux-592170-1792262700/VF/263874",
-  "movie": "le-corset|louis-clichy",
-  "cinema": "salles-lumiere-terreaux",
-  "start": "2026-10-17T20:45:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://cinema-lumiere-terreaux-vad.cotecine.fr/reserver/?modresa_film=592170&modresa_jour=2026-10-17"
- },
- {
-  "id": "salles-lumiere-terreaux-626415-1792262700/VO/263884",
-  "movie": "minotaure|andrei-zviaguintsev",
-  "cinema": "salles-lumiere-terreaux",
-  "start": "2026-10-17T20:45:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://cinema-lumiere-terreaux-vad.cotecine.fr/reserver/?modresa_film=626415&modresa_jour=2026-10-17"
- },
- {
-  "id": "salles-lumiere-terreaux-608708-1792262700/VF/263894",
-  "movie": "notre-salut|emmanuel-marre",
-  "cinema": "salles-lumiere-terreaux",
-  "start": "2026-10-17T20:45:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://cinema-lumiere-terreaux-vad.cotecine.fr/reserver/?modresa_film=608708&modresa_jour=2026-10-17"
- },
- {
-  "id": "salles-lumiere-bellecour-631242-1792262700/VF/263814",
-  "movie": "memoire-de-fille|judith-godreche",
-  "cinema": "salles-lumiere-bellecour",
-  "start": "2026-10-17T20:45:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://cinema-lumiere-bellecour-vad.cotecine.fr/reserver/?modresa_film=631242&modresa_jour=2026-10-17"
- },
- {
-  "id": "salles-lumiere-bellecour-633972-1792263300/VO/263804",
-  "movie": "le-jour-de-son-retour|hong-sangsoo",
-  "cinema": "salles-lumiere-bellecour",
-  "start": "2026-10-17T20:55:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://cinema-lumiere-bellecour-vad.cotecine.fr/reserver/?modresa_film=633972&modresa_jour=2026-10-17"
- },
- {
-  "id": "salles-lumiere-fourmi-633174-1792263300/VF/263824",
-  "movie": "de-la-comedie-francaise|martin-darondeau-bertrand-usclat",
-  "cinema": "salles-lumiere-fourmi",
-  "start": "2026-10-17T20:55:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://cinema-lumiere-fourmi-vad.cotecine.fr/reserver/?modresa_film=633174&modresa_jour=2026-10-17"
- },
- {
-  "id": "salles-lumiere-fourmi-616684-1792263300/VF/263844",
-  "movie": "la-vie-d-une-femme|charline-bourgeois-tacquet",
-  "cinema": "salles-lumiere-fourmi",
-  "start": "2026-10-17T20:55:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://cinema-lumiere-fourmi-vad.cotecine.fr/reserver/?modresa_film=616684&modresa_jour=2026-10-17"
- },
- {
-  "id": "salles-comoedia-327174-2026-10-17T21:00:00",
-  "movie": "digger|alejandro-gonzalez-inarritu",
-  "cinema": "salles-comoedia",
-  "start": "2026-10-17T21:00:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/337768"
- },
- {
-  "id": "salles-brady-1000012310-2026-10-17T21:15:00",
-  "movie": "adieu-monde-cruel|felix-de-givry",
-  "cinema": "salles-brady",
-  "start": "2026-10-17T21:15:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://achat.lebrady.fr/r/65422"
- },
- {
-  "id": "salles-comoedia-1000048319-2026-10-17T21:15:00",
-  "movie": "fini-de-rire-l-humour-politique-au-garde-a-vous|mateo-larroque",
-  "cinema": "salles-comoedia",
-  "start": "2026-10-17T21:15:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/337663"
- },
- {
-  "id": "salles-brady-1000004458-2026-10-17T21:25:00",
-  "movie": "pressure|anthony-maras",
-  "cinema": "salles-brady",
-  "start": "2026-10-17T21:25:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://achat.lebrady.fr/r/65429"
- },
- {
-  "id": "salles-louxor-1000013908-2026-10-17T21:30:00",
-  "movie": "primetime|lance-oppenheim",
-  "cinema": "salles-louxor",
-  "start": "2026-10-17T21:30:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://www.louxor-reserver.cotecine.fr/r/252922"
- },
- {
-  "id": "salles-filmotheque-1506-1792265400/VO/270673",
-  "movie": "2001-lodyssee-de-lespace|stanley-kubrick",
-  "cinema": "salles-filmotheque",
-  "start": "2026-10-17T21:30:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=1506&modresa_jour=2026-10-17"
- },
- {
-  "id": "salles-brady-6429-2026-10-17T21:35:00",
-  "movie": "akira|katsuhiro-otomo",
-  "cinema": "salles-brady",
-  "start": "2026-10-17T21:35:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://achat.lebrady.fr/r/65417"
- },
- {
-  "id": "salles-filmotheque-4223-1792267200/VO/270671",
-  "movie": "blue-velvet|david-lynch",
-  "cinema": "salles-filmotheque",
-  "start": "2026-10-17T22:00:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://lafilmotheque-vad.cotecine.fr/reserver/?modresa_film=4223&modresa_jour=2026-10-17"
- },
- {
   "id": "salles-brady-293636-2026-10-18T10:00:00",
   "movie": "in-waves|phuong-mai-nguyen",
   "cinema": "salles-brady",
@@ -2510,56 +40,6 @@
   "booking": "https://achat.lebrady.fr/r/64758"
  },
  {
-  "id": "salles-lumiere-terreaux-592170-1792311300/VF/263894",
-  "movie": "le-corset|louis-clichy",
-  "cinema": "salles-lumiere-terreaux",
-  "start": "2026-10-18T10:15:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://cinema-lumiere-terreaux-vad.cotecine.fr/reserver/?modresa_film=592170&modresa_jour=2026-10-18"
- },
- {
-  "id": "salles-lumiere-terreaux-626415-1792311300/VO/263884",
-  "movie": "minotaure|andrei-zviaguintsev",
-  "cinema": "salles-lumiere-terreaux",
-  "start": "2026-10-18T10:15:00",
-  "end": "",
-  "version": "VO",
-  "auditorium": "",
-  "booking": "https://cinema-lumiere-terreaux-vad.cotecine.fr/reserver/?modresa_film=626415&modresa_jour=2026-10-18"
- },
- {
-  "id": "salles-lumiere-terreaux-608708-1792311300/VF/263874",
-  "movie": "notre-salut|emmanuel-marre",
-  "cinema": "salles-lumiere-terreaux",
-  "start": "2026-10-18T10:15:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://cinema-lumiere-terreaux-vad.cotecine.fr/reserver/?modresa_film=608708&modresa_jour=2026-10-18"
- },
- {
-  "id": "salles-lumiere-fourmi-378034-1792311300/VFST/263824",
-  "movie": "la-bataille-de-gaulle-partie-2-j-ecris-ton-nom|antonin-baudry",
-  "cinema": "salles-lumiere-fourmi",
-  "start": "2026-10-18T10:15:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://cinema-lumiere-fourmi-vad.cotecine.fr/reserver/?modresa_film=378034&modresa_jour=2026-10-18"
- },
- {
-  "id": "salles-lumiere-fourmi-3100-1792311600/VF/263834",
-  "movie": "wallace-et-gromit-le-mystere-du-lapin-garou|nick-park-steve-box",
-  "cinema": "salles-lumiere-fourmi",
-  "start": "2026-10-18T10:20:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://cinema-lumiere-fourmi-vad.cotecine.fr/reserver/?modresa_film=3100&modresa_jour=2026-10-18"
- },
- {
   "id": "salles-louxor-105-2026-10-18T10:30:00",
   "movie": "assurance-sur-la-mort|billy-wilder",
   "cinema": "salles-louxor",
@@ -2568,16 +48,6 @@
   "version": "VO",
   "auditorium": "",
   "booking": "https://www.louxor-reserver.cotecine.fr/r/252558"
- },
- {
-  "id": "salles-lumiere-fourmi-636246-1792312200/VF/263844",
-  "movie": "un-amour-d-epouvantail|samantha-cutler-jeroen-jaspaert",
-  "cinema": "salles-lumiere-fourmi",
-  "start": "2026-10-18T10:30:00",
-  "end": "",
-  "version": "VF",
-  "auditorium": "",
-  "booking": "https://cinema-lumiere-fourmi-vad.cotecine.fr/reserver/?modresa_film=636246&modresa_jour=2026-10-18"
  },
  {
   "id": "salles-louxor-188280-2026-10-18T10:45:00",
@@ -6725,9 +4195,9 @@
   "cinema": "salles-brady",
   "start": "2026-10-21T14:00:00",
   "end": "",
-  "version": "VO",
+  "version": "VF",
   "auditorium": "",
-  "booking": "https://achat.lebrady.fr/r/64763"
+  "booking": "https://achat.lebrady.fr/r/65528"
  },
  {
   "id": "salles-lumiere-fourmi-592170-1792584000/VF/263824",
@@ -6990,6 +4460,66 @@
   "booking": "https://www.ticketingcine.fr/index.php?lang=fr&nc=1217&ids=9228"
  },
  {
+  "id": "salles-brady-226004-2026-10-23T10:15:00",
+  "movie": "le-chant-de-la-mer|tomm-moore",
+  "cinema": "salles-brady",
+  "start": "2026-10-23T10:15:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64766"
+ },
+ {
+  "id": "salles-louxor-221601-2026-10-23T10:30:00",
+  "movie": "poupi|zdenek-miler",
+  "cinema": "salles-louxor",
+  "start": "2026-10-23T10:30:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://www.louxor-reserver.cotecine.fr/r/252980"
+ },
+ {
+  "id": "salles-louxor-221601-2026-10-23T10:30:00",
+  "movie": "poupi|zdenek-miler",
+  "cinema": "salles-louxor",
+  "start": "2026-10-23T10:30:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://www.louxor-reserver.cotecine.fr/r/252691"
+ },
+ {
+  "id": "salles-louxor-321790-2026-10-23T10:30:00",
+  "movie": "le-corset|louis-clichy",
+  "cinema": "salles-louxor",
+  "start": "2026-10-23T10:30:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://www.louxor-reserver.cotecine.fr/r/252705"
+ },
+ {
+  "id": "salles-louxor-321790-2026-10-23T14:00:00",
+  "movie": "le-corset|louis-clichy",
+  "cinema": "salles-louxor",
+  "start": "2026-10-23T14:00:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://www.louxor-reserver.cotecine.fr/r/252692"
+ },
+ {
+  "id": "salles-brady-268384-2026-10-23T14:00:00",
+  "movie": "le-robot-sauvage|chris-sanders",
+  "cinema": "salles-brady",
+  "start": "2026-10-23T14:00:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/65529"
+ },
+ {
   "id": "salles-zola-9210",
   "movie": "un-amour-d-epouvantail|samantha-cutler-jeroen-jaspaert",
   "cinema": "salles-zola",
@@ -7048,5 +4578,285 @@
   "version": "VF",
   "auditorium": "1",
   "booking": "https://www.ticketingcine.fr/index.php?lang=fr&nc=1217&ids=9178"
+ },
+ {
+  "id": "salles-brady-1000022216-2026-10-24T10:15:00",
+  "movie": "la-petite-fanfare-de-noel|meike-fehre",
+  "cinema": "salles-brady",
+  "start": "2026-10-24T10:15:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://achat.lebrady.fr/r/64768"
+ },
+ {
+  "id": "salles-lumiere-fourmi-636970-1792830000/VF/263834",
+  "movie": "le-cygne-et-l-enfant|miyoung-baek",
+  "cinema": "salles-lumiere-fourmi",
+  "start": "2026-10-24T10:20:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-fourmi-vad.cotecine.fr/reserver/?modresa_film=636970&modresa_jour=2026-10-24"
+ },
+ {
+  "id": "salles-lumiere-fourmi-3100-1792830000/VF/263844",
+  "movie": "wallace-et-gromit-le-mystere-du-lapin-garou|nick-park-steve-box",
+  "cinema": "salles-lumiere-fourmi",
+  "start": "2026-10-24T10:20:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-fourmi-vad.cotecine.fr/reserver/?modresa_film=3100&modresa_jour=2026-10-24"
+ },
+ {
+  "id": "salles-louxor-1191-2026-10-24T10:30:00",
+  "movie": "cleo-de-5-a-7|agnes-varda",
+  "cinema": "salles-louxor",
+  "start": "2026-10-24T10:30:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://www.louxor-reserver.cotecine.fr/r/252470"
+ },
+ {
+  "id": "salles-louxor-110204-2026-10-24T10:30:00",
+  "movie": "persepolis|marjane-satrapi",
+  "cinema": "salles-louxor",
+  "start": "2026-10-24T10:30:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://www.louxor-reserver.cotecine.fr/r/252694"
+ },
+ {
+  "id": "salles-lumiere-fourmi-557568-1792832400/VF/263824",
+  "movie": "joyeuse-jungle|edmunds-jansons",
+  "cinema": "salles-lumiere-fourmi",
+  "start": "2026-10-24T11:00:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-fourmi-vad.cotecine.fr/reserver/?modresa_film=557568&modresa_jour=2026-10-24"
+ },
+ {
+  "id": "salles-louxor-321790-2026-10-24T11:15:00",
+  "movie": "le-corset|louis-clichy",
+  "cinema": "salles-louxor",
+  "start": "2026-10-24T11:15:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://www.louxor-reserver.cotecine.fr/r/252693"
+ },
+ {
+  "id": "salles-louxor-321790-2026-10-24T14:00:00",
+  "movie": "le-corset|louis-clichy",
+  "cinema": "salles-louxor",
+  "start": "2026-10-24T14:00:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://www.louxor-reserver.cotecine.fr/r/252695"
+ },
+ {
+  "id": "salles-lumiere-fourmi-592170-1792843200/VF/263824",
+  "movie": "le-corset|louis-clichy",
+  "cinema": "salles-lumiere-fourmi",
+  "start": "2026-10-24T14:00:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-fourmi-vad.cotecine.fr/reserver/?modresa_film=592170&modresa_jour=2026-10-24"
+ },
+ {
+  "id": "salles-zola-9229",
+  "movie": "le-corset|louis-clichy",
+  "cinema": "salles-zola",
+  "start": "2026-10-24T14:15:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "1",
+  "booking": "https://www.ticketingcine.fr/index.php?lang=fr&nc=1217&ids=9229"
+ },
+ {
+  "id": "salles-comoedia-27624-2026-10-24T15:30:00",
+  "movie": "edward-aux-mains-d-argent|tim-burton",
+  "cinema": "salles-comoedia",
+  "start": "2026-10-24T15:30:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://tickets.allocine.fr/lyon-comoedia/reserver/r/337160"
+ },
+ {
+  "id": "salles-lumiere-fourmi-636246-1792849500/VF/263834",
+  "movie": "un-amour-d-epouvantail|samantha-cutler-jeroen-jaspaert",
+  "cinema": "salles-lumiere-fourmi",
+  "start": "2026-10-24T15:45:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-fourmi-vad.cotecine.fr/reserver/?modresa_film=636246&modresa_jour=2026-10-24"
+ },
+ {
+  "id": "salles-zola-9177",
+  "movie": "l-espece-explosive|sarah-arnold",
+  "cinema": "salles-zola",
+  "start": "2026-10-24T16:10:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "1",
+  "booking": "https://www.ticketingcine.fr/index.php?lang=fr&nc=1217&ids=9177"
+ },
+ {
+  "id": "salles-zola-9171",
+  "movie": "ni-vue-ni-connue|marc-fitoussi",
+  "cinema": "salles-zola",
+  "start": "2026-10-24T18:10:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "1",
+  "booking": "https://www.ticketingcine.fr/index.php?lang=fr&nc=1217&ids=9171"
+ },
+ {
+  "id": "salles-lumiere-terreaux-638234-1792863000/VO/263864",
+  "movie": "midnight-movie-soiree-na-hong-jin|",
+  "cinema": "salles-lumiere-terreaux",
+  "start": "2026-10-24T19:30:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-terreaux-vad.cotecine.fr/reserver/?modresa_film=638234&modresa_jour=2026-10-24"
+ },
+ {
+  "id": "salles-lumiere-terreaux-131164-1792863000/VO/263864",
+  "movie": "the-strangers|na-hong-jin",
+  "cinema": "salles-lumiere-terreaux",
+  "start": "2026-10-24T19:30:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-terreaux-vad.cotecine.fr/reserver/?modresa_film=131164&modresa_jour=2026-10-24"
+ },
+ {
+  "id": "salles-zola-9180",
+  "movie": "digger|alejandro-g-inarritu",
+  "cinema": "salles-zola",
+  "start": "2026-10-24T20:30:00",
+  "end": "",
+  "version": "VOST",
+  "auditorium": "1",
+  "booking": "https://www.ticketingcine.fr/index.php?lang=fr&nc=1217&ids=9180"
+ },
+ {
+  "id": "salles-lumiere-terreaux-5027-1792873800/VO/263864",
+  "movie": "the-chaser|na-hong-jin",
+  "cinema": "salles-lumiere-terreaux",
+  "start": "2026-10-24T22:30:00",
+  "end": "",
+  "version": "VO",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-terreaux-vad.cotecine.fr/reserver/?modresa_film=5027&modresa_jour=2026-10-24"
+ },
+ {
+  "id": "salles-lumiere-fourmi-592170-1792920000/VF/263834",
+  "movie": "le-corset|louis-clichy",
+  "cinema": "salles-lumiere-fourmi",
+  "start": "2026-10-25T10:20:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-fourmi-vad.cotecine.fr/reserver/?modresa_film=592170&modresa_jour=2026-10-25"
+ },
+ {
+  "id": "salles-lumiere-fourmi-171374-1792920000/VF/263844",
+  "movie": "wallace-gromit-les-inventuriers|nick-park",
+  "cinema": "salles-lumiere-fourmi",
+  "start": "2026-10-25T10:20:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-fourmi-vad.cotecine.fr/reserver/?modresa_film=171374&modresa_jour=2026-10-25"
+ },
+ {
+  "id": "salles-lumiere-fourmi-638336-1792920600/VF/263824",
+  "movie": "gruffalo-de-pere-en-fils|divers-cineastes",
+  "cinema": "salles-lumiere-fourmi",
+  "start": "2026-10-25T10:30:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-fourmi-vad.cotecine.fr/reserver/?modresa_film=638336&modresa_jour=2026-10-25"
+ },
+ {
+  "id": "salles-zola-9181",
+  "movie": "digger|alejandro-g-inarritu",
+  "cinema": "salles-zola",
+  "start": "2026-10-25T11:00:00",
+  "end": "",
+  "version": "VOST",
+  "auditorium": "1",
+  "booking": "https://www.ticketingcine.fr/index.php?lang=fr&nc=1217&ids=9181"
+ },
+ {
+  "id": "salles-zola-9117",
+  "movie": "joyeuse-jungle|edmunds-jansons",
+  "cinema": "salles-zola",
+  "start": "2026-10-25T14:15:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "1",
+  "booking": "https://www.ticketingcine.fr/index.php?lang=fr&nc=1217&ids=9117"
+ },
+ {
+  "id": "salles-lumiere-fourmi-592172-1792936200/VF/263824",
+  "movie": "carmen-l-oiseau-rebelle|sebastien-laudenbach",
+  "cinema": "salles-lumiere-fourmi",
+  "start": "2026-10-25T14:50:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-fourmi-vad.cotecine.fr/reserver/?modresa_film=592172&modresa_jour=2026-10-25"
+ },
+ {
+  "id": "salles-zola-9230",
+  "movie": "le-corset|louis-clichy",
+  "cinema": "salles-zola",
+  "start": "2026-10-25T16:00:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "1",
+  "booking": "https://www.ticketingcine.fr/index.php?lang=fr&nc=1217&ids=9230"
+ },
+ {
+  "id": "salles-zola-9172",
+  "movie": "ni-vue-ni-connue|marc-fitoussi",
+  "cinema": "salles-zola",
+  "start": "2026-10-25T18:00:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "1",
+  "booking": "https://www.ticketingcine.fr/index.php?lang=fr&nc=1217&ids=9172"
+ },
+ {
+  "id": "salles-zola-9182",
+  "movie": "digger|alejandro-g-inarritu",
+  "cinema": "salles-zola",
+  "start": "2026-10-25T20:20:00",
+  "end": "",
+  "version": "VOST",
+  "auditorium": "1",
+  "booking": "https://www.ticketingcine.fr/index.php?lang=fr&nc=1217&ids=9182"
+ },
+ {
+  "id": "salles-lumiere-terreaux-628177-1792956600/VF/263864",
+  "movie": "moulin|laszlo-nemes",
+  "cinema": "salles-lumiere-terreaux",
+  "start": "2026-10-25T20:30:00",
+  "end": "",
+  "version": "VF",
+  "auditorium": "",
+  "booking": "https://cinema-lumiere-terreaux-vad.cotecine.fr/reserver/?modresa_film=628177&modresa_jour=2026-10-25"
  }
 ]
