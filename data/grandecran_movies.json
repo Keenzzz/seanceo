@@ -71,6 +71,18 @@
   "trailer": "",
   "storyline": ""
  },
+ "moulin|laszlo-nemes": {
+  "key": "moulin|laszlo-nemes",
+  "title": "Moulin",
+  "director": "László Nemes",
+  "cast": "",
+  "genre": "Drame",
+  "country": "",
+  "duration_min": 134,
+  "poster": "https://all.web.img.acsta.net/img/0e/b7/0eb754ba96eb61570ea47ddc22b004ce.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
  "ni-vue-ni-connue|marc-fitoussi": {
   "key": "ni-vue-ni-connue|marc-fitoussi",
   "title": "Ni vue, ni connue",
@@ -95,27 +107,27 @@
   "trailer": "",
   "storyline": ""
  },
- "hunger-games-la-revolte-partie-1|francis-lawrence": {
-  "key": "hunger-games-la-revolte-partie-1|francis-lawrence",
-  "title": "Hunger Games - La Révolte : Partie 1",
+ "hunger-games-la-revolte-partie-2|francis-lawrence": {
+  "key": "hunger-games-la-revolte-partie-2|francis-lawrence",
+  "title": "Hunger Games - La Révolte : Partie 2",
   "director": "Francis Lawrence",
   "cast": "",
-  "genre": "Action",
+  "genre": "Aventure",
   "country": "",
-  "duration_min": 123,
-  "poster": "https://all.web.img.acsta.net/pictures/14/12/05/17/09/561135.jpg",
+  "duration_min": 137,
+  "poster": "https://all.web.img.acsta.net/pictures/15/06/10/09/57/505187.jpg",
   "trailer": "",
   "storyline": ""
  },
- "10-11-12-pougne-le-herisson|iouri-tcherenkov": {
-  "key": "10-11-12-pougne-le-herisson|iouri-tcherenkov",
-  "title": "10, 11, 12... Pougne le hérisson",
-  "director": "Iouri Tcherenkov",
+ "paddington-au-perou|dougal-wilson": {
+  "key": "paddington-au-perou|dougal-wilson",
+  "title": "Paddington au Pérou",
+  "director": "Dougal Wilson",
   "cast": "",
-  "genre": "Animation",
+  "genre": "Aventure",
   "country": "",
-  "duration_min": 48,
-  "poster": "https://all.web.img.acsta.net/medias/nmedia/18/92/03/21/20175947.jpg",
+  "duration_min": 105,
+  "poster": "https://all.web.img.acsta.net/img/5a/55/5a55ac5957572aab15fdbe1382f43a9b.jpg",
   "trailer": "",
   "storyline": ""
  },
@@ -128,6 +140,30 @@
   "country": "",
   "duration_min": 108,
   "poster": "https://all.web.img.acsta.net/img/ca/1a/ca1a13b17f92cbab6eda83c239863b52.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "et-si-la-mort-n-etait-qu-un-passage|valerie-seguin": {
+  "key": "et-si-la-mort-n-etait-qu-un-passage|valerie-seguin",
+  "title": "Et si la mort n'était qu'un passage ?",
+  "director": "Valérie Seguin",
+  "cast": "",
+  "genre": "Documentaire",
+  "country": "",
+  "duration_min": 72,
+  "poster": "",
+  "trailer": "",
+  "storyline": ""
+ },
+ "et-si-la-mort-n-existait-pas|valerie-seguin": {
+  "key": "et-si-la-mort-n-existait-pas|valerie-seguin",
+  "title": "Et si la mort n'existait pas ?",
+  "director": "Valérie Seguin",
+  "cast": "",
+  "genre": "Documentaire",
+  "country": "",
+  "duration_min": 50,
+  "poster": "",
   "trailer": "",
   "storyline": ""
  },
@@ -191,6 +227,18 @@
   "trailer": "",
   "storyline": ""
  },
+ "les-extraordinaires-aventures-de-morph|merlin-crossingham": {
+  "key": "les-extraordinaires-aventures-de-morph|merlin-crossingham",
+  "title": "Les Extraordinaires aventures de Morph",
+  "director": "Merlin Crossingham",
+  "cast": "",
+  "genre": "Animation",
+  "country": "",
+  "duration_min": 40,
+  "poster": "https://all.web.img.acsta.net/img/6d/47/6d47b4005baeea22d6b8aa9c51bccccf.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
  "clayface|james-watkins": {
   "key": "clayface|james-watkins",
   "title": "Clayface",
@@ -227,18 +275,6 @@
   "trailer": "",
   "storyline": ""
  },
- "moulin|laszlo-nemes": {
-  "key": "moulin|laszlo-nemes",
-  "title": "Moulin",
-  "director": "László Nemes",
-  "cast": "",
-  "genre": "Drame",
-  "country": "",
-  "duration_min": 134,
-  "poster": "https://all.web.img.acsta.net/img/0e/b7/0eb754ba96eb61570ea47ddc22b004ce.jpg",
-  "trailer": "",
-  "storyline": ""
- },
  "minotaure|andrei-zviaguintsev": {
   "key": "minotaure|andrei-zviaguintsev",
   "title": "Minotaure",
@@ -248,6 +284,18 @@
   "country": "",
   "duration_min": 140,
   "poster": "https://all.web.img.acsta.net/img/e7/15/e7153314ec9e9d81776555905875e7f8.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "malfaisante|rob-savage": {
+  "key": "malfaisante|rob-savage",
+  "title": "Malfaisante",
+  "director": "Rob Savage",
+  "cast": "",
+  "genre": "Épouvante-horreur",
+  "country": "",
+  "duration_min": 94,
+  "poster": "https://all.web.img.acsta.net/img/28/48/28486bc186801eda503092a1e8653c53.jpg",
   "trailer": "",
   "storyline": ""
  },
@@ -270,7 +318,7 @@
   "cast": "",
   "genre": "Comédie",
   "country": "",
-  "duration_min": null,
+  "duration_min": 88,
   "poster": "https://all.web.img.acsta.net/img/e8/09/e8096ea20d34b74635a4db226a701bba.jpg",
   "trailer": "",
   "storyline": ""
@@ -287,6 +335,18 @@
   "trailer": "",
   "storyline": ""
  },
+ "quelques-mots-d-amour|rudi-rosenberg": {
+  "key": "quelques-mots-d-amour|rudi-rosenberg",
+  "title": "Quelques mots d'amour",
+  "director": "Rudi Rosenberg",
+  "cast": "",
+  "genre": "Comédie dramatique",
+  "country": "",
+  "duration_min": 97,
+  "poster": "https://all.web.img.acsta.net/img/65/44/654492a6a2e060b5618af12221946790.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
  "mylene-farmer-egregore-lavant-premiere|francois-hanss": {
   "key": "mylene-farmer-egregore-lavant-premiere|francois-hanss",
   "title": "Mylène Farmer – Égrégore – L’avant-première",
@@ -299,27 +359,39 @@
   "trailer": "",
   "storyline": ""
  },
- "paddington-au-perou|dougal-wilson": {
-  "key": "paddington-au-perou|dougal-wilson",
-  "title": "Paddington au Pérou",
-  "director": "Dougal Wilson",
+ "shining|stanley-kubrick": {
+  "key": "shining|stanley-kubrick",
+  "title": "Shining",
+  "director": "Stanley Kubrick",
   "cast": "",
-  "genre": "Aventure",
+  "genre": "Épouvante-horreur",
   "country": "",
-  "duration_min": 105,
-  "poster": "https://all.web.img.acsta.net/img/5a/55/5a55ac5957572aab15fdbe1382f43a9b.jpg",
+  "duration_min": 143,
+  "poster": "https://all.web.img.acsta.net/medias/nmedia/18/87/08/06/19888870.jpg",
   "trailer": "",
   "storyline": ""
  },
- "in-action|celia-poncelin": {
-  "key": "in-action|celia-poncelin",
-  "title": "(IN)ACTION",
-  "director": "Célia Poncelin",
+ "scream|wes-craven": {
+  "key": "scream|wes-craven",
+  "title": "Scream",
+  "director": "Wes Craven",
   "cast": "",
-  "genre": "Documentaire",
+  "genre": "Épouvante-horreur",
   "country": "",
-  "duration_min": 63,
-  "poster": "",
+  "duration_min": 111,
+  "poster": "https://all.web.img.acsta.net/medias/nmedia/18/87/27/88/19906214.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "la-sorciere-dans-les-airs|max-lang": {
+  "key": "la-sorciere-dans-les-airs|max-lang",
+  "title": "La Sorcière dans les airs",
+  "director": "Max Lang",
+  "cast": "",
+  "genre": "Animation",
+  "country": "",
+  "duration_min": 25,
+  "poster": "https://all.web.img.acsta.net/pictures/210/207/21020768_20131004101211084.jpg",
   "trailer": "",
   "storyline": ""
  },
@@ -335,6 +407,54 @@
   "trailer": "",
   "storyline": ""
  },
+ "la-cabane-dans-les-bois|drew-goddard": {
+  "key": "la-cabane-dans-les-bois|drew-goddard",
+  "title": "La Cabane dans les bois",
+  "director": "Drew Goddard",
+  "cast": "",
+  "genre": "Épouvante-horreur",
+  "country": "",
+  "duration_min": 95,
+  "poster": "https://all.web.img.acsta.net/medias/nmedia/18/86/79/66/20102224.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "wolf-man|leigh-whannell": {
+  "key": "wolf-man|leigh-whannell",
+  "title": "Wolf Man",
+  "director": "Leigh Whannell",
+  "cast": "",
+  "genre": "Épouvante-horreur",
+  "country": "",
+  "duration_min": 102,
+  "poster": "https://all.web.img.acsta.net/img/39/26/39266ca7515af7e0f8d3b409a7d3fd8a.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "petit-vampire|joann-sfar": {
+  "key": "petit-vampire|joann-sfar",
+  "title": "Petit Vampire",
+  "director": "Joann Sfar",
+  "cast": "",
+  "genre": "Animation",
+  "country": "",
+  "duration_min": 82,
+  "poster": "https://all.web.img.acsta.net/pictures/18/09/19/16/29/1352392.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "zombillenium|arthur-de-pins": {
+  "key": "zombillenium|arthur-de-pins",
+  "title": "Zombillénium",
+  "director": "Arthur de Pins",
+  "cast": "",
+  "genre": "Animation",
+  "country": "",
+  "duration_min": 78,
+  "poster": "https://all.web.img.acsta.net/pictures/17/04/27/20/29/576871.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
  "primetime|lance-oppenheim": {
   "key": "primetime|lance-oppenheim",
   "title": "Primetime",
@@ -344,6 +464,30 @@
   "country": "",
   "duration_min": 109,
   "poster": "https://all.web.img.acsta.net/img/24/36/2436414160b0bb3a69ce1434585e77d7.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "obsession|curry-barker": {
+  "key": "obsession|curry-barker",
+  "title": "Obsession",
+  "director": "Curry Barker",
+  "cast": "",
+  "genre": "Épouvante-horreur",
+  "country": "",
+  "duration_min": 109,
+  "poster": "https://all.web.img.acsta.net/img/4e/0e/4e0ef4dd7c72f7c479ee169381688a80.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "wallace-et-gromit-le-mystere-du-lapin-garou|nick-park": {
+  "key": "wallace-et-gromit-le-mystere-du-lapin-garou|nick-park",
+  "title": "Wallace et Gromit : le Mystère du lapin-garou",
+  "director": "Nick Park",
+  "cast": "",
+  "genre": "Animation",
+  "country": "",
+  "duration_min": 85,
+  "poster": "https://all.web.img.acsta.net/medias/nmedia/18/90/48/57/20101450.jpg",
   "trailer": "",
   "storyline": ""
  },
@@ -371,6 +515,18 @@
   "trailer": "",
   "storyline": ""
  },
+ "le-mystere-lucy-lost|olivier-clert": {
+  "key": "le-mystere-lucy-lost|olivier-clert",
+  "title": "Le Mystère Lucy Lost",
+  "director": "Olivier Clert",
+  "cast": "",
+  "genre": "Animation",
+  "country": "",
+  "duration_min": 89,
+  "poster": "https://all.web.img.acsta.net/img/a5/51/a55162b5c2c874f94bf08b3e1b21f663.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
  "resident-evil|zach-cregger": {
   "key": "resident-evil|zach-cregger",
   "title": "Resident Evil",
@@ -383,27 +539,27 @@
   "trailer": "",
   "storyline": ""
  },
- "malfaisante|rob-savage": {
-  "key": "malfaisante|rob-savage",
-  "title": "Malfaisante",
-  "director": "Rob Savage",
+ "zones-troubles|rodolphe-bouquet-populus": {
+  "key": "zones-troubles|rodolphe-bouquet-populus",
+  "title": "Zones Troubles",
+  "director": "Rodolphe Bouquet-Populus",
   "cast": "",
-  "genre": "Épouvante-horreur",
+  "genre": "Animation",
   "country": "",
-  "duration_min": 94,
-  "poster": "https://all.web.img.acsta.net/img/28/48/28486bc186801eda503092a1e8653c53.jpg",
+  "duration_min": 76,
+  "poster": "",
   "trailer": "",
   "storyline": ""
  },
- "hunger-games-la-revolte-partie-2|francis-lawrence": {
-  "key": "hunger-games-la-revolte-partie-2|francis-lawrence",
-  "title": "Hunger Games - La Révolte : Partie 2",
-  "director": "Francis Lawrence",
+ "papa-ou-t-es|basile-monnot": {
+  "key": "papa-ou-t-es|basile-monnot",
+  "title": "Papa où t'es ?",
+  "director": "Basile Monnot",
   "cast": "",
-  "genre": "Aventure",
+  "genre": "Documentaire",
   "country": "",
-  "duration_min": 137,
-  "poster": "https://all.web.img.acsta.net/pictures/15/06/10/09/57/505187.jpg",
+  "duration_min": null,
+  "poster": "https://all.web.img.acsta.net/img/c8/7c/c87c3d7967dbae79619c67865266006c.jpg",
   "trailer": "",
   "storyline": ""
  },
@@ -419,39 +575,15 @@
   "trailer": "",
   "storyline": ""
  },
- "amadou-et-mariam-sons-du-mali|ryan-marley": {
-  "key": "amadou-et-mariam-sons-du-mali|ryan-marley",
-  "title": "Amadou et Mariam : Sons du Mali",
-  "director": "Ryan Marley",
+ "hope|na-hong-jin": {
+  "key": "hope|na-hong-jin",
+  "title": "Hope",
+  "director": "Na Hong-jin",
   "cast": "",
-  "genre": "Documentaire",
+  "genre": "Thriller",
   "country": "",
-  "duration_min": 88,
-  "poster": "https://all.web.img.acsta.net/img/d5/a3/d5a38ac40911d1b1a9933b4ce1eac2df.jpg",
-  "trailer": "",
-  "storyline": ""
- },
- "its-never-over-jeff-buckley|amy-berg": {
-  "key": "its-never-over-jeff-buckley|amy-berg",
-  "title": "It’s Never Over, Jeff Buckley",
-  "director": "Amy Berg",
-  "cast": "",
-  "genre": "Documentaire",
-  "country": "",
-  "duration_min": 110,
-  "poster": "https://all.web.img.acsta.net/img/e4/29/e429eba6a5ac8f214c62e81c7d2bdfb6.jpg",
-  "trailer": "",
-  "storyline": ""
- },
- "i-was-a-teenage-sex-pistol|andre-relis": {
-  "key": "i-was-a-teenage-sex-pistol|andre-relis",
-  "title": "I Was a Teenage Sex Pistol",
-  "director": "Andre Relis",
-  "cast": "",
-  "genre": "Documentaire",
-  "country": "",
-  "duration_min": 102,
-  "poster": "",
+  "duration_min": 157,
+  "poster": "https://all.web.img.acsta.net/img/ca/5a/ca5a7cae10433f7beb9909083ea7e985.jpg",
   "trailer": "",
   "storyline": ""
  },
@@ -491,6 +623,18 @@
   "trailer": "",
   "storyline": ""
  },
+ "sanguine|marion-le-corroller": {
+  "key": "sanguine|marion-le-corroller",
+  "title": "Sanguine",
+  "director": "Marion Le Corroller",
+  "cast": "",
+  "genre": "Épouvante-horreur",
+  "country": "",
+  "duration_min": 103,
+  "poster": "https://all.web.img.acsta.net/img/9b/46/9b46077141e78aecd65cf291dfba8ddb.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
  "the-social-reckoning|aaron-sorkin": {
   "key": "the-social-reckoning|aaron-sorkin",
   "title": "The Social Reckoning",
@@ -527,15 +671,39 @@
   "trailer": "",
   "storyline": ""
  },
- "bts-world-tour-arirang-in-buenos-aires-live-viewing|jungjae-ha": {
-  "key": "bts-world-tour-arirang-in-buenos-aires-live-viewing|jungjae-ha",
-  "title": "BTS World Tour 'ARIRANG' In Buenos Aires : Live viewing",
+ "bts-world-tour-arirang-in-sao-paulo-live-viewing|jungjae-ha": {
+  "key": "bts-world-tour-arirang-in-sao-paulo-live-viewing|jungjae-ha",
+  "title": "BTS World Tour 'ARIRANG' In São Paulo : Live viewing",
   "director": "Jungjae Ha",
   "cast": "",
   "genre": "Concert",
   "country": "",
   "duration_min": 195,
   "poster": "https://all.web.img.acsta.net/img/1b/40/1b40b17b64a635b17f881fa2c6d78b63.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "akira|katsuhiro-otomo": {
+  "key": "akira|katsuhiro-otomo",
+  "title": "Akira",
+  "director": "Katsuhiro Ôtomo",
+  "cast": "",
+  "genre": "Animation",
+  "country": "",
+  "duration_min": 124,
+  "poster": "https://all.web.img.acsta.net/pictures/20/08/10/09/15/4173807.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "ghost-in-the-shell|mamoru-oshii": {
+  "key": "ghost-in-the-shell|mamoru-oshii",
+  "title": "Ghost in the Shell",
+  "director": "Mamoru Oshii",
+  "cast": "",
+  "genre": "Action",
+  "country": "",
+  "duration_min": 83,
+  "poster": "https://all.web.img.acsta.net/pictures/17/02/13/16/44/595862.jpg",
   "trailer": "",
   "storyline": ""
  },
@@ -575,14 +743,62 @@
   "trailer": "",
   "storyline": ""
  },
- "les-habites-saison-2026-2027|les-habites": {
-  "key": "les-habites-saison-2026-2027|les-habites",
-  "title": "Les Habités Saison 2026 - 2027",
-  "director": "Les Habités",
+ "kiki-la-petite-sorciere|hayao-miyazaki": {
+  "key": "kiki-la-petite-sorciere|hayao-miyazaki",
+  "title": "Kiki la petite sorcière",
+  "director": "Hayao Miyazaki",
   "cast": "",
-  "genre": "Spectacle",
+  "genre": "Animation",
   "country": "",
-  "duration_min": 90,
+  "duration_min": 102,
+  "poster": "https://all.web.img.acsta.net/pictures/20/03/19/15/43/2867923.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "the-descent|neil-marshall": {
+  "key": "the-descent|neil-marshall",
+  "title": "The Descent",
+  "director": "Neil Marshall",
+  "cast": "",
+  "genre": "Épouvante-horreur",
+  "country": "",
+  "duration_min": 99,
+  "poster": "https://all.web.img.acsta.net/medias/nmedia/18/87/76/32/19964451.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "la-frappe|julien-gaspar-oliveri": {
+  "key": "la-frappe|julien-gaspar-oliveri",
+  "title": "La Frappe",
+  "director": "Julien Gaspar-Oliveri",
+  "cast": "",
+  "genre": "Drame",
+  "country": "",
+  "duration_min": 106,
+  "poster": "https://all.web.img.acsta.net/img/59/cf/59cf7b2013d1711d12fdb5545822ce48.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "fini-de-rire-l-humour-politique-au-garde-a-vous|mateo-larroque": {
+  "key": "fini-de-rire-l-humour-politique-au-garde-a-vous|mateo-larroque",
+  "title": "Fini de rire ! L'humour politique au garde-à-vous ?",
+  "director": "Matéo Larroque",
+  "cast": "",
+  "genre": "Documentaire",
+  "country": "",
+  "duration_min": 97,
+  "poster": "https://all.web.img.acsta.net/img/f3/43/f343eb5d22c124bb07e977943fa44d22.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "resilience-grand-lieu|daniel-brenon": {
+  "key": "resilience-grand-lieu|daniel-brenon",
+  "title": "Résilience Grand Lieu",
+  "director": "Daniel Brenon",
+  "cast": "",
+  "genre": "Documentaire",
+  "country": "",
+  "duration_min": 73,
   "poster": "",
   "trailer": "",
   "storyline": ""

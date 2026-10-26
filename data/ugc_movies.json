@@ -7,7 +7,7 @@
   "genre": "Thriller",
   "country": "",
   "duration_min": 140,
-  "poster": "https://www.ugc.fr/dynamique/films/98/17498/fr/poster/large/940afff3ed3b09677bf94e2bc7c3009b_grey_25.jpg",
+  "poster": "https://www.ugc.fr/dynamique/films/98/17498/fr/poster/large/940afff3ed3b09677bf94e2bc7c3009b_grey_27.jpg",
   "trailer": "",
   "storyline": "Dans un village au nord de l’Espagne, Jeanne tente de reconstruire sa vie avec Daniel, qui ne connaît rien de son passé trouble. Un jour, Mateo, le filleul de Jeanne âgé de six ans, disparaît mystérieusement… Afin d’échapper à la police qui la soupçonne rapidement, Jeanne se réfugie en France dans la communauté où elle est née et qu’elle a fuie quelques années auparavant. Daniel ne croit pas à la culpabilité de la femme qu’il aime et va tout faire pour la retrouver avant la police."
  },
@@ -27,11 +27,11 @@
   "key": "clayface|james-watkins",
   "title": "CLAYFACE",
   "director": "James Watkins",
-  "cast": "Tom Rhys Harries, Naomi Ackie, Max Minghella",
+  "cast": "Tom Rhys Harries, Naomi Ackie, Eddie Marsan",
   "genre": "Epouvante-horreur",
   "country": "",
   "duration_min": 109,
-  "poster": "https://www.ugc.fr/dynamique/films/90/17490/fr/poster/large/98f14da258dd56c0ff1bcb12a4929e85_grey_22.jpg",
+  "poster": "https://www.ugc.fr/dynamique/films/90/17490/fr/poster/large/98f14da258dd56c0ff1bcb12a4929e85_grey_23.jpg",
   "trailer": "",
   "storyline": "Star hollywoodienne en pleine ascension, Matt Hagen se retrouve atrocement défiguré par un baron du crime. Il se tourne vers un traitement expérimental qui lui rend miraculeusement son apparence… mais altère profondément sa perception de la réalité."
  },
@@ -75,11 +75,11 @@
   "key": "le-roi-du-game|eric-judor",
   "title": "LE ROI DU GAME",
   "director": "Eric Judor",
-  "cast": "Eric Judor, Alexandra Lamy, Marc Labreche",
+  "cast": "Eric Judor, Alexandra Lamy, Hafid F. Benamar",
   "genre": "Comédie",
   "country": "",
   "duration_min": 89,
-  "poster": "https://www.ugc.fr/dynamique/films/76/18176/fr/poster/large/211184243b4ab7c37127ace9ced2e939_grey_11.jpg",
+  "poster": "https://www.ugc.fr/dynamique/films/76/18176/fr/poster/large/211184243b4ab7c37127ace9ced2e939_grey_12.jpg",
   "trailer": "",
   "storyline": "Alexandre est prêt à tout pour renouer avec sa fille. Quitte à infiltrer une équipe de bras cassés dans un univers de jeu médiéval-fantastique. Cette quête improbable pourrait bien le ramener à ses propres rêves oubliés..."
  },
@@ -131,17 +131,41 @@
   "trailer": "",
   "storyline": "Juin 1940. La France s'effondre et signe l’armistice. Au milieu du chaos, un homme refuse de céder. Seul contre tous, ce général inconnu s'échappe vers Londres pour sauver ce qu'il reste d'un rêve : la liberté."
  },
+ "de-la-comedie-francaise|martin-darondeau-bertrand-usclat": {
+  "key": "de-la-comedie-francaise|martin-darondeau-bertrand-usclat",
+  "title": "DE LA COMÉDIE-FRANCAISE",
+  "director": "Martin Darondeau, Bertrand Usclat",
+  "cast": "Pauline Clément, Laurent Stocker, Julien Frison",
+  "genre": "Comédie",
+  "country": "",
+  "duration_min": 75,
+  "poster": "https://www.ugc.fr/dynamique/films/27/17927/fr/poster/large/9c4daa6e94f7107c83f7d732700c44a0_grey_27.jpg",
+  "trailer": "",
+  "storyline": "Dans 3 heures, Nina dévoile sa première mise en scène à la Comédie-Française. Mais dans l’agitation des dernières répétitions, rien ne se passe comme prévu : retards, coups de stress, problèmes techniques et problèmes d’égo secouent la troupe. Pourtant, Nina n’a pas d’autre choix que d’aller jusqu’au bout car s’il y a bien une règle d’or à la Comédie-Française, c’est qu’on n’annule pas. Commence alors une course contre la montre pour sauver la représentation."
+ },
  "le-corset|louis-clichy": {
   "key": "le-corset|louis-clichy",
   "title": "LE CORSET",
   "director": "Louis Clichy",
   "cast": "",
-  "genre": "Animation",
+  "genre": "Famille",
   "country": "",
   "duration_min": 91,
-  "poster": "https://www.ugc.fr/dynamique/films/47/17747/fr/poster/large/a796a67caa5bdab1508d9207abaf5284_grey_30.jpg",
+  "poster": "https://www.ugc.fr/dynamique/films/47/17747/fr/poster/large/a796a67caa5bdab1508d9207abaf5284_grey_31.jpg",
   "trailer": "",
   "storyline": "Dans une ferme au cœur de la Beauce, Christophe, 11 ans, règle ses pas sur ceux de son père. Mais à l’école, à la maison, sur le tracteur, Christophe penche... et tombe. Il est obligé de porter un corset pour filer droit."
+ },
+ "la-bataille-de-gaulle-partie-2-j-ecris-ton-nom|antonin-baudry": {
+  "key": "la-bataille-de-gaulle-partie-2-j-ecris-ton-nom|antonin-baudry",
+  "title": "LA BATAILLE DE GAULLE - PARTIE 2 : J'ÉCRIS TON NOM",
+  "director": "Antonin Baudry",
+  "cast": "Simon Abkarian, Niels Schneider, Anamaria Vartolomei",
+  "genre": "Thriller",
+  "country": "",
+  "duration_min": 160,
+  "poster": "https://www.ugc.fr/dynamique/films/77/17877/fr/poster/large/feaf214ef84e96e437f8c65e7c540e86_grey_32.jpg",
+  "trailer": "",
+  "storyline": "Juin 1940. La France s'effondre et signe l’armistice. Au milieu du chaos, un homme refuse de céder. Seul contre tous, ce général inconnu s'échappe vers Londres pour sauver ce qu'il reste d'un rêve : la liberté."
  },
  "garance|jeanne-herry": {
   "key": "garance|jeanne-herry",
@@ -191,6 +215,18 @@
   "trailer": "",
   "storyline": "Russie, 2022. Gleb, chef d’entreprise prospère, vit avec sa femme Galina et leur fils dans une ville de province. Il se retrouve confronté à des problèmes professionnels croissants, dans un monde de plus en plus instable."
  },
+ "quelques-mots-d-amour|rudi-rosenberg": {
+  "key": "quelques-mots-d-amour|rudi-rosenberg",
+  "title": "QUELQUES MOTS D'AMOUR",
+  "director": "Rudi Rosenberg",
+  "cast": "Hafsia Herzi, Nour Salam, Ella Bedoucha",
+  "genre": "Comédie Dramatique",
+  "country": "",
+  "duration_min": 98,
+  "poster": "https://www.ugc.fr/dynamique/films/77/18177/fr/poster/large/d2e423fe953024eca9f0ebb7b2552db2_grey_20.jpg",
+  "trailer": "",
+  "storyline": "Sarcelles, 1995. Erika élève seule ses deux enfants. Sa fille Abigaëlle se persuade que son père, qu’elle n’a jamais connu, l’aime en silence quelque part. Lorsqu’elle se met en tête de le retrouver, Erika se sent obligée de l’aider, tout en cherchant à la protéger. En grandissant, la quête d’Abigaëlle se transforme en obsession, entraînant avec elle sa mère, sa meilleure amie, et tous ceux qui comptent."
+ },
  "l-espece-explosive|sarah-arnold": {
   "key": "l-espece-explosive|sarah-arnold",
   "title": "L'ESPECE EXPLOSIVE",
@@ -214,6 +250,18 @@
   "poster": "https://www.ugc.fr/dynamique/films/73/18173/fr/poster/large/b7acc48dac20e8329866a199e0ff78e8_grey_23.jpg",
   "trailer": "",
   "storyline": "Septembre 1940, le régime de Pétain se met en place. Henri Marre, 49 ans, débarque à Vichy sans le sou, sans contact, loin de sa femme et ses enfants. Il voit dans la nouvelle administration l’opportunité de trouver enfin la place qu’il mérite. Dans sa valise, son traité politique édité à compte d’auteur, Notre Salut, où il défend ses convictions patriotiques et ses méthodes d'ingénieur. Son credo : « gagner en efficacité » pour relever la France de la débâcle. Mais peut-être qu’Henri cherche avant tout à fuir sa propre débâcle…"
+ },
+ "obsession|curry-barker": {
+  "key": "obsession|curry-barker",
+  "title": "OBSESSION",
+  "director": "Curry Barker",
+  "cast": "Michael Johnston (II), Inde Navarrette, Cooper Tomlinson",
+  "genre": "Epouvante-horreur",
+  "country": "",
+  "duration_min": 109,
+  "poster": "https://www.ugc.fr/dynamique/films/28/17828/fr/poster/large/3b9ac2364ab0b1c5ffb90ac7cb56e78a_grey_27.jpg",
+  "trailer": "",
+  "storyline": "Et si vous pouviez réaliser votre rêve le plus fou ? Un jeune introverti met la main sur un objet magique capable d’exaucer n’importe quel souhait. Son crush de toujours tombe alors raide dingue de lui… jusqu’à l’obsession la plus totale. Faites attention à ce que vous souhaitez !"
  },
  "resident-evil|zach-cregger": {
   "key": "resident-evil|zach-cregger",
@@ -295,7 +343,7 @@
   "genre": "Thriller",
   "country": "",
   "duration_min": 106,
-  "poster": "https://www.ugc.fr/dynamique/films/48/17548/fr/poster/large/3173f450f63ac497176b4d6c8fd08ea0_grey_11.jpg",
+  "poster": "https://www.ugc.fr/dynamique/films/48/17548/fr/poster/large/3173f450f63ac497176b4d6c8fd08ea0_grey_12.jpg",
   "trailer": "",
   "storyline": "Au large de la côte californienne, Jay Gardiner part à la recherche de la dépouille de son père récemment disparu. Alors qu’il sonde les fonds marins, le jeune plongeur se retrouve soudainement avalé par un énorme cachalot."
  },
@@ -310,18 +358,6 @@
   "poster": "https://www.ugc.fr/dynamique/films/58/17858/fr/poster/large/cc222386da3f11bb9ae1dae2d1bc65bd_grey_12.jpg",
   "trailer": "",
   "storyline": "Dans une cité, une tour abandonnée alimente les rumeurs. Alors que des disparitions étranges s'enchaînent, 5 jeunes n’ont plus le choix : y entrer à nouveau. Pris dans un piège mortel, ils vont bientôt comprendre que s'échapper leur sera impossible…"
- },
- "les-diables|ken-russell": {
-  "key": "les-diables|ken-russell",
-  "title": "LES DIABLES",
-  "director": "Ken Russell",
-  "cast": "Vanessa Redgrave, Oliver Reed, Michael Gothard",
-  "genre": "Epouvante-horreur",
-  "country": "",
-  "duration_min": 115,
-  "poster": "https://www.ugc.fr/dynamique/films/14/18514/fr/poster/large/0d4f80be79d8f26ce29017c0063fde0f_grey_8.jpg",
-  "trailer": "",
-  "storyline": "Un récit historique dramatisé sur l’ascension et la chute d’Urbain Grandier, un prêtre catholique romain du XVIIe siècle accusé de sorcellerie à la suite des prétendues possessions de Loudun, en France."
  },
  "leviticus|adrian-chiarella": {
   "key": "leviticus|adrian-chiarella",
@@ -347,6 +383,18 @@
   "trailer": "",
   "storyline": "MALFAISANTE nous entraine dans l’univers de la très jeune Bela, dont le quotidien se détériore de jour en jour en raison de la relation qu’elle entretient, au cœur de sa propre maison, avec une entité malveillante qui ressemble étrangement à sa propre mère."
  },
+ "mylene-farmer-egregore-l-avant-premiere|francois-hanss": {
+  "key": "mylene-farmer-egregore-l-avant-premiere|francois-hanss",
+  "title": "MYLENE FARMER EGREGORE L'AVANT-PREMIERE",
+  "director": "François Hanss",
+  "cast": "",
+  "genre": "",
+  "country": "",
+  "duration_min": 67,
+  "poster": "https://www.ugc.fr/dynamique/films/67/18467/fr/poster/large/2c3b6aef39460882e215ef39e08dac16_grey_5.jpg",
+  "trailer": "",
+  "storyline": "Soyez les premiers à vous immerger dans le nouvel album événement de Mylène Farmer, mis en images."
+ },
  "ni-vue-ni-connue|marc-fitoussi": {
   "key": "ni-vue-ni-connue|marc-fitoussi",
   "title": "NI VUE, NI CONNUE",
@@ -358,6 +406,18 @@
   "poster": "https://www.ugc.fr/dynamique/films/62/18062/fr/poster/large/04d24a4f7815a30efe7dd1202384832f_grey_15.jpg",
   "trailer": "",
   "storyline": "Corinne Maclou est figurante. Elle enchaîne les tournages avec l’espoir d’être remarquée et de décrocher enfin un vrai rôle. Lorsque son chemin croise celui de Sandrine Kiberlain et qu’une relation commence à se nouer entre les deux, Corinne espère concrétiser son rêve. Mais la célèbre actrice va-t-elle vraiment l’aider à se faire une place au sein de la grande famille du cinéma ?"
+ },
+ "ou-vont-les-ames|brigitte-poupart": {
+  "key": "ou-vont-les-ames|brigitte-poupart",
+  "title": "OU VONT LES AMES",
+  "director": "Brigitte Poupart",
+  "cast": "Monia Chokri, Sara Montpetit, Julianne Côté",
+  "genre": "Drame",
+  "country": "",
+  "duration_min": 121,
+  "poster": "https://www.ugc.fr/dynamique/films/12/18312/fr/poster/large/78bc6e9e21e675fc0f59e14cbf8c8c88_grey_10.jpg",
+  "trailer": "",
+  "storyline": "Anna, 18 ans, demande l’aide médicale à mourir. Elle décide de se laisser quinze jours pour accomplir son souhait de revoir ses demi-sœurs avant de s’éteindre. Séparées par le procès de leur père quatre ans auparavant, les trois sœurs révèlent leurs forces individuelles et collectives à travers ces ultimes moments de sororité où leurs vies s'entremêlent."
  },
  "street-fighter|kitao-sakurai": {
   "key": "street-fighter|kitao-sakurai",
@@ -395,53 +455,65 @@
   "trailer": "",
   "storyline": "Peinant à vivre de son métier, Lowen Ashleigh est une écrivaine qui accepte de devenir le prête-plume de l'autrice à succès Verity Crawford. Elle s'installe dans sa propriété, où elle est confrontée à des révélations inquiétantes concernant le mari de Verity."
  },
- "de-la-comedie-francaise|martin-darondeau-bertrand-usclat": {
-  "key": "de-la-comedie-francaise|martin-darondeau-bertrand-usclat",
-  "title": "DE LA COMÉDIE-FRANCAISE",
-  "director": "Martin Darondeau, Bertrand Usclat",
-  "cast": "Pauline Clément, Laurent Stocker, Julien Frison",
-  "genre": "Comédie",
+ "sanguine|marion-le-corroller": {
+  "key": "sanguine|marion-le-corroller",
+  "title": "SANGUINE",
+  "director": "Marion Le Corroller",
+  "cast": "Mara Taquin, Karin Viard, Kim Higelin",
+  "genre": "Epouvante-horreur",
   "country": "",
-  "duration_min": 75,
-  "poster": "https://www.ugc.fr/dynamique/films/27/17927/fr/poster/large/9c4daa6e94f7107c83f7d732700c44a0_grey_27.jpg",
+  "duration_min": 103,
+  "poster": "https://www.ugc.fr/dynamique/films/66/18466/fr/poster/large/cb93a3a86bd02e7b49e976435d28d3fb_grey_8.jpg",
   "trailer": "",
-  "storyline": "Dans 3 heures, Nina dévoile sa première mise en scène à la Comédie-Française. Mais dans l’agitation des dernières répétitions, rien ne se passe comme prévu : retards, coups de stress, problèmes techniques et problèmes d’égo secouent la troupe. Pourtant, Nina n’a pas d’autre choix que d’aller jusqu’au bout car s’il y a bien une règle d’or à la Comédie-Française, c’est qu’on n’annule pas. Commence alors une course contre la montre pour sauver la représentation."
+  "storyline": "Margot débute son internat aux urgences, où elle peine à s’adapter. Très vite, elle fait face à des patients de son âge aux symptômes inexpliqués. La récurrence de ces cas exceptionnels l’interroge, d’autant qu’elle observe, sur son propre corps, des manifestations de plus en plus inquiétantes…"
  },
- "ou-vont-les-ames|brigitte-poupart": {
-  "key": "ou-vont-les-ames|brigitte-poupart",
-  "title": "OU VONT LES AMES",
-  "director": "Brigitte Poupart",
-  "cast": "Monia Chokri, Sara Montpetit, Julianne Côté",
+ "moulin|laszlo-nemes": {
+  "key": "moulin|laszlo-nemes",
+  "title": "MOULIN",
+  "director": "László Nemes",
+  "cast": "Gilles Lellouche, Lars Eidinger, Louise Bourgoin",
   "genre": "Drame",
   "country": "",
-  "duration_min": 121,
-  "poster": "https://www.ugc.fr/dynamique/films/12/18312/fr/poster/large/78bc6e9e21e675fc0f59e14cbf8c8c88_grey_10.jpg",
+  "duration_min": 134,
+  "poster": "https://www.ugc.fr/dynamique/films/61/18361/fr/poster/large/0f7fb216155bf7bcf7bb69d9e2f65310_grey_16.jpg",
   "trailer": "",
-  "storyline": "Anna, 18 ans, demande l’aide médicale à mourir. Elle décide de se laisser quinze jours pour accomplir son souhait de revoir ses demi-sœurs avant de s’éteindre. Séparées par le procès de leur père quatre ans auparavant, les trois sœurs révèlent leurs forces individuelles et collectives à travers ces ultimes moments de sororité où leurs vies s'entremêlent."
+  "storyline": "Juin 1943, Jean Moulin, chef de la Résistance, est arrêté alors qu'il tente de réunifier les forces de l’Armée Secrète. Interrogé par Klaus Barbie, le chef de la Gestapo de Lyon, Moulin est entraîné dans une confrontation implacable."
  },
- "la-bataille-de-gaulle-partie-2-j-ecris-ton-nom|antonin-baudry": {
-  "key": "la-bataille-de-gaulle-partie-2-j-ecris-ton-nom|antonin-baudry",
-  "title": "LA BATAILLE DE GAULLE - PARTIE 2 : J'ÉCRIS TON NOM",
-  "director": "Antonin Baudry",
-  "cast": "Simon Abkarian, Niels Schneider, Anamaria Vartolomei",
-  "genre": "Thriller",
-  "country": "",
-  "duration_min": 160,
-  "poster": "https://www.ugc.fr/dynamique/films/77/17877/fr/poster/large/feaf214ef84e96e437f8c65e7c540e86_grey_32.jpg",
-  "trailer": "",
-  "storyline": "Juin 1940. La France s'effondre et signe l’armistice. Au milieu du chaos, un homme refuse de céder. Seul contre tous, ce général inconnu s'échappe vers Londres pour sauver ce qu'il reste d'un rêve : la liberté."
- },
- "hunger-games-la-revolte-partie-1|francis-lawrence": {
-  "key": "hunger-games-la-revolte-partie-1|francis-lawrence",
-  "title": "HUNGER GAMES - LA REVOLTE : PARTIE 1",
-  "director": "Francis Lawrence",
-  "cast": "Jennifer Lawrence, Josh Hutcherson, Liam Hemsworth",
+ "hope|na-hong-jin": {
+  "key": "hope|na-hong-jin",
+  "title": "HOPE",
+  "director": "Na Hong-jin",
+  "cast": "Jung-Min Hwang, In-sung Zo, Jung Ho-Yeon",
   "genre": "Action",
   "country": "",
-  "duration_min": 123,
-  "poster": "https://www.ugc.fr/dynamique/films/99/10299/fr/poster/large/595e2c4249c13746be04d6f3f2b452e9_grey_12.jpg",
+  "duration_min": 157,
+  "poster": "https://www.ugc.fr/dynamique/films/37/18237/fr/poster/large/37eb88a0ce51e0295cac6fca4884a609_grey_23.jpg",
   "trailer": "",
-  "storyline": "Katniss Everdeen s'est réfugiée dans le District 13 après avoir détruit à jamais l'arène et les Jeux. Sous le commandement de la Présidente Coin, chef du district, et suivant les conseils de ses amis en qui elle a toute confiance, Katniss déploie ses ailes pour devenir le symbole de la rébellion. Elle va se battre pour sauver Peeta et libérer le pays tout entier, à qui son courage a redonné espoir."
+  "storyline": "Au poste de police de Hope, Bum-seok et Sung-ae se démènent pour défendre leur village à la population vieillissante. Pendant ce temps, Sung-ki et ses amis partent à la poursuite de la bête dans la montagne mais se retrouvent eux-mêmes pris pour cible."
+ },
+ "les-diables|ken-russell": {
+  "key": "les-diables|ken-russell",
+  "title": "LES DIABLES",
+  "director": "Ken Russell",
+  "cast": "Vanessa Redgrave, Oliver Reed, Michael Gothard",
+  "genre": "Epouvante-horreur",
+  "country": "",
+  "duration_min": 115,
+  "poster": "https://www.ugc.fr/dynamique/films/14/18514/fr/poster/large/0d4f80be79d8f26ce29017c0063fde0f_grey_8.jpg",
+  "trailer": "",
+  "storyline": "Un récit historique dramatisé sur l’ascension et la chute d’Urbain Grandier, un prêtre catholique romain du XVIIe siècle accusé de sorcellerie à la suite des prétendues possessions de Loudun, en France."
+ },
+ "le-fantome-de-l-opera|alexandre-castagnetti": {
+  "key": "le-fantome-de-l-opera|alexandre-castagnetti",
+  "title": "LE FANTOME DE L'OPERA",
+  "director": "Alexandre Castagnetti",
+  "cast": "Deva Cassel, Julien De Saint-Jean, Romain Duris",
+  "genre": "Romance",
+  "country": "",
+  "duration_min": 134,
+  "poster": "https://www.ugc.fr/dynamique/films/92/17492/fr/poster/large/9e85825c32a9d2be8135074c9e45c870_grey_16.jpg",
+  "trailer": "",
+  "storyline": "Dans le Paris d'aujourd'hui, Anastasia, jeune danseuse, intègre le prestigieux Opéra de Paris. Alors qu’elle répète l'Orpheus, un opéra maudit qui aurait été composé par le Fantôme de l'Opéra, elle tombe amoureuse d'un mystérieux pianiste."
  },
  "papa-ou-t-es|basile-monnot-samy-bouyssie": {
   "key": "papa-ou-t-es|basile-monnot-samy-bouyssie",
@@ -451,21 +523,33 @@
   "genre": "Documentaire",
   "country": "",
   "duration_min": 101,
-  "poster": "https://www.ugc.fr/dynamique/films/29/18529/fr/poster/large/2d5be7939e2b342391de951db5694ca7_grey_10.jpg",
+  "poster": "https://www.ugc.fr/dynamique/films/29/18529/fr/poster/large/2d5be7939e2b342391de951db5694ca7_grey_11.jpg",
   "trailer": "",
   "storyline": "À 27 ans, Nicolas n’a presque aucun souvenir de son enfance et n’a jamais connu son père. Séparé de sa mère à l’âge de trois ans, il a grandi placé entre familles d’accueil et foyers. Décidé à retrouver ce père qui l’a abandonné à la naissance, Nicolas récupère son dossier de l’Aide sociale à l’enfance et se lance sur sa trace. Une enquête qui va le mener jusqu’au Sénégal, à la rencontre de sa famille et d’une histoire qu’il connaît à peine."
  },
- "mylene-farmer-egregore-l-avant-premiere|francois-hanss": {
-  "key": "mylene-farmer-egregore-l-avant-premiere|francois-hanss",
-  "title": "MYLENE FARMER EGREGORE L'AVANT-PREMIERE",
-  "director": "François Hanss",
+ "le-mystere-lucy-lost|olivier-clert": {
+  "key": "le-mystere-lucy-lost|olivier-clert",
+  "title": "LE MYSTERE LUCY LOST",
+  "director": "Olivier Clert",
   "cast": "",
-  "genre": "",
+  "genre": "Famille",
   "country": "",
-  "duration_min": 67,
-  "poster": "https://www.ugc.fr/dynamique/films/67/18467/fr/poster/large/2c3b6aef39460882e215ef39e08dac16_grey_5.jpg",
+  "duration_min": 89,
+  "poster": "https://www.ugc.fr/dynamique/films/56/18156/fr/poster/large/378b27edb6f6e4af9118a32aa23bce23_grey_19.jpg",
   "trailer": "",
-  "storyline": "Soyez les premiers à vous immerger dans le nouvel album événement de Mylène Farmer, mis en images."
+  "storyline": "Lucy vit avec sa famille dans un village sur une petite île isolée. Ses dons extraordinaires suscitent le rejet des habitants. Lorsqu'elle rencontre Milly - une petite fille qu'elle seule peut voir - Lucy embarque dans une grande aventure pour percer le secret de ses mystérieux pouvoirs."
+ },
+ "la-main|danny-philippou-michael-philippou": {
+  "key": "la-main|danny-philippou-michael-philippou",
+  "title": "LA MAIN",
+  "director": "Danny Philippou, Michael Philippou",
+  "cast": "Ari McCarthy, Hamish Phillips, Sunny Johnson",
+  "genre": "Epouvante-horreur",
+  "country": "",
+  "duration_min": 95,
+  "poster": "https://www.ugc.fr/dynamique/films/93/15393/fr/poster/large/4453176_grey_15.jpg",
+  "trailer": "",
+  "storyline": "Un groupe d'adolescents découvre une main momifiée qui leur permet de communiquer avec des esprits, mais l'expérience se retourne rapidement contre eux."
  },
  "hunger-games-la-revolte-partie-2|francis-lawrence": {
   "key": "hunger-games-la-revolte-partie-2|francis-lawrence",
@@ -479,6 +563,114 @@
   "trailer": "",
   "storyline": "Alors que Panem est ravagé par une guerre désormais totale, Katniss et le Président Snow vont s'affronter pour la dernière fois. Katniss et ses plus proches amis  Gale, Finnick et Peeta  sont envoyés en mission pour le District 13 : ils vont risquer leur vie pour tenter d'assassiner le Président Snow, qui s'est juré de détruire Katniss. Les pièges mortels, les ennemis et les choix déchirants qui attendent Katniss seront des épreuves bien pires que tout ce qu'elle a déjà pu affronter dans l'arène..."
  },
+ "les-elephants-dans-la-brume|": {
+  "key": "les-elephants-dans-la-brume|",
+  "title": "LES ELEPHANTS DANS LA BRUME",
+  "director": "",
+  "cast": "Pushpa Thing Lama, Deepika Yadav, Jasmin Bishwokarma",
+  "genre": "",
+  "country": "",
+  "duration_min": 108,
+  "poster": "https://www.ugc.fr/dynamique/films/91/18191/fr/poster/large/c68b734900692f28587dbb78cb8c7d31_grey_9.jpg",
+  "trailer": "",
+  "storyline": "Dans un village népalais niché au cœur d'une forêt peuplée d'éléphants sauvages vit une communauté kinnar aussi vénérée que crainte pour ses pouvoirs de bénédiction et de malédiction. Pirati, l'une des mères de la communauté, rêve de s'échapper avec l'homme qu'elle aime. Mais lorsqu'une de ses filles disparaît, elle se doit mener l'enquête et choisir entre son désir de liberté et ses responsabilités envers sa communauté."
+ },
+ "karaoke-murder|le-hoang": {
+  "key": "karaoke-murder|le-hoang",
+  "title": "KARAOKE MURDER",
+  "director": "Le Hoang",
+  "cast": "Đoàn Thiên Ân, Dai Nghia, Vân Dung",
+  "genre": "Policier",
+  "country": "",
+  "duration_min": 96,
+  "poster": "https://www.ugc.fr/dynamique/films/27/18627/fr/poster/large/290d4769ac645eb60211e44b9a8d154b_grey_1.jpg",
+  "trailer": "",
+  "storyline": "Lors d’un pèlerinage en montagne avec un groupe de voisins, une ancienne journaliste se voit contrainte de renouer avec ses réflexes d’enquêtrice lorsqu’un magnat détesté — qui vouait une passion obsessionnelle au karaoké — est réduit au silence, en pleine nuit."
+ },
+ "l-affaire-marie-claire|lauriane-escaffre-yvo-muller": {
+  "key": "l-affaire-marie-claire|lauriane-escaffre-yvo-muller",
+  "title": "L'AFFAIRE MARIE-CLAIRE",
+  "director": "Lauriane Escaffre, Yvo Muller",
+  "cast": "Charlotte Gainsbourg, Cécile de France, Grégory Gadebois",
+  "genre": "Judiciaire",
+  "country": "",
+  "duration_min": 102,
+  "poster": "https://www.ugc.fr/dynamique/films/67/17967/fr/poster/large/4a3cf95bb345d5d71bdc7acf3430323b_grey_13.jpg",
+  "trailer": "",
+  "storyline": "Novembre 1972. Au tribunal de Bobigny, un procès hors norme secoue la France entière. Marie-Claire Chevalier, 16 ans, est accusée d’avoir avorté illégalement. À la barre, sa mère et toutes les femmes qui l’ont aidée. Leur avocate, Gisèle Halimi, fait un pari fou, insensé : elle leur demande de ne pas plaider coupable. Gisèle va faire ce qui n’a jamais été fait auparavant, elle va accuser et attaquer la loi, au risque de tout perdre."
+ },
+ "les-yeux-verts|fanny-liatard-jeremy-trouilh": {
+  "key": "les-yeux-verts|fanny-liatard-jeremy-trouilh",
+  "title": "LES YEUX VERTS",
+  "director": "Fanny Liatard, Jérémy Trouilh",
+  "cast": "Anamaria Vartolomei, Sayyid El Alami, Douae Butarbuch Mzaouki",
+  "genre": "Drame",
+  "country": "",
+  "duration_min": 83,
+  "poster": "https://www.ugc.fr/dynamique/films/59/18259/fr/poster/large/8601759cd1a3d711410025558f077884_grey_9.jpg",
+  "trailer": "",
+  "storyline": "Chaya, 11 ans, vit avec sa famille dans les Landes, au bord de l’océan. A l’annonce de leur expulsion, son grand frère Nour sombre dans un sommeil profond et mystérieux. Chaya va tout faire pour le réveiller, jusqu’à plonger dans ses rêves pour le retrouver."
+ },
+ "ma-toute-petite-ecole|pascal-plisson": {
+  "key": "ma-toute-petite-ecole|pascal-plisson",
+  "title": "MA TOUTE PETITE ECOLE",
+  "director": "Pascal Plisson",
+  "cast": "",
+  "genre": "Documentaire",
+  "country": "",
+  "duration_min": 60,
+  "poster": "https://www.ugc.fr/dynamique/films/91/18091/fr/poster/large/54a7b09464573f6df8a94e9ca2cd629e_grey_9.jpg",
+  "trailer": "",
+  "storyline": "Nichée à 1 600 mètres d’altitude dans le minuscule hameau de La Gurraz (35 habitants), en Haute Tarentaise, se trouve la plus petite école de France : huit élèves, de la maternelle au CM2, un seul lieu de savoir et de vie. Le film s’invite dans la vie de ces enfants, de leur unique enseignante et de leurs familles qui, chaque année, font face à la même question : faute d’un nombre suffisant d’élèves, l’école fermera-t-elle ?"
+ },
+ "wild-horse-nine|martin-mcdonagh": {
+  "key": "wild-horse-nine|martin-mcdonagh",
+  "title": "WILD HORSE NINE",
+  "director": "Martin McDonagh",
+  "cast": "Sam Rockwell, John Malkovich, Steve Buscemi",
+  "genre": "Thriller",
+  "country": "",
+  "duration_min": 119,
+  "poster": "https://www.ugc.fr/dynamique/films/24/18024/fr/poster/large/192c21b88207a32bb9c1a043c51f053b_grey_23.jpg",
+  "trailer": "",
+  "storyline": "Peu avant le coup d'État chilien de 1973, deux agents de la CIA, Chris et Lee, sont envoyés de Santiago vers l'île de Pâques par leur supérieur, MJ. Au milieu des statues emblématiques de l'île, tandis que ces partenaires de longue date sont confrontés à leur sombre passé et aux complots en cours, Chris noue une relation avec deux étudiantes rebelles qui menace de faire basculer dans le chaos leur séjour dans ce paradis isolé…"
+ },
+ "godzilla-minus-zero|takashi-yamazaki": {
+  "key": "godzilla-minus-zero|takashi-yamazaki",
+  "title": "GODZILLA MINUS ZERO",
+  "director": "Takashi Yamazaki",
+  "cast": "Ryûnosuke Kamiki, Minami Hamabe, Yamada Yuki",
+  "genre": "Science Fiction",
+  "country": "",
+  "duration_min": 135,
+  "poster": "https://www.ugc.fr/dynamique/films/86/18386/fr/poster/large/625799426a89e53445b5fb0b842cd241_grey_6.jpg",
+  "trailer": "",
+  "storyline": "Japon après la Seconde Guerre mondiale, Shikishima Koichi, un ancien pilote kamikaze survit à une rencontre avec Godzilla et souffre de symptômes de stress post-traumatique. Lorsque la créature réapparaît des années plus tard, un groupe de soldats et de vétérans doit s'unir pour vaincre le monstre avant qu'il ne puisse détruire le Japon."
+ },
+ "safe|todd-haynes": {
+  "key": "safe|todd-haynes",
+  "title": "SAFE",
+  "director": "Todd Haynes",
+  "cast": "Julianne Moore, Xander Berkeley, Peter Freidman",
+  "genre": "Drame",
+  "country": "",
+  "duration_min": 119,
+  "poster": "https://www.ugc.fr/dynamique/films/61/4961/fr/poster/large/1dfed9d7867585bb7dd807c63d9382a4_grey_5.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "infirmary|nicholas-pineda": {
+  "key": "infirmary|nicholas-pineda",
+  "title": "INFIRMARY",
+  "director": "Nicholas Pineda",
+  "cast": "Paul Syre, Mark Anthony Williams, Danielle Kennedy",
+  "genre": "Epouvante-horreur",
+  "country": "",
+  "duration_min": 86,
+  "poster": "https://www.ugc.fr/dynamique/films/07/18407/fr/poster/large/6597b4d07ce512c9eebe240fc67babd7_grey_4.jpg",
+  "trailer": "",
+  "storyline": "Un gardien a disparu lors de sa première nuit dans un ancien hôpital psychiatrique. Les images de vidéosurveillance montrent des incidents inexplicables qui continuent de déconcerter les enquêteurs."
+ },
  "hunger-games-la-ballade-du-serpent-et-de-l-oiseau-chanteur|francis-lawrence": {
   "key": "hunger-games-la-ballade-du-serpent-et-de-l-oiseau-chanteur|francis-lawrence",
   "title": "HUNGER GAMES: LA BALLADE DU SERPENT ET DE L'OISEAU CHANTEUR",
@@ -491,6 +683,18 @@
   "trailer": "",
   "storyline": "Le jeune Coriolanus est le dernier espoir de sa lignée, la famille Snow autrefois riche et fière est aujourd’hui tombée en disgrâce dans un Capitole d'après-guerre. À l’approche des 10ème HUNGER GAMES, il est assigné à contrecœur à être le mentor de Lucy Gray Baird, une tribut originaire du District 12."
  },
+ "the-irregular-at-magic-high-school-la-succession-des-yotsuba|jimmy-stone": {
+  "key": "the-irregular-at-magic-high-school-la-succession-des-yotsuba|jimmy-stone",
+  "title": "THE IRREGULAR AT MAGIC HIGH SCHOOL : LA SUCCESSION DES YOTSUBA",
+  "director": "Jimmy Stone",
+  "cast": "",
+  "genre": "Animation",
+  "country": "",
+  "duration_min": 103,
+  "poster": "https://www.ugc.fr/dynamique/films/23/18623/fr/poster/large/8f673152a7a36c7fbd84949dd05e8bf2_grey_0.jpg",
+  "trailer": "",
+  "storyline": "Le deuxième long-métrage de la franchise \"The Irregular at Magic High School\"."
+ },
  "george-michael-the-faith-tour|andy-morahan-david-austin": {
   "key": "george-michael-the-faith-tour|andy-morahan-david-austin",
   "title": "GEORGE MICHAEL: THE FAITH TOUR",
@@ -502,6 +706,102 @@
   "poster": "https://www.ugc.fr/dynamique/films/21/18521/fr/poster/large/12fe0f3e44f1496bc60393eaf07d35f8_grey_2.jpg",
   "trailer": "",
   "storyline": "Un long métrage restauré et remasterisé à partir d’images longtemps considérées comme perdues, tournées au célèbre Palais Omnisports de Paris-Bercy lors de l’étape européenne du Faith Tour en 1988."
+ },
+ "37-2-le-matin-l-integrale|jean-jacques-beineix": {
+  "key": "37-2-le-matin-l-integrale|jean-jacques-beineix",
+  "title": "37.2 LE MATIN - L'INTEGRALE",
+  "director": "Jean-Jacques Beineix",
+  "cast": "Béatrice Dalle, Jean-Hugues Anglade, Gérard Darmon",
+  "genre": "Drame",
+  "country": "",
+  "duration_min": 185,
+  "poster": "https://www.ugc.fr/dynamique/films/16/16/fr/poster/large/19048906_grey_0.jpg",
+  "trailer": "",
+  "storyline": "Zorg, trente-cinq ans, commence à avoir une certaine expérience de la vie, il est revenu de beaucoup de choses et s'apprête à souffler un peu. C'est ce moment que choisit Betty pour débarquer avec ses valises, son coeur en \"skai mauve\" et même pas un ticket de train..."
+ },
+ "le-labyrinthe-de-pan|guillermo-del-toro": {
+  "key": "le-labyrinthe-de-pan|guillermo-del-toro",
+  "title": "LE LABYRINTHE DE PAN",
+  "director": "Guillermo del Toro",
+  "cast": "Ivana Baquero, Sergi López, Doug Jones",
+  "genre": "Epouvante-horreur",
+  "country": "",
+  "duration_min": 120,
+  "poster": "https://www.ugc.fr/dynamique/films/73/6573/fr/poster/large/5ee8f38d01da95b81987fb6e5d92e7d0_grey_3723.jpg",
+  "trailer": "",
+  "storyline": "Au coeur de l'Espagne franquiste, une jeune fille rencontre une créature magique au centre d'un labyrinthe."
+ },
+ "marie-antoinette|sofia-coppola": {
+  "key": "marie-antoinette|sofia-coppola",
+  "title": "MARIE ANTOINETTE",
+  "director": "Sofia Coppola",
+  "cast": "Kirsten Dunst, Jason Schwartzman, Rip Torn",
+  "genre": "Biopic",
+  "country": "",
+  "duration_min": 123,
+  "poster": "https://www.ugc.fr/dynamique/films/93/6393/fr/poster/large/18612764_grey_2.jpg",
+  "trailer": "",
+  "storyline": "Évocation de la vie de la reine d'origine autrichienne, épouse mal-aimée de Louis XVI, guillotinée en 1793."
+ },
+ "si-tu-tends-l-oreille|yoshifumi-kondo": {
+  "key": "si-tu-tends-l-oreille|yoshifumi-kondo",
+  "title": "SI TU TENDS L'OREILLE",
+  "director": "Yoshifumi Kondo",
+  "cast": "Youko Honna, Keiju Kobayashi, Shigeru Tsuyuguchi",
+  "genre": "Romance",
+  "country": "",
+  "duration_min": 116,
+  "poster": "https://www.ugc.fr/dynamique/films/56/15656/fr/poster/large/f25038579f01cc4535859388b6048558_grey_14.jpg",
+  "trailer": "",
+  "storyline": "Shizuku, 14 ans, est une collégienne passionnée de lecture et de musique. Un jour, elle découvre qu’un mystérieux inconnu emprunte systématiquement les mêmes livres qu’elle à la bibliothèque. Intriguée, elle se lance à sa recherche et rencontre Seiji."
+ },
+ "mysterious-skin|gregg-araki": {
+  "key": "mysterious-skin|gregg-araki",
+  "title": "MYSTERIOUS SKIN",
+  "director": "Gregg Araki",
+  "cast": "Brady Corbet, Joseph Gordon-Levitt, Elisabeth Shue",
+  "genre": "Drame",
+  "country": "",
+  "duration_min": 99,
+  "poster": "https://www.ugc.fr/dynamique/films/04/18604/fr/poster/large/5461365bb260b6a43d115dc0fde2250e_grey_1.jpg",
+  "trailer": "",
+  "storyline": "À huit ans, Brian se réveille dans la cave de sa maison, le nez en sang, sans souvenir de ce qui lui est arrivé. Dix ans plus tard, convaincu d’avoir été enlevé par des extraterrestres, il tente de retrouver Neil, un garçon de son ancienne équipe de baseball devenu un jeune homme magnétique et insaisissable. Avec lui, Brian cherche à dénouer le mystère de leur enfance, qui les empêche encore de vivre."
+ },
+ "it-follows|david-robert-mitchell": {
+  "key": "it-follows|david-robert-mitchell",
+  "title": "IT FOLLOWS",
+  "director": "David Robert Mitchell",
+  "cast": "Maika Monroe, Keir Gilchrist, Daniel Zovatto",
+  "genre": "Epouvante-horreur",
+  "country": "",
+  "duration_min": 100,
+  "poster": "https://www.ugc.fr/dynamique/films/00/10400/fr/poster/large/424397_grey_7.jpg",
+  "trailer": "",
+  "storyline": "Après une expérience amoureuse apparemment anodine, Jay se retrouve confrontée à d'étranges visions. Elle est aussi convaincue que quelqu'un, ou quelque chose, la suit. Face à cette malédiction, Jay et ses amis doivent trouver un échappatoire aux horreurs qui ne semblent jamais loin derrière..."
+ },
+ "rocky|john-g-avildsen": {
+  "key": "rocky|john-g-avildsen",
+  "title": "ROCKY",
+  "director": "John G. Avildsen",
+  "cast": "Sylvester Stallone, Talia Shire, Burt Young",
+  "genre": "Drame",
+  "country": "",
+  "duration_min": 120,
+  "poster": "https://www.ugc.fr/dynamique/films/13/14213/fr/poster/large/4363069_grey_14.jpg",
+  "trailer": "",
+  "storyline": "Dans les quartiers populaires de Philadelphie, Rocky Balboa dispute de temps à autre, pour quelques dizaines de dollars, des combats de boxe sous l'appellation de \"l'étalon italien\". Cependant, Mickey, son vieil entraîneur, le laisse tomber. Pendant ce temps, Apollo Creed, le champion du monde de boxe catégorie poids lourd, recherche un nouvel adversaire pour remettre son titre en jeu. Son choix se portera sur Rocky."
+ },
+ "the-lighthouse|robert-eggers": {
+  "key": "the-lighthouse|robert-eggers",
+  "title": "THE LIGHTHOUSE",
+  "director": "Robert Eggers",
+  "cast": "Robert Pattinson, Willem Dafoe, Valeriia Karaman",
+  "genre": "Epouvante-horreur",
+  "country": "",
+  "duration_min": 110,
+  "poster": "https://www.ugc.fr/dynamique/films/40/13140/fr/poster/large/4915869_grey_45.jpg",
+  "trailer": "",
+  "storyline": "L'histoire hypnotique et hallucinatoire de deux gardiens de phare sur une île mystérieuse et reculée de Nouvelle-Angleterre dans les années 1890."
  },
  "dune-troisieme-partie|denis-villeneuve": {
   "key": "dune-troisieme-partie|denis-villeneuve",
@@ -539,78 +839,6 @@
   "trailer": "",
   "storyline": "Doraemon est un chat-robot bleu qui vient du futur. Il vit avec Nobita, un petit garçon maladroit, et ses parents. Grâce à ses gadgets secrets, Doraemon aide souvent Nobita à s’amuser ou à résoudre ses problèmes. Un été d’ennui, Doraemon propose à Nobita et leurs amis d’aller faire du camping sous la mer. En explorant les fonds marins, la bande découvre une épave et fait la rencontre des Thalassiens. C’est alors qu’une annonce très inquiétante survient : « Le Château sous-marin s’est réveillé ! ». Nobita et ses amis doivent se lancer dans une bataille qui décidera du sort de la Terre !"
  },
- "hope|na-hong-jin": {
-  "key": "hope|na-hong-jin",
-  "title": "HOPE",
-  "director": "Na Hong-jin",
-  "cast": "Jung-Min Hwang, In-sung Zo, Jung Ho-Yeon",
-  "genre": "Action",
-  "country": "",
-  "duration_min": 157,
-  "poster": "https://www.ugc.fr/dynamique/films/37/18237/fr/poster/large/38a2a671c24ae8b51364a08de550605c_grey_20.jpg",
-  "trailer": "",
-  "storyline": "Au poste de police de Hope, Bum-seok et Sung-ae se démènent pour défendre leur village à la population vieillissante. Pendant ce temps, Sung-ki et ses amis partent à la poursuite de la bête dans la montagne mais se retrouvent eux-mêmes pris pour cible."
- },
- "quelques-mots-d-amour|rudi-rosenberg": {
-  "key": "quelques-mots-d-amour|rudi-rosenberg",
-  "title": "QUELQUES MOTS D'AMOUR",
-  "director": "Rudi Rosenberg",
-  "cast": "Hafsia Herzi, Nour Salam, Ella Bedoucha",
-  "genre": "Comédie Dramatique",
-  "country": "",
-  "duration_min": 97,
-  "poster": "https://www.ugc.fr/dynamique/films/77/18177/fr/poster/large/d2e423fe953024eca9f0ebb7b2552db2_grey_17.jpg",
-  "trailer": "",
-  "storyline": "Sarcelles, 1995. Erika élève seule ses deux enfants. Sa fille Abigaëlle se persuade que son père, qu’elle n’a jamais connu, l’aime en silence quelque part. Lorsqu’elle se met en tête de le retrouver, Erika se sent obligée de l’aider, tout en cherchant à la protéger. En grandissant, la quête d’Abigaëlle se transforme en obsession, entraînant avec elle sa mère, sa meilleure amie, et tous ceux qui comptent."
- },
- "coco|lee-unkrich": {
-  "key": "coco|lee-unkrich",
-  "title": "COCO",
-  "director": "Lee Unkrich",
-  "cast": "",
-  "genre": "Famille",
-  "country": "",
-  "duration_min": 105,
-  "poster": "https://www.ugc.fr/dynamique/films/10/11910/fr/poster/large/0056825_grey_60.jpg",
-  "trailer": "",
-  "storyline": "Depuis déjà plusieurs générations, la musique est bannie dans la famille de Miguel. Un vrai déchirement pour le jeune garçon dont le rêve ultime est de devenir un musicien aussi accompli que son idole, Ernesto de la Cruz."
- },
- "bts-world-tour-arirang-in-buenos-aires-live-viewing|jungjae-ha": {
-  "key": "bts-world-tour-arirang-in-buenos-aires-live-viewing|jungjae-ha",
-  "title": "BTS WORLD TOUR ARIRANG IN BUENOS AIRES LIVE VIEWING",
-  "director": "Jungjae Ha",
-  "cast": "RM, Jin, Suga",
-  "genre": "Concert",
-  "country": "",
-  "duration_min": 165,
-  "poster": "https://www.ugc.fr/dynamique/films/23/18523/fr/poster/large/1185b03bdcff589b57a67f1ca3057aa2_grey_4.jpg",
-  "trailer": "",
-  "storyline": "BTS World Tour 'ARIRANG' In Buenos Aires : Diffusion en direct. La toute première diffusion en direct d’un concert de BTS depuis l’Amérique du Sud. Vivez le BTS WORLD TOUR 'ARIRANG' au cinéma partout dans le monde, en direct de Buenos Aires, en Argentine !"
- },
- "le-fantome-de-l-opera|alexandre-castagnetti": {
-  "key": "le-fantome-de-l-opera|alexandre-castagnetti",
-  "title": "LE FANTOME DE L'OPERA",
-  "director": "Alexandre Castagnetti",
-  "cast": "Deva Cassel, Julien De Saint-Jean, Romain Duris",
-  "genre": "Romance",
-  "country": "",
-  "duration_min": 134,
-  "poster": "https://www.ugc.fr/dynamique/films/92/17492/fr/poster/large/9e85825c32a9d2be8135074c9e45c870_grey_15.jpg",
-  "trailer": "",
-  "storyline": "Dans le Paris d'aujourd'hui, Anastasia, jeune danseuse, intègre le prestigieux Opéra de Paris. Alors qu’elle répète l'Orpheus, un opéra maudit qui aurait été composé par le Fantôme de l'Opéra, elle tombe amoureuse d'un mystérieux pianiste. A l’approche de la première représentation, entre accidents inexpliqués et révélations troublantes, Anastasia se trouve plongée dans une histoire d'amour impossible, à la frontière du réel et du fantastique."
- },
- "karaoke-murder|le-hoang": {
-  "key": "karaoke-murder|le-hoang",
-  "title": "KARAOKE MURDER",
-  "director": "Le Hoang",
-  "cast": "Đoàn Thiên Ân, Thanh Sơn, Vân Dung",
-  "genre": "Comédie",
-  "country": "",
-  "duration_min": 96,
-  "poster": "https://www.ugc.fr/dynamique/images/AfficheParDefaut/affiche-indisponible-fr.gif",
-  "trailer": "",
-  "storyline": "Lors d’un pèlerinage en montagne avec un groupe de voisins, une ancienne journaliste se voit contrainte de renouer avec ses réflexes d’enquêtrice lorsqu’un magnat détesté — qui vouait une passion obsessionnelle au karaoké — est réduit au silence, en pleine nuit."
- },
  "coraline|henry-selick": {
   "key": "coraline|henry-selick",
   "title": "CORALINE",
@@ -622,18 +850,6 @@
   "poster": "https://www.ugc.fr/dynamique/films/93/7793/fr/poster/large/0359631e56573f4ffb6c3614cfc95998_grey_10.jpg",
   "trailer": "",
   "storyline": "Coraline Jones est une fillette intrépide et douée d'une curiosité sans limites. Ses parents, qui ont tout juste emménagé avec elle dans une étrange maison, n'ont guère de temps à lui consacrer."
- },
- "la-main|danny-philippou-michael-philippou": {
-  "key": "la-main|danny-philippou-michael-philippou",
-  "title": "LA MAIN",
-  "director": "Danny Philippou, Michael Philippou",
-  "cast": "Ari McCarthy, Hamish Phillips, Sunny Johnson",
-  "genre": "Epouvante-horreur",
-  "country": "",
-  "duration_min": 95,
-  "poster": "https://www.ugc.fr/dynamique/films/93/15393/fr/poster/large/4453176_grey_15.jpg",
-  "trailer": "",
-  "storyline": "Un groupe d'adolescents découvre une main momifiée qui leur permet de communiquer avec des esprits, mais l'expérience se retourne rapidement contre eux."
  },
  "bts-world-tour-arirang-in-sao-paulo-live-viewing|jungjae-ha": {
   "key": "bts-world-tour-arirang-in-sao-paulo-live-viewing|jungjae-ha",
@@ -695,30 +911,6 @@
   "trailer": "",
   "storyline": "Retrouvez Peppa et toute sa famille au cinéma pour une grande fête de Noël pleine de surprises et d’aventures hivernales. Une sélection de nouveaux épisodes et d'épisodes incontournables de la série à découvrir avec vos proches !"
  },
- "godzilla-minus-zero|takashi-yamazaki": {
-  "key": "godzilla-minus-zero|takashi-yamazaki",
-  "title": "GODZILLA MINUS ZERO",
-  "director": "Takashi Yamazaki",
-  "cast": "Ryûnosuke Kamiki, Minami Hamabe, Yamada Yuki",
-  "genre": "Science Fiction",
-  "country": "",
-  "duration_min": 135,
-  "poster": "https://www.ugc.fr/dynamique/films/86/18386/fr/poster/large/625799426a89e53445b5fb0b842cd241_grey_6.jpg",
-  "trailer": "",
-  "storyline": "Japon après la Seconde Guerre mondiale, Shikishima Koichi, un ancien pilote kamikaze survit à une rencontre avec Godzilla et souffre de symptômes de stress post-traumatique. Lorsque la créature réapparaît des années plus tard, un groupe de soldats et de vétérans doit s'unir pour vaincre le monstre avant qu'il ne puisse détruire le Japon."
- },
- "safe|todd-haynes": {
-  "key": "safe|todd-haynes",
-  "title": "SAFE",
-  "director": "Todd Haynes",
-  "cast": "Julianne Moore, Xander Berkeley, Peter Freidman",
-  "genre": "Drame",
-  "country": "",
-  "duration_min": 119,
-  "poster": "https://www.ugc.fr/dynamique/films/61/4961/fr/poster/large/1dfed9d7867585bb7dd807c63d9382a4_grey_5.jpg",
-  "trailer": "",
-  "storyline": ""
- },
  "lorie-party-2026-au-cinema|tristan-carne": {
   "key": "lorie-party-2026-au-cinema|tristan-carne",
   "title": "LORIE PARTY 2026 AU CINEMA",
@@ -730,18 +922,6 @@
   "poster": "https://www.ugc.fr/dynamique/films/95/18295/fr/poster/large/f94ef029ebe995c277b481578b93a603_grey_1.jpg",
   "trailer": "",
   "storyline": "Lorie signe son grand retour sur scène avec la Lorie Party, le concert événement qui ravive toute l’énergie des années 2000 dans une ambiance euphorique et festive autour des hits « Près de moi », « Je serai (ta meilleure amie) », « Sur un air latino », « La Positive Attitude », « Week-end »…"
- },
- "infirmary|nicholas-pineda": {
-  "key": "infirmary|nicholas-pineda",
-  "title": "INFIRMARY",
-  "director": "Nicholas Pineda",
-  "cast": "Paul Syre, Mark Anthony Williams, Danielle Kennedy",
-  "genre": "Epouvante-horreur",
-  "country": "",
-  "duration_min": 86,
-  "poster": "https://www.ugc.fr/dynamique/films/07/18407/fr/poster/large/6597b4d07ce512c9eebe240fc67babd7_grey_4.jpg",
-  "trailer": "",
-  "storyline": "Un gardien a disparu lors de sa première nuit dans un ancien hôpital psychiatrique. Les images de vidéosurveillance montrent des incidents inexplicables qui continuent de déconcerter les enquêteurs."
  },
  "rammstein-live-in-mexico-city|paul-dugdale": {
   "key": "rammstein-live-in-mexico-city|paul-dugdale",
@@ -803,29 +983,17 @@
   "trailer": "",
   "storyline": "Le 10 novembre prochain, huit journalistes de la rédaction (Raphaëlle Bacqué, Valentine Faure, Alain Frachon, Michel Guerrin, Sylvie Kauffmann, Delphine Papin, Gilles Paris, Nabil Wakim) se succéderont sur scène pour proposer une édition spéciale du journal en public : « Quel monde après Trump ? »."
  },
- "37-2-le-matin-l-integrale|jean-jacques-beineix": {
-  "key": "37-2-le-matin-l-integrale|jean-jacques-beineix",
-  "title": "37.2 LE MATIN - L'INTEGRALE",
-  "director": "Jean-Jacques Beineix",
-  "cast": "Béatrice Dalle, Jean-Hugues Anglade, Gérard Darmon",
+ "la-petite-derniere|hafsia-herzi": {
+  "key": "la-petite-derniere|hafsia-herzi",
+  "title": "LA PETITE DERNIERE",
+  "director": "Hafsia Herzi",
+  "cast": "Nadia Melliti, Ji-Min Park, Amina Ben Mohamed",
   "genre": "Drame",
   "country": "",
-  "duration_min": 185,
-  "poster": "https://www.ugc.fr/dynamique/films/16/16/fr/poster/large/19048906_grey_0.jpg",
+  "duration_min": 108,
+  "poster": "https://www.ugc.fr/dynamique/films/97/17197/fr/poster/large/a8ac62466d0cbbbc64418e4f32e65b4b_grey_21.jpg",
   "trailer": "",
-  "storyline": "Zorg, trente-cinq ans, commence à avoir une certaine expérience de la vie, il est revenu de beaucoup de choses et s'apprête à souffler un peu. C'est ce moment que choisit Betty pour débarquer avec ses valises, son coeur en \"skai mauve\" et même pas un ticket de train..."
- },
- "le-labyrinthe-de-pan|guillermo-del-toro": {
-  "key": "le-labyrinthe-de-pan|guillermo-del-toro",
-  "title": "LE LABYRINTHE DE PAN",
-  "director": "Guillermo del Toro",
-  "cast": "Ivana Baquero, Sergi López, Doug Jones",
-  "genre": "Epouvante-horreur",
-  "country": "",
-  "duration_min": 120,
-  "poster": "https://www.ugc.fr/dynamique/films/73/6573/fr/poster/large/5ee8f38d01da95b81987fb6e5d92e7d0_grey_3723.jpg",
-  "trailer": "",
-  "storyline": "Au coeur de l'Espagne franquiste, une jeune fille rencontre une créature magique au centre d'un labyrinthe."
+  "storyline": "Fatima, 17 ans, est la petite dernière. Elle vit en banlieue avec ses sœurs, dans une famille joyeuse et aimante. Bonne élève, elle intègre une fac de philosophie à Paris et découvre un tout nouveau monde. Alors que débute sa vie de jeune femme, elle s’émancipe de sa famille et ses traditions. Fatima se met alors à questionner son identité. Comment concilier sa foi avec ses désirs naissants ?"
  },
  "league-of-legends-worlds-26-finals-in-cinema|": {
   "key": "league-of-legends-worlds-26-finals-in-cinema|",
@@ -863,42 +1031,6 @@
   "trailer": "",
   "storyline": "Né dans les plaines vierges de l'Ouest américain, aux premières années de la Conquête, l'étalon sauvage Spirit devient le chef de sa bande. Un soir, il rencontre l'Homme. Pris au lasso, livré à un colonel sadique, Spirit refuse de se laisser dompter..."
  },
- "marie-antoinette|sofia-coppola": {
-  "key": "marie-antoinette|sofia-coppola",
-  "title": "MARIE ANTOINETTE",
-  "director": "Sofia Coppola",
-  "cast": "Kirsten Dunst, Jason Schwartzman, Rip Torn",
-  "genre": "Biopic",
-  "country": "",
-  "duration_min": 123,
-  "poster": "https://www.ugc.fr/dynamique/films/93/6393/fr/poster/large/18612764_grey_2.jpg",
-  "trailer": "",
-  "storyline": "Évocation de la vie de la reine d'origine autrichienne, épouse mal-aimée de Louis XVI, guillotinée en 1793."
- },
- "si-tu-tends-l-oreille|yoshifumi-kondo": {
-  "key": "si-tu-tends-l-oreille|yoshifumi-kondo",
-  "title": "SI TU TENDS L'OREILLE",
-  "director": "Yoshifumi Kondo",
-  "cast": "Youko Honna, Keiju Kobayashi, Shigeru Tsuyuguchi",
-  "genre": "Romance",
-  "country": "",
-  "duration_min": 116,
-  "poster": "https://www.ugc.fr/dynamique/films/56/15656/fr/poster/large/f25038579f01cc4535859388b6048558_grey_12.jpg",
-  "trailer": "",
-  "storyline": "Shizuku, 14 ans, est une collégienne passionnée de lecture et de musique. Un jour, elle découvre qu’un mystérieux inconnu emprunte systématiquement les mêmes livres qu’elle à la bibliothèque. Intriguée, elle se lance à sa recherche et rencontre Seiji."
- },
- "enhypen-vr-concert-destiny|ji-ae-kim-belift-lab": {
-  "key": "enhypen-vr-concert-destiny|ji-ae-kim-belift-lab",
-  "title": "ENHYPEN VR CONCERT : DESTINY",
-  "director": "Ji-ae Kim, Belift Lab",
-  "cast": "",
-  "genre": "Musical",
-  "country": "",
-  "duration_min": 55,
-  "poster": "https://www.ugc.fr/dynamique/films/63/18563/fr/poster/large/e80f4338f6b73323ab3a074a6b758777_grey_0.jpg",
-  "trailer": "",
-  "storyline": "La nuit où une lune cramoisie se lève, les membres d’ENHYPEN se retrouvent face au destin qu’ils attendaient depuis si longtemps : ENGENE. De « Knife » et « Big Girls Don’t Cry » à « Criminal Love »,  Quelle fin attend cet amour, scellé par le sang ?  Votre histoire, face à un destin inéluctable, commence maintenant !"
- },
  "asterix-le-royaume-de-nubie|alexandre-heboyan": {
   "key": "asterix-le-royaume-de-nubie|alexandre-heboyan",
   "title": "ASTERIX - LE ROYAUME DE NUBIE",
@@ -923,42 +1055,6 @@
   "trailer": "",
   "storyline": ""
  },
- "mysterious-skin|gregg-araki": {
-  "key": "mysterious-skin|gregg-araki",
-  "title": "MYSTERIOUS SKIN",
-  "director": "Gregg Araki",
-  "cast": "Brady Corbet, Joseph Gordon-Levitt, Elisabeth Shue",
-  "genre": "Drame",
-  "country": "",
-  "duration_min": 99,
-  "poster": "https://www.ugc.fr/dynamique/films/04/18604/fr/poster/large/5461365bb260b6a43d115dc0fde2250e_grey_0.jpg",
-  "trailer": "",
-  "storyline": "À huit ans, Brian se réveille dans la cave de sa maison, le nez en sang, sans souvenir de ce qui lui est arrivé. Dix ans plus tard, convaincu d’avoir été enlevé par des extraterrestres, il tente de retrouver Neil, un garçon de son ancienne équipe de baseball devenu un jeune homme magnétique et insaisissable. Avec lui, Brian cherche à dénouer le mystère de leur enfance, qui les empêche encore de vivre."
- },
- "it-follows|david-robert-mitchell": {
-  "key": "it-follows|david-robert-mitchell",
-  "title": "IT FOLLOWS",
-  "director": "David Robert Mitchell",
-  "cast": "Maika Monroe, Keir Gilchrist, Daniel Zovatto",
-  "genre": "Epouvante-horreur",
-  "country": "",
-  "duration_min": 100,
-  "poster": "https://www.ugc.fr/dynamique/films/00/10400/fr/poster/large/424397_grey_7.jpg",
-  "trailer": "",
-  "storyline": "Après une expérience amoureuse apparemment anodine, Jay se retrouve confrontée à d'étranges visions. Elle est aussi convaincue que quelqu'un, ou quelque chose, la suit. Face à cette malédiction, Jay et ses amis doivent trouver un échappatoire aux horreurs qui ne semblent jamais loin derrière..."
- },
- "rocky|john-g-avildsen": {
-  "key": "rocky|john-g-avildsen",
-  "title": "ROCKY",
-  "director": "John G. Avildsen",
-  "cast": "Sylvester Stallone, Talia Shire, Burt Young",
-  "genre": "Drame",
-  "country": "",
-  "duration_min": 120,
-  "poster": "https://www.ugc.fr/dynamique/films/13/14213/fr/poster/large/4363069_grey_14.jpg",
-  "trailer": "",
-  "storyline": "Dans les quartiers populaires de Philadelphie, Rocky Balboa dispute de temps à autre, pour quelques dizaines de dollars, des combats de boxe sous l'appellation de \"l'étalon italien\". Cependant, Mickey, son vieil entraîneur, le laisse tomber. Pendant ce temps, Apollo Creed, le champion du monde de boxe catégorie poids lourd, recherche un nouvel adversaire pour remettre son titre en jeu. Son choix se portera sur Rocky."
- },
  "james-et-la-peche-geante|henry-selick": {
   "key": "james-et-la-peche-geante|henry-selick",
   "title": "JAMES ET LA PECHE GEANTE",
@@ -982,18 +1078,6 @@
   "poster": "https://www.ugc.fr/dynamique/films/73/18273/fr/poster/large/7fc475dc8b3ee11fb0ce11e533e368fe_grey_0.jpg",
   "trailer": "",
   "storyline": "Disgracié par la reine d’Espagne, Don Salluste veut se venger. Pour cela, il force son valet Ruy Blas à se faire passer pour un noble afin d’approcher la jeune reine. Secrètement amoureux d’elle, Ruy Blas accepte. Devenu homme de pouvoir, il met son intelligence au profit de l’Etat et veut en finir avec la corruption. Mais le plan machiavélique de Salluste se resserre…"
- },
- "the-lighthouse|robert-eggers": {
-  "key": "the-lighthouse|robert-eggers",
-  "title": "THE LIGHTHOUSE",
-  "director": "Robert Eggers",
-  "cast": "Robert Pattinson, Willem Dafoe, Valeriia Karaman",
-  "genre": "Epouvante-horreur",
-  "country": "",
-  "duration_min": 110,
-  "poster": "https://www.ugc.fr/dynamique/films/40/13140/fr/poster/large/4915869_grey_45.jpg",
-  "trailer": "",
-  "storyline": "L'histoire hypnotique et hallucinatoire de deux gardiens de phare sur une île mystérieuse et reculée de Nouvelle-Angleterre dans les années 1890."
  },
  "le-lac-des-cygnes-opera-de-paris|isabelle-julien": {
   "key": "le-lac-des-cygnes-opera-de-paris|isabelle-julien",
@@ -1123,7 +1207,7 @@
   "genre": "Science Fiction",
   "country": "",
   "duration_min": 156,
-  "poster": "https://www.ugc.fr/dynamique/films/46/14046/fr/poster/large/4633954_grey_36.jpg",
+  "poster": "https://www.ugc.fr/dynamique/films/46/14046/fr/poster/large/4633954_grey_38.jpg",
   "trailer": "",
   "storyline": "L'histoire de Paul Atreides, voué à connaître un destin hors du commun qui le dépasse totalement. Car s'il veut préserver l'avenir de sa famille et de son peuple, il devra se rendre sur la planète la plus dangereuse de l'univers."
  },
@@ -1231,21 +1315,33 @@
   "genre": "Romance",
   "country": "",
   "duration_min": 132,
-  "poster": "https://www.ugc.fr/dynamique/films/57/17857/fr/poster/large/25065d844cf983b62abba5f0ca2c1a64_grey_11.jpg",
+  "poster": "https://www.ugc.fr/dynamique/films/57/17857/fr/poster/large/25065d844cf983b62abba5f0ca2c1a64_grey_13.jpg",
   "trailer": "",
   "storyline": "Adaptation de Raison et sentiments de Jane Austen."
  },
- "le-monde-a-l-endroit|sylvie-meyer": {
-  "key": "le-monde-a-l-endroit|sylvie-meyer",
-  "title": "LE MONDE A L ENDROIT",
-  "director": "Sylvie Meyer",
-  "cast": "Isild Le Besco, Sandrine Bonnaire, Marianne Denicourt",
+ "gabin|maxence-voiseux": {
+  "key": "gabin|maxence-voiseux",
+  "title": "GABIN",
+  "director": "Maxence Voiseux",
+  "cast": "",
   "genre": "Documentaire",
   "country": "",
-  "duration_min": 88,
-  "poster": "https://www.ugc.fr/dynamique/films/17/18517/fr/poster/large/9eac1e0f025ec3b45db67212d01a5509_grey_5.jpg",
+  "duration_min": 105,
+  "poster": "https://www.ugc.fr/dynamique/films/58/18158/fr/poster/large/f4f9596241435673ee4b9e67ced5cbac_grey_7.jpg",
   "trailer": "",
-  "storyline": "Les blessures de l'enfance ne s'effacent pas, elles se réparent. Muriel Salmona, psychiatre de renom et spécialiste des violences sexuelles, consacre sa vie à soigner celles et ceux que l'enfance a brisés."
+  "storyline": "Dans le nord de la France, Gabin, le petit dernier de la famille Jourdel, est destiné à reprendre la boucherie de son père. Tiraillé entre loyauté familiale et envies d’échappées, il a d’autres rêves : dresser une vache de concours, devenir éleveur canin, sauver la ferme de sa mère de la faillite. GABIN nous plonge dans la vie de ce jeune garçon, de ses 8 à ses 18 ans."
+ },
+ "hunger-games-la-revolte-partie-1|francis-lawrence": {
+  "key": "hunger-games-la-revolte-partie-1|francis-lawrence",
+  "title": "HUNGER GAMES - LA REVOLTE : PARTIE 1",
+  "director": "Francis Lawrence",
+  "cast": "Jennifer Lawrence, Josh Hutcherson, Liam Hemsworth",
+  "genre": "Action",
+  "country": "",
+  "duration_min": 123,
+  "poster": "https://www.ugc.fr/dynamique/films/99/10299/fr/poster/large/595e2c4249c13746be04d6f3f2b452e9_grey_12.jpg",
+  "trailer": "",
+  "storyline": "Katniss Everdeen s'est réfugiée dans le District 13 après avoir détruit à jamais l'arène et les Jeux. Sous le commandement de la Présidente Coin, chef du district, et suivant les conseils de ses amis en qui elle a toute confiance, Katniss déploie ses ailes pour devenir le symbole de la rébellion. Elle va se battre pour sauver Peeta et libérer le pays tout entier, à qui son courage a redonné espoir."
  },
  "l-arabe-the-arab|malek-bensmail": {
   "key": "l-arabe-the-arab|malek-bensmail",
@@ -1307,6 +1403,18 @@
   "trailer": "",
   "storyline": "THE CALL suit une nouvelle génération d’athlètes extraordinaires répondant à l’appel de la nature : en quête de la ligne parfaite, du geste juste et de cet instant fugace où l’engagement, la maîtrise et les éléments ne font qu’un."
  },
+ "les-fils-de-l-homme|alfonso-cuaron": {
+  "key": "les-fils-de-l-homme|alfonso-cuaron",
+  "title": "LES FILS DE L'HOMME",
+  "director": "Alfonso Cuarón",
+  "cast": "Clive Owen, Clare-Hope Ashitey, Julianne Moore",
+  "genre": "Science Fiction",
+  "country": "",
+  "duration_min": 110,
+  "poster": "https://www.ugc.fr/dynamique/films/64/6564/fr/poster/large/18674404_grey_9.jpg",
+  "trailer": "",
+  "storyline": "Dans une société futuriste où les êtres humains ne parviennent plus à se reproduire, une femme tombe enceinte et devient par la même occasion la personne la plus enviée et la plus recherchée de la Terre. Un homme est chargé de sa protection..."
+ },
  "les-dents-de-la-mer|steven-spielberg": {
   "key": "les-dents-de-la-mer|steven-spielberg",
   "title": "LES DENTS DE LA MER",
@@ -1318,18 +1426,6 @@
   "poster": "https://www.ugc.fr/dynamique/films/92/10092/fr/poster/large/21024272_20130802174854374_grey_83.jpg",
   "trailer": "",
   "storyline": "Dans la station balnéaire d'Amityville, un requin géant frappe à plusieurs reprises. Soucieux d'une bonne saison touristique, le maire interdit au sherif Brody de fermer les plages. Une prime est offerte et le célèbre chasseur de requin Quint se lance avec Brody et l'ichtyologue Hooper à la poursuite du monstre..."
- },
- "jailer-2-tamoul|nelson-dilipkumar": {
-  "key": "jailer-2-tamoul|nelson-dilipkumar",
-  "title": "JAILER 2 - TAMOUL",
-  "director": "Nelson Dilipkumar",
-  "cast": "Rajinikanth, Vinayakan, Ramya Krishnan",
-  "genre": "Action",
-  "country": "",
-  "duration_min": 166,
-  "poster": "https://www.ugc.fr/dynamique/films/93/18593/fr/poster/large/1c6481bca3d73be819b4fbd6d9097406_grey_8.jpg",
-  "trailer": "",
-  "storyline": "Le redoutable ancien officier de police Muthuvel Pandian reprend du service lorsque sa vie paisible vole en éclats face à l’émergence d’une dangereuse organisation criminelle qui menace directement sa famille."
  },
  "la-pat-patrouille-le-film-mission-dino|cal-brunker": {
   "key": "la-pat-patrouille-le-film-mission-dino|cal-brunker",
@@ -1355,17 +1451,17 @@
   "trailer": "",
   "storyline": "\"Cars\" a pour héros quelques légendes de la route qui vont faire hurler de rire leur moteur sur la mythique route 66 qui traverse les Etats-Unis d'est en ouest..."
  },
- "malika|mounia-meddour": {
-  "key": "malika|mounia-meddour",
-  "title": "MALIKA",
-  "director": "Mounia Meddour",
-  "cast": "Lilya Adad, Camille Razat, Elsa Zylberstein",
-  "genre": "Biopic",
+ "jailer-2-tamoul|nelson-dilipkumar": {
+  "key": "jailer-2-tamoul|nelson-dilipkumar",
+  "title": "JAILER 2 - TAMOUL",
+  "director": "Nelson Dilipkumar",
+  "cast": "Rajinikanth, Vinayakan, Ramya Krishnan",
+  "genre": "Action",
   "country": "",
-  "duration_min": 90,
-  "poster": "https://www.ugc.fr/dynamique/films/20/18320/fr/poster/large/40755e7f3312dc2311b37a66bc94fe81_grey_6.jpg",
+  "duration_min": 166,
+  "poster": "https://www.ugc.fr/dynamique/films/93/18593/fr/poster/large/1c6481bca3d73be819b4fbd6d9097406_grey_8.jpg",
   "trailer": "",
-  "storyline": "L’incroyable histoire vraie de Malika Bellaribi, la « diva des banlieues » : du bidonville de Nanterre jusqu’aux plus grandes scènes de l’Opéra. Victime d’un grave accident à l’enfance, confrontée aux discriminations et à un drame intime, elle s’accroche à son rêve ambitieux : devenir mezzo-soprano."
+  "storyline": "Le redoutable ancien officier de police Muthuvel Pandian reprend du service lorsque sa vie paisible vole en éclats face à l’émergence d’une dangereuse organisation criminelle qui menace directement sa famille."
  },
  "insidious-l-invasion-du-lointain|jacob-chase": {
   "key": "insidious-l-invasion-du-lointain|jacob-chase",
@@ -1379,17 +1475,17 @@
   "trailer": "",
   "storyline": "Gemma, une jeune mère élève sa fille dans la maison de son enfance. Elle découvre qu'elle peut voyager dans le Lointain, ce royaume purgatoire des âmes perdues au cœur de l'univers d'Insidious. Lorsqu'une entité malveillante s'en prend à elle, Gemma révèle un pouvoir qui change tout : elle ne se contente pas d'entrer dans le Lointain, elle peut ramener dans le monde réel ce qui s'y trouve. Une fois que les démons prennent conscience de son pouvoir, notre monde devient alors leur terrain de jeu."
  },
- "ce-qui-nous-mene-a-toi|khalil-cherti": {
-  "key": "ce-qui-nous-mene-a-toi|khalil-cherti",
-  "title": "CE QUI NOUS MENE A TOI",
-  "director": "Khalil Cherti",
-  "cast": "Nina Meurisse, Sofian Khammes, Jeanne Balibar",
-  "genre": "Drame",
+ "malika|mounia-meddour": {
+  "key": "malika|mounia-meddour",
+  "title": "MALIKA",
+  "director": "Mounia Meddour",
+  "cast": "Lilya Adad, Camille Razat, Elsa Zylberstein",
+  "genre": "Biopic",
   "country": "",
-  "duration_min": 96,
-  "poster": "https://www.ugc.fr/dynamique/films/23/18223/fr/poster/large/0a18acf83e57e18b7826971f3720dfc4_grey_7.jpg",
+  "duration_min": 90,
+  "poster": "https://www.ugc.fr/dynamique/films/20/18320/fr/poster/large/40755e7f3312dc2311b37a66bc94fe81_grey_8.jpg",
   "trailer": "",
-  "storyline": "Charlie et Hicham, la trentaine, s’aiment follement mais ne parviennent pas à avoir d’enfant : leur couple est confronté à l’infécondité. Ils entament alors un parcours d’Aide Médicale à la Procréation. Pendant trois ans, entre espoirs et déceptions, ils vont mettre leur amour et leurs corps à l’épreuve, vivre une odyssée qui va les bouleverser…"
+  "storyline": "L’incroyable histoire vraie de Malika Bellaribi, la « diva des banlieues » : du bidonville de Nanterre jusqu’aux plus grandes scènes de l’Opéra. Victime d’un grave accident à l’enfance, confrontée aux discriminations et à un drame intime, elle s’accroche à son rêve ambitieux : devenir mezzo-soprano."
  },
  "toy-story-5|andrew-stanton-mckenna-harris": {
   "key": "toy-story-5|andrew-stanton-mckenna-harris",
@@ -1415,17 +1511,17 @@
   "trailer": "",
   "storyline": "L’Odyssée est une épopée mythique tournée à travers le monde qui suit le retour d'Ulysse vers Ithaque. Pour la première fois, la saga fondatrice d'Homère est portée sur les écrans de manière spectaculaire."
  },
- "des-minions-et-des-monstres|pierre-coffin": {
-  "key": "des-minions-et-des-monstres|pierre-coffin",
-  "title": "DES MINIONS ET DES MONSTRES",
-  "director": "Pierre Coffin",
-  "cast": "",
+ "vaiana-la-legende-du-bout-du-monde|thomas-kail": {
+  "key": "vaiana-la-legende-du-bout-du-monde|thomas-kail",
+  "title": "VAIANA, LA LÉGENDE DU BOUT DU MONDE",
+  "director": "Thomas Kail",
+  "cast": "Catherine Laga'aia, Dwayne Johnson, Rena Owen",
   "genre": "Famille",
   "country": "",
-  "duration_min": 90,
-  "poster": "https://www.ugc.fr/dynamique/films/82/17482/fr/poster/large/21c43d8b03a44dbd5dd9659d6be3f5ef_grey_32.jpg",
+  "duration_min": 116,
+  "poster": "https://www.ugc.fr/dynamique/films/83/17483/fr/poster/large/4913eda52c42338d6920439130cec93a_grey_28.jpg",
   "trailer": "",
-  "storyline": "Une histoire aussi rocambolesque qu’absurde, mais bien sûr totalement véridique, qui raconte comment les Minions, partis à la conquête d’Hollywood, sont devenus des stars de cinéma, pour finalement tout perdre en libérant au passage une bande de monstres déchaînés."
+  "storyline": "Répondant à l’appel de l’océan, Vaiana s’aventure pour la première fois par-delà le récif de son île de Motunui. Accompagnée du célèbre demi-dieu Maui, elle embarque pour un voyage inoubliable destiné à permettre à son peuple de retrouver sa prospérité…"
  },
  "la-fille-dans-les-nuages|philippe-riche": {
   "key": "la-fille-dans-les-nuages|philippe-riche",
@@ -1439,6 +1535,18 @@
   "trailer": "",
   "storyline": "Une plume magique qui rend réel tout ce qu’elle écrit vient bouleverser la vie de Providence, 11 ans, et de son cochon d’Inde Airbag. Dotés de cet immense pouvoir, ils s’envolent pour un incroyable voyage…"
  },
+ "chien-bleu-et-autres-belles-histoires|dominique-pochat-jean-christophe-ribot-benoit-laborde": {
+  "key": "chien-bleu-et-autres-belles-histoires|dominique-pochat-jean-christophe-ribot-benoit-laborde",
+  "title": "CHIEN BLEU ET AUTRES BELLES HISTOIRES",
+  "director": "Dominique Pochat, Jean-Christophe Ribot, Benoît Laborde",
+  "cast": "",
+  "genre": "Famille",
+  "country": "",
+  "duration_min": 50,
+  "poster": "https://www.ugc.fr/dynamique/films/30/18430/fr/poster/large/99a165c46cfdf1a5e80547d7317e854c_grey_3.jpg",
+  "trailer": "",
+  "storyline": "Il était une fois une petite oie à la recherche d’une chaussette verte, un ourson qui avait trouvé un bonnet, un étrange chien au pelage bleu, deux voisins lapins fâchés… et une lérote qui rêvait de neige plutôt que d’hiberner. Ouvrez la malle aux trésors de l’école des loisirs et découvrez Chien Bleu et quatre autres histoires comme vous ne les avez encore jamais vues ni entendues !"
+ },
  "joyeuse-jungle|edmunds-jansons": {
   "key": "joyeuse-jungle|edmunds-jansons",
   "title": "JOYEUSE JUNGLE !",
@@ -1451,17 +1559,29 @@
   "trailer": "",
   "storyline": "Pendant les vacances scolaires, Ilze, neuf ans, rejoint sa famille dans la forêt tropicale où ils vivent avec la tribu Pemón, près de la montagne du Diable. Lorsqu'à la suite d'un accident, maman doit emmener papa à l'hôpital, Ilze se porte volontaire pour s'occuper de son frère Alex, âgé de trois ans. Cependant, au lieu de faire attention à son frère, Ilze a le nez plongé dans un livre. Lorsqu'Ilze lève enfin les yeux, elle découvre qu'Alex a disparu. Tout indique qu'il s'est égaré dans la jungle. Ilze doit le ramener à la maison avant le retour de leurs parents..."
  },
- "le-monde-a-l-envers|arnaud-demuynck-noe-garcia-erwann-hette": {
-  "key": "le-monde-a-l-envers|arnaud-demuynck-noe-garcia-erwann-hette",
-  "title": "LE MONDE A L'ENVERS",
-  "director": "Arnaud Demuynck, Noé Garcia, Erwann Hette",
+ "ce-qui-nous-mene-a-toi|khalil-cherti": {
+  "key": "ce-qui-nous-mene-a-toi|khalil-cherti",
+  "title": "CE QUI NOUS MENE A TOI",
+  "director": "Khalil Cherti",
+  "cast": "Nina Meurisse, Sofian Khammes, Jeanne Balibar",
+  "genre": "Drame",
+  "country": "",
+  "duration_min": 96,
+  "poster": "https://www.ugc.fr/dynamique/films/23/18223/fr/poster/large/0a18acf83e57e18b7826971f3720dfc4_grey_7.jpg",
+  "trailer": "",
+  "storyline": "Charlie et Hicham, la trentaine, s’aiment follement mais ne parviennent pas à avoir d’enfant : leur couple est confronté à l’infécondité. Ils entament alors un parcours d’Aide Médicale à la Procréation. Pendant trois ans, entre espoirs et déceptions, ils vont mettre leur amour et leurs corps à l’épreuve, vivre une odyssée qui va les bouleverser…"
+ },
+ "des-minions-et-des-monstres|pierre-coffin": {
+  "key": "des-minions-et-des-monstres|pierre-coffin",
+  "title": "DES MINIONS ET DES MONSTRES",
+  "director": "Pierre Coffin",
   "cast": "",
   "genre": "Famille",
   "country": "",
-  "duration_min": 50,
-  "poster": "https://www.ugc.fr/dynamique/films/48/18248/fr/poster/large/695460e78e996175a81de234a0603f87_grey_1.jpg",
+  "duration_min": 90,
+  "poster": "https://www.ugc.fr/dynamique/films/82/17482/fr/poster/large/21c43d8b03a44dbd5dd9659d6be3f5ef_grey_32.jpg",
   "trailer": "",
-  "storyline": "Plongez dans un univers où la différence devient poésie à travers six récits touchants. De Rémi, le souriceau vivant la tête en bas, à Sacha et son parcours inclusif à l’école, de Lina qui s'envole avec un pull, à Lily qui fait éternuer la lune... Ce programme explore avec tendresse les perceptions singulières de l’enfance. Entre tricot de nuages, cités sous-marines et métamorphoses fantastiques du quotidien, ces films nous invitent à voir le monde avec les yeux de ceux et celles qui rêvent et vivent à un rythme différent, parfois juste « en décalé »."
+  "storyline": "Une histoire aussi rocambolesque qu’absurde, mais bien sûr totalement véridique, qui raconte comment les Minions, partis à la conquête d’Hollywood, sont devenus des stars de cinéma, pour finalement tout perdre en libérant au passage une bande de monstres déchaînés."
  },
  "tad-l-explorateur-et-la-lampe-magique|enrique-gato": {
   "key": "tad-l-explorateur-et-la-lampe-magique|enrique-gato",
@@ -1475,30 +1595,6 @@
   "trailer": "",
   "storyline": "Tad et Sara sont désormais les heureux parents d’Oli, une adorable et intrépide petite fille de deux ans. Le bonheur de la petite famille fait un peu de l’ombre à Momie, qui a l’impression de passer au second plan. Alors qu’en vacances à Londres la bande met la main sur la Lampe Merveilleuse des Mille et Une Nuits, Momie formule un vœu inattendu : voyager dans le temps pour retourner à l’époque de sa jeunesse où tout le monde l’adorait. Tad, Sara et toute l’équipe n’ont alors d’autre choix que de partir à la poursuite de Momie à travers le passé, avant que tout le cours de l’Histoire ne soit modifié… Cette nouvelle aventure les entraînera à travers l’océan Atlantique, de la mythique cité perdue de Païtiti à la Grèce Antique, avant de les conduire au cœur du Moyen-Orient, jusqu’à la légendaire grotte d’Ali Baba et les Quarante Voleurs. Un voyage spectaculaire à travers le temps, les civilisations et les légendes, dans la plus grande aventure de Tad à ce jour."
  },
- "chien-bleu-et-autres-belles-histoires|dominique-pochat-jean-christophe-ribot-benoit-laborde": {
-  "key": "chien-bleu-et-autres-belles-histoires|dominique-pochat-jean-christophe-ribot-benoit-laborde",
-  "title": "CHIEN BLEU ET AUTRES BELLES HISTOIRES",
-  "director": "Dominique Pochat, Jean-Christophe Ribot, Benoît Laborde",
-  "cast": "",
-  "genre": "Famille",
-  "country": "",
-  "duration_min": 50,
-  "poster": "https://www.ugc.fr/dynamique/films/30/18430/fr/poster/large/99a165c46cfdf1a5e80547d7317e854c_grey_3.jpg",
-  "trailer": "",
-  "storyline": "Il était une fois une petite oie à la recherche d’une chaussette verte, un ourson qui avait trouvé un bonnet, un étrange chien au pelage bleu, deux voisins lapins fâchés… et une lérote qui rêvait de neige plutôt que d’hiberner. Ouvrez la malle aux trésors de l’école des loisirs et découvrez Chien Bleu et quatre autres histoires comme vous ne les avez encore jamais vues ni entendues !"
- },
- "vaiana-la-legende-du-bout-du-monde|thomas-kail": {
-  "key": "vaiana-la-legende-du-bout-du-monde|thomas-kail",
-  "title": "VAIANA, LA LÉGENDE DU BOUT DU MONDE",
-  "director": "Thomas Kail",
-  "cast": "Catherine Laga'aia, Dwayne Johnson, Rena Owen",
-  "genre": "Famille",
-  "country": "",
-  "duration_min": 116,
-  "poster": "https://www.ugc.fr/dynamique/films/83/17483/fr/poster/large/4913eda52c42338d6920439130cec93a_grey_28.jpg",
-  "trailer": "",
-  "storyline": "Répondant à l’appel de l’océan, Vaiana s’aventure pour la première fois par-delà le récif de son île de Motunui. Accompagnée du célèbre demi-dieu Maui, elle embarque pour un voyage inoubliable destiné à permettre à son peuple de retrouver sa prospérité…"
- },
  "furyo|nagisa-oshima": {
   "key": "furyo|nagisa-oshima",
   "title": "FURYO",
@@ -1510,18 +1606,6 @@
   "poster": "https://www.ugc.fr/dynamique/films/63/3663/fr/poster/large/591439_grey_5.jpg",
   "trailer": "",
   "storyline": "Java 1942 : un camp de prisonniers américains est dirigé par le capitaine Yonoi, un chef japonais à la poigne de fer. A la crainte et au mépris qu'éprouvent les prisonniers et les subalternes du capitaine à l'endroit de ce dernier, s'oppose la résistance étonnante d'un soldat anglais, Jake Celliers. Face à son attitude provocante, Yonoi devient de plus en plus sévère dans le but de faire plier le rebelle."
- },
- "low-expectations|eivind-landsvik": {
-  "key": "low-expectations|eivind-landsvik",
-  "title": "LOW EXPECTATIONS",
-  "director": "Eivind Landsvik",
-  "cast": "Marie Ulven, Anders Danielsen Lie, Tone Beate Mostraum",
-  "genre": "Drame",
-  "country": "",
-  "duration_min": 105,
-  "poster": "https://www.ugc.fr/dynamique/films/26/18426/fr/poster/large/6930e4e1db0efba869e452bee7ee0685_grey_5.jpg",
-  "trailer": "",
-  "storyline": "Alors qu’elle est au sommet de sa carrière musicale, Maja vacille et voit ses ambitions s’interrompre brutalement. Elle se réfugie chez sa mère, enseignante à Oslo, qui lui décroche un poste de surveillante dans son lycée. Maja commence lentement à retrouver goût à la vie."
  },
  "la-priere-aux-etoiles|marcel-pagnol": {
   "key": "la-priere-aux-etoiles|marcel-pagnol",
@@ -1535,17 +1619,41 @@
   "trailer": "",
   "storyline": "Florence rencontre Pierre à la foire du Trône. Ils se jurent un amour éternel et partent sous le soleil du Midi. Cependant la jeune fille cache un lourd secret. Son protecteur a la délicatesse de s'effacer mais Pierre est prêt à tout gâcher. Pourtant la douceur et l'amour pur de Florence réussiront à apaiser sa colère."
  },
- "le-jour-de-son-retour|hong-sang-soo": {
-  "key": "le-jour-de-son-retour|hong-sang-soo",
-  "title": "LE JOUR DE SON RETOUR",
-  "director": "Hong Sang-soo",
-  "cast": "Song Sunmi, Cho Yunhee, Park Miso",
-  "genre": "Drame",
+ "irish-travellers|alexander-murphy": {
+  "key": "irish-travellers|alexander-murphy",
+  "title": "IRISH TRAVELLERS",
+  "director": "Alexander Murphy",
+  "cast": "Lisa O'Reilly",
+  "genre": "Documentaire",
+  "country": "",
+  "duration_min": 96,
+  "poster": "https://www.ugc.fr/dynamique/films/06/18406/fr/poster/large/6857fdb3b89fdd00da7d32b5f2faea69_grey_6.jpg",
+  "trailer": "",
+  "storyline": "Le long d'une route oubliée, la famille O'Reilly vit dans une vieille caravane échouée au milieu des champs. Pa, Lisa et leurs dix enfants traversent les saisons dans ce fragile château de tôle, héritiers d'un mode de vie en sursis. Menacés d'expulsion, leur équilibre de fortune vacille mais ils résistent, fidèles à leurs traditions. Les enfants rient, les chiens aboient, la caravane tient encore, mais pour combien de temps ?"
+ },
+ "shanghai-express|josef-von-sternberg": {
+  "key": "shanghai-express|josef-von-sternberg",
+  "title": "SHANGHAI EXPRESS",
+  "director": "Josef von Sternberg",
+  "cast": "Marlene Dietrich, Clive Brook, Warner Oland",
+  "genre": "Aventure",
   "country": "",
   "duration_min": 84,
-  "poster": "https://www.ugc.fr/dynamique/films/58/18458/fr/poster/large/1ca1739095a8630bdf06e52d9fc26a44_grey_0.jpg",
+  "poster": "https://www.ugc.fr/dynamique/films/55/18655/fr/poster/large/afdf6901a0bd6fa581c5118456295b8b_grey_0.jpg",
   "trailer": "",
-  "storyline": "Suite à son récent divorce, une grande actrice coréenne retourne sur le devant de la scène douze ans après sa dernière apparition à l’écran. À l’occasion de la sortie du film, elle s’entretient successivement avec trois jeunes journalistes..."
+  "storyline": "Dans une Chine secouée par la guerre civile, les passagers du train reliant Pékin à Shanghai se retrouvent confrontés à des rebelles chinois. Parmi les voyageurs, l’aventurière que l’on surnomme Shanghai Lily retrouve son ancien amant."
+ },
+ "les-recommencements|isabelle-ingold-vivianne-perelmuter": {
+  "key": "les-recommencements|isabelle-ingold-vivianne-perelmuter",
+  "title": "LES RECOMMENCEMENTS",
+  "director": "Isabelle Ingold, Vivianne Perelmuter",
+  "cast": "",
+  "genre": "Documentaire",
+  "country": "",
+  "duration_min": 88,
+  "poster": "https://www.ugc.fr/dynamique/films/56/18656/fr/poster/large/c593d18fc84cc17edb521a018bc4a4bf_grey_0.jpg",
+  "trailer": "",
+  "storyline": "Vétéran de la guerre du Vietnam, Al Moon vit en solitaire sur les terres de sa tribu, en Californie du Nord. À mesure que d’anciennes angoisses refont surface, Al n’a plus le choix : il doit prendre la route pour affronter ce qui le hante, et retrouver les hommes de son bataillon."
  },
  "sleepy-hollow|tim-burton": {
   "key": "sleepy-hollow|tim-burton",
@@ -1558,18 +1666,6 @@
   "poster": "https://www.ugc.fr/dynamique/films/31/3531/fr/poster/large/19255611_grey_2937.jpg",
   "trailer": "",
   "storyline": "En Nouvelle-Angleterre, à la fin du XVIIIe siècle. Tel Sherlock Holmes, l'inspecteur de police Ichabod Crane ne jure que par la science et la logique. Pour le mettre à l'épreuve, ses supérieurs l'envoient à Sleepy Hollow, un petit village de fermiers hollandais, théâtre de plusieurs meurtres étranges..."
- },
- "aline|valerie-lemercier": {
-  "key": "aline|valerie-lemercier",
-  "title": "ALINE",
-  "director": "Valérie Lemercier",
-  "cast": "Valérie Lemercier, Sylvain Marcel, Danielle Fichaud",
-  "genre": "Musical",
-  "country": "",
-  "duration_min": 126,
-  "poster": "https://www.ugc.fr/dynamique/films/01/13701/fr/poster/large/1152680_grey_45.jpg",
-  "trailer": "",
-  "storyline": "Portée par sa famille et son grand amour, la 14ème enfant d’une famille modeste Québécoise va devenir la plus grande chanteuse planétaire."
  },
  "carlo-acutis-the-millennial-saint|luca-salmaso": {
   "key": "carlo-acutis-the-millennial-saint|luca-salmaso",
@@ -1799,18 +1895,6 @@
   "trailer": "",
   "storyline": "Salvatore, cinéaste en vogue, se rappelle son passé lorsqu'il tomba amoureux du cinéma et devint ami avec un projectionniste."
  },
- "le-reve-de-galileo|fabienne-collet-gil-alkabetz-ghislain-avrillon": {
-  "key": "le-reve-de-galileo|fabienne-collet-gil-alkabetz-ghislain-avrillon",
-  "title": "LE REVE DE GALILEO",
-  "director": "Fabienne Collet, Gil Alkabetz, Ghislain Avrillon",
-  "cast": "",
-  "genre": "Animation",
-  "country": "",
-  "duration_min": 50,
-  "poster": "https://www.ugc.fr/dynamique/films/06/9706/fr/poster/large/19801748_grey_7.jpg",
-  "trailer": "",
-  "storyline": "Programme de 5 courts-métrages d’animation pour enfants, sur le thème du ciel et des étoiles."
- },
  "la-planete-des-singes|franklin-j-schaffner": {
   "key": "la-planete-des-singes|franklin-j-schaffner",
   "title": "LA PLANETE DES SINGES",
@@ -1834,6 +1918,18 @@
   "poster": "https://www.ugc.fr/dynamique/films/25/18625/fr/poster/large/b9ddaa36d65452afbc94547d8202dc92_grey_0.jpg",
   "trailer": "",
   "storyline": "Ce programme de trois courts métrages de la réalisatrice sud-coréenne Miyoung Baek nous invite à plonger dans son univers poétique et onirique. Les objets du quotidien emportent-ils une part de nous-mêmes ? Peut-on remonter le temps pour écrire une autre histoire ? Et où peut bien se cacher la Lune perdue ? Tels sont les enjeux de ces films qui nous enveloppent dans la douceur et la sensibilité d'un merveilleux voyage imaginaire."
+ },
+ "le-monde-a-l-envers|arnaud-demuynck-noe-garcia-erwann-hette": {
+  "key": "le-monde-a-l-envers|arnaud-demuynck-noe-garcia-erwann-hette",
+  "title": "LE MONDE A L'ENVERS",
+  "director": "Arnaud Demuynck, Noé Garcia, Erwann Hette",
+  "cast": "",
+  "genre": "Famille",
+  "country": "",
+  "duration_min": 50,
+  "poster": "https://www.ugc.fr/dynamique/films/48/18248/fr/poster/large/695460e78e996175a81de234a0603f87_grey_1.jpg",
+  "trailer": "",
+  "storyline": "Plongez dans un univers où la différence devient poésie à travers six récits touchants. De Rémi, le souriceau vivant la tête en bas, à Sacha et son parcours inclusif à l’école, de Lina qui s'envole avec un pull, à Lily qui fait éternuer la lune... Ce programme explore avec tendresse les perceptions singulières de l’enfance. Entre tricot de nuages, cités sous-marines et métamorphoses fantastiques du quotidien, ces films nous invitent à voir le monde avec les yeux de ceux et celles qui rêvent et vivent à un rythme différent, parfois juste « en décalé »."
  },
  "le-tombeau-des-lucioles|isao-takahata": {
   "key": "le-tombeau-des-lucioles|isao-takahata",
@@ -1871,41 +1967,17 @@
   "trailer": "",
   "storyline": "A Metropolis, une cité futuriste, les humains cohabitent avec les robots. Le gigantesque gratte-ciel Ziggurat abrite les élites de la société, tandis que les pauvres et les robots sont condamnés à une vie souterraine. Le détective Shunsaku Ban enquête sur un trafic d'organes humains et fait la rencontre du docteur Laughton, un scientifique rebelle. Ce dernier a conçu Tima, une merveilleuse fillette qui est aussi un androïde d'un nouveau genre. Celle-ci est destinée à trôner au sommet de Ziggurat..."
  },
- "le-royaume-des-chats|hiroyuki-morita": {
-  "key": "le-royaume-des-chats|hiroyuki-morita",
-  "title": "LE ROYAUME DES CHATS",
-  "director": "Hiroyuki Morita",
-  "cast": "",
-  "genre": "Animation",
-  "country": "",
-  "duration_min": 74,
-  "poster": "https://www.ugc.fr/dynamique/films/83/5083/fr/poster/large/affiche_grey_12.jpg",
-  "trailer": "",
-  "storyline": "Haru, une collégienne au comportement instable, sauve par hasard un chat d'un accident de la circulation. Ce qu'elle ignore, c'est que le félin n'est autre que le fils du puissant roi des chats. Cette rencontre va bouleverser le cours de sa vie..."
- },
- "un-bon-petit-soldat|stephane-brize": {
-  "key": "un-bon-petit-soldat|stephane-brize",
-  "title": "UN BON PETIT SOLDAT",
-  "director": "Stéphane Brizé",
-  "cast": "Alba Rohrwacher, Vincent Lindon, Sharif Andoura",
-  "genre": "Drame",
-  "country": "",
-  "duration_min": 102,
-  "poster": "https://www.ugc.fr/dynamique/films/43/18143/fr/poster/large/e848a27240bab4b74850de107f5fd010_grey_7.jpg",
-  "trailer": "",
-  "storyline": "Nouvellement embauchée dans le département des Ressources Humaines d’une grande compagnie d’assurances, Carla Moretti doit travailler à réconcilier le bien-être des salariés avec les objectifs de performance de l’entreprise. Jusqu’à ce qu’elle découvre un cas de management toxique dans un des services dont elle a la responsabilité. Entre compromis et compromissions, la ligne de crête sur laquelle elle évolue devient de plus en plus étroite."
- },
- "obsession|curry-barker": {
-  "key": "obsession|curry-barker",
-  "title": "OBSESSION",
-  "director": "Curry Barker",
-  "cast": "Michael Johnston (II), Inde Navarrette, Cooper Tomlinson",
+ "kwaidan|masaki-kobayashi": {
+  "key": "kwaidan|masaki-kobayashi",
+  "title": "KWAIDAN",
+  "director": "Masaki Kobayashi",
+  "cast": "Michiyo Aratama, Misako Watanabe, Rentarô Mikuni",
   "genre": "Epouvante-horreur",
   "country": "",
-  "duration_min": 109,
-  "poster": "https://www.ugc.fr/dynamique/films/28/17828/fr/poster/large/3b9ac2364ab0b1c5ffb90ac7cb56e78a_grey_27.jpg",
+  "duration_min": 183,
+  "poster": "https://www.ugc.fr/dynamique/films/70/18370/fr/poster/large/08d035883af030b3bf35f65a5a8414e5_grey_0.jpg",
   "trailer": "",
-  "storyline": "Et si vous pouviez réaliser votre rêve le plus fou ? Un jeune introverti met la main sur un objet magique capable d’exaucer n’importe quel souhait. Son crush de toujours tombe alors raide dingue de lui… jusqu’à l’obsession la plus totale. Faites attention à ce que vous souhaitez !"
+  "storyline": "Quatre histoires de fantômes issues du folklore japonais."
  },
  "il-faut-bruler-maman|albert-dupontel": {
   "key": "il-faut-bruler-maman|albert-dupontel",
@@ -1939,21 +2011,9 @@
   "genre": "Comédie",
   "country": "",
   "duration_min": 79,
-  "poster": "https://www.ugc.fr/dynamique/films/59/18159/fr/poster/large/f825b352d6167e959bf9e1ff5c54f681_grey_6.jpg",
+  "poster": "https://www.ugc.fr/dynamique/films/59/18159/fr/poster/large/f825b352d6167e959bf9e1ff5c54f681_grey_7.jpg",
   "trailer": "",
   "storyline": "Le réalisateur du film « À BICYCLETTE ! », Mathias Mlekuz, embarque son ami Philippe pour une toute nouvelle aventure singulière à travers la France : accompagner Manolo, le fils cadet qui a pour projet de recueillir les 500 parrainages pour se lancer dans la campagne présidentielle et devenir président ! Une véritable odyssée sous forme de parcours initiatique tendre et humoristique qui révélera à chacun les sentiments profonds qui les unissent."
- },
- "l-affaire-marie-claire|lauriane-escaffre-yvo-muller": {
-  "key": "l-affaire-marie-claire|lauriane-escaffre-yvo-muller",
-  "title": "L'AFFAIRE MARIE-CLAIRE",
-  "director": "Lauriane Escaffre, Yvo Muller",
-  "cast": "Charlotte Gainsbourg, Cécile de France, Grégory Gadebois",
-  "genre": "Judiciaire",
-  "country": "",
-  "duration_min": 102,
-  "poster": "https://www.ugc.fr/dynamique/films/67/17967/fr/poster/large/4a3cf95bb345d5d71bdc7acf3430323b_grey_13.jpg",
-  "trailer": "",
-  "storyline": "Novembre 1972. Au tribunal de Bobigny, un procès hors norme secoue la France entière. Marie-Claire Chevalier, 16 ans, est accusée d’avoir avorté illégalement. À la barre, sa mère et toutes les femmes qui l’ont aidée. Leur avocate, Gisèle Halimi, fait un pari fou, insensé : elle leur demande de ne pas plaider coupable. Gisèle va faire ce qui n’a jamais été fait auparavant, elle va accuser et attaquer la loi, au risque de tout perdre."
  },
  "babylon|damien-chazelle": {
   "key": "babylon|damien-chazelle",
@@ -2002,6 +2062,18 @@
   "poster": "https://www.ugc.fr/dynamique/films/81/18381/fr/poster/large/2fabb861ff01b7c43b24c0cdafb0931a_grey_7.jpg",
   "trailer": "",
   "storyline": "Fraîchement élu, le président Paul Archambault doit affronter une crise sans précédent : son homologue russe, cible d'un attentat, brandit un ultimatum nucléaire menaçant un allié de la France. Face au risque d'escalade militaire, le président réunit son état-major dans le bunker de l'Elysée. Dans le secret du Poste de Commandement Jupiter, Paul va devoir prendre une décision vertigineuse."
+ },
+ "le-nom-de-la-rose|jean-jacques-annaud": {
+  "key": "le-nom-de-la-rose|jean-jacques-annaud",
+  "title": "LE NOM DE LA ROSE",
+  "director": "Jean-Jacques Annaud",
+  "cast": "Sean Connery, Christian Slater, Helmut Qualtinger",
+  "genre": "Aventure",
+  "country": "",
+  "duration_min": 132,
+  "poster": "https://www.ugc.fr/dynamique/films/65/1565/fr/poster/large/2996778_grey_6.jpg",
+  "trailer": "",
+  "storyline": "En l'an 1327, dans une abbaye bénédictine, des moines disparaissent. Un franciscain, Guillaume de Baskerville aidé du jeune novice Adso von Melk mène l'enquête. C'est l'époque où l'Eglise, en pleine crise, se voit disputer son pouvoir spirituel et temporel. C'est aussi l'apogée de l'inquisition. Un thriller moyenageux très attendu préparé avec soin pendant trois ans, respectant le mieux possible l'époque et qui a coûté la bagatelle de dix-neuf millions de dollars. C'est également un film de Jean-Jacques Annaud toujours passionnément entraîné par ses sujets."
  },
  "apocalypse-now-final-cut|francis-ford-coppola": {
   "key": "apocalypse-now-final-cut|francis-ford-coppola",
@@ -2123,6 +2195,18 @@
   "trailer": "",
   "storyline": "Le vaisseau Nostromo et son équipage rentrent sur Terre avec une cargaison de minerai. Mais lors d'un arrêt forcé sur une planète déserte, l'officier Kane se fait agresser par une forme de vie inconnue, une arachnide qui étouffe son visage..."
  },
+ "l-amour-ouf|gilles-lellouche": {
+  "key": "l-amour-ouf|gilles-lellouche",
+  "title": "L'AMOUR OUF",
+  "director": "Gilles Lellouche",
+  "cast": "Adèle Exarchopoulos, François Civil, Mallory Wanecque",
+  "genre": "Comédie",
+  "country": "",
+  "duration_min": 161,
+  "poster": "https://www.ugc.fr/dynamique/films/09/16109/fr/poster/large/a83e4496e4b525082f93cc758a6d4a64_grey_59.jpg",
+  "trailer": "",
+  "storyline": "Les années 80, dans le nord de la France.Jackie et Clotaire grandissent entre les bancs du lycée et les docks du port. Elle étudie, il traine. Et puis leurs destins se croisent et c'est l'amour fou. La vie s'efforcera de les séparer mais rien n'y fait, ces deux-là sont comme les deux ventricules du même cœur..."
+ },
  "seven|david-fincher": {
   "key": "seven|david-fincher",
   "title": "SEVEN",
@@ -2231,54 +2315,6 @@
   "trailer": "",
   "storyline": "Le jeune idéaliste Christopher McCandless abandonne la vie que la plupart d'entre nous connait pour les contrées sauvages de l'Alaska."
  },
- "fjord|cristian-mungiu": {
-  "key": "fjord|cristian-mungiu",
-  "title": "FJORD",
-  "director": "Cristian Mungiu",
-  "cast": "Sebastian Stan, Renate Reinsve, Lisa Carlehed",
-  "genre": "Drame",
-  "country": "",
-  "duration_min": 146,
-  "poster": "https://www.ugc.fr/dynamique/films/35/18035/fr/poster/large/7da334b5a024f1960d11cefab25107bc_grey_25.jpg",
-  "trailer": "",
-  "storyline": "Les Gheorghiu, un couple roumano-norvégien très pieux, s’installent dans un village au bout d’un fjord. Lorsque le corps enseignant découvre des ecchymoses sur le corps d'un de leurs enfants, le village se demande si leur éducation traditionnelle pourrait en être la cause."
- },
- "les-elephants-dans-la-brume|": {
-  "key": "les-elephants-dans-la-brume|",
-  "title": "LES ELEPHANTS DANS LA BRUME",
-  "director": "",
-  "cast": "Pushpa Thing Lama, Deepika Yadav, Jasmin Bishwokarma",
-  "genre": "",
-  "country": "",
-  "duration_min": 108,
-  "poster": "https://www.ugc.fr/dynamique/films/91/18191/fr/poster/large/c68b734900692f28587dbb78cb8c7d31_grey_9.jpg",
-  "trailer": "",
-  "storyline": "Dans un village népalais niché au cœur d'une forêt peuplée d'éléphants sauvages vit une communauté kinnar aussi vénérée que crainte pour ses pouvoirs de bénédiction et de malédiction. Pirati, l'une des mères de la communauté, rêve de s'échapper avec l'homme qu'elle aime. Mais lorsqu'une de ses filles disparaît, elle se doit mener l'enquête et choisir entre son désir de liberté et ses responsabilités envers sa communauté."
- },
- "poison|todd-haynes": {
-  "key": "poison|todd-haynes",
-  "title": "POISON",
-  "director": "Todd Haynes",
-  "cast": "Millie White, Anne Giotta, Larry Maxwell",
-  "genre": "Epouvante-horreur",
-  "country": "",
-  "duration_min": 86,
-  "poster": "https://www.ugc.fr/dynamique/films/03/18603/fr/poster/large/a121efee1c71929e8f315558156b698a_grey_0.jpg",
-  "trailer": "",
-  "storyline": "Un essai en forme d'hommage à Jean Genet, contant en trois volets, trois petites histoires sur la déviance sous toutes ses formes : \"Héros\", ou comment un garçon de 7 ans en arrive à tuer son beau-père ; \"Horror\" ou comment un scientifique désireux de percer le mystère de la libido devient accidentellement un meurtrier ; \"Homo\", ou l'histoire d'amour entre deux prisonniers."
- },
- "fantastic-mr-fox|wes-anderson": {
-  "key": "fantastic-mr-fox|wes-anderson",
-  "title": "FANTASTIC MR FOX",
-  "director": "Wes Anderson",
-  "cast": "",
-  "genre": "Comédie",
-  "country": "",
-  "duration_min": 86,
-  "poster": "https://www.ugc.fr/dynamique/films/92/8092/fr/poster/large/19225583_grey_1152.jpg",
-  "trailer": "",
-  "storyline": "La famille Fox qui vit sur la colline a bien du mal à joindre les deux bouts pour nourrir tout ce petit monde, pour pallier à la faim chaque nuit Mr Fox vole de quoi manger aux fermiers environnant. Puis arrive la nuit de trop, les fermiers qui en ont plus qu'assez de cette famille de renard, va tenter par tout les moyens de les éliminer..."
- },
  "fausse-note|alexandre-arcady": {
   "key": "fausse-note|alexandre-arcady",
   "title": "FAUSSE NOTE",
@@ -2291,29 +2327,65 @@
   "trailer": "",
   "storyline": "Lors de son ultime concert à Paris, un chef d’orchestre de renom est confronté à un admirateur insistant. Sous ses apparences de « Monsieur tout le monde », le « Fan » perturbe la soirée et force un face à face inattendu avec le chef d’orchestre."
  },
- "under-the-skin|jonathan-glazer": {
-  "key": "under-the-skin|jonathan-glazer",
-  "title": "UNDER THE SKIN",
-  "director": "Jonathan Glazer",
-  "cast": "Scarlett Johansson, Krystof Hádek, Paul Brannigan",
-  "genre": "Science Fiction",
-  "country": "",
-  "duration_min": 108,
-  "poster": "https://www.ugc.fr/dynamique/films/14/10114/fr/poster/large/238222_grey_7.jpg",
-  "trailer": "",
-  "storyline": "Une extraterrestre arrive sur Terre pour séduire des hommes avant de les faire disparaître. D'après le roman éponyme de Michel Faber."
- },
- "les-yeux-verts|fanny-liatard-jeremy-trouilh": {
-  "key": "les-yeux-verts|fanny-liatard-jeremy-trouilh",
-  "title": "LES YEUX VERTS",
-  "director": "Fanny Liatard, Jérémy Trouilh",
-  "cast": "Anamaria Vartolomei, Sayyid El Alami, Douae Butarbuch Mzaouki",
+ "un-bon-petit-soldat|stephane-brize": {
+  "key": "un-bon-petit-soldat|stephane-brize",
+  "title": "UN BON PETIT SOLDAT",
+  "director": "Stéphane Brizé",
+  "cast": "Alba Rohrwacher, Vincent Lindon, Sharif Andoura",
   "genre": "Drame",
   "country": "",
-  "duration_min": 83,
-  "poster": "https://www.ugc.fr/dynamique/films/59/18259/fr/poster/large/8601759cd1a3d711410025558f077884_grey_9.jpg",
+  "duration_min": 102,
+  "poster": "https://www.ugc.fr/dynamique/films/43/18143/fr/poster/large/e848a27240bab4b74850de107f5fd010_grey_7.jpg",
   "trailer": "",
-  "storyline": "Chaya, 11 ans, vit avec sa famille dans les Landes, au bord de l’océan. A l’annonce de leur expulsion, son grand frère Nour sombre dans un sommeil profond et mystérieux. Chaya va tout faire pour le réveiller, jusqu’à plonger dans ses rêves pour le retrouver."
+  "storyline": "Nouvellement embauchée dans le département des Ressources Humaines d’une grande compagnie d’assurances, Carla Moretti doit travailler à réconcilier le bien-être des salariés avec les objectifs de performance de l’entreprise. Jusqu’à ce qu’elle découvre un cas de management toxique dans un des services dont elle a la responsabilité. Entre compromis et compromissions, la ligne de crête sur laquelle elle évolue devient de plus en plus étroite."
+ },
+ "changer-l-eau-des-fleurs|jean-pierre-jeunet": {
+  "key": "changer-l-eau-des-fleurs|jean-pierre-jeunet",
+  "title": "CHANGER L'EAU DES FLEURS",
+  "director": "Jean-Pierre Jeunet",
+  "cast": "Leïla Bekhti, Matthias Schoenaerts, Melvil Poupaud",
+  "genre": "Drame",
+  "country": "",
+  "duration_min": 138,
+  "poster": "https://www.ugc.fr/dynamique/films/60/18560/fr/poster/large/0332a2d334cbea8daf1ef07ddbe68a6f_grey_5.jpg",
+  "trailer": "",
+  "storyline": "Violette, la quarantaine, est garde-cimetière dans une petite ville de Bourgogne. Son quotidien est rythmé par les confidences des personnes de passage ou habitués du lieu, qui viennent trouver un peu de réconfort dans sa loge. Un jour, elle reçoit la visite d'un policier, Julien Seul, venu déposer les cendres de sa mère sur la tombe de l'homme qu'elle aimait. Intrigué par l’histoire de Violette, dont le mari a disparu mystérieusement, peu de temps après leur arrivée au cimetière, il décide d’enquêter, faisant sans le vouloir remonter à la surface de douloureux souvenirs ainsi que des vérités salvatrices pour Violette."
+ },
+ "fjord|cristian-mungiu": {
+  "key": "fjord|cristian-mungiu",
+  "title": "FJORD",
+  "director": "Cristian Mungiu",
+  "cast": "Sebastian Stan, Renate Reinsve, Lisa Carlehed",
+  "genre": "Drame",
+  "country": "",
+  "duration_min": 146,
+  "poster": "https://www.ugc.fr/dynamique/films/35/18035/fr/poster/large/7da334b5a024f1960d11cefab25107bc_grey_25.jpg",
+  "trailer": "",
+  "storyline": "Les Gheorghiu, un couple roumano-norvégien très pieux, s’installent dans un village au bout d’un fjord. Lorsque le corps enseignant découvre des ecchymoses sur le corps d'un de leurs enfants, le village se demande si leur éducation traditionnelle pourrait en être la cause."
+ },
+ "le-jour-de-son-retour|hong-sang-soo": {
+  "key": "le-jour-de-son-retour|hong-sang-soo",
+  "title": "LE JOUR DE SON RETOUR",
+  "director": "Hong Sang-soo",
+  "cast": "Song Sunmi, Cho Yunhee, Park Miso",
+  "genre": "Drame",
+  "country": "",
+  "duration_min": 84,
+  "poster": "https://www.ugc.fr/dynamique/films/58/18458/fr/poster/large/1ca1739095a8630bdf06e52d9fc26a44_grey_0.jpg",
+  "trailer": "",
+  "storyline": "Suite à son récent divorce, une grande actrice coréenne retourne sur le devant de la scène douze ans après sa dernière apparition à l’écran. À l’occasion de la sortie du film, elle s’entretient successivement avec trois jeunes journalistes..."
+ },
+ "la-tentazione|nicolangelo-gelormini": {
+  "key": "la-tentazione|nicolangelo-gelormini",
+  "title": "LA TENTAZIONE",
+  "director": "Nicolangelo Gelormini",
+  "cast": "Valeria Golino, Jasmine Trinca, Saul Nanni",
+  "genre": "Drame",
+  "country": "",
+  "duration_min": 108,
+  "poster": "https://www.ugc.fr/dynamique/films/53/18653/fr/poster/large/83a00e4f78bdcbcf16a62ddd2e95d79d_grey_2.jpg",
+  "trailer": "",
+  "storyline": "À cinquante ans, Gioia est une enseignante qui vit encore chez ses parents, sous la coupe d'une mère autoritaire. Elle propose des cours particuliers à Alessio, un nouvel élève de son lycée. Quand ces deux solitudes se rencontrent, un poison silencieux se distille."
  },
  "le-mysterieux-regard-du-flamant-rose|diego-cespedes": {
   "key": "le-mysterieux-regard-du-flamant-rose|diego-cespedes",
@@ -2363,17 +2435,41 @@
   "trailer": "",
   "storyline": "Lorsque Gil rencontre Jacques, leur amour est évident. Mais l’intensité des débuts laisse place à une relation où elle se sent de plus en plus enfermée, jusqu’à en perdre ses repères..."
  },
- "kiki-la-petite-sorciere|hayao-miyazaki": {
-  "key": "kiki-la-petite-sorciere|hayao-miyazaki",
-  "title": "KIKI LA PETITE SORCIERE",
-  "director": "Hayao Miyazaki",
-  "cast": "",
-  "genre": "Famille",
+ "low-expectations|eivind-landsvik": {
+  "key": "low-expectations|eivind-landsvik",
+  "title": "LOW EXPECTATIONS",
+  "director": "Eivind Landsvik",
+  "cast": "Marie Ulven, Anders Danielsen Lie, Tone Beate Mostraum",
+  "genre": "Drame",
   "country": "",
-  "duration_min": 103,
-  "poster": "https://www.ugc.fr/dynamique/films/16/5416/fr/poster/large/4332138_grey_12.jpg",
+  "duration_min": 105,
+  "poster": "https://www.ugc.fr/dynamique/films/26/18426/fr/poster/large/6930e4e1db0efba869e452bee7ee0685_grey_5.jpg",
   "trailer": "",
-  "storyline": "Chez Kiki, treize ans, on est sorcière de mère en fille. Mais pour avoir droit à ce titre, Kiki doit faire son apprentissage : elle doit quitter les siens pendant un an et leur prouver qu’elle peut vivre en toute indépendance dans une ville de son choix. Un beau soir, accompagnée de son chat Jiji, après avoir embrassé ses parents et sa grand-mère, elle enfourche son balai et met le cap vers le sud « pour voir la mer »… Le lendemain, elle atterrit dans une sympathique ville côtière. C’est là qu’elle va apprendre aux côtés d’Osono, une gentille boulangère qui lui propose un emploi de livreuse…"
+  "storyline": "Alors qu’elle est au sommet de sa carrière musicale, Maja vacille et voit ses ambitions s’interrompre brutalement. Elle se réfugie chez sa mère, enseignante à Oslo, qui lui décroche un poste de surveillante dans son lycée. Maja commence lentement à retrouver goût à la vie."
+ },
+ "les-yeux-sans-visage|georges-franju": {
+  "key": "les-yeux-sans-visage|georges-franju",
+  "title": "LES YEUX SANS VISAGE",
+  "director": "Georges Franju",
+  "cast": "Pierre Brasseur, Alida Valli, Edith Scob",
+  "genre": "Epouvante-horreur",
+  "country": "",
+  "duration_min": 88,
+  "poster": "https://www.ugc.fr/dynamique/films/12/4112/fr/poster/large/aff_grey_11.jpg",
+  "trailer": "",
+  "storyline": "Le chirurgien Genessier souhaite remodeler le visage de sa fille Christiane, rendue méconnaissable suite à un accident de voiture, mais pour cela il doit effectuer des greffes de peau qu'il aura prélevée sur des jeunes filles."
+ },
+ "la-mouche|david-cronenberg": {
+  "key": "la-mouche|david-cronenberg",
+  "title": "LA MOUCHE",
+  "director": "David Cronenberg",
+  "cast": "Jeff Goldblum, Geena Davis, John Getz",
+  "genre": "Epouvante-horreur",
+  "country": "",
+  "duration_min": 96,
+  "poster": "https://www.ugc.fr/dynamique/films/08/1308/fr/poster/large/18952914_grey_44.jpg",
+  "trailer": "",
+  "storyline": "Seth Brundle est un physicien très doué qui décide de travailler seul. Il met au point une invention révolutionnaire : la téléportation. Il décide de tester la machine sur lui-même. Seulement, il ne s'aperçoit pas que pendant l'expérience, une mouche s'introduit dans sa cabine. Brundle fusionne avec l'insecte. Brundle a toujours son apparence humaine, mais génétiquement parlant, il est devenu un mutant moitié homme moitié mouche. Et en conséquence, son corps va progressivement se transformer..."
  },
  "l-etrange-noel-de-monsieur-jack|henry-selick": {
   "key": "l-etrange-noel-de-monsieur-jack|henry-selick",
@@ -2386,6 +2482,54 @@
   "poster": "https://www.ugc.fr/dynamique/films/26/1126/fr/poster/large/18923316_grey_18.jpg",
   "trailer": "",
   "storyline": "Les habitants d'Halloween-ville font la fête. Jack se sent seul et mélancolique : avec son chien, Zéro, il erre par cimetières et forêts... Sally, la créature du docteur Finkelstein, amoureuse de Jack, l'épie. Il pénètre dans la ville de Noël... Jack charge trois chenapans d'enlever le Père Noël et décide de prendre sa place. Le docteur Finkelstein crée de magnifiques rennes de traîneau. Le gros Père Noël est envoyé dans les pattes du redoutable Oogie Boogie, cauchemar suprême d'Halloween..."
+ },
+ "3670|joon-ho-park": {
+  "key": "3670|joon-ho-park",
+  "title": "3670",
+  "director": "Joon-ho Park",
+  "cast": "Youhyun Cho, Hyeonmok Kim, Dae-Hae Cho",
+  "genre": "Drame",
+  "country": "",
+  "duration_min": 124,
+  "poster": "https://www.ugc.fr/dynamique/films/54/18654/fr/poster/large/731dd9b688c6d86b3d41dc04983f0df3_grey_0.jpg",
+  "trailer": "",
+  "storyline": "Cheol-jun, 27 ans, a fui la Corée du Nord pour vivre au Sud. En attendant que ses parents le rejoignent, le jeune homme, gay, essaie de faire des rencontres, mais son statut particulier et sa timidité naturelle l’inhibent… jusqu’au jour où Yeong-jun, un garçon chaleureux, lui présente ses copains. C’est un nouveau monde qui s’ouvre alors à Cheol-jun, fait d’amitiés, de coups de cœur, de soirées endiablées… et parfois, de désillusion."
+ },
+ "ideal-and-weird-family|kim-ji-hyun": {
+  "key": "ideal-and-weird-family|kim-ji-hyun",
+  "title": "IDEAL AND WEIRD FAMILY",
+  "director": "Kim Ji-hyun",
+  "cast": "",
+  "genre": "Comédie Dramatique",
+  "country": "",
+  "duration_min": 101,
+  "poster": "https://www.ugc.fr/dynamique/images/AfficheParDefaut/affiche-indisponible-fr.gif",
+  "trailer": "",
+  "storyline": ""
+ },
+ "the-journey-to-gyeong-ju|mi-jo-kim": {
+  "key": "the-journey-to-gyeong-ju|mi-jo-kim",
+  "title": "THE JOURNEY TO GYEONG JU",
+  "director": "Mi-Jo Kim",
+  "cast": "Jeong-eun Lee, Kong Hyo-jin, Park So-Dam",
+  "genre": "Comédie",
+  "country": "",
+  "duration_min": 111,
+  "poster": "https://www.ugc.fr/dynamique/images/AfficheParDefaut/affiche-indisponible-fr.gif",
+  "trailer": "",
+  "storyline": ""
+ },
+ "shortcuts-kids|": {
+  "key": "shortcuts-kids|",
+  "title": "SHORTCUTS KIDS",
+  "director": "",
+  "cast": "",
+  "genre": "Famille",
+  "country": "",
+  "duration_min": 90,
+  "poster": "https://www.ugc.fr/dynamique/images/AfficheParDefaut/affiche-indisponible-fr.gif",
+  "trailer": "",
+  "storyline": "Six courts-métrages pour petits et grands. Des contes initiatiques et des aventures fabuleuses à partager en famille."
  },
  "la-princesse-et-le-rossignol|paul-jadoul-remi-durin": {
   "key": "la-princesse-et-le-rossignol|paul-jadoul-remi-durin",
@@ -2455,7 +2599,7 @@
   "genre": "Comédie Dramatique",
   "country": "",
   "duration_min": 107,
-  "poster": "https://www.ugc.fr/dynamique/films/53/18353/fr/poster/large/e2f7edadcc3fd9c49187dd4948399b96_grey_3.jpg",
+  "poster": "https://www.ugc.fr/dynamique/films/53/18353/fr/poster/large/6d9fa130d4f69259a5b7534fb748d186_grey_7.jpg",
   "trailer": "",
   "storyline": "Sur le point de se séparer de sa compagne avec qui il vit à Nancy, Léo, 49 ans, apprend la mort de son père biologique qu’il n’a jamais connu. Dans l’attente d’un rendez-vous avec un notaire en Italie, il passe quelques jours à Paris où il a vécu plus jeune. De discussions avec sa fille activiste en retrouvailles avec des fantômes de son passé, il interroge son rapport au monde et surtout sa relation aux femmes. A-t-il été droit, respectueux, aimant ?"
  },
@@ -2471,17 +2615,17 @@
   "trailer": "",
   "storyline": ""
  },
- "sanguine|marion-le-corroller": {
-  "key": "sanguine|marion-le-corroller",
-  "title": "SANGUINE",
-  "director": "Marion Le Corroller",
-  "cast": "Mara Taquin, Karin Viard, Kim Higelin",
-  "genre": "Epouvante-horreur",
+ "alice-au-pays-des-merveilles-dive-in-wonderland|toshiya-shinohara": {
+  "key": "alice-au-pays-des-merveilles-dive-in-wonderland|toshiya-shinohara",
+  "title": "ALICE AU PAYS DES MERVEILLES : DIVE IN WONDERLAND",
+  "director": "Toshiya Shinohara",
+  "cast": "",
+  "genre": "Fantastique",
   "country": "",
-  "duration_min": 103,
-  "poster": "https://www.ugc.fr/dynamique/films/66/18466/fr/poster/large/cb93a3a86bd02e7b49e976435d28d3fb_grey_8.jpg",
+  "duration_min": 95,
+  "poster": "https://www.ugc.fr/dynamique/films/95/17895/fr/poster/large/2f03e57f21e957f7a398e715482a5168_grey_6.jpg",
   "trailer": "",
-  "storyline": "Margot débute son internat aux urgences, où elle peine à s’adapter. Très vite, elle fait face à des patients de son âge aux symptômes inexpliqués. La récurrence de ces cas exceptionnels l’interroge, d’autant qu’elle observe, sur son propre corps, des manifestations de plus en plus inquiétantes…"
+  "storyline": "Projetée sans crier gare au Pays des merveilles après la réception d’une lettre laissée par sa grand-mère, Lise, étudiante en quête de repères, se voit entraînée dans un univers grouillant de créatures fantastiques. Guidée par Alice, elle traverse ce dédale dans lequel se croisent un Lapin blanc perpétuellement pressé, une souveraine impitoyable et le facétieux Chat du Cheshire. Au fil de ce mystérieux périple, la jeune fille pourrait bien découvrir ce que lui réserve son propre destin."
  },
  "claude|clement-michel": {
   "key": "claude|clement-michel",
@@ -2490,22 +2634,10 @@
   "cast": "André Dussollier, Valérie Donzelli, Kyan Khojandi",
   "genre": "Comédie",
   "country": "",
-  "duration_min": 60,
+  "duration_min": 91,
   "poster": "https://www.ugc.fr/dynamique/images/AfficheParDefaut/affiche-indisponible-fr.gif",
   "trailer": "",
   "storyline": "Claude, 76 ans, aussi charmant qu’irresponsable, est mis à la porte par sa (quatrième) femme. Il se retrouve alors en garde alternée chez ses enfants, qu'il a pourtant évité toute sa vie. Cette cohabitation explosive et improbable pourrait bien, contre toute attente, recoller les morceaux d’une famille qu’il avait laissé filer."
- },
- "changer-l-eau-des-fleurs|jean-pierre-jeunet": {
-  "key": "changer-l-eau-des-fleurs|jean-pierre-jeunet",
-  "title": "CHANGER L'EAU DES FLEURS",
-  "director": "Jean-Pierre Jeunet",
-  "cast": "Leïla Bekhti, Matthias Schoenaerts, Melvil Poupaud",
-  "genre": "Drame",
-  "country": "",
-  "duration_min": 138,
-  "poster": "https://www.ugc.fr/dynamique/films/60/18560/fr/poster/large/0332a2d334cbea8daf1ef07ddbe68a6f_grey_5.jpg",
-  "trailer": "",
-  "storyline": "Violette, la quarantaine, est garde-cimetière dans une petite ville de Bourgogne. Son quotidien est rythmé par les confidences des personnes de passage ou habitués du lieu, qui viennent trouver un peu de réconfort dans sa loge. Un jour, elle reçoit la visite d'un policier, Julien Seul, venu déposer les cendres de sa mère sur la tombe de l'homme qu'elle aimait. Intrigué par l’histoire de Violette, dont le mari a disparu mystérieusement, peu de temps après leur arrivée au cimetière, il décide d’enquêter, faisant sans le vouloir remonter à la surface de douloureux souvenirs ainsi que des vérités salvatrices pour Violette."
  },
  "mystik|azedine-kasri-raphael-quenard": {
   "key": "mystik|azedine-kasri-raphael-quenard",
