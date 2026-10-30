@@ -95,6 +95,18 @@
   "trailer": "",
   "storyline": ""
  },
+ "congo-boy|rafiki-fariala": {
+  "key": "congo-boy|rafiki-fariala",
+  "title": "Congo Boy",
+  "director": "Rafiki Fariala",
+  "cast": "",
+  "genre": "Drame",
+  "country": "",
+  "duration_min": 90,
+  "poster": "https://all.web.img.acsta.net/img/83/1e/831eb7893e62376a0191ba965c41f57b.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
  "hunger-games-la-revolte-partie-2|francis-lawrence": {
   "key": "hunger-games-la-revolte-partie-2|francis-lawrence",
   "title": "Hunger Games - La Révolte : Partie 2",
@@ -251,6 +263,18 @@
   "trailer": "",
   "storyline": ""
  },
+ "la-maison-doree-ennafoura|selma-baccar": {
+  "key": "la-maison-doree-ennafoura|selma-baccar",
+  "title": "La Maison dorée (Ennafoura)",
+  "director": "Selma Baccar",
+  "cast": "",
+  "genre": "Drame",
+  "country": "",
+  "duration_min": 110,
+  "poster": "",
+  "trailer": "",
+  "storyline": ""
+ },
  "ducobu-et-le-fantome-de-saint-potache|elie-semoun": {
   "key": "ducobu-et-le-fantome-de-saint-potache|elie-semoun",
   "title": "Ducobu et le fantôme de Saint-Potache",
@@ -344,6 +368,18 @@
   "country": "",
   "duration_min": 97,
   "poster": "https://all.web.img.acsta.net/img/65/44/654492a6a2e060b5618af12221946790.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "lorie-party-2026-au-cinema|tristan-carne": {
+  "key": "lorie-party-2026-au-cinema|tristan-carne",
+  "title": "Lorie Party 2026 au cinéma",
+  "director": "Tristan Carné",
+  "cast": "",
+  "genre": "Concert",
+  "country": "",
+  "duration_min": 105,
+  "poster": "",
   "trailer": "",
   "storyline": ""
  },
@@ -558,8 +594,20 @@
   "cast": "",
   "genre": "Documentaire",
   "country": "",
-  "duration_min": null,
+  "duration_min": 101,
   "poster": "https://all.web.img.acsta.net/img/c8/7c/c87c3d7967dbae79619c67865266006c.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "hunger-games-la-ballade-du-serpent-et-de-l-oiseau-chanteur|francis-lawrence": {
+  "key": "hunger-games-la-ballade-du-serpent-et-de-l-oiseau-chanteur|francis-lawrence",
+  "title": "Hunger Games: la Ballade du serpent et de l'oiseau chanteur",
+  "director": "Francis Lawrence",
+  "cast": "",
+  "genre": "Science fiction",
+  "country": "",
+  "duration_min": 158,
+  "poster": "https://all.web.img.acsta.net/pictures/22/08/17/09/35/3319413.jpg",
   "trailer": "",
   "storyline": ""
  },
@@ -599,6 +647,18 @@
   "trailer": "",
   "storyline": ""
  },
+ "le-coquelicot-des-cendres|sebastien-saint-martin": {
+  "key": "le-coquelicot-des-cendres|sebastien-saint-martin",
+  "title": "Le coquelicot des cendres",
+  "director": "Sébastien Saint-Martin",
+  "cast": "",
+  "genre": "",
+  "country": "",
+  "duration_min": 56,
+  "poster": "",
+  "trailer": "",
+  "storyline": ""
+ },
  "le-cuirasse-potemkine|sergei-eisenstein": {
   "key": "le-cuirasse-potemkine|sergei-eisenstein",
   "title": "Le Cuirassé Potemkine",
@@ -620,6 +680,30 @@
   "country": "",
   "duration_min": 157,
   "poster": "https://all.web.img.acsta.net/img/ca/5a/ca5a7cae10433f7beb9909083ea7e985.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "mariage-au-gout-d-orange|christophe-honore": {
+  "key": "mariage-au-gout-d-orange|christophe-honore",
+  "title": "Mariage au goût d'orange",
+  "director": "Christophe Honoré",
+  "cast": "",
+  "genre": "Comédie dramatique",
+  "country": "",
+  "duration_min": 115,
+  "poster": "https://all.web.img.acsta.net/img/5c/44/5c444833205506188da08371f76e7a0c.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "femmes-des-terres|edgar-baoua-dedrich": {
+  "key": "femmes-des-terres|edgar-baoua-dedrich",
+  "title": "Femmes des Terres",
+  "director": "Edgar BAOUA-DEDRICH",
+  "cast": "",
+  "genre": "Documentaire",
+  "country": "",
+  "duration_min": 54,
+  "poster": "",
   "trailer": "",
   "storyline": ""
  },
@@ -743,6 +827,18 @@
   "trailer": "",
   "storyline": ""
  },
+ "sweeney-todd-le-diabolique-barbier-de-fleet-street|tim-burton": {
+  "key": "sweeney-todd-le-diabolique-barbier-de-fleet-street|tim-burton",
+  "title": "Sweeney Todd, le diabolique barbier de Fleet Street",
+  "director": "Tim Burton",
+  "cast": "",
+  "genre": "Comédie musicale",
+  "country": "",
+  "duration_min": 116,
+  "poster": "https://all.web.img.acsta.net/medias/nmedia/18/87/86/46/19973868.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
  "la-gradiva|marine-atlan": {
   "key": "la-gradiva|marine-atlan",
   "title": "La Gradiva",
@@ -788,6 +884,18 @@
   "country": "",
   "duration_min": 99,
   "poster": "https://all.web.img.acsta.net/medias/nmedia/18/87/76/32/19964451.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "chats-par-ci-chats-par-la|fabrice-luang-vija": {
+  "key": "chats-par-ci-chats-par-la|fabrice-luang-vija",
+  "title": "Chats par-ci, Chats par-là",
+  "director": "Fabrice Luang-Vija",
+  "cast": "",
+  "genre": "Animation",
+  "country": "",
+  "duration_min": 56,
+  "poster": "https://all.web.img.acsta.net/pictures/19/11/04/16/50/3970372.jpg",
   "trailer": "",
   "storyline": ""
  },

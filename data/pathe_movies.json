@@ -1,4 +1,40 @@
 {
+ "il-etait-une-fois-virgin-suicides|sofia-coppola": {
+  "key": "il-etait-une-fois-virgin-suicides|sofia-coppola",
+  "title": "Il était une fois... Virgin Suicides",
+  "director": "Sofia Coppola",
+  "cast": "",
+  "genre": "Drame",
+  "country": "",
+  "duration_min": 97,
+  "poster": "https://media.pathe.fr/movie/alex/HO00011920/poster/lg/9/movie&uuid=983567AA-8F3C-4610-944C-F46002DC3DA1",
+  "trailer": "",
+  "storyline": ""
+ },
+ "lorie-party-2026-au-cinema|tristan-carne": {
+  "key": "lorie-party-2026-au-cinema|tristan-carne",
+  "title": "Lorie Party 2026 au cinéma",
+  "director": "Tristan Carné",
+  "cast": "",
+  "genre": "Concert",
+  "country": "",
+  "duration_min": 105,
+  "poster": "https://media.pathe.fr/movie/alex/HO00011512/poster/lg/1/movie&uuid=478BBB22-DF0D-46D9-83F5-9DC82A68E4D3",
+  "trailer": "",
+  "storyline": ""
+ },
+ "soiree-speciale-pre-festival-la-rose-et-le-lys|": {
+  "key": "soiree-speciale-pre-festival-la-rose-et-le-lys|",
+  "title": "Soirée spéciale pré-festival : La Rose et Le Lys",
+  "director": "",
+  "cast": "",
+  "genre": "Action",
+  "country": "",
+  "duration_min": 180,
+  "poster": "https://media.pathe.fr/movie/alex/HO00012028/poster/lg/2/movie&uuid=F319A766-2AB5-4EA5-9B90-D93483EF9E8D",
+  "trailer": "",
+  "storyline": ""
+ },
  "godzilla-minus-zero|takashi-yamazaki": {
   "key": "godzilla-minus-zero|takashi-yamazaki",
   "title": "Godzilla Minus Zero",
@@ -67,7 +103,7 @@
   "genre": "Biopic",
   "country": "",
   "duration_min": 134,
-  "poster": "https://media.pathe.fr/movie/alex/HO00010904/poster/lg/2/movie&uuid=DC84DC6B-69FE-4DA1-A56B-A771FAD87C52",
+  "poster": "https://media.pathe.fr/movie/alex/HO00010904/poster/lg/3/movie&uuid=5F4BE38E-C292-48DC-BF4D-B6B242468BA2",
   "trailer": "",
   "storyline": ""
  },
@@ -83,10 +119,10 @@
   "trailer": "",
   "storyline": ""
  },
- "papa-ou-t-es|samy-bouyssie-basile-monnot": {
-  "key": "papa-ou-t-es|samy-bouyssie-basile-monnot",
+ "papa-ou-t-es|basile-monnot-samy-bouyssie": {
+  "key": "papa-ou-t-es|basile-monnot-samy-bouyssie",
   "title": "Papa où t'es ?",
-  "director": "Samy Bouyssié, Basile Monnot",
+  "director": "Basile Monnot, Samy Bouyssié",
   "cast": "",
   "genre": "Documentaire",
   "country": "",
@@ -95,10 +131,10 @@
   "trailer": "",
   "storyline": ""
  },
- "sanguine|marion-le-corroler": {
-  "key": "sanguine|marion-le-corroler",
+ "sanguine|marion-le-corroller": {
+  "key": "sanguine|marion-le-corroller",
   "title": "Sanguine",
-  "director": "Marion Le Corroler",
+  "director": "Marion Le Corroller",
   "cast": "",
   "genre": "Epouvante-horreur",
   "country": "",
@@ -116,18 +152,6 @@
   "country": "",
   "duration_min": 44,
   "poster": "https://media.pathe.fr/movie/alex/HO00011900/poster/lg/6/movie&uuid=981F6847-50D5-4315-A89B-D15B2EF5F745",
-  "trailer": "",
-  "storyline": ""
- },
- "les-rendez-vous-de-l-anime-si-tu-tends-l-oreille|yoshifumi-kondo": {
-  "key": "les-rendez-vous-de-l-anime-si-tu-tends-l-oreille|yoshifumi-kondo",
-  "title": "Les Rendez-vous de l'anime : Si tu tends l'oreille",
-  "director": "Yoshifumi Kondô",
-  "cast": "",
-  "genre": "Animation",
-  "country": "",
-  "duration_min": 118,
-  "poster": "https://media.pathe.fr/movie/alex/HO00011947/poster/lg/9/movie&uuid=47B8D36C-4795-42B9-8589-E3627136AEC5",
   "trailer": "",
   "storyline": ""
  },
@@ -155,18 +179,6 @@
   "trailer": "",
   "storyline": ""
  },
- "shaun-le-mouton-la-beeete-d-halloween|steve-cox-matthew-walker": {
-  "key": "shaun-le-mouton-la-beeete-d-halloween|steve-cox-matthew-walker",
-  "title": "Shaun le Mouton : La Bêêête d'Halloween",
-  "director": "Steve Cox, Matthew Walker",
-  "cast": "",
-  "genre": "Animation",
-  "country": "",
-  "duration_min": 81,
-  "poster": "https://media.pathe.fr/movie/alex/HO00010494/poster/lg/1/movie&uuid=1688851C-95A4-4A16-A24A-3D1E255A03AA",
-  "trailer": "",
-  "storyline": ""
- },
  "le-roi-du-game|eric-judor": {
   "key": "le-roi-du-game|eric-judor",
   "title": "Le roi du game",
@@ -176,6 +188,18 @@
   "country": "",
   "duration_min": 89,
   "poster": "https://media.pathe.fr/movie/alex/HO00011283/poster/lg/4/movie&uuid=3FD712FC-DDD7-4E11-B8D8-DF1546B4608A",
+  "trailer": "",
+  "storyline": ""
+ },
+ "shaun-le-mouton-la-beeete-d-halloween|steve-cox-matthew-walker": {
+  "key": "shaun-le-mouton-la-beeete-d-halloween|steve-cox-matthew-walker",
+  "title": "Shaun le Mouton : La Bêêête d'Halloween",
+  "director": "Steve Cox, Matthew Walker",
+  "cast": "",
+  "genre": "Animation",
+  "country": "",
+  "duration_min": 81,
+  "poster": "https://media.pathe.fr/movie/alex/HO00010494/poster/lg/1/movie&uuid=1688851C-95A4-4A16-A24A-3D1E255A03AA",
   "trailer": "",
   "storyline": ""
  },
@@ -332,6 +356,18 @@
   "country": "",
   "duration_min": 94,
   "poster": "https://media.pathe.fr/movie/alex/HO00009913/poster/lg/2/movie&uuid=21D33ED4-682C-4D04-9FAD-E91D447087A0",
+  "trailer": "",
+  "storyline": ""
+ },
+ "isaiah-s-phone|fred-da": {
+  "key": "isaiah-s-phone|fred-da",
+  "title": "Isaiah's Phone",
+  "director": "Fred Da",
+  "cast": "",
+  "genre": "Drame",
+  "country": "",
+  "duration_min": 75,
+  "poster": "https://media.pathe.fr/movie/alex/HO00011646/poster/lg/3/movie&uuid=29724F12-C4AD-48E3-9500-D5EFC0484989",
   "trailer": "",
   "storyline": ""
  },
@@ -563,18 +599,6 @@
   "trailer": "",
   "storyline": ""
  },
- "jupiter|alexandre-smia": {
-  "key": "jupiter|alexandre-smia",
-  "title": "Jupiter",
-  "director": "Alexandre Smia",
-  "cast": "",
-  "genre": "Drame",
-  "country": "",
-  "duration_min": 87,
-  "poster": "https://media.pathe.fr/movie/alex/HO00011571/poster/lg/2/movie&uuid=06A294FC-139B-4FE2-8B09-0A54B20F4910",
-  "trailer": "",
-  "storyline": ""
- },
  "wild-horse-nine|martin-mcdonagh": {
   "key": "wild-horse-nine|martin-mcdonagh",
   "title": "Wild Horse Nine",
@@ -584,6 +608,18 @@
   "country": "",
   "duration_min": 117,
   "poster": "https://media.pathe.fr/movie/alex/HO00011033/poster/lg/3/movie&uuid=D1281E75-392D-48B4-874B-717BFD10FB84",
+  "trailer": "",
+  "storyline": ""
+ },
+ "connaissance-du-monde-bretagne|ludovic-tac": {
+  "key": "connaissance-du-monde-bretagne|ludovic-tac",
+  "title": "Connaissance du Monde - Bretagne",
+  "director": "Ludovic Tac",
+  "cast": "",
+  "genre": "Documentaire",
+  "country": "",
+  "duration_min": 80,
+  "poster": "https://media.pathe.fr/movie/alex/HO00011472/poster/lg/7/movie&uuid=46E28A58-949B-4179-8AAA-75598E9786E0",
   "trailer": "",
   "storyline": ""
  },
@@ -647,18 +683,6 @@
   "trailer": "",
   "storyline": ""
  },
- "terrifier-3|damien-leone": {
-  "key": "terrifier-3|damien-leone",
-  "title": "Terrifier 3",
-  "director": "Damien Leone",
-  "cast": "",
-  "genre": "Epouvante-horreur",
-  "country": "",
-  "duration_min": 125,
-  "poster": "https://media.pathe.fr/movie/alex/HO00007556/poster/lg/179/movie&uuid=97CB70DC-3CF3-48FD-9C09-DF4728247134",
-  "trailer": "",
-  "storyline": ""
- },
  "coco|lee-unkrich": {
   "key": "coco|lee-unkrich",
   "title": "Coco",
@@ -692,6 +716,18 @@
   "country": "",
   "duration_min": 92,
   "poster": "https://media.pathe.fr/movie/alex/HO00001745/poster/lg/39/movie&uuid=72BF5423-8828-4479-96FC-C91CEE893DA7",
+  "trailer": "",
+  "storyline": ""
+ },
+ "le-regne-des-neiges|": {
+  "key": "le-regne-des-neiges|",
+  "title": "Le règne des neiges",
+  "director": "",
+  "cast": "",
+  "genre": "Documentaire",
+  "country": "",
+  "duration_min": 70,
+  "poster": "https://media.pathe.fr/movie/alex/HO00011942/poster/lg/5/movie&uuid=77D9B0A1-9B0D-4A3A-9D23-851C628B6B95",
   "trailer": "",
   "storyline": ""
  },
@@ -791,18 +827,6 @@
   "trailer": "",
   "storyline": ""
  },
- "un-amour-d-epouvantail|jeroen-jaspaert-samantha-cutler": {
-  "key": "un-amour-d-epouvantail|jeroen-jaspaert-samantha-cutler",
-  "title": "Un amour d'épouvantail",
-  "director": "Jeroen Jaspaert, Samantha Cutler",
-  "cast": "",
-  "genre": "Animation",
-  "country": "",
-  "duration_min": 44,
-  "poster": "https://media.pathe.fr/movie/alex/HO00010887/poster/lg/3/movie&uuid=3B2F209A-F8B1-4237-BE90-FE111D2CCF45",
-  "trailer": "",
-  "storyline": ""
- },
  "ma-mini-seance-sam-le-pompier|colleen-morton-connor-ferguson": {
   "key": "ma-mini-seance-sam-le-pompier|colleen-morton-connor-ferguson",
   "title": "Ma mini-séance : Sam le pompier",
@@ -827,6 +851,18 @@
   "trailer": "",
   "storyline": ""
  },
+ "face-a-face|florian-hessique": {
+  "key": "face-a-face|florian-hessique",
+  "title": "Face à face",
+  "director": "Florian Hessique",
+  "cast": "",
+  "genre": "Drame",
+  "country": "",
+  "duration_min": 84,
+  "poster": "https://media.pathe.fr/movie/alex/HO00011360/poster/lg/2/movie&uuid=36734DC9-0A05-4D43-B787-245F7B8B6513",
+  "trailer": "",
+  "storyline": ""
+ },
  "le-prodige|edward-zwick": {
   "key": "le-prodige|edward-zwick",
   "title": "Le Prodige",
@@ -836,6 +872,18 @@
   "country": "",
   "duration_min": 115,
   "poster": "",
+  "trailer": "",
+  "storyline": ""
+ },
+ "jupiter|alexandre-smia": {
+  "key": "jupiter|alexandre-smia",
+  "title": "Jupiter",
+  "director": "Alexandre Smia",
+  "cast": "",
+  "genre": "Drame",
+  "country": "",
+  "duration_min": 87,
+  "poster": "https://media.pathe.fr/movie/alex/HO00011571/poster/lg/2/movie&uuid=06A294FC-139B-4FE2-8B09-0A54B20F4910",
   "trailer": "",
   "storyline": ""
  },
@@ -923,18 +971,6 @@
   "trailer": "",
   "storyline": ""
  },
- "il-faut-bruler-maman|albert-dupontel": {
-  "key": "il-faut-bruler-maman|albert-dupontel",
-  "title": "Il faut brûler Maman",
-  "director": "Albert Dupontel",
-  "cast": "",
-  "genre": "Comédie",
-  "country": "",
-  "duration_min": 81,
-  "poster": "https://media.pathe.fr/movie/alex/HO00010861/poster/lg/3/movie&uuid=FEE7E9D1-AC76-4E93-BDFF-004C68580E43",
-  "trailer": "",
-  "storyline": ""
- },
  "tad-l-explorateur-et-la-lampe-magique|enrique-gato": {
   "key": "tad-l-explorateur-et-la-lampe-magique|enrique-gato",
   "title": "Tad l'explorateur et la lampe magique",
@@ -959,15 +995,15 @@
   "trailer": "",
   "storyline": ""
  },
- "isaiah-s-phone|fred-da": {
-  "key": "isaiah-s-phone|fred-da",
-  "title": "Isaiah's Phone",
-  "director": "Fred Da",
+ "connaissance-du-monde-asie-centrale|raphael-blanc": {
+  "key": "connaissance-du-monde-asie-centrale|raphael-blanc",
+  "title": "Connaissance du Monde - Asie Centrale",
+  "director": "Raphaël Blanc",
   "cast": "",
-  "genre": "Drame",
+  "genre": "Documentaire",
   "country": "",
-  "duration_min": 75,
-  "poster": "https://media.pathe.fr/movie/alex/HO00011646/poster/lg/3/movie&uuid=29724F12-C4AD-48E3-9500-D5EFC0484989",
+  "duration_min": 80,
+  "poster": "https://media.pathe.fr/movie/alex/HO00011468/poster/lg/6/movie&uuid=C6F5C165-1A08-4A2B-BEF2-3234881E28CF",
   "trailer": "",
   "storyline": ""
  },
@@ -983,30 +1019,6 @@
   "trailer": "",
   "storyline": ""
  },
- "charlie-et-la-chocolaterie-2005|tim-burton": {
-  "key": "charlie-et-la-chocolaterie-2005|tim-burton",
-  "title": "Charlie et la chocolaterie (2005)",
-  "director": "Tim Burton",
-  "cast": "",
-  "genre": "Aventure",
-  "country": "",
-  "duration_min": 155,
-  "poster": "",
-  "trailer": "",
-  "storyline": ""
- },
- "face-a-face|florian-hessique": {
-  "key": "face-a-face|florian-hessique",
-  "title": "Face à face",
-  "director": "Florian Hessique",
-  "cast": "",
-  "genre": "Drame",
-  "country": "",
-  "duration_min": 84,
-  "poster": "https://media.pathe.fr/movie/alex/HO00011360/poster/lg/2/movie&uuid=36734DC9-0A05-4D43-B787-245F7B8B6513",
-  "trailer": "",
-  "storyline": ""
- },
  "ni-vue-ni-connue|marc-fitoussi": {
   "key": "ni-vue-ni-connue|marc-fitoussi",
   "title": "Ni vue, ni connue",
@@ -1016,6 +1028,18 @@
   "country": "",
   "duration_min": 115,
   "poster": "https://media.pathe.fr/movie/alex/HO00011086/poster/lg/3/movie&uuid=5DBB10D4-1957-46FC-9524-0030C499D0AD",
+  "trailer": "",
+  "storyline": ""
+ },
+ "matrix-reloaded|lana-wachowski-lilly-wachowski": {
+  "key": "matrix-reloaded|lana-wachowski-lilly-wachowski",
+  "title": "Matrix Reloaded",
+  "director": "Lana Wachowski, Lilly Wachowski",
+  "cast": "",
+  "genre": "Action",
+  "country": "",
+  "duration_min": 138,
+  "poster": "https://media.pathe.fr/movie/alex/HO00000485/poster/lg/25/movie&uuid=B9900283-52AA-4DEB-827F-EB571E7958E3",
   "trailer": "",
   "storyline": ""
  },
@@ -1031,15 +1055,15 @@
   "trailer": "",
   "storyline": ""
  },
- "les-survivants-du-che|christophe-reveille": {
-  "key": "les-survivants-du-che|christophe-reveille",
-  "title": "Les survivants du Che",
-  "director": "Christophe Réveille",
+ "l-affaire-marie-claire|lauriane-escaffre": {
+  "key": "l-affaire-marie-claire|lauriane-escaffre",
+  "title": "L'affaire Marie-Claire",
+  "director": "Lauriane Escaffre",
   "cast": "",
-  "genre": "Documentaire",
+  "genre": "Biopic",
   "country": "",
-  "duration_min": 94,
-  "poster": "https://media.pathe.fr/movie/alex/HO00011220/poster/lg/3/movie&uuid=87B9E603-F1CE-4005-92FD-9C2CFAA03444",
+  "duration_min": 103,
+  "poster": "https://media.pathe.fr/movie/alex/HO00010870/poster/lg/2/movie&uuid=BAED940F-71F7-41D9-9BEC-8838853F23E6",
   "trailer": "",
   "storyline": ""
  },
@@ -1079,6 +1103,18 @@
   "trailer": "",
   "storyline": ""
  },
+ "out-of-place|": {
+  "key": "out-of-place|",
+  "title": "Out of place",
+  "director": "",
+  "cast": "",
+  "genre": "Drame",
+  "country": "",
+  "duration_min": 105,
+  "poster": "https://media.pathe.fr/movie/alex/HO00011990/poster/lg/2/movie&uuid=7F7FA0EA-EA6F-4FCD-80FD-5EB04909F1FF",
+  "trailer": "",
+  "storyline": ""
+ },
  "massacre-a-la-tronconneuse|tobe-hooper": {
   "key": "massacre-a-la-tronconneuse|tobe-hooper",
   "title": "Massacre à la tronçonneuse",
@@ -1088,6 +1124,30 @@
   "country": "",
   "duration_min": 84,
   "poster": "https://media.pathe.fr/movie/alex/HO00005035/poster/lg/44/movie&uuid=60BA6B04-1B94-435C-90B1-BD70F7F9F3A5",
+  "trailer": "",
+  "storyline": ""
+ },
+ "veronica|paco-plaza": {
+  "key": "veronica|paco-plaza",
+  "title": "Verónica",
+  "director": "Paco Plaza",
+  "cast": "",
+  "genre": "Epouvante-horreur",
+  "country": "",
+  "duration_min": 106,
+  "poster": "https://media.pathe.fr/movie/alex/HO00011989/poster/lg/1/movie&uuid=69F46DE3-B956-4CC1-8482-409A9D27BEB3",
+  "trailer": "",
+  "storyline": ""
+ },
+ "poltergeist|tobe-hooper": {
+  "key": "poltergeist|tobe-hooper",
+  "title": "Poltergeist",
+  "director": "Tobe Hooper",
+  "cast": "",
+  "genre": "Horreur / Épouvante",
+  "country": "",
+  "duration_min": 114,
+  "poster": "https://media.pathe.fr/movie/alex/HO00006134/poster/lg/8/movie&uuid=AF67BFD2-8B3E-4C70-86B6-003E12FEC2D4",
   "trailer": "",
   "storyline": ""
  },
@@ -1136,18 +1196,6 @@
   "country": "",
   "duration_min": 88,
   "poster": "https://media.pathe.fr/movie/alex/HO00009799/poster/lg/2/movie&uuid=992779E9-3304-438C-AF45-E404DDC3B65E",
-  "trailer": "",
-  "storyline": ""
- },
- "l-affaire-marie-claire|lauriane-escaffre": {
-  "key": "l-affaire-marie-claire|lauriane-escaffre",
-  "title": "L'affaire Marie-Claire",
-  "director": "Lauriane Escaffre",
-  "cast": "",
-  "genre": "Biopic",
-  "country": "",
-  "duration_min": 102,
-  "poster": "https://media.pathe.fr/movie/alex/HO00010870/poster/lg/2/movie&uuid=BAED940F-71F7-41D9-9BEC-8838853F23E6",
   "trailer": "",
   "storyline": ""
  },
@@ -1331,18 +1379,6 @@
   "trailer": "",
   "storyline": ""
  },
- "si-tu-tends-l-oreille|yoshifumi-kondo": {
-  "key": "si-tu-tends-l-oreille|yoshifumi-kondo",
-  "title": "Si tu tends l'oreille",
-  "director": "Yoshifumi Kondô",
-  "cast": "",
-  "genre": "Animation",
-  "country": "",
-  "duration_min": 111,
-  "poster": "https://media.pathe.fr/movie/alex/HO00003484/poster/lg/43/movie&uuid=AE899F09-1765-458F-9B03-9504DFA5C69B",
-  "trailer": "",
-  "storyline": ""
- },
  "king-kong-2005|peter-jackson": {
   "key": "king-kong-2005|peter-jackson",
   "title": "King Kong (2005)",
@@ -1427,18 +1463,6 @@
   "trailer": "",
   "storyline": ""
  },
- "exotica|atom-egoyam": {
-  "key": "exotica|atom-egoyam",
-  "title": "Exotica",
-  "director": "Atom Egoyam",
-  "cast": "",
-  "genre": "Drame",
-  "country": "",
-  "duration_min": 103,
-  "poster": "",
-  "trailer": "",
-  "storyline": ""
- },
  "fausse-note|alexandre-arcady": {
   "key": "fausse-note|alexandre-arcady",
   "title": "Fausse note",
@@ -1463,6 +1487,30 @@
   "trailer": "",
   "storyline": ""
  },
+ "il-faut-bruler-maman|albert-dupontel": {
+  "key": "il-faut-bruler-maman|albert-dupontel",
+  "title": "Il faut brûler Maman",
+  "director": "Albert Dupontel",
+  "cast": "",
+  "genre": "Comédie",
+  "country": "",
+  "duration_min": 81,
+  "poster": "https://media.pathe.fr/movie/alex/HO00010861/poster/lg/3/movie&uuid=FEE7E9D1-AC76-4E93-BDFF-004C68580E43",
+  "trailer": "",
+  "storyline": ""
+ },
+ "virgin-suicides|sofia-coppola": {
+  "key": "virgin-suicides|sofia-coppola",
+  "title": "Virgin Suicides",
+  "director": "Sofia Coppola",
+  "cast": "",
+  "genre": "Drame",
+  "country": "",
+  "duration_min": 97,
+  "poster": "https://media.pathe.fr/movie/alex/HO00006396/poster/lg/13/movie&uuid=9B845EBC-207D-42AC-8596-DD4CD24CA56D",
+  "trailer": "",
+  "storyline": ""
+ },
  "bonnes-nouvelles-la-seance|": {
   "key": "bonnes-nouvelles-la-seance|",
   "title": "Bonnes Nouvelles - La Séance",
@@ -1484,6 +1532,18 @@
   "country": "",
   "duration_min": 105,
   "poster": "https://media.pathe.fr/movie/alex/HO00012029/poster/lg/1/movie&uuid=0CDA8849-B8DE-4768-AD10-CFF8E6AD9CE3",
+  "trailer": "",
+  "storyline": ""
+ },
+ "les-rendez-vous-de-l-anime-si-tu-tends-l-oreille|yoshifumi-kondo": {
+  "key": "les-rendez-vous-de-l-anime-si-tu-tends-l-oreille|yoshifumi-kondo",
+  "title": "Les Rendez-vous de l'anime : Si tu tends l'oreille",
+  "director": "Yoshifumi Kondô",
+  "cast": "",
+  "genre": "Animation",
+  "country": "",
+  "duration_min": 118,
+  "poster": "https://media.pathe.fr/movie/alex/HO00011947/poster/lg/9/movie&uuid=47B8D36C-4795-42B9-8589-E3627136AEC5",
   "trailer": "",
   "storyline": ""
  },
@@ -1523,18 +1583,6 @@
   "trailer": "",
   "storyline": ""
  },
- "un-bon-petit-soldat|stephane-brize": {
-  "key": "un-bon-petit-soldat|stephane-brize",
-  "title": "Un bon petit soldat",
-  "director": "Stéphane Brizé",
-  "cast": "",
-  "genre": "Drame",
-  "country": "",
-  "duration_min": 103,
-  "poster": "https://media.pathe.fr/movie/alex/HO00011226/poster/lg/3/movie&uuid=1C759BB0-A1DE-4CB3-8A4B-137C67CCDDC1",
-  "trailer": "",
-  "storyline": ""
- },
  "15-18|cedric-kahn": {
   "key": "15-18|cedric-kahn",
   "title": "15/18",
@@ -1559,15 +1607,15 @@
   "trailer": "",
   "storyline": ""
  },
- "connaissance-du-monde-asie-centrale|raphael-blanc": {
-  "key": "connaissance-du-monde-asie-centrale|raphael-blanc",
-  "title": "Connaissance du Monde - Asie Centrale",
-  "director": "Raphaël Blanc",
+ "du-vent-dans-mes-mollets|carine-tardieu": {
+  "key": "du-vent-dans-mes-mollets|carine-tardieu",
+  "title": "DU VENT DANS MES MOLLETS",
+  "director": "Carine Tardieu",
   "cast": "",
-  "genre": "Documentaire",
+  "genre": "Comédie",
   "country": "",
-  "duration_min": 80,
-  "poster": "https://media.pathe.fr/movie/alex/HO00011468/poster/lg/6/movie&uuid=C6F5C165-1A08-4A2B-BEF2-3234881E28CF",
+  "duration_min": 89,
+  "poster": "https://media.pathe.fr/movie/906551/poster/1639050746429/lg/31/film_15172.jpg",
   "trailer": "",
   "storyline": ""
  },
@@ -1583,18 +1631,6 @@
   "trailer": "",
   "storyline": ""
  },
- "tomorrow-x-together-world-tour-act-tomorrow|taehwan-yum": {
-  "key": "tomorrow-x-together-world-tour-act-tomorrow|taehwan-yum",
-  "title": "TOMORROW X TOGETHER WORLD TOUR 'ACT : TOMORROW'",
-  "director": "TAEHWAN YUM",
-  "cast": "",
-  "genre": "Concert",
-  "country": "",
-  "duration_min": 97,
-  "poster": "https://media.pathe.fr/movie/alex/HO00011913/poster/lg/1/movie&uuid=E14DF4EF-1712-403A-AF87-9532772CD01E",
-  "trailer": "",
-  "storyline": ""
- },
  "hybe-cheering-party|sanggeun-park-jineui-kim": {
   "key": "hybe-cheering-party|sanggeun-park-jineui-kim",
   "title": "HYBE CHEERING PARTY",
@@ -1604,18 +1640,6 @@
   "country": "",
   "duration_min": 60,
   "poster": "https://media.pathe.fr/movie/alex/HO00011916/poster/lg/1/movie&uuid=60226A20-71A7-4F18-8FC2-283C3A68F262",
-  "trailer": "",
-  "storyline": ""
- },
- "seventeen-world-tour-new|": {
-  "key": "seventeen-world-tour-new|",
-  "title": "SEVENTEEN WORLD TOUR 'NEW_'",
-  "director": "",
-  "cast": "",
-  "genre": "Concert",
-  "country": "",
-  "duration_min": 102,
-  "poster": "https://media.pathe.fr/movie/alex/HO00011912/poster/lg/2/movie&uuid=628AF14B-5A61-4CDC-9CF4-CAC521C5A1EE",
   "trailer": "",
   "storyline": ""
  },
@@ -1643,6 +1667,30 @@
   "trailer": "",
   "storyline": ""
  },
+ "28-ans-plus-tard|danny-boyle": {
+  "key": "28-ans-plus-tard|danny-boyle",
+  "title": "28 ans plus tard",
+  "director": "Danny Boyle",
+  "cast": "",
+  "genre": "Epouvante-horreur",
+  "country": "",
+  "duration_min": 115,
+  "poster": "https://media.pathe.fr/movie/alex/HO00007828/poster/lg/4/movie&uuid=C64A6363-94DF-455B-9B4B-9A1339E53300",
+  "trailer": "",
+  "storyline": ""
+ },
+ "dernier-train-pour-busan|sang-ho-yeon": {
+  "key": "dernier-train-pour-busan|sang-ho-yeon",
+  "title": "Dernier train pour Busan",
+  "director": "Sang-Ho Yeon",
+  "cast": "",
+  "genre": "Action",
+  "country": "",
+  "duration_min": 118,
+  "poster": "https://media.pathe.fr/movie/9101546/poster/lg/6/film_922439.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
  "bienvenue-a-zombieland|ruben-fleischer": {
   "key": "bienvenue-a-zombieland|ruben-fleischer",
   "title": "Bienvenue à Zombieland",
@@ -1652,18 +1700,6 @@
   "country": "",
   "duration_min": 88,
   "poster": "https://media.pathe.fr/movie/alex/HO00001507/poster/lg/15/movie&uuid=7259E623-131F-4B51-9CD1-56CAC0B423DA",
-  "trailer": "",
-  "storyline": ""
- },
- "tu-ne-jugeras-point|sabrina-nouchi": {
-  "key": "tu-ne-jugeras-point|sabrina-nouchi",
-  "title": "Tu ne jugeras point",
-  "director": "Sabrina Nouchi",
-  "cast": "",
-  "genre": "Documentaire",
-  "country": "",
-  "duration_min": 102,
-  "poster": "https://media.pathe.fr/movie/alex/HO00012010/poster/lg/4/movie&uuid=63F45CF8-BEDA-4F41-AE0D-7640DC848701",
   "trailer": "",
   "storyline": ""
  },
@@ -1679,27 +1715,15 @@
   "trailer": "",
   "storyline": ""
  },
- "psychose|alfred-hitchcock": {
-  "key": "psychose|alfred-hitchcock",
-  "title": "Psychose",
-  "director": "Alfred Hitchcock",
+ "seances-coup-de-coeur-afcae|": {
+  "key": "seances-coup-de-coeur-afcae|",
+  "title": "Séances Coup de coeur AFCAE",
+  "director": "",
   "cast": "",
-  "genre": "Horreur / Épouvante",
+  "genre": "Divers",
   "country": "",
-  "duration_min": 109,
-  "poster": "https://media.pathe.fr/movie/alex/HO00000674/poster/lg/72/movie&uuid=9A4D5301-E7DE-4444-9C7E-5924698C6267",
-  "trailer": "",
-  "storyline": ""
- },
- "mon-fils-president|mathias-mlekuz": {
-  "key": "mon-fils-president|mathias-mlekuz",
-  "title": "Mon fils président",
-  "director": "Mathias Mlekuz",
-  "cast": "",
-  "genre": "Comédie",
-  "country": "",
-  "duration_min": 79,
-  "poster": "https://media.pathe.fr/movie/alex/HO00011251/poster/lg/2/movie&uuid=2DA5C94A-E1C2-4216-9E93-F751D4913D49",
+  "duration_min": 90,
+  "poster": "https://media.pathe.fr/movie/alex/HO00006613/poster/lg/13/movie&uuid=E7B90D52-8E20-49F4-844C-6243068CA35A",
   "trailer": "",
   "storyline": ""
  },
@@ -1739,18 +1763,6 @@
   "trailer": "",
   "storyline": ""
  },
- "seances-coup-de-coeur-afcae|": {
-  "key": "seances-coup-de-coeur-afcae|",
-  "title": "Séances Coup de coeur AFCAE",
-  "director": "",
-  "cast": "",
-  "genre": "Divers",
-  "country": "",
-  "duration_min": 90,
-  "poster": "https://media.pathe.fr/movie/alex/HO00006613/poster/lg/13/movie&uuid=E7B90D52-8E20-49F4-844C-6243068CA35A",
-  "trailer": "",
-  "storyline": ""
- },
  "les-saphirs|": {
   "key": "les-saphirs|",
   "title": "Les Saphirs",
@@ -1760,18 +1772,6 @@
   "country": "",
   "duration_min": 101,
   "poster": "https://media.pathe.fr/movie/alex/HO00011778/poster/lg/1/movie&uuid=66F8EB9E-8CA9-4814-A7A6-30FC79F9BBA5",
-  "trailer": "",
-  "storyline": ""
- },
- "le-regne-des-neiges|": {
-  "key": "le-regne-des-neiges|",
-  "title": "Le règne des neiges",
-  "director": "",
-  "cast": "",
-  "genre": "Documentaire",
-  "country": "",
-  "duration_min": 70,
-  "poster": "https://media.pathe.fr/movie/alex/HO00011942/poster/lg/5/movie&uuid=77D9B0A1-9B0D-4A3A-9D23-851C628B6B95",
   "trailer": "",
   "storyline": ""
  },
@@ -1823,6 +1823,18 @@
   "trailer": "",
   "storyline": ""
  },
+ "blaise|dimitri-planchon": {
+  "key": "blaise|dimitri-planchon",
+  "title": "Blaise",
+  "director": "Dimitri Planchon",
+  "cast": "",
+  "genre": "Animation",
+  "country": "",
+  "duration_min": 82,
+  "poster": "https://media.pathe.fr/movie/alex/HO00011434/poster/lg/1/movie&uuid=C70DC80D-2CD0-419B-9273-C0DFB80124D6",
+  "trailer": "",
+  "storyline": ""
+ },
  "le-sabre-des-gardiens|yuen-woo-ping": {
   "key": "le-sabre-des-gardiens|yuen-woo-ping",
   "title": "Le sabre des gardiens",
@@ -1835,39 +1847,63 @@
   "trailer": "",
   "storyline": ""
  },
- "les-heures-sombres|joe-wright": {
-  "key": "les-heures-sombres|joe-wright",
-  "title": "Les heures sombres",
-  "director": "Joe Wright",
+ "la-princesa-sin-fin|": {
+  "key": "la-princesa-sin-fin|",
+  "title": "La princesa sin fin",
+  "director": "",
   "cast": "",
-  "genre": "Drame",
+  "genre": "Divers",
   "country": "",
-  "duration_min": 126,
-  "poster": "https://media.pathe.fr/movie/alex/HO00012024/poster/lg/3/movie&uuid=7DB756C1-6021-4559-B2B0-B60EC7D8E479",
+  "duration_min": 90,
+  "poster": "https://media.pathe.fr/movie/alex/HO00012061/poster/lg/2/movie&uuid=9FB9FD68-9C55-4097-B7C8-14F03CA37E55",
   "trailer": "",
   "storyline": ""
  },
- "poltergeist|tobe-hooper": {
-  "key": "poltergeist|tobe-hooper",
-  "title": "Poltergeist",
-  "director": "Tobe Hooper",
+ "les-100-nuits-de-hero|julia-jackman": {
+  "key": "les-100-nuits-de-hero|julia-jackman",
+  "title": "Les 100 nuits de Hero",
+  "director": "Julia Jackman",
+  "cast": "",
+  "genre": "Fantastique",
+  "country": "",
+  "duration_min": 92,
+  "poster": "https://media.pathe.fr/movie/alex/HO00012019/poster/lg/2/movie&uuid=B2A40D43-4D50-4E57-8BCF-9B6CE5B010DC",
+  "trailer": "",
+  "storyline": ""
+ },
+ "lesbian-space-princess|": {
+  "key": "lesbian-space-princess|",
+  "title": "Lesbian Space Princess",
+  "director": "",
+  "cast": "",
+  "genre": "Animation",
+  "country": "",
+  "duration_min": 87,
+  "poster": "https://media.pathe.fr/movie/alex/HO00012055/poster/lg/2/movie&uuid=321CE32C-FA09-4A89-941D-77ABF3D27C6E",
+  "trailer": "",
+  "storyline": ""
+ },
+ "au-coeur-des-tenebres|rogerio-nunes": {
+  "key": "au-coeur-des-tenebres|rogerio-nunes",
+  "title": "au coeur des ténèbres",
+  "director": "Rogério Nunes",
+  "cast": "",
+  "genre": "Animation",
+  "country": "",
+  "duration_min": 84,
+  "poster": "https://media.pathe.fr/movie/alex/HO00012074/poster/lg/1/movie&uuid=D8FBC987-7BDC-4320-A839-821013391496",
+  "trailer": "",
+  "storyline": ""
+ },
+ "psychose|alfred-hitchcock": {
+  "key": "psychose|alfred-hitchcock",
+  "title": "Psychose",
+  "director": "Alfred Hitchcock",
   "cast": "",
   "genre": "Horreur / Épouvante",
   "country": "",
-  "duration_min": 114,
-  "poster": "https://media.pathe.fr/movie/alex/HO00006134/poster/lg/8/movie&uuid=AF67BFD2-8B3E-4C70-86B6-003E12FEC2D4",
-  "trailer": "",
-  "storyline": ""
- },
- "lorie-party-2026-au-cinema|tristan-carne": {
-  "key": "lorie-party-2026-au-cinema|tristan-carne",
-  "title": "Lorie Party 2026 au cinéma",
-  "director": "Tristan Carné",
-  "cast": "",
-  "genre": "Concert",
-  "country": "",
-  "duration_min": 105,
-  "poster": "https://media.pathe.fr/movie/alex/HO00011512/poster/lg/1/movie&uuid=478BBB22-DF0D-46D9-83F5-9DC82A68E4D3",
+  "duration_min": 109,
+  "poster": "https://media.pathe.fr/movie/alex/HO00000674/poster/lg/72/movie&uuid=9A4D5301-E7DE-4444-9C7E-5924698C6267",
   "trailer": "",
   "storyline": ""
  },
@@ -1907,6 +1943,18 @@
   "trailer": "",
   "storyline": ""
  },
+ "jane-goodall-une-vie-extraordinaire|david-lickley": {
+  "key": "jane-goodall-une-vie-extraordinaire|david-lickley",
+  "title": "Jane Goodall : Une vie extraordinaire",
+  "director": "David Lickley",
+  "cast": "",
+  "genre": "Documentaire",
+  "country": "",
+  "duration_min": 45,
+  "poster": "https://media.pathe.fr/movie/alex/HO00010743/poster/lg/6/movie&uuid=A196EAEB-42AD-4A46-BCBC-6B8D8D6ED9E1",
+  "trailer": "",
+  "storyline": ""
+ },
  "deep-sky|nathaniel-kahn": {
   "key": "deep-sky|nathaniel-kahn",
   "title": "Deep Sky",
@@ -1928,6 +1976,18 @@
   "country": "",
   "duration_min": 40,
   "poster": "https://media.pathe.fr/movie/alex/HO00009792/poster/lg/6/movie&uuid=F90F8ECC-D32A-4E15-ACF6-F2976AF9FA13",
+  "trailer": "",
+  "storyline": ""
+ },
+ "ce-qui-nous-mene-a-toi|khalil-cherti": {
+  "key": "ce-qui-nous-mene-a-toi|khalil-cherti",
+  "title": "Ce qui nous mène à toi",
+  "director": "Khalil Cherti",
+  "cast": "",
+  "genre": "Drame",
+  "country": "",
+  "duration_min": 95,
+  "poster": "https://media.pathe.fr/movie/alex/HO00011351/poster/lg/1/movie&uuid=46CF3FC7-1EF5-44AB-AA7B-2B0D2154DE81",
   "trailer": "",
   "storyline": ""
  },
