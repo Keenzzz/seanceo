@@ -83,15 +83,15 @@
   "trailer": "",
   "storyline": ""
  },
- "congo-boy|rafiki-fariala": {
-  "key": "congo-boy|rafiki-fariala",
-  "title": "Congo Boy",
-  "director": "Rafiki Fariala",
+ "dune|denis-villeneuve": {
+  "key": "dune|denis-villeneuve",
+  "title": "Dune",
+  "director": "Denis Villeneuve",
   "cast": "",
-  "genre": "Drame",
+  "genre": "Science fiction",
   "country": "",
-  "duration_min": 90,
-  "poster": "https://all.web.img.acsta.net/img/83/1e/831eb7893e62376a0191ba965c41f57b.jpg",
+  "duration_min": 156,
+  "poster": "https://all.web.img.acsta.net/pictures/20/09/11/11/18/1909789.jpg",
   "trailer": "",
   "storyline": ""
  },
@@ -227,18 +227,6 @@
   "trailer": "",
   "storyline": ""
  },
- "la-maison-doree-ennafoura|selma-baccar": {
-  "key": "la-maison-doree-ennafoura|selma-baccar",
-  "title": "La Maison dorée (Ennafoura)",
-  "director": "Selma Baccar",
-  "cast": "",
-  "genre": "Drame",
-  "country": "",
-  "duration_min": 110,
-  "poster": "",
-  "trailer": "",
-  "storyline": ""
- },
  "ducobu-et-le-fantome-de-saint-potache|elie-semoun": {
   "key": "ducobu-et-le-fantome-de-saint-potache|elie-semoun",
   "title": "Ducobu et le fantôme de Saint-Potache",
@@ -335,18 +323,6 @@
   "trailer": "",
   "storyline": ""
  },
- "lorie-party-2026-au-cinema|tristan-carne": {
-  "key": "lorie-party-2026-au-cinema|tristan-carne",
-  "title": "Lorie Party 2026 au cinéma",
-  "director": "Tristan Carné",
-  "cast": "",
-  "genre": "Concert",
-  "country": "",
-  "duration_min": 105,
-  "poster": "",
-  "trailer": "",
-  "storyline": ""
- },
  "the-blues-brothers|john-landis": {
   "key": "the-blues-brothers|john-landis",
   "title": "The Blues Brothers",
@@ -356,6 +332,18 @@
   "country": "",
   "duration_min": 149,
   "poster": "https://all.web.img.acsta.net/pictures/20/07/13/11/51/0117138.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "la-classe-ouvriere-va-au-paradis|elio-petri": {
+  "key": "la-classe-ouvriere-va-au-paradis|elio-petri",
+  "title": "La Classe ouvrière va au paradis",
+  "director": "Elio Petri",
+  "cast": "",
+  "genre": "Drame",
+  "country": "",
+  "duration_min": 125,
+  "poster": "https://all.web.img.acsta.net/medias/nmedia/18/64/04/38/19536116.jpg",
   "trailer": "",
   "storyline": ""
  },
@@ -407,18 +395,6 @@
   "trailer": "",
   "storyline": ""
  },
- "organes-d-etat|raymond-zhang": {
-  "key": "organes-d-etat|raymond-zhang",
-  "title": "Organes d'État",
-  "director": "Raymond Zhang",
-  "cast": "",
-  "genre": "Documentaire",
-  "country": "",
-  "duration_min": 76,
-  "poster": "",
-  "trailer": "",
-  "storyline": ""
- },
  "heart-of-the-beast|david-ayer": {
   "key": "heart-of-the-beast|david-ayer",
   "title": "Heart Of The Beast",
@@ -428,18 +404,6 @@
   "country": "",
   "duration_min": 101,
   "poster": "https://all.web.img.acsta.net/img/ae/96/ae96724b63e32a49dd1ca69d0464682d.jpg",
-  "trailer": "",
-  "storyline": ""
- },
- "minotaure|andrei-zviaguintsev": {
-  "key": "minotaure|andrei-zviaguintsev",
-  "title": "Minotaure",
-  "director": "Andreï Zviaguintsev",
-  "cast": "",
-  "genre": "Drame",
-  "country": "",
-  "duration_min": 140,
-  "poster": "https://all.web.img.acsta.net/img/e7/15/e7153314ec9e9d81776555905875e7f8.jpg",
   "trailer": "",
   "storyline": ""
  },
@@ -488,6 +452,18 @@
   "country": "",
   "duration_min": 155,
   "poster": "https://all.web.img.acsta.net/img/ee/36/ee36774e08b4d413667455422d058c4d.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "dune-deuxieme-partie|denis-villeneuve": {
+  "key": "dune-deuxieme-partie|denis-villeneuve",
+  "title": "Dune : Deuxième Partie",
+  "director": "Denis Villeneuve",
+  "cast": "",
+  "genre": "Science fiction",
+  "country": "",
+  "duration_min": 166,
+  "poster": "https://all.web.img.acsta.net/pictures/23/12/14/11/10/3746278.jpg",
   "trailer": "",
   "storyline": ""
  },
@@ -551,6 +527,18 @@
   "trailer": "",
   "storyline": ""
  },
+ "congo-boy|rafiki-fariala": {
+  "key": "congo-boy|rafiki-fariala",
+  "title": "Congo Boy",
+  "director": "Rafiki Fariala",
+  "cast": "",
+  "genre": "Drame",
+  "country": "",
+  "duration_min": 90,
+  "poster": "https://all.web.img.acsta.net/img/83/1e/831eb7893e62376a0191ba965c41f57b.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
  "fini-de-rire-l-humour-politique-au-garde-a-vous|mateo-larroque": {
   "key": "fini-de-rire-l-humour-politique-au-garde-a-vous|mateo-larroque",
   "title": "Fini de rire ! L'humour politique au garde-à-vous ?",
@@ -572,18 +560,6 @@
   "country": "",
   "duration_min": 101,
   "poster": "https://all.web.img.acsta.net/img/c8/7c/c87c3d7967dbae79619c67865266006c.jpg",
-  "trailer": "",
-  "storyline": ""
- },
- "dune|denis-villeneuve": {
-  "key": "dune|denis-villeneuve",
-  "title": "Dune",
-  "director": "Denis Villeneuve",
-  "cast": "",
-  "genre": "Science fiction",
-  "country": "",
-  "duration_min": 156,
-  "poster": "https://all.web.img.acsta.net/pictures/20/09/11/11/18/1909789.jpg",
   "trailer": "",
   "storyline": ""
  },
@@ -611,30 +587,6 @@
   "trailer": "",
   "storyline": ""
  },
- "le-coquelicot-des-cendres|sebastien-saint-martin": {
-  "key": "le-coquelicot-des-cendres|sebastien-saint-martin",
-  "title": "Le coquelicot des cendres",
-  "director": "Sébastien Saint-Martin",
-  "cast": "",
-  "genre": "",
-  "country": "",
-  "duration_min": 56,
-  "poster": "",
-  "trailer": "",
-  "storyline": ""
- },
- "spectacle-mentalisme-et-hypnose|": {
-  "key": "spectacle-mentalisme-et-hypnose|",
-  "title": "Spectacle Mentalisme et Hypnose",
-  "director": "",
-  "cast": "",
-  "genre": "Spectacle",
-  "country": "",
-  "duration_min": 90,
-  "poster": "",
-  "trailer": "",
-  "storyline": ""
- },
  "hope|na-hong-jin": {
   "key": "hope|na-hong-jin",
   "title": "Hope",
@@ -647,6 +599,18 @@
   "trailer": "",
   "storyline": ""
  },
+ "anna|marco-amenta": {
+  "key": "anna|marco-amenta",
+  "title": "Anna",
+  "director": "Marco Amenta",
+  "cast": "",
+  "genre": "Drame",
+  "country": "",
+  "duration_min": 118,
+  "poster": "",
+  "trailer": "",
+  "storyline": ""
+ },
  "malfaisante|rob-savage": {
   "key": "malfaisante|rob-savage",
   "title": "Malfaisante",
@@ -656,18 +620,6 @@
   "country": "",
   "duration_min": 94,
   "poster": "https://all.web.img.acsta.net/img/28/48/28486bc186801eda503092a1e8653c53.jpg",
-  "trailer": "",
-  "storyline": ""
- },
- "mariage-au-gout-d-orange|christophe-honore": {
-  "key": "mariage-au-gout-d-orange|christophe-honore",
-  "title": "Mariage au goût d'orange",
-  "director": "Christophe Honoré",
-  "cast": "",
-  "genre": "Comédie dramatique",
-  "country": "",
-  "duration_min": 115,
-  "poster": "https://all.web.img.acsta.net/img/5c/44/5c444833205506188da08371f76e7a0c.jpg",
   "trailer": "",
   "storyline": ""
  },
@@ -692,18 +644,6 @@
   "country": "",
   "duration_min": 95,
   "poster": "https://all.web.img.acsta.net/img/d9/a8/d9a8c995c1e24b42995558d38d1f549c.jpg",
-  "trailer": "",
-  "storyline": ""
- },
- "femmes-des-terres|edgar-baoua-dedrich": {
-  "key": "femmes-des-terres|edgar-baoua-dedrich",
-  "title": "Femmes des Terres",
-  "director": "Edgar BAOUA-DEDRICH",
-  "cast": "",
-  "genre": "Documentaire",
-  "country": "",
-  "duration_min": 54,
-  "poster": "",
   "trailer": "",
   "storyline": ""
  },
@@ -822,7 +762,7 @@
   "cast": "",
   "genre": "Action",
   "country": "",
-  "duration_min": 173,
+  "duration_min": 172,
   "poster": "https://all.web.img.acsta.net/img/65/11/6511bca384db17562fd5b5c4ba428ced.jpg",
   "trailer": "",
   "storyline": ""
@@ -899,18 +839,6 @@
   "trailer": "",
   "storyline": ""
  },
- "sweeney-todd-le-diabolique-barbier-de-fleet-street|tim-burton": {
-  "key": "sweeney-todd-le-diabolique-barbier-de-fleet-street|tim-burton",
-  "title": "Sweeney Todd, le diabolique barbier de Fleet Street",
-  "director": "Tim Burton",
-  "cast": "",
-  "genre": "Comédie musicale",
-  "country": "",
-  "duration_min": 116,
-  "poster": "https://all.web.img.acsta.net/medias/nmedia/18/87/86/46/19973868.jpg",
-  "trailer": "",
-  "storyline": ""
- },
  "ma-toute-petite-ecole|pascal-plisson": {
   "key": "ma-toute-petite-ecole|pascal-plisson",
   "title": "Ma toute petite école",
@@ -920,6 +848,18 @@
   "country": "",
   "duration_min": 88,
   "poster": "https://all.web.img.acsta.net/img/69/9e/699e5af46d30c85ccf9d9fc46b6d79b7.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "minotaure|andrei-zviaguintsev": {
+  "key": "minotaure|andrei-zviaguintsev",
+  "title": "Minotaure",
+  "director": "Andreï Zviaguintsev",
+  "cast": "",
+  "genre": "Drame",
+  "country": "",
+  "duration_min": 142,
+  "poster": "https://all.web.img.acsta.net/img/e7/15/e7153314ec9e9d81776555905875e7f8.jpg",
   "trailer": "",
   "storyline": ""
  },
@@ -947,15 +887,27 @@
   "trailer": "",
   "storyline": ""
  },
- "quelques-jours-a-nagi|koji-fukada": {
-  "key": "quelques-jours-a-nagi|koji-fukada",
-  "title": "Quelques jours à Nagi",
-  "director": "Kôji Fukada",
+ "taxi-driver|martin-scorsese": {
+  "key": "taxi-driver|martin-scorsese",
+  "title": "Taxi Driver",
+  "director": "Martin Scorsese",
   "cast": "",
   "genre": "Drame",
   "country": "",
-  "duration_min": 110,
-  "poster": "https://all.web.img.acsta.net/img/32/b4/32b4db99c7104563b6da987fb282f0d9.jpg",
+  "duration_min": 115,
+  "poster": "https://all.web.img.acsta.net/medias/nmedia/18/87/22/64/19901669.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "la-belle-et-la-bete|jean-cocteau": {
+  "key": "la-belle-et-la-bete|jean-cocteau",
+  "title": "La Belle et la bête",
+  "director": "Jean Cocteau",
+  "cast": "",
+  "genre": "Fantastique",
+  "country": "",
+  "duration_min": 96,
+  "poster": "https://all.web.img.acsta.net/medias/nmedia/18/35/24/32/18828838.jpg",
   "trailer": "",
   "storyline": ""
  },
@@ -968,6 +920,18 @@
   "country": "",
   "duration_min": 104,
   "poster": "https://all.web.img.acsta.net/img/48/ee/48ee98bdaf4919274a137ff4903c0de7.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
+ "melpomene|charlotte-dauphin": {
+  "key": "melpomene|charlotte-dauphin",
+  "title": "Melpomène",
+  "director": "Charlotte Dauphin",
+  "cast": "",
+  "genre": "Drame",
+  "country": "",
+  "duration_min": 88,
+  "poster": "https://all.web.img.acsta.net/img/4b/d2/4bd2049079ab60d18cf493e73b652ddb.jpg",
   "trailer": "",
   "storyline": ""
  }
