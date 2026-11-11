@@ -15,7 +15,7 @@
    "ugc-9",
    "ugc-37"
   ],
-  "showtime_count": 1095
+  "showtime_count": 3874
  },
  "paris-la-defense": {
   "slug": "paris-la-defense",
@@ -23,7 +23,7 @@
   "cinemas": [
    "ugc-20"
   ],
-  "showtime_count": 168
+  "showtime_count": 554
  },
  "issy-les-moulineaux": {
   "slug": "issy-les-moulineaux",
@@ -31,7 +31,7 @@
   "cinemas": [
    "ugc-59"
   ],
-  "showtime_count": 69
+  "showtime_count": 230
  },
  "rosny-sous-bois": {
   "slug": "rosny-sous-bois",
@@ -39,7 +39,7 @@
   "cinemas": [
    "ugc-18"
   ],
-  "showtime_count": 166
+  "showtime_count": 540
  },
  "aulnay-sous-bois": {
   "slug": "aulnay-sous-bois",
@@ -47,7 +47,7 @@
   "cinemas": [
    "ugc-38"
   ],
-  "showtime_count": 158
+  "showtime_count": 512
  },
  "creteil": {
   "slug": "creteil",
@@ -55,7 +55,7 @@
   "cinemas": [
    "ugc-21"
   ],
-  "showtime_count": 201
+  "showtime_count": 645
  },
  "noisy-le-grand": {
   "slug": "noisy-le-grand",
@@ -63,7 +63,7 @@
   "cinemas": [
    "ugc-19"
   ],
-  "showtime_count": 112
+  "showtime_count": 351
  },
  "cergy-le-haut": {
   "slug": "cergy-le-haut",
@@ -71,7 +71,7 @@
   "cinemas": [
    "ugc-16"
   ],
-  "showtime_count": 114
+  "showtime_count": 380
  },
  "enghien-les-bains": {
   "slug": "enghien-les-bains",
@@ -79,7 +79,7 @@
   "cinemas": [
    "ugc-17"
   ],
-  "showtime_count": 29
+  "showtime_count": 109
  },
  "velizy-villacoublay": {
   "slug": "velizy-villacoublay",
@@ -87,7 +87,7 @@
   "cinemas": [
    "ugc-43"
   ],
-  "showtime_count": 165
+  "showtime_count": 564
  },
  "le-chesnay": {
   "slug": "le-chesnay",
@@ -95,7 +95,7 @@
   "cinemas": [
    "ugc-44"
   ],
-  "showtime_count": 96
+  "showtime_count": 328
  },
  "montigny-le-bretonneux": {
   "slug": "montigny-le-bretonneux",
@@ -103,7 +103,7 @@
   "cinemas": [
    "ugc-6"
   ],
-  "showtime_count": 145
+  "showtime_count": 483
  },
  "versailles": {
   "slug": "versailles",
@@ -112,7 +112,7 @@
    "ugc-40",
    "ugc-41"
   ],
-  "showtime_count": 89
+  "showtime_count": 315
  },
  "plaisir": {
   "slug": "plaisir",
@@ -120,7 +120,7 @@
   "cinemas": [
    "ugc-55"
   ],
-  "showtime_count": 87
+  "showtime_count": 274
  },
  "gif-sur-yvette": {
   "slug": "gif-sur-yvette",
@@ -128,7 +128,7 @@
   "cinemas": [
    "ugc-47"
   ],
-  "showtime_count": 8
+  "showtime_count": 27
  },
  "saint-germain-en-laye": {
   "slug": "saint-germain-en-laye",
@@ -136,7 +136,7 @@
   "cinemas": [
    "ugc-48"
   ],
-  "showtime_count": 35
+  "showtime_count": 136
  },
  "sartrouville": {
   "slug": "sartrouville",
@@ -144,7 +144,7 @@
   "cinemas": [
    "ugc-49"
   ],
-  "showtime_count": 39
+  "showtime_count": 138
  },
  "poissy": {
   "slug": "poissy",
@@ -152,7 +152,7 @@
   "cinemas": [
    "ugc-54"
   ],
-  "showtime_count": 37
+  "showtime_count": 134
  },
  "meaux": {
   "slug": "meaux",
@@ -160,7 +160,7 @@
   "cinemas": [
    "ugc-39"
   ],
-  "showtime_count": 72
+  "showtime_count": 231
  },
  "bordeaux": {
   "slug": "bordeaux",
@@ -169,7 +169,7 @@
    "ugc-1",
    "ugc-57"
   ],
-  "showtime_count": 268
+  "showtime_count": 920
  },
  "talence": {
   "slug": "talence",
@@ -177,7 +177,7 @@
   "cinemas": [
    "ugc-42"
   ],
-  "showtime_count": 111
+  "showtime_count": 352
  },
  "mondeville": {
   "slug": "mondeville",
@@ -185,7 +185,7 @@
   "cinemas": [
    "ugc-27"
   ],
-  "showtime_count": 109
+  "showtime_count": 354
  },
  "lille": {
   "slug": "lille",
@@ -195,7 +195,7 @@
    "ugc-45",
    "ugc-46"
   ],
-  "showtime_count": 185
+  "showtime_count": 666
  },
  "villeneuve-d-ascq": {
   "slug": "villeneuve-d-ascq",
@@ -203,7 +203,7 @@
   "cinemas": [
    "ugc-24"
   ],
-  "showtime_count": 106
+  "showtime_count": 338
  },
  "tourcoing": {
   "slug": "tourcoing",
@@ -211,7 +211,7 @@
   "cinemas": [
    "ugc-52"
   ],
-  "showtime_count": 31
+  "showtime_count": 117
  },
  "lyon": {
   "slug": "lyon",
@@ -222,7 +222,7 @@
    "ugc-33",
    "ugc-58"
   ],
-  "showtime_count": 490
+  "showtime_count": 1590
  },
  "nancy": {
   "slug": "nancy",
@@ -230,7 +230,7 @@
   "cinemas": [
    "ugc-28"
   ],
-  "showtime_count": 58
+  "showtime_count": 202
  },
  "ludres": {
   "slug": "ludres",
@@ -238,7 +238,7 @@
   "cinemas": [
    "ugc-29"
   ],
-  "showtime_count": 117
+  "showtime_count": 405
  },
  "saint-herblain": {
   "slug": "saint-herblain",
@@ -246,7 +246,7 @@
   "cinemas": [
    "ugc-31"
   ],
-  "showtime_count": 99
+  "showtime_count": 310
  },
  "strasbourg": {
   "slug": "strasbourg",
@@ -254,7 +254,7 @@
   "cinemas": [
    "ugc-30"
   ],
-  "showtime_count": 215
+  "showtime_count": 739
  },
  "toulouse": {
   "slug": "toulouse",
@@ -262,6 +262,6 @@
   "cinemas": [
    "ugc-56"
   ],
-  "showtime_count": 49
+  "showtime_count": 175
  }
 }
