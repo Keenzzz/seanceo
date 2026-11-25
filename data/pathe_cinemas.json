@@ -101,8 +101,8 @@
  "pathe-cinema-pathe-saran": {
   "id": "pathe-cinema-pathe-saran",
   "name": "Pathé Saran",
-  "address": "1010 Rue Nationale",
-  "postcode": "45000",
+  "address": "1010 Avenue Michel Guérin",
+  "postcode": "45770",
   "city": "Saran",
   "city_slug": "saran",
   "lat": 47.945883,
@@ -714,9 +714,9 @@
   "lon": 4.838309,
   "chain": "Pathé"
  },
- "pathe-cinema-multiplexe-liberte": {
-  "id": "pathe-cinema-multiplexe-liberte",
-  "name": "Multiplexe Liberté",
+ "pathe-cinema-pathe-brest": {
+  "id": "pathe-cinema-pathe-brest",
+  "name": "Pathé Brest",
   "address": "10 avenue Georges Clémenceau",
   "postcode": "29200",
   "city": "Brest",
