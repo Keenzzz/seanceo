@@ -67,9 +67,9 @@
   "genre": "Action",
   "country": "",
   "duration_min": 126,
-  "poster": "https://www.ugc.fr/dynamique/films/69/18469/fr/poster/large/005e5ba856cd2e9a41de055e2274b76c_grey_4.jpg",
+  "poster": "https://www.ugc.fr/dynamique/films/69/18469/fr/poster/large/005e5ba856cd2e9a41de055e2274b76c_grey_6.jpg",
   "trailer": "",
-  "storyline": "Fin de la dynastie Sui, vers l’an 600, en Chine. Dao Ma, ancien soldat devenu chasseur de primes, accepte d’escorter un mystérieux personnage masqué jusqu’à Chang’an, afin de s’acquitter d’une dette envers son vénérable ami, le chef du Clan Mo. Le passager se révèle être Zhi Shi Lang, chef de la Rébellion des Fleurs et homme le plus recherché de l’empire."
+  "storyline": "Fin de la dynastie Sui, vers l’an 600, en Chine. Dao Ma, ancien soldat devenu chasseur de primes, accepte d’escorter un mystérieux personnage masqué jusqu’à Chang’an, afin de s’acquitter d’une dette envers son vénérable ami, le chef du Clan Mo."
  },
  "mon-beau-pere-ma-belle-fille-et-moi|john-hamburg": {
   "key": "mon-beau-pere-ma-belle-fille-et-moi|john-hamburg",
@@ -239,18 +239,6 @@
   "trailer": "",
   "storyline": "Au poste de police de Hope, Bum-seok et Sung-ae se démènent pour défendre leur village à la population vieillissante. Pendant ce temps, Sung-ki et ses amis partent à la poursuite de la bête dans la montagne mais se retrouvent eux-mêmes pris pour cible."
  },
- "shaun-le-mouton-la-beeete-d-halloween|steve-cox-matthew-walker": {
-  "key": "shaun-le-mouton-la-beeete-d-halloween|steve-cox-matthew-walker",
-  "title": "SHAUN LE MOUTON : LA BEEETE D'HALLOWEEN",
-  "director": "Steve Cox, Matthew Walker",
-  "cast": "",
-  "genre": "Famille",
-  "country": "",
-  "duration_min": 80,
-  "poster": "https://www.ugc.fr/dynamique/films/00/17800/fr/poster/large/4fda4090f417ac9b0e78ccc48f43ea2c_grey_21.jpg",
-  "trailer": "",
-  "storyline": "A Halloween, les habitants de la ferme de Mossy Bottom se réjouissent des festivités, jusqu’à ce que le Fermier maladroit saccage les citrouilles bien-aimées du troupeau. Lorsque Shaun se transforme en scientifique fou pour résoudre le problème, les choses dérapent : le Fermier disparaît et une bête sauvage rôde dans les bois."
- },
  "marie-antoinette|sofia-coppola": {
   "key": "marie-antoinette|sofia-coppola",
   "title": "MARIE ANTOINETTE",
@@ -323,6 +311,18 @@
   "trailer": "",
   "storyline": "Dans une famille de croque-morts, deux s?urs et un frère se retrouvent pour les funérailles de leur mère. Le personnel étant en grève, ils doivent accomplir le protocole funéraire par eux-mêmes. Comment s'accorder pour brûler Maman ?"
  },
+ "it-follows|david-robert-mitchell": {
+  "key": "it-follows|david-robert-mitchell",
+  "title": "IT FOLLOWS",
+  "director": "David Robert Mitchell",
+  "cast": "Maika Monroe, Keir Gilchrist, Daniel Zovatto",
+  "genre": "Epouvante-horreur",
+  "country": "",
+  "duration_min": 100,
+  "poster": "https://www.ugc.fr/dynamique/films/00/10400/fr/poster/large/424397_grey_7.jpg",
+  "trailer": "",
+  "storyline": "Après une expérience amoureuse apparemment anodine, Jay se retrouve confrontée à d'étranges visions. Elle est aussi convaincue que quelqu'un, ou quelque chose, la suit. Face à cette malédiction, Jay et ses amis doivent trouver un échappatoire aux horreurs qui ne semblent jamais loin derrière..."
+ },
  "l-affaire-marie-claire|lauriane-escaffre-yvo-muller": {
   "key": "l-affaire-marie-claire|lauriane-escaffre-yvo-muller",
   "title": "L'AFFAIRE MARIE-CLAIRE",
@@ -383,30 +383,6 @@
   "trailer": "",
   "storyline": "Pour fêter le Nouvel An, quatre potes se retrouvent dans une grange au fin fond de la campagne néo-zélandaise. La soirée parfaite, grâce à un pot de weed volé au fermier du coin. Jusqu'à ce qu'ils découvrent que cette herbe provoque une irrésistible envie de chair humaine..."
  },
- "mysterious-skin|gregg-araki": {
-  "key": "mysterious-skin|gregg-araki",
-  "title": "MYSTERIOUS SKIN",
-  "director": "Gregg Araki",
-  "cast": "Brady Corbet, Joseph Gordon-Levitt, Elisabeth Shue",
-  "genre": "Drame",
-  "country": "",
-  "duration_min": 106,
-  "poster": "https://www.ugc.fr/dynamique/films/04/18604/fr/poster/large/5461365bb260b6a43d115dc0fde2250e_grey_3.jpg",
-  "trailer": "",
-  "storyline": "À huit ans, Brian se réveille dans la cave de sa maison, le nez en sang, sans souvenir de ce qui lui est arrivé. Dix ans plus tard, convaincu d’avoir été enlevé par des extraterrestres, il tente de retrouver Neil, un garçon de son ancienne équipe de baseball devenu un jeune homme magnétique et insaisissable. Avec lui, Brian cherche à dénouer le mystère de leur enfance, qui les empêche encore de vivre."
- },
- "it-follows|david-robert-mitchell": {
-  "key": "it-follows|david-robert-mitchell",
-  "title": "IT FOLLOWS",
-  "director": "David Robert Mitchell",
-  "cast": "Maika Monroe, Keir Gilchrist, Daniel Zovatto",
-  "genre": "Epouvante-horreur",
-  "country": "",
-  "duration_min": 100,
-  "poster": "https://www.ugc.fr/dynamique/films/00/10400/fr/poster/large/424397_grey_7.jpg",
-  "trailer": "",
-  "storyline": "Après une expérience amoureuse apparemment anodine, Jay se retrouve confrontée à d'étranges visions. Elle est aussi convaincue que quelqu'un, ou quelque chose, la suit. Face à cette malédiction, Jay et ses amis doivent trouver un échappatoire aux horreurs qui ne semblent jamais loin derrière..."
- },
  "rocky|john-g-avildsen": {
   "key": "rocky|john-g-avildsen",
   "title": "ROCKY",
@@ -418,6 +394,18 @@
   "poster": "https://www.ugc.fr/dynamique/films/13/14213/fr/poster/large/0c234267401d128600aae7acfbddbada_grey_15.jpg",
   "trailer": "",
   "storyline": "Dans les quartiers populaires de Philadelphie, Rocky Balboa dispute de temps à autre, pour quelques dizaines de dollars, des combats de boxe sous l'appellation de \"l'étalon italien\". Cependant, Mickey, son vieil entraîneur, le laisse tomber. Pendant ce temps, Apollo Creed, le champion du monde de boxe catégorie poids lourd, recherche un nouvel adversaire pour remettre son titre en jeu. Son choix se portera sur Rocky."
+ },
+ "shaun-le-mouton-la-beeete-d-halloween|steve-cox-matthew-walker": {
+  "key": "shaun-le-mouton-la-beeete-d-halloween|steve-cox-matthew-walker",
+  "title": "SHAUN LE MOUTON : LA BEEETE D'HALLOWEEN",
+  "director": "Steve Cox, Matthew Walker",
+  "cast": "",
+  "genre": "Famille",
+  "country": "",
+  "duration_min": 80,
+  "poster": "https://www.ugc.fr/dynamique/films/00/17800/fr/poster/large/4fda4090f417ac9b0e78ccc48f43ea2c_grey_21.jpg",
+  "trailer": "",
+  "storyline": "A Halloween, les habitants de la ferme de Mossy Bottom se réjouissent des festivités, jusqu’à ce que le Fermier maladroit saccage les citrouilles bien-aimées du troupeau. Lorsque Shaun se transforme en scientifique fou pour résoudre le problème, les choses dérapent : le Fermier disparaît et une bête sauvage rôde dans les bois."
  },
  "ducobu-et-le-fantome-de-saint-potache|elie-semoun": {
   "key": "ducobu-et-le-fantome-de-saint-potache|elie-semoun",
@@ -487,9 +475,9 @@
   "genre": "Famille",
   "country": "",
   "duration_min": 86,
-  "poster": "https://www.ugc.fr/dynamique/films/95/17495/fr/poster/large/5d822abd6caebdff0b065a16e93b7f76_grey_25.jpg",
+  "poster": "https://www.ugc.fr/dynamique/films/95/17495/fr/poster/large/5d822abd6caebdff0b065a16e93b7f76_grey_27.jpg",
   "trailer": "",
-  "storyline": "Un village d’irréductibles Gaulois résiste encore et toujours à l’envahisseur… Mais pour combien de temps encore ? Un élixir de jouvence accidentellement versé dans la potion magique a transformé tout le village en enfants ! Une seule solution pour Astérix et Obélix : voyager loin, très loin… Jusqu’au Royaume de Nubie, où se trouve l’antidote qui sauvera le village !"
+  "storyline": "Un village d’irréductibles Gaulois résiste encore et toujours à l’envahisseur… Mais pour combien de temps encore ? Un élixir de jouvence accidentellement versé dans la potion magique a transformé tout le village en enfants !"
  },
  "violent-night-2|tommy-wirkola": {
   "key": "violent-night-2|tommy-wirkola",
@@ -635,29 +623,89 @@
   "trailer": "",
   "storyline": "Dans ce nouveau chapitre de la saga Avengers, les héros emblématiques venus de différents univers sont réunis face à une menace existentielle sans précédent."
  },
- "godzilla-minus-zero|takashi-yamazaki": {
-  "key": "godzilla-minus-zero|takashi-yamazaki",
-  "title": "GODZILLA MINUS ZERO",
-  "director": "Takashi Yamazaki",
-  "cast": "Ryûnosuke Kamiki, Minami Hamabe, Yamada Yuki",
-  "genre": "Science Fiction",
+ "fujiko|taichi-kimura": {
+  "key": "fujiko|taichi-kimura",
+  "title": "FUJIKO",
+  "director": "Taichi Kimura",
+  "cast": "Yuki Katayama, Lily Franky, You",
+  "genre": "Drame",
   "country": "",
-  "duration_min": 135,
-  "poster": "https://www.ugc.fr/dynamique/films/86/18386/fr/poster/large/625799426a89e53445b5fb0b842cd241_grey_13.jpg",
+  "duration_min": 94,
+  "poster": "https://www.ugc.fr/dynamique/films/19/18719/fr/poster/large/db16a8834200f7f71c9f04655b1c65eb_grey_0.jpg",
   "trailer": "",
-  "storyline": "La guerre a détruit le Japon. Godzilla a réduit ses ultimes espoirs à zéro. Deux ans ont passé. Alors que l’humanité commence enfin à renouer avec une paix difficilement acquise, une nouvelle menace surgit et anéantit tout espoir en un instant."
+  "storyline": "Shizuoka, 1977. Fujiko donne naissance à Mari au milieu d’une tempête et d’une coupure d’électricité. Bien décidée à élever seule sa fille, elle se jette à corps perdu dans sa nouvelle vie, rythmée par les petits boulots, les galères et les préjugés tenaces. Mais avec son énergie débordante et son indomptable joie de vivre, Fujiko pourrait bien faire vaciller les certitudes du Japon de son époque."
  },
- "mon-voisin-totoro|hayao-miyazaki": {
-  "key": "mon-voisin-totoro|hayao-miyazaki",
-  "title": "MON VOISIN TOTORO",
-  "director": "Hayao Miyazaki",
-  "cast": "",
-  "genre": "Animation",
+ "les-souvenirs|miiku-sakanishi": {
+  "key": "les-souvenirs|miiku-sakanishi",
+  "title": "LES SOUVENIRS",
+  "director": "Miiku Sakanishi",
+  "cast": "Tasuku Emoto, Moeka Hoshi, Yu Kashii",
+  "genre": "Drame",
   "country": "",
-  "duration_min": 87,
-  "poster": "https://www.ugc.fr/dynamique/films/71/3371/fr/poster/large/5068927_grey_59.jpg",
+  "duration_min": 97,
+  "poster": "https://www.ugc.fr/dynamique/films/20/18720/fr/poster/large/91ef2e9250eb766daa5dbdb2da41721d_grey_0.jpg",
   "trailer": "",
-  "storyline": "Deux petites filles, Mei, 4 ans et Satsuki, 10 ans, s'installent à la campagne avec leur père pour se rapprocher de l'hôpital où séjourne leur mère. Elles découvrent la nature tout autour de la maison et surtout l'existence d'animaux étranges et merveilleux, les Totoros, avec qui elles deviennent très amies. Mei décide un jour d'aller voir sa mère toute seule. Satsuki et les gens du village recherchent en vain la petite fille. Désespérée, Satsuki va finalement demander l'aide de son voisin Totoro."
+  "storyline": "Yuta se rend dans une petite ville de Kyushu pour prendre soin de son beau-père Makoto, qui se remet d’une fracture à la jambe. Tout en l’aidant dans son studio photo traditionnel, il commence à filmer les détails du quotidien et partage ces images avec sa femme Yuki et leur fille Hana, restées à Tokyo. Au fil de ces échanges se dessine le portrait d’une famille unie par les souvenirs."
+ },
+ "de-toutes-les-nuits-les-amants|yukiko-sode": {
+  "key": "de-toutes-les-nuits-les-amants|yukiko-sode",
+  "title": "DE TOUTES LES NUITS, LES AMANTS",
+  "director": "Yukiko Sode",
+  "cast": "Tadanobu Asano, Yukino Kishii, Misato Morita",
+  "genre": "Comédie Dramatique",
+  "country": "",
+  "duration_min": 139,
+  "poster": "https://www.ugc.fr/dynamique/films/00/18200/fr/poster/large/420b14f361d7c24195ac58289496a506_grey_7.jpg",
+  "trailer": "",
+  "storyline": "Fuyuko mène une vie discrète et solitaire, rythmée par son travail de correctrice et quelques rares sorties avec une collègue extravertie. Sa rencontre fortuite avec un professeur de physique, avec qui elle partage une fascination pour la lumière, vient peu à peu bousculer ses habitudes. À son contact, Fuyuko commence à regarder le monde différemment, sort de son isolement et se confronte, pour la première fois, à ce qu’elle n’avait jamais osé vivre."
+ },
+ "disaster|yutaro-seki-hirase-kentaro": {
+  "key": "disaster|yutaro-seki-hirase-kentaro",
+  "title": "DISASTER",
+  "director": "Yutaro Seki, Hirase Kentaro",
+  "cast": "Teruyuki Kagawa, Anne Nakamura, Kaito Miyachika",
+  "genre": "Drame",
+  "country": "",
+  "duration_min": 128,
+  "poster": "https://www.ugc.fr/dynamique/films/69/18369/fr/poster/large/db7bbd7acc0fe9f6feb39dcb22c790eb_grey_4.jpg",
+  "trailer": "",
+  "storyline": "Au Japon, des morts inexpliquées frappent des personnes sans lien apparent. Chargée de l’enquête, l’inspectrice Domoto assemble peu à peu les pièces d’un puzzle qui semble mener à un tueur en série aux multiples visages. Mais comment traquer un homme dont l’identité ne cesse de changer ? Et s’il n’avait jamais existé ?"
+ },
+ "okinawa|keishi-otomo": {
+  "key": "okinawa|keishi-otomo",
+  "title": "OKINAWA",
+  "director": "Keishi Otomo",
+  "cast": "Satoshi Tsumabuki, Suzu Hirose, Masataka Kubota",
+  "genre": "Guerre",
+  "country": "",
+  "duration_min": 119,
+  "poster": "https://www.ugc.fr/dynamique/images/AfficheParDefaut/affiche-indisponible-fr.gif",
+  "trailer": "",
+  "storyline": "Okinawa, 1952. Sous occupation américaine, de jeunes rebelles pillent des provisions dans les bases militaires pour les distribuer aux plus pauvres. Lors d’un raid, leur chef Onn disparaît sans laisser de trace. Vingt ans plus tard, entre guerre du Vietnam et rétrocession de l’île au Japon, son meilleur ami, sa compagne et son frère tentent toujours de découvrir ce qui s’est joué pour Onn cette nuit-là, tandis que la révolte gronde sur une île qui aspire à retrouver sa liberté."
+ },
+ "quelques-jours-a-nagi|koji-fukada": {
+  "key": "quelques-jours-a-nagi|koji-fukada",
+  "title": "QUELQUES JOURS A NAGI",
+  "director": "Kôji Fukada",
+  "cast": "Takako Matsu, Shizuka Ishibashi, Kenichi Matsuyama",
+  "genre": "Drame",
+  "country": "",
+  "duration_min": 110,
+  "poster": "https://www.ugc.fr/dynamique/films/75/18175/fr/poster/large/4be345082319bb27da57328e0e916dcb_grey_20.jpg",
+  "trailer": "",
+  "storyline": "Yuri, architecte divorcée, rend visite à son ancienne belle-sœur Yoriko, sculptrice installée dans le village de Nagi. Ce séjour, d’abord envisagé comme une simple parenthèse, prend une tournure inattendue lorsque Yuri accepte de poser pour elle. Loin de l’agitation de Tokyo, Yuri se laisse gagner par la douceur du quotidien rural et la vie des habitants. Les jours passent comme si quelque chose, ici, l’invitait à rester."
+ },
+ "un-ete-en-hiver|sho-miyake": {
+  "key": "un-ete-en-hiver|sho-miyake",
+  "title": "UN ETE EN HIVER",
+  "director": "Sho Miyake",
+  "cast": "Shim Eun-Kyung, Shinichi Tsutsumi, Yuumi Kawai",
+  "genre": "Drame",
+  "country": "",
+  "duration_min": 89,
+  "poster": "https://www.ugc.fr/dynamique/films/93/18293/fr/poster/large/b95725e44a479796b48e13fc7e08fd63_grey_4.jpg",
+  "trailer": "",
+  "storyline": "Un été, Nagisa, jeune citadine, rencontre Natsuo au bord de la mer. Sous une pluie battante, leurs mots maladroits et leurs regards hésitants les rapprochent. L’hiver venu, Li, une scénariste en quête d’inspiration, gagne un village enneigé avec l’appareil photo d’un ami disparu. Dans un gîte traditionnel, elle rencontre l’énigmatique Benzo. Deux saisons, deux rencontres inattendues et, pour chacun, une échappée qui pourrait tout changer."
  },
  "les-miserables|fred-cavaye": {
   "key": "les-miserables|fred-cavaye",
@@ -670,6 +718,18 @@
   "poster": "https://www.ugc.fr/dynamique/films/01/17501/fr/poster/large/5a4186d62d534f2da65c2e9e8e822a34_grey_20.jpg",
   "trailer": "",
   "storyline": "Libéré après 19 ans de bagne pour le vol d’un pain, Jean Valjean décide de changer de vie et de faire le bien autour de lui. Sous une fausse identité, il devient avec le temps un notable respecté de tous. Mais son passé le rattrape..."
+ },
+ "godzilla-minus-zero|takashi-yamazaki": {
+  "key": "godzilla-minus-zero|takashi-yamazaki",
+  "title": "GODZILLA MINUS ZERO",
+  "director": "Takashi Yamazaki",
+  "cast": "Ryûnosuke Kamiki, Minami Hamabe, Yamada Yuki",
+  "genre": "Science Fiction",
+  "country": "",
+  "duration_min": 135,
+  "poster": "https://www.ugc.fr/dynamique/films/86/18386/fr/poster/large/625799426a89e53445b5fb0b842cd241_grey_13.jpg",
+  "trailer": "",
+  "storyline": "La guerre a détruit le Japon. Godzilla a réduit ses ultimes espoirs à zéro. Deux ans ont passé. Alors que l’humanité commence enfin à renouer avec une paix difficilement acquise, une nouvelle menace surgit et anéantit tout espoir en un instant."
  },
  "le-mystere-lucy-lost|olivier-clert": {
   "key": "le-mystere-lucy-lost|olivier-clert",
@@ -703,7 +763,7 @@
   "genre": "Comédie",
   "country": "",
   "duration_min": 91,
-  "poster": "https://www.ugc.fr/dynamique/films/38/18038/fr/poster/large/6bd13f369a26f94b8d556c14ace58657_grey_4.jpg",
+  "poster": "https://www.ugc.fr/dynamique/films/38/18038/fr/poster/large/6bd13f369a26f94b8d556c14ace58657_grey_5.jpg",
   "trailer": "",
   "storyline": "Claude, 75 ans, aussi charmant qu’irresponsable, est mis à la porte par sa (quatrième) femme. Il se retrouve alors en garde alternée chez ses enfants, qu'il a pourtant évité toute sa vie. Cette cohabitation explosive et improbable pourrait bien, contre toute attente, recoller les morceaux d’une famille qu’il avait laissé filer."
  },
@@ -1023,13 +1083,13 @@
   "key": "fatherland|pawel-pawlikowski",
   "title": "FATHERLAND",
   "director": "Pawel Pawlikowski",
-  "cast": "Hanns Zischler, Sandra Hüller, August Diehl",
+  "cast": "Sandra Hüller, Hanns Zischler, August Diehl",
   "genre": "Drame",
   "country": "",
   "duration_min": 82,
-  "poster": "https://www.ugc.fr/dynamique/films/83/18183/fr/poster/large/7f464f4f65963547a0178df4eb1ea0f1_grey_8.jpg",
+  "poster": "https://www.ugc.fr/dynamique/films/83/18183/fr/poster/large/7f464f4f65963547a0178df4eb1ea0f1_grey_9.jpg",
   "trailer": "",
-  "storyline": "En 1949, Thomas Mann (Hanns Zischler), lauréat du prix Nobel de littérature, retourne pour la première fois en Allemagne depuis la fin de la guerre, accompagné de sa fille Erika (Sandra Hüller), actrice, écrivain et pilote de rallye. Au volant d'une Buick noire, ils entreprennent un voyage éprouvant dans un pays qu’ils ont fui, seize ans plus tôt, lors de la prise de pouvoir du parti nazi. De Francfort, sous domination américaine, jusqu’à Weimar, contrôlée par les Soviétiques, père et fille traversent une Allemagne en ruines. Alors que le pays est coupé en deux par la guerre froide, Thomas Mann doit également faire face aux profondes fractures au sein de sa famille.Après Ida et Cold War, Paweł Pawlikowski continue d’explorer les bouleversements moraux d’une Europe de l’après-guerre, à travers les thèmes de l’identité, de la culpabilité, de la famille et de l’amour."
+  "storyline": "En 1949, Thomas Mann, lauréat du prix Nobel de littérature, retourne pour la première fois en Allemagne depuis la fin de la guerre, accompagné de sa fille Erika. Ils entreprennent un voyage éprouvant dans un pays qu’ils ont fui lors de la prise de pouvoir du parti nazi."
  },
  "casse-noisette-the-royal-ballet|peter-wright": {
   "key": "casse-noisette-the-royal-ballet|peter-wright",
@@ -1139,6 +1199,18 @@
   "trailer": "",
   "storyline": "L’histoire intemporelle des amants maudits de Shakespeare est transformée dans le ballet captivant de Kenneth MacMillan. La fougue des premières amours est tout aussi présente dans la rencontre de Roméo et Juliette sur le balcon que dans leurs derniers instants, quand ils se raccrochent désespérément à la vie dans le tombeau. La musique évocatrice de Prokofiev est la toile de fond parfaite aux gestes d’amour volés et aux rivalités mortelles, et entraîne le ballet vers sa conclusion tragique et inévitable."
  },
+ "mysterious-skin|gregg-araki": {
+  "key": "mysterious-skin|gregg-araki",
+  "title": "MYSTERIOUS SKIN",
+  "director": "Gregg Araki",
+  "cast": "Brady Corbet, Joseph Gordon-Levitt, Elisabeth Shue",
+  "genre": "Drame",
+  "country": "",
+  "duration_min": 106,
+  "poster": "https://www.ugc.fr/dynamique/films/04/18604/fr/poster/large/5461365bb260b6a43d115dc0fde2250e_grey_3.jpg",
+  "trailer": "",
+  "storyline": "À huit ans, Brian se réveille dans la cave de sa maison, le nez en sang, sans souvenir de ce qui lui est arrivé. Dix ans plus tard, convaincu d’avoir été enlevé par des extraterrestres, il tente de retrouver Neil, un garçon de son ancienne équipe de baseball devenu un jeune homme magnétique et insaisissable. Avec lui, Brian cherche à dénouer le mystère de leur enfance, qui les empêche encore de vivre."
+ },
  "ouistreham|emmanuel-carrere": {
   "key": "ouistreham|emmanuel-carrere",
   "title": "OUISTREHAM",
@@ -1223,6 +1295,18 @@
   "trailer": "",
   "storyline": "Ron Stallworth, un officier de police afro-américain du Colorado, a réussi à infiltrer le Ku Klux Klan local et devient presque le chef du chapitre local."
  },
+ "120-battements-par-minute|robin-campillo": {
+  "key": "120-battements-par-minute|robin-campillo",
+  "title": "120 BATTEMENTS PAR MINUTE",
+  "director": "Robin Campillo",
+  "cast": "Nahuel Perez Biscayart, Arnaud Valois, Adèle Haenel",
+  "genre": "Drame",
+  "country": "",
+  "duration_min": 143,
+  "poster": "https://www.ugc.fr/dynamique/films/51/11751/fr/poster/large/184359_grey_11.jpg",
+  "trailer": "",
+  "storyline": "Début des années 90. Alors que le sida tue depuis près de dix ans, les militants d'Act Up-Paris multiplient les actions pour lutter contre l'indifférence générale. Nouveau venu dans le groupe, Nathan va être bouleversé par la radicalité de Sean."
+ },
  "kraken|mohamed-chabane-theo-jourdain-rhodes": {
   "key": "kraken|mohamed-chabane-theo-jourdain-rhodes",
   "title": "KRAKEN",
@@ -1234,18 +1318,6 @@
   "poster": "https://www.ugc.fr/dynamique/films/58/17858/fr/poster/large/cc222386da3f11bb9ae1dae2d1bc65bd_grey_12.jpg",
   "trailer": "",
   "storyline": "Dans une cité, une tour abandonnée alimente les rumeurs. Alors que des disparitions étranges s'enchaînent, 5 jeunes n’ont plus le choix : y entrer à nouveau. Pris dans un piège mortel, ils vont bientôt comprendre que s'échapper leur sera impossible…"
- },
- "ramayana-tamoul|nitesh-tiwari": {
-  "key": "ramayana-tamoul|nitesh-tiwari",
-  "title": "RAMAYANA - TAMOUL",
-  "director": "Nitesh Tiwari",
-  "cast": "Ranbir Kapoor, Sai Pallavi, Yash",
-  "genre": "Action",
-  "country": "",
-  "duration_min": 194,
-  "poster": "https://www.ugc.fr/dynamique/films/57/18657/fr/poster/large/9f9441504c3da3a4469548e15ba9cb3d_grey_13.jpg",
-  "trailer": "",
-  "storyline": ""
  },
  "om-chapter-1-udhiram-the-blood-wood-tamoul|rajkumar-periasamy": {
   "key": "om-chapter-1-udhiram-the-blood-wood-tamoul|rajkumar-periasamy",
@@ -1259,6 +1331,18 @@
   "trailer": "",
   "storyline": "Inspiré de faits réels, ce thriller haletant suit le combat d’un homme prêt à tout pour sauver 20 bûcherons tamouls injustement arrêtés en Inde. Face à un système impitoyable, il risque sa vie pour faire éclater la vérité."
  },
+ "ramayana-tamoul|nitesh-tiwari": {
+  "key": "ramayana-tamoul|nitesh-tiwari",
+  "title": "RAMAYANA - TAMOUL",
+  "director": "Nitesh Tiwari",
+  "cast": "Ranbir Kapoor, Sai Pallavi, Yash",
+  "genre": "Action",
+  "country": "",
+  "duration_min": 194,
+  "poster": "https://www.ugc.fr/dynamique/films/57/18657/fr/poster/large/9f9441504c3da3a4469548e15ba9cb3d_grey_13.jpg",
+  "trailer": "",
+  "storyline": ""
+ },
  "le-merveilleux-hiver-de-tom-le-chat|joost-van-den-bosch-erick-verkerk": {
   "key": "le-merveilleux-hiver-de-tom-le-chat|joost-van-den-bosch-erick-verkerk",
   "title": "LE MERVEILLEUX HIVER DE TOM LE CHAT",
@@ -1271,18 +1355,6 @@
   "trailer": "",
   "storyline": "Les enfants, vous vous souvenez de Tom, le petit chat roux, toujours accompagné de son amie Chat-Souris ? Imaginez un peu : cet hiver, ils vont découvrir la neige pour la première fois ! Mais les deux compères vont aussi faire la connaissance de leur nouveau voisin : un énorme chien tout poilu, qui se lance très vite à leur poursuite… Que la course en luge commence !"
  },
- "malfaisante|rob-savage": {
-  "key": "malfaisante|rob-savage",
-  "title": "MALFAISANTE",
-  "director": "Rob Savage",
-  "cast": "Jessica Chastain, Jay Duplass, Arabella Olivia Clark",
-  "genre": "Epouvante-horreur",
-  "country": "",
-  "duration_min": 93,
-  "poster": "https://www.ugc.fr/dynamique/films/12/17712/fr/poster/large/9ec5c971224bc443153c1a8da6c73e07_grey_17.jpg",
-  "trailer": "",
-  "storyline": "MALFAISANTE nous entraine dans l’univers de la très jeune Bela, dont le quotidien se détériore de jour en jour en raison de la relation qu’elle entretient, au cœur de sa propre maison, avec une entité malveillante qui ressemble étrangement à sa propre mère."
- },
  "peppa-fete-noel|": {
   "key": "peppa-fete-noel|",
   "title": "PEPPA FETE NOEL",
@@ -1294,6 +1366,18 @@
   "poster": "https://www.ugc.fr/dynamique/films/24/18624/fr/poster/large/6099fc0962b069b0b087541354161411_grey_4.jpg",
   "trailer": "",
   "storyline": "Retrouvez Peppa et toute sa famille au cinéma pour une grande fête de Noël pleine de surprises et d'aventures hivernales. Une sélection de nouveaux épisodes et d'épisodes incontournables de la série à découvrir avec vos proches !"
+ },
+ "malfaisante|rob-savage": {
+  "key": "malfaisante|rob-savage",
+  "title": "MALFAISANTE",
+  "director": "Rob Savage",
+  "cast": "Jessica Chastain, Jay Duplass, Arabella Olivia Clark",
+  "genre": "Epouvante-horreur",
+  "country": "",
+  "duration_min": 93,
+  "poster": "https://www.ugc.fr/dynamique/films/12/17712/fr/poster/large/9ec5c971224bc443153c1a8da6c73e07_grey_17.jpg",
+  "trailer": "",
+  "storyline": "MALFAISANTE nous entraine dans l’univers de la très jeune Bela, dont le quotidien se détériore de jour en jour en raison de la relation qu’elle entretient, au cœur de sa propre maison, avec une entité malveillante qui ressemble étrangement à sa propre mère."
  },
  "scene-tamoul|jithu-madhavan": {
   "key": "scene-tamoul|jithu-madhavan",
@@ -1355,18 +1439,6 @@
   "trailer": "",
   "storyline": "Ce documentaire explore les conséquences humaines de la légalisation de l’aide à mourir à travers plusieurs témoignages en Europe et au Québec."
  },
- "ulya|viesturs-kairiss": {
-  "key": "ulya|viesturs-kairiss",
-  "title": "ULYA",
-  "director": "Viesturs Kairiss",
-  "cast": "Kārlis Arnolds Avots, Alise Dzene, Dārta Cīrule",
-  "genre": "Drame",
-  "country": "",
-  "duration_min": 102,
-  "poster": "https://www.ugc.fr/dynamique/films/94/18194/fr/poster/large/a615219c778a4c61d3cd95a7fb4f2271_grey_9.jpg",
-  "trailer": "",
-  "storyline": "Lettonie, 1964. Ulya, une adolescente mesurant près de deux mètres, grandit dans une ferme isolée. Sa taille hors norme inquiète sa famille. Elle est envoyée à Riga pour intégrer une équipe renommée de basket-ball. Confrontée à sa taille et à des questionnements sur son identité, elle se trouve face à un choix : se cacher ou devenir la meilleure joueuse de basket-ball au monde."
- },
  "emprise-funeste|andy-anison": {
   "key": "emprise-funeste|andy-anison",
   "title": "EMPRISE FUNESTE",
@@ -1378,6 +1450,18 @@
   "poster": "https://www.ugc.fr/dynamique/films/80/18680/fr/poster/large/6c8b1d3200d5a1e97c5233ada1175e1c_grey_3.jpg",
   "trailer": "",
   "storyline": "Deux sœurs subissant l'emprise sont accusées de meurtre. La légitime défense est proclamée. Justice corrompue ? Ou pas. Une énigme palpitante se dessine. Prévenir les maux par les mots. Pour ne pas reproduire. L'être humain en est-il capable ?"
+ },
+ "ulya|viesturs-kairiss": {
+  "key": "ulya|viesturs-kairiss",
+  "title": "ULYA",
+  "director": "Viesturs Kairiss",
+  "cast": "Kārlis Arnolds Avots, Alise Dzene, Dārta Cīrule",
+  "genre": "Drame",
+  "country": "",
+  "duration_min": 102,
+  "poster": "https://www.ugc.fr/dynamique/films/94/18194/fr/poster/large/a615219c778a4c61d3cd95a7fb4f2271_grey_9.jpg",
+  "trailer": "",
+  "storyline": "Lettonie, 1964. Ulya, une adolescente mesurant près de deux mètres, grandit dans une ferme isolée. Sa taille hors norme inquiète sa famille. Elle est envoyée à Riga pour intégrer une équipe renommée de basket-ball. Confrontée à sa taille et à des questionnements sur son identité, elle se trouve face à un choix : se cacher ou devenir la meilleure joueuse de basket-ball au monde."
  },
  "carlo-acutis|luca-salmaso": {
   "key": "carlo-acutis|luca-salmaso",
@@ -1595,18 +1679,6 @@
   "trailer": "",
   "storyline": "Il était une fois une petite oie à la recherche d’une chaussette verte, un ourson qui avait trouvé un bonnet, un étrange chien au pelage bleu, deux voisins lapins fâchés… et une lérote qui rêvait de neige plutôt que d’hiberner. Ouvrez la malle aux trésors de l’école des loisirs et découvrez Chien Bleu et quatre autres histoires comme vous ne les avez encore jamais vues ni entendues !"
  },
- "the-blues-brothers|john-landis": {
-  "key": "the-blues-brothers|john-landis",
-  "title": "THE BLUES BROTHERS",
-  "director": "John Landis",
-  "cast": "John Belushi, Dan Aykroyd, James Brown",
-  "genre": "Musical",
-  "country": "",
-  "duration_min": 133,
-  "poster": "https://www.ugc.fr/dynamique/films/90/10590/fr/poster/large/379_af_grey_7.jpg",
-  "trailer": "",
-  "storyline": "Les frères Jake et Elwood Blues doivent trouver la somme de 5 000 dollars pour sauver l'orphelinat de leur enfance. Jake décide de reformer leur groupe musical les \"Blues Brothers\". Mais ils se trouvent alors poursuivis par les policiers, une femme vengeresse, des néo-nazis et d'autres musiciens..."
- },
  "le-monde-a-l-endroit|sylvie-meyer": {
   "key": "le-monde-a-l-endroit|sylvie-meyer",
   "title": "LE MONDE A L ENDROIT",
@@ -1771,7 +1843,7 @@
   "genre": "Drame",
   "country": "",
   "duration_min": 103,
-  "poster": "https://www.ugc.fr/dynamique/films/47/18547/fr/poster/large/62d9a682d16714dd0712006fc6ab0cf7_grey_3.jpg",
+  "poster": "https://www.ugc.fr/dynamique/films/47/18547/fr/poster/large/62d9a682d16714dd0712006fc6ab0cf7_grey_4.jpg",
   "trailer": "",
   "storyline": "Ivan Katz, metteur en scène de théâtre et joueur pathologique, brûle sa vie dans les jeux d'argent. Lors d’une nuit fatidique, il joue et perd la totalité de la subvention de sa nouvelle pièce : Platonov de Tchekhov. Pour se refaire et sauver son spectacle, Ivan décide d’entrer dans des parties clandestines de poker. Tout en répétant Platonov le jour, Ivan plonge dans l’univers vertigineux et dangereux du jeu la nuit…"
  },
@@ -1798,6 +1870,18 @@
   "poster": "https://www.ugc.fr/dynamique/films/60/18260/fr/poster/large/943dbe6e743568aa646d57789f2903d4_grey_5.jpg",
   "trailer": "",
   "storyline": "Misael travaille seul. Muni de sa hache, il abat des arbres dans la forêt.  Une responsabilité inattendue vient bouleverser sa vie, et le rythme de ses journées disparaît progressivement dans une nature où la raison humaine n’a plus de sens."
+ },
+ "merci-d-etre-venu|alain-cavalier": {
+  "key": "merci-d-etre-venu|alain-cavalier",
+  "title": "MERCI D'ETRE VENU",
+  "director": "Alain Cavalier",
+  "cast": "",
+  "genre": "Documentaire",
+  "country": "",
+  "duration_min": 87,
+  "poster": "https://www.ugc.fr/dynamique/films/17/18717/fr/poster/large/7c6421b192e7900a1fc602eab7f61260_grey_0.jpg",
+  "trailer": "",
+  "storyline": "Ceci est l’histoire d’un filmeur, Alain Cavalier. Toujours accompagné de sa caméra il continue de filmer passionnément la vie, apprenant encore sur lui et surtout sur les autres. Cependant il prend de l’âge et voit sa vitesse, sa fraîcheur, son audace et sa légèreté baisser. La gorge un peu serrée mais riant, il tient un journal filmé de ses adieux au cinéma. Cela sera son dernier film."
  },
  "quelques-mots-d-amour|rudi-rosenberg": {
   "key": "quelques-mots-d-amour|rudi-rosenberg",
@@ -1834,30 +1918,6 @@
   "poster": "https://www.ugc.fr/dynamique/films/05/18405/fr/poster/large/ab608b1c170d26c4f05010e93cdcb0ac_grey_13.jpg",
   "trailer": "",
   "storyline": "Mise au ban de son village, une pêcheuse solitaire commande au vannier local un mari en osier. Cet époux improbable se révèle doté d’une sensibilité et de talents qui dépassent toutes ses attentes. À son contact, elle découvre un désir insoupçonné et s’éprend véritablement de lui."
- },
- "dans-les-ruches|": {
-  "key": "dans-les-ruches|",
-  "title": "DANS LES RUCHES",
-  "director": "",
-  "cast": "",
-  "genre": "",
-  "country": "",
-  "duration_min": 59,
-  "poster": "https://www.ugc.fr/dynamique/films/22/18522/fr/poster/large/dans-les-ruches_330x440_grey_1.jpg",
-  "trailer": "",
-  "storyline": "Anne-Marie, Sarah et Patricia sont trois femmes, trois mères qui accompagnent leurs fils atteints d’une maladie psychique. Elles invitent la caméra dans leur quotidien, partageant les moments difficiles et les lueurs d’espoirs. De leurs voix naît peu à peu une parole collective pour faire entendre ce que vivent les proches, une réalité souvent invisibilisée."
- },
- "merci-d-etre-venu|alain-cavalier": {
-  "key": "merci-d-etre-venu|alain-cavalier",
-  "title": "MERCI D'ETRE VENU",
-  "director": "Alain Cavalier",
-  "cast": "",
-  "genre": "Documentaire",
-  "country": "",
-  "duration_min": 87,
-  "poster": "https://www.ugc.fr/dynamique/films/17/18717/fr/poster/large/7c6421b192e7900a1fc602eab7f61260_grey_0.jpg",
-  "trailer": "",
-  "storyline": "Ceci est l’histoire d’un filmeur, Alain Cavalier. Toujours accompagné de sa caméra il continue de filmer passionnément la vie, apprenant encore sur lui et surtout sur les autres. Cependant il prend de l’âge et voit sa vitesse, sa fraîcheur, son audace et sa légèreté baisser. La gorge un peu serrée mais riant, il tient un journal filmé de ses adieux au cinéma. Cela sera son dernier film."
  },
  "l-age-d-or|berenger-thouin": {
   "key": "l-age-d-or|berenger-thouin",
@@ -2002,18 +2062,6 @@
   "poster": "https://www.ugc.fr/dynamique/films/01/18601/fr/poster/large/3099ee5545009bf79121798718ef9f86_grey_6.jpg",
   "trailer": "",
   "storyline": ""
- },
- "les-olympiades|jacques-audiard": {
-  "key": "les-olympiades|jacques-audiard",
-  "title": "LES OLYMPIADES",
-  "director": "Jacques Audiard",
-  "cast": "Lucie Zhang, Makita Samba, Noémie Merlant",
-  "genre": "Comédie",
-  "country": "",
-  "duration_min": 106,
-  "poster": "https://www.ugc.fr/dynamique/films/44/14144/fr/poster/large/2067466_grey_2967.jpg",
-  "trailer": "",
-  "storyline": "Paris 13e, quartier des Olympiades. Emilie rencontre Camille qui est attiré par Nora qui elle-même croise le chemin de Amber. Trois filles et un garçon. Ils sont amis, parfois amants, souvent les deux."
  },
  "la-ragazza-di-bube|luigi-comencini": {
   "key": "la-ragazza-di-bube|luigi-comencini",
